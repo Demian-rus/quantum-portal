@@ -6,55 +6,112 @@
   <title>Квантовый портал</title>
   <style>
     :root {
-      --bg: #060614;
-      --panel: #111125;
-      --accent: #00d4ff;
-      --accent-hover: #0099cc;
-      --text: #e0e0ff;
-      --border: #00d4ff33;
+    --bg: #000000;
+    --panel: #0d0d0d;
+    --accent: #00ff33;
+    --accent-hover: #00cc00;
+    --text: #ffffff;
+    --border: #00ff3344;
+    --secondary: #888888;
     }
-    
+
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      background: var(--bg); color: var(--text);
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      min-height: 100vh; display: flex; flex-direction: column;
-      align-items: center; overflow-x: hidden;
+    background: var(--bg); 
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    overflow-x: hidden;
     }
 
     nav {
-      width: 100%; background: #0b0b1e; border-bottom: 1px solid var(--border);
-      display: flex; justify-content: center; gap: 20px; padding: 12px;
+    width: 100%; 
+    background: #0a0a0a; 
+    border-bottom: 1px solid var(--border);
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    padding: 12px;
     }
+
     .tab {
       background: transparent; color: #666; border: none; font-size: 15px;
       cursor: pointer; padding: 6px 12px; font-weight: bold; transition: 0.2s;
     }
-    .tab.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
+    .tab.active { 
+    color: var(--accent); 
+    border-bottom: 2px solid var(--accent); 
+    text-shadow: 0 0 10px rgba(0, 255, 51, 0.5);
+    }
+
     .tab:hover:not(.active) { color: #a0a0ff; }
 
     .header-area { padding: 20px 16px 15px; text-align: center; width: 100%; }
-    h1 { font-size:26px; color: var(--accent); letter-spacing:3px; text-shadow:0 0 20px rgba(0,212,255,.4); margin-bottom:5px; }
-    .sub { color: #555588; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+    h1 { 
+    font-size: 26px; 
+    color: var(--accent); 
+    letter-spacing: 3px; 
+    text-shadow: 0 0 20px #00ff33, 0 0 40px #00ff33, 0 0 60px #00aa00;
+    margin-bottom: 5px;
+    font-weight: 900;
+    }
+
+    .sub { 
+    color: var(--secondary); 
+    font-size: 12px; 
+    letter-spacing: 1px; 
+    text-transform: uppercase; 
+    }
+
 
     .controls { 
       display:flex; gap:10px; flex-wrap:wrap; justify-content:center; 
       margin-bottom:20px; padding: 0 16px; max-width: 1000px;
     }
     .control-group {
-      display: flex; gap: 10px; background: rgba(0,212,255,0.05); 
-      padding: 8px; border-radius: 10px; border: 1px solid var(--border);
+    display: flex; 
+    gap: 10px; 
+    background: rgba(0, 255, 51, 0.05); 
+    padding: 8px; 
+    border-radius: 2px; 
+    border: 1px solid var(--border);
     }
+
     select, button {
-      background: #12122a; border: 1px solid var(--border); color: #c0c8e8;
-      padding: 8px 16px; border-radius: 6px; font-size: 14px; cursor: pointer;
-      transition: 0.2s; outline: none;
+    background: var(--panel); 
+    border: 1px solid var(--border); 
+    color: var(--text);
+    padding: 8px 16px; 
+    border-radius: 2px; 
+    font-size: 14px; 
+    cursor: pointer;
+    transition: 0.2s; 
+    outline: none;
     }
-    select:hover, button:hover { border-color: var(--accent); box-shadow: 0 0 10px rgba(0,212,255,.15); }
-    
-    button.primary { background: rgba(0,212,255,0.1); color: var(--accent); font-weight: bold; border-color: rgba(0,212,255,0.5); }
-    button.primary:hover { background: rgba(0,212,255,0.2); }
-    button.action { color: #fbbf24; border-color: rgba(251,191,36,0.5); }
+    select:hover, button:hover { 
+    border-color: var(--accent); 
+    box-shadow: 0 0 10px rgba(0, 255, 51, 0.3); 
+    }
+
+    button.primary { 
+    background: rgba(0, 255, 51, 0.1); 
+    color: var(--accent); 
+    font-weight: bold; 
+    border-color: rgba(0, 255, 51, 0.6); 
+    }
+    button.primary:hover { 
+    background: rgba(0, 255, 51, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 51, 0.4);
+    }
+
+    button.action { 
+    color: var(--accent); 
+    border-color: rgba(0, 255, 51, 0.5); 
+    }
+
     button.danger { color: #ff6b35; border-color: rgba(255,107,53,0.5); }
 
     .stat-line { width: 100%; text-align: center; font-size: 13px; color: #555588; margin-bottom: 15px; }
@@ -331,11 +388,7 @@
   </style>
 </head>
 <body>
-    <input id="hidden-input" type="text"
-  autocomplete="off" autocorrect="off" autocapitalize="none"
-  spellcheck="false" inputmode="none"
-  style="position:fixed; left:0; bottom:0; width:1px; height:1px; opacity:0.01; border:none; outline:none; background:transparent; color:transparent; z-index:-1;">
-
+    <div id="hidden-input" style="display:none;"></div>
 
   <nav>
     <button class="tab active" onclick="switchTab('crossword')">Кроссворд</button>
