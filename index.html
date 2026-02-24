@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>Квантовый портал</title>
   <style>
     :root {
@@ -76,7 +76,9 @@
       color: #ff6b35; font-weight: bold; font-size: 16px; width: 100%; max-width: 900px;
     }
 
-    canvas { border-radius: 12px; display: block; max-width: 100%; cursor: pointer; touch-action: none; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+    canvas { border-radius: 12px; display: block; max-width: 100%; cursor: pointer; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+    #cv, #cvSudoku { touch-action: manipulation; }
+    #cvPhil { touch-action: none; }
 
     /* Сайдбар выровнен с холстом по верхнему краю */
     #sidebar {
@@ -252,7 +254,15 @@
 
   .main-container { padding: 0 8px 20px; gap: 10px; }
 
-  #active-q-panel { font-size: 13px; padding: 10px 12px; margin-bottom: 10px; }
+  /* Правка 3 пункта: панель вопроса компактнее и текст меньше */
+  #active-q-panel { 
+    font-size: 12px; 
+    padding: 8px 10px; 
+    margin-bottom: 10px; 
+    line-height: 1.3; 
+    min-height: 40px; 
+  }
+  
   #phil-active-panel { font-size: 13px; padding: 10px 12px; margin-bottom: 10px; }
   #su-active-panel { font-size: 13px; padding: 10px 12px; max-width: 100%; }
 
@@ -271,6 +281,7 @@
   </style>
 </head>
 <body>
+    <input type="text" id="hidden-input" style="position:fixed; top:-1000px; opacity:0; pointer-events:none;">
 
   <nav>
     <button class="tab active" onclick="switchTab('crossword')">Кроссворд</button>
@@ -1730,7 +1741,12 @@ function sudokuInitOnce() {
   
   const cv = document.getElementById('cvSudoku');
   if(cv) {
-    cv.addEventListener('pointerdown', sudokuClick);
+    // ВСТАВЛЯТЬ СЮДА: Обернули sudokuClick в стрелочную функцию, чтобы добавить фокус
+    cv.addEventListener('pointerdown', e => {
+      const hiddenInput = document.getElementById('hidden-input');
+      if(hiddenInput) hiddenInput.focus({preventScroll: true});
+      sudokuClick(e);
+    });
   }
   
   // Клавиатура
@@ -1920,14 +1936,24 @@ function sudokuInitOnce() {
     const c = Math.floor(((e.clientX - rect.left) * (e.target.width / rect.width) - GPAD) / CELL) + window.lastBounds.cMin;
     const r = Math.floor(((e.clientY - rect.top) * (e.target.height / rect.height) - GPAD - TOPH) / CELL) + window.lastBounds.rMin;
 
+    const hiddenInput = document.getElementById('hidden-input');
+
     if(r>=0 && r<N && c>=0 && c<N && window.lastG[r][c]!=='.') {
       const words = window.lastPlaced.filter(p => p.dir==='H' ? (p.r===r && c>=p.c && c<p.c+p.w.length) : (p.c===c && r>=p.r && r<p.r+p.w.length));
       if(words.length) {
         if(activeWord && words.includes(activeWord) && activeR===r && activeC===c && words.length>1) activeWord=words.find(w=>w!==activeWord);
         else if(!words.includes(activeWord)) activeWord=words[0];
         activeR=r; activeC=c;
+        
+        // Вызываем клавиатуру ТОЛЬКО если кликнули по активной клетке
+        if(hiddenInput) hiddenInput.focus({preventScroll: true}); 
       }
-    } else { activeWord=null; activeR=-1; activeC=-1; }
+    } else { 
+      activeWord=null; activeR=-1; activeC=-1; 
+      
+      // Прячем клавиатуру, если кликнули на пустой фон
+      if(hiddenInput) hiddenInput.blur(); 
+    }
     
     updateUI(); drawCrossword(window.lastG, window.lastPlaced);
   });
@@ -1969,6 +1995,33 @@ function sudokuInitOnce() {
     const a = document.createElement('a'); a.download = 'crossword.png';
     a.href = document.getElementById('cv').toDataURL('image/png'); a.click();
   }
+
+  // Единый обработчик скрытой клавиатуры для всех режимов
+const hiddenInput = document.getElementById('hidden-input');
+
+hiddenInput.addEventListener('input', (e) => {
+  const char = e.data; // То, что ввели
+  hiddenInput.value = ''; // Сразу очищаем, чтобы ловить следующий символ
+
+  // Если активен Кроссворд
+  if (document.getElementById('sec-crossword').classList.contains('active') && activeWord) {
+    if (char && /[а-яёa-z]/i.test(char)) handleInput(char);
+  }
+  
+  // Если активно Судоку
+  if (document.getElementById('sec-sudoku').classList.contains('active')) {
+    if (char && /[1-9]/.test(char)) sudokuInput(parseInt(char));
+    if (char === '0') sudokuInput(0);
+  }
+});
+
+// Ловим Backspace (он не вызывает событие input)
+hiddenInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Backspace') {
+    if (document.getElementById('sec-crossword').classList.contains('active')) handleInput('Backspace');
+    if (document.getElementById('sec-sudoku').classList.contains('active')) sudokuInput(0);
+  }
+});
 
   window.onload = () => {
   onGenerate();     // кроссворд как раньше
