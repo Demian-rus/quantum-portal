@@ -233,6 +233,41 @@
   .su-numpad button { width: 30px; height: 35px; font-size: 16px; }
 }
 
+/* ─── МОБИЛЬНАЯ АДАПТАЦИЯ ─── */
+@media (max-width: 650px) {
+  h1 { font-size: 18px; letter-spacing: 1px; }
+  .sub { display: none; }
+  .header-area { padding: 10px 8px 8px; }
+
+  nav { gap: 6px; padding: 8px; }
+  .tab { font-size: 13px; padding: 5px 8px; }
+
+  .controls { gap: 6px; padding: 0 8px; }
+  .control-group {
+    gap: 6px; padding: 6px; flex-wrap: wrap; justify-content: center;
+  }
+  select, button {
+    font-size: 12px; padding: 7px 10px;
+  }
+
+  .main-container { padding: 0 8px 20px; gap: 10px; }
+
+  #active-q-panel { font-size: 13px; padding: 10px 12px; margin-bottom: 10px; }
+  #phil-active-panel { font-size: 13px; padding: 10px 12px; margin-bottom: 10px; }
+  #su-active-panel { font-size: 13px; padding: 10px 12px; max-width: 100%; }
+
+  /* Судоку — кнопки цифр крупнее */
+  .su-numpad { gap: 6px; margin-top: 12px; }
+  .su-numpad button { width: 38px; height: 44px; font-size: 20px; }
+
+  /* Сайдбар кроссворда — внизу, не сбоку */
+  #sidebar, #philSidebar {
+    width: 100% !important; max-width: 100%;
+    height: 240px; position: relative; top: 0;
+  }
+  #sidebar.collapsed { height: 44px; }
+}
+
   </style>
 </head>
 <body>
@@ -1058,7 +1093,16 @@ const DB = {
     return best;
   }
 
-  const CELL=32, GPAD=24, TOPH=20, BPAD=30;
+  let CELL=32;
+  const GPAD=24, TOPH=20, BPAD=30;
+
+  function getResponsiveCell() {
+  const vw = window.innerWidth;
+  if (vw <= 420) return 20;
+  if (vw <= 650) return 25;
+  return 32;
+  }
+
 
   function rrect(ctx,x,y,w,h,r) {
     ctx.beginPath(); ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
@@ -1708,6 +1752,7 @@ function sudokuInitOnce() {
 }
 
   function drawCrossword(g, placed) {
+    CELL = getResponsiveCell();
     const rs=[], cs=[];
     for(let r=0;r<N;r++) for(let c=0;c<N;c++) if(g[r][c]!=='.') {rs.push(r); cs.push(c);}
     if(!rs.length) return;
