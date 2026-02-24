@@ -278,12 +278,61 @@
   #sidebar.collapsed { height: 44px; }
 }
 
+/* ─── КИРИЛЛИЧЕСКАЯ КЛАВИАТУРА КРОССВОРДА ─── */
+#cw-keypad {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-top: 14px;
+  width: 100%;
+  max-width: 420px;
+  padding: 10px 6px;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+#cw-keypad.visible { display: flex; }
+
+.cw-row {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+.cw-row button {
+  width: 29px; height: 40px;
+  font-size: 13px; font-weight: bold;
+  background: #1a1a38; color: #d0d8ff;
+  border: 1px solid #333355; border-radius: 6px;
+  cursor: pointer; padding: 0;
+  transition: 0.1s; -webkit-tap-highlight-color: transparent;
+}
+.cw-row button:active {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+  transform: scale(0.92);
+}
+.cw-del {
+  width: 44px !important;
+  color: #ff6b35 !important;
+  border-color: rgba(255,107,53,0.4) !important;
+}
+
+/* На десктопе клавиатура скрыта всегда */
+@media (min-width: 769px) {
+  #cw-keypad { display: none !important; }
+}
+
   </style>
 </head>
 <body>
     <input id="hidden-input" type="text"
-    autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false"
-    style="position:fixed; left:0; bottom:0; width:1px; height:1px; opacity:0.01; border:none; outline:none; background:transparent; color:transparent; z-index:-1;">
+  autocomplete="off" autocorrect="off" autocapitalize="none"
+  spellcheck="false" inputmode="none"
+  style="position:fixed; left:0; bottom:0; width:1px; height:1px; opacity:0.01; border:none; outline:none; background:transparent; color:transparent; z-index:-1;">
+
 
   <nav>
     <button class="tab active" onclick="switchTab('crossword')">Кроссворд</button>
@@ -332,6 +381,49 @@
       <div class="game-area">
         <div id="active-q-panel">Сгенерируйте кроссворд и выберите клетку</div>
         <canvas id="cv"></canvas>
+        <div id="cw-keypad">
+  <div class="cw-row">
+    <button onclick="handleInput('Й')">Й</button>
+    <button onclick="handleInput('Ц')">Ц</button>
+    <button onclick="handleInput('У')">У</button>
+    <button onclick="handleInput('К')">К</button>
+    <button onclick="handleInput('Е')">Е</button>
+    <button onclick="handleInput('Н')">Н</button>
+    <button onclick="handleInput('Г')">Г</button>
+    <button onclick="handleInput('Ш')">Ш</button>
+    <button onclick="handleInput('Щ')">Щ</button>
+    <button onclick="handleInput('З')">З</button>
+    <button onclick="handleInput('Х')">Х</button>
+    <button onclick="handleInput('Ъ')">Ъ</button>
+  </div>
+  <div class="cw-row">
+    <button onclick="handleInput('Ф')">Ф</button>
+    <button onclick="handleInput('Ы')">Ы</button>
+    <button onclick="handleInput('В')">В</button>
+    <button onclick="handleInput('А')">А</button>
+    <button onclick="handleInput('П')">П</button>
+    <button onclick="handleInput('Р')">Р</button>
+    <button onclick="handleInput('О')">О</button>
+    <button onclick="handleInput('Л')">Л</button>
+    <button onclick="handleInput('Д')">Д</button>
+    <button onclick="handleInput('Ж')">Ж</button>
+    <button onclick="handleInput('Э')">Э</button>
+  </div>
+  <div class="cw-row">
+    <button onclick="handleInput('Я')">Я</button>
+    <button onclick="handleInput('Ч')">Ч</button>
+    <button onclick="handleInput('С')">С</button>
+    <button onclick="handleInput('М')">М</button>
+    <button onclick="handleInput('И')">И</button>
+    <button onclick="handleInput('Т')">Т</button>
+    <button onclick="handleInput('Ь')">Ь</button>
+    <button onclick="handleInput('Б')">Б</button>
+    <button onclick="handleInput('Ю')">Ю</button>
+    <button onclick="handleInput('Ё')">Ё</button>
+    <button onclick="handleInput('Backspace')" class="cw-del">⌫</button>
+  </div>
+</div>
+
       </div>
 
       <div id="sidebar" class="collapsed" onclick="if(this.classList.contains('collapsed')) toggleSidebar()">
@@ -1861,6 +1953,9 @@ function sudokuInitOnce() {
         container.scrollTo({ top: targetScroll, behavior: 'smooth' });
       }
     }
+        // Показываем кириллическую клавиатуру только на мобилках
+        const kp = document.getElementById('cw-keypad');
+        if (kp) kp.classList.toggle('visible', !!(activeWord && !isSolved));
   }
 
 
@@ -2031,39 +2126,6 @@ hiddenInput.addEventListener('keydown', (e) => {
     if (document.getElementById('sec-sudoku').classList.contains('active')) sudokuInput(0);
   }
 });
-
-// ═══════════════════════════════════════════════════════════
-//  МОБИЛЬНЫЙ ВВОД — input-событие (Android + iOS)
-// ═══════════════════════════════════════════════════════════
-(function() {
-  const hi = document.getElementById('hidden-input');
-  if (!hi) return;
-
-  hi.addEventListener('input', (e) => {
-    let char = e.data;
-    // Android иногда даёт e.data=null при автозаполнении — берём из value
-    if (!char && hi.value.length > 0) char = hi.value.slice(-1);
-    hi.value = ''; // сразу очищаем
-
-    if (!char) return;
-
-    if (document.getElementById('sec-crossword').classList.contains('active') && activeWord && !isSolved) {
-      if (/[а-яёa-z]/i.test(char)) handleInput(char);
-    }
-    if (document.getElementById('sec-sudoku').classList.contains('active')) {
-      if (/[1-9]/.test(char)) sudokuInput(parseInt(char));
-      if (char === '0') sudokuInput(0);
-    }
-  });
-
-  hi.addEventListener('keydown', (e) => {
-    if (e.key === 'Backspace') {
-      hi.value = '';
-      if (document.getElementById('sec-crossword').classList.contains('active')) handleInput('Backspace');
-      if (document.getElementById('sec-sudoku').classList.contains('active')) sudokuInput(0);
-    }
-  });
-})();
 
   window.onload = () => {
   onGenerate();     // кроссворд как раньше
