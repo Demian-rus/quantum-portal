@@ -296,12 +296,14 @@
 
 .cw-row {
   display: flex;
-  gap: 3px;
+  gap: 2px; /* Уменьшили отступ между кнопками */
   justify-content: center;
-  flex-wrap: nowrap;
+  width: 100%;
 }
 .cw-row button {
-  width: 29px; height: 40px;
+  flex: 1 1 0; /* Делает кнопки резиновыми! */
+  min-width: 0; /* Обязательно для сужения */
+  height: 40px;
   font-size: 13px; font-weight: bold;
   background: #1a1a38; color: #d0d8ff;
   border: 1px solid #333355; border-radius: 6px;
@@ -315,10 +317,11 @@
   transform: scale(0.92);
 }
 .cw-del {
-  width: 44px !important;
+  flex: 1.5 1 0 !important; /* Кнопка удаления будет чуть шире остальных */
   color: #ff6b35 !important;
   border-color: rgba(255,107,53,0.4) !important;
 }
+
 
 /* На десктопе клавиатура скрыта всегда */
 @media (min-width: 769px) {
@@ -1838,10 +1841,6 @@ function sudokuInitOnce() {
     // ВСТАВЛЯТЬ СЮДА: Обернули sudokuClick в стрелочную функцию, чтобы добавить фокус
     cv.addEventListener('pointerdown', e => {
       sudokuClick(e);
-      setTimeout(() => {
-        const hi = document.getElementById('hidden-input');
-        if (hi) hi.focus({ preventScroll: true });
-      }, 50);
     });
 
   }
@@ -2055,7 +2054,6 @@ function sudokuInitOnce() {
     
     updateUI(); drawCrossword(window.lastG, window.lastPlaced);
       if (activeWord) {
-      setTimeout(() => document.getElementById('hidden-input').focus({ preventScroll: true }), 50);
     }
 
   });
