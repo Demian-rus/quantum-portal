@@ -281,7 +281,9 @@
   </style>
 </head>
 <body>
-    <input type="text" id="hidden-input" style="position:fixed; top:-1000px; opacity:0; pointer-events:none;">
+    <input id="hidden-input" type="text"
+    autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false"
+    style="position:fixed; left:0; bottom:0; width:1px; height:1px; opacity:0.01; border:none; outline:none; background:transparent; color:transparent; z-index:-1;">
 
   <nav>
     <button class="tab active" onclick="switchTab('crossword')">Кроссворд</button>
@@ -1743,14 +1745,18 @@ function sudokuInitOnce() {
   if(cv) {
     // ВСТАВЛЯТЬ СЮДА: Обернули sudokuClick в стрелочную функцию, чтобы добавить фокус
     cv.addEventListener('pointerdown', e => {
-      const hiddenInput = document.getElementById('hidden-input');
-      if(hiddenInput) hiddenInput.focus({preventScroll: true});
       sudokuClick(e);
+      setTimeout(() => {
+        const hi = document.getElementById('hidden-input');
+        if (hi) hi.focus({ preventScroll: true });
+      }, 50);
     });
+
   }
   
   // Клавиатура
   window.addEventListener('keydown', e => {
+    if (e.target.id === 'hidden-input') return;
     if(document.getElementById('sec-sudoku').classList.contains('active')) {
       if(e.key >= '1' && e.key <= '9') sudokuInput(parseInt(e.key));
       if(e.key === 'Backspace' || e.key === 'Delete' || e.key === '0') sudokuInput(0);
@@ -1946,16 +1952,17 @@ function sudokuInitOnce() {
         activeR=r; activeC=c;
         
         // Вызываем клавиатуру ТОЛЬКО если кликнули по активной клетке
-        if(hiddenInput) hiddenInput.focus({preventScroll: true}); 
+        setTimeout(() => hiddenInput && hiddenInput.focus({preventScroll:true}), 50);
       }
     } else { 
       activeWord=null; activeR=-1; activeC=-1; 
-      
-      // Прячем клавиатуру, если кликнули на пустой фон
-      if(hiddenInput) hiddenInput.blur(); 
     }
     
     updateUI(); drawCrossword(window.lastG, window.lastPlaced);
+      if (activeWord) {
+      setTimeout(() => document.getElementById('hidden-input').focus({ preventScroll: true }), 50);
+    }
+
   });
 
   function handleInput(key) {
@@ -1974,6 +1981,8 @@ function sudokuInitOnce() {
 
   // Глобальный перехват нажатий (без focus-инпута)
   window.addEventListener('keydown', e => {
+    if (e.target && e.target.id === 'hidden-input') return;
+    if (e.target.id === 'hidden-input') return; // мобильный ввод обрабатывается через input-событие
     if (activeWord && !isSolved) {
       // Игнорируем спецклавиши браузера, чтобы не перехватывать всё подряд
       if (e.ctrlKey || e.altKey || e.metaKey) return;
@@ -2022,6 +2031,39 @@ hiddenInput.addEventListener('keydown', (e) => {
     if (document.getElementById('sec-sudoku').classList.contains('active')) sudokuInput(0);
   }
 });
+
+// ═══════════════════════════════════════════════════════════
+//  МОБИЛЬНЫЙ ВВОД — input-событие (Android + iOS)
+// ═══════════════════════════════════════════════════════════
+(function() {
+  const hi = document.getElementById('hidden-input');
+  if (!hi) return;
+
+  hi.addEventListener('input', (e) => {
+    let char = e.data;
+    // Android иногда даёт e.data=null при автозаполнении — берём из value
+    if (!char && hi.value.length > 0) char = hi.value.slice(-1);
+    hi.value = ''; // сразу очищаем
+
+    if (!char) return;
+
+    if (document.getElementById('sec-crossword').classList.contains('active') && activeWord && !isSolved) {
+      if (/[а-яёa-z]/i.test(char)) handleInput(char);
+    }
+    if (document.getElementById('sec-sudoku').classList.contains('active')) {
+      if (/[1-9]/.test(char)) sudokuInput(parseInt(char));
+      if (char === '0') sudokuInput(0);
+    }
+  });
+
+  hi.addEventListener('keydown', (e) => {
+    if (e.key === 'Backspace') {
+      hi.value = '';
+      if (document.getElementById('sec-crossword').classList.contains('active')) handleInput('Backspace');
+      if (document.getElementById('sec-sudoku').classList.contains('active')) sudokuInput(0);
+    }
+  });
+})();
 
   window.onload = () => {
   onGenerate();     // кроссворд как раньше
