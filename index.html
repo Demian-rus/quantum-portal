@@ -122,9 +122,15 @@
     }
     
     .game-area {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      flex: 1; min-width: 0; transition: 0.3s;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    flex: 1; 
+    min-width: 0;
+    transition: 0.3s;
     }
+
 
     #active-q-panel {
       background: var(--panel); border: 1px solid var(--border); box-shadow: 0 5px 20px rgba(0,0,0,0.4);
@@ -333,23 +339,32 @@
     height: 240px; position: relative; top: 0;
   }
   #sidebar.collapsed { height: 44px; }
+
+    /* На мобилках клавиатура всегда видна */
+  #cw-keypad { 
+    display: flex !important; 
+    margin-bottom: 10px;
+  }
 }
 
 /* ─── КИРИЛЛИЧЕСКАЯ КЛАВИАТУРА КРОССВОРДА ─── */
 #cw-keypad {
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  margin-top: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   width: 100%;
   max-width: 420px;
   padding: 10px 6px;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.5);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 2px;
+  flex-shrink: 0;
 }
 #cw-keypad.visible { display: flex; }
+
 
 .cw-row {
   display: flex;
@@ -383,6 +398,10 @@
 /* На десктопе клавиатура скрыта всегда */
 @media (min-width: 769px) {
   #cw-keypad { display: none !important; }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
   </style>
@@ -2092,18 +2111,41 @@ function sudokuInitOnce() {
     const hiddenInput = document.getElementById('hidden-input');
 
     if(r>=0 && r<N && c>=0 && c<N && window.lastG[r][c]!=='.') {
-      const words = window.lastPlaced.filter(p => p.dir==='H' ? (p.r===r && c>=p.c && c<p.c+p.w.length) : (p.c===c && r>=p.r && r<p.r+p.w.length));
+            const words = window.lastPlaced.filter(p => 
+        p.dir==='H' ? (p.r===r && c>=p.c && c<p.c+p.w.length) : 
+        (p.c===c && r>=p.r && r<p.r+p.w.length)
+      );
+      
       if(words.length) {
-        if(activeWord && words.includes(activeWord) && activeR===r && activeC===c && words.length>1) activeWord=words.find(w=>w!==activeWord);
-        else if(!words.includes(activeWord)) activeWord=words[0];
-        activeR=r; activeC=c;
+        // Умный выбор: если есть слово, которое НАЧИНАЕТСЯ в этой клетке, берём его
+        let selectedWord = words.find(w => (w.dir==='H' && w.r===r && w.c===c) || (w.dir==='V' && w.c===c && w.r===r));
         
-        // Вызываем клавиатуру ТОЛЬКО если кликнули по активной клетке
-        setTimeout(() => hiddenInput && hiddenInput.focus({preventScroll:true}), 50);
+        // Если начало слова не совпадает, но есть другие слова и активное совпадает, переключаемся на другое
+        if(!selectedWord) {
+          if(activeWord && words.includes(activeWord) && words.length > 1) {
+            selectedWord = words.find(w => w !== activeWord);
+          } else {
+            selectedWord = words[0]; // По умолчанию первое из найденных
+          }
+        }
+        
+        activeWord = selectedWord;
+        activeR = r; 
+        activeC = c;
+      } else { 
+        activeWord = null; 
+        activeR = -1; 
+        activeC = -1; 
       }
     } else { 
-      activeWord=null; activeR=-1; activeC=-1; 
+      activeWord = null; 
+      activeR = -1; 
+      activeC = -1; 
     }
+    
+    updateUI(); 
+    drawCrossword(window.lastG, window.lastPlaced);
+
     
     updateUI(); drawCrossword(window.lastG, window.lastPlaced);
       if (activeWord) {
