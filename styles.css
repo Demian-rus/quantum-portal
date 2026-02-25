@@ -307,24 +307,31 @@
     }
     .qnt-grid { grid-template-columns: repeat(5, 1fr); gap: 6px; }
     .qnt-letter { width: 40px; height: 40px; font-size: 16px; }
-    .qnt-key { min-width: 24px; font-size: 12px; padding: 6px 8px; }
+
 
     #sidebar, #philSidebar { height: 240px; max-width: 600px; position: relative; top: 0; }
     #sidebar.collapsed, #philSidebar.collapsed { height: 44px !important; }
     #cw-keypad { display: flex !important; margin-bottom: 10px; }
 
-      /* КВАНТ: мобильная клавиатура в стиле кроссворда */
+  /* КВАНТ: мобильная клавиатура 1-в-1 как кроссвордная */
   .qnt-keyboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
     max-width: 420px;
-    margin: 10px auto 10px;
     padding: 10px 6px;
     background: rgba(0, 0, 0, 0.5);
     border: 1px solid var(--border);
     border-radius: 2px;
+    flex-shrink: 0;
   }
 
   .qnt-key-row {
+    display: flex;
     gap: 2px;
     justify-content: center;
     width: 100%;
@@ -340,12 +347,9 @@
     color: #d0d8ff;
     border: 1px solid #333355;
     border-radius: 6px;
+    cursor: pointer;
     padding: 0;
-  }
-
-  .qnt-key:hover {
-    border-color: var(--accent);
-    box-shadow: 0 0 10px rgba(0, 255, 51, 0.3);
+    transition: 0.1s;
   }
 
   .qnt-key:active {
@@ -354,6 +358,7 @@
     border-color: var(--accent);
     transform: scale(0.92);
   }
+
 
   }
 
