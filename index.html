@@ -316,78 +316,117 @@
   /* 8. ДЕСКТОПЫ (>= 1280px) — САЙДБАР СПРАВА, ВЫСОТА ЧЕРЕЗ JS                  */
   /* ========================================================================== */
   @media (min-width: 1280px) {
-    .main-container { position: relative; justify-content: center; }
-    .game-area { width: 100%; }
+  .main-container { position: relative; justify-content: center; }
+  .game-area { width: 100%; }
 
-    /* Развернутый сайдбар: высоту задаёт JS */
-    #sidebar, #philSidebar {
-      position: absolute !important;
-      right: 20px;
-      top: 72px !important;
-      width: 320px !important;
-      height: auto;
-      min-height: 0 !important;
-      max-height: none;
-    }
-
-    /* Свернутый сайдбар (кружок 44x44) */
-    #sidebar.collapsed, #philSidebar.collapsed {
-      width: 44px !important;
-      height: 44px !important;
-      min-height: 44px !important;
-      max-height: 44px !important;
-      border-radius: 50% !important;
-      cursor: pointer;
-      background: var(--panel) !important;
-      border: 2px solid var(--accent) !important;
-      box-shadow: 0 0 20px rgba(0, 255, 51, 0.25);
-      bottom: auto !important;
-    }
-
-    #sidebar.collapsed:hover, #philSidebar.collapsed:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(0, 255, 51, 0.6);
-      background: rgba(0, 255, 51, 0.08) !important;
-    }
-
-    #sidebar.collapsed .sb-header, #philSidebar.collapsed .sb-header {
-      height: 100%; padding: 0; border: none; justify-content: center;
-    }
-
-    #sidebar.collapsed .toggle-btn, #philSidebar.collapsed .toggle-btn {
-      width: 100% !important;
-      height: 100% !important;
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      transform: none !important;
-      color: transparent;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-
-    #sidebar.collapsed .toggle-btn::after, #philSidebar.collapsed .toggle-btn::after {
-      content: "☰";
-      color: var(--accent);
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 20px;
-      line-height: 1;
-    }
+  /* Сайдбар справа, высоту контейнера не фиксируем */
+  #sidebar, #philSidebar {
+    position: absolute !important;
+    right: 20px;
+    top: 72px !important;
+    width: 320px !important;
+    height: auto;
+    min-height: 0;
   }
+
+  /* ОГРАНИЧЕНИЕ ВЫСОТЫ ТОЛЬКО ДЛЯ СПИСКА ВНУТРИ (РАЗВЁРНУТО) */
+  #sidebar:not(.collapsed) .sb-content,
+  #philSidebar:not(.collapsed) .sb-content {
+    max-height: calc(100vh - 400px); /* ← здесь ты подбираешь число */
+    overflow-y: auto;
+  }
+
+  /* Кружок при сворачивании */
+  #sidebar.collapsed, #philSidebar.collapsed {
+    width: 44px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    border-radius: 50% !important;
+    cursor: pointer;
+    background: var(--panel) !important;
+    border: 2px solid var(--accent) !important;
+    box-shadow: 0 0 20px rgba(0, 255, 51, 0.25);
+    overflow: hidden; /* чтобы в кружке не было полосы прокрутки */
+  }
+
+  #sidebar.collapsed .sb-header, #philSidebar.collapsed .sb-header {
+    height: 100%; padding: 0; border: none; justify-content: center;
+  }
+
+  #sidebar.collapsed .toggle-btn, #philSidebar.collapsed .toggle-btn {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    color: transparent;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #sidebar.collapsed .toggle-btn::after, #philSidebar.collapsed .toggle-btn::after {
+    content: "☰";
+    color: var(--accent);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    line-height: 1;
+  }
+}
 
   /* Прячем контент в свернутом виде (глобально) */
   #sidebar.collapsed .sb-content, #philSidebar.collapsed .sb-content,
   #sidebar.collapsed .sb-title, #philSidebar.collapsed .sb-title {
     opacity: 0 !important; pointer-events: none !important; overflow: hidden !important;
   }
+
+  .popup-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popup {
+  background: #0b0b13;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 320px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0,0,0,0.7);
+}
+
+.popup-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
 </style>
 
 </head>
 <body>
     <div id="hidden-input" style="display:none;"></div>
+    <div id="qp-popup" style="display:none" class="popup-backdrop">
+  <div class="popup">
+    <p id="qp-popup-text"></p>
+    <div class="popup-actions">
+      <button id="qp-popup-ok" class="primary">Да</button>
+      <button id="qp-popup-cancel" class="danger">Нет</button>
+    </div>
+  </div>
+</div>
+
 
   <nav>
     <button class="tab active" onclick="switchTab('crossword')">Кроссворд</button>
@@ -664,6 +703,27 @@ usedWordsHistory.add = function(word) {
 let philUsedWordsHistory = new Set(Storage.load().history.words); 
 philUsedWordsHistory.add = usedWordsHistory.add; 
 
+function showConfirmPopup(text, onOk, onCancel) {
+  const wrap = document.getElementById('qp-popup');
+  if (!wrap) { onOk && onOk(); return; }
+
+  const textEl = document.getElementById('qp-popup-text');
+  const ok = document.getElementById('qp-popup-ok');
+  const cancel = document.getElementById('qp-popup-cancel');
+
+  textEl.textContent = text;
+
+  const clear = () => {
+    ok.onclick = cancel.onclick = null;
+    wrap.style.display = 'none';
+  };
+
+  ok.onclick = () => { clear(); onOk && onOk(); };
+  cancel.onclick = () => { clear(); onCancel && onCancel(); };
+
+  wrap.style.display = 'flex';
+}
+
 // ==========================================
 const N = 35;
 
@@ -673,6 +733,40 @@ const N = 35;
   let activeC = -1;
   let isSolved = false;
   let showAnswers = false;
+
+  // ================= ПОПРОГРЕССНЫЕ ЧЕКЕРЫ =================
+
+// Кроссворд: есть введённые буквы
+function crosswordHasProgress() {
+  if (!userGrid || !userGrid.length) return false;
+  for (let r = 0; r < N; r++) {
+    for (let c = 0; c < N; c++) {
+      if (userGrid[r][c]) return true;
+    }
+  }
+  return false;
+}
+
+// Филворд: есть сетка и найдены слова
+function philHasProgress() {
+  return phGrid && phGrid.length > 0 && (phFound.size > 0);
+}
+
+// Судоку: есть сетка и пользователь что‑то менял
+function sudokuHasProgress() {
+  if (!suGrid || !suGrid.length || !suSolution || !suSolution.length) return false;
+  for (let r = 0; r < 9; r++) {
+    for (let c = 0; c < 9; c++) {
+      if (!suFixed[r][c] && suGrid[r][c] !== 0) return true;
+    }
+  }
+  return false;
+}
+
+// Квант: загадано слово и были попытки
+function quantHasProgress() {
+  return !!quantCurrentWord && (quantAttempts < 6 || quantCurrentGuess.length > 0);
+}
 
   function switchTab(id) {
     document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
@@ -864,25 +958,27 @@ function toggleSidebar(e) {
   }
 
   function getCOM(g, mask) {
-  let sumR=0, sumC=0, cnt=0;
-  for(let r=0; r<N; r++) {
-    for(let c=0; c<N; c++) {
-      // Считаем центр масс ТОЛЬКО для клеток внутри маски
-      if(g[r][c]!=='.' || (mask && !mask[r][c])) continue;
-      if(g[r][c]!=='.') { sumR+=r; sumC+=c; cnt++; }
+  let sumR = 0, sumC = 0, cnt = 0;
+  for (let r = 0; r < N; r++) {
+    for (let c = 0; c < N; c++) {
+      if (g[r][c] === '.') continue;        // учитываем только буквы
+      if (mask && !mask[r][c]) continue;    // игнорируем буквы вне маски
+      sumR += r; sumC += c; cnt++;
     }
   }
-  // Если ещё нет слов, центр = центр маски
-  if(!cnt && mask) {
-    // Найдём центр самой маски
-    let mR=0, mC=0, mCnt=0;
-    for(let r=0; r<N; r++) for(let c=0; c<N; c++) {
-      if(mask[r][c]) { mR+=r; mC+=c; mCnt++; }
+  if (!cnt) {
+    if (mask) {
+      let mR = 0, mC = 0, mCnt = 0;
+      for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) {
+        if (mask[r][c]) { mR += r; mC += c; mCnt++; }
+      }
+      return { r: mCnt ? mR / mCnt : N / 2, c: mCnt ? mC / mCnt : N / 2 };
     }
-    return { r: mCnt ? mR/mCnt : N/2, c: mCnt ? mC/mCnt : N/2 };
+    return { r: N / 2, c: N / 2 };
   }
-  return cnt ? {r:sumR/cnt, c:sumC/cnt} : {r:N/2, c:N/2};
+  return { r: sumR / cnt, c: sumC / cnt };
 }
+
 
   function tryBuildSmart(pool, mask=null) {
   const g = makeGrid(), placed = [];
@@ -1295,7 +1391,7 @@ function philToggleAnswers() {
   philDraw();
 }
 
-function philGenerate() {
+function philGenerateCore() {
   phShowAnswers = false;
   const btn = document.getElementById("btn-ph-answ");
   if (btn) btn.textContent = "👁 Ответы";
@@ -1349,6 +1445,20 @@ function philGenerate() {
   philUpdatePanel();
   philDraw();
 }
+
+function philGenerate() {
+  if (!philHasProgress()) {
+    philGenerateCore();
+    return;
+  }
+
+  showConfirmPopup(
+    'Сбросить текущий филворд и создать новый?',
+    () => philGenerateCore(),
+    () => {}
+  );
+}
+
 
 // ═══════════════════════════════════════════════════════════
 // КВАНТ - УГАДАЙ СЛОВО ИЗ ТЕРМИНОВ
@@ -1501,7 +1611,7 @@ function quantShowHint() {
 }
 
 
-function quantGenerate() {
+function quantGenerateCore() {
  const theme = document.getElementById('sel-theme-qnt')?.value || 'физика';
  const level = document.getElementById('sel-level-qnt')?.value || 'легкий';
  
@@ -1533,6 +1643,19 @@ function quantGenerate() {
  
  quantDrawGrid();
  quantDrawKeyboard();
+}
+
+function quantGenerate() {
+  if (!quantHasProgress()) {
+    quantGenerateCore();
+    return;
+  }
+
+  showConfirmPopup(
+    'Начать новую игру и сбросить текущие попытки?',
+    () => quantGenerateCore(),
+    () => {}
+  );
 }
 
 function quantReset() {
@@ -1570,7 +1693,7 @@ let suFixed = [];      // маска: true если это стартовая ц
 let suSelR = -1, suSelC = -1;
 let suErrors = new Set(); // ошибки при проверке
 
-function sudokuGenerate() {
+function sudokuGenerateCore() {
   const diff = document.getElementById('sel-diff-su').value;
   
   // 1. Базовая сетка (сдвиг)
@@ -1638,6 +1761,20 @@ function sudokuGenerate() {
   
   sudokuDraw();
 }
+
+function sudokuGenerate() {
+  if (!sudokuHasProgress()) {
+    sudokuGenerateCore();
+    return;
+  }
+
+  showConfirmPopup(
+    'Сбросить текущее судоку и сгенерировать новое?',
+    () => sudokuGenerateCore(),
+    () => {}
+  );
+}
+
 
 function sudokuDraw() {
   const cv = document.getElementById('cvSudoku');
@@ -1971,7 +2108,7 @@ function sudokuInitOnce() {
     if(win) { isSolved=true; activeWord=null; activeR=-1; activeC=-1; updateUI(); }
   }
 
-  function onGenerate() {
+  function onGenerateCore() {
     showAnswers = false;
     document.getElementById('btn-answ').textContent = '👁 Ответы';
 
@@ -2027,6 +2164,20 @@ function sudokuInitOnce() {
       }
     });
 }
+
+function onGenerate() {
+  if (!crosswordHasProgress()) {
+    onGenerateCore();
+    return;
+  }
+
+  showConfirmPopup(
+    'Сбросить текущий кроссворд и сгенерировать новый?',
+    () => onGenerateCore(),
+    () => {}
+  );
+}
+
 
   // Для ввода без прыжков экрана
   let keyBuffer = '';
