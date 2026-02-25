@@ -646,4 +646,9 @@ window.onload = () => {
   currentSection = 'crossword';
   updateMobileKeyboardVisibility();
   attachMobileKeyboard();
+
+  // 🔹 ДОБАВИТЬ: единоразовая инициализация Кванта
+  if (typeof initQuant === 'function') {
+    initQuant();
+  }
 };

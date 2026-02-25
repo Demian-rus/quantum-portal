@@ -390,14 +390,14 @@ canvas {
 
 .qnt-mode-btn,
 .qnt-diff-btn {
-  padding: 4px 12px;
+  padding: 4px 10px;
   font-size: 12px;
   border-radius: 999px;
   border: 1px solid rgba(0, 255, 51, 0.45);
   background: rgba(5, 10, 15, 0.85);
   color: #e5fbe5;
   cursor: pointer;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   text-transform: none;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
 }

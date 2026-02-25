@@ -174,8 +174,19 @@ function pickQuantTermWord(difficulty) {
 }
 
 function initQuantTermRound() {
+  const termGrid   = document.getElementById('qnt-term-grid');
+  const wordleGrid = document.getElementById('qnt-wordle-grid');
+  const panel      = document.getElementById('qnt-active-panel');
+
+  if (!termGrid || !wordleGrid || !panel) return;
+
+  // показываем именно термин, прячем wordle
+  termGrid.hidden   = false;
+  wordleGrid.hidden = true;
+  termGrid.innerHTML = '';
+
   const picked = pickQuantTermWord(Quant.difficulty);
-  const panel = document.getElementById('qnt-active-panel');
+
 
   if (!picked) {
     updateQuantStatLine('⚠️ Нет слов в базе');
@@ -191,9 +202,6 @@ function initQuantTermRound() {
     fixed: false,
   }));
 
-  const grid = document.getElementById('qnt-term-grid');
-  grid.innerHTML = '';
-
   const row = document.createElement('div');
   row.className = 'qnt-grid-term-row';
 
@@ -204,7 +212,7 @@ function initQuantTermRound() {
     row.appendChild(cell);
   }
 
-  grid.appendChild(row);
+  termGrid.appendChild(row);
 
   document.getElementById('qnt-term-hint').textContent = picked.q || '';
   document.getElementById('qnt-attempts').textContent = Quant.triesLeft;
@@ -353,8 +361,18 @@ function pickQuantWordleWord(difficulty) {
 }
 
 function initQuantWordleRound() {
+  const termGrid   = document.getElementById('qnt-term-grid');
+  const wordleGrid = document.getElementById('qnt-wordle-grid');
+  const panel      = document.getElementById('qnt-active-panel');
+
+  if (!termGrid || !wordleGrid || !panel) return;
+
+  // показываем именно wordle, прячем термин
+  termGrid.hidden   = true;
+  wordleGrid.hidden = false;
+  wordleGrid.innerHTML = '';
+
   const word = pickQuantWordleWord(Quant.difficulty);
-  const panel = document.getElementById('qnt-active-panel');
 
   if (!word) {
     updateQuantStatLine('⚠️ Нет подходящих слов для Wordle');
@@ -372,9 +390,6 @@ function initQuantWordleRound() {
     Array.from({ length }, () => ({ letter: '', status: 'empty' }))
   );
 
-  const grid = document.getElementById('qnt-wordle-grid');
-  grid.innerHTML = '';
-
   for (let r = 0; r < Quant.maxRows; r++) {
     const row = document.createElement('div');
     row.className = 'qnt-grid-wordle-row';
@@ -386,7 +401,7 @@ function initQuantWordleRound() {
       cell.dataset.col = c;
       row.appendChild(cell);
     }
-    grid.appendChild(row);
+    wordleGrid.appendChild(row);
   }
 
   document.getElementById('qnt-attempts').textContent = Quant.triesLeft;
