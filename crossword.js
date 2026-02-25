@@ -335,18 +335,25 @@ function drawCrossword(g, placed) {
 function updateUI() {
   const panel = document.getElementById('active-q-panel');
 
-  if(isSolved) {
-    markWin('crossword');
-    panel.innerHTML = '🎉 ПОЗДРАВЛЯЕМ! КРОССВОРД РАЗГАДАН! 🎉';
-    panel.style.color = '#4ade80';
-  } else if(activeWord) {
-    const dirText = activeWord.dir === 'H' ? 'По горизонтали' : 'По вертикали';
-    panel.innerHTML = `<span style="color:#a855f7;">[${dirText}, ${activeWord.num}]</span> &nbsp; ${activeWord.q}`;
-    panel.style.color = '#ff6b35';
-  } else {
-    panel.innerHTML = 'Кликните по клетке для начала';
-    panel.style.color = '#ff6b35';
-  }
+if (isSolved) {
+  markWin('crossword');
+  panel.innerHTML = '🎉 ПОЗДРАВЛЯЕМ! КРОССВОРД РАЗГАДАН! 🎉';
+  panel.style.color = '#4ade80';
+} else if (activeWord) {
+  const dirText = activeWord.dir === 'H' ? 'По горизонтали' : 'По вертикали';
+  panel.innerHTML = `
+    <div class="cw-dir-line">
+      ${dirText}, №${activeWord.num}
+    </div>
+    <div class="cw-question-line">
+      ${activeWord.q}
+    </div>
+  `;
+  panel.style.color = '#ff6b35';
+} else {
+  panel.innerHTML = 'Кликните по клетке для начала';
+  panel.style.color = '#ff6b35';
+}
 
   document.querySelectorAll('.clue-item').forEach(el => el.classList.remove('active'));
 
