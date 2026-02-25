@@ -156,7 +156,6 @@
     #sidebar.collapsed:hover { background: #12122a; border-color: #00d4ff88; }
     #sidebar.collapsed .sb-content { opacity: 0; pointer-events: none; }
     #sidebar.collapsed .sb-title { opacity: 0; }
-    #sidebar.collapsed .toggle-btn { transform: rotate(180deg); }
 
     .sb-header {
       padding: 12px 14px; border-bottom: 1px solid var(--border);
@@ -543,6 +542,104 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* ============================================================== */
+/* ─── ДЕСКТОП: ИДЕАЛЬНАЯ ПРИВЯЗКА САЙДБАРОВ И АНИМАЦИЯ КРУЖКА ───*/
+/* ============================================================== */
+
+/* Базовые переопределения для сайдбаров на десктопе */
+@media (min-width: 1280px) {
+  .main-container {
+    position: relative;
+    justify-content: center;
+  }
+  
+  .game-area {
+    width: 100%;
+  }
+
+  /* Открытый сайдбар: позиционируется абсолютно, без "бездонной" высоты */
+  #sidebar, #philSidebar {
+    position: absolute !important;
+    right: 20px;
+    width: 320px;
+    /* Если JS не сработал - висит у панели, высота по контенту но не больше 600px */
+    top: 72px; 
+    height: auto; 
+    max-height: 600px; /* Fallback ограничение */
+    min-height: 0 !important;
+    
+    /* Плавная анимация всего */
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                border-radius 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                top 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                max-height 0.3s !important;
+  }
+
+  /* Свернутый сайдбар (кружок 44x44) */
+  #sidebar.collapsed, #philSidebar.collapsed {
+    width: 44px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    border-radius: 50% !important;
+    cursor: pointer;
+    background: var(--panel);
+    border: 2px solid var(--accent) !important;
+    box-shadow: 0 0 20px rgba(0, 255, 51, 0.25);
+  }
+
+  /* Внутри свернутого кружка */
+  #sidebar.collapsed .sb-header,
+  #philSidebar.collapsed .sb-header {
+    height: 100%;
+    padding: 0;
+    border: none;
+    justify-content: center;
+  }
+
+  /* Убираем вращение стрелки и прячем старую */
+  #sidebar.collapsed .toggle-btn,
+  #philSidebar.collapsed .toggle-btn {
+    width: 100%;
+    height: 100%;
+    transform: none !important;
+    color: transparent; /* прячем ❯ */
+    position: relative;
+  }
+
+  /* Рисуем "☰" вместо стрелки */
+  #sidebar.collapsed .toggle-btn::after,
+  #philSidebar.collapsed .toggle-btn::after {
+    content: "☰";
+    color: var(--accent);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+  }
+
+  /* Ховер на кружке */
+  #sidebar.collapsed:hover,
+  #philSidebar.collapsed:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 51, 0.6);
+    background: rgba(0, 255, 51, 0.08) !important;
+  }
+}
+
+/* Прячем контент в свернутом виде (для обоих сайдбаров, всегда) */
+#sidebar.collapsed .sb-content,
+#philSidebar.collapsed .sb-content,
+#sidebar.collapsed .sb-title,
+#philSidebar.collapsed .sb-title {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+}
+
+
   </style>
 </head>
 <body>
@@ -678,9 +775,10 @@
       <canvas id="cvPhil"></canvas>
     </div>
 
-    <div id="philSidebar">
-      <div class="sb-header">
+        <div id="philSidebar">
+      <div class="sb-header" onclick="toggleSidebar(event)">
         <h2 class="sb-title" style="opacity:1">СЛОВА ДЛЯ ПОИСКА</h2>
+        <button class="toggle-btn">❯</button>
       </div>
       <div class="sb-content" id="philWords"></div>
     </div>
@@ -872,10 +970,23 @@ const N = 35;
 
 
 
-  function toggleSidebar(e) {
-    if(e) e.stopPropagation();
-    document.getElementById('sidebar').classList.toggle('collapsed');
+function toggleSidebar(e) {
+  if (e) e.stopPropagation();
+
+  let activeSidebar = null;
+  if (document.getElementById('sec-crossword')?.classList.contains('active')) {
+    activeSidebar = document.getElementById('sidebar');
+  } else if (document.getElementById('sec-philword')?.classList.contains('active')) {
+    activeSidebar = document.getElementById('philSidebar');
   }
+
+  if (activeSidebar) {
+    activeSidebar.classList.toggle('collapsed');
+    requestAnimationFrame(() => window.syncSidebars?.());
+  }
+}
+
+
 
   // ═══════════════════════════════════════════════════════════
   //  МАСКИ ДЛЯ ФИГУР 
@@ -2330,6 +2441,74 @@ hiddenInput.addEventListener('keydown', (e) => {
     if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
     if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
   }
+
+  (function initSidebarSync() {
+  const PAIRS = [
+    { cvId: 'cv',     sbId: 'sidebar' },
+    { cvId: 'cvPhil', sbId: 'philSidebar' }
+  ];
+
+  function syncOne(cvId, sbId) {
+    if (window.innerWidth < 1280) return;
+    const cv = document.getElementById(cvId);
+    const sb = document.getElementById(sbId);
+    if (!cv || !sb) return;
+    if (!cv.offsetParent) return; // hidden tab — пропускаем
+
+    const h = cv.offsetHeight;
+    if (h < 10) return; // canvas ещё не нарисован
+
+    const parentRect = sb.parentElement.getBoundingClientRect();
+    const cvRect    = cv.getBoundingClientRect();
+    const top = cvRect.top - parentRect.top;
+
+    sb.style.top = top + 'px';
+    // высоту ставим только если не свёрнут в кружок
+    if (!sb.classList.contains('collapsed')) {
+      sb.style.height = h + 'px';
+    }
+  }
+
+  function syncAll() {
+    PAIRS.forEach(p => syncOne(p.cvId, p.sbId));
+  }
+
+  // 1) Следим за изменением размера canvas (генерация/ресайз)
+  const ro = new ResizeObserver(entries => {
+    entries.forEach(e => {
+      const pair = PAIRS.find(p => p.cvId === e.target.id);
+      if (pair) requestAnimationFrame(() => syncOne(pair.cvId, pair.sbId));
+    });
+  });
+  PAIRS.forEach(p => {
+    const cv = document.getElementById(p.cvId);
+    if (cv) ro.observe(cv);
+  });
+
+  // 2) Следим за переключением вкладок (появление класса .active)
+  const mo = new MutationObserver(mutations => {
+    mutations.forEach(m => {
+      if (m.target.classList.contains('active')) {
+        // двойной rAF — ждём полный layout flush
+        requestAnimationFrame(() => requestAnimationFrame(syncAll));
+      }
+    });
+  });
+  document.querySelectorAll('.game-section').forEach(s => {
+    mo.observe(s, { attributes: true, attributeFilter: ['class'] });
+  });
+
+  // 3) Ресайз окна
+  window.addEventListener('resize', () => requestAnimationFrame(syncAll));
+
+  // 4) Начальная синхронизация
+  setTimeout(syncAll, 300);
+
+  // 5) Экспортируем для вызова после toggleSidebar()
+  window.syncSidebars = syncAll;
+})();
+
+
 </script>
 
 </body>
