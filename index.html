@@ -412,11 +412,194 @@
   justify-content: center;
 }
 
+/* ====== СТАРТОВЫЙ ЭКРАН ====== */
+.start-screen {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, #020617 0, #000 55%, #020617 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+}
+
+.start-card {
+  background: rgba(7, 7, 20, 0.96);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 24px 18px 18px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+.start-logo {
+  max-width: 60%;
+  height: auto;
+  margin-bottom: 10px;
+  object-fit: contain;
+}
+
+.start-title {
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.start-sub {
+  font-size: 13px;
+  color: var(--secondary);
+  margin-bottom: 16px;
+}
+
+.start-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.start-buttons .primary {
+  width: 100%;
+}
+
+.start-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Мобилка: чуть компактнее */
+@media (max-width: 650px) {
+  .start-card {
+    padding: 18px 14px 14px;
+  }
+  .start-logo {
+    max-width: 70%;
+  }
+}
+
+/* ====== СТАТИСТИКА (ПОПАП) ====== */
+.stats-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.stats-modal {
+  background: #050510;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  padding: 18px 18px 14px;
+  max-width: 480px;
+  width: 92%;
+  box-shadow: 0 0 35px rgba(0,0,0,0.85);
+}
+
+.stats-modal h3 {
+  margin-bottom: 4px;
+  font-size: 18px;
+  color: var(--accent);
+}
+
+.stats-note {
+  font-size: 12px;
+  color: var(--secondary);
+  margin-bottom: 12px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.stats-card {
+  background: rgba(15, 23, 42, 0.85);
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.stats-card-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #e5e7eb;
+}
+
+.stats-row {
+  font-size: 12px;
+  color: #9ca3af;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stats-row span.value {
+  color: #e5e7eb;
+  font-weight: 600;
+}
+
+.stats-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
 </style>
 
 </head>
 <body>
     <div id="hidden-input" style="display:none;"></div>
+    <!-- ====== СТАРТОВЫЙ ЭКРАН КВАНТОВЫЙ ПОРТАЛ ====== -->
+<div id="start-screen" class="start-screen">
+  <div class="start-card">
+    <img src="logo-qx.png" alt="Квант Икс" class="start-logo">
+    <h2 class="start-title">КВАНТОВЫЙ ПОРТАЛ</h2>
+    <p class="start-sub">Физмат‑игры и квантовая головоломка</p>
+
+    <div class="start-buttons">
+      <!-- Кнопки переключают те же табы, что и nav -->
+      <button class="primary" data-target="crossword">Кроссворд</button>
+      <button class="primary" data-target="philword">Филворд</button>
+      <button class="primary" data-target="sudoku">Судоку</button>
+      <button class="primary" data-target="quant">Квант</button>
+
+      <!-- Место под будущие игры -->
+      <!-- <button class="primary" data-target="future">Новая игра (заглушка)</button> -->
+    </div>
+
+    <div class="start-footer">
+      <button class="action" id="btn-open-stats">📊 Статистика</button>
+      <!-- Сброс всей статистики -->
+      <button class="danger" id="btn-reset-stats">♻ Сбросить статистику</button>
+    </div>
+  </div>
+</div>
+
+<!-- ====== ПОПАП СТАТИСТИКОЙ ====== -->
+<div id="stats-popup" class="stats-backdrop" style="display:none;">
+  <div class="stats-modal">
+    <h3>Статистика портала</h3>
+    <p class="stats-note">Данные хранятся в вашем браузере.</p>
+
+    <div class="stats-grid" id="stats-content">
+      <!-- Сюда JS подставит карточки по играм -->
+    </div>
+
+    <div class="stats-actions">
+      <button class="primary" id="btn-close-stats">OK</button>
+    </div>
+  </div>
+</div>
+
     <div id="qp-popup" style="display:none" class="popup-backdrop">
   <div class="popup">
     <p id="qp-popup-text"></p>
@@ -656,28 +839,62 @@
 // 📦 STORAGE MANAGER
 // ==========================================
 const Storage = {
-    key: 'QP_Data_v1',
-    load() {
-        try { 
-            return JSON.parse(localStorage.getItem(this.key)) || { stats: {}, history: { words: [] } };
-        } catch { 
-            return { stats: {}, history: { words: [] } };
-        }
-    },
-    save(data) { localStorage.setItem(this.key, JSON.stringify(data)); },
-    addWin(game) {
-        let data = this.load();
-        if (!data.stats[game]) data.stats[game] = 0;
-        data.stats[game]++;
-        this.save(data);
-    },
-    addWord(word) {
-        let data = this.load();
-        if (!data.history.words) data.history.words = [];
-        data.history.words.push(word);
-        if (data.history.words.length > 100) data.history.words.shift(); 
-        this.save(data);
+  key: 'QP_Data_v1',
+  load() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(this.key)) || {};
+      // Базовая структура с запасом под будущее
+      return {
+        stats: raw.stats || {
+          crossword: { wins: 0, games: 0 },
+          philword: { wins: 0, games: 0 },
+          sudoku:   { wins: 0, games: 0 },
+          quant:    { wins: 0, games: 0 },
+          // futureGameId: { wins: 0, games: 0 }
+        },
+        history: raw.history || { words: [] }
+      };
+    } catch {
+      return {
+        stats: {
+          crossword: { wins: 0, games: 0 },
+          philword: { wins: 0, games: 0 },
+          sudoku:   { wins: 0, games: 0 },
+          quant:    { wins: 0, games: 0 }
+        },
+        history: { words: [] }
+      };
     }
+  },
+  save(data) {
+    localStorage.setItem(this.key, JSON.stringify(data));
+  },
+  addGame(game) {
+    const data = this.load();
+    if (!data.stats[game]) {
+      data.stats[game] = { wins: 0, games: 0 }; // для будущих игр
+    }
+    data.stats[game].games++;
+    this.save(data);
+  },
+  addWin(game) {
+    const data = this.load();
+    if (!data.stats[game]) {
+      data.stats[game] = { wins: 0, games: 0 };
+    }
+    data.stats[game].wins++;
+    this.save(data);
+  },
+  addWord(word) {
+    const data = this.load();
+    if (!data.history.words) data.history.words = [];
+    data.history.words.push(word);
+    if (data.history.words.length > 100) data.history.words.shift();
+    this.save(data);
+  },
+  resetAll() {
+    localStorage.removeItem(this.key);
+  }
 };
 
 const winMarked = { crossword:false, philword:false, sudoku:false, quant:false };
@@ -686,6 +903,104 @@ function markWin(game){
     if (winMarked[game]) return;
     winMarked[game] = true;
     Storage.addWin(game);
+}
+
+function renderStatsPopup() {
+  const container = document.getElementById('stats-content');
+  if (!container) return;
+
+  const data = Storage.load().stats || {};
+  const defs = {
+    crossword: 'Кроссворд',
+    philword: 'Филворд',
+    sudoku:   'Судоку',
+    quant:    'Квант'
+    // futureGameId: 'Название будущей игры'
+  };
+
+  let html = '';
+  Object.keys(defs).forEach(id => {
+    const s = data[id] || { wins: 0, games: 0 };
+    const games = s.games || 0;
+    const wins  = s.wins  || 0;
+    const rate  = games ? Math.round((wins / games) * 100) : 0;
+
+    html += `
+      <div class="stats-card">
+        <div class="stats-card-title">${defs[id]}</div>
+        <div class="stats-row">
+          <span>Партий:</span>
+          <span class="value">${games}</span>
+        </div>
+        <div class="stats-row">
+          <span>Побед:</span>
+          <span class="value">${wins}</span>
+        </div>
+        <div class="stats-row">
+          <span>Успех:</span>
+          <span class="value">${rate}%</span>
+        </div>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html || '<div class="stats-card">Пока нет данных.</div>';
+}
+
+function openStatsPopup() {
+  renderStatsPopup();
+  const el = document.getElementById('stats-popup');
+  if (el) el.style.display = 'flex';
+}
+
+function closeStatsPopup() {
+  const el = document.getElementById('stats-popup');
+  if (el) el.style.display = 'none';
+}
+
+function initStartScreen() {
+  const start = document.getElementById('start-screen');
+  if (!start) return;
+
+  // Кнопки выбора режимов на стартовом экране
+  start.querySelectorAll('.start-buttons button[data-target]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-target'); // 'crossword' | 'philword' | ...
+      // Скрываем стартовый экран
+      start.style.display = 'none';
+      // Активируем соответствующий таб и секцию
+      const tab = Array.from(document.querySelectorAll('.tab'))
+        .find(t => t.textContent.toLowerCase().includes(id === 'quant' ? 'квант' : id));
+      if (tab) {
+        tab.click(); // используем уже существующую логику switchTab
+      } else {
+        // Если табов ещё нет для будущей игры — просто скрываем старт и остаёмся на дефолте
+      }
+    });
+  });
+
+  // Открытие статистики
+  const btnStats = document.getElementById('btn-open-stats');
+  if (btnStats) btnStats.addEventListener('click', openStatsPopup);
+
+  // Закрытие статистики
+  const btnCloseStats = document.getElementById('btn-close-stats');
+  if (btnCloseStats) btnCloseStats.addEventListener('click', closeStatsPopup);
+
+  // Сброс всей статистики
+  const btnResetStats = document.getElementById('btn-reset-stats');
+  if (btnResetStats) {
+    btnResetStats.addEventListener('click', () => {
+      showConfirmPopup(
+        'Сбросить всю статистику (победы, партии, историю слов)?',
+        () => {
+          Storage.resetAll();
+          renderStatsPopup();
+        },
+        () => {}
+      );
+    });
+  }
 }
 
 // Инициализируем историю из памяти браузера
@@ -1406,6 +1721,8 @@ function philGenerateCore() {
   const theme = themeSel.value;
   const level = levelSel.value;
 
+  Storage.addGame('philword');
+
   const pool = philGetPool(theme, level);
   if (!pool.length) {
     document.getElementById("phil-stat").textContent = "⚠️ Нет слов в базе для этого режима.";
@@ -1614,6 +1931,8 @@ function quantShowHint() {
 function quantGenerateCore() {
  const theme = document.getElementById('sel-theme-qnt')?.value || 'физика';
  const level = document.getElementById('sel-level-qnt')?.value || 'легкий';
+
+ Storage.addGame('quant');
  
  let minLen = 5, maxLen = 5;
  if (level === 'средний') { minLen = 6; maxLen = 7; }
@@ -1695,6 +2014,8 @@ let suErrors = new Set(); // ошибки при проверке
 
 function sudokuGenerateCore() {
   const diff = document.getElementById('sel-diff-su').value;
+
+  Storage.addGame('sudoku'); 
   
   // 1. Базовая сетка (сдвиг)
   const base = [1,2,3,4,5,6,7,8,9];
@@ -2115,6 +2436,8 @@ function sudokuInitOnce() {
     const theme = document.getElementById('sel-theme').value;
     const level = document.getElementById('sel-level').value;
     
+    Storage.addGame('crossword');
+
     let pool = [];
     if (theme === 'физмат') {
       const phys = DB['физика']?.[level] ?? [];
@@ -2319,10 +2642,15 @@ hiddenInput.addEventListener('keydown', (e) => {
 });
 
   window.onload = () => {
-  onGenerate();     // кроссворд как раньше
-  philInitOnce();   // подготовить обработчики (без генерации)
-  sudokuInitOnce(); // Судоку
+  philInitOnce();
+  sudokuInitOnce();
+  initStartScreen();
+
+  // Если хочешь, можно автогенерировать кроссворд после выбора режима,
+  // но не при загрузке страницы.
+  // onGenerate();  // Больше не вызываем автоматически
 };
+
   </script>
 
   <script>
