@@ -420,7 +420,7 @@
     <p class="sub" id="sub-title">Интерактивный режим генерации</p>
   </div>
 
-  <div id="sec-crossword" class="game-section active">
+<div id="sec-crossword" class="game-section active">
     
     <div class="controls">
       <div class="control-group">
@@ -434,18 +434,10 @@
           <option value="средний">Средний (8-9 класс)</option>
           <option value="сложный">Сложный (10-11 класс)</option>
         </select>
-        <select id="sel-shape">
-          <option value="свободная">Свободная форма</option>
-          <option value="квадрат">Квадрат</option>
-          <option value="ромб">Ромб</option>
-          <option value="крест">Крест</option>
-          <option value="квадранты">4 Квадранта</option>
-        </select>
       </div>
       <div class="control-group">
         <button class="primary" onclick="onGenerate()">⟳ Создать</button>
         <button class="action" onclick="onToggleAnswers()" id="btn-answ">👁 Ответы</button>
-        <button class="action" onclick="onExport()">↓ PNG</button>
         <button class="danger" onclick="usedWordsHistory.clear(); document.getElementById('stat').textContent='♻ История сброшена';">♻ Сброс</button>
       </div>
     </div>
@@ -1101,7 +1093,15 @@ const DB = {
   // ═══════════════════════════════════════════════════════════
   //  МАСКИ ДЛЯ ФИГУР 
   // ═══════════════════════════════════════════════════════════
-  function makeMaskFree() { return null; }
+  function makeMaskFree() { 
+  const centerR = Math.floor(N / 2);  // 17
+  const centerC = Math.floor(N / 2);  // 17
+  const radius = 10; // 20×20 квадрат
+  
+  return Array.from({length:N}, (_, r) => Array.from({length:N}, (_, c) => {
+    return Math.abs(r - centerR) <= radius && Math.abs(c - centerC) <= radius;
+  }));
+}
 
   function makeMaskSquare() {
     const S = 3, S2 = 7, E = N - 4, E2 = N - 8, M = Math.floor(N/2);
@@ -1221,47 +1221,72 @@ const DB = {
     return slots;
   }
 
-  function tryBuildSmart(pool, mask=null) {
-    const g = makeGrid(), placed = [];
-    let available = [...pool], num = 1;
-    available.sort((a, b) => b.w.length - a.w.length);
-    const first = available.shift();
-
-    const initialSlots = [];
-    for (let r=1; r<N-1; r++) for (let c=1; c<N-1; c++) {
-      if (canPlace(g, first.w, r, c, 'H', mask)) initialSlots.push({r,c,dir:'H'});
-      if (canPlace(g, first.w, r, c, 'V', mask)) initialSlots.push({r,c,dir:'V'});
+  function getCOM(g, mask) {
+  let sumR=0, sumC=0, cnt=0;
+  for(let r=0; r<N; r++) {
+    for(let c=0; c<N; c++) {
+      // Считаем центр масс ТОЛЬКО для клеток внутри маски
+      if(g[r][c]!=='.' || (mask && !mask[r][c])) continue;
+      if(g[r][c]!=='.') { sumR+=r; sumC+=c; cnt++; }
     }
-    if (!initialSlots.length) return { g, placed: [] };
-
-    const start = initialSlots[Math.floor(Math.random() * initialSlots.length)];
-    doPlace(g, first.w, start.r, start.c, start.dir);
-    placed.push({ ...first, r: start.r, c: start.c, dir: start.dir, num: num++ });
-
-    let added;
-    do {
-      added = false;
-      shuffle(available);
-      for (let i=0; i<available.length; i++) {
-        const item = available[i];
-        const slots = getValidSlotsForWord(g, item, mask);
-        if (!slots.length) continue;
-        
-        slots.forEach(s => s.score = s.cross * 10);
-        slots.sort((a, b) => b.score - a.score);
-        
-        const best = slots[0];
-        doPlace(g, item.w, best.r, best.c, best.dir);
-        placed.push({ ...item, r: best.r, c: best.c, dir: best.dir, num: num++ });
-        available.splice(i, 1);
-        added = true; break;
-      }
-    } while (added && placed.length < 28);
-
-    placed.sort((a, b) => a.r !== b.r ? a.r - b.r : a.c - b.c);
-    placed.forEach((p, i) => p.num = i + 1);
-    return { g, placed };
   }
+  // Если ещё нет слов, центр = центр маски
+  if(!cnt && mask) {
+    // Найдём центр самой маски
+    let mR=0, mC=0, mCnt=0;
+    for(let r=0; r<N; r++) for(let c=0; c<N; c++) {
+      if(mask[r][c]) { mR+=r; mC+=c; mCnt++; }
+    }
+    return { r: mCnt ? mR/mCnt : N/2, c: mCnt ? mC/mCnt : N/2 };
+  }
+  return cnt ? {r:sumR/cnt, c:sumC/cnt} : {r:N/2, c:N/2};
+}
+
+  function tryBuildSmart(pool, mask=null) {
+  const g = makeGrid(), placed = [];
+  let available = [...pool], num = 1;
+  available.sort((a, b) => b.w.length - a.w.length);
+  const first = available.shift();
+
+  const initialSlots = [];
+  for (let r=1; r<N-1; r++) for (let c=1; c<N-1; c++) {
+    if (!canPlace(g, first.w, r, c, 'H', mask)) continue;
+    initialSlots.push({r,c,dir:'H'});
+    if (!canPlace(g, first.w, r, c, 'V', mask)) continue;
+    initialSlots.push({r,c,dir:'V'});
+  }
+  if (!initialSlots.length) return { g, placed: [] };
+
+  // Первое слово в центр маски
+  const start = initialSlots[Math.floor(Math.random() * initialSlots.length)];
+  doPlace(g, first.w, start.r, start.c, start.dir);
+  placed.push({ ...first, r: start.r, c: start.c, dir: start.dir, num: num++ });
+
+  let added;
+  do {
+    added = false;
+    shuffle(available);
+    for (let i=0; i<available.length; i++) {
+      const item = available[i];
+      const slots = getValidSlotsForWord(g, item, mask);
+      if (!slots.length) continue;
+      
+      // Просто максимум пересечений — без сложной логики центра масс
+      slots.forEach(s => s.score = s.cross * 100); // очень большой вес пересечений
+      slots.sort((a, b) => b.score - a.score);
+      
+      const best = slots[0];
+      doPlace(g, item.w, best.r, best.c, best.dir);
+      placed.push({ ...item, r: best.r, c: best.c, dir: best.dir, num: num++ });
+      available.splice(i, 1);
+      added = true; break;
+    }
+  } while (added && placed.length < 28);
+
+  placed.sort((a, b) => a.r !== b.r ? a.r - b.r : a.c - b.c);
+  placed.forEach((p, i) => p.num = i + 1);
+  return { g, placed };
+}
 
   function buildBest(pool, attempts=15, mask=null) {
     let best = null;
@@ -1937,34 +1962,69 @@ function sudokuInitOnce() {
 }
 
   function drawCrossword(g, placed) {
-    CELL = getResponsiveCell();
-    const rs=[], cs=[];
-    for(let r=0;r<N;r++) for(let c=0;c<N;c++) if(g[r][c]!=='.') {rs.push(r); cs.push(c);}
-    if(!rs.length) return;
+  CELL = getResponsiveCell();
+  
+  // ЖЁСТКИЙ РАЗМЕР ХОЛСТА — ВСЕГДА
+  const targetSize = window.innerWidth <= 650 ? 380 : 600;
+  
+  const cv = document.getElementById('cv');
+  cv.width = targetSize;
+  cv.height = targetSize;
+  
+  const ctx = cv.getContext('2d');
 
-    const rMin=Math.max(0,Math.min(...rs)-1), rMax=Math.min(N-1,Math.max(...rs)+1);
-    const cMin=Math.max(0,Math.min(...cs)-1), cMax=Math.min(N-1,Math.max(...cs)+1);
-    window.lastBounds = {rMin, cMin};
+  // Фон
+  const bg = ctx.createLinearGradient(0, 0, cv.width, cv.height);
+  bg.addColorStop(0, '#06060f');
+  bg.addColorStop(1, '#080816');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, cv.width, cv.height);
 
-    const cv=document.getElementById('cv');
-    cv.width = (cMax-cMin+1)*CELL+GPAD*2;
-    cv.height = TOPH + (rMax-rMin+1)*CELL+GPAD*2 + BPAD;
-    const ctx=cv.getContext('2d');
+  // Сетка фона
+  ctx.strokeStyle = '#0e0e25';
+  ctx.lineWidth = 1;
+  for (let x = 0; x < cv.width; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, cv.height); ctx.stroke(); }
+  for (let y = 0; y < cv.height; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(cv.width, y); ctx.stroke(); }
 
-    const bg=ctx.createLinearGradient(0,0,cv.width,cv.height);
-    bg.addColorStop(0,'#06060f'); bg.addColorStop(1,'#080816');
-    ctx.fillStyle=bg; ctx.fillRect(0,0,cv.width,cv.height);
+  // Вычисляем границы кроссворда
+  const rs = [], cs = [];
+  for(let r=0; r<N; r++) for(let c=0; c<N; c++) if(g[r][c]!=='.') { rs.push(r); cs.push(c); }
+  if(!rs.length) return;
 
-    ctx.strokeStyle='#0e0e25'; ctx.lineWidth=1;
-    for(let x=0;x<cv.width;x+=40) {ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,cv.height); ctx.stroke();}
-    for(let y=0;y<cv.height;y+=40) {ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(cv.width,y); ctx.stroke();}
+  const rMin = Math.max(0, Math.min(...rs) - 1);
+  const rMax = Math.min(N - 1, Math.max(...rs) + 1);
+  const cMin = Math.max(0, Math.min(...cs) - 1);
+  const cMax = Math.min(N - 1, Math.max(...cs) + 1);
+  
+  window.lastBounds = { rMin, cMin };
 
-    const numMap={}; placed.forEach(p => {if(!numMap[`${p.r},${p.c}`]) numMap[`${p.r},${p.c}`]=p.num;});
+  // Вычисляем масштаб так, чтобы кроссворд влез в холст
+  const gridWidth = (cMax - cMin + 1) * CELL;
+  const gridHeight = (rMax - rMin + 1) * CELL;
+  const maxDim = Math.max(gridWidth, gridHeight);
+  const availableSpace = targetSize - GPAD * 2 - 20; // 20px на погрешность
+  const scale = Math.min(1, availableSpace / maxDim);
 
-    for(let r=rMin;r<=rMax;r++) for(let c=cMin;c<=cMax;c++) {
+  // Центрируем и масштабируем
+  const offsetX = (targetSize - gridWidth * scale) / 2;
+  const offsetY = (targetSize - gridHeight * scale) / 2;
+
+  ctx.save();
+  ctx.translate(offsetX, offsetY);
+  ctx.scale(scale, scale);
+
+  const numMap = {};
+  placed.forEach(p => { if(!numMap[`${p.r},${p.c}`]) numMap[`${p.r},${p.c}`] = p.num; });
+
+  for(let r = rMin; r <= rMax; r++) {
+    for(let c = cMin; c <= cMax; c++) {
       if(g[r][c]==='.') continue;
-      const x=(c-cMin)*CELL+GPAD, y=(r-rMin)*CELL+GPAD+TOPH;
-      let isActive = false, isCursor = (r===activeR && c===activeC);
+      
+      const x = (c - cMin) * CELL;
+      const y = (r - rMin) * CELL;
+      
+      let isActive = false;
+      let isCursor = (r === activeR && c === activeC);
 
       if(activeWord) {
         if(activeWord.dir==='H' && r===activeWord.r && c>=activeWord.c && c<activeWord.c+activeWord.w.length) isActive=true;
@@ -1972,25 +2032,47 @@ function sudokuInitOnce() {
       }
 
       ctx.fillStyle = isSolved ? '#0f301d' : (isCursor ? '#2a2a60' : (isActive ? '#1a1a40' : '#0d0d22'));
-      rrect(ctx,x+1,y+1,CELL-2,CELL-2,4); ctx.fill();
+      rrect(ctx, x+1, y+1, CELL-2, CELL-2, 4);
+      ctx.fill();
 
-      ctx.strokeStyle = isCursor ? '#00d4ff' : '#00d4ff38'; ctx.lineWidth = isCursor ? 2 : 1;
-      rrect(ctx,x+1,y+1,CELL-2,CELL-2,4); ctx.stroke();
+      ctx.strokeStyle = isCursor ? '#00d4ff' : '#00d4ff38';
+      ctx.lineWidth = isCursor ? 2 : 1;
+      rrect(ctx, x+1, y+1, CELL-2, CELL-2, 4);
+      ctx.stroke();
 
-      const letter = (showAnswers||isSolved) ? g[r][c] : userGrid[r][c];
-      if(letter) {
-        ctx.fillStyle = isSolved ? '#4ade80' : '#00d4ff';
-        ctx.font='bold '+Math.floor(CELL*0.52)+'px Segoe UI,sans-serif';
-        ctx.textAlign='center'; ctx.textBaseline='middle';
-        ctx.fillText(letter, x+CELL/2, y+CELL/2+1);
+      let letter, letterColor;
+      if (isSolved) {
+        letter = g[r][c];
+        letterColor = '#4ade80';
+      } else if (userGrid[r][c]) {
+        letter = userGrid[r][c];
+        letterColor = '#fbbf24';
+      } else if (showAnswers) {
+        letter = g[r][c];
+        letterColor = 'rgba(0, 212, 255, 0.4)';
+      } else {
+        letter = '';
+      }
+      if (letter) {
+        ctx.fillStyle = letterColor;
+        ctx.font = 'bold ' + Math.floor(CELL * 0.52) + 'px Segoe UI,sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(letter, x + CELL/2, y + CELL/2 + 1);
       }
 
       if(numMap[`${r},${c}`]) {
-        ctx.fillStyle='#ff6b35'; ctx.font='bold 9px Segoe UI,sans-serif';
-        ctx.textAlign='left'; ctx.textBaseline='top'; ctx.fillText(numMap[`${r},${c}`], x+3, y+2);
+        ctx.fillStyle='#ff6b35';
+        ctx.font='bold 9px Segoe UI,sans-serif';
+        ctx.textAlign='left';
+        ctx.textBaseline='top';
+        ctx.fillText(numMap[`${r},${c}`], x+3, y+2);
       }
     }
   }
+
+  ctx.restore();
+}
 
     function updateUI() {
     const panel = document.getElementById('active-q-panel');
@@ -2071,19 +2153,28 @@ function sudokuInitOnce() {
     let available = pool.filter(i => !usedWordsHistory.has(i.w));
     if(available.length < 10) { usedWordsHistory.clear(); available = [...pool]; }
 
-    const shapeName = document.getElementById('sel-shape').value;
-    const mask = SHAPES[shapeName] ? SHAPES[shapeName]() : null;
+    // ЖЁСТКАЯ МАСКА 20×20 КВАДРАТ
+    const mask = makeMaskFree();
+
+    // БОЛЬШЕ ПОПЫТОК ДЛЯ КАЖДОГО УРОВНЯ
+    let attempts = 15;
+    if(level === 'средний') attempts = 30;
+    if(level === 'сложный') attempts = 50;
 
     requestAnimationFrame(() => {
-      const res = buildBest(available, 15, mask);
+      const res = buildBest(available, attempts, mask);
       if(!res || !res.placed.length) { document.getElementById('stat').textContent='⚠️ Ошибка построения.'; return; }
 
       const {g, placed} = res;
       placed.forEach(p => usedWordsHistory.add(p.w));
-      window.lastG=g; window.lastPlaced=placed;
+      window.lastG=g;
+      window.lastPlaced=placed;
       
       userGrid = Array.from({length:N}, ()=>Array(N).fill(''));
-      activeWord=null; activeR=-1; activeC=-1; isSolved=false;
+      activeWord=null;
+      activeR=-1;
+      activeC=-1;
+      isSolved=false;
 
       renderCluesList(placed);
       updateUI();
@@ -2092,66 +2183,62 @@ function sudokuInitOnce() {
       const left = pool.filter(i => !usedWordsHistory.has(i.w)).length;
       document.getElementById('stat').textContent = `Слов на поле: ${placed.length} | Осталось в базе: ${left}/${pool.length}`;
       
-      // Открываем сайдбар автоматически при первой генерации (по желанию)
       if(document.getElementById('sidebar').classList.contains('collapsed')) {
         document.getElementById('sidebar').classList.remove('collapsed');
       }
     });
-  }
+}
 
   // Для ввода без прыжков экрана
   let keyBuffer = '';
 
-  document.getElementById('cv').addEventListener('pointerdown', e => {
-    if(isSolved || !window.lastG) return;
-    const rect = e.target.getBoundingClientRect();
-    const c = Math.floor(((e.clientX - rect.left) * (e.target.width / rect.width) - GPAD) / CELL) + window.lastBounds.cMin;
-    const r = Math.floor(((e.clientY - rect.top) * (e.target.height / rect.height) - GPAD - TOPH) / CELL) + window.lastBounds.rMin;
+document.getElementById('cv').addEventListener('pointerdown', e => {
+  if(isSolved || !window.lastG) return;
+  
+  const rect = e.target.getBoundingClientRect();
+  const x = (e.clientX - rect.left) * (e.target.width / rect.width);
+  const y = (e.clientY - rect.top) * (e.target.height / rect.height);
 
-    const hiddenInput = document.getElementById('hidden-input');
+  // Теперь x, y уже в координатах холста (с учётом масштаба)
+  const c = Math.floor((x - GPAD) / CELL) + window.lastBounds.cMin;
+  const r = Math.floor((y - GPAD - TOPH) / CELL) + window.lastBounds.rMin;
 
-    if(r>=0 && r<N && c>=0 && c<N && window.lastG[r][c]!=='.') {
-            const words = window.lastPlaced.filter(p => 
-        p.dir==='H' ? (p.r===r && c>=p.c && c<p.c+p.w.length) : 
-        (p.c===c && r>=p.r && r<p.r+p.w.length)
-      );
+  if(r>=0 && r<N && c>=0 && c<N && window.lastG[r][c]!=='.') {
+    const words = window.lastPlaced.filter(p => 
+      p.dir==='H' ? (p.r===r && c>=p.c && c<p.c+p.w.length) : 
+      (p.c===c && r>=p.r && r<p.r+p.w.length)
+    );
+    
+    if(words.length) {
+      // Умный выбор: если есть слово, которое НАЧИНАЕТСЯ в этой клетке, берём его
+      let selectedWord = words.find(w => (w.dir==='H' && w.r===r && w.c===c) || (w.dir==='V' && w.c===c && w.r===r));
       
-      if(words.length) {
-        // Умный выбор: если есть слово, которое НАЧИНАЕТСЯ в этой клетке, берём его
-        let selectedWord = words.find(w => (w.dir==='H' && w.r===r && w.c===c) || (w.dir==='V' && w.c===c && w.r===r));
-        
-        // Если начало слова не совпадает, но есть другие слова и активное совпадает, переключаемся на другое
-        if(!selectedWord) {
-          if(activeWord && words.includes(activeWord) && words.length > 1) {
-            selectedWord = words.find(w => w !== activeWord);
-          } else {
-            selectedWord = words[0]; // По умолчанию первое из найденных
-          }
+      // Если начало слова не совпадает, но есть другие слова и активное совпадает, переключаемся на другое
+      if(!selectedWord) {
+        if(activeWord && words.includes(activeWord) && words.length > 1) {
+          selectedWord = words.find(w => w !== activeWord);
+        } else {
+          selectedWord = words[0]; // По умолчанию первое из найденных
         }
-        
-        activeWord = selectedWord;
-        activeR = r; 
-        activeC = c;
-      } else { 
-        activeWord = null; 
-        activeR = -1; 
-        activeC = -1; 
       }
+      
+      activeWord = selectedWord;
+      activeR = r; 
+      activeC = c;
     } else { 
       activeWord = null; 
       activeR = -1; 
       activeC = -1; 
     }
-    
-    updateUI(); 
-    drawCrossword(window.lastG, window.lastPlaced);
-
-    
-    updateUI(); drawCrossword(window.lastG, window.lastPlaced);
-      if (activeWord) {
-    }
-
-  });
+  } else { 
+    activeWord = null; 
+    activeR = -1; 
+    activeC = -1; 
+  }
+  
+  updateUI(); 
+  drawCrossword(window.lastG, window.lastPlaced);
+});
 
   function handleInput(key) {
     if(!activeWord || isSolved) return;
