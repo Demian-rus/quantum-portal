@@ -770,7 +770,7 @@
 </div>
 <script src="db.js"></script>
   <script>
-
+    
 // ==========================================
 // 📦 STORAGE MANAGER
 // ==========================================
@@ -799,10 +799,18 @@ const Storage = {
     }
 };
 
+const winMarked = { crossword:false, philword:false, sudoku:false, quant:false };
+
+function markWin(game){
+    if (winMarked[game]) return;
+    winMarked[game] = true;
+    Storage.addWin(game);
+}
+
 // Инициализируем историю из памяти браузера
 const usedWordsHistory = new Set(Storage.load().history.words);
 
-// Переопределяем метод add у Set, чтобы при добавлении слова оно сразу сохранялось в память
+// Переопределяем метод add у Set
 const originalAdd = usedWordsHistory.add.bind(usedWordsHistory);
 usedWordsHistory.add = function(word) {
     originalAdd(word);
@@ -810,14 +818,12 @@ usedWordsHistory.add = function(word) {
     return this;
 };
 
-// Инициализация истории для филворда (использует ту же память)
+// Инициализация истории для филворда
 let philUsedWordsHistory = new Set(Storage.load().history.words); 
 philUsedWordsHistory.add = usedWordsHistory.add; 
 
 // ==========================================
-
-const N = 35; 
-
+const N = 35;
 
   let userGrid = [];
   let activeWord = null;
@@ -1107,8 +1113,6 @@ const PH_DIRS = [
   {dr:1, dc:1}, {dr:1, dc:-1}, {dr:-1, dc:1}, {dr:-1, dc:-1}
 ];
 
-const philUsedWordsHistory = new Set();
-
 let phSize = 14;
 let phGrid = [];
 let phPlacements = []; // { w, cells:[{r,c}], r, c, dr, dc }
@@ -1238,6 +1242,7 @@ function philUpdatePanel(text = "") {
   if (phPlacements.length && phFound.size === phPlacements.length) {
     panel.textContent = "🎉 Все слова найдены!";
     panel.style.color = "#4ade80";
+    markWin('philword');
     return;
   }
 
@@ -1594,6 +1599,7 @@ function quantCheckGuess() {
   document.getElementById('qnt-active-panel').textContent = '🎉 ПРАВИЛЬНО! ' + quantCurrentWord;
   document.getElementById('qnt-active-panel').style.color = '#4ade80';
   document.getElementById('qnt-wins').textContent = quantWins;
+  markWin('quant');
   quantDrawGrid();
   return;
  }
@@ -1860,6 +1866,7 @@ function sudokuInput(num) { // num: 0..9 (0 = clear)
      if(win) {
        document.getElementById('su-active-panel').textContent = "🎉 СУДОКУ РЕШЕНО ВЕРНО!";
        document.getElementById('su-active-panel').style.color = "#4ade80";
+       markWin('sudoku');
      }
   }
 }
@@ -2039,7 +2046,7 @@ function sudokuInitOnce() {
     const panel = document.getElementById('active-q-panel');
     
     if(isSolved) {
-      Storage.addWin('cw');
+      markWin('crossword');
       panel.innerHTML = '🎉 ПОЗДРАВЛЯЕМ! КРОССВОРД РАЗГАДАН! 🎉';
       panel.style.color = '#4ade80';
     } else if(activeWord) {
