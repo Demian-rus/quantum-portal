@@ -34,11 +34,25 @@
   /* 2. НАВИГАЦИЯ И ШАПКА                                                       */
   /* ========================================================================== */
   nav {
-    width: 100%; background: #0a0a0a; border-bottom: 1px solid var(--border);
-    display: flex; justify-content: center; gap: 20px; padding: 12px;
+  width: 100%;
+  background: #0a0a0a;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 12px;
+
+  /* важное для скролла */
+  overflow-x: auto;
+  scrollbar-width: none;      /* Firefox */
+  }
+
+  /* Скрываем полосу прокрутки в WebKit */
+  nav::-webkit-scrollbar {
+  display: none;
   }
   .tab {
-    background: transparent; color: #666; border: none; font-size: 15px;
+    flex: 0 0 auto;  background: transparent; color: #666; border: none; font-size: 15px;
     cursor: pointer; padding: 6px 12px; font-weight: bold; transition: 0.2s;
   }
   .tab.active {
@@ -283,7 +297,7 @@
     h1 { font-size: 18px; letter-spacing: 1px; }
     .sub { display: none; }
     .header-area { padding: 10px 8px 8px; }
-    nav { gap: 6px; padding: 8px; }
+    nav { justify-content: flex-start; gap: 6px; padding: 8px; }
     .tab { font-size: 13px; padding: 5px 8px; }
     .controls { gap: 6px; padding: 0 8px; }
     .control-group { gap: 6px; padding: 6px; flex-wrap: wrap; justify-content: center; }
@@ -554,6 +568,18 @@
   justify-content: flex-end;
 }
 
+.menu-tab {
+  min-width: 40px;
+  padding: 6px 0;
+}
+
+/* Чтобы меню визуально отличалось и не подсвечивалось как текущая игра */
+.menu-tab.active {
+  border-bottom: none;
+  text-shadow: none;
+  color: #666;
+}
+
 </style>
 
 </head>
@@ -613,6 +639,7 @@
 
 
   <nav>
+    <button id="btn-main-menu" class="tab menu-tab" type="button">Меню</button>
     <button class="tab active" onclick="switchTab('crossword')">Кроссворд</button>
     <button class="tab" onclick="switchTab('philword')">Филворд</button>
     <button class="tab" onclick="switchTab('sudoku')">Судоку</button>
@@ -844,24 +871,51 @@ const Storage = {
   load() {
     try {
       const raw = JSON.parse(localStorage.getItem(this.key)) || {};
-      // Базовая структура с запасом под будущее
-      return {
-        stats: raw.stats || {
+
+      // Базовая структура по умолчанию
+      const norm = {
+        stats: {
           crossword: { wins: 0, games: 0 },
-          philword: { wins: 0, games: 0 },
-          sudoku:   { wins: 0, games: 0 },
-          quant:    { wins: 0, games: 0 },
+          philword:  { wins: 0, games: 0 },
+          sudoku:    { wins: 0, games: 0 },
+          quant:     { wins: 0, games: 0 }
           // futureGameId: { wins: 0, games: 0 }
         },
-        history: raw.history || { words: [] }
+        history: { words: [] }
       };
+
+      // Подтягиваем существующие stats/history
+      if (raw.history && Array.isArray(raw.history.words)) {
+        norm.history.words = raw.history.words;
+      }
+
+      if (raw.stats) {
+        // Перебираем все ключи stats, которые есть в raw
+        Object.keys(raw.stats).forEach(game => {
+          const val = raw.stats[game];
+
+          // СТАРЫЙ ФОРМАТ: просто число (кол-во побед)
+          if (typeof val === 'number') {
+            norm.stats[game] = { wins: val, games: val };
+          }
+          // НОВЫЙ ФОРМАТ: объект
+          else if (val && typeof val === 'object') {
+            norm.stats[game] = {
+              wins:  Number(val.wins  || 0),
+              games: Number(val.games || 0)
+            };
+          }
+        });
+      }
+
+      return norm;
     } catch {
       return {
         stats: {
           crossword: { wins: 0, games: 0 },
-          philword: { wins: 0, games: 0 },
-          sudoku:   { wins: 0, games: 0 },
-          quant:    { wins: 0, games: 0 }
+          philword:  { wins: 0, games: 0 },
+          sudoku:    { wins: 0, games: 0 },
+          quant:     { wins: 0, games: 0 }
         },
         history: { words: [] }
       };
@@ -873,7 +927,7 @@ const Storage = {
   addGame(game) {
     const data = this.load();
     if (!data.stats[game]) {
-      data.stats[game] = { wins: 0, games: 0 }; // для будущих игр
+      data.stats[game] = { wins: 0, games: 0 }; // под будущие игры
     }
     data.stats[game].games++;
     this.save(data);
@@ -884,6 +938,10 @@ const Storage = {
       data.stats[game] = { wins: 0, games: 0 };
     }
     data.stats[game].wins++;
+    // Если вдруг прошлые данные были старого формата, games может быть 0 — подправим
+    if (data.stats[game].games < data.stats[game].wins) {
+      data.stats[game].games = data.stats[game].wins;
+    }
     this.save(data);
   },
   addWord(word) {
@@ -1002,6 +1060,17 @@ function initStartScreen() {
       );
     });
   }
+}
+
+function initMenuButton() {
+  const btn = document.getElementById('btn-main-menu');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    const start = document.getElementById('start-screen');
+    if (!start) return;
+    start.style.display = 'flex';   // показать стартовый экран
+  });
 }
 
 // Инициализируем историю из памяти браузера
@@ -2646,6 +2715,7 @@ hiddenInput.addEventListener('keydown', (e) => {
   philInitOnce();
   sudokuInitOnce();
   initStartScreen();
+  initMenuButton();
 
   // Если хочешь, можно автогенерировать кроссворд после выбора режима,
   // но не при загрузке страницы.
