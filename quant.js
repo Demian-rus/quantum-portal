@@ -64,6 +64,14 @@ function quantDrawGrid() {
   }
 }
 
+function quantBackspace() {
+  if (quantGameOver || !quantCurrentWord) return;
+  if (quantCurrentGuess.length === 0) return;
+
+  quantCurrentGuess = quantCurrentGuess.slice(0, -1);
+  quantDrawGrid();
+}
+
 // ДЕСКТОПНАЯ КЛАВИАТУРА КВАНТА
 function quantDrawKeyboardDesktop() {
   const kb = document.getElementById('qntKeyboardDesktop');
@@ -93,10 +101,7 @@ function quantDrawKeyboardDesktop() {
       if (letter === '⌫') {
         btn.className = 'qnt-key qnt-del';
         btn.onclick = () => {
-          if (quantCurrentGuess.length > 0 && !quantGameOver) {
-            quantCurrentGuess = quantCurrentGuess.slice(0, -1);
-            quantDrawGrid();
-          }
+          quantBackspace();
         };
       } else {
         btn.className = 'qnt-key';
@@ -224,3 +229,7 @@ function quantReset() {
   quantDrawGrid();
   quantDrawKeyboardDesktop();
 }
+
+// Экспорт в глобальную область для core.js и общей клавиатуры
+window.quantGuessLetter = quantGuessLetter;
+window.quantBackspace   = quantBackspace;

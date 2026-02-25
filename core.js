@@ -86,13 +86,16 @@ const Storage = {
   }
 };
 
+
 const winMarked = { crossword:false, philword:false, sudoku:false, quant:false };
+
 
 function markWin(game){
   if (winMarked[game]) return;
   winMarked[game] = true;
   Storage.addWin(game);
 }
+
 
 // Инициализируем историю из памяти браузера
 const usedWordsHistory = new Set(Storage.load().history.words);
@@ -108,6 +111,47 @@ usedWordsHistory.add = function(word) {
 // Инициализация истории для филворда
 let philUsedWordsHistory = new Set(Storage.load().history.words);
 philUsedWordsHistory.add = usedWordsHistory.add;
+
+
+// ==========================================
+// ГЛОБАЛЬНОЕ СОСТОЯНИЕ ДЛЯ НАВИГАЦИИ / КЛАВИАТУРЫ
+// ==========================================
+let currentSection = 'crossword';
+
+function updateMobileKeyboardVisibility() {
+  const kb = document.getElementById('mobile-keyboard');
+  if (!kb) return;
+
+  if (window.innerWidth >= 769) {
+    // На десктопе всё равно прячем через CSS, но чтобы не мигало:
+    kb.style.display = '';
+    return;
+  }
+
+  if (currentSection === 'crossword' || currentSection === 'quant') {
+    kb.style.display = 'flex';
+  } else {
+    kb.style.display = 'none';
+  }
+}
+
+function attachMobileKeyboard() {
+  const kb = document.getElementById('mobile-keyboard');
+  if (!kb) return;
+  if (window.innerWidth >= 769) return;
+
+  // слот под клавиатуру в кроссворде
+  const cwSlot = document.getElementById('cw-keyboard-slot');
+  // в Кванте — внутрь qnt-area
+  const qntArea = document.querySelector('#sec-quant .qnt-area');
+
+  if (currentSection === 'crossword' && cwSlot) {
+    cwSlot.appendChild(kb);
+  } else if (currentSection === 'quant' && qntArea) {
+    qntArea.appendChild(kb);
+  }
+}
+
 
 
 // ==========================================
@@ -135,13 +179,27 @@ function showConfirmPopup(text, onOk, onCancel) {
 }
 
 
+
 // ==========================================
 // НАВИГАЦИЯ МЕЖДУ РЕЖИМАМИ
 // ==========================================
 function switchTab(id) {
+  currentSection = id;
+
   document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.game-section').forEach(s => s.classList.remove('active'));
-  event.target.classList.add('active');
+
+  // ищем нужную кнопку по data-target (для стартового экрана) или тексту
+  const navBtn = Array.from(document.querySelectorAll('nav .tab')).find(btn => {
+    return btn.textContent.toLowerCase().includes(
+      id === 'quant' ? 'квант' :
+      id === 'crossword' ? 'кроссворд' :
+      id === 'philword' ? 'филворд' :
+      id === 'sudoku' ? 'судоку' : ''
+    );
+  });
+  if (navBtn) navBtn.classList.add('active');
+
   document.getElementById('sec-' + id).classList.add('active');
 
   const titles = {
@@ -175,7 +233,12 @@ function switchTab(id) {
   if (id === 'quant') {
     if (!quantCurrentWord) quantGenerate();
   }
+
+  // работа с мобильной клавой
+  updateMobileKeyboardVisibility();
+  attachMobileKeyboard();
 }
+
 
 function toggleSidebar(e) {
   if (e) e.stopPropagation();
@@ -194,6 +257,7 @@ function toggleSidebar(e) {
 }
 
 
+
 // ==========================================
 // УТИЛИТЫ / РЕНДЕР
 // ==========================================
@@ -209,6 +273,7 @@ function rrect(ctx,x,y,w,h,r) {
   ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h); ctx.lineTo(x+r,y+h);
   ctx.quadraticCurveTo(x,y+h,x,y+h-r); ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y); ctx.closePath();
 }
+
 
 
 // ==========================================
@@ -241,6 +306,7 @@ function sudokuHasProgress() {
 function quantHasProgress() {
   return !!quantCurrentWord && (quantAttempts < 6 || quantCurrentGuess.length > 0);
 }
+
 
 
 // ==========================================
@@ -300,6 +366,7 @@ function closeStatsPopup() {
 }
 
 
+
 // ==========================================
 // СТАРТОВЫЙ ЭКРАН
 // ==========================================
@@ -313,12 +380,7 @@ function initStartScreen() {
       const id = btn.getAttribute('data-target'); // 'crossword' | 'philword' | ...
       start.style.display = 'none';
 
-      const tab = Array.from(document.querySelectorAll('.tab'))
-        .find(t => t.textContent.toLowerCase()
-          .includes(id === 'quant' ? 'квант' : id));
-      if (tab) {
-        tab.click();
-      }
+      switchTab(id);
     });
   });
 
@@ -343,6 +405,7 @@ function initStartScreen() {
   }
 }
 
+
 function initMenuButton() {
   const btn = document.getElementById('btn-main-menu');
   if (!btn) return;
@@ -353,6 +416,7 @@ function initMenuButton() {
     start.style.display = 'flex';
   });
 }
+
 
 
 // ==========================================
@@ -384,6 +448,7 @@ if (hiddenInput) {
 }
 
 
+
 // ==========================================
 // ГЛОБАЛЬНЫЕ HOTKEY'И
 // ==========================================
@@ -399,6 +464,7 @@ window.addEventListener('keydown', e => {
     }
   }
 });
+
 
 
 // ==========================================
@@ -456,12 +522,23 @@ window.addEventListener('keydown', e => {
     mo.observe(s, { attributes: true, attributeFilter: ['class'] });
   });
 
-  window.addEventListener('resize', () => requestAnimationFrame(syncAll));
+  window.addEventListener('resize', () => {
+    requestAnimationFrame(() => {
+      syncAll();
+      updateMobileKeyboardVisibility();
+      attachMobileKeyboard();
+    });
+  });
 
-  setTimeout(syncAll, 300);
+  setTimeout(() => {
+    syncAll();
+    updateMobileKeyboardVisibility();
+    attachMobileKeyboard();
+  }, 300);
 
   window.syncSidebars = syncAll;
 })();
+
 
 
 // ==========================================
@@ -500,6 +577,7 @@ setTimeout(() => {
 }, 500);
 
 
+
 // ==========================================
 // ПРОЧЕЕ
 // ==========================================
@@ -513,6 +591,43 @@ document.onkeydown = function(e) {
 };
 
 
+
+// ==========================================
+// ОБРАБОТЧИК КЛИКОВ ПО ОБЩЕЙ МОБИЛЬНОЙ КЛАВИАТУРЕ
+// ==========================================
+(function initMobileKeyboardRouting() {
+  const kb = document.getElementById('mobile-keyboard');
+  if (!kb) return;
+
+  kb.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-key]');
+    if (!btn) return;
+
+    const key = btn.dataset.key;
+
+    if (currentSection === 'crossword') {
+      if (!activeWord) return;
+      if (key === 'Backspace') {
+        handleInput('Backspace');
+      } else {
+        handleInput(key);
+      }
+    } else if (currentSection === 'quant') {
+      if (key === 'Backspace') {
+        if (typeof quantBackspace === 'function') {
+          quantBackspace();
+        }
+      } else {
+        if (typeof quantGuessLetter === 'function') {
+          quantGuessLetter(key);
+        }
+      }
+    }
+  });
+})();
+
+
+
 // ==========================================
 // ONLOAD
 // ==========================================
@@ -521,4 +636,8 @@ window.onload = () => {
   sudokuInitOnce();
   initStartScreen();
   initMenuButton();
+  // стартовая секция — кроссворд
+  currentSection = 'crossword';
+  updateMobileKeyboardVisibility();
+  attachMobileKeyboard();
 };

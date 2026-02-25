@@ -360,9 +360,6 @@ function updateUI() {
       container.scrollTo({ top: targetScroll, behavior: 'smooth' });
     }
   }
-
-  const kp = document.getElementById('cw-keypad');
-  if (kp) kp.classList.toggle('visible', !!(activeWord && !isSolved));
 }
 
 function renderCluesList(placed) {
@@ -456,19 +453,29 @@ function onGenerate() {
 }
 
 function handleInput(key) {
-  if(!activeWord || isSolved) return;
-  if(key==='Backspace') {
-    userGrid[activeR][activeC]='';
-    if(activeWord.dir==='H' && activeC>activeWord.c) activeC--;
-    else if(activeWord.dir==='V' && activeR>activeWord.r) activeR--;
-  } else if(key.length===1 && /[а-яёa-z]/i.test(key)) {
-    userGrid[activeR][activeC] = key.toUpperCase();
-    if(activeWord.dir==='H' && activeC<activeWord.c+activeWord.w.length-1) activeC++;
-    else if(activeWord.dir==='V' && activeR<activeWord.r+activeWord.w.length-1) activeR++;
+  if (!activeWord || isSolved) return;
+
+  if (key === 'Backspace') {
+    userGrid[activeR][activeC] = '';
+    if (activeWord.dir === 'H' && activeC > activeWord.c) {
+      activeC--;
+    } else if (activeWord.dir === 'V' && activeR > activeWord.r) {
+      activeR--;
+    }
+  } else if (key && key.length === 1 && /[а-яёa-z]/i.test(key)) {
+    const ch = key.toUpperCase();
+    userGrid[activeR][activeC] = ch;
+    if (activeWord.dir === 'H' && activeC < activeWord.c + activeWord.w.length - 1) {
+      activeC++;
+    } else if (activeWord.dir === 'V' && activeR < activeWord.r + activeWord.w.length - 1) {
+      activeR++;
+    }
     checkWin();
   }
+
   drawCrossword(window.lastG, window.lastPlaced);
 }
+
 
 document.getElementById('cv').addEventListener('pointerdown', e => {
   if(isSolved || !window.lastG) return;
@@ -549,3 +556,10 @@ function onExport() {
   a.href = document.getElementById('cv').toDataURL('image/png');
   a.click();
 }
+
+// Экспорт в глобальную область для core.js и общей клавиатуры
+window.handleInput = handleInput;
+window.activeWord  = activeWord;
+window.isSolved    = isSolved;
+window.activeR     = activeR;
+window.activeC     = activeC;
