@@ -298,6 +298,145 @@
   .su-numpad button { width: 30px; height: 35px; font-size: 16px; }
 }
 
+/* ─── КВАНТ СТИЛИ ─── */
+#qnt-active-panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #06f3ff;
+  font-weight: bold;
+  font-size: 15px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.qnt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  gap: 8px;
+  margin-bottom: 20px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.qnt-letter {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #00d4ff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  background: #0a0a18;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.qnt-letter.correct {
+  background: #4ade80;
+  border-color: #4ade80;
+  color: #000;
+}
+
+.qnt-letter.present {
+  background: #fbbf24;
+  border-color: #fbbf24;
+  color: #000;
+}
+
+.qnt-letter.absent {
+  background: #333;
+  border-color: #666;
+  color: #aaa;
+}
+
+.qnt-keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 480px;
+  margin: 0 auto 15px;
+}
+
+.qnt-key-row {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+.qnt-key {
+  padding: 8px 10px;
+  background: #1a1a38;
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  transition: 0.1s;
+  min-width: 28px;
+}
+
+.qnt-key:hover {
+  background: #2a2a60;
+}
+
+.qnt-key.correct {
+  background: #4ade80;
+  border-color: #4ade80;
+  color: #000;
+}
+
+.qnt-key.present {
+  background: #fbbf24;
+  border-color: #fbbf24;
+  color: #000;
+}
+
+.qnt-key.absent {
+  background: #333;
+  border-color: #666;
+}
+
+.qnt-stats {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(0,212,255,0.05);
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.qnt-stat-item {
+  text-align: center;
+}
+
+.qnt-stat-value {
+  font-size: 20px;
+  font-weight: bold;
+  color: #00d4ff;
+}
+
+@media (max-width: 650px) {
+  .qnt-grid { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .qnt-letter { width: 40px; height: 40px; font-size: 16px; }
+  .qnt-key { min-width: 24px; font-size: 12px; padding: 6px 8px; }
+}
+
 /* ─── МОБИЛЬНАЯ АДАПТАЦИЯ ─── */
 @media (max-width: 650px) {
   h1 { font-size: 18px; letter-spacing: 1px; }
@@ -413,6 +552,7 @@
     <button class="tab active" onclick="switchTab('crossword')">Кроссворд</button>
     <button class="tab" onclick="switchTab('philword')">Филворд</button>
     <button class="tab" onclick="switchTab('sudoku')">Судоку</button>
+    <button class="tab" onclick="switchTab('quant')">Квант</button>
   </nav>
 
   <div class="header-area">
@@ -585,11 +725,52 @@
         <button onclick="sudokuInput(9)">9</button>
         <button onclick="sudokuInput(0)" class="clr">⌫</button>
       </div>
+          </div>
+    </div>
+  </div>
+
+<div id="sec-quant" class="game-section">
+  <div class="controls">
+    <div class="control-group">
+      <select id="sel-theme-qnt">
+        <option value="физика">Физика</option>
+        <option value="математика">Математика</option>
+        <option value="физмат">ФизМат (Микс)</option>
+      </select>
+      <select id="sel-level-qnt">
+        <option value="легкий">Лёгкий (5-7 класс)</option>
+        <option value="средний">Средний (8-9 класс)</option>
+        <option value="сложный">Сложный (10-11 класс)</option>
+      </select>
+    </div>
+    <div class="control-group">
+      <button class="primary" onclick="quantGenerate()">⟳ Новое слово</button>
+      <button class="action" onclick="quantShowHint()" id="btn-qnt-hint">💡 Подсказка</button>
+      <button class="danger" onclick="quantReset()">♻ Сброс</button>
+    </div>
+  </div>
+  <div class="stat-line" id="qnt-stat">Готов к игре Квант</div>
+  <div class="main-container" style="flex-direction: column; align-items: center;">
+    <div class="game-area">
+      <div id="qnt-active-panel">Угадайте слово (6 попыток)</div>
+      <div class="qnt-grid" id="qntGrid"></div>
+      <div class="qnt-keyboard" id="qntKeyboard"></div>
+      <div class="qnt-stats">
+        <div class="qnt-stat-item">
+          <div class="qnt-stat-value" id="qnt-attempts">6</div>
+          <div>Попыток</div>
+        </div>
+        <div class="qnt-stat-item">
+          <div class="qnt-stat-value" id="qnt-wins">0</div>
+          <div>Побед</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
   <script>
+
   // ═══════════════════════════════════════════════════════════
   //  БАЗА СЛОВ (НИЖЕ)
   // ═══════════════════════════════════════════════════════════
@@ -1065,12 +1246,15 @@ const DB = {
     const titles = {
       'crossword': 'Интерактивный режим генерации кроссвордов',
       'philword': 'Поиск слов (скоро)',
-      'sudoku': 'Классическое судоку (скоро)'
+      'sudoku': 'Классическое судоку (скоро)',
+      'quant': 'Квант - угадай терминологию'
     };
     document.getElementById('sub-title').textContent = titles[id];
 
+
     // чтобы ввод букв не продолжал лететь в скрытый кроссворд
     if (id !== 'crossword') { activeWord = null; activeR = -1; activeC = -1; }
+
 
     // ленивый старт филворда
     if (id === 'philword') {
@@ -1078,12 +1262,20 @@ const DB = {
     if (!phGrid || !phGrid.length) philGenerate();
     }
 
+
     // Инициализация судоку
     if(id === 'sudoku') {
     sudokuInitOnce();
     if(!suGrid.length) sudokuGenerate();
     }
+
+    // Инициализация Кванта
+    if(id === 'quant') {
+    if (!quantCurrentWord) quantGenerate();
+    }
   }
+
+
 
   function toggleSidebar(e) {
     if(e) e.stopPropagation();
@@ -1707,6 +1899,186 @@ function philGenerate() {
   philUpdateStat();
   philUpdatePanel();
   philDraw();
+}
+
+// ═══════════════════════════════════════════════════════════
+// КВАНТ - УГАДАЙ СЛОВО ИЗ ТЕРМИНОВ
+// ═══════════════════════════════════════════════════════════
+const quantWordsUsed = new Set();
+let quantCurrentWord = '';
+let quantCurrentGuess = '';
+let quantAttempts = 6;
+let quantWins = 0;
+let quantGameOver = false;
+let quantWon = false;
+let quantHint = '';
+
+function quantGetPool(theme, level) {
+ if (theme === 'физмат') {
+  const phys = DB['физика']?.[level] ?? [];
+  const math = DB['математика']?.[level] ?? [];
+  return [...phys, ...math];
+ }
+ return DB[theme]?.[level] ?? [];
+}
+
+function quantPickWord(pool, minLen = 5, maxLen = 5) {
+ let candidates = pool
+  .map(i => ({ w: (i.w || '').toUpperCase(), q: i.q }))
+  .filter(i => i.w.length >= minLen && i.w.length <= maxLen && /^[А-ЯЁ]+$/.test(i.w));
+ 
+ const uniq = new Map();
+ candidates.forEach(i => {
+  if (!uniq.has(i.w)) uniq.set(i.w, i);
+ });
+ 
+ let list = [...uniq.values()].filter(i => !quantWordsUsed.has(i.w));
+ if (list.length < 3) { quantWordsUsed.clear(); list = [...uniq.values()]; }
+ if (!list.length) return null;
+ 
+ const picked = list[Math.floor(Math.random() * list.length)];
+ quantWordsUsed.add(picked.w);
+ return picked;
+}
+
+function quantDrawGrid() {
+ const grid = document.getElementById('qntGrid');
+ if (!grid) return;
+ grid.innerHTML = '';
+ 
+ const wordLength = quantCurrentWord.length || 5;
+ grid.style.gridTemplateColumns = `repeat(${wordLength}, 1fr)`;
+ 
+ for (let i = 0; i < wordLength; i++) {
+  const cell = document.createElement('div');
+  cell.className = 'qnt-letter';
+  cell.textContent = quantCurrentGuess[i] || '';
+  grid.appendChild(cell);
+ }
+}
+
+
+
+function quantDrawKeyboard() {
+ const kb = document.getElementById('qntKeyboard');
+ if (!kb) return;
+ kb.innerHTML = '';
+ 
+ const rows = [
+  'ЙЦУКЕНГШЩЗХЪ'.split(''),
+  'ФЫВАПРОЛДЖЭ'.split(''),
+  'ЯЧСМИТЬБЮ'.split('')
+ ];
+ 
+ rows.forEach(row => {
+  const rowDiv = document.createElement('div');
+  rowDiv.className = 'qnt-key-row';
+  
+  row.forEach(letter => {
+   const btn = document.createElement('button');
+   btn.className = 'qnt-key';
+   btn.textContent = letter;
+   btn.onclick = () => quantGuessLetter(letter);
+   rowDiv.appendChild(btn);
+  });
+  
+  kb.appendChild(rowDiv);
+ });
+}
+
+function quantGuessLetter(letter) {
+ if (quantGameOver || quantCurrentGuess.length >= 5) return;
+ 
+ quantCurrentGuess += letter;
+ quantDrawGrid();
+ 
+ if (quantCurrentGuess.length === 5) {
+  setTimeout(quantCheckGuess, 500);
+ }
+}
+
+function quantCheckGuess() {
+ if (quantCurrentGuess === quantCurrentWord) {
+  quantWon = true;
+  quantGameOver = true;
+  quantWins++;
+  document.getElementById('qnt-active-panel').textContent = '🎉 ПРАВИЛЬНО! ' + quantCurrentWord;
+  document.getElementById('qnt-active-panel').style.color = '#4ade80';
+  document.getElementById('qnt-wins').textContent = quantWins;
+  quantDrawGrid();
+  return;
+ }
+ 
+ quantAttempts--;
+ document.getElementById('qnt-attempts').textContent = quantAttempts;
+ 
+ if (quantAttempts <= 0) {
+  quantGameOver = true;
+  document.getElementById('qnt-active-panel').textContent = '❌ НЕПРАВИЛЬНО! Слово: ' + quantCurrentWord;
+  document.getElementById('qnt-active-panel').style.color = '#ff4444';
+  quantDrawGrid();
+  return;
+ }
+ 
+ quantCurrentGuess = '';
+ document.getElementById('qnt-active-panel').textContent = `Осталось попыток: ${quantAttempts}`;
+ quantDrawGrid();
+}
+
+function quantShowHint() {
+ if (quantGameOver || !quantCurrentWord) return;
+ const revealed = Math.floor(quantCurrentWord.length / 2);
+ let hint = '';
+ for (let i = 0; i < quantCurrentWord.length; i++) {
+  hint += i < revealed ? quantCurrentWord[i] : '_';
+ }
+ document.getElementById('qnt-active-panel').textContent = '💡 Подсказка: ' + hint;
+}
+
+
+function quantGenerate() {
+ const theme = document.getElementById('sel-theme-qnt')?.value || 'физика';
+ const level = document.getElementById('sel-level-qnt')?.value || 'легкий';
+ 
+ let minLen = 5, maxLen = 5;
+ if (level === 'средний') { minLen = 6; maxLen = 7; }
+ if (level === 'сложный') { minLen = 7; maxLen = 10; }
+ 
+ const pool = quantGetPool(theme, level);
+
+ if (!pool.length) {
+  document.getElementById('qnt-stat').textContent = '⚠️ Нет слов в базе';
+  return;
+ }
+ 
+ const picked = quantPickWord(pool, minLen, maxLen);
+ if (!picked) return;
+ 
+ quantCurrentWord = picked.w;
+ quantCurrentGuess = '';
+ quantAttempts = 6;
+ quantGameOver = false;
+ quantWon = false;
+ quantHint = picked.q;
+ 
+ document.getElementById('qnt-active-panel').textContent = '📝 ' + picked.q;
+ document.getElementById('qnt-active-panel').style.color = '#06f3ff';
+ document.getElementById('qnt-attempts').textContent = quantAttempts;
+ document.getElementById('qnt-stat').textContent = `Слово из ${quantCurrentWord.length} букв | ${theme} | ${level}`;
+ 
+ quantDrawGrid();
+ quantDrawKeyboard();
+}
+
+function quantReset() {
+ quantCurrentWord = '';
+ quantCurrentGuess = '';
+ quantAttempts = 6;
+ quantGameOver = false;
+ quantWon = false;
+ document.getElementById('qnt-active-panel').textContent = 'Нажмите "Новое слово"';
+ document.getElementById('qnt-active-panel').style.color = '#06f3ff';
+ quantDrawGrid();
 }
 
 function philInitOnce() {
