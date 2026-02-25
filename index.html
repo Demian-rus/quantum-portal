@@ -78,7 +78,7 @@
     <p class="sub" id="sub-title">Интерактивный режим генерации</p>
   </div>
 
-  <!-- ====== КРОССВОРД ====== -->
+<!-- ====== КРОССВОРД ====== -->
 <div id="sec-crossword" class="game-section active">
   <div class="controls">
     <div class="control-group">
@@ -105,17 +105,13 @@
 
   <div class="stat-line" id="stat">Готов к генерации</div>
 
-  <!-- Блок игры: панель, канвас, КЛАВИАТУРА (через attachMobileKeyboard) -->
-  <div class="main-container" style="flex-direction: column; align-items: center;">
+  <div class="main-container">
     <div class="game-area cw-area">
       <div id="active-q-panel">Сгенерируйте кроссворд и выберите клетку</div>
       <canvas id="cv"></canvas>
       <!-- сюда core.js будет подкидывать #mobile-keyboard -->
     </div>
-  </div>
 
-  <!-- Отдельный блок сайдбара, всегда ниже игры -->
-  <div class="main-container" style="flex-direction: column; align-items: center;">
     <div id="sidebar" class="collapsed"
          onclick="if(this.classList.contains('collapsed')) toggleSidebar()">
       <div class="sb-header">
