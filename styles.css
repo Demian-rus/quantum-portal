@@ -1,0 +1,575 @@
+  /* ========================================================================== */
+  /* 1. БАЗОВЫЕ ПЕРЕМЕННЫЕ И ОБЩИЕ СТИЛИ (MOBILE FIRST)                         */
+  /* ========================================================================== */
+  :root {
+    --bg: #000000;
+    --panel: #0d0d0d;
+    --accent: #00ff33;
+    --accent-hover: #00cc00;
+    --text: #ffffff;
+    --border: #00ff3344;
+    --secondary: #888888;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    background: var(--bg); 
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    overflow-x: hidden;
+  }
+
+  /* ========================================================================== */
+  /* 2. НАВИГАЦИЯ И ШАПКА                                                       */
+  /* ========================================================================== */
+  nav {
+  width: 100%;
+  background: #0a0a0a;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 12px;
+
+  /* важное для скролла */
+  overflow-x: auto;
+  scrollbar-width: none;      /* Firefox */
+  }
+
+  /* Скрываем полосу прокрутки в WebKit */
+  nav::-webkit-scrollbar {
+  display: none;
+  }
+  .tab {
+    flex: 0 0 auto;  background: transparent; color: #666; border: none; font-size: 15px;
+    cursor: pointer; padding: 6px 12px; font-weight: bold; transition: 0.2s;
+  }
+  .tab.active {
+    color: var(--accent); border-bottom: 2px solid var(--accent);
+    text-shadow: 0 0 10px rgba(0, 255, 51, 0.5);
+  }
+  .tab:hover:not(.active) { color: #a0a0ff; }
+
+  .header-area { padding: 20px 16px 15px; text-align: center; width: 100%; }
+  h1 {
+    font-size: 26px; color: var(--accent); letter-spacing: 3px;
+    text-shadow: 0 0 20px #00ff33, 0 0 40px #00ff33, 0 0 60px #00aa00;
+    margin-bottom: 5px; font-weight: 900;
+  }
+  .sub {
+    color: var(--secondary); font-size: 12px; letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ========================================================================== */
+  /* 3. КНОПКИ УПРАВЛЕНИЯ И ИНФО-ПАНЕЛИ                                         */
+  /* ========================================================================== */
+  .controls {
+    display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
+    margin-bottom:20px; padding: 0 16px; max-width: 1000px;
+  }
+  .control-group {
+    display: flex; gap: 10px; background: rgba(0, 255, 51, 0.05);
+    padding: 8px; border-radius: 2px; border: 1px solid var(--border);
+  }
+  select, button {
+    background: var(--panel); border: 1px solid var(--border); color: var(--text);
+    padding: 8px 16px; border-radius: 2px; font-size: 14px;
+    cursor: pointer; transition: 0.2s; outline: none;
+  }
+  select:hover, button:hover {
+    border-color: var(--accent); box-shadow: 0 0 10px rgba(0, 255, 51, 0.3);
+  }
+  button.primary {
+    background: rgba(0, 255, 51, 0.1); color: var(--accent); font-weight: bold;
+    border-color: rgba(0, 255, 51, 0.6);
+  }
+  button.primary:hover {
+    background: rgba(0, 255, 51, 0.2); box-shadow: 0 0 15px rgba(0, 255, 51, 0.4);
+  }
+  button.action { color: var(--accent); border-color: rgba(0, 255, 51, 0.5); }
+  button.danger { color: #ff6b35; border-color: rgba(255,107,53,0.5); }
+  .stat-line {
+    width: 100%; text-align: center; font-size: 13px;
+    color: #555588; margin-bottom: 15px;
+  }
+
+  #active-q-panel, #phil-active-panel, #su-active-panel, #qnt-active-panel {
+    background: var(--panel); border: 1px solid var(--border);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    border-radius: 10px; padding: 15px 20px; margin-bottom: 20px; min-height: 52px;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    font-weight: bold; font-size: 16px; width: 100%; max-width: 900px;
+  }
+  #active-q-panel { color: #ff6b35; }
+  #phil-active-panel { color: #a855f7; font-size: 15px; }
+  #su-active-panel { color: #fbbf24; font-size: 15px; max-width: 500px; }
+  #qnt-active-panel { color: #06f3ff; font-size: 15px; }
+
+  /* ========================================================================== */
+  /* 4. ОСНОВНОЙ КОНТЕЙНЕР И CANVAS                                             */
+  /* ========================================================================== */
+  .main-container {
+    display: flex; flex-direction: row; align-items: flex-start; justify-content: center;
+    width: 100%; max-width: 1300px; padding: 0 16px 30px; gap: 20px; position: relative;
+  }
+  .game-section { display: none; width: 100%; flex-direction: column; align-items: center; }
+  .game-section.active { display: flex; }
+  .game-area {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    flex: 1; min-width: 0; transition: 0.3s;
+  }
+
+  canvas {
+    border-radius: 12px; display: block; max-width: 100%;
+    cursor: pointer; box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  }
+  #cv, #cvSudoku { touch-action: manipulation; }
+  #cvPhil { touch-action: none; }
+
+  .placeholder-box {
+    border: 2px dashed #333; border-radius: 16px; width: 100%; max-width: 800px;
+    height: 300px; display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 10px; margin-top: 40px;
+  }
+  .placeholder-box h2 { color: #555; font-size: 24px; }
+  .placeholder-box p { color: #444; }
+
+  /* ========================================================================== */
+  /* 5. САЙДБАРЫ (КРОССВОРД И ФИЛВОРД) - БАЗА (МОБИЛКА/ПЛАНШЕТ)                  */
+  /* ========================================================================== */
+  #sidebar, #philSidebar {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(11, 11, 30, 0.95);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    height: 280px;
+    min-height: 0;
+
+    position: relative;
+    top: 0;
+    transition: width 0.3s ease, border-radius 0.3s ease, top 0.3s ease;
+  }
+
+  .sb-header {
+    padding: 12px 14px; border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    height: 50px; cursor: pointer;
+  }
+  .sb-title {
+    color: var(--accent); font-size: 15px; letter-spacing: 1px;
+    white-space: nowrap; transition: opacity 0.2s;
+  }
+  .toggle-btn {
+    background: none; border: none; color: var(--accent); font-size: 20px;
+    cursor: pointer; padding: 0; width: 30px; height: 30px; transition: 0.3s;
+    display: flex; align-items: center; justify-content: center; border-radius: 4px;
+  }
+  .toggle-btn:hover { background: rgba(0,212,255,0.1); }
+
+  .sb-content {
+    padding: 20px; overflow-y: auto; flex: 1; transition: opacity 0.3s;
+    width: 100%; scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+  }
+  .sb-content::-webkit-scrollbar { width: 6px; }
+  .sb-content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  .clues-section { margin-bottom: 25px; }
+  .clues-section h3 {
+    color: #a855f7; font-size: 13px; margin-bottom: 12px;
+    border-bottom: 1px solid #333; padding-bottom: 5px; letter-spacing: 1px;
+  }
+  .clue-item { font-size: 13px; color: #bbb; margin-bottom: 10px; line-height: 1.4; transition: 0.2s; }
+  .clue-item b { color: #fbbf24; }
+  .clue-item.active {
+    color: #fff; background: rgba(0,212,255,0.1); padding: 6px 8px;
+    border-radius: 6px; border-left: 3px solid var(--accent); margin-left: -11px;
+  }
+
+  .phw-item {
+    font-size: 13px; color: #bbb; margin-bottom: 10px;
+    line-height: 1.4; padding: 6px 8px; border-radius: 6px;
+    border-left: 3px solid transparent;
+  }
+  .phw-item b { color:#fbbf24; }
+  .phw-item.found {
+    color: #8affc1; background: rgba(74, 222, 128, 0.10);
+    border-left-color: rgba(74, 222, 128, 0.75); text-decoration: line-through;
+  }
+
+  /* ========================================================================== */
+  /* 6. ИГРОВЫЕ МОДУЛИ: СУДОКУ, КВАНТ, КЛАВИАТУРЫ                               */
+  /* ========================================================================== */
+  .su-numpad {
+    display: flex; gap: 5px; margin-top: 15px;
+    justify-content: center; flex-wrap: wrap; max-width: 400px;
+  }
+  .su-numpad button {
+    width: 36px; height: 40px; font-size: 18px; font-weight: bold;
+    background: #1e1e3f; color: #fff; border: 1px solid #444;
+    border-radius: 6px; cursor: pointer; padding: 0;
+  }
+  .su-numpad button:hover { background: var(--accent); border-color: var(--accent); }
+  .su-numpad button.clr { color: #ff6b35; border-color: #ff6b35; }
+
+  .qnt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 8px; margin-bottom: 20px;
+    width: fit-content; margin-left: auto; margin-right: auto;
+  }
+  .qnt-letter {
+    width: 50px; height: 50px; border: 2px solid #00d4ff; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold; font-size: 20px; background: #0a0a18; color: #fff;
+    transition: 0.2s;
+  }
+  .qnt-letter.correct { background: #4ade80; border-color: #4ade80; color: #000; }
+  .qnt-letter.present { background: #fbbf24; border-color: #fbbf24; color: #000; }
+  .qnt-letter.absent { background: #333; border-color: #666; color: #aaa; }
+
+  .qnt-keyboard {
+    display: flex; flex-direction: column; gap: 6px;
+    max-width: 480px; margin: 0 auto 15px;
+  }
+  .qnt-key-row { display: flex; gap: 4px; justify-content: center; }
+  .qnt-key {
+    padding: 8px 10px; background: #1a1a38; border: 1px solid #333;
+    color: #fff; border-radius: 4px; cursor: pointer;
+    font-size: 13px; font-weight: bold; transition: 0.1s; min-width: 28px;
+  }
+  .qnt-key:hover { background: #2a2a60; }
+  .qnt-key.correct { background: #4ade80; border-color: #4ade80; color: #000; }
+  .qnt-key.present { background: #fbbf24; border-color: #fbbf24; color: #000; }
+  .qnt-key.absent { background: #333; border-color: #666; }
+
+  .qnt-stats {
+    display: flex; gap: 20px; justify-content: center;
+    margin-top: 15px; padding: 15px;
+    background: rgba(0,212,255,0.05); border-radius: 6px; font-size: 14px;
+  }
+  .qnt-stat-item { text-align: center; }
+  .qnt-stat-value { font-size: 20px; font-weight: bold; color: #00d4ff; }
+
+  #cw-keypad {
+    display: flex; flex-direction: column; align-items: center; gap: 5px;
+    margin-top: 10px; margin-bottom: 10px; width: 100%; max-width: 420px;
+    padding: 10px 6px; background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border); border-radius: 2px; flex-shrink: 0;
+  }
+  #cw-keypad.visible { display: flex; }
+  .cw-row { display: flex; gap: 2px; justify-content: center; width: 100%; }
+  .cw-row button {
+    flex: 1 1 0; min-width: 0; height: 40px; font-size: 13px;
+    font-weight: bold; background: #1a1a38; color: #d0d8ff;
+    border: 1px solid #333355; border-radius: 6px; cursor: pointer;
+    padding: 0; transition: 0.1s;
+  }
+  .cw-row button:active {
+    background: var(--accent); color: #000; border-color: var(--accent);
+    transform: scale(0.92);
+  }
+  .cw-del {
+    flex: 1.5 1 0 !important; color: #ff6b35 !important;
+    border-color: rgba(255,107,53,0.4) !important;
+  }
+
+  /* ========================================================================== */
+  /* 7. МОБИЛЬНЫЕ УСТРОЙСТВА (< 650px)                                          */
+  /* ========================================================================== */
+  @media (max-width: 650px) {
+    h1 { font-size: 18px; letter-spacing: 1px; }
+    .sub { display: none; }
+    .header-area { padding: 10px 8px 8px; }
+    nav { justify-content: flex-start; gap: 6px; padding: 8px; }
+    .tab { font-size: 13px; padding: 5px 8px; }
+    .controls { gap: 6px; padding: 0 8px; }
+    .control-group { gap: 6px; padding: 6px; flex-wrap: wrap; justify-content: center; }
+    select, button { font-size: 12px; padding: 7px 10px; }
+    .main-container { padding: 0 8px 20px; gap: 10px; flex-direction: column; align-items: center; }
+
+    #active-q-panel, #phil-active-panel, #su-active-panel {
+      font-size: 12px; padding: 8px 10px; margin-bottom: 10px;
+      min-height: 40px; line-height: 1.3; max-width: 100%;
+    }
+    .su-numpad { gap: 6px; margin-top: 12px; }
+    .su-numpad button {
+      width: 38px; height: 44px; font-size: 20px;
+    }
+    .qnt-grid { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    .qnt-letter { width: 40px; height: 40px; font-size: 16px; }
+    .qnt-key { min-width: 24px; font-size: 12px; padding: 6px 8px; }
+
+    #sidebar, #philSidebar { height: 240px; max-width: 600px; position: relative; top: 0; }
+    #sidebar.collapsed, #philSidebar.collapsed { height: 44px !important; }
+    #cw-keypad { display: flex !important; margin-bottom: 10px; }
+  }
+
+  /* На десктопе экранная клавиатура кроссворда скрыта */
+  @media (min-width: 769px) {
+    #cw-keypad { display: none !important; }
+  }
+
+  /* ========================================================================== */
+  /* 8. ДЕСКТОПЫ (>= 1280px) — САЙДБАР СПРАВА, ВЫСОТА ЧЕРЕЗ JS                  */
+  /* ========================================================================== */
+  @media (min-width: 1280px) {
+  .main-container { position: relative; justify-content: center; }
+  .game-area { width: 100%; }
+
+  /* Сайдбар справа, высоту контейнера не фиксируем */
+  #sidebar, #philSidebar {
+    position: absolute !important;
+    right: 20px;
+    top: 72px !important;
+    width: 320px !important;
+    height: auto;
+    min-height: 0;
+  }
+
+  /* ОГРАНИЧЕНИЕ ВЫСОТЫ ТОЛЬКО ДЛЯ СПИСКА ВНУТРИ (РАЗВЁРНУТО) */
+  #sidebar:not(.collapsed) .sb-content,
+  #philSidebar:not(.collapsed) .sb-content {
+    max-height: calc(100vh - 400px); /* ← здесь ты подбираешь число */
+    overflow-y: auto;
+  }
+
+  /* Кружок при сворачивании */
+  #sidebar.collapsed, #philSidebar.collapsed {
+    width: 44px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    border-radius: 50% !important;
+    cursor: pointer;
+    background: var(--panel) !important;
+    border: 2px solid var(--accent) !important;
+    box-shadow: 0 0 20px rgba(0, 255, 51, 0.25);
+    overflow: hidden; /* чтобы в кружке не было полосы прокрутки */
+  }
+
+  #sidebar.collapsed .sb-header, #philSidebar.collapsed .sb-header {
+    height: 100%; padding: 0; border: none; justify-content: center;
+  }
+
+  #sidebar.collapsed .toggle-btn, #philSidebar.collapsed .toggle-btn {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    color: transparent;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #sidebar.collapsed .toggle-btn::after, #philSidebar.collapsed .toggle-btn::after {
+    content: "☰";
+    color: var(--accent);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    line-height: 1;
+  }
+}
+
+  /* Прячем контент в свернутом виде (глобально) */
+  #sidebar.collapsed .sb-content, #philSidebar.collapsed .sb-content,
+  #sidebar.collapsed .sb-title, #philSidebar.collapsed .sb-title {
+    opacity: 0 !important; pointer-events: none !important; overflow: hidden !important;
+  }
+
+  .popup-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popup {
+  background: #0b0b13;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 320px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0,0,0,0.7);
+}
+
+.popup-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* ====== СТАРТОВЫЙ ЭКРАН ====== */
+.start-screen {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, #020617 0, #000 55%, #020617 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+}
+
+.start-card {
+  background: rgba(7, 7, 20, 0.96);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 24px 18px 18px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+.start-logo {
+  max-width: 60%;
+  height: auto;
+  margin-bottom: 10px;
+  object-fit: cover;  /* лучше заполняет */
+  border-radius: 50%; /* круг / эллипс */
+}
+
+.start-title {
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.start-sub {
+  font-size: 13px;
+  color: var(--secondary);
+  margin-bottom: 16px;
+}
+
+.start-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.start-buttons .primary {
+  width: 100%;
+}
+
+.start-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Мобилка: чуть компактнее */
+@media (max-width: 650px) {
+  .start-card {
+    padding: 18px 14px 14px;
+  }
+  .start-logo {
+    max-width: 70%;
+  }
+}
+
+/* ====== СТАТИСТИКА (ПОПАП) ====== */
+.stats-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.stats-modal {
+  background: #050510;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  padding: 18px 18px 14px;
+  max-width: 480px;
+  width: 92%;
+  box-shadow: 0 0 35px rgba(0,0,0,0.85);
+}
+
+.stats-modal h3 {
+  margin-bottom: 4px;
+  font-size: 18px;
+  color: var(--accent);
+}
+
+.stats-note {
+  font-size: 12px;
+  color: var(--secondary);
+  margin-bottom: 12px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.stats-card {
+  background: rgba(15, 23, 42, 0.85);
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.stats-card-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #e5e7eb;
+}
+
+.stats-row {
+  font-size: 12px;
+  color: #9ca3af;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stats-row span.value {
+  color: #e5e7eb;
+  font-weight: 600;
+}
+
+.stats-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.menu-tab {
+  min-width: 40px;
+  padding: 6px 0;
+}
+
+/* Чтобы меню визуально отличалось и не подсвечивалось как текущая игра */
+.menu-tab.active {
+  border-bottom: none;
+  text-shadow: none;
+  color: #666;
+}
+
