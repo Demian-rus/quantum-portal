@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+        content="width=device-width, maximum-scale=5.0, user-scalable=yes">
   <title>Квантовый портал</title>
 
   <!-- Весь CSS теперь в отдельном файле -->
@@ -108,50 +108,6 @@
       <div class="game-area">
         <div id="active-q-panel">Сгенерируйте кроссворд и выберите клетку</div>
         <canvas id="cv"></canvas>
-
-        <!-- Кириллическая клавиатура для мобилок -->
-        <div id="cw-keypad">
-          <div class="cw-row">
-            <button onclick="handleInput('Й')">Й</button>
-            <button onclick="handleInput('Ц')">Ц</button>
-            <button onclick="handleInput('У')">У</button>
-            <button onclick="handleInput('К')">К</button>
-            <button onclick="handleInput('Е')">Е</button>
-            <button onclick="handleInput('Н')">Н</button>
-            <button onclick="handleInput('Г')">Г</button>
-            <button onclick="handleInput('Ш')">Ш</button>
-            <button onclick="handleInput('Щ')">Щ</button>
-            <button onclick="handleInput('З')">З</button>
-            <button onclick="handleInput('Х')">Х</button>
-            <button onclick="handleInput('Ъ')">Ъ</button>
-          </div>
-          <div class="cw-row">
-            <button onclick="handleInput('Ф')">Ф</button>
-            <button onclick="handleInput('Ы')">Ы</button>
-            <button onclick="handleInput('В')">В</button>
-            <button onclick="handleInput('А')">А</button>
-            <button onclick="handleInput('П')">П</button>
-            <button onclick="handleInput('Р')">Р</button>
-            <button onclick="handleInput('О')">О</button>
-            <button onclick="handleInput('Л')">Л</button>
-            <button onclick="handleInput('Д')">Д</button>
-            <button onclick="handleInput('Ж')">Ж</button>
-            <button onclick="handleInput('Э')">Э</button>
-          </div>
-          <div class="cw-row">
-            <button onclick="handleInput('Я')">Я</button>
-            <button onclick="handleInput('Ч')">Ч</button>
-            <button onclick="handleInput('С')">С</button>
-            <button onclick="handleInput('М')">М</button>
-            <button onclick="handleInput('И')">И</button>
-            <button onclick="handleInput('Т')">Т</button>
-            <button onclick="handleInput('Ь')">Ь</button>
-            <button onclick="handleInput('Б')">Б</button>
-            <button onclick="handleInput('Ю')">Ю</button>
-            <button onclick="handleInput('Ё')">Ё</button>
-            <button onclick="handleInput('Backspace')" class="cw-del">⌫</button>
-          </div>
-        </div>
       </div>
 
       <div id="sidebar" class="collapsed"
@@ -279,10 +235,14 @@
     </div>
     <div class="stat-line" id="qnt-stat">Готов к игре Квант</div>
     <div class="main-container" style="flex-direction: column; align-items: center;">
-      <div class="game-area">
+      <div class="game-area qnt-area">
         <div id="qnt-active-panel">Угадайте слово (6 попыток)</div>
-        <div class="qnt-grid" id="qntGrid"></div>
-        <div class="qnt-keyboard" id="qntKeyboard"></div>
+        <div class="qnt-grid-wrap">
+          <div class="qnt-grid" id="qntGrid"></div>
+        </div>
+        
+        <div class="qnt-keyboard-desktop" id="qntKeyboardDesktop"></div>
+
         <div class="qnt-stats">
           <div class="qnt-stat-item">
             <div class="qnt-stat-value" id="qnt-attempts">6</div>
@@ -294,6 +254,50 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ====== ОБЩАЯ КИРИЛЛИЧЕСКАЯ КЛАВИАТУРА ДЛЯ МОБИЛОК ====== -->
+  <div id="mobile-keyboard">
+    <div class="kb-row">
+      <button data-key="Й">Й</button>
+      <button data-key="Ц">Ц</button>
+      <button data-key="У">У</button>
+      <button data-key="К">К</button>
+      <button data-key="Е">Е</button>
+      <button data-key="Н">Н</button>
+      <button data-key="Г">Г</button>
+      <button data-key="Ш">Ш</button>
+      <button data-key="Щ">Щ</button>
+      <button data-key="З">З</button>
+      <button data-key="Х">Х</button>
+      <button data-key="Ъ">Ъ</button>
+    </div>
+    <div class="kb-row">
+      <button data-key="Ф">Ф</button>
+      <button data-key="Ы">Ы</button>
+      <button data-key="В">В</button>
+      <button data-key="А">А</button>
+      <button data-key="П">П</button>
+      <button data-key="Р">Р</button>
+      <button data-key="О">О</button>
+      <button data-key="Л">Л</button>
+      <button data-key="Д">Д</button>
+      <button data-key="Ж">Ж</button>
+      <button data-key="Э">Э</button>
+    </div>
+    <div class="kb-row">
+      <button data-key="Я">Я</button>
+      <button data-key="Ч">Ч</button>
+      <button data-key="С">С</button>
+      <button data-key="М">М</button>
+      <button data-key="И">И</button>
+      <button data-key="Т">Т</button>
+      <button data-key="Ь">Ь</button>
+      <button data-key="Б">Б</button>
+      <button data-key="Ю">Ю</button>
+      <button data-key="Ё">Ё</button>
+      <button data-key="Backspace" class="kb-del">⌫</button>
     </div>
   </div>
 

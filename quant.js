@@ -64,10 +64,17 @@ function quantDrawGrid() {
   }
 }
 
-
-function quantDrawKeyboard() {
-  const kb = document.getElementById('qntKeyboard');
+// ДЕСКТОПНАЯ КЛАВИАТУРА КВАНТА
+function quantDrawKeyboardDesktop() {
+  const kb = document.getElementById('qntKeyboardDesktop');
   if (!kb) return;
+
+  // Показываем только на десктопе (ширина >= 769px)
+  if (window.innerWidth < 769) {
+    kb.innerHTML = '';
+    return;
+  }
+
   kb.innerHTML = '';
 
   const rows = [
@@ -81,26 +88,26 @@ function quantDrawKeyboard() {
     rowDiv.className = 'qnt-key-row';
 
     row.forEach(letter => {
-  const btn = document.createElement('button');
+      const btn = document.createElement('button');
 
-  if (letter === '⌫') {
-    btn.className = 'qnt-key qnt-del';
-    btn.onclick = () => {
-      if (quantCurrentGuess.length > 0 && !quantGameOver) {
-        quantCurrentGuess = quantCurrentGuess.slice(0, -1);
-        quantDrawGrid();
+      if (letter === '⌫') {
+        btn.className = 'qnt-key qnt-del';
+        btn.onclick = () => {
+          if (quantCurrentGuess.length > 0 && !quantGameOver) {
+            quantCurrentGuess = quantCurrentGuess.slice(0, -1);
+            quantDrawGrid();
+          }
+        };
+      } else {
+        btn.className = 'qnt-key';
+        btn.onclick = () => {
+          quantGuessLetter(letter);
+        };
       }
-    };
-  } else {
-    btn.className = 'qnt-key';
-    btn.onclick = () => {
-      quantGuessLetter(letter);
-    };
-  }
 
-  btn.textContent = letter;
-  rowDiv.appendChild(btn);
-});
+      btn.textContent = letter;
+      rowDiv.appendChild(btn);
+    });
 
     kb.appendChild(rowDiv);
   });
@@ -190,7 +197,7 @@ function quantGenerateCore() {
     `Слово из ${quantCurrentWord.length} букв | ${theme} | ${level}`;
 
   quantDrawGrid();
-  quantDrawKeyboard();
+  quantDrawKeyboardDesktop();
 }
 
 function quantGenerate() {
@@ -215,4 +222,5 @@ function quantReset() {
   document.getElementById('qnt-active-panel').textContent = 'Нажмите "Новое слово"';
   document.getElementById('qnt-active-panel').style.color = '#06f3ff';
   quantDrawGrid();
+  quantDrawKeyboardDesktop();
 }
