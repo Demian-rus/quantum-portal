@@ -1558,11 +1558,12 @@ function quantDrawKeyboard() {
  if (!kb) return;
  kb.innerHTML = '';
  
- const rows = [
-  'ЙЦУКЕНГШЩЗХЪ'.split(''),
-  'ФЫВАПРОЛДЖЭ'.split(''),
-  'ЯЧСМИТЬБЮ'.split('')
- ];
+   const rows = [
+    'ЙЦУКЕНГШЩЗХЪ'.split(''),
+    'ФЫВАПРОЛДЖЭ'.split(''),
+    ['Я','Ч','С','М','И','Т','Ь','Б','Ю','⌫'] // Добавили ⌫ в конец третьего ряда
+  ];
+
  
  rows.forEach(row => {
   const rowDiv = document.createElement('div');
@@ -1572,7 +1573,18 @@ function quantDrawKeyboard() {
    const btn = document.createElement('button');
    btn.className = 'qnt-key';
    btn.textContent = letter;
-   btn.onclick = () => quantGuessLetter(letter);
+   btn.onclick = () => {
+        if (letter === '⌫') {
+          // Если нажали стереть, убираем последнюю букву
+          if (quantCurrentGuess.length > 0 && !quantGameOver) {
+            quantCurrentGuess = quantCurrentGuess.slice(0, -1);
+            quantDrawGrid();
+          }
+        } else {
+          // Иначе вводим букву
+          quantGuessLetter(letter);
+        }
+      };
    rowDiv.appendChild(btn);
   });
   
@@ -1581,15 +1593,18 @@ function quantDrawKeyboard() {
 }
 
 function quantGuessLetter(letter) {
- if (quantGameOver || quantCurrentGuess.length >= 5) return;
- 
- quantCurrentGuess += letter;
- quantDrawGrid();
- 
- if (quantCurrentGuess.length === 5) {
-  setTimeout(quantCheckGuess, 500);
- }
+  // Проверяем, что игра идет и длина ввода меньше длины загаданного слова
+  if (quantGameOver || !quantCurrentWord || quantCurrentGuess.length >= quantCurrentWord.length) return;
+  
+  quantCurrentGuess += letter;
+  quantDrawGrid();
+  
+  // Проверяем попытку только тогда, когда введено столько же букв, сколько в слове
+  if (quantCurrentGuess.length === quantCurrentWord.length) {
+    setTimeout(quantCheckGuess, 500);
+  }
 }
+
 
 function quantCheckGuess() {
  if (quantCurrentGuess === quantCurrentWord) {
