@@ -140,19 +140,16 @@ function attachMobileKeyboard() {
   if (!kb) return;
   if (window.innerWidth >= 769) return;
 
-  // слот под клавиатуру в кроссворде
-  const cwSlot = document.getElementById('cw-keyboard-slot');
-  // в Кванте — внутрь qnt-area
+  const cwArea  = document.querySelector('#sec-crossword .game-area');
   const qntArea = document.querySelector('#sec-quant .qnt-area');
 
-  if (currentSection === 'crossword' && cwSlot) {
-    cwSlot.appendChild(kb);
+  // ОДИНАКОВО: клавиатура всегда прямым ребёнком игрового блока
+  if (currentSection === 'crossword' && cwArea) {
+    cwArea.appendChild(kb);
   } else if (currentSection === 'quant' && qntArea) {
     qntArea.appendChild(kb);
   }
 }
-
-
 
 // ==========================================
 // ПОПАП ПОДТВЕРЖДЕНИЯ
