@@ -2192,53 +2192,74 @@ function sudokuInitOnce() {
   // Для ввода без прыжков экрана
   let keyBuffer = '';
 
-document.getElementById('cv').addEventListener('pointerdown', e => {
-  if(isSolved || !window.lastG) return;
-  
-  const rect = e.target.getBoundingClientRect();
-  const x = (e.clientX - rect.left) * (e.target.width / rect.width);
-  const y = (e.clientY - rect.top) * (e.target.height / rect.height);
-
-  // Теперь x, y уже в координатах холста (с учётом масштаба)
-  const c = Math.floor((x - GPAD) / CELL) + window.lastBounds.cMin;
-  const r = Math.floor((y - GPAD - TOPH) / CELL) + window.lastBounds.rMin;
-
-  if(r>=0 && r<N && c>=0 && c<N && window.lastG[r][c]!=='.') {
-    const words = window.lastPlaced.filter(p => 
-      p.dir==='H' ? (p.r===r && c>=p.c && c<p.c+p.w.length) : 
-      (p.c===c && r>=p.r && r<p.r+p.w.length)
-    );
+    document.getElementById('cv').addEventListener('pointerdown', e => {
+    if(isSolved || !window.lastG) return;
     
-    if(words.length) {
-      // Умный выбор: если есть слово, которое НАЧИНАЕТСЯ в этой клетке, берём его
-      let selectedWord = words.find(w => (w.dir==='H' && w.r===r && w.c===c) || (w.dir==='V' && w.c===c && w.r===r));
+    const rect = e.target.getBoundingClientRect();
+    const x = (e.clientX - rect.left) * (e.target.width / rect.width);
+    const y = (e.clientY - rect.top) * (e.target.height / rect.height);
+
+    // Вычисляем масштаб и смещение как в drawCrossword
+    const targetSize = window.innerWidth <= 650 ? 380 : 600;
+    const rs = [], cs = [];
+    for(let r=0; r<N; r++) for(let c=0; c<N; c++) if(window.lastG[r][c]!=='.') { rs.push(r); cs.push(c); }
+    
+    const rMin = Math.max(0, Math.min(...rs) - 1);
+    const cMin = Math.max(0, Math.min(...cs) - 1);
+    const rMax = Math.min(N - 1, Math.max(...rs) + 1);
+    const cMax = Math.min(N - 1, Math.max(...cs) + 1);
+    
+    const gridWidth = (cMax - cMin + 1) * CELL;
+    const gridHeight = (rMax - rMin + 1) * CELL;
+    const maxDim = Math.max(gridWidth, gridHeight);
+    const availableSpace = targetSize - GPAD * 2 - 20;
+    const scale = Math.min(1, availableSpace / maxDim);
+    
+    const offsetX = (targetSize - gridWidth * scale) / 2;
+    const offsetY = (targetSize - gridHeight * scale) / 2;
+
+    // Обратный расчёт
+    const gridX = (x - offsetX) / scale;
+    const gridY = (y - offsetY) / scale;
+
+    const c = Math.floor(gridX / CELL) + cMin;
+    const r = Math.floor(gridY / CELL) + rMin;
+
+    if(r>=0 && r<N && c>=0 && c<N && window.lastG[r][c]!=='.') {
+      const words = window.lastPlaced.filter(p => 
+        p.dir==='H' ? (p.r===r && c>=p.c && c<p.c+p.w.length) : 
+        (p.c===c && r>=p.r && r<p.r+p.w.length)
+      );
       
-      // Если начало слова не совпадает, но есть другие слова и активное совпадает, переключаемся на другое
-      if(!selectedWord) {
-        if(activeWord && words.includes(activeWord) && words.length > 1) {
-          selectedWord = words.find(w => w !== activeWord);
-        } else {
-          selectedWord = words[0]; // По умолчанию первое из найденных
+      if(words.length) {
+        let selectedWord = words.find(w => (w.dir==='H' && w.r===r && w.c===c) || (w.dir==='V' && w.c===c && w.r===r));
+        
+        if(!selectedWord) {
+          if(activeWord && words.includes(activeWord) && words.length > 1) {
+            selectedWord = words.find(w => w !== activeWord);
+          } else {
+            selectedWord = words[0];
+          }
         }
+        
+        activeWord = selectedWord;
+        activeR = r; 
+        activeC = c;
+      } else { 
+        activeWord = null; 
+        activeR = -1; 
+        activeC = -1; 
       }
-      
-      activeWord = selectedWord;
-      activeR = r; 
-      activeC = c;
     } else { 
       activeWord = null; 
       activeR = -1; 
       activeC = -1; 
     }
-  } else { 
-    activeWord = null; 
-    activeR = -1; 
-    activeC = -1; 
-  }
-  
-  updateUI(); 
-  drawCrossword(window.lastG, window.lastPlaced);
+    
+    updateUI(); 
+    drawCrossword(window.lastG, window.lastPlaced);
 });
+
 
   function handleInput(key) {
     if(!activeWord || isSolved) return;
