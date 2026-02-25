@@ -312,6 +312,49 @@
     #sidebar, #philSidebar { height: 240px; max-width: 600px; position: relative; top: 0; }
     #sidebar.collapsed, #philSidebar.collapsed { height: 44px !important; }
     #cw-keypad { display: flex !important; margin-bottom: 10px; }
+
+      /* КВАНТ: мобильная клавиатура в стиле кроссворда */
+  .qnt-keyboard {
+    gap: 5px;
+    max-width: 420px;
+    margin: 10px auto 10px;
+    padding: 10px 6px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+  }
+
+  .qnt-key-row {
+    gap: 2px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .qnt-key {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 40px;
+    font-size: 13px;
+    font-weight: bold;
+    background: #1a1a38;
+    color: #d0d8ff;
+    border: 1px solid #333355;
+    border-radius: 6px;
+    padding: 0;
+  }
+
+  .qnt-key:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(0, 255, 51, 0.3);
+  }
+
+  .qnt-key:active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+    transform: scale(0.92);
+  }
+
   }
 
   /* На десктопе экранная клавиатура кроссворда скрыта */
