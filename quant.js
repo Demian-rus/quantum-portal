@@ -45,6 +45,15 @@ function quantDrawGrid() {
   grid.innerHTML = '';
 
   const wordLength = quantCurrentWord.length || 5;
+
+  // Базовый класс сетки
+  grid.className = 'qnt-grid';
+
+  // Доп. классы для длинных слов
+  if (wordLength >= 7) grid.classList.add('qnt-grid-long');
+  if (wordLength >= 9) grid.classList.add('qnt-grid-very-long');
+
+  // Колонки = длина слова
   grid.style.gridTemplateColumns = `repeat(${wordLength}, 1fr)`;
 
   for (let i = 0; i < wordLength; i++) {
@@ -54,6 +63,7 @@ function quantDrawGrid() {
     grid.appendChild(cell);
   }
 }
+
 
 function quantDrawKeyboard() {
   const kb = document.getElementById('qntKeyboard');

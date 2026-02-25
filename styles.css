@@ -233,14 +233,34 @@
     font-weight: bold; font-size: 20px; background: #0a0a18; color: #fff;
     transition: 0.2s;
   }
+
+  /* длинные слова немного меньше */
+.qnt-grid-long .qnt-letter {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+}
+
+/* очень длинные ещё меньше */
+.qnt-grid-very-long .qnt-letter {
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+}
+
   .qnt-letter.correct { background: #4ade80; border-color: #4ade80; color: #000; }
   .qnt-letter.present { background: #fbbf24; border-color: #fbbf24; color: #000; }
   .qnt-letter.absent { background: #333; border-color: #666; color: #aaa; }
 
   .qnt-keyboard {
-    display: flex; flex-direction: column; gap: 6px;
-    max-width: 480px; margin: 0 auto 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 420px;   /* как у #cw-keypad */
+  margin: 0 auto 15px;
   }
+
   .qnt-key-row { display: flex; gap: 4px; justify-content: center; }
   .qnt-key {
     padding: 8px 10px; background: #1a1a38; border: 1px solid #333;
