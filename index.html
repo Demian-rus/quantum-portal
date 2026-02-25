@@ -79,48 +79,52 @@
   </div>
 
   <!-- ====== КРОССВОРД ====== -->
-  <div id="sec-crossword" class="game-section active">
-    <div class="controls">
-      <div class="control-group">
-        <select id="sel-theme">
-          <option value="физика">Физика</option>
-          <option value="математика">Математика</option>
-          <option value="физмат">ФизМат (Микс)</option>
-        </select>
-        <select id="sel-level">
-          <option value="легкий">Лёгкий</option>
-          <option value="средний">Средний</option>
-          <option value="сложный">Сложный</option>
-        </select>
-      </div>
-      <div class="control-group">
-        <button class="primary" onclick="onGenerate()">⟳ Создать</button>
-        <button class="action" onclick="onToggleAnswers()" id="btn-answ">👁 Ответы</button>
-        <button class="danger"
-                onclick="usedWordsHistory.clear(); document.getElementById('stat').textContent='♻ История сброшена';">
-          ♻ Сброс
-        </button>
-      </div>
+<div id="sec-crossword" class="game-section active">
+  <div class="controls">
+    <div class="control-group">
+      <select id="sel-theme">
+        <option value="физика">Физика</option>
+        <option value="математика">Математика</option>
+        <option value="физмат">ФизМат (Микс)</option>
+      </select>
+      <select id="sel-level">
+        <option value="легкий">Лёгкий</option>
+        <option value="средний">Средний</option>
+        <option value="сложный">Сложный</option>
+      </select>
     </div>
-
-    <div class="stat-line" id="stat">Готов к генерации</div>
-
-    <div class="main-container" style="flex-direction: column; align-items: center;">
-  <div class="game-area cw-area">
-    <div id="active-q-panel">Сгенерируйте кроссворд и выберите клетку</div>
-    <canvas id="cv"></canvas>
+    <div class="control-group">
+      <button class="primary" onclick="onGenerate()">⟳ Создать</button>
+      <button class="action" onclick="onToggleAnswers()" id="btn-answ">👁 Ответы</button>
+      <button class="danger"
+              onclick="usedWordsHistory.clear(); document.getElementById('stat').textContent='♻ История сброшена';">
+        ♻ Сброс
+      </button>
     </div>
   </div>
 
-  <div id="sidebar" class="collapsed"
-       onclick="if(this.classList.contains('collapsed')) toggleSidebar()">
-    <div class="sb-header">
-      <h2 class="sb-title">СПИСОК ВОПРОСОВ</h2>
-      <button class="toggle-btn" onclick="toggleSidebar(event)">❯</button>
+  <div class="stat-line" id="stat">Готов к генерации</div>
+
+  <!-- Блок игры: панель, канвас, КЛАВИАТУРА (через attachMobileKeyboard) -->
+  <div class="main-container" style="flex-direction: column; align-items: center;">
+    <div class="game-area cw-area">
+      <div id="active-q-panel">Сгенерируйте кроссворд и выберите клетку</div>
+      <canvas id="cv"></canvas>
+      <!-- сюда core.js будет подкидывать #mobile-keyboard -->
     </div>
-    <div class="sb-content" id="cluesList"></div>
   </div>
-</div>
+
+  <!-- Отдельный блок сайдбара, всегда ниже игры -->
+  <div class="main-container" style="flex-direction: column; align-items: center;">
+    <div id="sidebar" class="collapsed"
+         onclick="if(this.classList.contains('collapsed')) toggleSidebar()">
+      <div class="sb-header">
+        <h2 class="sb-title">СПИСОК ВОПРОСОВ</h2>
+        <button class="toggle-btn" onclick="toggleSidebar(event)">❯</button>
+      </div>
+      <div class="sb-content" id="cluesList"></div>
+    </div>
+  </div>
 </div>
 
   <!-- ====== ФИЛВОРД ====== -->
