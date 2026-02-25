@@ -128,7 +128,7 @@ button.danger { color: #ff6b35; border-color: rgba(255,107,53,0.5); }
 .cw-dir-line {
   display: block;
   color: #a855f7;
-  font-size: 13px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 4px;
@@ -509,10 +509,6 @@ canvas {
   color: var(--accent);
 }
 
-/* Мобилка: поменьше заголовок направления в кроссворде */
-  .cw-dir-line {
-    font-size: 8px;
-  }
 }
 
 /* ========================================================================== */
