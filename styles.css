@@ -251,6 +251,12 @@
   .qnt-key.correct { background: #4ade80; border-color: #4ade80; color: #000; }
   .qnt-key.present { background: #fbbf24; border-color: #fbbf24; color: #000; }
   .qnt-key.absent { background: #333; border-color: #666; }
+  .qnt-del {
+  flex: 1.5 1 0 !important;
+  color: #ff6b35 !important;
+  border-color: rgba(255,107,53,0.4) !important;
+}
+
 
   .qnt-stats {
     display: flex; gap: 20px; justify-content: center;

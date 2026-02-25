@@ -71,21 +71,26 @@ function quantDrawKeyboard() {
     rowDiv.className = 'qnt-key-row';
 
     row.forEach(letter => {
-      const btn = document.createElement('button');
-      btn.className = 'qnt-key';
-      btn.textContent = letter;
-      btn.onclick = () => {
-        if (letter === '⌫') {
-          if (quantCurrentGuess.length > 0 && !quantGameOver) {
-            quantCurrentGuess = quantCurrentGuess.slice(0, -1);
-            quantDrawGrid();
-          }
-        } else {
-          quantGuessLetter(letter);
-        }
-      };
-      rowDiv.appendChild(btn);
-    });
+  const btn = document.createElement('button');
+
+  if (letter === '⌫') {
+    btn.className = 'qnt-key qnt-del';
+    btn.onclick = () => {
+      if (quantCurrentGuess.length > 0 && !quantGameOver) {
+        quantCurrentGuess = quantCurrentGuess.slice(0, -1);
+        quantDrawGrid();
+      }
+    };
+  } else {
+    btn.className = 'qnt-key';
+    btn.onclick = () => {
+      quantGuessLetter(letter);
+    };
+  }
+
+  btn.textContent = letter;
+  rowDiv.appendChild(btn);
+});
 
     kb.appendChild(rowDiv);
   });
