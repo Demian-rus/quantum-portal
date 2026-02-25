@@ -276,6 +276,12 @@ canvas {
   overflow: hidden;
 }
 
+/* КОНТЕЙНЕР КРОССВОРДА — как у Кванта */
+.cw-area {
+  width: 100%;
+  max-width: 420px;
+}
+
 /* ДЕСКТОПНАЯ КЛАВИАТУРА КВАНТА */
 .qnt-keyboard-desktop {
   display: none;

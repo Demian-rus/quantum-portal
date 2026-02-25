@@ -105,24 +105,26 @@
 
     <div class="stat-line" id="stat">Готов к генерации</div>
 
-    <div class="main-container">
-      <div class="game-area">
-        <div id="active-q-panel">Сгенерируйте кроссворд и выберите клетку</div>
-        <canvas id="cv"></canvas>
-        <!-- слот для общей мобильной клавиатуры под кроссвордом -->
-        <div id="cw-keyboard-slot"></div>
-      </div>
-
-      <div id="sidebar" class="collapsed"
-           onclick="if(this.classList.contains('collapsed')) toggleSidebar()">
-        <div class="sb-header">
-          <h2 class="sb-title">СПИСОК ВОПРОСОВ</h2>
-          <button class="toggle-btn" onclick="toggleSidebar(event)">❯</button>
-        </div>
-        <div class="sb-content" id="cluesList"></div>
-      </div>
+    <div class="main-container" style="flex-direction: column; align-items: center;">
+  <div class="game-area cw-area">
+    <div id="active-q-panel">Сгенерируйте кроссворд и выберите клетку</div>
+    <canvas id="cv"></canvas>
+    <div class="qnt-grid-wrap">
+      <!-- тот же центрирующий контейнер, что и у квант-сетки -->
+      <div id="cw-keyboard-slot"></div>
     </div>
   </div>
+
+  <div id="sidebar" class="collapsed"
+       onclick="if(this.classList.contains('collapsed')) toggleSidebar()">
+    <div class="sb-header">
+      <h2 class="sb-title">СПИСОК ВОПРОСОВ</h2>
+      <button class="toggle-btn" onclick="toggleSidebar(event)">❯</button>
+    </div>
+    <div class="sb-content" id="cluesList"></div>
+  </div>
+</div>
+
 
   <!-- ====== ФИЛВОРД ====== -->
   <div id="sec-philword" class="game-section">
