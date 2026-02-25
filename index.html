@@ -83,10 +83,14 @@
   <div class="controls">
     <div class="control-group">
       <select id="sel-theme">
-        <option value="физика">Физика</option>
-        <option value="математика">Математика</option>
-        <option value="физмат">ФизМат (Микс)</option>
+      <option value="физика">Физика</option>
+      <option value="математика">Математика</option>
+      <option value="физмат">ФизМат (Микс)</option>
+      <option value="история">История</option>
+      <option value="обществознание">Обществознание</option>
+      <option value="все">Все дисциплины</option>
       </select>
+
       <select id="sel-level">
         <option value="легкий">Лёгкий</option>
         <option value="средний">Средний</option>
@@ -215,49 +219,59 @@
   </div>
 
   <!-- ====== КВАНТ ====== -->
-  <div id="sec-quant" class="game-section">
-    <div class="controls">
-      <div class="control-group">
-        <select id="sel-theme-qnt">
-          <option value="физика">Физика</option>
-          <option value="математика">Математика</option>
-          <option value="физмат">ФизМат (Микс)</option>
-        </select>
-        <select id="sel-level-qnt">
-          <option value="легкий">Лёгкий</option>
-          <option value="средний">Средний</option>
-          <option value="сложный">Сложный</option>
-        </select>
-      </div>
-      <div class="control-group">
-        <button class="primary" onclick="quantGenerate()">⟳ Новое слово</button>
-        <button class="action" onclick="quantShowHint()" id="btn-qnt-hint">💡 Подсказка</button>
-        <button class="danger" onclick="quantReset()">♻ Сброс</button>
+<div id="sec-quant" class="game-section">
+  <div class="controls">
+    <div class="control-group">
+      <!-- Переключатель режима -->
+      <div class="qnt-mode-toggle">
+        <button class="qnt-mode-btn active" data-mode="term" type="button">Термин</button>
+        <button class="qnt-mode-btn" data-mode="wordle" type="button">Квантл</button>
       </div>
     </div>
-    <div class="stat-line" id="qnt-stat">Готов к игре Квант</div>
-    <div class="main-container" style="flex-direction: column; align-items: center;">
-      <div class="game-area qnt-area">
-        <div id="qnt-active-panel">Угадайте слово (6 попыток)</div>
-        <div class="qnt-grid-wrap">
-          <div class="qnt-grid" id="qntGrid"></div>
-        </div>
-        
-        <div class="qnt-keyboard-desktop" id="qntKeyboardDesktop"></div>
+    <div class="control-group">
+      <!-- Сложность -->
+      <div class="qnt-difficulty">
+        <button class="qnt-diff-btn active" data-diff="easy" type="button">Л</button>
+        <button class="qnt-diff-btn" data-diff="medium" type="button">С</button>
+        <button class="qnt-diff-btn" data-diff="hard" type="button">Ж</button>
+      </div>
+      <button class="primary" onclick="quantNewRound()" type="button">⟳ Новая игра</button>
+    </div>
+  </div>
 
-        <div class="qnt-stats">
-          <div class="qnt-stat-item">
-            <div class="qnt-stat-value" id="qnt-attempts">6</div>
-            <div>Попыток</div>
-          </div>
-          <div class="qnt-stat-item">
-            <div class="qnt-stat-value" id="qnt-wins">0</div>
-            <div>Побед</div>
-          </div>
+  <div class="stat-line" id="qnt-stat">Готов к игре Квант</div>
+
+  <div class="main-container" style="flex-direction: column; align-items: center;">
+    <div class="game-area qnt-area">
+      <!-- Подсказка только для режима "Термин" -->
+      <div id="qnt-term-hint" class="qnt-hint"></div>
+
+      <div id="qnt-active-panel">Выберите режим и начните игру</div>
+
+      <div class="qnt-grid-wrap">
+        <!-- Сетка для режима Термин (одна строка, фиксируемые буквы) -->
+        <div class="qnt-grid qnt-grid-term" id="qnt-term-grid"></div>
+
+        <!-- Сетка для режима Wordle (5 строк) -->
+        <div class="qnt-grid qnt-grid-wordle" id="qnt-wordle-grid" hidden></div>
+      </div>
+
+      <div class="qnt-keyboard-desktop" id="qntKeyboardDesktop"></div>
+
+      <div class="qnt-stats">
+        <div class="qnt-stat-item">
+          <div class="qnt-stat-value" id="qnt-attempts">5</div>
+          <div>Попыток</div>
+        </div>
+        <div class="qnt-stat-item">
+          <div class="qnt-stat-value" id="qnt-wins">0</div>
+          <div>Побед</div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
 
   <!-- ====== ОБЩАЯ КИРИЛЛИЧЕСКАЯ КЛАВИАТУРА ДЛЯ МОБИЛОК ====== -->
   <div id="mobile-keyboard">

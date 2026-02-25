@@ -116,6 +116,10 @@ button.danger { color: #ff6b35; border-color: rgba(255,107,53,0.5); }
 #phil-active-panel { color: #a855f7; font-size: 15px; }
 #su-active-panel { color: #fbbf24; font-size: 15px; max-width: 500px; }
 #qnt-active-panel { color: #06f3ff; font-size: 15px; }
+#qnt-active-panel {
+  margin-bottom: 12px;
+}
+
 
 /* Панель активного вопроса кроссворда: направление + вопрос в колонку */
 #active-q-panel {
@@ -252,33 +256,54 @@ canvas {
 .su-numpad button:hover { background: var(--accent); border-color: var(--accent); }
 .su-numpad button.clr { color: #ff6b35; border-color: #ff6b35; }
 
+/* НОВАЯ ОБЁРТКА ДЛЯ КВАНТА */
 .qnt-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-  gap: 8px; margin-bottom: 20px;
-  width: fit-content; margin-left: auto; margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  margin-bottom: 16px;
 }
-.qnt-letter {
-  width: 50px; height: 50px; border: 2px solid #00d4ff; border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: bold; font-size: 20px; background: #0a0a18; color: #fff;
-  transition: 0.2s;
+
+/* Ряды Термина и Wordle уже есть ниже:
+   .qnt-grid-term-row, .qnt-grid-wordle-row { display:flex; ... } */
+
+/* Клетка для обоих режимов */
+.qnt-cell {
+  width: 28px;
+  height: 34px;
+  border-radius: 6px;
+  border: 1px solid #2ecc71;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #e0ffe0;
+  background: rgba(0,0,0,0.85);
 }
-/* длинные слова немного меньше */
-.qnt-grid-long .qnt-letter {
-  width: 40px;
-  height: 40px;
-  font-size: 16px;
+
+/* Фиксированная буква в режиме Термин */
+.qnt-cell-fixed {
+  border-color: #2ecc71;
+  background: rgba(46, 204, 113, 0.18);
 }
-/* очень длинные ещё меньше */
-.qnt-grid-very-long .qnt-letter {
-  width: 32px;
-  height: 32px;
-  font-size: 14px;
+
+/* Цвета Wordle */
+.qnt-cell-correct {
+  background: #2ecc71;
+  color: #000;
 }
-.qnt-letter.correct { background: #4ade80; border-color: #4ade80; color: #000; }
-.qnt-letter.present { background: #fbbf24; border-color: #fbbf24; color: #000; }
-.qnt-letter.absent  { background: #333;    border-color: #666;    color: #aaa; }
+
+.qnt-cell-present {
+  background: #f1c40f;
+  color: #000;
+}
+
+.qnt-cell-absent {
+  background: #222;
+  color: #666;
+}
 
 .qnt-stats {
   display: flex; gap: 20px; justify-content: center;
@@ -293,11 +318,13 @@ canvas {
   width: 100%;
   max-width: 420px;
 }
+
 .qnt-grid-wrap {
   width: 100%;
   display: flex;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
+  margin-top: 12px;
 }
 
 /* КОНТЕЙНЕР КРОССВОРДА — как у Кванта */
@@ -346,6 +373,62 @@ canvas {
   flex: 1.5 1 0 !important;
   color: #ff6b35 !important;
   border-color: rgba(255,107,53,0.4) !important;
+}
+
+.qnt-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.qnt-mode-toggle,
+.qnt-difficulty {
+  display: flex;
+  gap: 4px;
+}
+
+.qnt-mode-btn,
+.qnt-diff-btn {
+  padding: 4px 12px;
+  font-size: 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 255, 51, 0.45);
+  background: rgba(5, 10, 15, 0.85);
+  color: #e5fbe5;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.qnt-mode-btn.active,
+.qnt-diff-btn.active {
+  background: rgba(0, 255, 51, 0.18);
+  color: #bfffd0;
+  border-color: rgba(0, 255, 51, 0.8);
+  box-shadow: 0 0 12px rgba(0, 255, 51, 0.35);
+}
+
+
+.qnt-hint {
+  margin-bottom: 8px;
+  font-size: 13px;
+  text-align: center;
+  color: #06f3ff;
+}
+
+.qnt-grid-term-row,
+.qnt-grid-wordle-row {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+/* Явно прячем нужную сетку, когда стоит hidden */
+#qnt-term-grid[hidden],
+#qnt-wordle-grid[hidden] {
+  display: none !important;
 }
 
 @media (min-width: 769px) {

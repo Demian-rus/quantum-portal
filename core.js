@@ -87,14 +87,15 @@ const Storage = {
 };
 
 
-const winMarked = { crossword:false, philword:false, sudoku:false, quant:false };
 
+const winMarked = { crossword:false, philword:false, sudoku:false, quant:false };
 
 function markWin(game){
   if (winMarked[game]) return;
   winMarked[game] = true;
   Storage.addWin(game);
 }
+
 
 
 // Инициализируем историю из памяти браузера
@@ -111,6 +112,7 @@ usedWordsHistory.add = function(word) {
 // Инициализация истории для филворда
 let philUsedWordsHistory = new Set(Storage.load().history.words);
 philUsedWordsHistory.add = usedWordsHistory.add;
+
 
 
 // ==========================================
@@ -151,6 +153,7 @@ function attachMobileKeyboard() {
   }
 }
 
+
 // ==========================================
 // ПОПАП ПОДТВЕРЖДЕНИЯ
 // ==========================================
@@ -180,6 +183,8 @@ function showConfirmPopup(text, onOk, onCancel) {
 // ==========================================
 // НАВИГАЦИЯ МЕЖДУ РЕЖИМАМИ
 // ==========================================
+let quantInited = false; // 🔹 ДОБАВЛЕНО: флаг ленивой инициализации Кванта
+
 function switchTab(id) {
   currentSection = id;
 
@@ -226,15 +231,20 @@ function switchTab(id) {
     if (!suGrid.length) sudokuGenerate();
   }
 
-  // Инициализация Кванта
+  // 🔹 НОВАЯ ИНИЦИАЛИЗАЦИЯ КВАНТА
   if (id === 'quant') {
-    if (!quantCurrentWord) quantGenerate();
+    if (!quantInited && typeof initQuant === 'function') {
+      initQuant();
+      quantInited = true;
+    }
+    // старый quantGenerate больше не трогаем: раунды теперь через кнопку "Новая игра"
   }
 
   // работа с мобильной клавой
   updateMobileKeyboardVisibility();
   attachMobileKeyboard();
 }
+
 
 
 function toggleSidebar(e) {
@@ -401,7 +411,6 @@ function initStartScreen() {
     });
   }
 }
-
 
 function initMenuButton() {
   const btn = document.getElementById('btn-main-menu');
