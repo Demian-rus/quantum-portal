@@ -147,9 +147,9 @@
     #sidebar {
       width: 320px; flex-shrink: 0; background: rgba(11, 11, 30, 0.95);
       border: 1px solid var(--border); border-radius: 12px;
-      display: flex; flex-direction: column; height: calc(100vh - 250px); min-height: 400px;
+      display: flex; flex-direction: column; height: 300px;
       transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s; 
-      position: sticky; top: 20px; overflow: hidden;
+      position: relative; top: 0;
     }
     
     #sidebar.collapsed { width: 44px; background: #080816; border-color: #334155; cursor: pointer;}
@@ -225,10 +225,10 @@
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 250px);
+  height: 260px;
   min-height: 400px;
-  position: sticky;
-  top: 20px;
+  position: relative;
+  top: 0;
   overflow: hidden;
 }
 
