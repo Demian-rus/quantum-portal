@@ -335,25 +335,25 @@ function drawCrossword(g, placed) {
 function updateUI() {
   const panel = document.getElementById('active-q-panel');
 
-if (isSolved) {
-  markWin('crossword');
-  panel.innerHTML = '🎉 ПОЗДРАВЛЯЕМ! КРОССВОРД РАЗГАДАН! 🎉';
-  panel.style.color = '#4ade80';
-} else if (activeWord) {
-  const dirText = activeWord.dir === 'H' ? 'По горизонтали' : 'По вертикали';
-  panel.innerHTML = `
-    <div class="cw-dir-line">
-      ${dirText}, №${activeWord.num}
-    </div>
-    <div class="cw-question-line">
-      ${activeWord.q}
-    </div>
-  `;
-  panel.style.color = '#ff6b35';
-} else {
-  panel.innerHTML = 'Кликните по клетке для начала';
-  panel.style.color = '#ff6b35';
-}
+  if (isSolved) {
+    markWin('crossword');
+    panel.innerHTML = '🎉 ПОЗДРАВЛЯЕМ! КРОССВОРД РАЗГАДАН! 🎉';
+    panel.style.color = '#4ade80';
+  } else if (activeWord) {
+    const dirText = activeWord.dir === 'H' ? 'По горизонтали' : 'По вертикали';
+    panel.innerHTML = `
+      <div class="cw-dir-line">
+        ${dirText}, №${activeWord.num}
+      </div>
+      <div class="cw-question-line">
+        ${activeWord.q}
+      </div>
+    `;
+    panel.style.color = '#ff6b35';
+  } else {
+    panel.innerHTML = 'Кликните по клетке для начала';
+    panel.style.color = '#ff6b35';
+  }
 
   document.querySelectorAll('.clue-item').forEach(el => el.classList.remove('active'));
 
@@ -393,54 +393,85 @@ function onGenerateCore() {
   showAnswers = false;
   document.getElementById('btn-answ').textContent = '👁 Ответы';
 
-  const theme = document.getElementById('sel-theme').value;
-  const level = document.getElementById('sel-level').value;
+  const themeRaw = document.getElementById('sel-theme').value;
+  let levelRaw   = document.getElementById('sel-level').value;
+
+  // Нормализуем всё к русским ключам БД
+  const levelMap = {
+    'easy':    'легкий',
+    'medium':  'средний',
+    'hard':    'сложный',
+    'легкий':  'легкий',
+    'средний': 'средний',
+    'сложный': 'сложный'
+  };
+  const level = levelMap[levelRaw] || 'легкий';
+
+  // на всякий случай записываем назад нормализованное значение
+  document.getElementById('sel-level').value = level;
+
+  const theme = themeRaw; // тут русские: "физика", "математика", "физмат", "история", ...
 
   let pool = [];
+
   if (theme === 'физмат') {
-    const phys = DB['физика']?.[level] ?? [];
-    const math = DB['математика']?.[level] ?? [];
+    const phys = RAW_DB['физика']?.[level] ?? [];
+    const math = RAW_DB['математика']?.[level] ?? [];
     pool = [...phys, ...math];
+  } else if (theme === 'все') {
+    const allThemes = ['физика', 'математика', 'история', 'обществознание'];
+    pool = allThemes.flatMap(t => RAW_DB[t]?.[level] ?? []);
   } else {
-    pool = DB[theme]?.[level] ?? [];
+    pool = RAW_DB[theme]?.[level] ?? [];
   }
 
-  if(pool.length < 4) return;
+  if (pool.length < 4) {
+    document.getElementById('stat').textContent =
+      `⚠️ Недостаточно слов: тема "${theme}", уровень "${level}".`;
+    return;
+  }
 
   let available = pool.filter(i => !usedWordsHistory.has(i.w));
-  if(available.length < 10) { usedWordsHistory.clear(); available = [...pool]; }
+  if (available.length < 10) {
+    usedWordsHistory.clear();
+    available = [...pool];
+  }
 
   const mask = makeMaskFree();
 
   let attempts = 15;
-  if(level === 'средний') attempts = 30;
-  if(level === 'сложный') attempts = 50;
+  if (level === 'средний') attempts = 30;
+  if (level === 'сложный') attempts = 50;
 
   Storage.addGame('crossword');
 
   requestAnimationFrame(() => {
     const res = buildBest(available, attempts, mask);
-    if(!res || !res.placed.length) { document.getElementById('stat').textContent='⚠️ Ошибка построения.'; return; }
+    if (!res || !res.placed.length) {
+      document.getElementById('stat').textContent = '⚠️ Ошибка построения.';
+      return;
+    }
 
-    const {g, placed} = res;
+    const { g, placed } = res;
     placed.forEach(p => usedWordsHistory.add(p.w));
-    window.lastG=g;
-    window.lastPlaced=placed;
+    window.lastG = g;
+    window.lastPlaced = placed;
 
-    userGrid = Array.from({length:N}, ()=>Array(N).fill(''));
-    activeWord=null;
-    activeR=-1;
-    activeC=-1;
-    isSolved=false;
+    userGrid = Array.from({ length: N }, () => Array(N).fill(''));
+    activeWord = null;
+    activeR = -1;
+    activeC = -1;
+    isSolved = false;
 
     renderCluesList(placed);
     updateUI();
     drawCrossword(g, placed);
 
     const left = pool.filter(i => !usedWordsHistory.has(i.w)).length;
-    document.getElementById('stat').textContent = `Слов на поле: ${placed.length} | Осталось в базе: ${left}/${pool.length}`;
+    document.getElementById('stat').textContent =
+      `Слов на поле: ${placed.length} | Осталось в базе: ${left}/${pool.length}`;
 
-    if(document.getElementById('sidebar').classList.contains('collapsed')) {
+    if (document.getElementById('sidebar').classList.contains('collapsed')) {
       document.getElementById('sidebar').classList.remove('collapsed');
     }
   });
@@ -482,7 +513,6 @@ function handleInput(key) {
 
   drawCrossword(window.lastG, window.lastPlaced);
 }
-
 
 document.getElementById('cv').addEventListener('pointerdown', e => {
   if(isSolved || !window.lastG) return;
@@ -570,3 +600,26 @@ window.activeWord  = activeWord;
 window.isSolved    = isSolved;
 window.activeR     = activeR;
 window.activeC     = activeC;
+
+// ===== Автогенерация лёгкого кроссворда при первом открытии =====
+
+// если есть селекторы, выставим по умолчанию физмат + easy и сгенерим
+document.addEventListener('DOMContentLoaded', () => {
+  const sec = document.getElementById('sec-crossword');
+  if (!sec) return;
+
+  // тема по умолчанию
+  const themeInput = document.getElementById('sel-theme');
+  if (themeInput) themeInput.value = 'физмат';
+
+  // сложность по умолчанию easy (для DB)
+  const levelInput = document.getElementById('sel-level');
+  if (levelInput) levelInput.value = 'easy';
+
+  // обновим статус-бар под это
+  const levelLabel = document.getElementById('cw-status-level');
+  if (levelLabel) levelLabel.textContent = '★ Лёгкий';
+
+  // первая автогенерация
+  onGenerateCore();
+});

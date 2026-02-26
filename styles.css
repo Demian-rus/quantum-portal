@@ -61,21 +61,36 @@ nav::-webkit-scrollbar { display: none; }
 }
 .tab:hover:not(.active) { color: #a0a0ff; }
 
-.header-area { padding: 20px 16px 15px; text-align: center; width: 100%; }
-h1 {
-  font-size: 26px; color: var(--accent); letter-spacing: 3px;
-  text-shadow: 0 0 20px #00ff33, 0 0 40px #00ff33, 0 0 60px #00aa00;
-  margin-bottom: 5px; font-weight: 900;
+.header-area {
+  padding: 20px 16px 15px;
+  width: 100%;
 }
+
+.header-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 16px;
+  position: relative;              /* важное */
+  text-align: center;              /* центрируем текст */
+}
+
+.header-title {
+  font-size: 26px;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-shadow: 0 0 20px #00ff33, 0 0 40px #00ff33, 0 0 60px #00aa00;
+  margin-bottom: 5px;
+  font-weight: 900;
+}
+
 .sub {
-  color: var(--secondary); font-size: 12px; letter-spacing: 1px;
+  color: var(--secondary);
+  font-size: 12px;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
-/* ====== КНОПКА НАСТРОЕК В ШАПКЕ ====== */
-.header-area {
-  position: relative;
-}
+/* Кнопка настроек: абсолютно поверх, не двигает заголовок */
 .settings-btn {
   position: absolute;
   right: 16px;
@@ -98,6 +113,8 @@ h1 {
   background: rgba(0,255,51,0.1);
   box-shadow: 0 0 12px rgba(0,255,51,0.4);
 }
+
+
 
 /* ====== СТАТУС-БАР ПОД ИГРОЙ ====== */
 .game-status-bar {
@@ -577,61 +594,68 @@ canvas {
   .qnt-letter { width: 40px; height: 40px; font-size: 16px; }
 
   #sidebar, #philSidebar {
-  height: 240px;
-  max-width: 600px;
-  position: relative;
-  top: 0;
-}
+    height: 240px;
+    max-width: 600px;
+    position: relative;
+    top: 0;
+  }
 
-/* Мобилка: свернутый сайдбар — круглой кнопкой, а не пустой полоской */
-#sidebar.collapsed, #philSidebar.collapsed {
-  height: 44px !important;
-  width: 44px !important;
-  min-height: 44px !important;
-  max-height: 44px !important;
-  border-radius: 50% !important;
-  padding: 0 !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--panel);
-  border: 2px solid var(--accent);
-  box-shadow: 0 0 20px rgba(0, 255, 51, 0.25);
-  overflow: hidden;
-}
+  /* Мобилка: свернутый сайдбар — круглой кнопкой, а не пустой полоской */
+  #sidebar.collapsed, #philSidebar.collapsed {
+    height: 44px !important;
+    width: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--panel);
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 20px rgba(0, 255, 51, 0.25);
+    overflow: hidden;
+  }
 
-/* Внутри — только стрелка по центру */
-#sidebar.collapsed .sb-header,
-#philSidebar.collapsed .sb-header {
-  padding: 0;
-  border: none;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  /* Внутри — только стрелка по центру */
+  #sidebar.collapsed .sb-header,
+  #philSidebar.collapsed .sb-header {
+    padding: 0;
+    border: none;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-#sidebar.collapsed .sb-title,
-#philSidebar.collapsed .sb-title {
-  display: none;
-}
+  #sidebar.collapsed .sb-title,
+  #philSidebar.collapsed .sb-title {
+    display: none;
+  }
 
-#sidebar.collapsed .toggle-btn,
-#philSidebar.collapsed .toggle-btn {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
+  #sidebar.collapsed .toggle-btn,
+  #philSidebar.collapsed .toggle-btn {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
 
-/* Сдвигаем стрелку в центр, делаем её побольше */
-#sidebar.collapsed .toggle-btn::after,
-#philSidebar.collapsed .toggle-btn::after {
-  content: "❯";
-  font-size: 20px;
-  color: var(--accent);
-}
+  /* Сдвигаем стрелку в центр, делаем её побольше */
+  #sidebar.collapsed .toggle-btn::after,
+  #philSidebar.collapsed .toggle-btn::after {
+    content: "❯";
+    font-size: 20px;
+    color: var(--accent);
+  }
 
+  /* подровнять новую шапку на мобиле */
+  .header-inner {
+    justify-content: center;
+  }
+  .header-left {
+    align-items: center;
+  }
 }
 
 /* ========================================================================== */

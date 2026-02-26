@@ -172,11 +172,12 @@
 
   <!-- Шапка с кнопкой настроек -->
   <div class="header-area">
-    <h1>⬡ КВАНТОВЫЙ ПОРТАЛ</h1>
+  <div class="header-inner">
+    <h1 class="header-title">⬡ КВАНТОВЫЙ ПОРТАЛ</h1>
     <p class="sub" id="sub-title">Интерактивный режим генерации</p>
     <button id="btn-open-settings" class="settings-btn" type="button" aria-label="Настройки">⚙</button>
   </div>
-
+</div>
 
   <!-- ====== КРОССВОРД ====== -->
   <div id="sec-crossword" class="game-section active">
@@ -199,9 +200,8 @@
 
     <!-- Строка текущих настроек -->
     <div class="game-status-bar" id="cw-status">
-      Тема: <span id="cw-status-theme">ФизМат</span> &nbsp;·&nbsp;
-      Сложность: <span id="cw-status-level">Средний</span> &nbsp;·&nbsp;
-      Форма: <span id="cw-status-variant">Свободная</span>
+    Тема: <span id="cw-status-theme">ФизМат</span> &nbsp;·&nbsp;
+    Сложность: <span id="cw-status-level">Средний</span>
     </div>
 
     <div class="stat-line" id="stat">Готов к генерации</div>
@@ -243,9 +243,8 @@
     </div>
 
     <div class="game-status-bar" id="ph-status">
-      Тема: <span id="ph-status-theme">ФизМат</span> &nbsp;·&nbsp;
-      Сложность: <span id="ph-status-level">Средний</span> &nbsp;·&nbsp;
-      Поле: <span id="ph-status-size">14×14</span>
+    Тема: <span id="ph-status-theme">ФизМат</span> &nbsp;·&nbsp;
+    Сложность: <span id="ph-status-level">Средний</span>
     </div>
 
     <div class="stat-line" id="phil-stat">Готов к генерации филворда</div>
@@ -543,11 +542,16 @@
           if (el) el.value = v;
 
           // Обновить статус-строку
-          const labels = { easy:'★ Лёгкий', medium:'★★ Средний', hard:'★★★ Сложный', insane:'💀 Безумный' };
+          const labels = {
+            easy:   '★ Лёгкий',
+            medium: '★★ Средний',
+            hard:   '★★★ Сложный',
+            insane: '💀 Безумный'
+          };
           if (game === 'quant')     document.getElementById('qnt-status-diff').textContent = labels[v] || v;
-          if (game === 'crossword') document.getElementById('cw-status-level').textContent = labels[v] || v;
-          if (game === 'philword')  document.getElementById('ph-status-level').textContent = labels[v] || v;
-          if (game === 'sudoku')    document.getElementById('su-status-level').textContent = labels[v] || v;
+          if (game === 'crossword') document.getElementById('cw-status-level').textContent  = labels[v] || v;
+          if (game === 'philword')  document.getElementById('ph-status-level').textContent  = labels[v] || v;
+          if (game === 'sudoku')    document.getElementById('su-status-level').textContent  = labels[v] || v;
         }
 
         // Тема
@@ -577,25 +581,27 @@
           }
         }
 
-        // Кроссворд: вариант сетки
-        if (game === 'crossword') {
-          const varBtn = document.querySelector('#settings-cw-variant .settings-toggle.active');
-          if (varBtn) {
-            const v = varBtn.dataset.cwVariant;
-            document.getElementById('cw-variant').value = v;
-            const varLabels = { free:'Свободная', square:'Квадрат', diamond:'Ромб', cross:'Крест' };
-            document.getElementById('cw-status-variant').textContent = varLabels[v] || v;
-          }
-        }
-
-        // Филворд: размер
+        // Филворд: размер (только hidden, без статуса)
         if (game === 'philword') {
           const sizeBtn = document.querySelector('#settings-ph-size .settings-toggle.active');
           if (sizeBtn) {
             const v = sizeBtn.dataset.phSize;
             document.getElementById('sel-size-ph').value = v;
-            document.getElementById('ph-status-size').textContent = `${v}×${v}`;
           }
+        }
+
+        // Автогенерация после применения настроек
+        if (game === 'crossword' && typeof onGenerate === 'function') {
+          onGenerate();
+        }
+        if (game === 'philword' && typeof philGenerate === 'function') {
+          philGenerate();
+        }
+        if (game === 'sudoku' && typeof sudokuGenerate === 'function') {
+          sudokuGenerate();
+        }
+        if (game === 'quant' && typeof quantNewRound === 'function') {
+          quantNewRound();
         }
 
         settingsPopup.style.display = 'none';
