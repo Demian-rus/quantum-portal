@@ -6,12 +6,13 @@
         content="width=device-width, maximum-scale=5.0, user-scalable=yes">
   <title>Квантовый портал</title>
 
-  <!-- Весь CSS теперь в отдельном файле -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
   <!-- Скрытый input для мобильного ввода -->
   <div id="hidden-input" style="display:none;"></div>
+
 
   <!-- ====== СТАРТОВЫЙ ЭКРАН ====== -->
   <div id="start-screen" class="start-screen">
@@ -25,7 +26,6 @@
         <button class="primary" data-target="philword">Филворд</button>
         <button class="primary" data-target="sudoku">Судоку</button>
         <button class="primary" data-target="quant">Квант</button>
-        <!-- Заглушка под будущие игры -->
         <!-- <button class="primary" data-target="future">Новая игра</button> -->
       </div>
 
@@ -35,6 +35,7 @@
       </div>
     </div>
   </div>
+
 
   <!-- ====== ПОПАП СТАТИСТИКИ ====== -->
   <div id="stats-popup" class="stats-backdrop" style="display:none;">
@@ -52,7 +53,8 @@
     </div>
   </div>
 
-  <!-- ====== ПОПАП ПОДТВЕРЖДЕНИЯ (общее окно) ====== -->
+
+  <!-- ====== ПОПАП ПОДТВЕРЖДЕНИЯ ====== -->
   <div id="qp-popup" style="display:none" class="popup-backdrop">
     <div class="popup">
       <p id="qp-popup-text"></p>
@@ -63,91 +65,173 @@
     </div>
   </div>
 
+
+  <!-- ====== ПОПАП НАСТРОЕК ====== -->
+  <div id="settings-popup" class="settings-backdrop" style="display:none;">
+    <div class="settings-modal">
+      <h3>⚙ Настройки</h3>
+      <p class="settings-note">Настройки применяются к текущей активной игре.</p>
+
+      <!-- БЛОК: Тема/дисциплина (кроссворд, филворд) -->
+      <div class="settings-block" id="settings-block-theme">
+        <h4>Дисциплина</h4>
+        <div class="settings-options" id="settings-theme-opts">
+          <button class="settings-toggle" data-theme="физика">Физика</button>
+          <button class="settings-toggle" data-theme="математика">Математика</button>
+          <button class="settings-toggle" data-theme="физмат">ФизМат</button>
+          <!-- кроссворд: дополнительные темы -->
+          <button class="settings-toggle cw-only" data-theme="история">История</button>
+          <button class="settings-toggle cw-only" data-theme="обществознание">Общество</button>
+          <button class="settings-toggle cw-only" data-theme="все">Все</button>
+        </div>
+      </div>
+
+      <!-- БЛОК: Сложность (все игры) -->
+      <div class="settings-block" id="settings-block-diff">
+        <h4>Сложность</h4>
+        <div class="settings-options settings-difficulty" id="settings-diff-opts">
+          <button class="settings-diff-btn active" data-diff="easy"   title="Лёгкий">★ Лёгкий</button>
+          <button class="settings-diff-btn"        data-diff="medium" title="Средний">★★ Средний</button>
+          <button class="settings-diff-btn"        data-diff="hard"   title="Сложный">★★★ Сложный</button>
+          <!-- судоку: 4-й уровень -->
+          <button class="settings-diff-btn su-only" data-diff="insane" title="Безумный">💀 Безумный</button>
+        </div>
+      </div>
+
+      <!-- БЛОК: Режим (квант и кроссворд) -->
+      <div class="settings-block" id="settings-block-mode">
+        <h4>Режим игры</h4>
+
+        <!-- Квант: Термин / Квантл -->
+        <div class="settings-sub-block quant-only" id="settings-quant-mode">
+          <span class="settings-label">Квант</span>
+          <div class="settings-options">
+            <button class="settings-toggle active" data-mode="term">Термин</button>
+            <button class="settings-toggle" data-mode="wordle">Квантл</button>
+          </div>
+        </div>
+
+        <!-- Кроссворд: форма сетки -->
+        <div class="settings-sub-block cw-only" id="settings-cw-variant">
+          <span class="settings-label">Форма сетки</span>
+          <div class="settings-options">
+            <button class="settings-toggle active" data-cw-variant="free">Свободная</button>
+            <button class="settings-toggle" data-cw-variant="square">Квадрат</button>
+            <button class="settings-toggle" data-cw-variant="diamond">Ромб</button>
+            <button class="settings-toggle" data-cw-variant="cross">Крест</button>
+          </div>
+        </div>
+
+        <!-- Филворд: размер сетки -->
+        <div class="settings-sub-block ph-only" id="settings-ph-size">
+          <span class="settings-label">Размер поля</span>
+          <div class="settings-options">
+            <button class="settings-toggle" data-ph-size="12">12×12</button>
+            <button class="settings-toggle active" data-ph-size="14">14×14</button>
+            <button class="settings-toggle" data-ph-size="16">16×16</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- БЛОК: Общие настройки -->
+      <div class="settings-block" id="settings-block-general">
+        <h4>Общие</h4>
+        <div class="settings-row">
+          <span class="settings-label">Звук</span>
+          <div class="settings-options">
+            <button class="settings-toggle active" data-option="sound-on">Вкл</button>
+            <button class="settings-toggle" data-option="sound-off">Выкл</button>
+          </div>
+        </div>
+        <div class="settings-row">
+          <span class="settings-label">Анимации</span>
+          <div class="settings-options">
+            <button class="settings-toggle active" data-option="anim-full">Полные</button>
+            <button class="settings-toggle" data-option="anim-lite">Минимум</button>
+            <button class="settings-toggle" data-option="anim-off">Выкл</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-actions">
+        <button class="primary" id="btn-settings-apply" type="button">Применить</button>
+        <button class="danger"  id="btn-settings-cancel" type="button">Отмена</button>
+      </div>
+    </div>
+  </div>
+
+
   <!-- ====== ВЕРХНЕЕ МЕНЮ / НАВИГАЦИЯ ====== -->
   <nav>
     <button id="btn-main-menu" class="tab menu-tab" type="button">Меню</button>
-    <!-- убрал inline-onclick, навигация теперь через switchTab(id) из core.js -->
     <button class="tab active" data-tab="crossword" type="button">Кроссворд</button>
     <button class="tab" data-tab="philword" type="button">Филворд</button>
     <button class="tab" data-tab="sudoku" type="button">Судоку</button>
     <button class="tab" data-tab="quant" type="button">Квант</button>
   </nav>
 
+  <!-- Шапка с кнопкой настроек -->
   <div class="header-area">
     <h1>⬡ КВАНТОВЫЙ ПОРТАЛ</h1>
     <p class="sub" id="sub-title">Интерактивный режим генерации</p>
+    <button id="btn-open-settings" class="settings-btn" type="button" aria-label="Настройки">⚙</button>
   </div>
 
-<!-- ====== КРОССВОРД ====== -->
-<div id="sec-crossword" class="game-section active">
-  <div class="controls">
-    <div class="control-group">
-      <select id="sel-theme">
-      <option value="физика">Физика</option>
-      <option value="математика">Математика</option>
-      <option value="физмат">ФизМат (Микс)</option>
-      <option value="история">История</option>
-      <option value="обществознание">Обществознание</option>
-      <option value="все">Все дисциплины</option>
-      </select>
 
-      <select id="sel-level">
-        <option value="легкий">Лёгкий</option>
-        <option value="средний">Средний</option>
-        <option value="сложный">Сложный</option>
-      </select>
-    </div>
-    <div class="control-group">
-      <button class="primary" onclick="onGenerate()">⟳ Создать</button>
-      <button class="action" onclick="onToggleAnswers()" id="btn-answ">👁 Ответы</button>
-      <button class="danger"
-              onclick="usedWordsHistory.clear(); document.getElementById('stat').textContent='♻ История сброшена';">
-        ♻ Сброс
-      </button>
-    </div>
-  </div>
+  <!-- ====== КРОССВОРД ====== -->
+  <div id="sec-crossword" class="game-section active">
 
-  <div class="stat-line" id="stat">Готов к генерации</div>
+    <!-- Скрытые поля для хранения текущих настроек (читаются JS) -->
+    <input type="hidden" id="sel-theme"  value="физмат">
+    <input type="hidden" id="sel-level"  value="средний">
+    <input type="hidden" id="cw-variant" value="free">
 
-  <div class="main-container">
-    <div class="game-area cw-area">
-      <div id="active-q-panel">Сгенерируйте кроссворд и выберите клетку</div>
-      <canvas id="cv"></canvas>
-      <!-- сюда core.js будет подкидывать #mobile-keyboard -->
-    </div>
-
-    <div id="sidebar" class="collapsed"
-         onclick="if(this.classList.contains('collapsed')) toggleSidebar()">
-      <div class="sb-header">
-        <h2 class="sb-title">СПИСОК ВОПРОСОВ</h2>
-        <button class="toggle-btn" onclick="toggleSidebar(event)">❯</button>
+    <div class="controls">
+      <div class="control-group">
+        <button class="primary" onclick="onGenerate()">⟳ Создать</button>
+        <button class="action" onclick="onToggleAnswers()" id="btn-answ">👁 Ответы</button>
+        <button class="danger"
+                onclick="usedWordsHistory.clear(); document.getElementById('stat').textContent='♻ История сброшена';">
+          ♻ Сброс
+        </button>
       </div>
-      <div class="sb-content" id="cluesList"></div>
+    </div>
+
+    <!-- Строка текущих настроек -->
+    <div class="game-status-bar" id="cw-status">
+      Тема: <span id="cw-status-theme">ФизМат</span> &nbsp;·&nbsp;
+      Сложность: <span id="cw-status-level">Средний</span> &nbsp;·&nbsp;
+      Форма: <span id="cw-status-variant">Свободная</span>
+    </div>
+
+    <div class="stat-line" id="stat">Готов к генерации</div>
+
+    <div class="main-container">
+      <div class="game-area cw-area">
+        <div id="active-q-panel">Сгенерируйте кроссворд и выберите клетку</div>
+        <canvas id="cv"></canvas>
+      </div>
+
+      <div id="sidebar" class="collapsed"
+           onclick="if(this.classList.contains('collapsed')) toggleSidebar()">
+        <div class="sb-header">
+          <h2 class="sb-title">СПИСОК ВОПРОСОВ</h2>
+          <button class="toggle-btn" onclick="toggleSidebar(event)">❯</button>
+        </div>
+        <div class="sb-content" id="cluesList"></div>
+      </div>
     </div>
   </div>
-</div>
+
 
   <!-- ====== ФИЛВОРД ====== -->
   <div id="sec-philword" class="game-section">
-    <div class="controls">
-      <div class="control-group">
-        <select id="sel-theme-ph">
-          <option value="физика">Физика</option>
-          <option value="математика">Математика</option>
-          <option value="физмат">ФизМат (Микс)</option>
-        </select>
-        <select id="sel-level-ph">
-          <option value="легкий">Лёгкий</option>
-          <option value="средний">Средний</option>
-          <option value="сложный">Сложный</option>
-        </select>
-        <select id="sel-size-ph">
-          <option value="12">Сетка 12×12</option>
-          <option value="14" selected>Сетка 14×14</option>
-          <option value="16">Сетка 16×16</option>
-        </select>
-      </div>
 
+    <input type="hidden" id="sel-theme-ph"  value="физмат">
+    <input type="hidden" id="sel-level-ph"  value="средний">
+    <input type="hidden" id="sel-size-ph"   value="14">
+
+    <div class="controls">
       <div class="control-group">
         <button class="primary" onclick="philGenerate()">⟳ Создать</button>
         <button class="action" onclick="philToggleAnswers()" id="btn-ph-answ">👁 Ответы</button>
@@ -156,6 +240,12 @@
           ♻ Сброс
         </button>
       </div>
+    </div>
+
+    <div class="game-status-bar" id="ph-status">
+      Тема: <span id="ph-status-theme">ФизМат</span> &nbsp;·&nbsp;
+      Сложность: <span id="ph-status-level">Средний</span> &nbsp;·&nbsp;
+      Поле: <span id="ph-status-size">14×14</span>
     </div>
 
     <div class="stat-line" id="phil-stat">Готов к генерации филворда</div>
@@ -176,23 +266,22 @@
     </div>
   </div>
 
+
   <!-- ====== СУДОКУ ====== -->
   <div id="sec-sudoku" class="game-section">
-    <div class="controls">
-      <div class="control-group">
-        <select id="sel-diff-su">
-          <option value="easy">Лёгкий</option>
-          <option value="medium" selected>Средний</option>
-          <option value="hard">Сложный</option>
-          <option value="insane">Безумный</option>
-        </select>
-      </div>
 
+    <input type="hidden" id="sel-diff-su" value="medium">
+
+    <div class="controls">
       <div class="control-group">
         <button class="primary" onclick="sudokuGenerate()">⟳ Создать</button>
         <button class="action" onclick="sudokuCheck()" id="btn-su-check">✅ Проверить</button>
         <button class="danger" onclick="sudokuReset()">♻ Сброс</button>
       </div>
+    </div>
+
+    <div class="game-status-bar" id="su-status">
+      Сложность: <span id="su-status-level">Средний</span>
     </div>
 
     <div class="stat-line" id="su-stat">Готов к генерации судоку</div>
@@ -218,64 +307,55 @@
     </div>
   </div>
 
+
   <!-- ====== КВАНТ ====== -->
-<div id="sec-quant" class="game-section">
-  <div class="controls">
-    <div class="control-group">
-      <!-- Переключатель режима -->
-      <div class="qnt-mode-toggle">
-        <button class="qnt-mode-btn active" data-mode="term" type="button">Термин</button>
-        <button class="qnt-mode-btn" data-mode="wordle" type="button">Квантл</button>
+  <div id="sec-quant" class="game-section">
+
+    <input type="hidden" id="qnt-mode-value"  value="term">
+    <input type="hidden" id="qnt-diff-value"  value="easy">
+
+    <div class="controls">
+      <div class="control-group">
+        <button class="primary" onclick="quantNewRound()" type="button">⟳ Новая игра</button>
       </div>
     </div>
-    <div class="control-group">
-      <!-- Сложность -->
-      <div class="qnt-difficulty">
-      <button class="qnt-diff-btn active" data-diff="easy"   type="button" title="Лёгкий">★</button>
-      <button class="qnt-diff-btn"        data-diff="medium" type="button" title="Средний">★★</button>
-      <button class="qnt-diff-btn"        data-diff="hard"   type="button" title="Сложный">★★★</button>
+
+    <div class="game-status-bar" id="qnt-status">
+      Режим: <span id="qnt-status-mode">Термин</span> &nbsp;·&nbsp;
+      Сложность: <span id="qnt-status-diff">★ Лёгкий</span>
     </div>
 
+    <div class="stat-line" id="qnt-stat">Готов к игре Квант</div>
 
-      <button class="primary" onclick="quantNewRound()" type="button">⟳ Новая игра</button>
-    </div>
-  </div>
+    <div class="main-container" style="flex-direction: column; align-items: center;">
+      <div class="game-area qnt-area">
+        <div id="qnt-term-hint" class="qnt-hint"></div>
 
-  <div class="stat-line" id="qnt-stat">Готов к игре Квант</div>
+        <div id="qnt-active-panel">Выберите режим в ⚙ и начните игру</div>
 
-  <div class="main-container" style="flex-direction: column; align-items: center;">
-    <div class="game-area qnt-area">
-      <!-- Подсказка только для режима "Термин" -->
-      <div id="qnt-term-hint" class="qnt-hint"></div>
-
-      <div id="qnt-active-panel">Выберите режим и начните игру</div>
-
-      <div class="qnt-grid-wrap">
-        <!-- Сетка для режима Термин (одна строка, фиксируемые буквы) -->
-        <div class="qnt-grid qnt-grid-term" id="qnt-term-grid"></div>
-
-        <!-- Сетка для режима Wordle (5 строк) -->
-        <div class="qnt-grid qnt-grid-wordle" id="qnt-wordle-grid" hidden></div>
-      </div>
-
-      <div class="qnt-keyboard-desktop" id="qntKeyboardDesktop"></div>
-
-      <div class="qnt-stats">
-        <div class="qnt-stat-item">
-          <div class="qnt-stat-value" id="qnt-attempts">5</div>
-          <div>Попыток</div>
+        <div class="qnt-grid-wrap">
+          <div class="qnt-grid qnt-grid-term" id="qnt-term-grid"></div>
+          <div class="qnt-grid qnt-grid-wordle" id="qnt-wordle-grid" hidden></div>
         </div>
-        <div class="qnt-stat-item">
-          <div class="qnt-stat-value" id="qnt-wins">0</div>
-          <div>Побед</div>
+
+        <div class="qnt-keyboard-desktop" id="qntKeyboardDesktop"></div>
+
+        <div class="qnt-stats">
+          <div class="qnt-stat-item">
+            <div class="qnt-stat-value" id="qnt-attempts">5</div>
+            <div>Попыток</div>
+          </div>
+          <div class="qnt-stat-item">
+            <div class="qnt-stat-value" id="qnt-wins">0</div>
+            <div>Побед</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 
-  <!-- ====== ОБЩАЯ КИРИЛЛИЧЕСКАЯ КЛАВИАТУРА ДЛЯ МОБИЛОК ====== -->
+  <!-- ====== ОБЩАЯ КИРИЛЛИЧЕСКАЯ КЛАВИАТУРА ====== -->
   <div id="mobile-keyboard">
     <div class="kb-row">
       <button data-key="Й">Й</button>
@@ -319,6 +399,7 @@
     </div>
   </div>
 
+
   <!-- ====== СКРИПТЫ ====== -->
   <script src="db.js"></script>
   <script src="core.js"></script>
@@ -328,16 +409,197 @@
   <script src="quant.js"></script>
 
   <script>
-    // Навешиваем клики по табам на новый switchTab(id), чтобы не зависеть от inline-обработчиков
     document.addEventListener('DOMContentLoaded', () => {
+
+      // Навигация по табам
       document.querySelectorAll('nav .tab[data-tab]').forEach(btn => {
         btn.addEventListener('click', () => {
           const id = btn.getAttribute('data-tab');
-          if (typeof switchTab === 'function') {
-            switchTab(id);
-          }
+          if (typeof switchTab === 'function') switchTab(id);
         });
       });
+
+      // ── Настройки: открыть/закрыть ──────────────────────────────────────
+      const settingsPopup  = document.getElementById('settings-popup');
+      const btnOpenSettings = document.getElementById('btn-open-settings');
+      const btnApply       = document.getElementById('btn-settings-apply');
+      const btnCancel      = document.getElementById('btn-settings-cancel');
+
+      btnOpenSettings.addEventListener('click', openSettings);
+      btnCancel.addEventListener('click', () => settingsPopup.style.display = 'none');
+      settingsPopup.addEventListener('click', e => {
+        if (e.target === settingsPopup) settingsPopup.style.display = 'none';
+      });
+
+      // Тоглы внутри настроек: один активный в группе
+      settingsPopup.querySelectorAll('.settings-options').forEach(group => {
+        group.querySelectorAll('.settings-toggle, .settings-diff-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            group.querySelectorAll('.settings-toggle, .settings-diff-btn')
+                 .forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+          });
+        });
+      });
+
+      // ── Применить ────────────────────────────────────────────────────────
+      btnApply.addEventListener('click', applySettings);
+
+      function getActiveGame() {
+        const sec = document.querySelector('.game-section.active');
+        return sec ? sec.id.replace('sec-', '') : null;
+      }
+
+      function openSettings() {
+        const game = getActiveGame();
+
+        // Показываем/прячем блоки по игре
+        document.querySelectorAll('.cw-only').forEach(el =>
+          el.style.display = game === 'crossword' ? '' : 'none');
+        document.querySelectorAll('.ph-only').forEach(el =>
+          el.style.display = game === 'philword' ? '' : 'none');
+        document.querySelectorAll('.su-only').forEach(el =>
+          el.style.display = game === 'sudoku' ? '' : 'none');
+        document.querySelectorAll('.quant-only').forEach(el =>
+          el.style.display = game === 'quant' ? '' : 'none');
+
+        // Тема: судоку и Квант — скрыть блок темы
+        document.getElementById('settings-block-theme').style.display =
+          (game === 'sudoku' || game === 'quant') ? 'none' : '';
+
+        // Режим: только для кроссворда и Кванта
+        document.getElementById('settings-block-mode').style.display =
+          (game === 'crossword' || game === 'quant' || game === 'philword') ? '' : 'none';
+
+        // Восстановить текущие значения из hidden-полей
+        syncSettingsUI(game);
+
+        settingsPopup.style.display = 'flex';
+      }
+
+      function syncSettingsUI(game) {
+        // Сложность
+        const diffMap = {
+          crossword: 'sel-level',
+          philword:  'sel-level-ph',
+          sudoku:    'sel-diff-su',
+          quant:     'qnt-diff-value'
+        };
+        const diffVal = document.getElementById(diffMap[game])?.value;
+        if (diffVal) {
+          document.querySelectorAll('#settings-diff-opts .settings-diff-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.diff === diffVal);
+          });
+        }
+
+        // Тема
+        const themeMap = { crossword: 'sel-theme', philword: 'sel-theme-ph' };
+        if (themeMap[game]) {
+          const themeVal = document.getElementById(themeMap[game])?.value;
+          document.querySelectorAll('#settings-theme-opts .settings-toggle').forEach(b => {
+            b.classList.toggle('active', b.dataset.theme === themeVal);
+          });
+        }
+
+        // Квант: режим
+        if (game === 'quant') {
+          const modeVal = document.getElementById('qnt-mode-value')?.value;
+          document.querySelectorAll('#settings-quant-mode .settings-toggle').forEach(b => {
+            b.classList.toggle('active', b.dataset.mode === modeVal);
+          });
+        }
+
+        // Кроссворд: вариант сетки
+        if (game === 'crossword') {
+          const varVal = document.getElementById('cw-variant')?.value;
+          document.querySelectorAll('#settings-cw-variant .settings-toggle').forEach(b => {
+            b.classList.toggle('active', b.dataset.cwVariant === varVal);
+          });
+        }
+
+        // Филворд: размер
+        if (game === 'philword') {
+          const sizeVal = document.getElementById('sel-size-ph')?.value;
+          document.querySelectorAll('#settings-ph-size .settings-toggle').forEach(b => {
+            b.classList.toggle('active', b.dataset.phSize === sizeVal);
+          });
+        }
+      }
+
+      function applySettings() {
+        const game = getActiveGame();
+
+        // Читаем выбор сложности
+        const diffBtn = document.querySelector('#settings-diff-opts .settings-diff-btn.active');
+        if (diffBtn) {
+          const v = diffBtn.dataset.diff;
+          const diffMap = {
+            crossword: 'sel-level',
+            philword:  'sel-level-ph',
+            sudoku:    'sel-diff-su',
+            quant:     'qnt-diff-value'
+          };
+          const el = document.getElementById(diffMap[game]);
+          if (el) el.value = v;
+
+          // Обновить статус-строку
+          const labels = { easy:'★ Лёгкий', medium:'★★ Средний', hard:'★★★ Сложный', insane:'💀 Безумный' };
+          if (game === 'quant')     document.getElementById('qnt-status-diff').textContent = labels[v] || v;
+          if (game === 'crossword') document.getElementById('cw-status-level').textContent = labels[v] || v;
+          if (game === 'philword')  document.getElementById('ph-status-level').textContent = labels[v] || v;
+          if (game === 'sudoku')    document.getElementById('su-status-level').textContent = labels[v] || v;
+        }
+
+        // Тема
+        const themeBtn = document.querySelector('#settings-theme-opts .settings-toggle.active');
+        if (themeBtn) {
+          const v = themeBtn.dataset.theme;
+          const themeMap = { crossword: 'sel-theme', philword: 'sel-theme-ph' };
+          const el = document.getElementById(themeMap[game]);
+          if (el) el.value = v;
+          if (game === 'crossword') document.getElementById('cw-status-theme').textContent = v;
+          if (game === 'philword')  document.getElementById('ph-status-theme').textContent = v;
+        }
+
+        // Квант: режим → вызвать setQuantMode если доступна
+        if (game === 'quant') {
+          const modeBtn = document.querySelector('#settings-quant-mode .settings-toggle.active');
+          if (modeBtn) {
+            const v = modeBtn.dataset.mode;
+            document.getElementById('qnt-mode-value').value = v;
+            const modeLabels = { term: 'Термин', wordle: 'Квантл' };
+            document.getElementById('qnt-status-mode').textContent = modeLabels[v] || v;
+            if (typeof setQuantMode === 'function') setQuantMode(v);
+          }
+          // Сложность Кванта → setQuantDifficulty
+          if (diffBtn && typeof setQuantDifficulty === 'function') {
+            setQuantDifficulty(diffBtn.dataset.diff);
+          }
+        }
+
+        // Кроссворд: вариант сетки
+        if (game === 'crossword') {
+          const varBtn = document.querySelector('#settings-cw-variant .settings-toggle.active');
+          if (varBtn) {
+            const v = varBtn.dataset.cwVariant;
+            document.getElementById('cw-variant').value = v;
+            const varLabels = { free:'Свободная', square:'Квадрат', diamond:'Ромб', cross:'Крест' };
+            document.getElementById('cw-status-variant').textContent = varLabels[v] || v;
+          }
+        }
+
+        // Филворд: размер
+        if (game === 'philword') {
+          const sizeBtn = document.querySelector('#settings-ph-size .settings-toggle.active');
+          if (sizeBtn) {
+            const v = sizeBtn.dataset.phSize;
+            document.getElementById('sel-size-ph').value = v;
+            document.getElementById('ph-status-size').textContent = `${v}×${v}`;
+          }
+        }
+
+        settingsPopup.style.display = 'none';
+      }
     });
   </script>
 </body>
