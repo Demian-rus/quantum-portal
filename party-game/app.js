@@ -394,11 +394,19 @@ function showRolling() {
   track.style.transform='translate3d('+start+'px,0,0)';
   // Two frames guarantee that even a fast Android browser paints the starting
   // position before animating. The strip moves left-to-right, then eases out.
+  const markWinner=()=>{
+    if(game?.phase==='rolling'&&game.current===activeRound&&activeScene==='game')
+      track.querySelector('.reel-item--winner')?.classList.add('reel-item--landed');
+  };
+  track.addEventListener('transitionend',event=>{
+    if(event.propertyName==='transform')markWinner();
+  },{once:true});
   const animate=()=>{
     if(game?.phase!=='rolling'||game.current!==activeRound||activeScene!=='game')return;
     const reduce=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     track.style.transition='transform '+(reduce?1:ROLL_SPIN_MS)+'ms cubic-bezier(.08,.72,.12,1)';
     track.style.transform='translate3d('+finish+'px,0,0)';
+    if(reduce)markWinner();
   };
   if(typeof requestAnimationFrame==='function')
     requestAnimationFrame(()=>requestAnimationFrame(animate));
@@ -692,10 +700,6 @@ function roll() {
   const current=game.current;
   const reduce=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   const spin=reduce?1:ROLL_SPIN_MS;
-  setTimeout(()=>{
-    if(!game||game.phase!=='rolling'||game.current!==current||activeScene!=='game')return;
-    $('reel-track')?.querySelector('.reel-item--winner')?.classList.add('reel-item--landed');
-  },spin+40);
   setTimeout(()=>{
     if(!game||game.phase!=='rolling'||game.current!==current||activeScene!=='game')return;
     game.phase='task';persist();sfx('go');render();
