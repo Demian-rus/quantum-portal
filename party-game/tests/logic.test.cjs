@@ -191,3 +191,22 @@ test('manual game settings are clamped and invalid modes are filtered on restore
  assert.equal(Array.from(settings.promptTypes).join(','),'phrase');
  assert.equal(settings.difficulty,'mixed');
 });
+
+test('secret mode always carries a modifier and pays three points',()=>{
+ const h=harness();
+ h.eval('soundOn=false;options.modes=["secret"];options.complications=false;newGame();roll()');
+ h.pending.shift()();
+ assert.equal(h.eval('game.current.modeId'),'secret');
+ assert.ok(h.eval('game.current.complication').length>4);
+ assert.equal(h.eval('game.current.points'),3);
+ h.eval('toggleWord();startTimer();finishTimer("early");judge(true)');
+ assert.equal(h.eval('game.scores[0]'),3);
+});
+test('blitz cannot add a correct answer once the timer has expired',()=>{
+ const h=harness();
+ h.eval('soundOn=false;options.modes=["blitz"];newGame();roll()');
+ h.pending.shift()();
+ h.eval('toggleWord();startTimer();game.current.deadline=Date.now()-1;advanceBlitz(true)');
+ assert.equal(h.eval('game.phase'),'judge');
+ assert.equal(h.eval('game.current.blitzCorrect'),0);
+});
