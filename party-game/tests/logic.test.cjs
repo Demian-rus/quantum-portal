@@ -304,3 +304,59 @@ test('returning to home preserves a game and enables Continue',()=>{
  h.eval('continueGame()');
  assert.equal(h.eval('activeScene'),'game');
 });
+
+test('creating a game never requests another native confirmation',()=>{
+ const h=harness();
+ h.context.window.confirm=()=>{throw Error('Unexpected native confirm');};
+ h.eval('soundOn=false;newGame();openSetup();newGame()');
+ assert.equal(h.eval('game.phase'),'ready');
+ assert.equal(h.eval('game.roundIndex'),0);
+});
+test('a correct answer on the timer awards once and immediately advances teams',()=>{
+ const h=harness();
+ h.eval('soundOn=false;options.modes=["talk"];options.difficulty="easy";options.dice=false;newGame();roll();toggleWord();startTimer()');
+ assert.equal(h.eval('game.phase'),'play');
+ const word=h.eval('game.current.word');
+ h.eval('handleAction("correct-now")');
+ assert.equal(h.eval('game.phase'),'ready');
+ assert.equal(h.eval('game.roundIndex'),1);
+ assert.equal(h.eval('game.scores[0]'),1);
+ assert.equal(h.eval('game.history[0].word'),word);
+ h.eval('handleAction("correct-now");judge(true)');
+ assert.equal(h.eval('game.scores[0]'),1);
+});
+test('expired timer cannot be credited by quick success',()=>{
+ const h=harness();
+ h.eval('soundOn=false;options.modes=["talk"];options.dice=false;newGame();roll();toggleWord();startTimer()');
+ h.eval('game.current.deadline=Date.now()-1;correctNow()');
+ assert.equal(h.eval('game.phase'),'judge');
+ assert.equal(h.eval('game.scores[0]'),0);
+ h.eval('judge(false)');
+ assert.equal(h.eval('game.phase'),'ready');
+ assert.equal(h.eval('game.roundIndex'),1);
+});
+test('hiding the challenge on hard difficulty never alters its running deadline',()=>{
+ const h=harness();
+ h.eval('soundOn=false;options.modes=["talk"];options.dice=false;options.difficulty="hard";newGame();roll();toggleWord()');
+ h.eval('game.current.autoStartAt=Date.now()-1;tick()');
+ const deadline=h.eval('game.current.deadline');
+ h.eval('toggleWord()');
+ assert.equal(h.eval('game.current.visible'),false);
+ h.eval('toggleWord()');
+ assert.equal(h.eval('game.current.visible'),true);
+ assert.equal(h.eval('game.current.deadline'),deadline);
+});
+test('circular buttons have accessible labels and judge captions stay paired with controls',()=>{
+ const h=harness();
+ h.eval('soundOn=false;options.modes=["talk"];options.dice=false;newGame();roll();toggleWord()');
+ assert.ok(h.elements.get('play-content').innerHTML.includes('aria-label="Запустить таймер"'));
+ h.eval('startTimer()');
+ let html=h.elements.get('play-content').innerHTML;
+ assert.ok(html.includes('data-action="correct-now"'));
+ assert.ok(html.includes('round-action--success prominent'));
+ h.eval('finishTimer("timeout")');
+ html=h.elements.get('play-content').innerHTML;
+ assert.ok(html.includes('judgement-option'));
+ assert.ok(html.includes('<span>УГАДАЛИ</span>'));
+ assert.ok(!html.includes('judgement-labels'));
+});
