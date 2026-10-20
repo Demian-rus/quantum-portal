@@ -19,7 +19,26 @@ async function isInViewport(page){
    page.on('dialog',d=>{dialogs.push(d.message());d.dismiss()});
    page.on('pageerror',e=>errors.push(e.message));
    await page.goto(URL,{waitUntil:'load'});
+   // Test the three approved backgrounds on every device, including preferences.
+   const art=async expected=>page.evaluate(expected=>{
+     const bg=getComputedStyle(document.body,'::before').backgroundImage;
+     return {bg,chosen:getComputedStyle(document.querySelector('.home-action--primary')||document.body).backgroundImage,
+       neon:getComputedStyle(document.documentElement).getPropertyValue('--kvip-electric').trim()};
+   },expected);
+   const homeArt=await art('home');
+   assert.ok(homeArt.bg.includes('bg-home.webp?v=3'),'Home artwork was not loaded');
+   assert.equal(homeArt.neon,'#54e8ff');
+   if(device.name==='phone')await page.screenshot({path:'artifacts/iskra-polish/phone-kvip-home.png'});
+   await page.locator('#settings-menu').click();
+   const prefArt=await art('setup');
+   assert.ok(prefArt.bg.includes('bg-setup.webp?v=3'),'Preferences should share the settings backdrop');
+   await page.locator('#preferences-back').click();
    await page.locator('#new-game-menu').click();
+   const setupArt=await art('setup');
+   assert.ok(setupArt.bg.includes('bg-setup.webp?v=3'),'Party setup art mismatch');
+   const chosen=await page.locator('.choices .is-chosen').first().evaluate(el=>getComputedStyle(el).backgroundImage);
+   assert.match(chosen,/gradient/,'Old flat lime selection still active');
+   if(device.name==='phone')await page.screenshot({path:'artifacts/iskra-polish/phone-kvip-setup.png'});
    const selection=await page.evaluate(()=>{
      const label=document.querySelector('.choices[data-setting="difficulty"] [data-value="medium"]');
      const start=new Event('selectstart',{bubbles:true,cancelable:true});
@@ -35,7 +54,9 @@ async function isInViewport(page){
      'Disabling selection must not block typing a team name');
    await page.evaluate(()=>{options.modes=['talk'];options.dice=false;options.difficulty='easy';});
    await page.locator('#start-game').click();
+   assert.ok((await art('game')).bg.includes('bg-game.webp?v=3'),'Game background mismatch');
    await page.waitForSelector('[data-action="roll"]');
+   if(device.name==='phone')await page.screenshot({path:'artifacts/iskra-polish/phone-kvip-game-ready.png'});
    const ready=await page.evaluate(()=>{
     const a=document.querySelector('.is-ready .ready-avatar').getBoundingClientRect();
     const bar=document.querySelector('.play-card-head').getBoundingClientRect();

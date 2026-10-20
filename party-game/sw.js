@@ -1,5 +1,5 @@
-const CACHE='kvip-pwa-v11-20261020-icons';
-const CORE=['./','./index.html','./style.css?v=10','./app.js?v=9','./words.js?v=2','./mode-images.js?v=5','./manifest.webmanifest','./assets/bg-home.webp','./assets/bg-setup.webp','./assets/bg-game.webp','./assets/icon-192.png','./assets/icon-512.png',...['talk','mime','draw','sing','yesno','secret','blitz'].map(id=>'./assets/modes/'+id+'.webp?v=2')];
+const CACHE='kvip-pwa-v12-20261020-scenes';
+const CORE=['./','./index.html','./style.css?v=11','./app.js?v=9','./words.js?v=2','./mode-images.js?v=5','./manifest.webmanifest','./assets/bg-home.webp?v=3','./assets/bg-setup.webp?v=3','./assets/bg-game.webp?v=3','./assets/icon-192.png','./assets/icon-512.png',...['talk','mime','draw','sing','yesno','secret','blitz'].map(id=>'./assets/modes/'+id+'.webp?v=2')];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));
 });
