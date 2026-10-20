@@ -228,7 +228,7 @@ function rollOutcome() {
     actualMode=randomOne(submodes.filter(m=>game.modes.includes(m.id))||submodes);
     if(!actualMode)actualMode=randomOne(submodes);
   }
-  if(game.complications&&(mode.id==='secret'||Math.random()<.28))
+  if(mode.id==='secret'||(game.complications&&Math.random()<.28))
     complication=randomOne(COMPLICATIONS[actualMode.id]||[]);
   const word=pullWord(actualMode.kind);
   return {
@@ -328,6 +328,7 @@ function showTimer() {
 function advanceBlitz(correct) {
   if(!game||game.phase!=='play'||game.current.paused||game.current.modeId!=='blitz')return;
   const c=game.current;
+  if(Date.now()>=c.deadline){finishTimer('timeout');return;}
   if(c.blitzIndex>=c.blitzWords.length)return;
   if(correct)c.blitzCorrect++;else c.blitzSkipped++;
   c.blitzIndex++;
