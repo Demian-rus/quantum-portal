@@ -360,3 +360,40 @@ test('circular buttons have accessible labels and judge captions stay paired wit
  assert.ok(html.includes('<span>УГАДАЛИ</span>'));
  assert.ok(!html.includes('judgement-labels'));
 });
+
+test('quick red rejection immediately ends the turn without giving points',()=>{
+ const h=harness();
+ h.eval('soundOn=false;options.dice=false;options.modes=["talk"];options.difficulty="easy";newGame();roll();toggleWord();startTimer()');
+ h.eval('handleAction("wrong-now")');
+ assert.equal(h.eval('game.phase'),'ready');
+ assert.equal(h.eval('game.roundIndex'),1);
+ assert.deepEqual(Array.from(h.eval('game.scores')),[0,0]);
+ assert.equal(h.eval('game.history[0].correct'),false);
+ h.eval('handleAction("wrong-now");judge(true)');
+ assert.deepEqual(Array.from(h.eval('game.scores')),[0,0],'Forfeit was scored twice');
+});
+test('red reject after expired deadline still opens normal judgement, not instant forfeit',()=>{
+ const h=harness();
+ h.eval('soundOn=false;options.dice=false;options.modes=["talk"];newGame();roll();toggleWord();startTimer()');
+ h.eval('game.current.deadline=Date.now()-1;wrongNow()');
+ assert.equal(h.eval('game.phase'),'judge');
+ assert.equal(h.eval('game.roundIndex'),0);
+ h.eval('judge(false)');
+ assert.equal(h.eval('game.phase'),'ready');
+});
+test('app preferences are separate from game setup and use a persistent sound checkbox',()=>{
+ const h=harness();
+ h.eval('openPreferences()');
+ assert.equal(h.eval('activeScene'),'preferences');
+ assert.equal(h.eval('soundOn'),true);
+ assert.equal(h.elements.get('sound-toggle').checked,true);
+ h.eval('soundOn=false;setSoundIcon();persist()');
+ const reload=harness(h.storage);
+ assert.equal(reload.eval('soundOn'),false);
+ assert.equal(reload.elements.get('sound-toggle').checked,false);
+});
+test('old saved no-carousel option is migrated to regular carousel selection',()=>{
+ const h=harness();
+ const result=h.eval('sanitizeOptions({dice:false,difficulty:"easy"}).dice');
+ assert.equal(result,true);
+});
