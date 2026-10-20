@@ -435,9 +435,13 @@ function showTimer() {
       makeButton('ПРОПУСТИТЬ','blitz-skip','button-secondary')+'</div>'+
       '<div class="minor-action">'+makeButton('ЗАВЕРШИТЬ БЛИЦ','finish-early','button-quiet')+'</div>':
       '<div class="round-controls play-controls">'+
+        '<div class="play-secondary-controls">'+
         iconButton(c.visible?'eye-off':'eye','toggle-word',c.visible?'Скрыть задание':'Показать задание')+
         (allowPause()?iconButton(c.paused?'play':'pause',c.paused?'resume':'pause',c.paused?'Продолжить':'Пауза'):'<span class="round-action-placeholder" aria-hidden="true"></span>')+
-        iconButton('check','correct-now','Угадали — засчитать очки','success prominent')+
+        '</div>'+
+        '<div class="play-success-control">'+
+          iconButton('check','correct-now','Угадали — засчитать очки','success prominent')+
+        '</div>'+
       '</div>');
   updateTimerVisual(shown);
 }
