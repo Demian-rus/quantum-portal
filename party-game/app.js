@@ -1,22 +1,69 @@
 'use strict';
 const STORAGE_KEY = 'iskra-party:v1';
 const MODE_LIST = Object.freeze([
-  {id:'talk',title:'ГОВОРИ',symbol:'◉',rule:'Объясняй словами. Нельзя произносить загаданное слово, его части и однокоренные слова.',kind:'words'},
-  {id:'mime',title:'ПОКАЖИ',symbol:'✋',rule:'Только движения и мимика. Никаких слов, звуков и букв в воздухе.',kind:'words'},
-  {id:'draw',title:'РИСУЙ',symbol:'✎',rule:'Рисуй на бумаге или в заметках. Нельзя писать буквы, цифры или показывать жестами.',kind:'words'},
-  {id:'sing',title:'НАПОЙ',symbol:'♫',rule:'Напой любую знакомую песню, связанную с темой карточки. Команда должна назвать тему.',kind:'songs'},
-  {id:'secret',title:'СЕКРЕТКА',symbol:'✳',rule:'Особые правила и двойные очки. Что выпадет — узнаешь после броска!',kind:'words',points:2},
-  {id:'blitz',title:'БЛИЦ',symbol:'ϟ',rule:'Объясняй словами, но у тебя лишь 30 секунд. Без однокоренных слов!',kind:'words',seconds:30}
+  {id:'talk',title:'ГОВОРИ',rule:'Объясняй словами, не называя ответ и однокоренные слова.',kind:'words',points:1},
+  {id:'mime',title:'ПОКАЖИ',rule:'Только жесты и мимика. Нельзя говорить или издавать звуки.',kind:'words',points:2},
+  {id:'draw',title:'РИСУЙ',rule:'Рисуй на бумаге, не используя буквы, цифры и жесты.',kind:'words',points:2},
+  {id:'sing',title:'НАПОЙ',rule:'Напой песню, связанную с темой. Команда угадывает саму тему.',kind:'songs',points:2},
+  {id:'yesno',title:'ДАНЕТКИ',rule:'Соперники задают вопросы. Отвечай только «да», «нет» или «не знаю». Нужно угадать личность или персонажа.',kind:'people',points:2},
+  {id:'secret',title:'СЕКРЕТКА',rule:'Случайное задание с обязательным усложнением. Принесёт 3 очка.',kind:'words',points:3},
+  {id:'blitz',title:'БЛИЦ',rule:'За 30 секунд отгадай несколько слов подряд. Каждое угаданное слово — 1 очко.',kind:'words',seconds:30}
 ]);
 const COMPLICATIONS = Object.freeze({
-  talk: ['Объясняй шёпотом.', 'Каждую фразу начинай со слова «Представь».', 'Нельзя произносить «да» и «нет».', 'Объясняй как диктор срочных новостей.'],
-  mime: ['Одну руку держи за спиной.', 'Показывай только сидя.', 'Двигайся как в замедленной съёмке.', 'Изображай как робот.'],
-  draw: ['Рисуй неведущей рукой.', 'Рисуй, не отрывая ручку от бумаги.', 'На рисунке максимум пять линий.', 'Рисуй с закрытым одним глазом.'],
-  sing: ['Пой как оперный артист.', 'Пой очень тихо.', 'Пой максимально торжественно.', 'Пой будто это колыбельная.'],
-  blitz: ['Начинай каждую подсказку со слова «Это».', 'Объясняй как спортивный комментатор.', 'Нельзя использовать слово «очень».', 'Представь, что объясняешь ребёнку.']
+  talk: [
+    'Объясняй шёпотом.','Говори как ведущий новостей.','Нельзя использовать прилагательные.',
+    'Нельзя произносить «это» и «вот».','Каждую подсказку начни со слова «Представь».',
+    'Объясняй как злодей из фильма.','Произноси только короткие предложения.',
+    'Говори как спортивный комментатор.','Нельзя использовать слово «очень».',
+    'Говори как экскурсовод.','Объясняй исключительно вопросами.','Говори медленно и торжественно.'
+  ],
+  mime: [
+    'Одна рука за спиной.','Показывай только сидя.','Двигайся как в замедленной съёмке.',
+    'Показывай как робот.','Нельзя использовать мимику.','Можно двигать только верхней частью тела.',
+    'Играй крайне преувеличенно.','Каждые пять секунд замирай.','Показывай только одной рукой.',
+    'Нельзя вставать с места.'
+  ],
+  draw: [
+    'Рисуй неведущей рукой.','Не отрывай ручку от бумаги.','Максимум пять линий.',
+    'Используй только круги и прямые линии.','Нельзя пользоваться ластиком.',
+    'Начни рисовать с закрытыми глазами.','Разрешены только геометрические фигуры.',
+    'Рисуй одной непрерывной линией.','Делай рисунок максимально маленьким.',
+    'Нельзя рисовать лица.'
+  ],
+  sing: [
+    'Пой как оперный певец.','Пой как колыбельную.','Напевай без слов.',
+    'Пой максимально тихо.','Пой как рок-звезда.','Пой будто выступаешь на стадионе.',
+    'Пой как робот.','Напевай только на слог «ла».','Пой как грустную балладу.',
+    'Пой очень быстро.'
+  ],
+  yesno: [
+    'Не больше десяти вопросов.','Не больше восьми вопросов.',
+    'Нельзя спрашивать о профессии.','Нельзя спрашивать о стране происхождения.',
+    'Нельзя спрашивать о поле персонажа.','Отвечающий может дать лишь одно уточнение.',
+    'Нельзя спрашивать о возрасте.','Не называй категорию персонажа перед стартом.'
+  ],
+  blitz: [
+    'Нельзя использовать слово «это».','Объясняй максимально короткими фразами.',
+    'Разрешены только существительные.','Объясняй как диктор новостей.',
+    'Без прилагательных.','Нельзя повторять подсказки.'
+  ]
 });
+const DEFAULT_MODES = Object.freeze(MODE_LIST.map(mode=>mode.id));
+const PROMPT_TYPES = Object.freeze(['word','phrase','idiom']);
+const SCORE = Object.freeze({talk:1,mime:2,draw:2,sing:2,yesno:2,secret:3,blitz:1});
+function modeArt(id) {
+  return '<svg class="mode-art" viewBox="0 0 100 100" aria-hidden="true"><use href="./assets/modes.svg#'+
+    (DEFAULT_MODES.includes(id)?id:'secret')+'"></use></svg>';
+}
+function symbol(id,extra='') {
+  return '<div class="mode-symbol '+extra+'" aria-hidden="true">'+modeArt(id)+'</div>';
+}
 const $ = id => document.getElementById(id);
-const freshOptions = () => ({difficulty:'easy',duration:60,rounds:12});
+const freshOptions = () => ({
+  difficulty:'easy',duration:60,rounds:12, dice:true, complications:true,
+  modes:DEFAULT_MODES.slice(), promptTypes:PROMPT_TYPES.slice(),blitzCount:4,
+  scoring:'standard'
+});
 let options = freshOptions();
 let soundOn = true;
 let game = null;
@@ -127,21 +174,36 @@ function renderMatch() {
   $('match-team-b').classList.toggle('is-turn',currentTeamIndex()===1);
 }
 function pickMode() {
-  const recent=game.modeHistory.slice(-2);
-  const candidates=MODE_LIST.filter(mode=>!recent.includes(mode.id));
-  return randomOne(candidates.length?candidates:MODE_LIST);
+  const allowed=MODE_LIST.filter(m=>game.modes.includes(m.id));
+  if(!allowed.length)throw Error('Не выбрано ни одного режима');
+  const recent=game.modeHistory.slice(-Math.min(2,allowed.length-1));
+  const candidates=allowed.filter(mode=>!recent.includes(mode.id));
+  return randomOne(candidates.length?candidates:allowed);
+}
+function chooseDifficulty() {
+  return game.difficulty==='mixed'?randomOne(['easy','medium','hard']):game.difficulty;
+}
+function getPromptPool(kind,level) {
+  if(kind==='songs')return PARTY_SONGS[level]||PARTY_SONGS.easy;
+  if(kind==='people')return PARTY_PEOPLE[level]||PARTY_PEOPLE.easy;
+  const groups={
+    word:PARTY_WORDS[level]||PARTY_WORDS.easy,
+    phrase:PARTY_PHRASES[level]||PARTY_PHRASES.easy,
+    idiom:PARTY_IDIOMS[level]||PARTY_IDIOMS.easy
+  };
+  return (game.promptTypes?.length?game.promptTypes:PROMPT_TYPES)
+    .flatMap(type=>groups[type]||[]);
 }
 function pullWord(kind) {
-  const pack=kind==='songs'?PARTY_SONGS:PARTY_WORDS;
-  const pool=pack[game.difficulty] || pack.easy;
-  if(!pool?.length)throw Error('Словарь пуст');
-  const key=game.difficulty+':'+kind;
-  let used=game.used[key] || [];
+  const level=chooseDifficulty();
+  const pool=getPromptPool(kind,level);
+  if(!pool?.length)throw Error('Нет слов для выбранных настроек');
+  const key=level+':'+kind+':'+(game.promptTypes||[]).join(',');
+  let used=game.used[key]||[];
   let free=pool.filter(word=>!used.includes(word));
-  if(!free.length) { used=[];free=pool.slice(); }
+  if(!free.length){used=[];free=pool.slice();}
   const word=randomOne(free);
-  used.push(word);
-  game.used[key]=used;
+  used.push(word);game.used[key]=used;
   return word;
 }
 function rollOutcome() {
@@ -150,15 +212,18 @@ function rollOutcome() {
   let actualMode=mode;
   let complication='';
   if(mode.id==='secret'){
-    actualMode=randomOne(MODE_LIST.filter(m=>['talk','mime','draw','sing'].includes(m.id)));
-    complication=randomOne(COMPLICATIONS[actualMode.id]);
-  } else if(Math.random()<.22) {
-    complication=randomOne(COMPLICATIONS[mode.id]||[]);
+    const submodes=MODE_LIST.filter(m=>['talk','mime','draw','sing','yesno'].includes(m.id));
+    actualMode=randomOne(submodes.filter(m=>game.modes.includes(m.id))||submodes);
+    if(!actualMode)actualMode=randomOne(submodes);
   }
+  if(game.complications&&(mode.id==='secret'||Math.random()<.28))
+    complication=randomOne(COMPLICATIONS[actualMode.id]||[]);
   const word=pullWord(actualMode.kind);
   return {
     modeId:mode.id,methodId:actualMode.id,word,complication,
-    points:mode.points||1,seconds:mode.seconds||game.duration,
+    points:SCORE[mode.id]||1,seconds:mode.seconds||game.duration,
+    blitzWords:mode.id==='blitz'?[word,...Array.from({length:game.blitzCount-1},()=>pullWord('words'))]:null,
+    blitzIndex:0,blitzCorrect:0,blitzSkipped:0,
     visible:false,paused:false,remainingMs:null,deadline:null,
     finishedReason:null,replaced:false
   };
