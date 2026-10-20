@@ -473,14 +473,14 @@ html,body { width:100%;height:100%;min-height:0;overscroll-behavior:none; }
 body { overflow:hidden;background:#130d2e; }
 body::before {
   content:"";position:fixed;inset:0;z-index:-2;
-  background:#120c25 url('./assets/bg-home.webp') center center / cover no-repeat;
+  background:#120c25 url('./assets/bg-home.webp?v=3') center center / cover no-repeat;
   pointer-events:none;
 }
 body[data-screen="setup"]::before,body[data-screen="advanced"]::before {
-  background-image:url('./assets/bg-setup.webp');
+  background-image:url('./assets/bg-setup.webp?v=3');
 }
 body[data-screen="game"]::before,body[data-screen="results"]::before {
-  background-image:url('./assets/bg-game.webp');
+  background-image:url('./assets/bg-game.webp?v=3');
 }
 body::after {
   content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
@@ -995,7 +995,7 @@ body::after { z-index:0; }
 .preferences-sound input:focus-visible+.preferences-switch{outline:3px solid white;outline-offset:4px}
 .preferences-rules{display:flex;justify-content:space-between;align-items:center;width:100%;margin-top:15px;padding:17px 0;background:transparent;border:0;color:#ffedf5;font-weight:800;font-size:16px}
 .preferences-rules span{font-size:28px}
-body[data-screen="preferences"]::before{background-image:url('./assets/bg-home.webp');}
+body[data-screen="preferences"]::before{background-image:url('./assets/bg-setup.webp?v=3');}
 body[data-screen="preferences"]::after{background:#11082085}
 .scene--setup .settings-scroller,.scene--advanced .settings-scroller {
  inset-block-start:calc(env(safe-area-inset-top) + 66px);
@@ -1123,13 +1123,166 @@ html, body, body *, body *::before, body *::after {
   -webkit-touch-callout:none;
 }
 
-/* Temporary readability fix for the old background's baked-in "Новая игра"
-   text, until the three illustrations are replaced with clean artwork. */
-body[data-screen="setup"]::after,
-body[data-screen="advanced"]::after {
- background:linear-gradient(to bottom,#0d0822f5 0%,#150a2de0 19%,#150a2d76 37%,#09061960 100%);
+
+/* QUIPP scene art v12 — approved illustrations + cohesive neon glass surfaces.
+   No layout, gameplay, touch targets or red/green scoring semantics are changed. */
+:root {
+  --kvip-electric:#54e8ff;
+  --kvip-pink:#fc5bea;
+  --kvip-blue:#6988ff;
+  --kvip-night:#0d0a27;
 }
-.scene--setup .settings-scroller .setup-panel,
-.scene--advanced .settings-scroller .advanced-panel {
- background:linear-gradient(135deg,#201331f6,#201332f0);
+body[data-screen="home"]::after {
+  background:linear-gradient(180deg,#0a072000 0%,#0e082a12 31%,#07061955 100%);
+}
+body[data-screen="setup"]::after,
+body[data-screen="advanced"]::after,
+body[data-screen="preferences"]::after {
+  background:linear-gradient(180deg,#07051b38 0%,#07051b22 45%,#08051a64 100%);
+}
+body[data-screen="game"]::after,
+body[data-screen="results"]::after {
+  background:linear-gradient(180deg,#08051e35 0%,#0e072938 45%,#08051a73 100%);
+}
+
+/* Home controls: the logo is painted into bg-home, not duplicated in HTML. */
+.scene--home .home-action {
+  border:1px solid #8bdfffbb;
+  border-radius:18px;
+  background:linear-gradient(128deg,#182552ed,#28163fe8);
+  color:#f8faff;
+  text-shadow:0 1px 7px #090a25a8;
+  box-shadow:0 10px 26px #08051cb8,0 0 0 1px #4d7df538,inset 0 1px 0 #e6f8ff60;
+  backdrop-filter:blur(12px);
+}
+.scene--home .home-action--primary {
+  background:linear-gradient(118deg,#606af2,#9a53ef 54%,#d94dc7);
+  border-color:#ffc5fbcc;
+  color:#fff;
+  box-shadow:0 12px 30px #10051bb8,0 0 24px #b94dff73,inset 0 1px 0 #ffffff85;
+}
+.scene--home .home-action--continue:not(:disabled) {
+  background:linear-gradient(110deg,#65ebfa,#748cf7);
+  color:#111936;text-shadow:none;border-color:#cefcff;
+  box-shadow:0 12px 29px #080521a3,0 0 21px #42cfff55,inset 0 1px 0 #fff9;
+}
+.scene--home .home-action--settings {
+  background:linear-gradient(115deg,#101432e8,#221439e8);
+  color:#efedff;border-color:#9ecaff8c;
+  box-shadow:0 10px 25px #08051aa8,inset 0 1px 0 #ffffff35;
+}
+.scene--home .home-action:disabled {
+  background:#18152dba;color:#b5afca;border-color:#786f9b77;
+  box-shadow:0 7px 24px #07041977;opacity:.7;
+}
+.scene-back {
+  border-color:#93bfff94;background:linear-gradient(125deg,#101831e8,#29143deb);
+  color:#f2f4ff;box-shadow:0 5px 22px #06031ba5,inset 0 1px 0 #c7e4ff42;
+}
+.scene-back:hover {border-color:#92edff;}
+.section-kicker {color:#a8f5ff;text-shadow:0 0 14px #46aaf582;}
+
+/* Party setup and application preferences sit above the moonlit promenade. */
+.settings-scroller .setup-panel,
+.settings-scroller .advanced-panel,
+.scene--preferences .preferences-panel {
+  background:linear-gradient(143deg,#12152ded,#201339e9 68%,#15112eea);
+  border-color:#9fafff73;
+  box-shadow:0 14px 38px #030313b5,inset 0 1px 0 #b1edff32;
+  backdrop-filter:blur(13px);
+}
+.scene--preferences .preferences-panel {border-radius:23px;}
+.scene--preferences .preferences-title {color:#f5f5ff;}
+.team-input-wrap,
+.number-option {
+  background:#11122bb8;border-color:#7191d66f;
+}
+.team-input-wrap:focus-within,
+.number-option:focus-within {
+  border-color:#74e9ff;box-shadow:0 0 0 1px #6cddff75;
+}
+.choices {
+  background:#0e1028dd;border-color:#6478b87e;
+}
+.choices button {color:#c3c6e7;}
+.choices button.is-chosen {
+  background:linear-gradient(125deg,#65edff,#79b5ff);
+  color:#112048;
+  box-shadow:0 2px 12px #38cafa6b,inset 0 1px 0 #fff8;
+}
+.choices button:focus-visible {outline-color:#69edff;}
+.setup-advanced-link,
+.button-secondary,
+.button-quiet {
+  background:linear-gradient(118deg,#172244e8,#29173de8);
+  color:#f3eeff;border-color:#8b9ce9a6;
+  box-shadow:inset 0 1px 0 #bbd7ff3a,0 5px 14px #08051b54;
+}
+.setup-advanced-link span {color:#bfc9ed;}
+.button-primary {
+  background:linear-gradient(120deg,#67eeff,#6f9ffd 65%,#9b87fc);
+  border-color:#c2faff;color:#0d1d40;
+  box-shadow:0 8px 25px #2389da66,inset 0 1px 0 #ffffffab;
+}
+.toggle-grid label span {background:#12152bc9;border-color:#647eb478;}
+.toggle-grid input:checked+span {
+  background:#123352df;border-color:#64e4ff;color:#e3fbff;
+  box-shadow:inset 0 1px 0 #c6f6ff22;
+}
+.toggle-grid input:checked+span b {color:#82eaff;}
+.number-option input {background:#10152b;color:#8decff;border-color:#648bc98f;}
+.preferences-sound input:checked+.preferences-switch {
+  background:linear-gradient(90deg,#59e6fc,#758cff);border-color:#c2f8ff;
+}
+.preferences-sound input:checked+.preferences-switch::before {background:#101936;}
+.preferences-rules {color:#e5ecff;}
+
+/* Match surfaces and word card complement the neon canal instead of fighting it. */
+.scene--game .match-team {
+  background:linear-gradient(115deg,#0e1332e7,#241234df);
+  border-color:#8eafff73;
+  box-shadow:inset 0 1px 0 #b6d5ff2b;
+}
+.scene--game .match-team.is-turn {
+  border-color:#ff82c8;box-shadow:0 0 0 1px #ff82c850,0 0 15px #ec44bc42;
+}
+.scene--game .match-team--b.is-turn {
+  border-color:#70e5ff;box-shadow:0 0 0 1px #70e5ff55,0 0 15px #33bfe444;
+}
+.match-progress {background:#201b43c7;}
+.match-progress span {background:linear-gradient(90deg,#ea5ddb,#7c7ef7,#5be6ff);}
+.scene--game .play-card,
+.scene--results .results-card {
+  background:linear-gradient(143deg,#100e29d9,#221438d9 62%,#10142bd8);
+  border:1px solid #a1a6ff87;
+  box-shadow:0 18px 48px #03051dad,inset 0 1px 0 #a9e8ff30;
+  backdrop-filter:blur(11px);
+}
+.scene--game .challenge-card {
+  background:linear-gradient(145deg,#2c2459f5,#1b1941f4 68%,#281639f4);
+  border-color:#b5c8ff;
+  box-shadow:0 10px 0 #080820c9,0 19px 34px #0603139c,0 0 20px #8c62fa35;
+}
+.scene--game .challenge-card.is-hidden {
+  background:repeating-linear-gradient(135deg,#1a1b42f0 0px,#1a1b42f0 18px,#262048f0 18px,#262048f0 36px);
+  border-color:#8fdcf5;
+}
+.scene--game .mode-rule {
+  background:#171735df;border-color:#9095da76;color:#ebedff;
+}
+.scene--game .mode-chip {background:#201538ed;border-color:#a082ffab;}
+.scene--game .game-eyebrow {color:#d2c8fa;}
+.scene--game .is-task .mode-name,
+.scene--game .stable-round .round-top--task .mode-name {
+  color:#a1f5ff;text-shadow:0 0 15px #54b9ff45;
+}
+.scene--game .text-link {color:#d0c8ea;}
+.scene--game .text-link:hover {color:#fff;}
+.scene--game .three-answer-actions .round-action--muted {
+  background:#24264be3;border-color:#939deb;color:#e6f3ff;
+}
+.dialog {background:linear-gradient(145deg,#131532,#291437);border-color:#8bb9e3;}
+.dialog .button-primary {color:#0b1b3a;}
+@media(hover:none) {
+  .home-action:hover:not(:disabled),.button:hover {transform:none;}
 }
