@@ -171,7 +171,7 @@ test('blitz is a sequence with correct, skip, no timer reset and per-word points
  assert.equal(h.eval('game.current.blitzCorrect'),1);
  assert.equal(h.eval('game.current.deadline'),deadline);
  h.eval('advanceBlitz(false)');
- assert.equal(h.eval('game.current.blitzQueue.length'),5);
+ assert.equal(h.eval('game.current.blitzQueue.length'),4);
  h.eval('advanceBlitz(true);advanceBlitz(true);advanceBlitz(false)');
  assert.equal(h.eval('game.phase'),'play','Skipped words should return, not end the round');
  assert.equal(h.eval('game.current.blitzQueue.length'),2);
