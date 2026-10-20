@@ -353,7 +353,7 @@ test('circular buttons have accessible labels and judge captions stay paired wit
  h.eval('startTimer()');
  let html=h.elements.get('play-content').innerHTML;
  assert.ok(html.includes('data-action="correct-now"'));
- assert.ok(html.includes('round-action--success prominent'));
+ assert.ok(html.includes('round-action--success round-action--prominent'));
  h.eval('finishTimer("timeout")');
  html=h.elements.get('play-content').innerHTML;
  assert.ok(html.includes('judgement-option'));
