@@ -336,6 +336,7 @@ function taskControls(c) {
     '</div>';
 }
 function showReady() {
+  $('play-content').className='play-inner is-ready';
   $('play-step').textContent='ПЕРЕДАЙТЕ ТЕЛЕФОН';
   const index=currentTeamIndex();
   const team=escapeHTML(currentTeam());
@@ -347,6 +348,7 @@ function showReady() {
     makeButton(game.dice?'ВЫБРАТЬ РЕЖИМ':'ПОЛУЧИТЬ ЗАДАНИЕ','roll','button-primary button-big');
 }
 function showRolling() {
+  $('play-content').className='play-inner is-rolling-screen';
   $('play-step').textContent='ВЫБОР РЕЖИМА';
   const pool=game.modes.length?game.modes:['talk'];
   rollSequence=Array.from({length:17},(_,i)=>
@@ -393,24 +395,18 @@ function taskMarkup(hidden) {
     (hidden?'':'<span class="challenge-details">ЗАПОМНИ И НАЧИНАЙ!</span>')+'</div>';
 }
 function showTask() {
+  $('play-content').className='play-inner is-task';
   const {mode,method,secret,name,rule}=modeInformation();
   $('play-step').textContent='ВАМ ВЫПАЛО';
   const c=game.current;
   $('play-content').innerHTML=
     symbol(mode.id)+
-    '<span class="mode-chip">РЕЖИМ РАУНДА</span>'+
     '<h2 class="play-title mode-name">'+escapeHTML(name)+'</h2>'+
     '<div class="mode-rule">'+escapeHTML(rule)+
     (c.complication?'<br><strong>УСЛОЖНЕНИЕ: '+escapeHTML(c.complication)+'</strong>':'')+'</div>'+
     (secret?'<span class="secret-flag">СЕКРЕТКА · +'+c.points+' ОЧКА</span>':
       '<span class="score-note">ЗА ВЕРНЫЙ ОТВЕТ: +'+(c.modeId==='blitz'?'1 ЗА СЛОВО':c.points)+'</span>')+
-    taskMarkup(!c.visible)+
-    '<div class="inline-actions">'+
-    (c.visible?makeButton('СКРЫТЬ СЛОВО','toggle-word'):makeButton('ОТКРЫТЬ ЗАДАНИЕ','toggle-word','button-coral'))+
-    (allowPause()&&c.modeId!=='blitz'?makeButton('ДРУГОЕ СЛОВО','replace-word','button-quiet'):'')+'</div>'+
-    (c.visible?(allowPause()?makeButton('СТАРТ ТАЙМЕРА','start-timer','button-primary button-big'):
-       '<span class="score-note">Таймер начнётся автоматически через 1 секунду</span>'):
-      '<span class="score-note">Сначала открой карточку — соперники не должны видеть ответ</span>');
+    taskMarkup(!c.visible)+taskControls(c);
 }
 function blitzStatus() {
   const c=game.current;
@@ -419,6 +415,7 @@ function blitzStatus() {
     '<span>Отгадано: '+c.blitzCorrect+' · Пропущено: '+c.blitzSkipped+'</span></div>';
 }
 function showTimer() {
+  $('play-content').className='play-inner is-play';
   $('play-step').textContent='ВРЕМЯ ПОШЛО';
   const c=game.current,remaining=c.paused?c.remainingMs:c.deadline-Date.now();
   const shown=Math.max(0,remaining),blitz=c.modeId==='blitz';
@@ -432,14 +429,15 @@ function showTimer() {
       '<div id="active-timer" class="play-timer'+(shown<=10000?' warning':'')+'" role="timer" aria-label="Оставшееся время">'+timerMarkup(shown)+'</div>'+
     '</div>'+
     (blitz?blitzStatus():'')+taskMarkup(blitz?false:!c.visible)+
-    (blitz?'<div class="inline-actions">'+
+    (blitz?'<div class="blitz-actions">'+
       makeButton('✓ УГАДАЛИ +1','blitz-correct','button-primary')+
-      makeButton('ПРОПУСТИТЬ','blitz-skip','button-secondary')+'</div>':
-      '<div class="inline-actions">'+
-      makeButton(c.visible?'СКРЫТЬ СЛОВО':'ПОКАЗАТЬ СЛОВО','toggle-word')+'</div>')+
-    '<div class="inline-actions">'+
-    (allowPause()?makeButton(c.paused?'ПРОДОЛЖИТЬ':'ПАУЗА',c.paused?'resume':'pause'):'')+
-    makeButton('ЗАВЕРШИТЬ','finish-early','button-quiet')+'</div>';
+      makeButton('ПРОПУСТИТЬ','blitz-skip','button-secondary')+'</div>'+
+      '<div class="minor-action">'+makeButton('ЗАВЕРШИТЬ БЛИЦ','finish-early','button-quiet')+'</div>':
+      '<div class="round-controls play-controls">'+
+        iconButton(c.visible?'eye-off':'eye','toggle-word',c.visible?'Скрыть задание':'Показать задание')+
+        (allowPause()?iconButton(c.paused?'play':'pause',c.paused?'resume':'pause',c.paused?'Продолжить':'Пауза'):'<span class="round-action-placeholder" aria-hidden="true"></span>')+
+        iconButton('check','correct-now','Угадали — засчитать очки','success prominent')+
+      '</div>');
   updateTimerVisual(shown);
 }
 function advanceBlitz(correct) {
@@ -486,6 +484,7 @@ function beginAutomaticRound() {
   persist();sfx('go');render();
 }
 function showCountdown() {
+  $('play-content').className='play-inner is-countdown';
   const c=game.current;
   $('play-step').textContent='ПРИГОТОВЬТЕСЬ';
   $('play-content').innerHTML=
@@ -530,6 +529,7 @@ function finishTimer(reason) {
   render();
 }
 function showJudge() {
+  $('play-content').className='play-inner is-judge';
   $('play-step').textContent='ИТОГ РАУНДА';
   const c=game.current,blitz=c.modeId==='blitz';
   $('play-content').innerHTML=
@@ -561,6 +561,7 @@ function judge(yes) {
   render();
 }
 function showBetween() {
+  $('play-content').className='play-inner is-between';
   $('play-step').textContent='РАУНД ЗАВЕРШЁН';
   const last=game.history[game.history.length-1];
   $('play-content').innerHTML=
@@ -641,7 +642,7 @@ function roll() {
 function toggleWord() {
   if(!game||!['task','play'].includes(game.phase))return;
   if(game.current.modeId==='blitz'&&game.phase==='play')return;
-  if(game.phase==='play'&&!allowPause())return;
+  // Revealing or hiding an answer never pauses or restarts the clock.
   game.current.visible=!game.current.visible;
   if(game.phase==='task'&&game.current.visible&&!allowPause()){
     game.phase='countdown';
