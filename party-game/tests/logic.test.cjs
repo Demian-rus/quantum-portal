@@ -171,7 +171,7 @@ test('blitz is a sequence with correct, skip, no timer reset and per-word points
  assert.equal(h.eval('game.current.blitzCorrect'),1);
  assert.equal(h.eval('game.current.deadline'),deadline);
  h.eval('advanceBlitz(false)');
- assert.equal(h.eval('game.current.blitzSkipped'),1);
+ assert.equal(h.eval('game.current.blitzQueue.length'),5);
  h.eval('advanceBlitz(true);advanceBlitz(true);advanceBlitz(false)');
  assert.equal(h.eval('game.phase'),'play','Skipped words should return, not end the round');
  assert.equal(h.eval('game.current.blitzQueue.length'),2);
@@ -396,4 +396,39 @@ test('old saved no-carousel option is migrated to regular carousel selection',()
  const h=harness();
  const result=h.eval('sanitizeOptions({dice:false,difficulty:"easy"}).dice');
  assert.equal(result,true);
+});
+
+test('blitz skips can cycle endlessly without counting or displaying skips',()=>{
+ const h=harness();
+ h.eval('soundOn=false;options.modes=["blitz"];options.blitzCount=4;newGame();roll()');
+ h.pending.shift()();
+ h.eval('toggleWord();startTimer()');
+ for(let i=0;i<44;i++)h.eval('advanceBlitz(false)');
+ assert.equal(h.eval('game.current.blitzCorrect'),0);
+ assert.equal(h.eval('game.current.blitzQueue.length'),4);
+ assert.equal(h.eval('game.current.blitzSkipped'),undefined);
+ const status=h.eval('blitzStatus()');
+ assert.ok(status.includes('ОСТАЛОСЬ: 4'));
+ assert.ok(status.includes('ОТГАДАНО: 0'));
+ assert.ok(!status.includes('Пропущено'));
+ h.eval('finishTimer("timeout")');
+ assert.ok(!h.elements.get('play-content').innerHTML.includes('Пропущено'));
+});
+test('judge puts the negative decision left and positive decision right in every mode',()=>{
+ for(const mode of ['talk','blitz']){
+  const h=harness();
+  h.eval('soundOn=false;options.modes=["'+mode+'"];newGame();roll()');
+  h.pending.shift()();
+  h.eval('toggleWord();startTimer();finishTimer("timeout")');
+  const markup=h.elements.get('play-content').innerHTML;
+  assert.ok(markup.indexOf('data-action="no"')<markup.indexOf('data-action="yes"'),mode);
+  assert.ok(markup.indexOf('judgement--no')<markup.indexOf('judgement--yes'),mode);
+ }
+});
+test('Russian long prompt has a syllabic optional break without changing stored words',()=>{
+ const h=harness();
+ const raw='ПАРАЛЛЕЛЬНАЯ РЕАЛЬНОСТЬ';
+ const marked=h.eval('displayPrompt("'+raw+'")');
+ assert.ok(marked.includes('ПАРАЛЛЕЛЬ\u00adНАЯ'));
+ assert.equal(marked.replace(/\u00ad/g,''),raw);
 });
