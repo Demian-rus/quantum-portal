@@ -1,10 +1,10 @@
-const CACHE='iskra-pwa-v9-20261020';
-const CORE=['./','./index.html','./style.css?v=9','./app.js?v=9','./words.js?v=2','./mode-images.js?v=4','./manifest.webmanifest','./assets/bg-home.webp','./assets/bg-setup.webp','./assets/bg-game.webp','./assets/icon-192.png','./assets/icon-512.png',...['talk','mime','draw','sing','yesno','secret','blitz'].map(id=>'./assets/modes/'+id+'.webp')];
+const CACHE='kvip-pwa-v10-20261020';
+const CORE=['./','./index.html','./style.css?v=10','./app.js?v=9','./words.js?v=2','./mode-images.js?v=4','./manifest.webmanifest','./assets/bg-home.webp','./assets/bg-setup.webp','./assets/bg-game.webp','./assets/icon-192.png','./assets/icon-512.png',...['talk','mime','draw','sing','yesno','secret','blitz'].map(id=>'./assets/modes/'+id+'.webp')];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));
 });
 self.addEventListener('activate',event=>{
-  event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('iskra-pwa-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));
+  event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>(key.startsWith('iskra-pwa-')||key.startsWith('kvip-pwa-'))&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));
 });
 self.addEventListener('fetch',event=>{
   const request=event.request;
