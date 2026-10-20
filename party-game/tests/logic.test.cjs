@@ -45,7 +45,7 @@ test('vocabulary is varied, unique within packs and contains at least 400 prompt
   }
   assert.equal(total,450);
 });
-test('timer, all six modes, scoring, alternation and results survive repeated button actions',()=>{
+test('seven modes, scoring, alternation and results survive repeated button actions',()=>{
   const h=harness();
   h.eval('soundOn=false; options.rounds=8; options.duration=45; newGame();');
   assert.equal(h.eval('game.phase'),'ready');
@@ -58,7 +58,7 @@ test('timer, all six modes, scoring, alternation and results survive repeated bu
     assert.equal(h.eval('game.phase'),'task');
     const mode=h.eval('game.current.modeId');
     visited.add(mode);
-    assert.ok(['talk','mime','draw','sing','secret','blitz'].includes(mode));
+    assert.ok(['talk','mime','draw','sing','yesno','secret','blitz'].includes(mode));
     assert.equal(h.eval('game.current.visible'),false);
     h.eval('toggleWord();startTimer()');
     assert.equal(h.eval('game.phase'),'play');
@@ -68,7 +68,7 @@ test('timer, all six modes, scoring, alternation and results survive repeated bu
     assert.equal(h.eval('game.current.paused'),false);
     h.eval("finishTimer('early')");
     assert.equal(h.eval('game.phase'),'judge');
-    const points=h.eval('game.current.points');
+    const points=h.eval("game.current.modeId==='blitz'?game.current.blitzCorrect:game.current.points");
     const yes=i%3!==0;
     h.eval('judge('+yes+')');
     if(yes)earned[i%2]+=points;
@@ -121,4 +121,73 @@ test('team names are escaped to prevent injection into game views',()=>{
   h.eval('newGame()');
   assert.ok(h.elements.get('play-content').innerHTML.includes('&lt;img'));
   assert.ok(!h.elements.get('play-content').innerHTML.includes('<img'));
+});
+
+test('extended vocabulary is clean and new prompt types are available',()=>{
+ const h=harness();
+ let count=0;
+ for(const pack of ['PARTY_PHRASES','PARTY_IDIOMS','PARTY_PEOPLE'])
+ for(const level of ['easy','medium','hard']){
+   const values=h.eval(pack+'.'+level);
+   assert.ok(values.length>=20,pack+'/'+level+' too small');
+   assert.equal(values.length,new Set(values).size,pack+'/'+level+' duplicates');
+   count+=values.length;
+ }
+ assert.ok(count>=270,'Extended prompts missing');
+});
+test('only selected mode and selected prompt types are drawn, with no dice animation',()=>{
+ const h=harness();
+ h.eval(`soundOn=false;options.modes=['talk'];options.promptTypes=['idiom'];
+   options.dice=false;options.complications=false;options.duration=135;options.rounds=6;newGame()`);
+ assert.equal(h.eval('game.modes.join(",")'),'talk');
+ assert.equal(h.eval('game.duration'),135);
+ h.eval('roll()');
+ h.pending.shift()();
+ assert.equal(h.eval('game.phase'),'task');
+ assert.equal(h.eval('game.current.modeId'),'talk');
+ assert.equal(h.eval('game.current.complication'),'');
+ const word=h.eval('game.current.word');
+ assert.ok(h.eval('PARTY_IDIOMS.easy.includes(game.current.word)'),word+' was not an idiom');
+});
+test('yes/no mode uses person and character cards worth two points',()=>{
+ const h=harness();
+ h.eval('soundOn=false;options.modes=["yesno"];newGame();roll()');
+ h.pending.shift()();
+ assert.equal(h.eval('game.current.modeId'),'yesno');
+ assert.equal(h.eval('game.current.points'),2);
+ assert.ok(h.eval('PARTY_PEOPLE.easy.includes(game.current.word)'));
+ h.eval('toggleWord();startTimer();finishTimer("early");judge(true)');
+ assert.equal(h.eval('game.scores[0]'),2);
+});
+test('blitz is a sequence with correct, skip, no timer reset and per-word points',()=>{
+ const h=harness();
+ h.eval('soundOn=false;options.modes=["blitz"];options.blitzCount=5;newGame();roll()');
+ h.pending.shift()();
+ assert.equal(h.eval('game.current.blitzWords.length'),5);
+ assert.equal(new Set(h.eval('game.current.blitzWords')).size,5);
+ assert.equal(h.eval('game.current.seconds'),30);
+ h.eval('toggleWord();startTimer()');
+ const deadline=h.eval('game.current.deadline');
+ h.eval('advanceBlitz(true)');
+ assert.equal(h.eval('game.current.blitzIndex'),1);
+ assert.equal(h.eval('game.current.blitzCorrect'),1);
+ assert.equal(h.eval('game.current.deadline'),deadline);
+ h.eval('advanceBlitz(false)');
+ assert.equal(h.eval('game.current.blitzSkipped'),1);
+ h.eval('advanceBlitz(true);advanceBlitz(true);advanceBlitz(false)');
+ assert.equal(h.eval('game.phase'),'judge');
+ assert.equal(h.eval('game.current.blitzCorrect'),3);
+ assert.equal(h.eval('game.scores[0]'),0);
+ h.eval('judge(true);judge(true)');
+ assert.equal(h.eval('game.scores[0]'),3,'blitz double-awarded');
+});
+test('manual game settings are clamped and invalid modes are filtered on restore',()=>{
+ const h=harness();
+ const settings=h.eval('sanitizeOptions({duration:999,rounds:1,blitzCount:100,modes:["mime","bogus"],promptTypes:["phrase","invalid"],difficulty:"mixed"})');
+ assert.equal(settings.duration,300);
+ assert.equal(settings.rounds,2);
+ assert.equal(settings.blitzCount,8);
+ assert.equal(Array.from(settings.modes).join(','),'mime');
+ assert.equal(Array.from(settings.promptTypes).join(','),'phrase');
+ assert.equal(settings.difficulty,'mixed');
 });
