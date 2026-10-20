@@ -26,16 +26,16 @@ async function isInViewport(page){
        neon:getComputedStyle(document.documentElement).getPropertyValue('--kvip-electric').trim()};
    },expected);
    const homeArt=await art('home');
-   assert.match(homeArt.bg,/bg-home\\.webp\\?v=3/,'Home artwork was not loaded');
+   assert.ok(homeArt.bg.includes('bg-home.webp?v=3'),'Home artwork was not loaded');
    assert.equal(homeArt.neon,'#54e8ff');
    if(device.name==='phone')await page.screenshot({path:'artifacts/iskra-polish/phone-kvip-home.png'});
    await page.locator('#settings-menu').click();
    const prefArt=await art('setup');
-   assert.match(prefArt.bg,/bg-setup\\.webp\\?v=3/,'Preferences should share the settings backdrop');
+   assert.ok(prefArt.bg.includes('bg-setup.webp?v=3'),'Preferences should share the settings backdrop');
    await page.locator('#preferences-back').click();
    await page.locator('#new-game-menu').click();
    const setupArt=await art('setup');
-   assert.match(setupArt.bg,/bg-setup\\.webp\\?v=3/,'Party setup art mismatch');
+   assert.ok(setupArt.bg.includes('bg-setup.webp?v=3'),'Party setup art mismatch');
    const chosen=await page.locator('.choices .is-chosen').first().evaluate(el=>getComputedStyle(el).backgroundImage);
    assert.match(chosen,/gradient/,'Old flat lime selection still active');
    if(device.name==='phone')await page.screenshot({path:'artifacts/iskra-polish/phone-kvip-setup.png'});
@@ -54,7 +54,7 @@ async function isInViewport(page){
      'Disabling selection must not block typing a team name');
    await page.evaluate(()=>{options.modes=['talk'];options.dice=false;options.difficulty='easy';});
    await page.locator('#start-game').click();
-   assert.match((await art('game')).bg,/bg-game\\.webp\\?v=3/,'Game background mismatch');
+   assert.ok((await art('game')).bg.includes('bg-game.webp?v=3'),'Game background mismatch');
    await page.waitForSelector('[data-action="roll"]');
    if(device.name==='phone')await page.screenshot({path:'artifacts/iskra-polish/phone-kvip-game-ready.png'});
    const ready=await page.evaluate(()=>{
