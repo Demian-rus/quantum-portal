@@ -98,6 +98,7 @@ let soundOn = true;
 let game = null;
 let rafId = 0;
 let intervalId = null;
+let rollFrameHandle = null;
 let audioContext = null;
 let lastChimeAt = null;
 let toastTimeout = null;
@@ -283,7 +284,7 @@ function showRolling() {
   $('play-step').textContent='КУБИК В ПОЛЁТЕ';
   $('play-content').innerHTML=
     '<span class="game-eyebrow">СУДЬБА ВЫБИРАЕТ</span>'+
-    symbol('secret','is-rolling')+
+    '<div class="mode-symbol is-rolling" id="rolling-icon" aria-hidden="true">'+modeArt(randomOne(game.modes))+'</div>'+
     '<h2 class="play-title">ЧТО ЖЕ <em>ВЫПАДЕТ?</em></h2>'+
     '<p class="play-subtitle">Готовьте голос, руки и фантазию!</p>';
 }
@@ -532,11 +533,20 @@ function roll() {
     return;
   }
   game.phase='rolling';persist();sfx('roll');render();
+  if(rollFrameHandle!==null)clearInterval(rollFrameHandle);
+  // A short changing reel of generated face illustrations; the result is
+  // selected fairly by rollOutcome, not by the cosmetic animation.
+  rollFrameHandle=setInterval(()=>{
+    if(!game||game.phase!=='rolling')return;
+    const frame=$('rolling-icon');
+    if(frame)frame.innerHTML=modeArt(randomOne(game.modes));
+  },135);
   setTimeout(()=>{
+    if(rollFrameHandle!==null){clearInterval(rollFrameHandle);rollFrameHandle=null;}
     if(!game||game.phase!=='rolling')return;
     game.current=rollOutcome();game.phase='task';
     persist();sfx('go');render();
-  },game.dice?970:180);
+  },1050);
 }
 function toggleWord() {
   if(!game||!['task','play'].includes(game.phase))return;
@@ -580,7 +590,9 @@ function resumeTimer() {
 }
 function backToMenu() {
   if(game&&!['results','home'].includes(game.phase)&&!window.confirm('Завершить партию? Текущий счёт будет потерян.'))return;
-  stopTicking();game=null;persist();setScene('home');
+  stopTicking();
+  if(rollFrameHandle!==null){clearInterval(rollFrameHandle);rollFrameHandle=null;}
+  game=null;persist();setScene('home');
   renderOptions();
 }
 function handleAction(action) {

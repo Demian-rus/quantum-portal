@@ -31,6 +31,11 @@ async function configureOnly(page,id) {
       await page.locator('#custom-duration').blur();
       await page.locator('#custom-rounds').fill('4');
       await page.locator('#custom-rounds').blur();
+      const aligns=await page.locator('.advanced-numbers input').evaluateAll(inputs=>inputs.map(el=>({
+        id:el.id,top:Math.round(el.getBoundingClientRect().top),
+        height:Math.round(el.getBoundingClientRect().height)
+      })));
+      assert.ok(aligns.every(x=>Math.abs(x.top-aligns[0].top)<=1),'Advanced settings are uneven: '+JSON.stringify(aligns));
       await page.screenshot({path:'artifacts/iskra-v2/'+device.name+'-settings.png',fullPage:true});
       await page.locator('#start-game').click();
       assert.equal(await page.locator('#round-total').textContent(),'4');

@@ -458,3 +458,11 @@ a{color:inherit}
  .mode-symbol{width:110px;height:110px}
  .ready-avatar{width:115px;height:115px}
 }
+
+@keyframes premium-roll {
+  0%{transform:perspective(460px) rotateY(-115deg) rotateX(22deg) scale(.7);opacity:.4;filter:blur(4px)}
+  18%{transform:perspective(460px) rotateY(38deg) rotateX(-12deg) scale(1.02);opacity:1;filter:blur(0)}
+  42%{transform:perspective(460px) rotateY(-30deg) rotateX(8deg) scale(.92)}
+  70%{transform:perspective(460px) rotateY(15deg) rotateX(-5deg) scale(1.11)}
+  100%{transform:perspective(460px) rotateY(0) rotateX(0) scale(1)}
+}
