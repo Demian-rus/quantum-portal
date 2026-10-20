@@ -237,9 +237,9 @@ function renderCluesList(placed) {
   const ver = placed.filter(p => p.dir === 'V').sort((a,b)=>a.num-b.num);
 
   let html = `<div class="clues-section"><h3>ПО ГОРИЗОНТАЛИ</h3>`;
-  hor.forEach(p => html += `<div class="clue-item" id="clue-${p.num}-H"><b>${p.num}.</b> ${p.q}</div>`);
+  hor.forEach(p => html += `<button type="button" class="clue-item cw-clue-button" data-dir="H" data-num="${p.num}" id="clue-${p.num}-H"><b>${p.num}.</b> ${p.q}</button>`);
   html += `</div><div class="clues-section"><h3>ПО ВЕРТИКАЛИ</h3>`;
-  ver.forEach(p => html += `<div class="clue-item" id="clue-${p.num}-V"><b>${p.num}.</b> ${p.q}</div>`);
+  ver.forEach(p => html += `<button type="button" class="clue-item cw-clue-button" data-dir="V" data-num="${p.num}" id="clue-${p.num}-V"><b>${p.num}.</b> ${p.q}</button>`);
   html += `</div>`;
   box.innerHTML = html;
 }
@@ -395,6 +395,15 @@ document.getElementById('cv').addEventListener('pointerdown',e=>{
   activeR=r;activeC=c;updateUI();drawCrossword(window.lastG,window.lastPlaced);
 });
 window.addEventListener('resize',()=>{if(window.lastG)drawCrossword(window.lastG,window.lastPlaced);});
+document.getElementById('cluesList').addEventListener('click',event=>{
+  const entry=event.target.closest('[data-dir][data-num]');
+  if(!entry||isSolved||!window.lastPlaced)return;
+  const choice=window.lastPlaced.find(p=>p.dir===entry.dataset.dir&&p.num===Number(entry.dataset.num));
+  if(!choice)return;
+  activeWord=choice;activeR=choice.r;activeC=choice.c;
+  updateUI();drawCrossword(window.lastG,window.lastPlaced);
+});
+
 
 function onToggleAnswers() {
   if(!window.lastG) return;
