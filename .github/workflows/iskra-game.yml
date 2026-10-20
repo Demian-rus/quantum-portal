@@ -4,6 +4,7 @@ on:
     branches:
       - feat/iskra-party-game-20261020
       - feat/iskra-v2-20261020
+      - feat/iskra-v3-rules-and-art-20261020
       - main
     paths:
       - 'party-game/**'

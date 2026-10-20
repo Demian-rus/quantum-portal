@@ -51,15 +51,16 @@ async function configureOnly(page,id) {
       assert.equal(response,200,'Mode artwork resource not available');
       await page.screenshot({path:'artifacts/iskra-v2/'+device.name+'-yesno.png',fullPage:true});
       await page.locator('[data-action="toggle-word"]').click();
-      await page.locator('[data-action="start-timer"]').click();
-      await page.waitForSelector('#active-timer .timer-colon');
+      assert.equal(await page.locator('[data-action="start-timer"]').count(),0,'Hard game must auto-start');
+      assert.equal(await page.locator('[data-action="pause"]').count(),0,'Hard game must not offer pause');
+      await page.waitForSelector('#active-timer',{timeout:4000});
       const timer=await page.locator('#active-timer').evaluate(element=>({
         text:element.textContent,
-        colon:element.querySelector('.timer-colon').getBoundingClientRect().width,
-        width:element.getBoundingClientRect().width
+        width:element.getBoundingClientRect().width,
+        children:element.children.length
       }));
-      assert.ok(timer.colon>0,'Timer colon should occupy its own space');
-      assert.match(timer.text,/^2:1[3-5]$/,'Custom timer is not used: '+timer.text);
+      assert.equal(timer.children,0,'Timer must be a single uninterrupted string');
+      assert.match(timer.text,/^2:1[1-5]$/,'Custom timer is not used: '+timer.text);
       await page.screenshot({path:'artifacts/iskra-v2/'+device.name+'-timer.png',fullPage:true});
       await page.evaluate(()=>{game.current.deadline=Date.now()-10;tick()});
       await page.locator('[data-action="yes"]').click();

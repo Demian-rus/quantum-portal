@@ -210,3 +210,70 @@ test('blitz cannot add a correct answer once the timer has expired',()=>{
  assert.equal(h.eval('game.phase'),'judge');
  assert.equal(h.eval('game.current.blitzCorrect'),0);
 });
+
+test('easy words remain visible without a timer and allow pause and repeated replacement',()=>{
+ const h=harness();
+ h.eval('soundOn=false;options.difficulty="easy";options.modes=["talk"];newGame();roll()');
+ h.pending.shift()();
+ h.eval('toggleWord()');
+ assert.equal(h.eval('game.phase'),'task');
+ assert.equal(h.eval('game.current.deadline'),null);
+ h.eval('replaceWord();replaceWord()');
+ assert.equal(h.eval('game.phase'),'task');
+ h.eval('toggleWord();startTimer()');
+ assert.equal(h.eval('game.phase'),'task','hidden card must not start');
+ h.eval('toggleWord();startTimer()');
+ assert.equal(h.eval('game.phase'),'play');
+ h.eval('pauseTimer()');
+ assert.equal(h.eval('game.current.paused'),true);
+ h.eval('resumeTimer()');
+ assert.equal(h.eval('game.current.paused'),false);
+});
+test('medium and hard start one second after reveal and cannot pause or swap prompt',()=>{
+ for(const level of ['medium','hard']){
+  const h=harness();
+  h.eval('soundOn=false;options.difficulty="'+level+'";options.modes=["talk"];newGame();roll()');
+  h.pending.shift()();
+  const before=h.eval('game.current.word');
+  h.eval('replaceWord()');
+  assert.equal(h.eval('game.current.word'),before,'Swapped in '+level);
+  h.eval('toggleWord()');
+  assert.equal(h.eval('game.phase'),'countdown');
+  assert.ok(h.eval('game.current.autoStartAt-Date.now()')>500);
+  h.eval('startTimer()');
+  assert.equal(h.eval('game.phase'),'countdown','Manual timer must not start');
+  h.eval('game.current.autoStartAt=Date.now()-1;tick()');
+  assert.equal(h.eval('game.phase'),'play');
+  h.eval('pauseTimer()');
+  assert.equal(h.eval('game.current.paused'),false,'Pause accepted in '+level);
+  h.eval('toggleWord()');
+  assert.equal(h.eval('game.current.visible'),true,'Card hidden in '+level);
+ }
+});
+test('difficulty controls modifier severity and secret cards always get one',()=>{
+ const h=harness();
+ const ev=x=>h.eval(x);
+ for(const level of ['easy','medium','hard']){
+  ev('soundOn=false;options.difficulty="'+level+'";options.modes=["secret"];options.complications=true;newGame()');
+  const pool=ev('Array.from(new Set(EASY_COMPLICATIONS.talk.concat(level==="medium"||level==="hard"?COMPLICATIONS.talk:[],level==="hard"?HARD_COMPLICATIONS.talk:[])))');
+  assert.ok(pool.length>0);
+  for(let i=0;i<8;i++){
+   ev('game.phase="ready";roll()');h.pending.shift()();
+   assert.ok(ev('game.current.complication.length')>2,'secret modifier missing');
+   if(level==='easy'){
+    const id=ev('game.current.methodId');
+    assert.ok(ev('EASY_COMPLICATIONS[game.current.methodId].includes(game.current.complication)'),'hard modifier in easy');
+   }
+  }
+ }
+});
+test('countdown survives reload and respects its original start timestamp',()=>{
+ const storage=new Map(),first=harness(storage);
+ first.eval('soundOn=false;options.difficulty="hard";options.modes=["talk"];newGame();roll()');
+ first.pending.shift()();
+ first.eval('toggleWord()');
+ const second=harness(storage);
+ assert.equal(second.eval('game.phase'),'countdown');
+ second.eval('game.current.autoStartAt=Date.now()-2;tick()');
+ assert.equal(second.eval('game.phase'),'play');
+});
