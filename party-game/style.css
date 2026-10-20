@@ -897,8 +897,8 @@ body::after { z-index:0; }
 .scene--game .is-play .timer-ring {width:clamp(135px,23dvh,204px);height:clamp(135px,23dvh,204px);}
 .scene--game .is-play .game-eyebrow {font-size:clamp(10px,1.55dvh,13px);}
 .scene--game .is-play .play-controls {margin-top:clamp(3px,1dvh,9px);}
-.scene--game .is-play .blitz-actions {display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
-.scene--game .is-play .blitz-actions .button {min-height:48px;padding:12px 17px;}
+.scene--game .is-play .blitz-actions .blitz-control {display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-width:0}
+.scene--game .is-play .blitz-actions .blitz-control span {font-size:clamp(10px,1.45dvh,13px);font-weight:800;white-space:nowrap}
 .scene--game .is-play .minor-action {margin-top:0;}
 .scene--game .is-play .minor-action .button {padding:6px 10px;font-size:10px;min-height:30px;}
 /* The label always sits directly beneath the corresponding judgement circle. */
@@ -1043,7 +1043,7 @@ body[data-screen="preferences"]::after{background:#11082085}
 .scene--game .stable-round .round-top--timer .game-eyebrow{font-size:10px;line-height:1.2}
 .scene--game .stable-round .round-fixed-card {
  width:100%;min-width:0;
- height:clamp(114px,17dvh,166px);
+ height:clamp(132px,20dvh,188px);
  display:flex;align-items:center;justify-content:center;
  flex:0 0 auto;
 }
@@ -1056,7 +1056,7 @@ body[data-screen="preferences"]::after{background:#11082085}
 }
 .scene--game .stable-round .challenge-word {
  line-height:1.12;font-size:clamp(21px,3.5dvh,36px);
- max-width:100%;max-height:100%;overflow-y:auto;
+ max-width:100%;max-height:none;overflow:visible;
  overflow-wrap:anywhere;word-break:normal;
 }
 .scene--game .stable-round .challenge-word--long{font-size:clamp(17px,2.9dvh,27px)}
@@ -1065,7 +1065,7 @@ body[data-screen="preferences"]::after{background:#11082085}
 .scene--game .stable-round .round-bottom {
  display:flex;flex-direction:column;justify-content:flex-end;align-items:center;
  width:100%;height:100%;min-height:0;
- padding:0 4px clamp(18px,5dvh,52px);
+ padding:0 4px clamp(12px,3.6dvh,38px);
  gap:10px;
 }
 .scene--game .stable-round .round-bottom--task .task-open{
@@ -1098,7 +1098,7 @@ body[data-screen="preferences"]::after{background:#11082085}
 .scene--game .three-answer-actions .round-action--danger svg {
  stroke-width:2.8;width:50%;height:50%
 }
-.scene--game .stable-round .round-bottom--play .blitz-actions {display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap}
+.scene--game .stable-round .round-bottom--play .blitz-actions {display:grid}
 .scene--game .stable-round .round-bottom--play .minor-action {margin-top:0}
 .scene--game .stable-round .round-bottom--task .task-controls {width:100%}
 .scene--game .stable-round .round-top--timer .play-title{font-size:clamp(19px,3dvh,29px)}
@@ -1106,11 +1106,20 @@ body[data-screen="preferences"]::after{background:#11082085}
  .scene--game .stable-round .round-top--task .mode-symbol{width:75px;height:75px;min-height:60px}
  .scene--game .stable-round .round-top--task .mode-name{font-size:19px}
  .scene--game .stable-round .round-top--task .mode-rule{max-height:11dvh;font-size:10px;padding:5px 8px}
- .scene--game .stable-round .round-fixed-card{height:clamp(95px,16dvh,117px)}
+ .scene--game .stable-round .round-fixed-card{height:clamp(122px,19dvh,152px)}
  .scene--game .stable-round .round-top--timer .timer-ring{width:clamp(93px,17dvh,119px);height:clamp(93px,17dvh,119px)}
  .scene--game .stable-round .round-bottom{padding-bottom:clamp(8px,3dvh,20px)}
  .scene--game .three-answer-actions .round-action--prominent{width:64px;height:64px}
  .scene--game .three-answer-actions .round-action--muted{width:47px;height:47px}
+}
+
+/* Touch-controlled game content must never trigger Android selection handles.
+   The setup scenes remain editable and permit ordinary text selection. */
+.scene--game, .scene--game *,
+.scene--results, .scene--results * {
+  -webkit-user-select:none;
+  user-select:none;
+  -webkit-touch-callout:none;
 }
 
 /* Temporary readability fix for the old background's baked-in "Новая игра"
