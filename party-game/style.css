@@ -733,3 +733,13 @@ body::after {
  .timer-ring {width:112px;height:112px;}
  .timer-ring .play-timer {font-size:27px;}
 }
+
+/* Keep fixed backgrounds above the body's paint layer but below all scenes. */
+body::before { z-index:0; }
+body::after { z-index:0; }
+.site-shell { z-index:1; }
+.scene--game .mode-symbol { animation:arrive-art .38s ease both; }
+@keyframes arrive-art {
+ from{transform:scale(1.12);opacity:.5}
+ to{transform:scale(1);opacity:1}
+}
