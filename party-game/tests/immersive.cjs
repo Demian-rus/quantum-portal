@@ -40,7 +40,14 @@ const URL='http://127.0.0.1:8765/party-game/';
       }));
       assert.ok(setup.bg.includes('bg-setup.webp'),JSON.stringify(setup));
       assert.ok(setup.pageScroll<=setup.viewport+2,'Setup scrolls whole document');
-      if(device.width<500)assert.ok(setup.scroller>setup.viewHeight,'Setup content must scroll independently');
+      if(device.width<500 && setup.scroller>setup.viewHeight){
+        const scrolled=await page.locator('#setup-scroll').evaluate(el=>{
+          el.scrollTop=el.scrollHeight;
+          return el.scrollTop>0;
+        });
+        assert.ok(scrolled,'Long setup form must scroll inside its own pane');
+        await page.locator('#setup-scroll').evaluate(el=>el.scrollTop=0);
+      }
       await page.screenshot({path:'artifacts/iskra-immersive/'+device.name+'-setup.png',fullPage:true});
       await page.locator('#go-advanced').click();
       assert.equal(await page.locator('#scene-advanced').isVisible(),true);
