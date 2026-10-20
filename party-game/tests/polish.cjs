@@ -41,7 +41,7 @@ async function isInViewport(page){
    const task=await page.evaluate(()=>{
     const card=document.querySelector('.is-task .challenge-card');
     const rect=card.getBoundingClientRect();
-    return {cardWidth:rect.width,cardHeight:rect.height,transform:getComputedStyle(card).transform};
+    return {cardWidth:rect.width,cardHeight:rect.height,cardTop:rect.top,transform:getComputedStyle(card).transform};
    });
    assert.ok(task.cardHeight>=85&&task.transform!=='none','Layered card missing '+JSON.stringify(task));
    await page.screenshot({path:'artifacts/iskra-polish/'+device.name+'-task-controls.png'});
@@ -49,23 +49,25 @@ async function isInViewport(page){
    assert.equal(await page.locator('.is-play [data-action="correct-now"]').count(),1);
    assert.equal(await page.locator('.is-play [data-action="pause"]').count(),1);
    const geometry=await page.evaluate(()=>{
-     const correct=document.querySelector('[data-action="correct-now"]');
-     const pause=document.querySelector('.play-secondary-controls [data-action="pause"]');
-     const a=correct.getBoundingClientRect(),p=pause.getBoundingClientRect();
-     return {correctTop:a.top,secondaryBottom:p.bottom,correctX:(a.left+a.right)/2,
-       playWidth:innerWidth,color:getComputedStyle(correct).color};
+     const card=document.querySelector('.is-play .challenge-card').getBoundingClientRect();
+     const actions=[...document.querySelectorAll('.three-answer-actions .round-action')].map(e=>{
+       const b=e.getBoundingClientRect();
+       return {action:e.dataset.action,centerX:(b.left+b.right)/2,top:b.top,width:b.width,color:getComputedStyle(e).color};
+     });
+     const timer=document.querySelector('.round-top--timer .timer-ring').getBoundingClientRect();
+     return {cardTop:card.top,cardHeight:card.height,timerBottom:timer.bottom,actions,viewport:innerWidth};
    });
-   if(device.height>740) {
-     assert.ok(Math.abs(geometry.correctX-geometry.playWidth/2)<=4,
-       'Correct button not centered: '+JSON.stringify(geometry));
-     assert.ok(geometry.correctTop>geometry.secondaryBottom,
-       'Correct button not beneath secondary tools: '+JSON.stringify(geometry));
-   } else {
-     assert.ok(geometry.correctX>geometry.playWidth/2 &&
-       geometry.correctX<geometry.playWidth-20,
-       'Compact controls overflow the small screen: '+JSON.stringify(geometry));
-   }
-   assert.equal(geometry.color,'rgb(255, 255, 255)','Correct check icon should be white');
+   assert.ok(Math.abs(task.cardTop-geometry.cardTop)<=2,
+     'Card jumped after timer start: '+JSON.stringify({task,geometry}));
+   assert.ok(geometry.timerBottom<geometry.cardTop-3,'Timer should be above fixed card');
+   assert.deepEqual(geometry.actions.map(x=>x.action),['wrong-now','toggle-word','correct-now']);
+   assert.ok(geometry.actions[0].centerX<geometry.actions[1].centerX &&
+     geometry.actions[1].centerX<geometry.actions[2].centerX,'Answer controls not ordered');
+   assert.ok(Math.abs(geometry.actions[1].centerX-geometry.viewport/2)<=4,'Hide button not centered');
+   assert.ok(geometry.actions[0].width>geometry.actions[1].width &&
+     geometry.actions[2].width>geometry.actions[1].width,'Side decisions must be larger');
+   assert.equal(geometry.actions[0].color,'rgb(255, 255, 255)');
+   assert.equal(geometry.actions[2].color,'rgb(255, 255, 255)');
    await page.screenshot({path:'artifacts/iskra-polish/'+device.name+'-timer-controls.png'});
    const first=await isInViewport(page);
    assert.ok(first.page<=first.window+2&&first.inside<=first.height+4,'Game scroll overflow '+JSON.stringify(first));
@@ -79,6 +81,14 @@ async function isInViewport(page){
    await page.locator('#new-game-menu').click();
    await page.locator('#start-game').click();
    assert.deepEqual(dialogs,[],'Unexpected native browser confirmations');
+   await page.evaluate(()=>{options.modes=['talk'];options.dice=false;options.difficulty='easy';});
+   await page.locator('[data-action="roll"]').click();
+   await page.locator('[data-action="toggle-word"]').click();
+   await page.locator('[data-action="start-timer"]').click();
+   // Immediate red X rejects an invalid answer and passes the turn with no points.
+   await page.locator('[data-action="wrong-now"]').click();
+   assert.equal(await page.locator('#score-a').textContent(),'0');
+   assert.equal(await page.locator('[data-action="roll"]').count(),1);
    await page.evaluate(()=>{options.modes=['talk'];options.dice=false;options.difficulty='easy';});
    await page.locator('[data-action="roll"]').click();
    await page.locator('[data-action="toggle-word"]').click();
