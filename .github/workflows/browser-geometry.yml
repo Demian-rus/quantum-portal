@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feat/crossword-geometry-20261020
+      - feat/responsive-gameplay-layout-20261020
       - main
   workflow_dispatch:
 jobs:
@@ -17,6 +18,7 @@ jobs:
       - run: |
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/quantum-portal-http.log 2>&1 &
       - run: node tests/browser-smoke.cjs
+      - run: node tests/responsive-layout.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

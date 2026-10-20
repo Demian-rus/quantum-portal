@@ -41,7 +41,7 @@ const {chromium} = require('playwright-core');
             rowsMatch:activeR===first.r,colsMatch:activeC===first.c,
             count:points.length,unique,title,ratio,horizontalOverflow,
             questionButtons:document.querySelectorAll('#cluesList .cw-clue-button').length,
-            subtitleVisible:getComputedStyle(document.querySelector('.header-inner .sub')).display!=='none'};
+            subtitleVisible:Boolean(document.querySelector('.header-inner .sub') && getComputedStyle(document.querySelector('.header-inner .sub')).display!=='none')};
         });
         assert.ok(measurement.count>=10,variant+' too few words');
         assert.equal(measurement.unique,measurement.count,variant+' repeated words');
