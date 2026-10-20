@@ -1,4 +1,4 @@
-name: ISKRA game checks
+name: КВИП game checks
 on:
   push:
     branches:

@@ -467,3 +467,18 @@ test('reel sequence repeats around the chosen mode without modifying game mode o
  assert.equal(h.eval('game.phase'),'task');
  assert.equal(h.eval('game.current.modeId'),chosen,'Wheel changed the outcome');
 });
+
+test('КВИП branding is consistent across the browser and installed PWA',()=>{
+ const html=read('index.html');
+ const css=read('style.css');
+ const manifest=JSON.parse(read('manifest.webmanifest'));
+ const worker=read('sw.js');
+ assert.match(html,/<title>КВИП — игра для компании<\/title>/);
+ assert.match(html,/class="play-footer"><span>КВИП<\/span>/);
+ assert.doesNotMatch(html,/ИСКРА/);
+ assert.equal(manifest.short_name,'КВИП');
+ assert.equal(manifest.name,'КВИП — игра для компании');
+ assert.match(css,/content:"КВИП";/);
+ assert.match(worker,/kvip-pwa-v10-20261020/);
+ assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
+});
