@@ -1,4 +1,4 @@
-/* ISKRA mode art: seven individually generated 256px transparent WebP icons.
+/* КВИП mode art: seven individually generated 256px transparent WebP icons.
    One image per mode. Keep this mapping aligned with MODE_LIST in app.js. */
 const MODE_ASSETS = Object.freeze({
   talk: './assets/modes/talk.webp',     // СЛОВА — speech bubbles
