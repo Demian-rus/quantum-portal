@@ -447,7 +447,7 @@ function updateTimerVisual(remaining) {
   timer.classList.toggle('warning',warning);
   const fraction=Math.max(0,Math.min(1,remaining/(c.seconds*1000)));
   progress.style.strokeDashoffset=String(2*Math.PI*88*(1-fraction));
-  progress.closest('.timer-ring')?.classList.toggle('warning',warning);
+  progress.closest?.('.timer-ring')?.classList.toggle('warning',warning);
 }
 function stopTicking() {
   if(intervalId!==null){clearInterval(intervalId);intervalId=null;}
@@ -612,10 +612,7 @@ function roll() {
     if(!game||game.phase!=='rolling'||activeScene!=='game')return;
     const winner=$('reel-track')?.lastElementChild;
     if(winner)winner.classList.add('reel-item--landed');
-    setTimeout(()=>{
-      if(!game||game.phase!=='rolling'||activeScene!=='game')return;
-      game.phase='task';persist();sfx('go');render();
-    },330);
+    game.phase='task';persist();sfx('go');render();
   },2050);
 }
 
