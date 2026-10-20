@@ -479,6 +479,6 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v11-20261020-icons/);
+ assert.match(worker,/kvip-pwa-v12-20261020-scenes/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
