@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#100d22">
+  <meta name="description" content="ИСКРА — вечеринка из шести игровых режимов. Объясняй, показывай, рисуй, пой и побеждай своей командой.">
+  <title>ИСКРА — игра для компании</title>
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./words.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+<div class="page-glow page-glow--one" aria-hidden="true"></div>
+<div class="page-glow page-glow--two" aria-hidden="true"></div>
+<div class="site-shell">
+  <header class="topbar">
+    <a class="brand" href="./" id="brand-link" aria-label="ИСКРА, главное меню">
+      <span class="brand-spark" aria-hidden="true">✳</span>
+      <span>ИСКРА<span class="brand-period">.</span></span>
+    </a>
+    <div class="top-actions">
+      <span class="top-caption">ИГРАЙТЕ ВМЕСТЕ, ГДЕ УГОДНО</span>
+      <button class="icon-button" id="sound-toggle" type="button" title="Звук" aria-label="Выключить звук" aria-pressed="true">
+        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path class="sound-wave" d="M16 8c2.1 2.1 2.1 5.9 0 8M19 5c3.8 3.8 3.8 10.2 0 14"/></svg>
+      </button>
+      <button class="icon-button" id="help-toggle" type="button" title="Правила" aria-label="Правила игры"><span aria-hidden="true">?</span></button>
+    </div>
+  </header>
+
+  <main id="app">
+    <section class="scene scene--home" id="scene-home">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="pulse-dot"></span> НАСТОЛКА БЕЗ КОРОБКИ</span>
+          <h1>СЕГОДНЯ<br><em>БУДЕТ</em><br>ГРОМКО<span class="hero-stop">!</span></h1>
+          <p class="hero-description">Объясняй, показывай, рисуй, пой — и выкручивайся. Шесть режимов, один кубик и вечная борьба за победу.</p>
+          <div class="hero-chips" aria-label="Режимы игры"><span>◉ 2 КОМАНДЫ</span><span>✳ 6 РЕЖИМОВ</span><span>◷ ТАЙМЕР</span></div>
+        </div>
+        <div class="hero-art">
+          <img src="./assets/hero.svg" alt="Яркие кубики и игровые карточки" draggable="false">
+          <div class="orbit-label orbit-label--top">НЕТ СКУЧНЫХ<br>РАУНДОВ</div>
+          <div class="orbit-label orbit-label--bottom">БРОСАЙ<br>И ИГРАЙ</div>
+        </div>
+      </div>
+
+      <div class="setup-panel" id="setup-panel">
+        <div class="setup-top"><div><span class="section-kicker">01 / ПОДГОТОВКА</span><h2>Собираем команды</h2></div><span class="setup-decoration" aria-hidden="true">✴</span></div>
+        <div class="setup-grid">
+          <label class="team-input-wrap team-input-wrap--a"><span><span class="team-spot team-spot--a"></span> КОМАНДА 1</span><input id="team-a" type="text" maxlength="24" value="Молнии" placeholder="Название команды" autocomplete="off" spellcheck="false"></label>
+          <label class="team-input-wrap team-input-wrap--b"><span><span class="team-spot team-spot--b"></span> КОМАНДА 2</span><input id="team-b" type="text" maxlength="24" value="Кометы" placeholder="Название команды" autocomplete="off" spellcheck="false"></label>
+        </div>
+        <div class="settings-grid">
+          <fieldset class="option-set"><legend>СЛОЖНОСТЬ</legend><div class="choices" data-setting="difficulty"><button type="button" data-value="easy" class="is-chosen">Легко</button><button type="button" data-value="medium">Норм</button><button type="button" data-value="hard">Хард</button></div></fieldset>
+          <fieldset class="option-set"><legend>ВРЕМЯ РАУНДА</legend><div class="choices" data-setting="duration"><button type="button" data-value="45">45 с</button><button type="button" data-value="60" class="is-chosen">60 с</button><button type="button" data-value="90">90 с</button></div></fieldset>
+          <fieldset class="option-set"><legend>КОЛИЧЕСТВО ХОДОВ</legend><div class="choices" data-setting="rounds"><button type="button" data-value="8">8</button><button type="button" data-value="12" class="is-chosen">12</button><button type="button" data-value="20">20</button></div></fieldset>
+        </div>
+        <div class="setup-bottom"><p>Один телефон — две команды. Ведите счёт, передавая устройство друг другу.</p><button id="start-game" class="button button-primary button-big" type="button">НАЧАТЬ ИГРУ <span aria-hidden="true">↗</span></button></div>
+      </div>
+      <div class="mini-footer"><span>СМЕЙСЯ ГРОМЧЕ. ДУМАЙ БЫСТРЕЕ.</span><span>СДЕЛАНО ДЛЯ ЖИВЫХ ВЕЧЕРОВ ✳</span></div>
+    </section>
+
+    <section class="scene scene--game" id="scene-game" hidden>
+      <div class="match-bar">
+        <div class="match-team" id="match-team-a"><span class="match-team-label"><i class="team-spot team-spot--a"></i><span id="label-team-a">Молнии</span></span><b id="score-a">0</b></div>
+        <div class="match-center"><span class="match-center-label">ХОД <strong id="round-now">1</strong> / <span id="round-total">12</span></span><div class="match-progress"><span id="match-progress"></span></div></div>
+        <div class="match-team match-team--b" id="match-team-b"><b id="score-b">0</b><span class="match-team-label"><span id="label-team-b">Кометы</span><i class="team-spot team-spot--b"></i></span></div>
+      </div>
+      <div class="play-card">
+        <div class="play-card-head"><span class="section-kicker" id="play-step">ПЕРЕДАЙТЕ ТЕЛЕФОН</span><button id="exit-game" type="button" class="text-link">Завершить игру ↗</button></div>
+        <div class="play-inner" id="play-content" aria-live="polite"></div>
+      </div>
+      <div class="play-footer"><span>ИСКРА <b>✳</b></span><span>ПОБЕДИТ САМАЯ ШУМНАЯ КОМАНДА</span></div>
+    </section>
+
+    <section class="scene scene--results" id="scene-results" hidden>
+      <div class="results-card" id="results-content"></div>
+    </section>
+  </main>
+</div>
+<div class="dialog-backdrop" id="rules-backdrop" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="rules-title">
+    <button type="button" class="dialog-close" id="close-rules" aria-label="Закрыть">×</button>
+    <span class="section-kicker">ПРАВИЛА ИГРЫ</span><h2 id="rules-title">Просто. Шумно. Весело.</h2>
+    <ol class="rules-list">
+      <li>Разделитесь на две команды и выберите сложность, таймер и количество ходов.</li>
+      <li>Игрок текущей команды бросает виртуальный кубик и узнаёт способ объяснения.</li>
+      <li>Откройте задание так, чтобы соперники его не увидели. Запустите таймер.</li>
+      <li>Когда время истечёт, нажмите <b>✓</b>, если угадали, или <b>×</b>, если нет. Обычный раунд приносит 1 очко, «Секретка» — 2.</li>
+      <li>Передавайте устройство по очереди. Победитель определяется общим счётом.</li>
+    </ol>
+    <p class="rule-note">Звук включается только после нажатия кнопки. Игра сохраняется в этом браузере, а интернет после загрузки не нужен.</p>
+    <button id="rules-understood" class="button button-primary" type="button">ВСЁ ПОНЯТНО ↗</button>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

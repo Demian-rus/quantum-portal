@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 650" role="img" aria-labelledby="title">
+<title id="title">Яркие игровые кубики в воздухе</title>
+<defs>
+<linearGradient id="coral" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffb089"/><stop offset=".5" stop-color="#ff6a72"/><stop offset="1" stop-color="#eb4486"/></linearGradient>
+<linearGradient id="violet" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ae91ff"/><stop offset=".55" stop-color="#7347d7"/><stop offset="1" stop-color="#42268b"/></linearGradient>
+<linearGradient id="lime" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f3ffb9"/><stop offset="1" stop-color="#b9eb60"/></linearGradient>
+<linearGradient id="cyan" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#9ef3e6"/><stop offset="1" stop-color="#42bdbf"/></linearGradient>
+<filter id="shadow" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="22"/></filter>
+</defs>
+<g opacity=".35" fill="none" stroke="#8675c0" stroke-width="2"><ellipse cx="351" cy="305" rx="285" ry="185" transform="rotate(-27 351 305)"/><ellipse cx="358" cy="311" rx="235" ry="150" transform="rotate(37 358 311)"/></g>
+<ellipse cx="353" cy="565" rx="207" ry="34" fill="#11102e" opacity=".8" filter="url(#shadow)"/>
+<g transform="translate(80 68) rotate(-14 155 170)">
+<rect x="10" y="10" width="278" height="350" rx="29" fill="#31205c" stroke="#a889ff" stroke-width="4"/>
+<rect x="30" y="30" width="238" height="310" rx="22" fill="url(#violet)"/>
+<circle cx="148" cy="184" r="90" fill="#251340" opacity=".56"/><path d="M149 107v154M71 184h155M95 130l107 107M201 131L96 236" stroke="#d6c6ff" stroke-width="18" stroke-linecap="round"/>
+<circle cx="148" cy="184" r="32" fill="#f0e9ff"/>
+</g>
+<g transform="translate(240 78) rotate(16 155 188)">
+<rect x="0" y="0" width="290" height="365" rx="31" fill="#1f142e" stroke="#ffd0ae" stroke-width="5"/>
+<rect x="20" y="20" width="250" height="325" rx="24" fill="url(#coral)"/>
+<g transform="translate(145 185)"><rect x="-84" y="-84" width="168" height="168" rx="30" transform="rotate(14)" fill="#ffdfc9" opacity=".92"/><circle cx="-41" cy="-42" r="13" fill="#e95479"/><circle cx="41" cy="-42" r="13" fill="#e95479"/><circle cx="0" cy="0" r="13" fill="#e95479"/><circle cx="-41" cy="42" r="13" fill="#e95479"/><circle cx="41" cy="42" r="13" fill="#e95479"/></g>
+</g>
+<g transform="translate(315 355) rotate(17 120 110)"><rect x="0" y="0" width="235" height="204" rx="32" fill="url(#lime)" stroke="#faffc7" stroke-width="6"/><path d="M64 106l31 31 78-79" fill="none" stroke="#284735" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g fill="url(#cyan)"><path d="M92 420l14-33 14 33 33 14-33 14-14 33-14-33-33-14z"/><path d="M551 130l9-23 10 23 23 10-23 9-10 23-9-23-23-9z"/></g>
+<g fill="#ffe590"><circle cx="130" cy="89" r="8"/><circle cx="592" cy="457" r="13"/><circle cx="614" cy="284" r="7"/></g>
+<path d="M146 534l18-39M135 510l38 17" stroke="#ffd9e4" stroke-width="8" stroke-linecap="round"/>
+<path d="M543 548l19-33M538 520l34 21" stroke="#a5f7dd" stroke-width="8" stroke-linecap="round"/>
+</svg>
