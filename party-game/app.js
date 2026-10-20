@@ -80,8 +80,8 @@ const DEFAULT_MODES = Object.freeze(MODE_LIST.map(mode=>mode.id));
 const PROMPT_TYPES = Object.freeze(['word','phrase','idiom']);
 const SCORE = Object.freeze({talk:1,mime:2,draw:2,sing:2,yesno:2,secret:3,blitz:1});
 function modeArt(id) {
-  return '<svg class="mode-art" viewBox="0 0 100 100" aria-hidden="true"><use href="./assets/modes.svg#'+
-    (DEFAULT_MODES.includes(id)?id:'secret')+'"></use></svg>';
+  const safe=DEFAULT_MODES.includes(id)?id:'secret';
+  return '<img class="mode-art" src="'+MODE_ASSETS[safe]+'" alt="" decoding="async" draggable="false">';
 }
 function symbol(id,extra='') {
   return '<div class="mode-symbol '+extra+'" aria-hidden="true">'+modeArt(id)+'</div>';
@@ -250,8 +250,8 @@ function rollOutcome() {
   let complication='';
   if(mode.id==='secret'){
     const submodes=MODE_LIST.filter(m=>['talk','mime','draw','sing','yesno'].includes(m.id));
-    actualMode=randomOne(submodes.filter(m=>game.modes.includes(m.id))||submodes);
-    if(!actualMode)actualMode=randomOne(submodes);
+    const enabled=submodes.filter(m=>game.modes.includes(m.id));
+    actualMode=randomOne(enabled.length?enabled:submodes);
   }
   if(mode.id==='secret'||(game.complications&&Math.random()<.35))
     complication=selectComplication(actualMode.id,level);

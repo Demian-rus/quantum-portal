@@ -45,10 +45,9 @@ async function configureOnly(page,id) {
       assert.equal(state.points,2);
       assert.equal(state.duration,135);
       assert.equal(state.dice,false);
-      const icon=page.locator('.mode-symbol svg use');
-      assert.match(await icon.getAttribute('href'),/#yesno$/);
-      const response=await page.evaluate(()=>fetch('./assets/modes.svg').then(r=>r.status));
-      assert.equal(response,200,'Mode artwork resource not available');
+      const icon=page.locator('.mode-symbol img.mode-art');
+      assert.match(await icon.getAttribute('src'),/^data:image\/webp;base64,/);
+      assert.ok(await icon.evaluate(el=>el.complete&&el.naturalWidth>=256),'Generated artwork not loaded');
       await page.screenshot({path:'artifacts/iskra-v2/'+device.name+'-yesno.png',fullPage:true});
       await page.locator('[data-action="toggle-word"]').click();
       assert.equal(await page.locator('[data-action="start-timer"]').count(),0,'Hard game must auto-start');

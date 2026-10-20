@@ -416,3 +416,45 @@ a{color:inherit}
   .number-option input {height:45px;min-height:45px;}
   .settings-grid .choices {min-height:46px;}
 }
+
+/* Generated game art replaces hand-drawn mode SVGs. */
+.mode-symbol {
+ width:clamp(108px,13vw,140px);
+ height:clamp(108px,13vw,140px);
+ background:transparent;
+ border:none;
+ border-radius:0;
+ box-shadow:none;
+ transform:rotate(0deg);
+ overflow:visible;
+ flex-shrink:0;
+}
+.mode-symbol .mode-art {
+ display:block;
+ width:100%;
+ height:100%;
+ object-fit:contain;
+ filter:drop-shadow(0 12px 14px #0a051b50);
+}
+.ready-avatar {
+ background:none!important;
+ border:0!important;
+ border-radius:0!important;
+ box-shadow:none!important;
+ transform:none;
+}
+.ready-avatar .mode-art {width:100%;height:100%;object-fit:contain;}
+.mode-symbol.is-rolling {
+ animation:premium-roll 980ms cubic-bezier(.18,.7,.23,1) both!important;
+ transform-origin:center;
+}
+@keyframes premium-roll {
+ 0%{transform:perspective(400px) rotateY(-100deg) rotateZ(-25deg) scale(.65);opacity:.25;filter:blur(5px)}
+ 35%{transform:perspective(400px) rotateY(32deg) rotateZ(15deg) scale(1.09);opacity:1;filter:blur(0)}
+ 65%{transform:perspective(400px) rotateY(-15deg) rotateZ(-8deg) scale(.96)}
+ 100%{transform:perspective(400px) rotateY(0) rotateZ(0) scale(1);opacity:1}
+}
+@media(max-width:700px){
+ .mode-symbol{width:110px;height:110px}
+ .ready-avatar{width:115px;height:115px}
+}

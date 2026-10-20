@@ -31,6 +31,7 @@ function harness(existing=new Map()) {
     Math,Date,console
   });
   vm.runInContext(read('words.js'),context);
+  vm.runInContext(read('mode-images.js'),context);
   vm.runInContext(read('app.js'),context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
 }
