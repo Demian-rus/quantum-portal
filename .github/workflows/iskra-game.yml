@@ -32,9 +32,12 @@ jobs:
       - run: |
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/iskra-http.log 2>&1 &
       - run: node party-game/tests/browser.cjs
+      - run: node party-game/tests/v2-browser.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: iskra-browser-screenshots
-          path: artifacts/iskra
+          path: |
+            artifacts/iskra
+            artifacts/iskra-v2
           if-no-files-found: ignore
