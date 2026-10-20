@@ -135,9 +135,8 @@ function formatTimer(ms) {
   return String(Math.floor(seconds/60)).padStart(1,'0')+':'+String(seconds%60).padStart(2,'0');
 }
 function setSoundIcon() {
-  $('sound-toggle').setAttribute('aria-pressed',String(soundOn));
-  $('sound-toggle').setAttribute('aria-label',soundOn?'Выключить звук':'Включить звук');
-  $('sound-toggle').title=soundOn?'Выключить звук':'Включить звук';
+  $('sound-toggle').checked=soundOn;
+  $('sound-toggle').setAttribute('aria-checked',String(soundOn));
 }
 function initAudio() {
   if(!soundOn)return;
@@ -195,10 +194,14 @@ function updateContinue() {
 }
 function setScene(which) {
   activeScene=which;
-  for(const scene of ['home','setup','advanced','game','results'])
+  for(const scene of ['home','preferences','setup','advanced','game','results'])
     $('scene-'+scene).hidden=scene!==which;
   document.body.dataset.screen=which;
   updateContinue();
+}
+function openPreferences() {
+  setSoundIcon();
+  setScene('preferences');
 }
 function openSetup() {
   // Opening setup keeps any unfinished session untouched until the user starts a new one.
@@ -225,7 +228,7 @@ function continueGame() {
   render();
 }
 function renderOptions() {
-  for(const setting of ['difficulty','duration','rounds','dice']) {
+  for(const setting of ['difficulty','duration','rounds']) {
     document.querySelectorAll('.choices[data-setting="'+setting+'"] button').forEach(button=>{
       const selected=String(options[setting])===button.dataset.value;
       button.classList.toggle('is-chosen',selected);
@@ -317,6 +320,7 @@ const CONTROL_ICONS=Object.freeze({
   eye:'<path d="M2 12s3.7-7 10-7 10 7 10 7-3.7 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
   clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
   refresh:'<path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.5 9A7.5 7.5 0 0 1 19 7l1 5M4 12l1 5a7.5 7.5 0 0 0 13.5-2"/>',
+  x:'<path d="M6 6l12 12M18 6 6 18"/>',
   pause:'<path d="M9 5v14M15 5v14"/>',
   play:'<path d="m8 5 11 7-11 7V5Z"/>',
   check:'<path d="m4 12 5 5L20 6"/>'
@@ -329,7 +333,7 @@ function iconButton(icon,action,label,variant='muted') {
 }
 function taskControls(c) {
   if(!c.visible)return '<div class="task-open">'+makeButton('ОТКРЫТЬ ЗАДАНИЕ','toggle-word','button-coral button-big')+'</div>';
-  if(!allowPause())return '';
+  if(!allowPause())return '<div class="task-open-hint">ТАЙМЕР ЗАПУСТИТСЯ АВТОМАТИЧЕСКИ</div>';
   return '<div class="round-controls task-controls">'+
     iconButton('eye-off','toggle-word','Скрыть слово')+
     iconButton('clock','start-timer','Запустить таймер','success')+
@@ -389,25 +393,30 @@ function taskMarkup(hidden) {
   const {method}=modeInformation();
   const word=escapeHTML(game.current.word);
   const what=method.id==='sing'?'ТЕМА ДЛЯ ПЕСНИ':'ВАШЕ ЗАДАНИЕ';
+  const wordLength=game.current.word.length;
+  const lengthStyle=wordLength>45?' challenge-word--very-long':wordLength>23?' challenge-word--long':'';
   return '<div class="challenge-card '+(hidden?'is-hidden':'')+'">'+
     '<span class="challenge-overline">'+what+'</span>'+
-    '<div class="challenge-word '+(hidden?'challenge-word--hidden':'')+'">'+
+    '<div class="challenge-word '+(hidden?'challenge-word--hidden':lengthStyle)+'">'+
     (hidden?'НАЖМИ, ЧТОБЫ ОТКРЫТЬ':word)+'</div>'+
     (hidden?'':'<span class="challenge-details">ЗАПОМНИ И НАЧИНАЙ!</span>')+'</div>';
 }
 function showTask() {
-  $('play-content').className='play-inner is-task';
-  const {mode,method,secret,name,rule}=modeInformation();
+  $('play-content').className='play-inner is-task stable-round';
+  const {mode,secret,name,rule}=modeInformation();
   $('play-step').textContent='ВАМ ВЫПАЛО';
   const c=game.current;
   $('play-content').innerHTML=
-    symbol(mode.id)+
-    '<h2 class="play-title mode-name">'+escapeHTML(name)+'</h2>'+
-    '<div class="mode-rule">'+escapeHTML(rule)+
-    (c.complication?'<br><strong>УСЛОЖНЕНИЕ: '+escapeHTML(c.complication)+'</strong>':'')+'</div>'+
-    (secret?'<span class="secret-flag">СЕКРЕТКА · +'+c.points+' ОЧКА</span>':
-      '<span class="score-note">ЗА ВЕРНЫЙ ОТВЕТ: +'+(c.modeId==='blitz'?'1 ЗА СЛОВО':c.points)+'</span>')+
-    taskMarkup(!c.visible)+taskControls(c);
+    '<div class="round-top round-top--task">'+
+      symbol(mode.id)+
+      '<h2 class="play-title mode-name">'+escapeHTML(name)+'</h2>'+
+      '<div class="mode-rule">'+escapeHTML(rule)+
+      (c.complication?'<br><strong>УСЛОЖНЕНИЕ: '+escapeHTML(c.complication)+'</strong>':'')+'</div>'+
+      (secret?'<span class="secret-flag">СЕКРЕТКА · +'+c.points+' ОЧКА</span>':
+        '<span class="score-note">ЗА ВЕРНЫЙ ОТВЕТ: +'+(c.modeId==='blitz'?'1 ЗА СЛОВО':c.points)+'</span>')+
+    '</div>'+
+    '<div class="round-fixed-card">'+taskMarkup(!c.visible)+'</div>'+
+    '<div class="round-bottom round-bottom--task">'+taskControls(c)+'</div>';
 }
 function blitzStatus() {
   const c=game.current;
@@ -416,33 +425,35 @@ function blitzStatus() {
     '<span>Отгадано: '+c.blitzCorrect+' · Пропущено: '+c.blitzSkipped+'</span></div>';
 }
 function showTimer() {
-  $('play-content').className='play-inner is-play';
+  $('play-content').className='play-inner is-play stable-round';
   $('play-step').textContent='ВРЕМЯ ПОШЛО';
   const c=game.current,remaining=c.paused?c.remainingMs:c.deadline-Date.now();
   const shown=Math.max(0,remaining),blitz=c.modeId==='blitz';
   $('play-content').innerHTML=
-    '<span class="game-eyebrow">'+escapeHTML(modeInformation().name)+' · '+c.seconds+' СЕКУНД</span>'+
-    '<div class="timer-ring'+(shown<=10000?' warning':'')+'" aria-label="Таймер">'+
-      '<svg viewBox="0 0 200 200" class="ring-svg" aria-hidden="true">'+
-        '<circle class="ring-bg" cx="100" cy="100" r="88" />'+
-        '<circle id="timer-progress" class="ring-progress" cx="100" cy="100" r="88" />'+
-      '</svg>'+
-      '<div id="active-timer" class="play-timer'+(shown<=10000?' warning':'')+'" role="timer" aria-label="Оставшееся время">'+timerMarkup(shown)+'</div>'+
+    '<div class="round-top round-top--timer">'+
+      '<span class="game-eyebrow">'+escapeHTML(modeInformation().name)+' · '+c.seconds+' СЕКУНД</span>'+
+      '<div class="timer-ring'+(shown<=10000?' warning':'')+'" aria-label="Таймер">'+
+        '<svg viewBox="0 0 200 200" class="ring-svg" aria-hidden="true">'+
+          '<circle class="ring-bg" cx="100" cy="100" r="88" />'+
+          '<circle id="timer-progress" class="ring-progress" cx="100" cy="100" r="88" />'+
+        '</svg>'+
+        '<div id="active-timer" class="play-timer'+(shown<=10000?' warning':'')+'" role="timer" aria-label="Оставшееся время">'+timerMarkup(shown)+'</div>'+
+      '</div>'+
+      (allowPause()?'<div class="timer-pause">'+iconButton(c.paused?'play':'pause',c.paused?'resume':'pause',c.paused?'Продолжить':'Пауза')+'</div>':'')+
+      (blitz?blitzStatus():'')+
     '</div>'+
-    (blitz?blitzStatus():'')+taskMarkup(blitz?false:!c.visible)+
-    (blitz?'<div class="blitz-actions">'+
-      makeButton('✓ УГАДАЛИ +1','blitz-correct','button-primary')+
-      makeButton('ПРОПУСТИТЬ','blitz-skip','button-secondary')+'</div>'+
-      '<div class="minor-action">'+makeButton('ЗАВЕРШИТЬ БЛИЦ','finish-early','button-quiet')+'</div>':
-      '<div class="round-controls play-controls">'+
-        '<div class="play-secondary-controls">'+
-        iconButton(c.visible?'eye-off':'eye','toggle-word',c.visible?'Скрыть задание':'Показать задание')+
-        (allowPause()?iconButton(c.paused?'play':'pause',c.paused?'resume':'pause',c.paused?'Продолжить':'Пауза'):'<span class="round-action-placeholder" aria-hidden="true"></span>')+
-        '</div>'+
-        '<div class="play-success-control">'+
+    '<div class="round-fixed-card">'+taskMarkup(blitz?false:!c.visible)+'</div>'+
+    '<div class="round-bottom round-bottom--play">'+
+      (blitz?'<div class="blitz-actions">'+
+        makeButton('✓ УГАДАЛИ +1','blitz-correct','button-primary')+
+        makeButton('ПРОПУСТИТЬ','blitz-skip','button-secondary')+'</div>'+
+        '<div class="minor-action">'+makeButton('ЗАВЕРШИТЬ БЛИЦ','finish-early','button-quiet')+'</div>':
+        '<div class="three-answer-actions">'+
+          iconButton('x','wrong-now','Не угадали — завершить ход','danger prominent')+
+          iconButton(c.visible?'eye-off':'eye','toggle-word',c.visible?'Скрыть слово':'Показать слово')+
           iconButton('check','correct-now','Угадали — засчитать очки','success prominent')+
-        '</div>'+
-      '</div>');
+        '</div>')+
+    '</div>';
   updateTimerVisual(shown);
 }
 function advanceBlitz(correct) {
@@ -489,14 +500,15 @@ function beginAutomaticRound() {
   persist();sfx('go');render();
 }
 function showCountdown() {
-  $('play-content').className='play-inner is-countdown';
-  const c=game.current;
+  $('play-content').className='play-inner is-countdown stable-round';
   $('play-step').textContent='ПРИГОТОВЬТЕСЬ';
   $('play-content').innerHTML=
-    '<span class="game-eyebrow">'+escapeHTML(modeInformation().name)+'</span>'+
-    '<h2 class="play-title">СТАРТ ЧЕРЕЗ <em>1 СЕКУНДУ</em></h2>'+
-    taskMarkup(false)+
-    '<p class="play-subtitle">Время начнётся автоматически. Пауза на этом уровне недоступна.</p>';
+    '<div class="round-top round-top--timer">'+
+      '<span class="game-eyebrow">'+escapeHTML(modeInformation().name)+'</span>'+
+      '<h2 class="play-title">СТАРТ ЧЕРЕЗ <em>1 СЕКУНДУ</em></h2>'+
+    '</div>'+
+    '<div class="round-fixed-card">'+taskMarkup(false)+'</div>'+
+    '<div class="round-bottom"><p class="play-subtitle">Таймер запускается автоматически</p></div>';
 }
 function startTicking() {
   stopTicking();
@@ -577,6 +589,12 @@ function correctNow() {
   if(!c.paused&&Date.now()>=c.deadline){finishTimer('timeout');return;}
   if(c.paused&&(c.remainingMs??0)<=0){finishTimer('timeout');return;}
   recordAnswer(true);
+}
+function wrongNow() {
+  if(!game||game.phase!=='play'||game.current?.modeId==='blitz')return;
+  const c=game.current;
+  if(!c.paused && Date.now()>=c.deadline){finishTimer('timeout');return;}
+  recordAnswer(false);
 }
 function judge(yes) {
   if(!game||game.phase!=='judge')return;
@@ -719,6 +737,7 @@ function handleAction(action) {
     case 'resume':return resumeTimer();
     case 'finish-early':return finishTimer('early');
     case 'correct-now':return correctNow();
+    case 'wrong-now':return wrongNow();
     case 'blitz-correct':return advanceBlitz(true);
     case 'blitz-skip':return advanceBlitz(false);
     case 'yes':return judge(true);
@@ -738,7 +757,7 @@ function sanitizeOptions(raw) {
   const modes=Array.isArray(raw.modes)?DEFAULT_MODES.filter(id=>raw.modes.includes(id)):base.modes;
   const promptTypes=Array.isArray(raw.promptTypes)?PROMPT_TYPES.filter(id=>raw.promptTypes.includes(id)):base.promptTypes;
   return {difficulty,duration,rounds,blitzCount,modes,promptTypes,
-    dice:raw.dice!==false,complications:raw.complications!==false,scoring:'standard'};
+    dice:true,complications:raw.complications!==false,scoring:'standard'};
 }
 function restoreSession() {
   const saved=readSaved();
@@ -773,7 +792,7 @@ function restoreSession() {
       .slice(Math.min(game.current.blitzIndex||0,game.current.blitzWords.length));
   }
   game.complications=game.complications!==false;
-  game.dice=game.dice!==false;
+  game.dice=true;
   if(game.current&&!game.current.difficulty)game.current.difficulty=game.difficulty==='mixed'?'medium':game.difficulty;
   $('team-a').value=game.teams[0];
   $('team-b').value=game.teams[1];
@@ -786,7 +805,7 @@ function setupEvents() {
       if(!button)return;
       const setting=group.dataset.setting;
       const value=button.dataset.value;
-      options[setting]=setting==='difficulty'?value:setting==='dice'?value==='true':Number(value);
+      options[setting]=setting==='difficulty'?value:Number(value);
       renderOptions();persist();sfx('button');
     });
   });
@@ -820,7 +839,9 @@ function setupEvents() {
   });
   $('new-game-menu').addEventListener('click',openSetup);
   $('continue-game').addEventListener('click',continueGame);
-  $('settings-menu').addEventListener('click',()=>openAdvanced('home'));
+  $('settings-menu').addEventListener('click',openPreferences);
+  $('preferences-back').addEventListener('click',()=>setScene('home'));
+  $('preferences-rules').addEventListener('click',openRules);
   $('setup-back').addEventListener('click',()=>setScene('home'));
   $('go-advanced').addEventListener('click',()=>openAdvanced('setup'));
   $('advanced-back').addEventListener('click',closeAdvanced);
@@ -835,12 +856,10 @@ function setupEvents() {
     if(button)handleAction(button.dataset.action);
   });
   $('exit-game').addEventListener('click',backToMenu);
-  $('brand-link').addEventListener('click',event=>{event.preventDefault();backToMenu();});
-  $('sound-toggle').addEventListener('click',()=>{
-    soundOn=!soundOn;setSoundIcon();persist();
+  $('sound-toggle').addEventListener('change',event=>{
+    soundOn=event.target.checked;setSoundIcon();persist();
     if(soundOn)sfx('go');
   });
-  $('help-toggle').addEventListener('click',openRules);
   $('close-rules').addEventListener('click',closeRules);
   $('rules-understood').addEventListener('click',closeRules);
   $('rules-backdrop').addEventListener('click',event=>{if(event.target.id==='rules-backdrop')closeRules();});
