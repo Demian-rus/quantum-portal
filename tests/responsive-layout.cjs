@@ -41,13 +41,23 @@ async function navigate(page, game) {
           gameTop: canvas.getBoundingClientRect().top,
           toolbarHeight: bar.getBoundingClientRect().height,
           overflow: document.documentElement.scrollWidth - window.innerWidth,
-          sidebarCollapsed: document.getElementById('sidebar').classList.contains('collapsed')
+          sidebarCollapsed: document.getElementById('sidebar').classList.contains('collapsed'),
+          navTabs: [...nav.querySelectorAll('.tab')].map(b => ({
+            text: b.textContent.trim(), width: b.clientWidth, scrollWidth: b.scrollWidth
+          })),
+          settingsVisible: (() => {
+            const r = document.getElementById('btn-open-settings').getBoundingClientRect();
+            return r.left >= 0 && r.right <= window.innerWidth;
+          })()
         };
       });
       assert.ok(shell.titleGone && shell.settingsInNav, 'Navigation should contain compact settings without title');
       assert.ok(shell.gameTop < (profile.width <= 768 ? 280 : 240), 'Crossword too far below viewport: ' + shell.gameTop);
       assert.ok(shell.toolbarHeight < (profile.width <= 768 ? 100 : 58), 'Top toolbar too tall: ' + shell.toolbarHeight);
       assert.ok(shell.overflow <= 2, 'Horizontal overflow: ' + shell.overflow);
+      assert.ok(shell.settingsVisible, 'Settings clipped offscreen');
+      for (const tab of shell.navTabs)
+        assert.ok(tab.scrollWidth <= tab.width + 2, 'Clipped nav tab: ' + JSON.stringify(tab));
       if (profile.width < 769) {
         assert.ok(shell.sidebarCollapsed, 'Phone sidebar should start closed');
         const noScroll = await page.evaluate(() => {
