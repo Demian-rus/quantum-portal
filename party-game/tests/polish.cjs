@@ -20,6 +20,19 @@ async function isInViewport(page){
    page.on('pageerror',e=>errors.push(e.message));
    await page.goto(URL,{waitUntil:'load'});
    await page.locator('#new-game-menu').click();
+   const selection=await page.evaluate(()=>{
+     const label=document.querySelector('.choices[data-setting="difficulty"] [data-value="medium"]');
+     const start=new Event('selectstart',{bubbles:true,cancelable:true});
+     const menu=new MouseEvent('contextmenu',{bubbles:true,cancelable:true});
+     label.dispatchEvent(start);label.dispatchEvent(menu);
+     return {style:getComputedStyle(label).userSelect,selectCanceled:start.defaultPrevented,
+       menuCanceled:menu.defaultPrevented};
+   });
+   assert.deepEqual(selection,{style:'none',selectCanceled:true,menuCanceled:true},
+     'Settings are selectable: '+JSON.stringify(selection));
+   await page.locator('#team-a').fill('Тестовая команда');
+   assert.equal(await page.locator('#team-a').inputValue(),'Тестовая команда',
+     'Disabling selection must not block typing a team name');
    await page.evaluate(()=>{options.modes=['talk'];options.dice=false;options.difficulty='easy';});
    await page.locator('#start-game').click();
    await page.waitForSelector('[data-action="roll"]');
@@ -65,6 +78,19 @@ async function isInViewport(page){
     return {cardWidth:rect.width,cardHeight:rect.height,cardTop:rect.top,transform:getComputedStyle(card).transform};
    });
    assert.ok(task.cardHeight>=85&&task.transform!=='none','Layered card missing '+JSON.stringify(task));
+   await page.evaluate(()=>{game.current.word='ПАРАЛЛЕЛЬНАЯ РЕАЛЬНОСТЬ';render();});
+   const russian=await page.locator('.is-task .challenge-word').evaluate(el=>({
+     raw:el.textContent.replace(/\u00ad/g,''),marked:el.textContent.includes('\u00ad'),
+     hyphens:getComputedStyle(el).hyphens,wordBreak:getComputedStyle(el).wordBreak,
+     width:el.getBoundingClientRect().width,cardWidth:el.closest('.challenge-card').clientWidth
+   }));
+   assert.equal(russian.raw,'ПАРАЛЛЕЛЬНАЯ РЕАЛЬНОСТЬ');
+   assert.equal(russian.marked,true,'Russian soft break missing');
+   assert.equal(russian.hyphens,'auto');
+   assert.equal(russian.wordBreak,'normal');
+   assert.ok(russian.width<russian.cardWidth,'Long Russian prompt does not fit');
+   await page.screenshot({path:'artifacts/iskra-polish/'+device.name+'-russian-hyphen.png'});
+   await page.evaluate(()=>{game.current.word='ПОТЕРЯННЫЙ ТЕЛЕФОН';render();});
    await page.screenshot({path:'artifacts/iskra-polish/'+device.name+'-task-controls.png'});
    await page.locator('.is-task [data-action="start-timer"]').click();
    assert.equal(await page.locator('.is-play [data-action="correct-now"]').count(),1);
@@ -123,6 +149,11 @@ async function isInViewport(page){
    }));
    assert.equal(align.length,2);
    assert.ok(align.every(x=>Math.abs(x.button-x.text)<=2),'Judge labels not centered: '+JSON.stringify(align));
+   const judgeSides=await page.locator('.is-judge .judgement-option button').evaluateAll(nodes=>nodes.map(el=>({
+     action:el.dataset.action,x:el.getBoundingClientRect().x
+   })));
+   assert.deepEqual(judgeSides.map(x=>x.action),['no','yes'],'Judge order must be red then green');
+   assert.ok(judgeSides[0].x<judgeSides[1].x);
    await page.screenshot({path:'artifacts/iskra-polish/'+device.name+'-judgement.png'});
    await page.locator('[data-action="no"]').click();
    assert.equal(await page.locator('[data-action="roll"]').count(),1);
@@ -174,6 +205,25 @@ async function isInViewport(page){
   assert.ok(blitzFit.page<=blitzFit.window+2&&blitzFit.inside<=blitzFit.height+4,
     'Blitz layout scrolls '+JSON.stringify(blitzFit));
   await blitz.screenshot({path:'artifacts/iskra-polish/phone-blitz-red-left-green-right.png'});
+  await blitz.locator('[data-action="blitz-skip"]').click();
+  await blitz.evaluate(()=>{for(let i=0;i<43;i++)advanceBlitz(false);});
+  const status=await blitz.locator('.blitz-status').evaluate(el=>({
+    text:el.innerText,
+    labels:[...el.querySelectorAll('b')].map(x=>({
+      text:x.textContent,color:getComputedStyle(x).color,x:x.getBoundingClientRect().x
+    }))
+  }));
+  assert.deepEqual(status.labels.map(x=>x.text),['ОСТАЛОСЬ: 4','ОТГАДАНО: 0']);
+  assert.equal(status.labels[0].color,status.labels[1].color);
+  assert.ok(status.labels[0].x<status.labels[1].x);
+  assert.ok(!status.text.includes('Пропущено'));
+  await blitz.evaluate(()=>{game.current.deadline=Date.now()-1;tick()});
+  const blitzJudge=await blitz.locator('.is-judge .judgement-option button').evaluateAll(nodes=>
+    nodes.map(el=>({action:el.dataset.action,x:el.getBoundingClientRect().x})));
+  assert.deepEqual(blitzJudge.map(x=>x.action),['no','yes']);
+  assert.ok(blitzJudge[0].x<blitzJudge[1].x);
+  assert.ok(!(await blitz.locator('.is-judge').innerText()).includes('Пропущено'));
+  await blitz.screenshot({path:'artifacts/iskra-polish/phone-blitz-result-red-left-green-right.png'});
   await blitz.close();
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

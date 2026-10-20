@@ -354,7 +354,7 @@ a{color:inherit}
   border:1px solid #65517b; border-radius:12px; background:#2f2141;
 }
 .blitz-status b { color:var(--lime);font-size:12px; }
-.blitz-status span {color:#d3bfdc;}
+.blitz-status b {white-space:nowrap;}
 .challenge-card .challenge-word { line-height:1.3; }
 @media(max-width:700px) {
   .advanced-panel { margin:0 0 19px; border-radius:14px; }
@@ -1057,7 +1057,8 @@ body[data-screen="preferences"]::after{background:#11082085}
 .scene--game .stable-round .challenge-word {
  line-height:1.12;font-size:clamp(21px,3.5dvh,36px);
  max-width:100%;max-height:none;overflow:visible;
- overflow-wrap:anywhere;word-break:normal;
+ overflow-wrap:break-word;word-break:normal;
+ hyphens:auto;-webkit-hyphens:auto;text-wrap:balance;
 }
 .scene--game .stable-round .challenge-word--long{font-size:clamp(17px,2.9dvh,27px)}
 .scene--game .stable-round .challenge-word--very-long{font-size:clamp(15px,2.3dvh,21px)}
@@ -1113,10 +1114,9 @@ body[data-screen="preferences"]::after{background:#11082085}
  .scene--game .three-answer-actions .round-action--muted{width:47px;height:47px}
 }
 
-/* Touch-controlled game content must never trigger Android selection handles.
-   The setup scenes remain editable and permit ordinary text selection. */
-.scene--game, .scene--game *,
-.scene--results, .scene--results * {
+/* Touch-driven application: no selectable labels on any screen, including
+   settings. Do not suppress clicks, keyboard focus or scroll gestures. */
+html, body, body *, body *::before, body *::after {
   -webkit-user-select:none;
   user-select:none;
   -webkit-touch-callout:none;
