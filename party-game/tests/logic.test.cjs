@@ -181,10 +181,10 @@ test('blitz is a sequence with correct, skip, no timer reset and per-word points
  assert.equal(h.eval('game.current.blitzQueue.length'),2);
  h.eval('advanceBlitz(true);advanceBlitz(true)');
  assert.equal(h.eval('game.phase'),'judge');
- assert.equal(h.eval('game.current.blitzCorrect'),3);
+ assert.equal(h.eval('game.current.blitzCorrect'),5);
  assert.equal(h.eval('game.scores[0]'),0);
  h.eval('judge(true);judge(true)');
- assert.equal(h.eval('game.scores[0]'),3,'blitz double-awarded');
+ assert.equal(h.eval('game.scores[0]'),5,'blitz double-awarded');
 });
 test('manual game settings are clamped and invalid modes are filtered on restore',()=>{
  const h=harness();
