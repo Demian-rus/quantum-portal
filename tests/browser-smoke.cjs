@@ -17,10 +17,13 @@ const {chromium} = require('playwright-core');
       await page.locator('#start-screen [data-target="crossword"]').click();
       await page.waitForFunction(() => window.lastPlaced?.length>=10,{timeout:15000});
       for(const variant of ['square','free','diamond','cross']) {
+        const oldVersion=await page.evaluate(()=>window.cwReadyVersion||0);
         await page.locator('#btn-open-settings').click();
         await page.locator('#settings-cw-variant [data-cw-variant="'+variant+'"]').click();
         await page.locator('#btn-settings-apply').click();
-        await page.waitForFunction(v => window.lastPlaced?.length>=10 && cwShape===v,variant,{timeout:15000});
+        await page.waitForFunction(({v,previous}) => window.cwReadyVersion>previous &&
+          window.lastPlaced?.length>=10 && cwShape===v,
+          {v:variant,previous:oldVersion},{timeout:15000});
         const measurement=await page.evaluate(() => {
           const canvas=document.getElementById('cv');
           const rect=canvas.getBoundingClientRect();

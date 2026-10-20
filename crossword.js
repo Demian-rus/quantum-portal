@@ -329,6 +329,7 @@ function onGenerateCore() {
     renderCluesList(placed);
     updateUI();
     drawCrossword(g, placed);
+    window.cwReadyVersion = serial;
 
     const frame = cwFrame(g,cwShape);
     document.getElementById('stat').textContent =

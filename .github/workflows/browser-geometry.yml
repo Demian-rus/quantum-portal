@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feat/crossword-geometry-20261020
+      - main
   workflow_dispatch:
 jobs:
   chromium:
