@@ -26,6 +26,14 @@ const {chromium} = require('playwright-core');
       assert.equal(await page.locator('#scene-home').isVisible(),true);
       const home=await page.evaluate(()=>({width:document.documentElement.scrollWidth,
         bodyWidth:window.innerWidth,button:document.getElementById('start-game').getBoundingClientRect().height}));
+      if(home.width>home.bodyWidth+2) {
+        const offenders=await page.evaluate(()=>[...document.querySelectorAll('body *')]
+          .map(e=>({tag:e.tagName,cls:e.className?.baseVal||e.className||'',
+            right:Math.round(e.getBoundingClientRect().right),
+            left:Math.round(e.getBoundingClientRect().left)}))
+          .filter(o=>o.right>window.innerWidth+1).slice(0,12));
+        console.log('MOBILE OVERFLOW ELEMENTS',JSON.stringify(offenders));
+      }
       assert.ok(home.width<=home.bodyWidth+2,'home horizontal scrolling '+JSON.stringify(home));
       assert.ok(home.button>=52,'touch target too small');
       await page.screenshot({path:'artifacts/iskra/'+profile.name+'-home.png',fullPage:true});

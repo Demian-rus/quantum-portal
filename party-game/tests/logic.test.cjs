@@ -12,7 +12,7 @@ function harness(existing=new Map()) {
     if(!elements.has(id)) {
       const node={id,value:id==='team-a'?'Молнии':id==='team-b'?'Кометы':'',
         hidden:false,style:{},textContent:'',innerHTML:'',dataset:{},
-        classList:{add(){},remove(){},toggle(){}},children:[],
+        classList:{add(){},remove(){},toggle(){}},parentElement:{classList:{add(){},remove(){},toggle(){}}},children:[],
         addEventListener(){},setAttribute(){},getAttribute(){return null}};
       elements.set(id,node);
     }

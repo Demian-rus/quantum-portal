@@ -234,3 +234,11 @@ a{color:inherit}
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
+
+/* Mobile overflow guard for extra-wide display fonts and decorative artwork. */
+@media (max-width:700px) {
+  .hero-copy { min-width: 0; max-width: 100%; }
+  .hero h1 { font-size: clamp(42px, 11vw, 63px); max-width: 100%; overflow-wrap: anywhere; }
+  .hero-art { margin-right: 0; max-width: 100%; }
+  .setup-panel { min-width: 0; }
+}
