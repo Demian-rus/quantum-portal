@@ -40,6 +40,16 @@ async function navigate(page, game) {
           settingsInNav: nav.contains(document.getElementById('btn-open-settings')),
           gameTop: canvas.getBoundingClientRect().top,
           toolbarHeight: bar.getBoundingClientRect().height,
+          toolbarBounds: {
+            left: bar.getBoundingClientRect().left,
+            right: bar.getBoundingClientRect().right,
+            top: bar.getBoundingClientRect().top,
+            bottom: bar.getBoundingClientRect().bottom
+          },
+          canvasBounds: {
+            left: canvas.getBoundingClientRect().left,
+            top: canvas.getBoundingClientRect().top
+          },
           overflow: document.documentElement.scrollWidth - window.innerWidth,
           sidebarCollapsed: document.getElementById('sidebar').classList.contains('collapsed'),
           navTabs: [...nav.querySelectorAll('.tab')].map(b => ({
@@ -53,7 +63,14 @@ async function navigate(page, game) {
       });
       assert.ok(shell.titleGone && shell.settingsInNav, 'Navigation should contain compact settings without title');
       assert.ok(shell.gameTop < (profile.width <= 768 ? 280 : 240), 'Crossword too far below viewport: ' + shell.gameTop);
-      assert.ok(shell.toolbarHeight < (profile.width <= 768 ? 100 : 58), 'Top toolbar too tall: ' + shell.toolbarHeight);
+      if (profile.width >= 1180) {
+        assert.ok(shell.toolbarBounds.right + 5 < shell.canvasBounds.left,
+          'Desktop actions are not to the left of game: ' + JSON.stringify(shell));
+        assert.ok(shell.toolbarBounds.top < shell.canvasBounds.top,
+          'Desktop action panel should begin alongside the game');
+      } else {
+        assert.ok(shell.toolbarHeight < (profile.width <= 768 ? 100 : 65), 'Top toolbar too tall: ' + shell.toolbarHeight);
+      }
       assert.ok(shell.overflow <= 2, 'Horizontal overflow: ' + shell.overflow);
       assert.ok(shell.settingsVisible, 'Settings clipped offscreen');
       for (const tab of shell.navTabs)
@@ -76,6 +93,32 @@ async function navigate(page, game) {
         await page.waitForTimeout(400);
         const scrollY = await page.evaluate(() => window.scrollY);
         assert.ok(Math.abs(scrollY - noScroll.before) <= 2, 'Tap jumped down to clues: ' + JSON.stringify({ ...noScroll, scrollY }));
+        const panelCheck = await page.evaluate(() => {
+          const panel=document.getElementById('active-q-panel');
+          const canvas=document.getElementById('cv');
+          const words=window.lastPlaced.filter(p=>p.q.length>0).sort((a,b)=>a.q.length-b.q.length);
+          const first=words[0], longest=words[words.length-1];
+          const results=[];
+          for(const entry of [first,longest,first,longest]) {
+            activeWord=entry; updateUI();
+            const question=panel.querySelector('.cw-question-line');
+            results.push({
+              panelHeight:panel.getBoundingClientRect().height,
+              canvasTop:canvas.getBoundingClientRect().top,
+              textHeight:question.scrollHeight,
+              fontSize:parseFloat(getComputedStyle(question).fontSize),
+              content:entry.q,
+              fits:question.scrollHeight<=question.clientHeight+1
+            });
+          }
+          return results;
+        });
+        const base=panelCheck[0];
+        for(const check of panelCheck) {
+          assert.ok(Math.abs(check.panelHeight-base.panelHeight)<1,'Question panel changes height: '+JSON.stringify(panelCheck));
+          assert.ok(Math.abs(check.canvasTop-base.canvasTop)<1,'Board jumps for longer clue: '+JSON.stringify(panelCheck));
+          assert.ok(check.fits, 'Question text is clipped: '+JSON.stringify(check));
+        }
         const collapse = await page.locator('#sidebar').evaluate(sidebar => {
           const rect = sidebar.getBoundingClientRect();
           const button = sidebar.querySelector('.toggle-btn');

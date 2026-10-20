@@ -40,10 +40,17 @@ const {chromium} = require('playwright-core');
           return {frame:[layout.rows,layout.cols],canvas:[rect.width,rect.height],
             rowsMatch:activeR===first.r,colsMatch:activeC===first.c,
             count:points.length,unique,title,ratio,horizontalOverflow,
+            physicalWidth:canvas.width,
+            physicalHeight:canvas.height,
+            cssPixelRatio:canvas.width / rect.width,
+            cellCss:layout.cell,
             questionButtons:document.querySelectorAll('#cluesList .cw-clue-button').length,
             subtitleVisible:Boolean(document.querySelector('.header-inner .sub') && getComputedStyle(document.querySelector('.header-inner .sub')).display!=='none')};
         });
         assert.ok(measurement.count>=10,variant+' too few words');
+        assert.ok(Math.abs(measurement.cssPixelRatio-1)<0.03,variant+' bitmap/CSS size mismatch: '+measurement.cssPixelRatio);
+        assert.ok(Math.abs(measurement.physicalHeight-measurement.canvas[1])<2,
+          variant+' vertical bitmap/CSS size mismatch');
         assert.equal(measurement.unique,measurement.count,variant+' repeated words');
         assert.ok(measurement.rowsMatch&&measurement.colsMatch,variant+' click mismatch');
         assert.equal(measurement.questionButtons,measurement.count,variant+' clue list mismatch');

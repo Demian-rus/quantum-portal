@@ -4,6 +4,7 @@ on:
     branches:
       - feat/crossword-geometry-20261020
       - feat/responsive-gameplay-layout-20261020
+      - feat/crisp-crossword-desktop-tools-20261020
       - main
   workflow_dispatch:
 jobs:
