@@ -142,7 +142,7 @@ test('only selected mode and selected prompt types are drawn, with no dice anima
  assert.equal(h.eval('game.modes.join(",")'),'talk');
  assert.equal(h.eval('game.duration'),135);
  h.eval('roll()');
- h.pending.shift()();
+ assert.equal(h.pending.length,0,'No-dice mode should open immediately');
  assert.equal(h.eval('game.phase'),'task');
  assert.equal(h.eval('game.current.modeId'),'talk');
  assert.equal(h.eval('game.current.complication'),'');
