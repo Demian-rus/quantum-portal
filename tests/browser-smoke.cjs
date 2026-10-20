@@ -9,8 +9,12 @@ const {chromium} = require('playwright-core');
     headless:true, args:['--no-sandbox']
   });
   try {
-    for (const viewport of [{width:1440,height:900,name:'desktop'},{width:390,height:844,name:'phone'}]) {
-      const page = await browser.newPage({viewport:{width:viewport.width,height:viewport.height},deviceScaleFactor:1});
+    for (const viewport of [
+      {width:1440,height:900,name:'desktop',dpr:1},
+      {width:1280,height:800,name:'compact-desktop',dpr:1},
+      {width:390,height:844,name:'phone',dpr:2}
+    ]) {
+      const page = await browser.newPage({viewport:{width:viewport.width,height:viewport.height},deviceScaleFactor:viewport.dpr});
       const errors=[];
       page.on('pageerror',error=>errors.push(error.message));
       await page.goto('http://127.0.0.1:8765/',{waitUntil:'load'});
@@ -48,8 +52,8 @@ const {chromium} = require('playwright-core');
             subtitleVisible:Boolean(document.querySelector('.header-inner .sub') && getComputedStyle(document.querySelector('.header-inner .sub')).display!=='none')};
         });
         assert.ok(measurement.count>=10,variant+' too few words');
-        assert.ok(Math.abs(measurement.cssPixelRatio-1)<0.03,variant+' bitmap/CSS size mismatch: '+measurement.cssPixelRatio);
-        assert.ok(Math.abs(measurement.physicalHeight-measurement.canvas[1])<2,
+        assert.ok(Math.abs(measurement.cssPixelRatio-viewport.dpr)<0.03,variant+' bitmap/CSS size mismatch: '+measurement.cssPixelRatio);
+        assert.ok(Math.abs(measurement.physicalHeight-measurement.canvas[1]*viewport.dpr)<3,
           variant+' vertical bitmap/CSS size mismatch');
         assert.equal(measurement.unique,measurement.count,variant+' repeated words');
         assert.ok(measurement.rowsMatch&&measurement.colsMatch,variant+' click mismatch');
@@ -64,6 +68,22 @@ const {chromium} = require('playwright-core');
         if(variant==='square'||variant==='free')
           await page.screenshot({path:'artifacts/'+viewport.name+'-'+variant+'.png',fullPage:true});
       }
+      const beforeResize=await page.evaluate(()=>({
+        width:document.getElementById('cv').width,
+        cssWidth:document.getElementById('cv').getBoundingClientRect().width
+      }));
+      await page.setViewportSize({width:viewport.width-45,height:viewport.height});
+      await page.waitForFunction(previous=>{
+        const cv=document.getElementById('cv');
+        const rect=cv.getBoundingClientRect();
+        return Math.abs(rect.width-previous.cssWidth)>3 &&
+          Math.abs(cv.width/rect.width-(window.devicePixelRatio||1))<.03;
+      },beforeResize,{timeout:6000});
+      const afterResize=await page.evaluate(()=>({
+        bitmap:document.getElementById('cv').width,
+        css:document.getElementById('cv').getBoundingClientRect().width
+      }));
+      assert.notEqual(afterResize.bitmap,beforeResize.width,'Bitmap was not re-rasterized after resizing window');
       assert.deepEqual(errors,[],'Browser page errors: '+errors.join('; '));
       await page.close();
     }
