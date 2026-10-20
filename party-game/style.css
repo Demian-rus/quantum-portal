@@ -971,3 +971,144 @@ body::after { z-index:0; }
  .scene--game .play-inner.is-play .play-controls {flex-direction:row;gap:21px;}
  .scene--game .play-secondary-controls {gap:21px;}
 }
+
+
+/* V4.2: settings are app preferences, not match options. */
+.topbar{display:none!important}
+.scene--preferences{display:flex;align-items:flex-start;justify-content:center;padding:calc(env(safe-area-inset-top) + 84px) 14px 20px}
+.preferences-panel{
+ width:min(100%,560px);padding:clamp(20px,5vw,35px);
+ border:1px solid #e9aee49b;border-radius:23px;
+ background:linear-gradient(135deg,#1f1338e9,#28153eea);
+ box-shadow:0 18px 52px #12051d9e;backdrop-filter:blur(16px)
+}
+.preferences-title{margin:9px 0 32px;color:#ffecf9;font:800 clamp(27px,7vw,40px) var(--font-title)}
+.preferences-sound{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;position:relative;padding:14px 0 22px;border-bottom:1px solid #ae93c85c;cursor:pointer}
+.preferences-sound strong{display:block;color:#fff;font-size:clamp(16px,4vw,20px)}
+.preferences-sound small{display:block;font-size:12px;color:#bbaed1;line-height:1.5;margin-top:7px}
+.preferences-sound input{position:absolute;right:0;width:56px;height:38px;opacity:0;cursor:pointer;z-index:2}
+.preferences-switch{position:relative;width:56px;height:32px;border:2px solid #b5a0bf;border-radius:22px;background:#534362;transition:.2s}
+.preferences-switch::before{content:"";position:absolute;left:3px;top:3px;width:22px;height:22px;border-radius:50%;background:#f0e6f3;transition:transform .2s}
+.preferences-sound input:checked+.preferences-switch{background:#a2ed8d;border-color:#d0ffbe}
+.preferences-sound input:checked+.preferences-switch::before{transform:translateX(23px);background:#173e34}
+.preferences-sound input:focus-visible+.preferences-switch{outline:3px solid white;outline-offset:4px}
+.preferences-rules{display:flex;justify-content:space-between;align-items:center;width:100%;margin-top:15px;padding:17px 0;background:transparent;border:0;color:#ffedf5;font-weight:800;font-size:16px}
+.preferences-rules span{font-size:28px}
+body[data-screen="preferences"]::before{background-image:url('./assets/bg-home.webp');}
+body[data-screen="preferences"]::after{background:#11082085}
+.scene--setup .settings-scroller,.scene--advanced .settings-scroller {
+ inset-block-start:calc(env(safe-area-inset-top) + 66px);
+}
+/* Match card is a fixed grid row in every phase: task, one-second countdown,
+   active countdown. Its bounding box never jumps when the timer appears. */
+.scene--game .play-inner.stable-round {
+ display:grid;grid-template-columns:minmax(0,1fr);
+ grid-template-rows:minmax(0,1fr) auto minmax(0,1fr);
+ align-content:stretch;align-items:center;justify-items:center;
+ width:100%;max-width:660px;padding:0;gap:0;position:relative;overflow:hidden;
+}
+.scene--game .stable-round .round-top {
+ width:100%;min-height:0;max-height:100%;min-width:0;
+ display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+ gap:clamp(4px,.85dvh,11px);overflow:hidden;padding:0 3px clamp(8px,1.8dvh,17px);
+}
+.scene--game .stable-round .round-top--task .mode-symbol {
+ width:clamp(82px,16dvh,142px);height:clamp(82px,16dvh,142px);
+ margin:0;flex:0 1 auto;min-height:65px;animation:task-icon-enter .35s ease-out both;
+}
+.scene--game .stable-round .round-top--task .mode-name {
+ font-size:clamp(20px,3.3dvh,34px);margin:0;line-height:1.1;
+ max-width:100%;flex-shrink:0;
+}
+.scene--game .stable-round .round-top--task .mode-rule{
+ max-height:min(12dvh,100px);overflow:auto;font-size:clamp(10px,1.45dvh,13px);
+ line-height:1.32;padding:7px 11px;flex:0 1 auto;min-height:0;width:100%;
+}
+.scene--game .stable-round .round-top--task>.score-note,
+.scene--game .stable-round .round-top--task>.secret-flag {
+ font-size:clamp(9px,1.4dvh,12px);flex:0 0 auto;
+}
+.scene--game .stable-round .round-top--timer {
+ padding:0 3px clamp(5px,1dvh,12px);
+ gap:clamp(3px,.7dvh,7px);
+}
+.scene--game .stable-round .round-top--timer .timer-ring {
+ width:clamp(118px,20dvh,185px);height:clamp(118px,20dvh,185px);
+ min-height:0;flex:0 1 auto;margin:0;
+}
+.scene--game .stable-round .round-top--timer .timer-pause .round-action {
+ width:clamp(35px,5dvh,44px);height:clamp(35px,5dvh,44px);border-width:1px;
+}
+.scene--game .stable-round .round-top--timer .timer-pause .round-action svg{width:44%;height:44%}
+.scene--game .stable-round .round-top--timer .game-eyebrow{font-size:10px;line-height:1.2}
+.scene--game .stable-round .round-fixed-card {
+ width:100%;min-width:0;
+ height:clamp(114px,17dvh,166px);
+ display:flex;align-items:center;justify-content:center;
+ flex:0 0 auto;
+}
+.scene--game .stable-round .round-fixed-card .challenge-card{
+ width:min(calc(100% - 22px),570px);height:100%;min-height:0;max-height:none;
+ margin:0!important;transform:rotate(-1.2deg)!important;
+ padding:clamp(11px,1.75dvh,21px) clamp(13px,3vw,24px);
+ display:flex;justify-content:center;gap:clamp(4px,.7dvh,10px);
+ flex:0 1 auto;box-sizing:border-box;
+}
+.scene--game .stable-round .challenge-word {
+ line-height:1.12;font-size:clamp(21px,3.5dvh,36px);
+ max-width:100%;max-height:100%;overflow-y:auto;
+ overflow-wrap:anywhere;word-break:normal;
+}
+.scene--game .stable-round .challenge-word--long{font-size:clamp(17px,2.9dvh,27px)}
+.scene--game .stable-round .challenge-word--very-long{font-size:clamp(15px,2.3dvh,21px)}
+.scene--game .stable-round .challenge-word--hidden{font-size:clamp(17px,2.6dvh,26px)}
+.scene--game .stable-round .round-bottom {
+ display:flex;flex-direction:column;justify-content:flex-end;align-items:center;
+ width:100%;height:100%;min-height:0;
+ padding:0 4px clamp(18px,5dvh,52px);
+ gap:10px;
+}
+.scene--game .stable-round .round-bottom--task .task-open{
+ width:100%;max-width:510px;
+}
+.scene--game .stable-round .round-bottom--task .task-open .button {
+ width:100%;min-height:clamp(50px,7dvh,64px);
+}
+.scene--game .stable-round .round-bottom--play .three-answer-actions {
+ width:min(100%,440px);
+ display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr) minmax(0,1fr);
+ align-items:center;justify-items:center;gap:clamp(11px,3vw,26px)
+}
+.scene--game .three-answer-actions .round-action--prominent {
+ width:clamp(67px,10.5dvh,96px);height:clamp(67px,10.5dvh,96px);
+}
+.scene--game .three-answer-actions .round-action--muted {
+ width:clamp(46px,7dvh,59px);height:clamp(46px,7dvh,59px);
+ background:#3d3653;border-color:#a99abc;color:#f0eaf3
+}
+.scene--game .three-answer-actions .round-action--danger {
+ color:white;background:linear-gradient(145deg,#ff8c95,#e84f6b);border-color:#ffd3dc;
+ box-shadow:0 7px 18px #f3658770;
+}
+.scene--game .three-answer-actions .round-action--success {
+ color:white;background:linear-gradient(145deg,#94ef9f,#3bca8c);border-color:#d3ffdc;
+ box-shadow:0 7px 18px #79e4a67c;
+}
+.scene--game .three-answer-actions .round-action--success svg,
+.scene--game .three-answer-actions .round-action--danger svg {
+ stroke-width:2.8;width:50%;height:50%
+}
+.scene--game .stable-round .round-bottom--play .blitz-actions {display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap}
+.scene--game .stable-round .round-bottom--play .minor-action {margin-top:0}
+.scene--game .stable-round .round-bottom--task .task-controls {width:100%}
+.scene--game .stable-round .round-top--timer .play-title{font-size:clamp(19px,3dvh,29px)}
+@media(max-height:740px) {
+ .scene--game .stable-round .round-top--task .mode-symbol{width:75px;height:75px;min-height:60px}
+ .scene--game .stable-round .round-top--task .mode-name{font-size:19px}
+ .scene--game .stable-round .round-top--task .mode-rule{max-height:11dvh;font-size:10px;padding:5px 8px}
+ .scene--game .stable-round .round-fixed-card{height:clamp(95px,16dvh,117px)}
+ .scene--game .stable-round .round-top--timer .timer-ring{width:clamp(93px,17dvh,119px);height:clamp(93px,17dvh,119px)}
+ .scene--game .stable-round .round-bottom{padding-bottom:clamp(8px,3dvh,20px)}
+ .scene--game .three-answer-actions .round-action--prominent{width:64px;height:64px}
+ .scene--game .three-answer-actions .round-action--muted{width:47px;height:47px}
+}
