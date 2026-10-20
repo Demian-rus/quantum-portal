@@ -103,8 +103,8 @@ async function configureOnly(page,id) {
     await blitz.locator('[data-action="blitz-correct"]').click();
     assert.equal(await blitz.locator('[data-action="yes"]').count(),1);
     const stats=await blitz.evaluate(()=>({correct:game.current.blitzCorrect,
-      skipped:game.current.blitzSkipped,count:game.current.blitzWords.length}));
-    assert.deepEqual(stats,{correct:5,skipped:2,count:5});
+      remaining:game.current.blitzQueue.length,count:game.current.blitzWords.length}));
+    assert.deepEqual(stats,{correct:5,remaining:0,count:5});
     await blitz.screenshot({path:'artifacts/iskra-v2/phone-blitz-result.png',fullPage:true});
     await blitz.locator('[data-action="yes"]').click();
     assert.equal(await blitz.locator('#score-a').textContent(),'5');
