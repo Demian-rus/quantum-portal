@@ -1,9 +1,9 @@
 'use strict';
 const STORAGE_KEY = 'iskra-party:v1';
 const MODE_LIST = Object.freeze([
-  {id:'talk',title:'ГОВОРИ',rule:'Объясняй словами, не называя ответ и однокоренные слова.',kind:'words',points:1},
-  {id:'mime',title:'ПОКАЖИ',rule:'Только жесты и мимика. Нельзя говорить или издавать звуки.',kind:'words',points:2},
-  {id:'draw',title:'РИСУЙ',rule:'Рисуй на бумаге, не используя буквы, цифры и жесты.',kind:'words',points:2},
+  {id:'talk',title:'СЛОВА',rule:'Объясняй словами, не называя ответ и однокоренные слова.',kind:'words',points:1},
+  {id:'mime',title:'ЖЕСТЫ',rule:'Только жесты и мимика. Нельзя говорить или издавать звуки.',kind:'words',points:2},
+  {id:'draw',title:'НАРИСУЙ',rule:'Рисуй на бумаге, не используя буквы, цифры и жесты.',kind:'words',points:2},
   {id:'sing',title:'НАПОЙ',rule:'Напой песню, связанную с темой. Команда угадывает саму тему.',kind:'songs',points:2},
   {id:'yesno',title:'ДАНЕТКИ',rule:'Соперники задают вопросы. Отвечай только «да», «нет» или «не знаю». Нужно угадать личность или персонажа.',kind:'people',points:2},
   {id:'secret',title:'СЕКРЕТКА',rule:'Случайное задание с обязательным усложнением. Принесёт 3 очка.',kind:'words',points:3},
@@ -48,6 +48,34 @@ const COMPLICATIONS = Object.freeze({
     'Без прилагательных.','Нельзя повторять подсказки.'
   ]
 });
+// A modifier's severity follows the difficulty of the current round.
+const EASY_COMPLICATIONS = Object.freeze({
+ talk:['Говори шёпотом.','Говори как ведущий новостей.','Улыбайся во время объяснения.','Объясняй как экскурсовод.','Говори как сказочник.','Объясняй очень торжественно.'],
+ mime:['Показывай как робот.','Показывай очень медленно.','Показывай словно на большой сцене.','Добавь забавную эмоцию.','Показывай как сонный человек.'],
+ draw:['Рисуй огромными линиями.','Используй только один цвет.','Начни рисунок с круга.','Нельзя использовать ластик.','Нарисуй забавную рамку.'],
+ sing:['Пой как оперный певец.','Пой как колыбельную.','Пой словно на стадионе.','Пой очень радостно.','Напевай на слог «ла».'],
+ yesno:['Не больше пятнадцати вопросов.','Начни с вопроса о персонаже.','Первый вопрос должен быть о времени.','Первый вопрос должен быть о месте.'],
+ blitz:['Каждую подсказку начинай с «Представь».','Говори как ведущий телеигры.','Объясняй с улыбкой.']
+});
+const HARD_COMPLICATIONS = Object.freeze({
+ talk:['Нельзя использовать прилагательные и указательные местоимения.','Объясняй исключительно вопросами.','Не используй глаголы.','Произнеси максимум три слова в каждой подсказке.','Каждую фразу начинай на следующую букву алфавита.','Не называй категории объектов.'],
+ mime:['Держи обе ноги неподвижно.','Показывай только одной рукой и без мимики.','Каждые три секунды замирай.','Показывай только сидя с закрытым одним глазом.','Запрещено изображать форму предмета руками.'],
+ draw:['Рисуй, не отрывая карандаш от бумаги и неведущей рукой.','Не больше трёх линий.','Нельзя изображать людей и лица.','Рисуй только прямыми отрезками.','Первые десять секунд рисуй с закрытыми глазами.'],
+ sing:['Напевай только с закрытым ртом.','Напевай только на одном звуке.','Пой без слов и без смены темпа.','Чередуй две ноты, не больше.'],
+ yesno:['Только семь вопросов на весь раунд.','Нельзя спрашивать ни о профессии, ни об эпохе.','Нельзя задавать вопросы про происхождение персонажа.','На вопросы отвечай только «да» и «нет», без объяснений.'],
+ blitz:['Не используй прилагательные и жесты.','Запрещено повторять слова в подсказках.','Каждая подсказка максимум два слова.','Запрещено использовать местоимения.']
+});
+function severityForRound() {
+  return game.current?.difficulty || game.difficulty;
+}
+function allowPause() { return severityForRound()==='easy'; }
+function selectComplication(id,level) {
+  const easy=EASY_COMPLICATIONS[id]||[];
+  const medium=COMPLICATIONS[id]||[];
+  const hard=HARD_COMPLICATIONS[id]||[];
+  const pool=level==='easy'?easy:level==='medium'?easy.concat(medium):easy.concat(medium,hard);
+  return randomOne(pool.length?pool:medium);
+}
 const DEFAULT_MODES = Object.freeze(MODE_LIST.map(mode=>mode.id));
 const PROMPT_TYPES = Object.freeze(['word','phrase','idiom']);
 const SCORE = Object.freeze({talk:1,mime:2,draw:2,sing:2,yesno:2,secret:3,blitz:1});
@@ -59,10 +87,7 @@ function symbol(id,extra='') {
   return '<div class="mode-symbol '+extra+'" aria-hidden="true">'+modeArt(id)+'</div>';
 }
 const $ = id => document.getElementById(id);
-function timerMarkup(ms) {
- const parts=formatTimer(ms).split(':');
- return '<span class="timer-digit">'+parts[0]+'</span><span class="timer-colon">:</span><span class="timer-digit">'+parts[1]+'</span>';
-}
+function timerMarkup(ms) { return formatTimer(ms); }
 const freshOptions = () => ({
   difficulty:'easy',duration:60,rounds:12, dice:true, complications:true,
   modes:DEFAULT_MODES.slice(), promptTypes:PROMPT_TYPES.slice(),blitzCount:4,
@@ -206,8 +231,7 @@ function getPromptPool(kind,level) {
   return (game.promptTypes?.length?game.promptTypes:PROMPT_TYPES)
     .flatMap(type=>groups[type]||[]);
 }
-function pullWord(kind) {
-  const level=chooseDifficulty();
+function pullWord(kind, level=chooseDifficulty()) {
   const pool=getPromptPool(kind,level);
   if(!pool?.length)throw Error('Нет слов для выбранных настроек');
   const key=level+':'+kind+':'+(game.promptTypes||[]).join(',');
@@ -222,21 +246,22 @@ function rollOutcome() {
   const mode=pickMode();
   game.modeHistory.push(mode.id);
   let actualMode=mode;
+  const level=chooseDifficulty();
   let complication='';
   if(mode.id==='secret'){
     const submodes=MODE_LIST.filter(m=>['talk','mime','draw','sing','yesno'].includes(m.id));
     actualMode=randomOne(submodes.filter(m=>game.modes.includes(m.id))||submodes);
     if(!actualMode)actualMode=randomOne(submodes);
   }
-  if(mode.id==='secret'||(game.complications&&Math.random()<.28))
-    complication=randomOne(COMPLICATIONS[actualMode.id]||[]);
-  const word=pullWord(actualMode.kind);
+  if(mode.id==='secret'||(game.complications&&Math.random()<.35))
+    complication=selectComplication(actualMode.id,level);
+  const word=pullWord(actualMode.kind,level);
   return {
-    modeId:mode.id,methodId:actualMode.id,word,complication,
+    modeId:mode.id,methodId:actualMode.id,word,complication,difficulty:level,
     points:SCORE[mode.id]||1,seconds:mode.seconds||game.duration,
-    blitzWords:mode.id==='blitz'?[word,...Array.from({length:game.blitzCount-1},()=>pullWord('words'))]:null,
+    blitzWords:mode.id==='blitz'?[word,...Array.from({length:game.blitzCount-1},()=>pullWord('words',level))]:null,
     blitzIndex:0,blitzCorrect:0,blitzSkipped:0,
-    visible:false,paused:false,remainingMs:null,deadline:null,
+    visible:false,paused:false,remainingMs:null,deadline:null,autoStartAt:null,
     finishedReason:null,replaced:false
   };
 }
@@ -297,8 +322,9 @@ function showTask() {
     taskMarkup(!c.visible)+
     '<div class="inline-actions">'+
     (c.visible?makeButton('СКРЫТЬ СЛОВО','toggle-word'):makeButton('ОТКРЫТЬ ЗАДАНИЕ','toggle-word','button-coral'))+
-    (!c.replaced?makeButton('ДРУГОЕ СЛОВО (1×)','replace-word','button-quiet'):'')+'</div>'+
-    (c.visible?makeButton('СТАРТ ТАЙМЕРА','start-timer','button-primary button-big'):
+    (allowPause()&&c.modeId!=='blitz'?makeButton('ДРУГОЕ СЛОВО','replace-word','button-quiet'):'')+'</div>'+
+    (c.visible?(allowPause()?makeButton('СТАРТ ТАЙМЕРА','start-timer','button-primary button-big'):
+       '<span class="score-note">Таймер начнётся автоматически через 1 секунду</span>'):
       '<span class="score-note">Сначала открой карточку — соперники не должны видеть ответ</span>');
 }
 function blitzStatus() {
@@ -321,7 +347,7 @@ function showTimer() {
       '<div class="inline-actions">'+
       makeButton(c.visible?'СКРЫТЬ СЛОВО':'ПОКАЗАТЬ СЛОВО','toggle-word')+'</div>')+
     '<div class="inline-actions">'+
-    makeButton(c.paused?'ПРОДОЛЖИТЬ':'ПАУЗА',c.paused?'resume':'pause')+
+    (allowPause()?makeButton(c.paused?'ПРОДОЛЖИТЬ':'ПАУЗА',c.paused?'resume':'pause'):'')+
     makeButton('ЗАВЕРШИТЬ','finish-early','button-quiet')+'</div>';
   updateTimerVisual(shown);
 }
@@ -352,13 +378,38 @@ function updateTimerVisual(remaining) {
 function stopTicking() {
   if(intervalId!==null){clearInterval(intervalId);intervalId=null;}
 }
+function beginAutomaticRound() {
+  if(!game||game.phase!=='countdown')return;
+  const c=game.current;
+  const startAt=c.autoStartAt || Date.now();
+  c.deadline=startAt+c.seconds*1000;
+  c.autoStartAt=null;
+  c.remainingMs=null;c.paused=false;
+  game.phase='play';
+  lastChimeAt=null;
+  persist();sfx('go');render();
+}
+function showCountdown() {
+  const c=game.current;
+  $('play-step').textContent='ПРИГОТОВЬТЕСЬ';
+  $('play-content').innerHTML=
+    '<span class="game-eyebrow">'+escapeHTML(modeInformation().name)+'</span>'+
+    '<h2 class="play-title">СТАРТ ЧЕРЕЗ <em>1 СЕКУНДУ</em></h2>'+
+    taskMarkup(false)+
+    '<p class="play-subtitle">Время начнётся автоматически. Пауза на этом уровне недоступна.</p>';
+}
 function startTicking() {
   stopTicking();
   intervalId=setInterval(tick,100);
   tick();
 }
 function tick() {
-  if(!game||game.phase!=='play'||game.current.paused)return;
+  if(!game)return;
+  if(game.phase==='countdown'){
+    if(Date.now()>=game.current.autoStartAt)beginAutomaticRound();
+    return;
+  }
+  if(game.phase!=='play'||game.current.paused)return;
   const remain=Math.max(0,game.current.deadline-Date.now());
   const second=Math.ceil(remain/1000);
   updateTimerVisual(remain);
@@ -435,7 +486,7 @@ function showResults() {
     '<h1 class="match-finished">'+(a===b?'ПОБЕДИЛА <em>ДРУЖБА</em>':'ПОБЕДИТЕЛЬ:<br><span style="color:var(--lime)">'+escapeHTML(winner)+'</span>')+'</h1>'+
     '<p class="play-subtitle" style="margin:15px auto">Отличная партия. Но разве это повод останавливаться?</p>'+
     '<div class="final-score">'+item(0)+'<span class="final-score-divider">:</span>'+item(1)+'</div>'+
-    '<div class="inline-actions">'+makeButton('СЫГРАТЬ ЕЩЁ ↗','again','button-primary button-big')+
+    '<div class="inline-actions">'+makeButton('СЫГРАТЬ ЕЩЁ','again','button-primary button-big')+
     makeButton('В ГЛАВНОЕ МЕНЮ','menu')+'</div>'+
     '<div class="history-block"><h3>ИСТОРИЯ ХОДОВ</h3>'+
     game.history.map((row,index)=>
@@ -452,10 +503,11 @@ function render() {
   if(game.phase==='ready')showReady();
   else if(game.phase==='rolling')showRolling();
   else if(game.phase==='task')showTask();
+  else if(game.phase==='countdown')showCountdown();
   else if(game.phase==='play')showTimer();
   else if(game.phase==='judge')showJudge();
   else if(game.phase==='between')showBetween();
-  if(game.phase==='play'&&!game.current.paused)startTicking();
+  if(game.phase==='countdown'||(game.phase==='play'&&!game.current.paused))startTicking();
   else stopTicking();
 }
 function newGame() {
@@ -489,21 +541,23 @@ function roll() {
 function toggleWord() {
   if(!game||!['task','play'].includes(game.phase))return;
   if(game.current.modeId==='blitz'&&game.phase==='play')return;
-  game.current.visible=!game.current.visible;persist();
-  if(game.phase==='play') {
-    // Showing a word during a running clock must not reset its deadline.
-    render();
-  } else showTask();
+  if(game.phase==='play'&&!allowPause())return;
+  game.current.visible=!game.current.visible;
+  if(game.phase==='task'&&game.current.visible&&!allowPause()){
+    game.phase='countdown';
+    game.current.autoStartAt=Date.now()+1000;
+  }
+  persist();
+  render();
 }
 function replaceWord() {
-  if(!game||game.phase!=='task'||game.current.replaced||game.current.modeId==='blitz')return;
-  game.current.word=pullWord(getMode(game.current.methodId).kind);
+  if(!game||game.phase!=='task'||!allowPause()||game.current.modeId==='blitz')return;
+  game.current.word=pullWord(getMode(game.current.methodId).kind,game.current.difficulty);
   game.current.visible=false;
-  game.current.replaced=true;
   persist();sfx('button');render();
 }
 function startTimer() {
-  if(!game||game.phase!=='task'||!game.current.visible)return;
+  if(!game||game.phase!=='task'||!game.current.visible||!allowPause())return;
   game.phase='play';
   game.current.deadline=Date.now()+game.current.seconds*1000;
   game.current.remainingMs=null;
@@ -512,14 +566,14 @@ function startTimer() {
   persist();sfx('go');render();
 }
 function pauseTimer() {
-  if(!game||game.phase!=='play'||game.current.paused)return;
+  if(!game||game.phase!=='play'||game.current.paused||!allowPause())return;
   game.current.remainingMs=Math.max(0,game.current.deadline-Date.now());
   game.current.paused=true;
   game.current.deadline=null;
   persist();render();
 }
 function resumeTimer() {
-  if(!game||game.phase!=='play'||!game.current.paused)return;
+  if(!game||game.phase!=='play'||!game.current.paused||!allowPause())return;
   game.current.deadline=Date.now()+game.current.remainingMs;
   game.current.paused=false;
   persist();sfx('go');render();
@@ -568,6 +622,11 @@ function restoreSession() {
   if(!candidate||!Array.isArray(candidate.teams)||candidate.teams.length!==2||
       !Array.isArray(candidate.scores)||!Number.isInteger(candidate.roundIndex))return;
   if(candidate.phase==='rolling')candidate.phase='ready';
+  if(candidate.phase==='countdown' && (candidate.current?.autoStartAt||0)<=Date.now()){
+    candidate.phase='play';
+    candidate.current.deadline=candidate.current.autoStartAt+candidate.current.seconds*1000;
+    candidate.current.autoStartAt=null;
+  }
   if(candidate.phase==='play'&&candidate.current?.deadline!=null&&
        candidate.current.deadline<=Date.now()) {
     candidate.phase='judge';
@@ -584,6 +643,7 @@ function restoreSession() {
   }
   game.complications=game.complications!==false;
   game.dice=game.dice!==false;
+  if(game.current&&!game.current.difficulty)game.current.difficulty=game.difficulty==='mixed'?'medium':game.difficulty;
   $('team-a').value=game.teams[0];
   $('team-b').value=game.teams[1];
   renderOptions();
