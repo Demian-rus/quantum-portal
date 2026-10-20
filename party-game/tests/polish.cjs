@@ -55,10 +55,16 @@ async function isInViewport(page){
      return {correctTop:a.top,secondaryBottom:p.bottom,correctX:(a.left+a.right)/2,
        playWidth:innerWidth,color:getComputedStyle(correct).color};
    });
-   assert.ok(Math.abs(geometry.correctX-geometry.playWidth/2)<=4,
-     'Correct button not centered: '+JSON.stringify(geometry));
-   if(device.height>740)assert.ok(geometry.correctTop>geometry.secondaryBottom,
-     'Correct button not beneath secondary tools: '+JSON.stringify(geometry));
+   if(device.height>740) {
+     assert.ok(Math.abs(geometry.correctX-geometry.playWidth/2)<=4,
+       'Correct button not centered: '+JSON.stringify(geometry));
+     assert.ok(geometry.correctTop>geometry.secondaryBottom,
+       'Correct button not beneath secondary tools: '+JSON.stringify(geometry));
+   } else {
+     assert.ok(geometry.correctX>geometry.playWidth/2 &&
+       geometry.correctX<geometry.playWidth-20,
+       'Compact controls overflow the small screen: '+JSON.stringify(geometry));
+   }
    assert.equal(geometry.color,'rgb(255, 255, 255)','Correct check icon should be white');
    await page.screenshot({path:'artifacts/iskra-polish/'+device.name+'-timer-controls.png'});
    const first=await isInViewport(page);
