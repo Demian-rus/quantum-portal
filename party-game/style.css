@@ -770,3 +770,178 @@ body::after { z-index:0; }
  .settings-scroller {inset-block-start:clamp(135px,17dvh,190px);}
  .home-menu {top:47%;}
 }
+
+
+/* V4.1: readable screen composition. Background art remains unchanged. */
+.scene--game .play-inner.is-ready {
+  justify-content:flex-start;
+  padding-top:clamp(20px,5dvh,65px);
+  gap:clamp(14px,2.7dvh,27px);
+}
+.scene--game .is-ready .ready-avatar,
+.scene--game .is-ready .ready-avatar .mode-art {
+  width:clamp(132px,24dvh,200px)!important;
+  height:clamp(132px,24dvh,200px)!important;
+  max-width:45vw;
+  max-height:45vw;
+}
+.scene--game .is-ready .play-title {
+  font-size:clamp(30px,5.6dvh,51px);
+  line-height:1.13;
+}
+.scene--game .is-ready .play-subtitle {
+  font-size:clamp(12px,1.9dvh,16px);
+  line-height:1.52;max-width:390px;
+}
+.scene--game .is-ready [data-action="roll"] {
+  width:min(100%,440px);margin-top:clamp(6px,2.5dvh,20px);
+  min-height:clamp(50px,7dvh,65px);
+}
+.scene--game .play-inner.is-task {
+  justify-content:flex-start;
+  padding-top:clamp(15px,4dvh,52px);
+  gap:clamp(9px,1.65dvh,19px);
+}
+.scene--game .is-task .mode-symbol {
+  width:clamp(112px,20dvh,174px);
+  height:clamp(112px,20dvh,174px);
+  flex-shrink:0;
+  margin-bottom:clamp(2px,1dvh,8px);
+  animation:task-icon-enter .35s ease-out both;
+}
+@keyframes task-icon-enter {
+  from { opacity:.5;transform:rotate(-8deg) scale(.9) translateY(7px); }
+  to { opacity:1;transform:rotate(-6deg) scale(1); }
+}
+.scene--game .is-task .mode-name {
+  font-size:clamp(22px,3.95dvh,36px);
+  line-height:1.15;
+  margin:0;max-width:100%;
+  overflow-wrap:anywhere;
+}
+.scene--game .is-task .mode-rule {
+  font-size:clamp(11px,1.56dvh,14px);
+  line-height:1.5;
+  max-height:20dvh;
+  padding:clamp(9px,1.35dvh,14px) 13px;
+  margin:0;
+}
+.scene--game .is-task .secret-flag,
+.scene--game .is-task .score-note {flex:0 0 auto;}
+/* Restore the playful tilted, layered physical card; ensure edges have breathing room. */
+.scene--game .is-task .challenge-card,
+.scene--game .is-play .challenge-card,
+.scene--game .is-countdown .challenge-card {
+  width:min(calc(100% - 18px),570px);
+  min-height:clamp(104px,16dvh,167px);
+  max-height:22dvh;
+  padding:clamp(14px,2.3dvh,24px) clamp(13px,2.6vw,28px);
+  margin:clamp(8px,1dvh,14px) 8px clamp(10px,1.5dvh,17px);
+  gap:clamp(6px,1dvh,12px);
+  border:2px solid #f3c8ff;
+  border-radius:23px;
+  background:linear-gradient(145deg,#62487e 0%,#45305e 45%,#302142 100%);
+  box-shadow:0 8px 0 #180923,0 17px 32px #0b041ec0,inset 0 1px 0 #fff6;
+  transform:rotate(-1.25deg);
+}
+.scene--game .is-task .challenge-card.is-hidden,
+.scene--game .is-countdown .challenge-card.is-hidden,
+.scene--game .is-play .challenge-card.is-hidden {
+  border-style:dashed;
+  background:repeating-linear-gradient(135deg,#3b284f,#3b284f 19px,#45305c 19px,#45305c 38px);
+}
+.scene--game .is-task .challenge-word,
+.scene--game .is-play .challenge-word,
+.scene--game .is-countdown .challenge-word {
+  font-size:clamp(21px,3.6dvh,38px);
+  line-height:1.17;
+  overflow-wrap:anywhere;
+}
+.scene--game .is-task .challenge-word--hidden {font-size:clamp(14px,2.2dvh,21px);}
+.scene--game .is-task .challenge-details {color:#a6f4c4;}
+.scene--game .round-controls {
+  display:flex;justify-content:center;align-items:center;
+  width:100%;gap:clamp(24px,7vw,48px);
+  margin:0 auto;flex:0 0 auto;
+}
+.scene--game .round-action,
+.scene--game .round-action-placeholder {
+  width:clamp(54px,8dvh,67px);height:clamp(54px,8dvh,67px);
+  flex:0 0 auto;border-radius:50%;display:grid;place-items:center;
+}
+.scene--game .round-action {
+  border:2px solid #c6a9d3aa;
+  color:#f7e8ff;background:#30213fcf;
+  box-shadow:0 8px 15px #11062285,inset 0 1px 0 #fff3;
+  transition:transform .16s,background .16s;
+  cursor:pointer;
+}
+.scene--game .round-action:active {transform:scale(.93);}
+.scene--game .round-action:focus-visible {outline:3px solid #fff;outline-offset:4px;}
+.scene--game .round-action svg {width:46%;height:46%;}
+.scene--game .round-action--success {
+  color:#17322b;border:2px solid #e5ffbe;
+  background:linear-gradient(140deg,#d1ff90,#79dfa9);
+  box-shadow:0 8px 21px #95efa34b,inset 0 1px 0 #fff9;
+}
+.scene--game .round-action--prominent {
+  width:clamp(75px,10.5dvh,91px);height:clamp(75px,10.5dvh,91px);
+}
+.scene--game .round-action--prominent svg {width:50%;height:50%;stroke-width:2.6;}
+.scene--game .task-open {display:flex;justify-content:center;width:100%;}
+.scene--game .task-open .button {
+  width:min(100%,350px);min-height:51px;font-size:clamp(12px,1.9dvh,16px);
+}
+.scene--game .play-inner.is-play {gap:clamp(10px,1.75dvh,20px);}
+.scene--game .is-play .challenge-card {min-height:clamp(99px,15dvh,153px);}
+.scene--game .is-play .timer-ring {width:clamp(135px,23dvh,204px);height:clamp(135px,23dvh,204px);}
+.scene--game .is-play .game-eyebrow {font-size:clamp(10px,1.55dvh,13px);}
+.scene--game .is-play .play-controls {margin-top:clamp(3px,1dvh,9px);}
+.scene--game .is-play .blitz-actions {display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.scene--game .is-play .blitz-actions .button {min-height:48px;padding:12px 17px;}
+.scene--game .is-play .minor-action {margin-top:0;}
+.scene--game .is-play .minor-action .button {padding:6px 10px;font-size:10px;min-height:30px;}
+/* The label always sits directly beneath the corresponding judgement circle. */
+.scene--game .play-inner.is-judge {gap:clamp(13px,2.2dvh,26px);}
+.scene--game .is-judge .mode-symbol {width:clamp(95px,17dvh,142px);height:clamp(95px,17dvh,142px);}
+.scene--game .is-judge .play-title {font-size:clamp(24px,4.2dvh,37px);}
+.scene--game .is-judge .play-subtitle {max-width:410px;font-size:clamp(11px,1.8dvh,14px);line-height:1.5;}
+.scene--game .is-judge .score-note {max-width:430px;line-height:1.5;font-size:clamp(11px,1.7dvh,14px);}
+.scene--game .is-judge .judgement-grid {
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:start;justify-items:center;
+  gap:clamp(22px,7vw,64px);
+  width:min(100%,365px);margin:clamp(5px,2dvh,18px) auto 0;
+}
+.scene--game .is-judge .judgement-option {
+  display:flex;flex-direction:column;align-items:center;
+  gap:clamp(11px,1.9dvh,19px);width:100%;min-width:0;
+}
+.scene--game .is-judge .judgement-option .judgement {
+  flex-shrink:0;width:clamp(96px,17dvh,125px);height:clamp(96px,17dvh,125px);
+}
+.scene--game .is-judge .judgement-option>span {
+  font:900 clamp(10px,1.55dvh,13px) var(--font-body);
+  letter-spacing:.07em;color:#ffeff5;line-height:1.25;
+  text-align:center;white-space:nowrap;
+}
+/* Tight phones keep a safe single-screen layout; no document scrolling. */
+@media(max-height:740px) {
+ .scene--game .play-inner.is-ready {padding-top:14px;gap:9px;}
+ .scene--game .is-ready .ready-avatar,
+ .scene--game .is-ready .ready-avatar .mode-art {width:124px!important;height:124px!important;}
+ .scene--game .play-inner.is-task {padding-top:6px;gap:7px;}
+ .scene--game .is-task .mode-symbol {width:96px;height:96px;margin-bottom:0;}
+ .scene--game .is-task .mode-name {font-size:21px;}
+ .scene--game .is-task .mode-rule {padding:7px 9px;font-size:10px;line-height:1.3;}
+ .scene--game .is-task .challenge-card,
+ .scene--game .is-play .challenge-card {min-height:90px;padding:10px 10px;margin:6px 7px 10px;}
+ .scene--game .is-task .challenge-word,.scene--game .is-play .challenge-word {font-size:21px;}
+ .scene--game .round-action,.scene--game .round-action-placeholder {width:51px;height:51px;}
+ .scene--game .round-action--prominent {width:66px;height:66px;}
+ .scene--game .is-play .timer-ring {width:125px;height:125px;}
+ .scene--game .play-inner.is-judge {gap:8px;}
+ .scene--game .is-judge .mode-symbol {width:84px;height:84px;}
+ .scene--game .is-judge .judgement-option .judgement {width:87px;height:87px;}
+ .scene--game .is-judge .judgement-grid {margin-top:3px;}
+}
