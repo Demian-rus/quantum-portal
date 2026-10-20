@@ -945,3 +945,29 @@ body::after { z-index:0; }
  .scene--game .is-judge .judgement-option .judgement {width:87px;height:87px;}
  .scene--game .is-judge .judgement-grid {margin-top:3px;}
 }
+
+/* Center the one-tap success affordance BELOW hide/pause, not next to them. */
+.scene--game .play-inner.is-play .play-controls {
+  flex-direction:column;
+  gap:clamp(9px,1.35dvh,14px);
+  width:100%;
+  margin-top:0;
+}
+.scene--game .play-secondary-controls {
+  display:flex;gap:clamp(30px,8vw,58px);align-items:center;justify-content:center;
+}
+.scene--game .play-success-control {display:grid;place-items:center;}
+.scene--game .play-success-control .round-action--success {
+  color:#fff;
+  background:linear-gradient(140deg,#9bfaac,#39be87);
+  border-color:#e9fff0;
+}
+.scene--game .play-success-control .round-action--success svg {
+  filter:drop-shadow(0 1px 2px #1649388c);
+}
+/* In very short viewports the stacked controls would otherwise clip;
+   use a single compact horizontal row only in that constrained case. */
+@media(max-height:740px) {
+ .scene--game .play-inner.is-play .play-controls {flex-direction:row;gap:21px;}
+ .scene--game .play-secondary-controls {gap:21px;}
+}
