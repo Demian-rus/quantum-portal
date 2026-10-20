@@ -201,9 +201,7 @@ function setScene(which) {
   updateContinue();
 }
 function openSetup() {
-  if(game&&hasUnfinishedGame()) {
-    if(!window.confirm('Начать новую партию вместо сохранённой?'))return;
-  }
+  // Opening setup keeps any unfinished session untouched until the user starts a new one.
   renderOptions();
   setScene('setup');
   $('setup-scroll').scrollTop=0;
@@ -312,6 +310,30 @@ function rollOutcome() {
 }
 function makeButton(label,action,style='button-secondary') {
   return '<button type="button" class="button '+style+'" data-action="'+action+'">'+label+'</button>';
+}
+// Lucide-like vector UI controls; illustrated mode assets continue to use WebP.
+const CONTROL_ICONS=Object.freeze({
+  'eye-off':'<path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.9 5.3A11.6 11.6 0 0 1 12 5c5.1 0 8.8 4 10 7a12 12 0 0 1-3.4 4.5M6.1 6.1A12.1 12.1 0 0 0 2 12c1.2 3 4.9 7 10 7 1.8 0 3.5-.5 4.9-1.3"/>',
+  eye:'<path d="M2 12s3.7-7 10-7 10 7 10 7-3.7 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  refresh:'<path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.5 9A7.5 7.5 0 0 1 19 7l1 5M4 12l1 5a7.5 7.5 0 0 0 13.5-2"/>',
+  pause:'<path d="M9 5v14M15 5v14"/>',
+  play:'<path d="m8 5 11 7-11 7V5Z"/>',
+  check:'<path d="m4 12 5 5L20 6"/>'
+});
+function iconButton(icon,action,label,variant='muted') {
+  if(!CONTROL_ICONS[icon])throw Error('Unknown control icon');
+  return '<button type="button" class="round-action round-action--'+variant+'" data-action="'+action+
+  '" title="'+label+'" aria-label="'+label+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+CONTROL_ICONS[icon]+'</svg></button>';
+}
+function taskControls(c) {
+  if(!c.visible)return '<div class="task-open">'+makeButton('ОТКРЫТЬ ЗАДАНИЕ','toggle-word','button-coral button-big')+'</div>';
+  if(!allowPause())return '';
+  return '<div class="round-controls task-controls">'+
+    iconButton('eye-off','toggle-word','Скрыть слово')+
+    iconButton('clock','start-timer','Запустить таймер','success')+
+    (c.modeId!=='blitz'?iconButton('refresh','replace-word','Другое слово'):'<span class="round-action-placeholder" aria-hidden="true"></span>')+
+    '</div>';
 }
 function showReady() {
   $('play-step').textContent='ПЕРЕДАЙТЕ ТЕЛЕФОН';
@@ -585,7 +607,7 @@ function render() {
   else stopTicking();
 }
 function newGame() {
-  if(game&&game.phase!=='results'&&!window.confirm('Заменить текущую партию новой?'))return;
+  // START is the explicit action; don't repeat it with a native confirmation.
   if(!options.modes.length){toast('Выберите хотя бы один игровой режим');return;}
   if(!options.promptTypes.length && options.modes.some(id=>['talk','mime','draw','blitz','secret'].includes(id))){toast('Выберите тип заданий');return;}
   const teamA=sanitizeTeam($('team-a').value,'Молнии');
