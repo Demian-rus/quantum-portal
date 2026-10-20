@@ -79,8 +79,6 @@
             <button class="settings-toggle" data-theme="математика">Математика</button>
             <button class="settings-toggle" data-theme="физмат">ФизМат</button>
             <!-- кроссворд: дополнительные темы -->
-            <button class="settings-toggle cw-only" data-theme="история">История</button>
-            <button class="settings-toggle cw-only" data-theme="обществознание">Общество</button>
             <button class="settings-toggle cw-only" data-theme="все">Все</button>
           </div>
         </div>
@@ -560,6 +558,12 @@
           if (game === 'philword')  document.getElementById('ph-status-theme').textContent = v;
         }
 
+        // Кроссворд: выбранный тип сетки
+        if (game === 'crossword') {
+          const shape = document.querySelector('#settings-cw-variant .settings-toggle.active');
+          if (shape) document.getElementById('cw-variant').value = shape.dataset.cwVariant;
+        }
+
         // Квант: режим → вызвать setQuantMode если доступна
         if (game === 'quant') {
           const modeBtn = document.querySelector('#settings-quant-mode .settings-toggle.active');
@@ -568,11 +572,11 @@
             document.getElementById('qnt-mode-value').value = v;
             const modeLabels = { term: 'Термин', wordle: 'Квантл' };
             document.getElementById('qnt-status-mode').textContent = modeLabels[v] || v;
-            if (typeof setQuantMode === 'function') setQuantMode(v);
+            if (typeof setQuantMode === 'function') setQuantMode(v, false);
           }
           // Сложность Кванта → setQuantDifficulty
           if (diffBtn && typeof setQuantDifficulty === 'function') {
-            setQuantDifficulty(diffBtn.dataset.diff);
+            setQuantDifficulty(diffBtn.dataset.diff, false);
           }
         }
 
@@ -596,7 +600,7 @@
           sudokuGenerate();
         }
         if (game === 'quant' && typeof quantNewRound === 'function') {
-          quantNewRound();
+          quantNewRound(true);
         }
 
         settingsPopup.style.display = 'none';

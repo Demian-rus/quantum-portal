@@ -13,6 +13,7 @@ const Quant = {
   targetWord: '',
   triesLeft: 5,
   maxTries: 5,
+  finished: false,
 
   // Термин
   termState: [],         // [{ letter: '', fixed: false }, ...]
@@ -27,12 +28,9 @@ const Quant = {
 // === ВСПОМОГАТЕЛЬНОЕ: ПУЛ СЛОВ (ИЗ ТВОЕЙ БД) ===
 
 function quantGetPool(theme, level) {
-  if (theme === 'физмат') {
-    const phys = DB['физика']?.[level] ?? [];
-    const math = DB['математика']?.[level] ?? [];
-    return [...phys, ...math];
-  }
-  return DB[theme]?.[level] ?? [];
+  const levels = level === 'all' ? ['легкий', 'средний', 'сложный'] : [level];
+  const subjects = theme === 'физмат' ? ['физика', 'математика'] : [theme];
+  return subjects.flatMap(subject => levels.flatMap(l => DB[subject]?.[l] || []));
 }
 
 function quantPickWord(pool, minLen = 5, maxLen = 5) {
@@ -70,12 +68,14 @@ function initQuant() {
   });
 
   // стартовые значения
-  setQuantMode('term');
-  setQuantDifficulty('easy');
+  setQuantMode('term', false);
+  setQuantDifficulty('easy', false);
   updateQuantStatLine('Готов к игре Квант');
 
   // отрисуем десктопную клаву
   quantDrawKeyboardDesktop();
+  document.getElementById('qnt-wins').textContent = Storage.load().stats.quant?.wins || 0;
+  quantNewRound(true);
 }
 
 function updateQuantStatLine(text) {
@@ -84,15 +84,16 @@ function updateQuantStatLine(text) {
 }
 
 // Кнопка "⟳ Новая игра" в index.html
-function quantNewRound() {
-  if (Quant.mode === 'term') {
-    initQuantTermRound();
-  } else {
-    initQuantWordleRound();
+function quantNewRound(force = false) {
+  if (!force && quantHasProgress()) {
+    showConfirmPopup('Завершить текущую партию и начать новую?', () => quantNewRound(true));
+    return;
   }
+  if (Quant.mode === 'term') initQuantTermRound();
+  else initQuantWordleRound();
 }
 
-function setQuantMode(mode) {
+function setQuantMode(mode, startRound = true) {
   Quant.mode = mode;
 
   document.querySelectorAll('.qnt-mode-btn').forEach(b => {
@@ -109,24 +110,24 @@ function setQuantMode(mode) {
     hint.hidden      = false;
     wordleGrid.hidden = true;
     panel.textContent = 'Угадайте термин по определению';
-    initQuantTermRound();   // 🔹 сразу готовим поле и слово
+    if (startRound) quantNewRound(true);
   } else {
     termGrid.hidden   = true;
     hint.hidden       = true;
     wordleGrid.hidden = false;
     panel.textContent = 'Угадайте слово за 5 попыток';
-    initQuantWordleRound(); // 🔹 сразу готовим wordle-сетку
+    if (startRound) quantNewRound(true);
   }
 }
 
 
-function setQuantDifficulty(diff) {
+function setQuantDifficulty(diff, startRound = true) {
   Quant.difficulty = diff;
   document.querySelectorAll('.qnt-diff-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.diff === diff);
   });
 
-  quantNewRound();
+  if (startRound) quantNewRound(true);
 }
 
 
@@ -161,8 +162,8 @@ window.quantBackspace   = quantHandleBackspace;
 
 function pickQuantTermWord(difficulty) {
   // Используем те же селекты, что были раньше, чтобы не ломать БД:
-  const theme = document.getElementById('sel-theme-qnt')?.value || 'физика';
-  const level = document.getElementById('sel-level-qnt')?.value || 'легкий';
+  const theme = document.getElementById('sel-theme-qnt')?.value || 'физмат';
+  const level = document.getElementById('sel-level-qnt')?.value || 'all';
 
   let minLen = 5, maxLen = 5;
   if (difficulty === 'medium') { minLen = 6; maxLen = 7; }
@@ -195,6 +196,7 @@ function initQuantTermRound() {
   }
 
   Quant.targetWord = picked.w;
+  Quant.finished = false;
   Quant.triesLeft = Quant.maxTries;
 
   Quant.termState = Array.from({ length: Quant.targetWord.length }, () => ({
@@ -229,7 +231,7 @@ function initQuantTermRound() {
 
 function quantTermInput(ch) {
   if (!Quant.targetWord) return;
-  if (Quant.triesLeft <= 0) return;
+  if (Quant.triesLeft <= 0 || Quant.finished) return;
 
   const length = Quant.termState.length;
   let idx = -1;
@@ -252,7 +254,7 @@ function quantTermInput(ch) {
 
 function quantTermBackspace() {
   if (!Quant.targetWord) return;
-  if (Quant.triesLeft <= 0) return;
+  if (Quant.triesLeft <= 0 || Quant.finished) return;
 
   const length = Quant.termState.length;
   for (let i = length - 1; i >= 0; i--) {
@@ -266,7 +268,7 @@ function quantTermBackspace() {
 
 function quantTermCheckAttempt() {
   if (!Quant.targetWord) return;
-  if (Quant.triesLeft <= 0) return;
+  if (Quant.triesLeft <= 0 || Quant.finished) return;
 
   Quant.triesLeft--;
   document.getElementById('qnt-attempts').textContent = Quant.triesLeft;
@@ -286,10 +288,10 @@ function quantTermCheckAttempt() {
   renderQuantTermRow(true);
 
   if (guess === word) {
+    Quant.finished = true;
     quantWins++;
     document.getElementById('qnt-wins').textContent = quantWins;
     markWin('quant');
-    Storage.addGame('quant');
     panel.textContent = '🎉 ПРАВИЛЬНО! ' + word;
     panel.style.color = '#4ade80';
     updateQuantStatLine('Термин: победа');
@@ -297,11 +299,13 @@ function quantTermCheckAttempt() {
   }
 
   if (Quant.triesLeft === 0) {
-    Storage.addGame('quant');
+    Quant.finished = true;
     panel.textContent = '❌ НЕПРАВИЛЬНО! Слово: ' + word;
     panel.style.color = '#ff4444';
     updateQuantStatLine('Термин: попытки закончились');
   } else {
+    Quant.termState.forEach(c => { if (!c.fixed) c.letter = ''; });
+    renderQuantTermRow(false);
     panel.textContent = `Осталось попыток: ${Quant.triesLeft}`;
     panel.style.color = '#06f3ff';
   }
@@ -344,20 +348,13 @@ function getWordLengthByDifficulty(diff) {
 
 function pickQuantWordleWord(difficulty) {
   // берем из той же БД, что и Термин, но без учета определения
-  const theme = document.getElementById('sel-theme-qnt')?.value || 'физика';
-  const level = document.getElementById('sel-level-qnt')?.value || 'легкий';
+  const theme = document.getElementById('sel-theme-qnt')?.value || 'физмат';
+  const level = document.getElementById('sel-level-qnt')?.value || 'all';
 
   const pool = quantGetPool(theme, level);
   const length = getWordLengthByDifficulty(difficulty);
 
-  const filtered = pool
-    .map(i => (i.w || '').toUpperCase())
-    .filter(w => w.length === length && /^[А-ЯЁ]+$/.test(w));
-
-  if (!filtered.length) return null;
-
-  const word = filtered[Math.floor(Math.random() * filtered.length)];
-  return word;
+  return quantPickWord(pool, length, length)?.w || null;
 }
 
 function initQuantWordleRound() {
@@ -381,6 +378,7 @@ function initQuantWordleRound() {
   }
 
   Quant.targetWord = word;
+  Quant.finished = false;
   Quant.maxRows = 5;
   Quant.currentRow = 0;
   Quant.triesLeft = Quant.maxTries;
@@ -416,7 +414,7 @@ function initQuantWordleRound() {
 
 function quantWordleInput(ch) {
   if (!Quant.targetWord) return;
-  if (Quant.triesLeft <= 0) return;
+  if (Quant.triesLeft <= 0 || Quant.finished) return;
 
   const row = Quant.currentRow;
   if (row >= Quant.maxRows) return;
@@ -444,7 +442,7 @@ function quantWordleInput(ch) {
 
 function quantWordleBackspace() {
   if (!Quant.targetWord) return;
-  if (Quant.triesLeft <= 0) return;
+  if (Quant.triesLeft <= 0 || Quant.finished) return;
 
   const row = Quant.currentRow;
   if (row >= Quant.maxRows) return;
@@ -503,10 +501,10 @@ function quantWordleCheckAttempt() {
   renderQuantWordleGrid();
 
   if (guess === word) {
+    Quant.finished = true;
     quantWins++;
     document.getElementById('qnt-wins').textContent = quantWins;
     markWin('quant');
-    Storage.addGame('quant');
     panel.textContent = '🎉 ПРАВИЛЬНО! ' + word;
     panel.style.color = '#4ade80';
     updateQuantStatLine('Wordle: победа');
@@ -514,7 +512,7 @@ function quantWordleCheckAttempt() {
   }
 
   if (Quant.triesLeft === 0 || Quant.currentRow === Quant.maxRows - 1) {
-    Storage.addGame('quant');
+    Quant.finished = true;
     panel.textContent = '❌ НЕПРАВИЛЬНО! Слово: ' + word;
     panel.style.color = '#ff4444';
     updateQuantStatLine('Wordle: попытки закончились');
@@ -604,3 +602,13 @@ function quantDrawKeyboardDesktop() {
     kb.appendChild(rowDiv);
   });
 }
+
+window.addEventListener('keydown', e => {
+  if (!document.getElementById('sec-quant')?.classList.contains('active')) return;
+  if (document.getElementById('start-screen')?.style.display !== 'none') return;
+  if (document.getElementById('settings-popup')?.style.display === 'flex') return;
+  if (document.getElementById('qp-popup')?.style.display === 'flex') return;
+  if (e.ctrlKey || e.altKey || e.metaKey || e.target?.closest?.('input,textarea,[contenteditable]')) return;
+  if (e.key === 'Backspace') { e.preventDefault(); quantHandleBackspace(); }
+  else if (/^[а-яё]$/i.test(e.key)) quantHandleInput(e.key);
+});
