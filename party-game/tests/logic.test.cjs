@@ -463,7 +463,6 @@ test('reel sequence repeats around the chosen mode without modifying game mode o
    assert.equal(seq[i],allowed[(first+1)%allowed.length],'Broken loop at '+i);
  }
  assert.deepEqual(Array.from(h.eval('game.scores')),Array.from(before));
- h.pending.shift()(); // landing glow
  h.pending.shift()(); // transition into the existing task screen
  assert.equal(h.eval('game.phase'),'task');
  assert.equal(h.eval('game.current.modeId'),chosen,'Wheel changed the outcome');
