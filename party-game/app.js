@@ -541,24 +541,41 @@ function showJudge() {
     '<p class="score-note">'+(blitz?'Награда: <b>+'+c.blitzCorrect+' очков</b> · Пропущено: '+c.blitzSkipped:
     'Было загадано: <b>'+escapeHTML(c.word)+'</b> · За ответ: +'+c.points)+'</p>'+
     '<div class="judgement-grid">'+
-    '<button class="judgement judgement--yes" data-action="yes" type="button" aria-label="Засчитать ответ"><svg viewBox="0 0 64 64"><path d="m13 33 13 13 25-28"/></svg></button>'+
-    '<button class="judgement judgement--no" data-action="no" type="button" aria-label="Не засчитывать"><svg viewBox="0 0 64 64"><path d="m17 17 30 30M47 17 17 47"/></svg></button>'+
-    '</div><div class="judgement-labels"><span>'+(blitz?'ЗАСЧИТАТЬ':'УГАДАЛИ')+'</span><span>'+(blitz?'ОТМЕНИТЬ':'НЕ УГАДАЛИ')+'</span></div>';
+      '<div class="judgement-option">'+
+        '<button class="judgement judgement--yes" data-action="yes" type="button" aria-label="Засчитать ответ"><svg viewBox="0 0 64 64"><path d="m13 33 13 13 25-28"/></svg></button>'+
+        '<span>'+(blitz?'ЗАСЧИТАТЬ':'УГАДАЛИ')+'</span>'+
+      '</div>'+
+      '<div class="judgement-option">'+
+        '<button class="judgement judgement--no" data-action="no" type="button" aria-label="Не засчитывать"><svg viewBox="0 0 64 64"><path d="m17 17 30 30M47 17 17 47"/></svg></button>'+
+        '<span>'+(blitz?'ОТМЕНИТЬ':'НЕ УГАДАЛИ')+'</span>'+
+      '</div>'+
+    '</div>';
+}
+function recordAnswer(yes) {
+  if(!game||!['judge','play'].includes(game.phase))return;
+  const teamIndex=currentTeamIndex(),c=game.current;
+  const points=yes?(c.modeId==='blitz'?c.blitzCorrect:c.points):0;
+  game.scores[teamIndex]+=points;
+  game.history.push({
+    team:game.teams[teamIndex],mode:c.modeId,
+    word:c.modeId==='blitz'?c.blitzWords.join(' / '):c.word,awarded:points,correct:yes
+  });
+  game.roundIndex++;
+  // Confirmation is the final action for a round; no extra Next button.
+  game.phase=game.roundIndex>=game.rounds?'results':'ready';
+  game.current=null;
+  stopTicking();persist();sfx(yes?'win':'fail');render();
+}
+function correctNow() {
+  if(!game||game.phase!=='play'||game.current?.modeId==='blitz')return;
+  const c=game.current;
+  if(!c.paused&&Date.now()>=c.deadline){finishTimer('timeout');return;}
+  if(c.paused&&(c.remainingMs??0)<=0){finishTimer('timeout');return;}
+  recordAnswer(true);
 }
 function judge(yes) {
   if(!game||game.phase!=='judge')return;
-  const teamIndex=currentTeamIndex();
-  const points=yes?(game.current.modeId==='blitz'?game.current.blitzCorrect:game.current.points):0;
-  game.scores[teamIndex]+=points;
-  game.history.push({
-    team:game.teams[teamIndex],mode:game.current.modeId,
-    word:game.current.modeId==='blitz'?game.current.blitzWords.join(' / '):game.current.word,awarded:points,correct:yes
-  });
-  game.roundIndex++;
-  game.phase=game.roundIndex>=game.rounds?'results':'between';
-  persist();
-  sfx(yes?'win':'fail');
-  render();
+  recordAnswer(yes);
 }
 function showBetween() {
   $('play-content').className='play-inner is-between';
@@ -696,6 +713,7 @@ function handleAction(action) {
     case 'pause':return pauseTimer();
     case 'resume':return resumeTimer();
     case 'finish-early':return finishTimer('early');
+    case 'correct-now':return correctNow();
     case 'blitz-correct':return advanceBlitz(true);
     case 'blitz-skip':return advanceBlitz(false);
     case 'yes':return judge(true);
