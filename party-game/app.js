@@ -158,13 +158,21 @@ function setScene(which) {
   for(const scene of ['home','game','results']) $('scene-'+scene).hidden=scene!==which;
 }
 function renderOptions() {
-  for(const [setting,value] of Object.entries(options)) {
+  for(const setting of ['difficulty','duration','rounds','dice']) {
     document.querySelectorAll('.choices[data-setting="'+setting+'"] button').forEach(button=>{
-      const selected=String(value)===button.dataset.value;
+      const selected=String(options[setting])===button.dataset.value;
       button.classList.toggle('is-chosen',selected);
       button.setAttribute('aria-pressed',String(selected));
     });
   }
+  const numbers={'custom-duration':options.duration,'custom-rounds':options.rounds,'custom-blitz':options.blitzCount};
+  for(const [id,value] of Object.entries(numbers)) {
+    const input=$(id);
+    if(input && document.activeElement!==input)input.value=String(value);
+  }
+  document.querySelectorAll('#mode-toggles input').forEach(input=>{input.checked=options.modes.includes(input.value);});
+  document.querySelectorAll('#content-toggles input').forEach(input=>{input.checked=options.promptTypes.includes(input.value);});
+  $('toggle-complications').checked=options.complications;
 }
 function renderMatch() {
   $('label-team-a').textContent=game.teams[0];
@@ -565,6 +573,10 @@ function restoreSession() {
   game.modes=game.modes||DEFAULT_MODES.slice();
   game.promptTypes=game.promptTypes||PROMPT_TYPES.slice();
   game.blitzCount=game.blitzCount||4;
+  if(game.current?.modeId==='blitz'&&!Array.isArray(game.current.blitzWords)){
+    game.current.blitzWords=[game.current.word];
+    game.current.blitzIndex=0;game.current.blitzCorrect=0;game.current.blitzSkipped=0;
+  }
   game.complications=game.complications!==false;
   game.dice=game.dice!==false;
   $('team-a').value=game.teams[0];
@@ -578,9 +590,37 @@ function setupEvents() {
       if(!button)return;
       const setting=group.dataset.setting;
       const value=button.dataset.value;
-      options[setting]=setting==='difficulty'?value:Number(value);
+      options[setting]=setting==='difficulty'?value:setting==='dice'?value==='true':Number(value);
       renderOptions();persist();sfx('button');
     });
+  });
+  for(const [id,key,min,max] of [
+    ['custom-duration','duration',15,300],
+    ['custom-rounds','rounds',2,100],
+    ['custom-blitz','blitzCount',3,8]
+  ]) {
+    $(id).addEventListener('change',event=>{
+      const requested=Number(event.target.value);
+      if(!Number.isFinite(requested)){renderOptions();return;}
+      options[key]=Math.max(min,Math.min(max,Math.round(requested)));
+      renderOptions();persist();
+    });
+  }
+  for(const [id,key] of [['mode-toggles','modes'],['content-toggles','promptTypes']]) {
+    $(id).addEventListener('change',event=>{
+      if(!event.target.matches('input[type="checkbox"]'))return;
+      const inputs=[...$(id).querySelectorAll('input:checked')];
+      if(!inputs.length){
+        event.target.checked=true;
+        toast(key==='modes'?'Нужен хотя бы один режим':'Выберите хотя бы один тип заданий');
+        return;
+      }
+      options[key]=inputs.map(input=>input.value);
+      persist();renderOptions();
+    });
+  }
+  $('toggle-complications').addEventListener('change',event=>{
+    options.complications=event.target.checked;persist();
   });
   $('start-game').addEventListener('click',newGame);
   $('play-content').addEventListener('click',event=>{
