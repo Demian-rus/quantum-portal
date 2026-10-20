@@ -323,7 +323,8 @@ const CONTROL_ICONS=Object.freeze({
 });
 function iconButton(icon,action,label,variant='muted') {
   if(!CONTROL_ICONS[icon])throw Error('Unknown control icon');
-  return '<button type="button" class="round-action round-action--'+variant+'" data-action="'+action+
+  const classes=variant.split(' ').map(item=>'round-action--'+item).join(' ');
+  return '<button type="button" class="round-action '+classes+'" data-action="'+action+
   '" title="'+label+'" aria-label="'+label+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+CONTROL_ICONS[icon]+'</svg></button>';
 }
 function taskControls(c) {
