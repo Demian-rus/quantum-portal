@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 650" role="img" aria-labelledby="title">
-<title id="title">Яркие игровые кубики в воздухе</title>
+<title id="title">Карточки игровых режимов с рисунком, речью и музыкой</title>
 <defs>
 <linearGradient id="coral" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffb089"/><stop offset=".5" stop-color="#ff6a72"/><stop offset="1" stop-color="#eb4486"/></linearGradient>
 <linearGradient id="violet" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ae91ff"/><stop offset=".55" stop-color="#7347d7"/><stop offset="1" stop-color="#42268b"/></linearGradient>
@@ -12,15 +12,29 @@
 <g transform="translate(80 68) rotate(-14 155 170)">
 <rect x="10" y="10" width="278" height="350" rx="29" fill="#31205c" stroke="#a889ff" stroke-width="4"/>
 <rect x="30" y="30" width="238" height="310" rx="22" fill="url(#violet)"/>
-<circle cx="148" cy="184" r="90" fill="#251340" opacity=".56"/><path d="M149 107v154M71 184h155M95 130l107 107M201 131L96 236" stroke="#d6c6ff" stroke-width="18" stroke-linecap="round"/>
-<circle cx="148" cy="184" r="32" fill="#f0e9ff"/>
+<circle cx="148" cy="184" r="94" fill="#251340" opacity=".47"/>
+<g transform="translate(148 184) rotate(42)">
+  <rect x="-19" y="-86" width="39" height="143" rx="9" fill="#f0e9ff" stroke="#291942" stroke-width="5"/>
+  <path d="M-19-56h39M-19 39h39" stroke="#bb8bea" stroke-width="8"/>
+  <path d="M-19 57 0 94 20 57Z" fill="#ffd0b5" stroke="#291942" stroke-width="5" stroke-linejoin="round"/>
+  <path d="m-6 80 6 14 7-14" fill="#291942"/>
+</g>
+<path d="M80 260q68 30 132 0" fill="none" stroke="#e5c5ff" stroke-width="6" stroke-linecap="round" opacity=".8"/>
 </g>
 <g transform="translate(240 78) rotate(16 155 188)">
 <rect x="0" y="0" width="290" height="365" rx="31" fill="#1f142e" stroke="#ffd0ae" stroke-width="5"/>
 <rect x="20" y="20" width="250" height="325" rx="24" fill="url(#coral)"/>
-<g transform="translate(145 185)"><rect x="-84" y="-84" width="168" height="168" rx="30" transform="rotate(14)" fill="#ffdfc9" opacity=".92"/><circle cx="-41" cy="-42" r="13" fill="#e95479"/><circle cx="41" cy="-42" r="13" fill="#e95479"/><circle cx="0" cy="0" r="13" fill="#e95479"/><circle cx="-41" cy="42" r="13" fill="#e95479"/><circle cx="41" cy="42" r="13" fill="#e95479"/></g>
+<g transform="translate(145 185)">
+  <path d="M-78-69h154a19 19 0 0 1 19 19v101a20 20 0 0 1-20 20H-21l-42 32V70h-15a20 20 0 0 1-19-20V-49a20 20 0 0 1 19-20Z" fill="#ffe5d4" stroke="#ae4868" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M-52-28h112M-52 0h112M-52 28h80" stroke="#df6580" stroke-width="12" stroke-linecap="round"/>
 </g>
-<g transform="translate(315 355) rotate(17 120 110)"><rect x="0" y="0" width="235" height="204" rx="32" fill="url(#lime)" stroke="#faffc7" stroke-width="6"/><path d="M64 106l31 31 78-79" fill="none" stroke="#284735" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
+<g transform="translate(315 355) rotate(17 120 110)">
+  <rect x="0" y="0" width="235" height="204" rx="32" fill="url(#lime)" stroke="#faffc7" stroke-width="6"/>
+  <rect x="91" y="36" width="56" height="82" rx="28" fill="#27463a"/>
+  <path d="M73 95c0 63 91 63 91 0M119 142v24M90 169h58" fill="none" stroke="#27463a" stroke-width="11" stroke-linecap="round"/>
+  <path d="m78 48-14 16M170 48l16 16" stroke="#5a9462" stroke-width="8" stroke-linecap="round"/>
+</g>
 <g fill="url(#cyan)"><path d="M92 420l14-33 14 33 33 14-33 14-14 33-14-33-33-14z"/><path d="M551 130l9-23 10 23 23 10-23 9-10 23-9-23-23-9z"/></g>
 <g fill="#ffe590"><circle cx="130" cy="89" r="8"/><circle cx="592" cy="457" r="13"/><circle cx="614" cy="284" r="7"/></g>
 <path d="M146 534l18-39M135 510l38 17" stroke="#ffd9e4" stroke-width="8" stroke-linecap="round"/>
