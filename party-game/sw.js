@@ -1,5 +1,5 @@
-const CACHE='iskra-pwa-v6-20261020';
-const CORE=['./','./index.html','./style.css?v=6','./app.js?v=6','./words.js?v=2','./mode-images.js?v=3','./manifest.webmanifest','./assets/bg-home.webp','./assets/bg-setup.webp','./assets/bg-game.webp','./assets/icon-192.png','./assets/icon-512.png'];
+const CACHE='iskra-pwa-v7-20261020';
+const CORE=['./','./index.html','./style.css?v=7','./app.js?v=7','./words.js?v=2','./mode-images.js?v=3','./manifest.webmanifest','./assets/bg-home.webp','./assets/bg-setup.webp','./assets/bg-game.webp','./assets/icon-192.png','./assets/icon-512.png'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));
 });

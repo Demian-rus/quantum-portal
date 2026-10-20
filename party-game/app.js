@@ -444,10 +444,13 @@ function showTimer() {
     '</div>'+
     '<div class="round-fixed-card">'+taskMarkup(blitz?false:!c.visible)+'</div>'+
     '<div class="round-bottom round-bottom--play">'+
-      (blitz?'<div class="blitz-actions">'+
-        makeButton('✓ УГАДАЛИ +1','blitz-correct','button-primary')+
-        makeButton('ПРОПУСТИТЬ','blitz-skip','button-secondary')+'</div>'+
-        '<div class="minor-action">'+makeButton('ЗАВЕРШИТЬ БЛИЦ','finish-early','button-quiet')+'</div>':
+      (blitz?'<div class="three-answer-actions blitz-actions">'+
+        '<div class="blitz-control">'+iconButton('x','blitz-skip','Пропустить слово','danger prominent')+
+          '<span>ПРОПУСТИТЬ</span></div>'+
+        '<span aria-hidden="true"></span>'+
+        '<div class="blitz-control">'+iconButton('check','blitz-correct','Угадали — +1 очко','success prominent')+
+          '<span>УГАДАЛИ +1</span></div>'+
+        '</div><div class="minor-action">'+makeButton('ЗАВЕРШИТЬ БЛИЦ','finish-early','button-quiet')+'</div>':
         '<div class="three-answer-actions">'+
           iconButton('x','wrong-now','Не угадали — завершить ход','danger prominent')+
           iconButton(c.visible?'eye-off':'eye','toggle-word',c.visible?'Скрыть слово':'Показать слово')+

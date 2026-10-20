@@ -34,7 +34,28 @@ async function isInViewport(page){
    await page.locator('[data-action="roll"]').click();
    await page.waitForSelector('[data-action="toggle-word"]');
    await page.screenshot({path:'artifacts/iskra-polish/'+device.name+'-task-closed.png'});
+   const hiddenCardHeight=await page.locator('.is-task .challenge-card').evaluate(el=>el.getBoundingClientRect().height);
    await page.locator('[data-action="toggle-word"]').click();
+   // Reproduce the reported two-line prompt on every viewport.
+   await page.evaluate(()=>{game.current.word='ПОТЕРЯННЫЙ ТЕЛЕФОН';render();});
+   const wordFit=await page.evaluate(()=>{
+     const card=document.querySelector('.is-task .challenge-card');
+     const word=card.querySelector('.challenge-word');
+     const details=card.querySelector('.challenge-details');
+     const rect=card.getBoundingClientRect(),text=word.getBoundingClientRect(),footer=details.getBoundingClientRect();
+     return {cardHeight:rect.height,cardBottom:rect.bottom,textBottom:text.bottom,detailsBottom:footer.bottom,
+       overflow:getComputedStyle(word).overflowY,
+       selection:getComputedStyle(word).userSelect,
+       scoreSelection:getComputedStyle(document.getElementById('score-a')).userSelect};
+   });
+   assert.ok(Math.abs(wordFit.cardHeight-hiddenCardHeight)<=2,
+     'Card changed height on reveal: '+JSON.stringify(wordFit));
+   assert.equal(wordFit.overflow,'visible','Unexpected word scrollbar');
+   assert.equal(wordFit.selection,'none','Task text can be selected on Android');
+   assert.equal(wordFit.scoreSelection,'none','Scores can be selected on Android');
+   assert.ok(wordFit.detailsBottom<wordFit.cardBottom-4 &&
+     wordFit.textBottom<wordFit.detailsBottom,
+     'Prompt is cut off by the card border: '+JSON.stringify(wordFit));
    for(const act of ['toggle-word','start-timer','replace-word']){
      assert.equal(await page.locator('.is-task .round-action[data-action="'+act+'"]').count(),1,act+' missing');
    }
@@ -128,5 +149,31 @@ async function isInViewport(page){
     'Autostart card jumps: '+JSON.stringify({taskTop,countdownTop,timerTop}));
   await medium.screenshot({path:'artifacts/iskra-polish/phone-autostart-fixed-card.png'});
   await medium.close();
+  // Blitz keeps the same left-red/right-green spatial language as other modes.
+  const blitz=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
+  await blitz.goto(URL,{waitUntil:'load'});
+  await blitz.locator('#new-game-menu').click();
+  await blitz.evaluate(()=>{options.modes=['blitz'];options.difficulty='easy';});
+  await blitz.locator('#start-game').click();
+  await blitz.locator('[data-action="roll"]').click();
+  await blitz.waitForSelector('.is-task [data-action="toggle-word"]',{timeout:4500});
+  await blitz.locator('.is-task [data-action="toggle-word"]').click();
+  await blitz.locator('[data-action="start-timer"]').click();
+  const blitzActions=await blitz.locator('.blitz-actions .round-action').evaluateAll(nodes=>nodes.map(node=>{
+    const box=node.getBoundingClientRect();
+    return {action:node.dataset.action,centerX:(box.left+box.right)/2,centerY:(box.top+box.bottom)/2,
+      danger:node.classList.contains('round-action--danger'),
+      success:node.classList.contains('round-action--success')};
+  }));
+  assert.deepEqual(blitzActions.map(a=>a.action),['blitz-skip','blitz-correct']);
+  assert.ok(blitzActions[0].danger&&blitzActions[1].success,'Blitz uses wrong button colors');
+  assert.ok(blitzActions[0].centerX<195&&blitzActions[1].centerX>195,
+    'Blitz actions are not on opposite sides: '+JSON.stringify(blitzActions));
+  assert.ok(Math.abs(blitzActions[0].centerY-blitzActions[1].centerY)<=2,'Blitz buttons are at different heights');
+  const blitzFit=await isInViewport(blitz);
+  assert.ok(blitzFit.page<=blitzFit.window+2&&blitzFit.inside<=blitzFit.height+4,
+    'Blitz layout scrolls '+JSON.stringify(blitzFit));
+  await blitz.screenshot({path:'artifacts/iskra-polish/phone-blitz-red-left-green-right.png'});
+  await blitz.close();
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
