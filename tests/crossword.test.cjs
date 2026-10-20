@@ -24,7 +24,7 @@ function engine(variant) {
   const elements={
     cv,'cw-variant':{value:variant},'active-q-panel':{style:{},textContent:''}
   };
-  const doc={getElementById(id){return elements[id]||{value:variant,style:{}};},
+  const doc={getElementById(id){return elements[id]||{value:variant,style:{},classList:{add(){},remove(){}},scrollIntoView(){}};},
     addEventListener(){},querySelectorAll(){return [];}};
   const win={devicePixelRatio:2,addEventListener(){}};
   const ctx=vm.createContext({document:doc,window:win});
