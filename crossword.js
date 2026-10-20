@@ -260,7 +260,7 @@ function updateUI() {
 
 // Reserve one stable panel height on phones so the crossword never moves between clues.
 function fitCrosswordQuestion(panel) {
-  const question = panel.querySelector('.cw-question-line');
+  const question = panel.querySelector?.('.cw-question-line');
   if (!question) return;
   question.style.fontSize = '';
   if (window.innerWidth > 768) return;
