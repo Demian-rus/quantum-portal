@@ -9,6 +9,40 @@ let suFixed = [];      // маска: true если это стартовая ц
 let suSelR = -1, suSelC = -1;
 let suErrors = new Set(); // ошибки при проверке
 
+function sudokuCountSolutions(board, limit = 2) {
+  let count = 0;
+  function search() {
+    if (count >= limit) return;
+    let bestR = -1, bestC = -1, candidates = null;
+    for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++) {
+      if (board[r][c] !== 0) continue;
+      const used = new Set();
+      for (let k = 0; k < 9; k++) {
+        used.add(board[r][k]);
+        used.add(board[k][c]);
+      }
+      const br = Math.floor(r / 3) * 3, bc = Math.floor(c / 3) * 3;
+      for (let rr = br; rr < br + 3; rr++) for (let cc = bc; cc < bc + 3; cc++) used.add(board[rr][cc]);
+      const available = [];
+      for (let n = 1; n <= 9; n++) if (!used.has(n)) available.push(n);
+      if (available.length === 0) return;
+      if (!candidates || available.length < candidates.length) {
+        candidates = available;
+        bestR = r; bestC = c;
+      }
+    }
+    if (bestR === -1) { count++; return; }
+    for (const n of candidates) {
+      board[bestR][bestC] = n;
+      search();
+      board[bestR][bestC] = 0;
+      if (count >= limit) return;
+    }
+  }
+  search();
+  return count;
+}
+
 function sudokuGenerateCore() {
   const diff = document.getElementById('sel-diff-su').value;
 
@@ -54,18 +88,24 @@ function sudokuGenerateCore() {
   suGrid = suSolution.map(r => [...r]);
   suFixed = Array.from({length:9}, () => Array(9).fill(true));
 
-  let attempts = 30; // легкий
-  if(diff === 'medium') attempts = 45;
-  if(diff === 'hard') attempts = 56;
-  if(diff === 'insane') attempts = 64;
-
-  while(attempts > 0) {
-    const r = Math.floor(Math.random()*9);
-    const c = Math.floor(Math.random()*9);
-    if(suGrid[r][c] !== 0) {
-      suGrid[r][c] = 0;
+  const targets = { easy: 35, medium: 42, hard: 48, insane: 53 };
+  const targetRemoved = targets[diff] || targets.medium;
+  const positions = Array.from({ length: 81 }, (_, i) => i);
+  for (let i = positions.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [positions[i], positions[j]] = [positions[j], positions[i]];
+  }
+  let removed = 0;
+  for (const index of positions) {
+    if (removed >= targetRemoved) break;
+    const r = Math.floor(index / 9), c = index % 9;
+    const old = suGrid[r][c];
+    suGrid[r][c] = 0;
+    if (sudokuCountSolutions(suGrid) === 1) {
       suFixed[r][c] = false;
-      attempts--;
+      removed++;
+    } else {
+      suGrid[r][c] = old;
     }
   }
 
