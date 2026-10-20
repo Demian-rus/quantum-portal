@@ -63,7 +63,7 @@ const SONG_PACKS = Object.freeze({
 `
 });
 function parsePartyWords(multiline) {
-  return multiline.split('|').map(item => item.trim()).filter(Boolean);
+  return multiline.split(/[|\n]+/).map(item => item.trim()).filter(Boolean);
 }
 const PARTY_WORDS = Object.freeze(Object.fromEntries(
   Object.entries(WORD_PACKS).map(([key,value]) => [key, Object.freeze(parsePartyWords(value))])
