@@ -48,6 +48,18 @@ async function isInViewport(page){
    await page.locator('.is-task [data-action="start-timer"]').click();
    assert.equal(await page.locator('.is-play [data-action="correct-now"]').count(),1);
    assert.equal(await page.locator('.is-play [data-action="pause"]').count(),1);
+   const geometry=await page.evaluate(()=>{
+     const correct=document.querySelector('[data-action="correct-now"]');
+     const pause=document.querySelector('.play-secondary-controls [data-action="pause"]');
+     const a=correct.getBoundingClientRect(),p=pause.getBoundingClientRect();
+     return {correctTop:a.top,secondaryBottom:p.bottom,correctX:(a.left+a.right)/2,
+       playWidth:innerWidth,color:getComputedStyle(correct).color};
+   });
+   assert.ok(Math.abs(geometry.correctX-geometry.playWidth/2)<=4,
+     'Correct button not centered: '+JSON.stringify(geometry));
+   if(device.height>740)assert.ok(geometry.correctTop>geometry.secondaryBottom,
+     'Correct button not beneath secondary tools: '+JSON.stringify(geometry));
+   assert.equal(geometry.color,'rgb(255, 255, 255)','Correct check icon should be white');
    await page.screenshot({path:'artifacts/iskra-polish/'+device.name+'-timer-controls.png'});
    const first=await isInViewport(page);
    assert.ok(first.page<=first.window+2&&first.inside<=first.height+4,'Game scroll overflow '+JSON.stringify(first));
