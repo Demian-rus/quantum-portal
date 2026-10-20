@@ -224,7 +224,7 @@ function updateUI() {
     if(el) {
       el.classList.add('active');
 
-      el.scrollIntoView?.({ block: 'nearest', behavior: 'smooth' });
+      // Never scroll the document when selecting a square, especially on a phone.
     }
   }
 }
@@ -335,9 +335,9 @@ function onGenerateCore() {
     document.getElementById('stat').textContent =
       `${placed.length} слов · Сетка ${frame.cols}×${frame.rows}`;
 
-    if (document.getElementById('sidebar').classList.contains('collapsed')) {
-      document.getElementById('sidebar').classList.remove('collapsed');
-    }
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar && window.innerWidth >= 769) sidebar.classList.remove('collapsed');
+    updateSidebarToggle(sidebar);
   });
 }
 

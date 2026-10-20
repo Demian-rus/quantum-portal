@@ -205,14 +205,6 @@ function switchTab(id) {
 
   document.getElementById('sec-' + id).classList.add('active');
 
-  const titles = {
-    'crossword': 'Интерактивный режим генерации кроссвордов',
-    'philword':  'Поиск слов (скоро)',
-    'sudoku':    'Классическое судоку (скоро)',
-    'quant':     'Квант - угадай терминологию'
-  };
-  document.getElementById('sub-title').textContent = titles[id];
-
   // чтобы ввод букв не продолжал лететь в скрытый кроссворд
   if (id !== 'crossword') {
     activeWord = null;
@@ -241,27 +233,41 @@ function switchTab(id) {
     // старый quantGenerate больше не трогаем: раунды теперь через кнопку "Новая игра"
   }
 
-  // работа с мобильной клавой
+  // Phone views open with a compact, optional clue list below the game.
+  const sidebar = id === 'crossword' ? document.getElementById('sidebar') :
+    id === 'philword' ? document.getElementById('philSidebar') : null;
+  if (sidebar && window.innerWidth < 769 && !sidebar.dataset.initialMobileState) {
+    sidebar.dataset.initialMobileState = '1';
+    sidebar.classList.add('collapsed');
+  }
+  updateSidebarToggle(sidebar);
   updateMobileKeyboardVisibility();
   attachMobileKeyboard();
 }
 
 
 
+function updateSidebarToggle(sidebar) {
+  if (!sidebar) return;
+  const btn = sidebar.querySelector('.toggle-btn');
+  if (!btn) return;
+  const collapsed = sidebar.classList.contains('collapsed');
+  const crossword = sidebar.id === 'sidebar';
+  btn.textContent = collapsed ? '›' : '⌄';
+  btn.setAttribute('aria-expanded', String(!collapsed));
+  btn.setAttribute('aria-label', collapsed ?
+    (crossword ? 'Показать вопросы' : 'Показать слова') :
+    (crossword ? 'Скрыть вопросы' : 'Скрыть слова'));
+}
 function toggleSidebar(e) {
   if (e) e.stopPropagation();
-
-  let activeSidebar = null;
-  if (document.getElementById('sec-crossword')?.classList.contains('active')) {
-    activeSidebar = document.getElementById('sidebar');
-  } else if (document.getElementById('sec-philword')?.classList.contains('active')) {
-    activeSidebar = document.getElementById('philSidebar');
-  }
-
-  if (activeSidebar) {
-    activeSidebar.classList.toggle('collapsed');
-    requestAnimationFrame(() => window.syncSidebars?.());
-  }
+  const sidebar = document.getElementById('sec-crossword')?.classList.contains('active') ?
+    document.getElementById('sidebar') :
+    document.getElementById('sec-philword')?.classList.contains('active') ?
+    document.getElementById('philSidebar') : null;
+  if (!sidebar) return;
+  sidebar.classList.toggle('collapsed');
+  updateSidebarToggle(sidebar);
 }
 
 
@@ -478,115 +484,16 @@ window.addEventListener('keydown', e => {
 
 
 // ==========================================
-// СИНХРОНИЗАЦИЯ САЙДБАРОВ С CANVAS
+// RESPONSIVE UI: layout comes from CSS, not canvas-height observers.
 // ==========================================
-(function initSidebarSync() {
-  const PAIRS = [
-    { cvId: 'cv',     sbId: 'sidebar' },
-    { cvId: 'cvPhil', sbId: 'philSidebar' }
-  ];
-
-  function syncOne(cvId, sbId) {
-    if (window.innerWidth < 1280) return;
-    const cv = document.getElementById(cvId);
-    const sb = document.getElementById(sbId);
-    if (!cv || !sb) return;
-    if (!cv.offsetParent) return;
-
-    const h = cv.offsetHeight;
-    if (h < 10) return;
-
-    const parentRect = sb.parentElement.getBoundingClientRect();
-    const cvRect     = cv.getBoundingClientRect();
-    const top = cvRect.top - parentRect.top;
-
-    sb.style.top = top + 'px';
-    if (!sb.classList.contains('collapsed')) {
-      sb.style.height = h + 'px';
-    }
-  }
-
-  function syncAll() {
-    PAIRS.forEach(p => syncOne(p.cvId, p.sbId));
-  }
-
-  const ro = new ResizeObserver(entries => {
-    entries.forEach(e => {
-      const pair = PAIRS.find(p => p.cvId === e.target.id);
-      if (pair) requestAnimationFrame(() => syncOne(pair.cvId, pair.sbId));
-    });
-  });
-  PAIRS.forEach(p => {
-    const cv = document.getElementById(p.cvId);
-    if (cv) ro.observe(cv);
-  });
-
-  const mo = new MutationObserver(mutations => {
-    mutations.forEach(m => {
-      if (m.target.classList.contains('active')) {
-        requestAnimationFrame(() => requestAnimationFrame(syncAll));
-      }
-    });
-  });
-  document.querySelectorAll('.game-section').forEach(s => {
-    mo.observe(s, { attributes: true, attributeFilter: ['class'] });
-  });
-
-  window.addEventListener('resize', () => {
-    requestAnimationFrame(() => {
-      syncAll();
-      updateMobileKeyboardVisibility();
-      attachMobileKeyboard();
-    });
-  });
-
-  setTimeout(() => {
-    syncAll();
-    updateMobileKeyboardVisibility();
-    attachMobileKeyboard();
-  }, 300);
-
-  window.syncSidebars = syncAll;
-})();
-
-
-
-// ==========================================
-// АВТО-ПОДГОНКА ВЫСОТЫ СПИСКА ПОД СЕТКУ
-// ==========================================
-const resizeObserver = new ResizeObserver(entries => {
-  if (window.innerWidth < 1280) {
-    const sb1 = document.getElementById('sidebar');
-    const sb2 = document.getElementById('philSidebar');
-    if (sb1) sb1.style.height = '';
-    if (sb2) sb2.style.height = '';
-    return;
-  }
-
-  for (let entry of entries) {
-    const height = entry.contentRect.height;
-    const sidebarHeight = height - 72;
-
-    if (entry.target.id === 'cv') {
-      const sb = document.getElementById('sidebar');
-      if (sb) sb.style.height = sidebarHeight + 'px';
-    }
-
-    if (entry.target.id === 'cvPhil') {
-      const sb = document.getElementById('philSidebar');
-      if (sb) sb.style.height = sidebarHeight + 'px';
-    }
-  }
+window.addEventListener('resize', () => {
+  updateMobileKeyboardVisibility();
+  attachMobileKeyboard();
 });
-
-setTimeout(() => {
-  const cv1 = document.getElementById('cv');
-  const cv2 = document.getElementById('cvPhil');
-  if (cv1) resizeObserver.observe(cv1);
-  if (cv2) resizeObserver.observe(cv2);
-}, 500);
-
-
+document.addEventListener('DOMContentLoaded', () => {
+  updateSidebarToggle(document.getElementById('sidebar'));
+  updateSidebarToggle(document.getElementById('philSidebar'));
+});
 
 // Для отладки доступны контекстное меню браузера и F12.
 

@@ -2,7 +2,7 @@
 //  СУДОКУ
 // ==========================================
 
-const SU_CELL = 42, SU_PAD = 10;
+const SU_CELL = 54, SU_PAD = 14;
 let suGrid = [];       // текущее состояние (0 - пусто)
 let suSolution = [];   // полное решение
 let suFixed = [];      // маска: true если это стартовая цифра (нельзя менять)
@@ -169,7 +169,7 @@ function sudokuDraw() {
       if(val !== 0) {
         ctx.fillStyle = fixed ? "#666688" : (isErr ? "#ff4444" : "#00d4ff");
         if(isSel) ctx.fillStyle = "#fff";
-        ctx.font = (fixed ? "bold " : "") + "20px Segoe UI";
+        ctx.font = (fixed ? "bold " : "") + "26px Segoe UI";
         ctx.textAlign = "center"; ctx.textBaseline = "middle";
         ctx.fillText(val, x + SU_CELL/2, y + SU_CELL/2 + 2);
       }

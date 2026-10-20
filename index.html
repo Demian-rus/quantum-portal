@@ -164,16 +164,8 @@
       <button class="tab" data-tab="philword" type="button">Филворд</button>
       <button class="tab" data-tab="sudoku" type="button">Судоку</button>
       <button class="tab" data-tab="quant" type="button">Квант</button>
+      <button id="btn-open-settings" class="settings-btn qp-settings-nav" type="button" aria-label="Настройки" title="Настройки">⚙</button>
     </nav>
-
-    <!-- Шапка с кнопкой настроек -->
-    <div class="header-area">
-      <div class="header-inner">
-        <h1 class="header-title">КВАНТОВЫЙ ПОРТАЛ</h1>
-        <p class="sub" id="sub-title" hidden>Кроссворд</p>
-        <button id="btn-open-settings" class="settings-btn" type="button" aria-label="Настройки">⚙</button>
-      </div>
-    </div>
 
     <!-- ====== КРОССВОРД ====== -->
     <div id="sec-crossword" class="game-section active">
@@ -183,24 +175,26 @@
       <input type="hidden" id="sel-level"  value="средний">
       <input type="hidden" id="cw-variant" value="free">
 
-      <div class="controls">
-        <div class="control-group">
-          <button class="primary" onclick="onGenerate()">⟳ Создать</button>
-          <button class="action" onclick="onToggleAnswers()" id="btn-answ">👁 Ответы</button>
-          <button class="danger"
-                  onclick="usedWordsHistory.clear(); document.getElementById('stat').textContent='♻ История сброшена';">
-            ♻ Сброс
-          </button>
+      <div class="game-toolbar" aria-label="Действия и параметры игры">
+        <div class="controls">
+          <div class="control-group">
+            <button class="primary" onclick="onGenerate()">⟳ Создать</button>
+            <button class="action" onclick="onToggleAnswers()" id="btn-answ">👁 Ответы</button>
+            <button class="danger"
+                    onclick="usedWordsHistory.clear(); document.getElementById('stat').textContent='♻ История сброшена';">
+              ♻ Сброс
+            </button>
+          </div>
         </div>
+  
+        <!-- Строка текущих настроек -->
+        <div class="game-status-bar" id="cw-status">
+          Тема: <span id="cw-status-theme">ФизМат</span> &nbsp;·&nbsp;
+          Сложность: <span id="cw-status-level">Средний</span>
+        </div>
+  
+        <div class="stat-line" id="stat">Готов к генерации</div>
       </div>
-
-      <!-- Строка текущих настроек -->
-      <div class="game-status-bar" id="cw-status">
-        Тема: <span id="cw-status-theme">ФизМат</span> &nbsp;·&nbsp;
-        Сложность: <span id="cw-status-level">Средний</span>
-      </div>
-
-      <div class="stat-line" id="stat">Готов к генерации</div>
 
       <div class="main-container">
         <div class="game-area cw-area">
@@ -208,11 +202,10 @@
           <canvas id="cv"></canvas>
         </div>
 
-        <div id="sidebar" class="collapsed"
-             onclick="if(this.classList.contains('collapsed')) toggleSidebar()">
+        <div id="sidebar" class="collapsed">
           <div class="sb-header">
-            <h2 class="sb-title">СПИСОК ВОПРОСОВ</h2>
-            <button class="toggle-btn" onclick="toggleSidebar(event)">❯</button>
+            <h2 class="sb-title">ВОПРОСЫ КРОССВОРДА</h2>
+            <button class="toggle-btn" type="button" onclick="toggleSidebar(event)" aria-controls="cluesList" aria-expanded="false" aria-label="Показать вопросы">›</button>
           </div>
           <div class="sb-content" id="cluesList"></div>
         </div>
@@ -226,23 +219,25 @@
       <input type="hidden" id="sel-level-ph"  value="medium">
       <input type="hidden" id="sel-size-ph"   value="14">
 
-      <div class="controls">
-        <div class="control-group">
-          <button class="primary" onclick="philGenerate()">⟳ Создать</button>
-          <button class="action" onclick="philToggleAnswers()" id="btn-ph-answ">👁 Ответы</button>
-          <button class="danger"
-                  onclick="philUsedWordsHistory.clear(); document.getElementById('phil-stat').textContent='♻ История филворда сброшена';">
-            ♻ Сброс
-          </button>
+      <div class="game-toolbar" aria-label="Действия и параметры игры">
+        <div class="controls">
+          <div class="control-group">
+            <button class="primary" onclick="philGenerate()">⟳ Создать</button>
+            <button class="action" onclick="philToggleAnswers()" id="btn-ph-answ">👁 Ответы</button>
+            <button class="danger"
+                    onclick="philUsedWordsHistory.clear(); document.getElementById('phil-stat').textContent='♻ История филворда сброшена';">
+              ♻ Сброс
+            </button>
+          </div>
         </div>
+  
+        <div class="game-status-bar" id="ph-status">
+          Тема: <span id="ph-status-theme">ФизМат</span> &nbsp;·&nbsp;
+          Сложность: <span id="ph-status-level">Средний</span>
+        </div>
+  
+        <div class="stat-line" id="phil-stat">Готов к генерации филворда</div>
       </div>
-
-      <div class="game-status-bar" id="ph-status">
-        Тема: <span id="ph-status-theme">ФизМат</span> &nbsp;·&nbsp;
-        Сложность: <span id="ph-status-level">Средний</span>
-      </div>
-
-      <div class="stat-line" id="phil-stat">Готов к генерации филворда</div>
 
       <div class="main-container">
         <div class="game-area">
@@ -251,9 +246,9 @@
         </div>
 
         <div id="philSidebar">
-          <div class="sb-header" onclick="toggleSidebar(event)">
-            <h2 class="sb-title" style="opacity:1">СЛОВА ДЛЯ ПОИСКА</h2>
-            <button class="toggle-btn">❯</button>
+          <div class="sb-header">
+            <h2 class="sb-title">СЛОВА ДЛЯ ПОИСКА</h2>
+            <button class="toggle-btn" type="button" onclick="toggleSidebar(event)" aria-controls="philWords" aria-expanded="true" aria-label="Скрыть слова">⌄</button>
           </div>
           <div class="sb-content" id="philWords"></div>
         </div>
@@ -265,19 +260,21 @@
 
       <input type="hidden" id="sel-diff-su" value="medium">
 
-      <div class="controls">
-        <div class="control-group">
-          <button class="primary" onclick="sudokuGenerate()">⟳ Создать</button>
-          <button class="action" onclick="sudokuCheck()" id="btn-su-check">✅ Проверить</button>
-          <button class="danger" onclick="sudokuReset()">♻ Сброс</button>
+      <div class="game-toolbar" aria-label="Действия и параметры игры">
+        <div class="controls">
+          <div class="control-group">
+            <button class="primary" onclick="sudokuGenerate()">⟳ Создать</button>
+            <button class="action" onclick="sudokuCheck()" id="btn-su-check">✅ Проверить</button>
+            <button class="danger" onclick="sudokuReset()">♻ Сброс</button>
+          </div>
         </div>
+  
+        <div class="game-status-bar" id="su-status">
+          Сложность: <span id="su-status-level">Средний</span>
+        </div>
+  
+        <div class="stat-line" id="su-stat">Готов к генерации судоку</div>
       </div>
-
-      <div class="game-status-bar" id="su-status">
-        Сложность: <span id="su-status-level">Средний</span>
-      </div>
-
-      <div class="stat-line" id="su-stat">Готов к генерации судоку</div>
 
       <div class="main-container">
         <div class="game-area">
@@ -306,20 +303,22 @@
       <input type="hidden" id="qnt-mode-value"  value="term">
       <input type="hidden" id="qnt-diff-value"  value="easy">
 
-      <div class="controls">
-        <div class="control-group">
-          <button class="primary" onclick="quantNewRound()" type="button">⟳ Новая игра</button>
+      <div class="game-toolbar" aria-label="Действия и параметры игры">
+        <div class="controls">
+          <div class="control-group">
+            <button class="primary" onclick="quantNewRound()" type="button">⟳ Новая игра</button>
+          </div>
         </div>
+  
+        <div class="game-status-bar" id="qnt-status">
+          Режим: <span id="qnt-status-mode">Термин</span> &nbsp;·&nbsp;
+          Сложность: <span id="qnt-status-diff">★ Лёгкий</span>
+        </div>
+  
+        <div class="stat-line" id="qnt-stat">Готов к игре Квант</div>
       </div>
 
-      <div class="game-status-bar" id="qnt-status">
-        Режим: <span id="qnt-status-mode">Термин</span> &nbsp;·&nbsp;
-        Сложность: <span id="qnt-status-diff">★ Лёгкий</span>
-      </div>
-
-      <div class="stat-line" id="qnt-stat">Готов к игре Квант</div>
-
-      <div class="main-container" style="flex-direction: column; align-items: center;">
+      <div class="main-container">
         <div class="game-area qnt-area">
           <div id="qnt-term-hint" class="qnt-hint"></div>
 
