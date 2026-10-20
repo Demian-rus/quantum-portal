@@ -1132,3 +1132,163 @@ canvas {
 }
 
 .qnt-enter, .kb-enter { color: #4ade80 !important; border-color: rgba(74,222,128,.6) !important; }
+
+/* Quantum Portal — accessible, coherent layout for the new crossword board */
+:root {
+  --bg: #090f1b;
+  --panel: #101b2b;
+  --text: #e9f1fa;
+  --secondary: #9aabc0;
+  --accent: #5eddbc;
+  --accent-hover: #80efcf;
+  --border: #30465c;
+}
+body {
+  color: var(--text);
+  background: radial-gradient(ellipse at 50% -18%, #1a3041 0%, #0b1524 45%, #08111d 100%);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.qp-tier1 { max-width: 1240px; padding: 16px clamp(10px, 2vw, 30px) 44px; }
+.header-area { padding: 8px 0 18px; }
+.header-inner { max-width: 100%; padding: 0 48px; min-height: 48px; }
+.header-title {
+  margin: 0;
+  font-size: clamp(18px, 2.5vw, 27px);
+  letter-spacing: .075em;
+  line-height: 1.25;
+  color: #dffef4;
+  text-shadow: none;
+  font-weight: 800;
+}
+.header-inner .sub { display: none !important; }
+.settings-btn { border-color: var(--border); color: var(--accent); background: #132234; }
+nav { background: #101c2b; border: 1px solid #2b4155; border-radius: 12px; gap: 4px; padding: 5px; }
+nav .tab { border-radius: 8px; font-size: 13px; }
+nav .tab.active { background: #1f443e; box-shadow: none; color: #bbffeb; }
+nav .tab:hover:not(.active) { background: #19283a; }
+.controls { margin-bottom: 10px; }
+.control-group { background: #101d2d; border: 1px solid #2e4256; gap: 8px; }
+button, select { border-color: var(--border); }
+button:hover, select:hover { box-shadow: none; border-color: var(--accent); }
+button.primary, button.action {
+  background: #173a35; border: 1px solid #4bbfa4; color: #d3fbed; font-weight: 700;
+}
+button.primary:hover, button.action:hover { background: #20534b; box-shadow: none; }
+button.danger { border-color: #94595c; color: #f6b9a9; background: #342127; }
+.game-status-bar { color: #b8c8d8; font-size: 13px; margin-bottom: 7px; }
+.game-status-bar span { color: #80e6c8; }
+.stat-line { color: #a8bad0; font-size: 13px; margin-bottom: 18px; }
+#sec-crossword .main-container {
+  align-items: start;
+  gap: clamp(14px, 2vw, 26px);
+  padding: 0;
+}
+#sec-crossword .cw-area {
+  max-width: none; min-width: 0; margin: 0;
+  width: 100%;
+  padding: clamp(10px,1.5vw,18px);
+}
+.game-area, #sidebar, #philSidebar {
+  background: #101b2b;
+  border: 1px solid #2c4155;
+  box-shadow: 0 8px 28px rgba(0,0,0,.15);
+  border-radius: 14px;
+}
+#active-q-panel, #phil-active-panel, #su-active-panel, #qnt-active-panel {
+  background: #172538;
+  border: 1px solid #2d4358;
+  color: #e1edf8;
+  box-shadow: none;
+  min-height: 50px;
+  margin-bottom: 4px;
+  line-height: 1.45;
+  font-size: clamp(13px, 1.3vw, 15px);
+  font-weight: 600;
+  padding: 10px 14px;
+}
+#cv {
+  display: block;
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 6px;
+  box-shadow: none;
+  background: #0b1425;
+  margin: 0 auto;
+  touch-action: manipulation;
+}
+#sidebar, #philSidebar {
+  top: 0 !important;
+  max-width: none;
+  min-width: 0;
+  width: 100%;
+  height: auto !important;
+  margin: 0;
+}
+#sidebar:not(.collapsed), #philSidebar:not(.collapsed) { min-height: 210px; }
+#sidebar .sb-content, #philSidebar .sb-content {
+  max-height: 680px;
+  overflow-y: auto;
+  padding: 12px 15px 16px;
+}
+#sidebar .sb-header { border-bottom: 1px solid #2d4055; }
+#sidebar .sb-title { color: #93edd0; font-size: 12px; letter-spacing: .06em; }
+#sidebar .cw-clue-heading {
+  color: #9db1c5; font-size: 11px; font-weight: 800;
+  letter-spacing: .09em; margin: 10px 0 12px;
+  padding-bottom: 7px; border-bottom: 1px solid #304559;
+}
+#sidebar .clue-item.cw-clue-button {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-left: 3px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: #dce7f3;
+  padding: 9px 10px;
+  margin: 0 0 3px;
+  line-height: 1.45;
+  font: 500 13px/1.45 inherit;
+  font-size: 13px;
+  text-align: left;
+  white-space: normal;
+  cursor: pointer;
+}
+#sidebar .clue-item.cw-clue-button:hover { background: #1b3042; }
+#sidebar .clue-item.cw-clue-button.active {
+  background: #21443e; border-left-color: #67dfb9; color: #ecfff8; margin-left: 0;
+}
+#sidebar .toggle-btn { color: #93edd0; }
+.settings-modal, .stats-modal { background: #111e30; border-color: #30485e; }
+.settings-toggle.active, .settings-diff-btn.active { color: #b9f8e4; }
+@media (min-width: 1024px) {
+  #sec-crossword .main-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(290px, 1fr);
+    gap: 24px;
+  }
+  #sidebar { position: relative; top: 0 !important; height: auto !important; max-width: none; }
+}
+@media (min-width: 1280px) {
+  #sec-crossword .main-container { grid-template-columns: minmax(0, 1.65fr) minmax(310px, 1fr); }
+}
+@media (max-width: 1023px) {
+  #sec-crossword .main-container { display:flex; flex-direction:column; align-items:stretch; }
+  #sec-crossword .cw-area { margin: 0 auto; max-width: 720px; }
+  #sidebar { max-width: 720px; margin: 0 auto; }
+}
+@media (max-width: 650px) {
+  .qp-tier1 { padding: 8px 8px 28px; }
+  .header-area { padding: 8px 0 14px; }
+  .header-inner { padding: 0 44px 0 8px; justify-content: flex-start; text-align: left; }
+  .header-title { font-size: clamp(16px, 4.6vw, 21px); letter-spacing: .025em; }
+  .settings-btn { right: 0; }
+  .controls { margin-bottom: 9px; }
+  .control-group { padding: 6px; gap: 5px; }
+  .control-group button { padding: 8px 10px; }
+  #sec-crossword .cw-area { padding: 8px; gap: 8px; }
+  #active-q-panel { min-height: 44px; margin: 0; font-size: 13px; }
+  #sidebar:not(.collapsed) { width: 100%; }
+}
