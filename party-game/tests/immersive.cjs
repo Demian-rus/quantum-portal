@@ -62,7 +62,7 @@ const URL='http://127.0.0.1:8765/party-game/';
       assert.ok(ready.scroll<=ready.viewport+2,'Game scrolls document');
       assert.ok(ready.viewScroll<=ready.viewHeight+3,'Game itself overflows: '+JSON.stringify(ready));
       await page.screenshot({path:'artifacts/iskra-immersive/'+device.name+'-ready.png',fullPage:true});
-      await page.locator('#sound-toggle').click();
+      await page.evaluate(()=>{soundOn=false;persist();});
       await page.locator('[data-action="roll"]').click();
       await page.waitForSelector('.reel-window',{state:'visible'});
       const images=await page.locator('.reel-item img').count();

@@ -7,6 +7,7 @@ on:
       - feat/iskra-v3-rules-and-art-20261020
       - feat/iskra-immersive-pwa-20261020
       - feat/iskra-ux-controls-20261020
+      - feat/iskra-v4-2-screen-controls-20261020
       - main
     paths:
       - 'party-game/**'

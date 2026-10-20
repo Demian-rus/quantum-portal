@@ -27,7 +27,7 @@ async function configureOnly(page,id) {
       await page.locator('#new-game-menu').click();
       await page.locator('[data-setting="difficulty"] [data-value="hard"]').click();
       await configureOnly(page,'yesno');
-      await page.locator('[data-setting="dice"] [data-value="false"]').click();
+      assert.equal(await page.locator('[data-setting="dice"]').count(),0,'Old dice choice must be removed');
       await page.locator('#custom-duration').fill('135');
       await page.locator('#custom-duration').blur();
       await page.locator('#custom-rounds').fill('4');
@@ -42,7 +42,7 @@ async function configureOnly(page,id) {
       await page.locator('#start-game').click();
       assert.equal(await page.locator('#round-total').textContent(),'4');
       await page.locator('[data-action="roll"]').click();
-      await page.waitForSelector('[data-action="toggle-word"]',{timeout:3000});
+      await page.waitForSelector('[data-action="toggle-word"]',{timeout:5500});
       const state=await page.evaluate(()=>({mode:game.current.modeId,
         challenge:game.current.word,
         duration:game.duration,points:game.current.points,dice:game.dice,
@@ -51,7 +51,7 @@ async function configureOnly(page,id) {
       assert.equal(state.member,true,'Expected real or fictional identity');
       assert.equal(state.points,2);
       assert.equal(state.duration,135);
-      assert.equal(state.dice,false);
+      assert.equal(state.dice,true,'Carousel is the only normal game selection method');
       const icon=page.locator('.mode-symbol img.mode-art');
       assert.match(await icon.getAttribute('src'),/^data:image\/webp;base64,/);
       assert.ok(await icon.evaluate(el=>el.complete&&el.naturalWidth>=256),'Generated artwork not loaded');
