@@ -1112,3 +1112,14 @@ body[data-screen="preferences"]::after{background:#11082085}
  .scene--game .three-answer-actions .round-action--prominent{width:64px;height:64px}
  .scene--game .three-answer-actions .round-action--muted{width:47px;height:47px}
 }
+
+/* Temporary readability fix for the old background's baked-in "Новая игра"
+   text, until the three illustrations are replaced with clean artwork. */
+body[data-screen="setup"]::after,
+body[data-screen="advanced"]::after {
+ background:linear-gradient(to bottom,#0d0822f5 0%,#150a2de0 19%,#150a2d76 37%,#09061960 100%);
+}
+.scene--setup .settings-scroller .setup-panel,
+.scene--advanced .settings-scroller .advanced-panel {
+ background:linear-gradient(135deg,#201331f6,#201332f0);
+}
