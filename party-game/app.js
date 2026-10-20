@@ -199,7 +199,7 @@ function getPromptPool(kind,level) {
   if(kind==='songs')return PARTY_SONGS[level]||PARTY_SONGS.easy;
   if(kind==='people')return PARTY_PEOPLE[level]||PARTY_PEOPLE.easy;
   const groups={
-    word:PARTY_WORDS[level]||PARTY_WORDS.easy,
+    word:(PARTY_WORDS[level]||PARTY_WORDS.easy).filter(word=>!word.includes(' ')),
     phrase:PARTY_PHRASES[level]||PARTY_PHRASES.easy,
     idiom:PARTY_IDIOMS[level]||PARTY_IDIOMS.easy
   };
@@ -251,7 +251,7 @@ function showReady() {
     '<span class="game-eyebrow">ХОД '+(game.roundIndex+1)+' ИЗ '+game.rounds+'</span>'+
     '<div class="ready-avatar '+(index===1?'is-blue':'')+'">'+modeArt('secret')+'</div>'+
     '<h2 class="play-title">НА ОЧЕРЕДИ<br><em>'+team+'</em></h2>'+
-    '<p class="play-subtitle">Передайте устройство игроку своей команды. Бросайте кубик и готовьтесь объяснять!</p>'+
+    '<p class="play-subtitle">'+(game.dice?'Передайте устройство игроку своей команды. Бросайте кубик и готовьтесь объяснять!':'Передайте устройство игроку своей команды, чтобы получить задание.')+'</p>'+
     makeButton(game.dice?'БРОСИТЬ КУБИК':'ПОЛУЧИТЬ ЗАДАНИЕ','roll','button-primary button-big');
 }
 function showRolling() {
@@ -474,7 +474,11 @@ function newGame() {
 }
 function roll() {
   if(!game||game.phase!=='ready')return;
-  game.phase='rolling';persist();if(game.dice)sfx('roll');render();
+  if(!game.dice){
+    game.current=rollOutcome();game.phase='task';persist();sfx('go');render();
+    return;
+  }
+  game.phase='rolling';persist();sfx('roll');render();
   setTimeout(()=>{
     if(!game||game.phase!=='rolling')return;
     game.current=rollOutcome();game.phase='task';

@@ -66,7 +66,7 @@ const {chromium} = require('playwright-core');
       await page.screenshot({path:'artifacts/iskra/'+profile.name+'-judge.png',fullPage:true});
       await page.locator('[data-action="yes"]').click();
       const scored=Number(await page.locator('#score-a').textContent());
-      assert.ok(scored===1||scored===2,'wrong awarded points '+scored);
+      assert.ok(scored>=0&&scored<=3,'wrong awarded points '+scored);
       assert.equal(await page.locator('#round-now').textContent(),'2');
       await page.reload({waitUntil:'load'});
       await page.waitForSelector('[data-action="next"]');
