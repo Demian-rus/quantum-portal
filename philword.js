@@ -56,8 +56,11 @@ function philPickWords(pool, size, targetCount) {
     list = [...uniq.values()];
   }
 
-  list.sort((a, b) => b.w.length - a.w.length);
-  return list.slice(0, Math.min(list.length, targetCount + 8));
+  for (let i = list.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [list[i], list[j]] = [list[j], list[i]];
+  }
+  return list.slice(0, Math.min(list.length, targetCount * 3));
 }
 
 function philCanPlaceWord(grid, word, r, c, dr, dc) {
@@ -269,10 +272,12 @@ function philReverse(s) {
 function philCheckSelectionHit() {
   if (!phSelCells || phSelCells.length < 2) return false;
 
-  const s = philStringFromCells(phSelCells);
-  const sr = philReverse(s);
-
-  const hit = phPlacements.find(p => !phFound.has(p.w) && (p.w === s || p.w === sr));
+  const same = (a, b) => a.r === b.r && a.c === b.c;
+  const hit = phPlacements.find(p =>
+    !phFound.has(p.w) && p.cells.length === phSelCells.length &&
+    (p.cells.every((cell, i) => same(cell, phSelCells[i])) ||
+     p.cells.every((cell, i) => same(cell, phSelCells[phSelCells.length - 1 - i])))
+  );
   if (!hit) return false;
 
   phFound.add(hit.w);
@@ -340,7 +345,7 @@ function philGenerateCore() {
   phSize = parseInt(sizeSel.value, 10) || 14;
 
   const theme = themeSel.value;
-  const level = levelSel.value;
+  const level = { easy: 'легкий', medium: 'средний', hard: 'сложный' }[levelSel.value] || levelSel.value;
 
   const pool = philGetPool(theme, level);
   if (!pool.length) {

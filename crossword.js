@@ -437,7 +437,10 @@ function onGenerateCore() {
     available = [...pool];
   }
 
-  const mask = makeMaskFree();
+  const variant = document.getElementById('cw-variant')?.value || 'free';
+  const masks = { free: makeMaskFree, square: makeMaskSquare,
+                  diamond: makeMaskDiamond, cross: makeMaskCross };
+  const mask = (masks[variant] || makeMaskFree)();
 
   let attempts = 15;
   if (level === 'средний') attempts = 30;

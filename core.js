@@ -56,6 +56,7 @@ const Storage = {
     localStorage.setItem(this.key, JSON.stringify(data));
   },
   addGame(game) {
+    winMarked[game] = false; // A new round may be won once
     const data = this.load();
     if (!data.stats[game]) {
       data.stats[game] = { wins: 0, games: 0 };
@@ -102,16 +103,16 @@ function markWin(game){
 const usedWordsHistory = new Set(Storage.load().history.words);
 
 // Переопределяем метод add у Set
-const originalAdd = usedWordsHistory.add.bind(usedWordsHistory);
-usedWordsHistory.add = function(word) {
-  originalAdd(word);
+const originalSetAdd = Set.prototype.add;
+function rememberWord(word) {
+  originalSetAdd.call(this, word);
   Storage.addWord(word);
   return this;
-};
+}
+usedWordsHistory.add = rememberWord;
 
-// Инициализация истории для филворда
 let philUsedWordsHistory = new Set(Storage.load().history.words);
-philUsedWordsHistory.add = usedWordsHistory.add;
+philUsedWordsHistory.add = rememberWord;
 
 
 
@@ -311,7 +312,10 @@ function sudokuHasProgress() {
 }
 
 function quantHasProgress() {
-  return !!quantCurrentWord && (quantAttempts < 6 || quantCurrentGuess.length > 0);
+  if (typeof Quant === 'undefined' || !Quant.targetWord || Quant.finished) return false;
+  if (Quant.triesLeft < Quant.maxTries) return true;
+  if (Quant.mode === 'term') return Quant.termState.some(c => !!c.letter);
+  return Quant.wordleState.some(row => row.some(c => !!c.letter));
 }
 
 
@@ -461,7 +465,7 @@ if (hiddenInput) {
 window.addEventListener('keydown', e => {
   if (e.target && e.target.id === 'hidden-input') return;
   if (e.target.id === 'hidden-input') return;
-  if (activeWord && !isSolved) {
+  if (currentSection === 'crossword' && activeWord && !isSolved) {
     if (e.ctrlKey || e.altKey || e.metaKey) return;
     if (/[а-яёa-z]/i.test(e.key) && e.key.length === 1) {
       handleInput(e.key);
@@ -584,17 +588,7 @@ setTimeout(() => {
 
 
 
-// ==========================================
-// ПРОЧЕЕ
-// ==========================================
-document.addEventListener('contextmenu', event => event.preventDefault());
-document.onkeydown = function(e) {
-  if(e.keyCode == 123) return false; // F12
-  if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
-  if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
-  if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
-  if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
-};
+// Для отладки доступны контекстное меню браузера и F12.
 
 
 
@@ -647,8 +641,5 @@ window.onload = () => {
   updateMobileKeyboardVisibility();
   attachMobileKeyboard();
 
-  // 🔹 ДОБАВИТЬ: единоразовая инициализация Кванта
-  if (typeof initQuant === 'function') {
-    initQuant();
-  }
+  // Инициализация Кванта при первом открытии вкладки, а не на старте сайта.
 };
