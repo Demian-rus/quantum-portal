@@ -1,0 +1,101 @@
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const {chromium} = require('playwright-core');
+const URL='http://127.0.0.1:8765/party-game/';
+async function configureOnly(page,id) {
+  await page.locator('#advanced-options summary').click();
+  const inputs=page.locator('#mode-toggles input');
+  for(let i=0;i<await inputs.count();i++){
+    const current=inputs.nth(i);
+    if(await current.getAttribute('value')!==id)await current.uncheck({force:true});
+  }
+  assert.equal(await page.locator('#mode-toggles input:checked').count(),1);
+}
+(async()=>{
+  fs.mkdirSync('artifacts/iskra-v2',{recursive:true});
+  const browser=await chromium.launch({
+    executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',
+    headless:true,args:['--no-sandbox']
+  });
+  try{
+    for(const device of [{name:'phone',width:390,height:844,dpr:2},{name:'desktop',width:1440,height:900,dpr:1}]){
+      const page=await browser.newPage({viewport:{width:device.width,height:device.height},deviceScaleFactor:device.dpr});
+      const errors=[];
+      page.on('pageerror',e=>errors.push(e.message));
+      await page.goto(URL,{waitUntil:'load'});
+      await configureOnly(page,'yesno');
+      await page.locator('[data-setting="difficulty"] [data-value="hard"]').click();
+      await page.locator('[data-setting="dice"] [data-value="false"]').click();
+      await page.locator('#custom-duration').fill('135');
+      await page.locator('#custom-duration').blur();
+      await page.locator('#custom-rounds').fill('4');
+      await page.locator('#custom-rounds').blur();
+      await page.screenshot({path:'artifacts/iskra-v2/'+device.name+'-settings.png',fullPage:true});
+      await page.locator('#start-game').click();
+      assert.equal(await page.locator('#round-total').textContent(),'4');
+      await page.locator('[data-action="roll"]').click();
+      await page.waitForSelector('[data-action="toggle-word"]',{timeout:3000});
+      const state=await page.evaluate(()=>({mode:game.current.modeId,
+        challenge:game.current.word,
+        duration:game.duration,points:game.current.points,dice:game.dice,
+        member:PARTY_PEOPLE.hard.includes(game.current.word)}));
+      assert.equal(state.mode,'yesno');
+      assert.equal(state.member,true,'Expected real or fictional identity');
+      assert.equal(state.points,2);
+      assert.equal(state.duration,135);
+      assert.equal(state.dice,false);
+      const icon=page.locator('.mode-symbol svg use');
+      assert.match(await icon.getAttribute('href'),/#yesno$/);
+      const response=await page.evaluate(()=>fetch('./assets/modes.svg').then(r=>r.status));
+      assert.equal(response,200,'Mode artwork resource not available');
+      await page.screenshot({path:'artifacts/iskra-v2/'+device.name+'-yesno.png',fullPage:true});
+      await page.locator('[data-action="toggle-word"]').click();
+      await page.locator('[data-action="start-timer"]').click();
+      await page.waitForSelector('#active-timer .timer-colon');
+      const timer=await page.locator('#active-timer').evaluate(element=>({
+        text:element.textContent,
+        colon:element.querySelector('.timer-colon').getBoundingClientRect().width,
+        width:element.getBoundingClientRect().width
+      }));
+      assert.ok(timer.colon>0,'Timer colon should occupy its own space');
+      assert.match(timer.text,/^2:1[3-5]$/,'Custom timer is not used: '+timer.text);
+      await page.screenshot({path:'artifacts/iskra-v2/'+device.name+'-timer.png',fullPage:true});
+      await page.evaluate(()=>{game.current.deadline=Date.now()-10;tick()});
+      await page.locator('[data-action="yes"]').click();
+      assert.equal(await page.locator('#score-a').textContent(),'2');
+      await page.reload();
+      assert.equal(await page.locator('#score-a').textContent(),'2');
+      const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
+      assert.ok(overflow<=2,'Horizontal overflow '+overflow);
+      assert.deepEqual(errors,[],'Browser JS errors');
+      console.log(device.name,JSON.stringify({state,timer,overflow,errors}));
+      await page.close();
+    }
+    const blitz=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
+    const errs=[];blitz.on('pageerror',e=>errs.push(e.message));
+    await blitz.goto(URL,{waitUntil:'load'});
+    await configureOnly(blitz,'blitz');
+    await blitz.locator('#custom-blitz').fill('5');
+    await blitz.locator('#custom-blitz').blur();
+    await blitz.locator('#start-game').click();
+    await blitz.locator('[data-action="roll"]').click();
+    await blitz.waitForSelector('[data-action="toggle-word"]');
+    await blitz.locator('[data-action="toggle-word"]').click();
+    await blitz.locator('[data-action="start-timer"]').click();
+    assert.equal(await blitz.locator('.blitz-status').count(),1);
+    const start=await blitz.evaluate(()=>game.current.deadline);
+    for(const action of ['blitz-correct','blitz-skip','blitz-correct','blitz-correct','blitz-skip']){
+      await blitz.locator('[data-action="'+action+'"]').click();
+    }
+    assert.equal(await blitz.locator('[data-action="yes"]').count(),1);
+    const stats=await blitz.evaluate(()=>({correct:game.current.blitzCorrect,
+      skipped:game.current.blitzSkipped,count:game.current.blitzWords.length}));
+    assert.deepEqual(stats,{correct:3,skipped:2,count:5});
+    await blitz.screenshot({path:'artifacts/iskra-v2/phone-blitz-result.png',fullPage:true});
+    await blitz.locator('[data-action="yes"]').click();
+    assert.equal(await blitz.locator('#score-a').textContent(),'3');
+    assert.deepEqual(errs,[],'Blitz JS errors');
+    await blitz.close();
+  }finally{await browser.close();}
+})().catch(error=>{console.error(error);process.exitCode=1;});
