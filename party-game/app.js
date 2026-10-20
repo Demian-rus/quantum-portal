@@ -111,6 +111,12 @@ function escapeHTML(value) {
     '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
   }[char]));
 }
+// Discretionary Russian word breaks supplement browser hyphenation dictionaries.
+// Only display markup is changed; stored prompts and scoring keep the exact text.
+function displayPrompt(value) {
+  return escapeHTML(value).replace(/ПАРАЛЛЕЛЬНАЯ/gi, match =>
+    match.slice(0,-3)+'\u00ad'+match.slice(-3));
+}
 function readSaved() {
   try {
     const obj=JSON.parse(localStorage.getItem(STORAGE_KEY));
@@ -305,7 +311,7 @@ function rollOutcome() {
     modeId:mode.id,methodId:actualMode.id,word,complication,difficulty:level,
     points:SCORE[mode.id]||1,seconds:mode.seconds||game.duration,
     blitzWords:mode.id==='blitz'?[word,...Array.from({length:game.blitzCount-1},()=>pullWord('words',level))]:null,
-    blitzIndex:0,blitzCorrect:0,blitzSkipped:0,
+    blitzIndex:0,blitzCorrect:0,
     blitzQueue:mode.id==='blitz'?Array.from({length:game.blitzCount},(_,i)=>i):null,
     visible:false,paused:false,remainingMs:null,deadline:null,autoStartAt:null,
     finishedReason:null,replaced:false
@@ -391,7 +397,7 @@ function modeInformation() {
 }
 function taskMarkup(hidden) {
   const {method}=modeInformation();
-  const word=escapeHTML(game.current.word);
+  const word=displayPrompt(game.current.word);
   const what=method.id==='sing'?'ТЕМА ДЛЯ ПЕСНИ':'ВАШЕ ЗАДАНИЕ';
   const wordLength=game.current.word.length;
   const lengthStyle=wordLength>45?' challenge-word--very-long':wordLength>23?' challenge-word--long':'';
@@ -422,7 +428,7 @@ function blitzStatus() {
   const c=game.current;
   const left=c.blitzQueue?.length ?? Math.max(0,c.blitzWords.length-c.blitzIndex);
   return '<div class="blitz-status"><b>ОСТАЛОСЬ: '+left+'</b>'+
-    '<span>Отгадано: '+c.blitzCorrect+' · Пропущено: '+c.blitzSkipped+'</span></div>';
+    '<b>ОТГАДАНО: '+c.blitzCorrect+'</b></div>';
 }
 function showTimer() {
   $('play-content').className='play-inner is-play stable-round';
@@ -468,7 +474,7 @@ function advanceBlitz(correct) {
   if(!c.blitzQueue.length)return;
   const index=c.blitzQueue.shift();
   if(correct)c.blitzCorrect++;
-  else {c.blitzSkipped++;c.blitzQueue.push(index);}
+  else c.blitzQueue.push(index);
   c.blitzIndex++;
   if(!c.blitzQueue.length){finishTimer('completed');return;}
   c.word=c.blitzWords[c.blitzQueue[0]];
@@ -558,16 +564,16 @@ function showJudge() {
     '<h2 class="play-title">'+(blitz?'РЕЗУЛЬТАТ <em>БЛИЦА</em>':'КОМАНДА <em>УГАДАЛА?</em>')+'</h2>'+
     '<p class="play-subtitle">'+(blitz?'Отгадано '+c.blitzCorrect+' из '+c.blitzWords.length+
     '. Засчитайте очки или отмените результат.':'Нажмите галочку, если ответ верный, или крестик, если нет.')+'</p>'+
-    '<p class="score-note">'+(blitz?'Награда: <b>+'+c.blitzCorrect+' очков</b> · Пропущено: '+c.blitzSkipped:
+    '<p class="score-note">'+(blitz?'Награда: <b>+'+c.blitzCorrect+' очков</b>':
     'Было загадано: <b>'+escapeHTML(c.word)+'</b> · За ответ: +'+c.points)+'</p>'+
     '<div class="judgement-grid">'+
       '<div class="judgement-option">'+
-        '<button class="judgement judgement--yes" data-action="yes" type="button" aria-label="Засчитать ответ"><svg viewBox="0 0 64 64"><path d="m13 33 13 13 25-28"/></svg></button>'+
-        '<span>'+(blitz?'ЗАСЧИТАТЬ':'УГАДАЛИ')+'</span>'+
-      '</div>'+
-      '<div class="judgement-option">'+
         '<button class="judgement judgement--no" data-action="no" type="button" aria-label="Не засчитывать"><svg viewBox="0 0 64 64"><path d="m17 17 30 30M47 17 17 47"/></svg></button>'+
         '<span>'+(blitz?'ОТМЕНИТЬ':'НЕ УГАДАЛИ')+'</span>'+
+      '</div>'+
+      '<div class="judgement-option">'+
+        '<button class="judgement judgement--yes" data-action="yes" type="button" aria-label="Засчитать ответ"><svg viewBox="0 0 64 64"><path d="m13 33 13 13 25-28"/></svg></button>'+
+        '<span>'+(blitz?'ЗАСЧИТАТЬ':'УГАДАЛИ')+'</span>'+
       '</div>'+
     '</div>';
 }
@@ -788,7 +794,7 @@ function restoreSession() {
   game.blitzCount=game.blitzCount||4;
   if(game.current?.modeId==='blitz'&&!Array.isArray(game.current.blitzWords)){
     game.current.blitzWords=[game.current.word];
-    game.current.blitzIndex=0;game.current.blitzCorrect=0;game.current.blitzSkipped=0;
+    game.current.blitzIndex=0;game.current.blitzCorrect=0;
   }
   if(game.current?.modeId==='blitz'&&!Array.isArray(game.current.blitzQueue)){
     game.current.blitzQueue=Array.from({length:game.current.blitzWords.length},(_,i)=>i)
@@ -869,6 +875,10 @@ function setupEvents() {
   document.addEventListener('keydown',event=>{
     if(event.key==='Escape')closeRules();
   });
+  // Disallow native Android selection handles and context menus on every scene,
+  // including settings buttons. Keyboard editing of team names still works.
+  document.addEventListener('selectstart',event=>event.preventDefault());
+  document.addEventListener('contextmenu',event=>event.preventDefault());
   document.addEventListener('visibilitychange',()=>{
     if(!document.hidden&&game?.phase==='play')tick();
   });
