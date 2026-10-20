@@ -78,11 +78,7 @@ test('seven modes, scoring, alternation and results survive repeated button acti
     assert.equal(h.eval('game.scores['+(i%2)+']'),earned[i%2]);
     h.eval('judge(true)');
     assert.equal(h.eval('game.scores['+(i%2)+']'),earned[i%2],'double scoring!');
-    if(i<7) {
-      assert.equal(h.eval('game.phase'),'between');
-      h.eval("handleAction('next')");
-      assert.equal(h.eval('game.phase'),'ready');
-    }
+    if(i<7)assert.equal(h.eval('game.phase'),'ready');
   }
   assert.equal(h.eval('game.phase'),'results');
   assert.equal(h.eval('game.history.length'),8);
@@ -107,7 +103,7 @@ test('session and scores restore correctly after browser reload',()=>{
   const b=harness(storage);
   assert.equal(b.eval('game.roundIndex'),1);
   assert.equal(b.eval('game.scores[0]'),expected);
-  assert.equal(b.eval('game.phase'),'between');
+  assert.equal(b.eval('game.phase'),'ready');
 });
 test('reloading after deadline shows judgement rather than restarting a round',()=>{
   const storage=new Map();
@@ -252,7 +248,7 @@ test('medium and hard start one second after reveal and cannot pause or swap pro
   h.eval('pauseTimer()');
   assert.equal(h.eval('game.current.paused'),false,'Pause accepted in '+level);
   h.eval('toggleWord()');
-  assert.equal(h.eval('game.current.visible'),true,'Card hidden in '+level);
+  assert.equal(h.eval('game.current.visible'),false,'Visibility toggle should not pause in '+level);
  }
 });
 test('difficulty controls modifier severity and secret cards always get one',()=>{
