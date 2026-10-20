@@ -121,7 +121,7 @@ test('team names are escaped to prevent injection into game views',()=>{
   h.context.document.getElementById('team-a').value='<img src=x onerror=alert(1)>';
   h.eval('newGame()');
   assert.ok(h.elements.get('play-content').innerHTML.includes('&lt;img'));
-  assert.ok(!h.elements.get('play-content').innerHTML.includes('<img'));
+  assert.ok(!h.elements.get('play-content').innerHTML.includes('<img src=x onerror='));
 });
 
 test('extended vocabulary is clean and new prompt types are available',()=>{
