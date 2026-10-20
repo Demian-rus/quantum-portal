@@ -72,7 +72,7 @@ const {chromium} = require('playwright-core');
       assert.equal(await page.locator('#scene-home').isVisible(),true);
       assert.equal(await page.locator('#continue-game').isEnabled(),true);
       await page.locator('#continue-game').click();
-      await page.waitForSelector('[data-action="next"]');
+      await page.waitForSelector('[data-action="roll"]');
       assert.equal(Number(await page.locator('#score-a').textContent()),scored,'lost saved score');
       assert.equal(await page.locator('.topbar').count(),1);
       const dims=await page.evaluate(()=>({width:document.documentElement.scrollWidth,
