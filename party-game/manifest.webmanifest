@@ -1,0 +1,30 @@
+{
+  "name": "ИСКРА — игра для компании",
+  "short_name": "ИСКРА",
+  "description": "Командная игра с каруселью режимов, таймером и заданиями.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "background_color": "#130c2d",
+  "theme_color": "#140b28",
+  "orientation": "portrait",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "./assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
