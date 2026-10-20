@@ -149,49 +149,77 @@ function cwFrame(g,variant){
   const r0=Math.max(0,top-1),c0=Math.max(0,left-1);
   return {r0,c0,rows:Math.min(N,bottom+2)-r0,cols:Math.min(N,right+2)-c0};
 }
-function drawCrossword(g,placed){
-  if(!g||!placed)return;
-  const cv=document.getElementById('cv'),frame=cwFrame(g,cwShape);
-  if(!cv||!frame)return;
-  const {r0,c0,rows,cols}=frame,cell=CW_CELL,pad=CW_PAD;
-  const width=cols*cell+2*pad,height=rows*cell+2*pad;
-  const dpr=Math.min(window.devicePixelRatio||1,2);
-  cv.width=Math.round(width*dpr);cv.height=Math.round(height*dpr);
-  cv.style.aspectRatio=width+' / '+height;
-  const ctx=cv.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);
-  ctx.fillStyle='#0b1425';ctx.fillRect(0,0,width,height);
-  const mask=cwMask(cwShape);
-  const numberMap=new Map();
-  for(const p of placed)numberMap.set(p.r+','+p.c,p.num);
-  for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){
-    const r=r0+y,c=c0+x;
-    if(!mask[r]?.[c]&&cwShape!=='square')continue;
-    const left=pad+x*cell,top=pad+y*cell;
+// Draw at the actual CSS size, not a small bitmap enlarged by the browser.
+// Bitmap pixels match CSS pixels × DPR. Text and grid strokes are rasterized afresh.
+function drawCrossword(g,placed) {
+  if (!g || !placed) return;
+  const cv = document.getElementById('cv');
+  const frame = cwFrame(g,cwShape);
+  if (!cv || !frame) return;
+
+  const {r0,c0,rows,cols} = frame;
+  const measuredWidth = cv.getBoundingClientRect?.().width || cv.parentElement?.clientWidth || 0;
+  const width = Math.max(200, measuredWidth || cols*CW_CELL + CW_PAD*2);
+  const pad = Math.max(7, Math.min(17, width*0.018));
+  const cell = (width - pad*2) / cols;
+  const height = rows*cell + pad*2;
+  const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 3));
+
+  const physicalWidth = Math.round(width*dpr);
+  const physicalHeight = Math.round(height*dpr);
+  if (cv.width !== physicalWidth) cv.width = physicalWidth;
+  if (cv.height !== physicalHeight) cv.height = physicalHeight;
+  cv.style.aspectRatio = width + ' / ' + height;
+
+  const sx = physicalWidth / width, sy = physicalHeight / height;
+  const ctx = cv.getContext('2d');
+  ctx.setTransform(sx,0,0,sy,0,0);
+  ctx.clearRect(0,0,width,height);
+  ctx.fillStyle = '#0b1425';
+  ctx.fillRect(0,0,width,height);
+
+  const snapX = x => Math.round(x*sx)/sx;
+  const snapY = y => Math.round(y*sy)/sy;
+  const borderX = 1/sx, borderY = 1/sy;
+  const mask = cwMask(cwShape);
+  const numberMap = new Map(placed.map(p=>[p.r+','+p.c,p.num]));
+
+  for (let y=0; y<rows; y++) for (let x=0; x<cols; x++) {
+    const r=r0+y, c=c0+x;
+    if (!mask[r]?.[c] && cwShape !== 'square') continue;
+    const x0=snapX(pad+x*cell), x1=snapX(pad+(x+1)*cell);
+    const y0=snapY(pad+y*cell), y1=snapY(pad+(y+1)*cell);
     const empty=g[r][c]==='.';
-    const cursor=!empty&&r===activeR&&c===activeC;
-    const selected=!empty&&activeWord&&(
-      activeWord.dir==='H'&&r===activeWord.r&&c>=activeWord.c&&c<activeWord.c+activeWord.w.length||
-      activeWord.dir==='V'&&c===activeWord.c&&r>=activeWord.r&&r<activeWord.r+activeWord.w.length);
-    ctx.fillStyle=empty?'#09101d':cursor?'#55d8b8':selected?'#c0f3e8':isSolved?'#d5f8e8':'#edf4fb';
-    ctx.fillRect(left,top,cell,cell);
-    ctx.strokeStyle=empty?'#213047':'#49617a';
-    ctx.lineWidth=1;ctx.strokeRect(left+.5,top+.5,cell-1,cell-1);
+    const cursor=!empty && r===activeR && c===activeC;
+    const selected=!empty && activeWord && (
+      activeWord.dir==='H' && r===activeWord.r && c>=activeWord.c && c<activeWord.c+activeWord.w.length ||
+      activeWord.dir==='V' && c===activeWord.c && r>=activeWord.r && r<activeWord.r+activeWord.w.length
+    );
+    ctx.fillStyle = empty ? '#29415a' : '#53708c';
+    ctx.fillRect(x0,y0,x1-x0,y1-y0);
+    ctx.fillStyle = empty ? '#091321' :
+      cursor ? '#55d8b8' : selected ? '#c0f3e8' :
+      isSolved ? '#d5f8e8' : '#edf4fb';
+    ctx.fillRect(x0+borderX,y0+borderY,
+      Math.max(0,x1-x0-borderX*2),Math.max(0,y1-y0-borderY*2));
     if(empty)continue;
-    const text=isSolved?g[r][c]:(userGrid[r]?.[c]||(showAnswers?g[r][c]:''));
-    if(text){
+
+    const letter=isSolved?g[r][c]:(userGrid[r]?.[c]||(showAnswers?g[r][c]:''));
+    if(letter) {
+      ctx.fillStyle=showAnswers&&!userGrid[r]?.[c]&&!isSolved?'#748998':'#102335';
       ctx.textAlign='center';ctx.textBaseline='middle';
-      ctx.fillStyle=showAnswers&&!userGrid[r]?.[c]&&!isSolved?'#8aa2af':'#102335';
-      ctx.font='700 20px system-ui, sans-serif';
-      ctx.fillText(text,left+cell/2,top+cell/2+3);
+      ctx.font='700 '+Math.max(12,Math.min(32,cell*.52)).toFixed(1)+'px system-ui, sans-serif';
+      ctx.fillText(letter,(x0+x1)/2,(y0+y1)/2+cell*.045);
     }
     const number=numberMap.get(r+','+c);
     if(number){
-      ctx.fillStyle='#34485b';ctx.textAlign='left';ctx.textBaseline='top';
-      ctx.font='700 9px system-ui, sans-serif';
-      ctx.fillText(String(number),left+2.4,top+1.2);
+      ctx.fillStyle='#30485b';
+      ctx.textAlign='left';ctx.textBaseline='top';
+      ctx.font='700 '+Math.max(7,Math.min(13,cell*.23)).toFixed(1)+'px system-ui, sans-serif';
+      ctx.fillText(String(number),x0+Math.max(2,cell*.06),y0+Math.max(1,cell*.025));
     }
   }
-  cwLayout={...frame,cell,pad,width,height};
+  cwLayout={...frame,cell,pad,width,height,dpr,physicalWidth,physicalHeight};
 }
 
 function updateUI() {
@@ -224,8 +252,27 @@ function updateUI() {
     if(el) {
       el.classList.add('active');
 
-      // Never scroll the document when selecting a square, especially on a phone.
+      // Selection is shown above the board; do not scroll the entire document.
     }
+  }
+  fitCrosswordQuestion(panel);
+}
+
+// Reserve one stable panel height on phones so the crossword never moves between clues.
+function fitCrosswordQuestion(panel) {
+  const question = panel.querySelector('.cw-question-line');
+  if (!question) return;
+  question.style.fontSize = '';
+  if (window.innerWidth > 768) return;
+  const direction=panel.querySelector('.cw-dir-line');
+  const style=window.getComputedStyle(panel);
+  const available=panel.clientHeight -
+    parseFloat(style.paddingTop) - parseFloat(style.paddingBottom) -
+    (direction?.offsetHeight || 0) - 3;
+  const base=Math.min(15, Math.max(12,window.innerWidth/29));
+  for(let size=base;size>=10.5;size-=0.5) {
+    question.style.fontSize=size+'px';
+    if (question.scrollHeight<=available+1) break;
   }
 }
 
@@ -393,7 +440,22 @@ document.getElementById('cv').addEventListener('pointerdown',e=>{
   activeWord=words.length>1&&words.includes(activeWord)?words.find(p=>p!==activeWord):words[0];
   activeR=r;activeC=c;updateUI();drawCrossword(window.lastG,window.lastPlaced);
 });
-window.addEventListener('resize',()=>{if(window.lastG)drawCrossword(window.lastG,window.lastPlaced);});
+// ResizeObserver handles the container resizing even without a viewport resize.
+const crosswordCanvas = document.getElementById('cv');
+let cwResizeQueued=false;
+function scheduleCrosswordRedraw() {
+  if (cwResizeQueued || !window.lastG) return;
+  cwResizeQueued=true;
+  requestAnimationFrame(()=>{
+    cwResizeQueued=false;
+    if (!window.lastG || !document.getElementById('sec-crossword')?.classList.contains('active')) return;
+    drawCrossword(window.lastG,window.lastPlaced);
+    fitCrosswordQuestion(document.getElementById('active-q-panel'));
+  });
+}
+if (typeof ResizeObserver !== 'undefined')
+  new ResizeObserver(scheduleCrosswordRedraw).observe(crosswordCanvas.parentElement);
+window.addEventListener('resize',scheduleCrosswordRedraw);
 document.getElementById('cluesList').addEventListener('click',event=>{
   const entry=event.target.closest('[data-dir][data-num]');
   if(!entry||isSolved||!window.lastPlaced)return;

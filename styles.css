@@ -1512,3 +1512,127 @@ button.danger { border-color: #94595c; color: #f6b9a9; background: #342127; }
     margin: 0 auto !important;
   }
 }
+
+
+/* v3: crisp crossword and stable gameplay shell */
+:root { --game-max-width: 1740px; }
+.qp-tier1 { max-width: var(--game-max-width); }
+#cv { image-rendering: auto; width: 100%; max-width: 860px; height: auto; display: block; }
+#sec-crossword .cw-area { justify-content: flex-start; }
+#active-q-panel { width: 100%; box-sizing: border-box; }
+#active-q-panel .cw-question-line { overflow-wrap: anywhere; hyphens: auto; }
+
+@media (min-width: 1180px) {
+  .game-section.active {
+    display: grid;
+    grid-template-columns: clamp(158px,12vw,196px) minmax(0,1fr);
+    column-gap: clamp(12px,1.3vw,24px);
+    align-items: start;
+  }
+  .game-section.active .game-toolbar {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 12px;
+    position: sticky;
+    top: 12px;
+    min-height: 0;
+    background: #111f30;
+    border: 1px solid #2d4459;
+    border-radius: 13px;
+  }
+  .game-section.active .game-toolbar .controls { width: 100%; }
+  .game-section.active .game-toolbar .control-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 0;
+    gap: 8px;
+  }
+  .game-section.active .game-toolbar .control-group button {
+    display: block;
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 5px;
+    font-size: 13px;
+  }
+  .game-section.active .game-toolbar .game-status-bar,
+  .game-section.active .game-toolbar .stat-line {
+    display: block;
+    width: 100%;
+    text-align: left;
+    line-height: 1.6;
+    font-size: 12px;
+    overflow-wrap: break-word;
+  }
+  .game-section.active .game-toolbar .stat-line { color: #8dabc3; }
+  .game-section.active .main-container {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+    width: 100%;
+    margin: 0;
+  }
+  #sec-crossword .main-container,
+  #sec-philword .main-container {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(250px,320px);
+    column-gap: clamp(12px,1.2vw,24px);
+  }
+  #sec-crossword #sidebar, #sec-philword #philSidebar {
+    width: 100%;
+    max-width: 320px;
+  }
+  #sec-sudoku .main-container, #sec-quant .main-container { justify-self: center; }
+}
+@media (min-width: 1600px) {
+  .game-section.active { grid-template-columns: 196px minmax(0,1fr); }
+  #sec-crossword .main-container,
+  #sec-philword .main-container {
+    grid-template-columns: minmax(0,1fr) minmax(300px,360px);
+  }
+  #sec-crossword #sidebar, #sec-philword #philSidebar { max-width: 360px; }
+}
+@media (min-width: 769px) and (max-width: 1179px) {
+  .game-toolbar {
+    justify-content: flex-start;
+    margin-left: 0;
+    margin-right: 0;
+    flex-wrap: wrap;
+  }
+  .qp-tier1 { padding-inline: 12px; }
+}
+@media (max-width: 768px) {
+  .game-toolbar { gap: 3px; margin-bottom: 6px; }
+  .game-toolbar .control-group { padding: 3px 4px; gap: 4px; }
+  .game-toolbar button { padding: 5px 7px; font-size: 11px; min-height: 31px; }
+  #active-q-panel {
+    height: 86px;
+    min-height: 86px;
+    max-height: 86px;
+    flex: 0 0 86px;
+    padding: 7px 9px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  #active-q-panel .cw-dir-line { flex: 0 0 auto; font-size: 10px; }
+  #active-q-panel .cw-question-line {
+    flex: 0 0 auto;
+    max-height: 59px;
+    font-size: 13px;
+    line-height: 1.24;
+    overflow: hidden;
+  }
+}
