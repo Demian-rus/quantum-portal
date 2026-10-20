@@ -10,28 +10,14 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=5">
+  <link rel="stylesheet" href="./style.css?v=6">
   <script src="./words.js?v=2" defer></script>
   <script src="./mode-images.js?v=3" defer></script>
-  <script src="./app.js?v=5" defer></script>
+  <script src="./app.js?v=6" defer></script>
 </head>
 <body>
 
 <div class="site-shell">
-  <header class="topbar">
-    <a class="brand" href="./" id="brand-link" aria-label="ИСКРА, главное меню">
-      
-      <span>ИСКРА<span class="brand-period">.</span></span>
-    </a>
-    <div class="top-actions">
-      
-      <button class="icon-button" id="sound-toggle" type="button" title="Звук" aria-label="Выключить звук" aria-pressed="true">
-        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path class="sound-wave" d="M16 8c2.1 2.1 2.1 5.9 0 8M19 5c3.8 3.8 3.8 10.2 0 14"/></svg>
-      </button>
-      <button class="icon-button" id="help-toggle" type="button" title="Правила" aria-label="Правила игры"><span aria-hidden="true">?</span></button>
-    </div>
-  </header>
-
   <main id="app">
 
     <section class="scene scene--home immersive-screen" id="scene-home">
@@ -41,6 +27,19 @@
         <button id="settings-menu" class="home-action home-action--settings" type="button">НАСТРОЙКИ</button>
       </div>
       <p class="home-footnote">ИГРА ДЛЯ ДВУХ КОМАНД</p>
+    </section>
+    <section class="scene scene--preferences immersive-screen" id="scene-preferences" hidden>
+      <button class="scene-back" id="preferences-back" type="button" aria-label="Вернуться в меню">‹ <span>МЕНЮ</span></button>
+      <div class="preferences-panel">
+        <span class="section-kicker">ПРИЛОЖЕНИЕ</span>
+        <h1 class="preferences-title">НАСТРОЙКИ</h1>
+        <label class="preferences-sound">
+          <span><strong>Звук в игре</strong><small>Сигналы таймера, выбор режима и результат</small></span>
+          <input id="sound-toggle" type="checkbox" role="switch" aria-label="Звук в игре" checked>
+          <span class="preferences-switch" aria-hidden="true"></span>
+        </label>
+        <button id="preferences-rules" class="preferences-rules" type="button">Правила игры <span aria-hidden="true">›</span></button>
+      </div>
     </section>
     <section class="scene scene--setup immersive-screen" id="scene-setup" hidden>
       <button class="scene-back" id="setup-back" type="button" aria-label="Вернуться в меню">‹ <span>МЕНЮ</span></button>
@@ -73,14 +72,6 @@
               <label class="number-option">Секунд на раунд <input id="custom-duration" type="number" min="15" max="300" step="5" value="60" inputmode="numeric"><span>15–300 с</span></label>
               <label class="number-option">Всего ходов <input id="custom-rounds" type="number" min="2" max="100" step="1" value="12" inputmode="numeric"><span>2–100 ходов</span></label>
               <label class="number-option">Слов в блице <input id="custom-blitz" type="number" min="3" max="8" step="1" value="4" inputmode="numeric"><span>3–8 слов</span></label>
-            </div>
-            <div class="advanced-section">
-              <h3>СПОСОБ ВЫБОРА РЕЖИМА</h3>
-              <div class="choices mode-selector" data-setting="dice">
-                <button type="button" data-value="true" class="is-chosen">🎲 С кубиком</button>
-                <button type="button" data-value="false">Без кубика</button>
-              </div>
-              <p class="advanced-help">Без кубика задание выбирается сразу. С кубиком режим определяется с анимацией.</p>
             </div>
             <fieldset class="advanced-section">
               <legend>АКТИВНЫЕ РЕЖИМЫ</legend>
@@ -134,9 +125,9 @@
     <span class="section-kicker">ПРАВИЛА ИГРЫ</span><h2 id="rules-title">Просто. Шумно. Весело.</h2>
     <ol class="rules-list">
       <li>Разделитесь на две команды и выберите сложность, таймер и количество ходов.</li>
-      <li>Карусель случайно выбирает режим. Можно отключить прокрутку в настройках и получать задания сразу.</li>
+      <li>Карусель случайно выбирает один из включённых игровых режимов.</li>
       <li>В лёгкой сложности можно заменить слово и вручную запустить или поставить таймер на паузу. В средней и сложной сложности отсчёт автоматически начинается через секунду после открытия задания; паузы и замены слова нет. В «Данетках» отвечайте только «да», «нет» или «не знаю».</li>
-      <li>После раунда нажмите <b>✓</b>, чтобы засчитать результат, или <b>×</b>, чтобы отменить. «Слова» приносят 1 очко, «Жесты», «Нарисуй», «Напой» и «Данетки» — по 2, «Секретка» — 3. В «Блице» за 30 секунд можно угадать 3–8 слов: каждое верное слово приносит 1 очко.</li>
+      <li>Пока идёт время, зелёная галочка сразу засчитывает ответ, красный крестик завершает ход без очков. После истечения времени можно подтвердить, успели ли угадать. «Слова» приносят 1 очко, «Жесты», «Нарисуй», «Напой» и «Данетки» — по 2, «Секретка» — 3. В «Блице» за 30 секунд можно угадать 3–8 слов: каждое верное слово приносит 1 очко.</li>
       <li>Передавайте устройство по очереди. Победитель определяется общим счётом.</li>
     </ol>
     <p class="rule-note">Звук включается только после нажатия кнопки. Игра сохраняется в этом браузере, а интернет после загрузки не нужен.</p>
