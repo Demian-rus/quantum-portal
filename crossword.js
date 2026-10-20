@@ -224,9 +224,7 @@ function updateUI() {
     if(el) {
       el.classList.add('active');
 
-      const container = document.getElementById('cluesList');
-      const targetScroll = el.getBoundingClientRect().top - container.getBoundingClientRect().top + container.scrollTop - (container.clientHeight / 2) + (el.clientHeight / 2);
-      container.scrollTo({ top: targetScroll, behavior: 'smooth' });
+      el.scrollIntoView?.({ block: 'nearest', behavior: 'smooth' });
     }
   }
 }
