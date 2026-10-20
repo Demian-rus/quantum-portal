@@ -743,3 +743,30 @@ body::after { z-index:0; }
  from{transform:scale(1.12);opacity:.5}
  to{transform:scale(1);opacity:1}
 }
+
+/* The portrait artwork has its title near the top; wide screens crop that area.
+   Show a real accessible heading impression only on landscape-sized viewports. */
+@media (min-width:900px) and (orientation:landscape) {
+ .scene--home::before {
+   content:"ИСКРА";
+   position:absolute;top:clamp(25px,8dvh,95px);left:50%;
+   transform:translateX(-50%);
+   font:800 clamp(56px,7vw,104px) var(--font-title);
+   letter-spacing:.07em;line-height:1.2;white-space:nowrap;
+   color:#ffe0de;
+   text-shadow:0 0 10px #f87cba,0 0 27px #e74c9f,0 0 63px #b551df;
+   pointer-events:none;
+ }
+ .scene--setup::before,.scene--advanced::before {
+   content:"НОВАЯ ИГРА";
+   position:absolute;top:clamp(30px,6dvh,90px);left:50%;
+   transform:translateX(-50%);
+   font:800 clamp(26px,4vw,57px) var(--font-title);
+   letter-spacing:.04em;line-height:1.2;white-space:nowrap;
+   color:#ffe0de;
+   text-shadow:0 0 13px #ed67b3,0 0 36px #b551df;
+   pointer-events:none;
+ }
+ .settings-scroller {inset-block-start:clamp(135px,17dvh,190px);}
+ .home-menu {top:47%;}
+}
