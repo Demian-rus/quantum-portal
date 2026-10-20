@@ -412,6 +412,16 @@ function showRolling() {
     requestAnimationFrame(()=>requestAnimationFrame(animate));
   else animate();
 }
+function modeInformation() {
+  const mode=getMode(game.current.modeId);
+  const method=getMode(game.current.methodId);
+  const secret=mode.id==='secret';
+  return {
+    mode,method,secret,
+    name:secret?'СЕКРЕТКА: '+method.title:mode.title,
+    rule:method.rule
+  };
+}
 function taskMarkup(hidden) {
   const {method}=modeInformation();
   const word=displayPrompt(game.current.word);
