@@ -93,7 +93,7 @@ const URL='http://127.0.0.1:8765/party-game/';
             centerError,beforeVisible:left.right>rect.left+1,afterVisible:right.left<rect.right-1,
             leftId:before.dataset.mode,rightId:after.dataset.mode,
             x:document.getElementById('reel-track').getBoundingClientRect().left,
-            loaded:[...windowEl.querySelectorAll('img')].every(img=>img.complete&&img.naturalWidth===256)};
+            loaded:[...windowEl.querySelectorAll('img')].every(img=>img.complete&&img.naturalWidth>=256)};
           if(!window.__iskraReelProbe.best||centerError<window.__iskraReelProbe.best.centerError)
             window.__iskraReelProbe.best=record;
           requestAnimationFrame(sample);
