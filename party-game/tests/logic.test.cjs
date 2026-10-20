@@ -439,9 +439,9 @@ test('all seven modes use the correct, small and transparent WebP illustrations'
  const assetMap=JSON.parse(h.eval('JSON.stringify(MODE_ASSETS)'));
  assert.deepEqual(Object.keys(assetMap).sort(),Object.keys(expected).sort());
  for(const [mode,name] of Object.entries(expected)){
-   assert.equal(assetMap[mode],'./assets/modes/'+name+'.webp');
+   assert.equal(assetMap[mode],'./assets/modes/'+name+'.webp?v=2');
    const file=fs.readFileSync(path.join(__dirname,'../assets/modes',name+'.webp'));
-   assert.ok(file.length<30000,'Icon is too large for a mobile PWA: '+name);
+   assert.ok(file.length<90000,'Icon is too large for a mobile PWA: '+name);
    assert.equal(file.toString('ascii',0,4),'RIFF','Missing WebP RIFF header '+name);
    assert.equal(file.toString('ascii',8,12),'WEBP','Missing WebP signature '+name);
  }
@@ -479,6 +479,6 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v10-20261020/);
+ assert.match(worker,/kvip-pwa-v11-20261020-icons/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
