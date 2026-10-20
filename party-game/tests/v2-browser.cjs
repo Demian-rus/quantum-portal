@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const {chromium} = require('playwright-core');
 const URL='http://127.0.0.1:8765/party-game/';
 async function configureOnly(page,id) {
-  await page.locator('#advanced-options summary').click();
+  await page.locator('#go-advanced').click();
   const inputs=page.locator('#mode-toggles input');
   for(let i=0;i<await inputs.count();i++){
     const current=inputs.nth(i);
@@ -24,8 +24,9 @@ async function configureOnly(page,id) {
       const errors=[];
       page.on('pageerror',e=>errors.push(e.message));
       await page.goto(URL,{waitUntil:'load'});
-      await configureOnly(page,'yesno');
+      await page.locator('#new-game-menu').click();
       await page.locator('[data-setting="difficulty"] [data-value="hard"]').click();
+      await configureOnly(page,'yesno');
       await page.locator('[data-setting="dice"] [data-value="false"]').click();
       await page.locator('#custom-duration').fill('135');
       await page.locator('#custom-duration').blur();
@@ -37,6 +38,7 @@ async function configureOnly(page,id) {
       })));
       assert.ok(aligns.every(x=>Math.abs(x.top-aligns[0].top)<=1),'Advanced settings are uneven: '+JSON.stringify(aligns));
       await page.screenshot({path:'artifacts/iskra-v2/'+device.name+'-settings.png',fullPage:true});
+      await page.locator('#advanced-done').click();
       await page.locator('#start-game').click();
       assert.equal(await page.locator('#round-total').textContent(),'4');
       await page.locator('[data-action="roll"]').click();
@@ -70,6 +72,7 @@ async function configureOnly(page,id) {
       await page.locator('[data-action="yes"]').click();
       assert.equal(await page.locator('#score-a').textContent(),'2');
       await page.reload();
+      await page.locator('#continue-game').click();
       assert.equal(await page.locator('#score-a').textContent(),'2');
       const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
       assert.ok(overflow<=2,'Horizontal overflow '+overflow);
@@ -80,9 +83,11 @@ async function configureOnly(page,id) {
     const blitz=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
     const errs=[];blitz.on('pageerror',e=>errs.push(e.message));
     await blitz.goto(URL,{waitUntil:'load'});
+    await blitz.locator('#new-game-menu').click();
     await configureOnly(blitz,'blitz');
     await blitz.locator('#custom-blitz').fill('5');
     await blitz.locator('#custom-blitz').blur();
+    await blitz.locator('#advanced-done').click();
     await blitz.locator('#start-game').click();
     await blitz.locator('[data-action="roll"]').click();
     await blitz.waitForSelector('[data-action="toggle-word"]');
@@ -93,6 +98,9 @@ async function configureOnly(page,id) {
     for(const action of ['blitz-correct','blitz-skip','blitz-correct','blitz-correct','blitz-skip']){
       await blitz.locator('[data-action="'+action+'"]').click();
     }
+    assert.equal(await blitz.locator('[data-action="yes"]').count(),0,'Skipped words must return');
+    await blitz.locator('[data-action="blitz-correct"]').click();
+    await blitz.locator('[data-action="blitz-correct"]').click();
     assert.equal(await blitz.locator('[data-action="yes"]').count(),1);
     const stats=await blitz.evaluate(()=>({correct:game.current.blitzCorrect,
       skipped:game.current.blitzSkipped,count:game.current.blitzWords.length}));

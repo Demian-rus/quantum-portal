@@ -20,6 +20,7 @@ function harness(existing=new Map()) {
   };
   const document={
     getElementById:element,querySelectorAll(){return []},
+    body:{dataset:{}},
     addEventListener(){},hidden:false
   };
   const context=vm.createContext({
@@ -176,6 +177,9 @@ test('blitz is a sequence with correct, skip, no timer reset and per-word points
  h.eval('advanceBlitz(false)');
  assert.equal(h.eval('game.current.blitzSkipped'),1);
  h.eval('advanceBlitz(true);advanceBlitz(true);advanceBlitz(false)');
+ assert.equal(h.eval('game.phase'),'play','Skipped words should return, not end the round');
+ assert.equal(h.eval('game.current.blitzQueue.length'),2);
+ h.eval('advanceBlitz(true);advanceBlitz(true)');
  assert.equal(h.eval('game.phase'),'judge');
  assert.equal(h.eval('game.current.blitzCorrect'),3);
  assert.equal(h.eval('game.scores[0]'),0);
@@ -275,4 +279,32 @@ test('countdown survives reload and respects its original start timestamp',()=>{
  assert.equal(second.eval('game.phase'),'countdown');
  second.eval('game.current.autoStartAt=Date.now()-2;tick()');
  assert.equal(second.eval('game.phase'),'play');
+});
+
+test('blitz queues skipped prompts again without increasing maximum score',()=>{
+ const h=harness();
+ h.eval('soundOn=false;options.modes=["blitz"];options.blitzCount=3;newGame();roll()');
+ h.pending.shift()();
+ h.eval('toggleWord();startTimer()');
+ const first=h.eval('game.current.word');
+ const deadline=h.eval('game.current.deadline');
+ h.eval('advanceBlitz(false)');
+ assert.equal(h.eval('game.current.blitzQueue.length'),3);
+ h.eval('advanceBlitz(true);advanceBlitz(true)');
+ assert.equal(h.eval('game.phase'),'play','The skipped word must remain pending');
+ assert.equal(h.eval('game.current.word'),first,'Skipped word never cycled back');
+ assert.equal(h.eval('game.current.deadline'),deadline,'Clock reset when recycling words');
+ h.eval('advanceBlitz(true)');
+ assert.equal(h.eval('game.phase'),'judge');
+ assert.equal(h.eval('game.current.blitzCorrect'),3);
+ h.eval('judge(true)');
+ assert.equal(h.eval('game.scores[0]'),3,'Repeated prompt was counted twice');
+});
+test('returning to home preserves a game and enables Continue',()=>{
+ const h=harness();
+ h.eval('soundOn=false;newGame();backToMenu()');
+ assert.equal(h.eval('game.phase'),'ready');
+ assert.equal(h.eval('activeScene'),'home');
+ h.eval('continueGame()');
+ assert.equal(h.eval('activeScene'),'game');
 });

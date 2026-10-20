@@ -21,11 +21,12 @@ const {chromium} = require('playwright-core');
       const errors=[];
       page.on('pageerror',e=>errors.push(e.message));
       await page.goto('http://127.0.0.1:8765/party-game/',{waitUntil:'load'});
-      await page.waitForSelector('.hero h1');
-      assert.ok(await page.locator('.hero-art img').isVisible());
+      await page.waitForSelector('#new-game-menu');
+      assert.ok(await page.locator('#new-game-menu').isVisible());
+      assert.equal(await page.locator('#continue-game').isDisabled(),true);
       assert.equal(await page.locator('#scene-home').isVisible(),true);
       const home=await page.evaluate(()=>({width:document.documentElement.scrollWidth,
-        bodyWidth:window.innerWidth,button:document.getElementById('start-game').getBoundingClientRect().height}));
+        bodyWidth:window.innerWidth,button:document.getElementById('new-game-menu').getBoundingClientRect().height}));
       if(home.width>home.bodyWidth+2) {
         const offenders=await page.evaluate(()=>[...document.querySelectorAll('body *')]
           .map(e=>({tag:e.tagName,cls:e.className?.baseVal||e.className||'',
@@ -37,6 +38,7 @@ const {chromium} = require('playwright-core');
       assert.ok(home.width<=home.bodyWidth+2,'home horizontal scrolling '+JSON.stringify(home));
       assert.ok(home.button>=52,'touch target too small');
       await page.screenshot({path:'artifacts/iskra/'+profile.name+'-home.png',fullPage:true});
+      await page.locator('#new-game-menu').click();
       await page.fill('#team-a','Крутые коты');
       await page.fill('#team-b','Синие кометы');
       await page.locator('[data-setting="difficulty"] [data-value="medium"]').click();
@@ -67,9 +69,12 @@ const {chromium} = require('playwright-core');
       assert.ok(scored>=0&&scored<=3,'wrong awarded points '+scored);
       assert.equal(await page.locator('#round-now').textContent(),'2');
       await page.reload({waitUntil:'load'});
+      assert.equal(await page.locator('#scene-home').isVisible(),true);
+      assert.equal(await page.locator('#continue-game').isEnabled(),true);
+      await page.locator('#continue-game').click();
       await page.waitForSelector('[data-action="next"]');
       assert.equal(Number(await page.locator('#score-a').textContent()),scored,'lost saved score');
-      assert.equal(await page.locator('.top-caption').count(),1);
+      assert.equal(await page.locator('.topbar').count(),1);
       const dims=await page.evaluate(()=>({width:document.documentElement.scrollWidth,
         viewport:window.innerWidth,play:document.querySelector('.play-card').getBoundingClientRect().width}));
       assert.ok(dims.width<=dims.viewport+2,'game horizontal scroll: '+JSON.stringify(dims));
