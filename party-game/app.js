@@ -102,6 +102,9 @@ let rollFrameHandle = null;
 let audioContext = null;
 let lastChimeAt = null;
 let toastTimeout = null;
+let activeScene='home';
+let advancedReturn='setup';
+let rollSequence=[];
 
 function escapeHTML(value) {
   return String(value).replace(/[&<>"']/g, char => ({
@@ -180,8 +183,48 @@ function toast(message) {
 }
 function closeRules() { $('rules-backdrop').hidden=true; }
 function openRules() { $('rules-backdrop').hidden=false; }
+function hasUnfinishedGame() {
+  return Boolean(game && !['results','home'].includes(game.phase));
+}
+function updateContinue() {
+  const button=$('continue-game');
+  if(!button)return;
+  const possible=hasUnfinishedGame();
+  button.disabled=!possible;
+  button.setAttribute('aria-disabled',String(!possible));
+}
 function setScene(which) {
-  for(const scene of ['home','game','results']) $('scene-'+scene).hidden=scene!==which;
+  activeScene=which;
+  for(const scene of ['home','setup','advanced','game','results'])
+    $('scene-'+scene).hidden=scene!==which;
+  document.body.dataset.screen=which;
+  updateContinue();
+}
+function openSetup() {
+  if(game&&hasUnfinishedGame()) {
+    if(!window.confirm('Начать новую партию вместо сохранённой?'))return;
+  }
+  renderOptions();
+  setScene('setup');
+  $('setup-scroll').scrollTop=0;
+}
+function openAdvanced(from='setup') {
+  advancedReturn=from;
+  renderOptions();
+  setScene('advanced');
+  $('advanced-scroll').scrollTop=0;
+}
+function closeAdvanced() {
+  renderOptions();
+  setScene(advancedReturn);
+}
+function continueGame() {
+  if(!hasUnfinishedGame())return;
+  if(game.phase==='rolling')game.phase='ready';
+  if(game.phase==='countdown'&&Date.now()>=game.current.autoStartAt)beginAutomaticRound();
+  if(game.phase==='play'&&!game.current.paused&&game.current.deadline<=Date.now())
+    finishTimer('timeout');
+  render();
 }
 function renderOptions() {
   for(const setting of ['difficulty','duration','rounds','dice']) {
@@ -262,6 +305,7 @@ function rollOutcome() {
     points:SCORE[mode.id]||1,seconds:mode.seconds||game.duration,
     blitzWords:mode.id==='blitz'?[word,...Array.from({length:game.blitzCount-1},()=>pullWord('words',level))]:null,
     blitzIndex:0,blitzCorrect:0,blitzSkipped:0,
+    blitzQueue:mode.id==='blitz'?Array.from({length:game.blitzCount},(_,i)=>i):null,
     visible:false,paused:false,remainingMs:null,deadline:null,autoStartAt:null,
     finishedReason:null,replaced:false
   };
@@ -277,17 +321,35 @@ function showReady() {
     '<span class="game-eyebrow">ХОД '+(game.roundIndex+1)+' ИЗ '+game.rounds+'</span>'+
     '<div class="ready-avatar '+(index===1?'is-blue':'')+'">'+modeArt('secret')+'</div>'+
     '<h2 class="play-title">НА ОЧЕРЕДИ<br><em>'+team+'</em></h2>'+
-    '<p class="play-subtitle">'+(game.dice?'Передайте устройство игроку своей команды. Бросайте кубик и готовьтесь объяснять!':'Передайте устройство игроку своей команды, чтобы получить задание.')+'</p>'+
-    makeButton(game.dice?'БРОСИТЬ КУБИК':'ПОЛУЧИТЬ ЗАДАНИЕ','roll','button-primary button-big');
+    '<p class="play-subtitle">Передайте телефон своей команде. '+(game.dice?'Запустите карусель и узнайте режим.':'Получите случайное задание.')+'</p>'+
+    makeButton(game.dice?'ВЫБРАТЬ РЕЖИМ':'ПОЛУЧИТЬ ЗАДАНИЕ','roll','button-primary button-big');
 }
 function showRolling() {
-  $('play-step').textContent='КУБИК В ПОЛЁТЕ';
+  $('play-step').textContent='ВЫБОР РЕЖИМА';
+  const pool=game.modes.length?game.modes:['talk'];
+  rollSequence=Array.from({length:17},(_,i)=>
+    i===16?game.current.modeId:pool[i%pool.length]);
   $('play-content').innerHTML=
-    '<span class="game-eyebrow">СУДЬБА ВЫБИРАЕТ</span>'+
-    '<div class="mode-symbol is-rolling" id="rolling-icon" aria-hidden="true">'+modeArt(randomOne(game.modes))+'</div>'+
-    '<h2 class="play-title">ЧТО ЖЕ <em>ВЫПАДЕТ?</em></h2>'+
-    '<p class="play-subtitle">Готовьте голос, руки и фантазию!</p>';
+    '<span class="game-eyebrow">КАКОЙ РЕЖИМ ВЫПАДЕТ?</span>'+
+    '<div class="reel-window" id="reel-window" aria-label="Карусель игровых режимов">'+
+      '<div class="reel-track" id="reel-track">'+
+      rollSequence.map((id,i)=>'<div class="reel-item '+(i===16?'reel-item--winner':'')+'">'+
+      modeArt(id)+'<span>'+escapeHTML(getMode(id).title)+'</span></div>').join('')+
+      '</div></div>'+
+    '<p class="play-subtitle">Карусель выбирает случайный режим...</p>';
+  const track=$('reel-track'),last=track?.lastElementChild,windowEl=$('reel-window');
+  if(track&&last&&windowEl) {
+    const position=()=>{
+      if(game?.phase!=='rolling')return;
+      const offset=windowEl.clientWidth/2-last.offsetLeft-last.offsetWidth/2;
+      track.style.transform='translate3d('+offset+'px,0,0)';
+    };
+    if(typeof requestAnimationFrame==='function')
+      requestAnimationFrame(()=>requestAnimationFrame(position));
+    else position();
+  }
 }
+
 function modeInformation() {
   const mode=getMode(game.current.modeId);
   const method=getMode(game.current.methodId);
@@ -314,7 +376,7 @@ function showTask() {
   const c=game.current;
   $('play-content').innerHTML=
     symbol(mode.id)+
-    '<span class="mode-chip">'+(game.dice?'КУБИК ПОКАЗАЛ':'ВАШ РЕЖИМ')+'</span>'+
+    '<span class="mode-chip">РЕЖИМ РАУНДА</span>'+
     '<h2 class="play-title mode-name">'+escapeHTML(name)+'</h2>'+
     '<div class="mode-rule">'+escapeHTML(rule)+
     (c.complication?'<br><strong>УСЛОЖНЕНИЕ: '+escapeHTML(c.complication)+'</strong>':'')+'</div>'+
@@ -330,8 +392,9 @@ function showTask() {
 }
 function blitzStatus() {
   const c=game.current;
-  return '<div class="blitz-status"><b>БЛИЦ · '+Math.min(c.blitzIndex+1,c.blitzWords.length)+' / '+c.blitzWords.length+
-    '</b><span>Отгадано: '+c.blitzCorrect+' · Пропущено: '+c.blitzSkipped+'</span></div>';
+  const left=c.blitzQueue?.length ?? Math.max(0,c.blitzWords.length-c.blitzIndex);
+  return '<div class="blitz-status"><b>ОСТАЛОСЬ: '+left+'</b>'+
+    '<span>Отгадано: '+c.blitzCorrect+' · Пропущено: '+c.blitzSkipped+'</span></div>';
 }
 function showTimer() {
   $('play-step').textContent='ВРЕМЯ ПОШЛО';
@@ -339,8 +402,13 @@ function showTimer() {
   const shown=Math.max(0,remaining),blitz=c.modeId==='blitz';
   $('play-content').innerHTML=
     '<span class="game-eyebrow">'+escapeHTML(modeInformation().name)+' · '+c.seconds+' СЕКУНД</span>'+
-    '<div id="active-timer" class="play-timer'+(shown<=10000?' warning':'')+'" role="timer" aria-label="Оставшееся время">'+timerMarkup(shown)+'</div>'+
-    '<div class="timer-track'+(shown<=10000?' warning':'')+'"><span id="timer-progress" style="width:'+(shown/c.seconds/10)+'%"></span></div>'+
+    '<div class="timer-ring'+(shown<=10000?' warning':'')+'" aria-label="Таймер">'+
+      '<svg viewBox="0 0 200 200" class="ring-svg" aria-hidden="true">'+
+        '<circle class="ring-bg" cx="100" cy="100" r="88" />'+
+        '<circle id="timer-progress" class="ring-progress" cx="100" cy="100" r="88" />'+
+      '</svg>'+
+      '<div id="active-timer" class="play-timer'+(shown<=10000?' warning':'')+'" role="timer" aria-label="Оставшееся время">'+timerMarkup(shown)+'</div>'+
+    '</div>'+
     (blitz?blitzStatus():'')+taskMarkup(blitz?false:!c.visible)+
     (blitz?'<div class="inline-actions">'+
       makeButton('✓ УГАДАЛИ +1','blitz-correct','button-primary')+
@@ -356,11 +424,15 @@ function advanceBlitz(correct) {
   if(!game||game.phase!=='play'||game.current.paused||game.current.modeId!=='blitz')return;
   const c=game.current;
   if(Date.now()>=c.deadline){finishTimer('timeout');return;}
-  if(c.blitzIndex>=c.blitzWords.length)return;
-  if(correct)c.blitzCorrect++;else c.blitzSkipped++;
+  if(!Array.isArray(c.blitzQueue))
+    c.blitzQueue=Array.from({length:c.blitzWords.length},(_,i)=>i).slice(c.blitzIndex);
+  if(!c.blitzQueue.length)return;
+  const index=c.blitzQueue.shift();
+  if(correct)c.blitzCorrect++;
+  else {c.blitzSkipped++;c.blitzQueue.push(index);}
   c.blitzIndex++;
-  if(c.blitzIndex>=c.blitzWords.length){finishTimer('completed');return;}
-  c.word=c.blitzWords[c.blitzIndex];
+  if(!c.blitzQueue.length){finishTimer('completed');return;}
+  c.word=c.blitzWords[c.blitzQueue[0]];
   persist();sfx(correct?'win':'button');
   showTimer();
 }
@@ -373,8 +445,9 @@ function updateTimerVisual(remaining) {
   timer.innerHTML=timerMarkup(remaining);
   const warning=remaining<=10000;
   timer.classList.toggle('warning',warning);
-  progress.style.width=(Math.max(0,Math.min(1,remaining/(c.seconds*1000)))*100)+'%';
-  progress.parentElement.classList.toggle('warning',warning);
+  const fraction=Math.max(0,Math.min(1,remaining/(c.seconds*1000)));
+  progress.style.strokeDashoffset=String(2*Math.PI*88*(1-fraction));
+  progress.closest('.timer-ring')?.classList.toggle('warning',warning);
 }
 function stopTicking() {
   if(intervalId!==null){clearInterval(intervalId);intervalId=null;}
@@ -532,22 +605,20 @@ function roll() {
     game.current=rollOutcome();game.phase='task';persist();sfx('go');render();
     return;
   }
+  game.current=rollOutcome();
   game.phase='rolling';persist();sfx('roll');render();
-  if(rollFrameHandle!==null)clearInterval(rollFrameHandle);
-  // A short changing reel of generated face illustrations; the result is
-  // selected fairly by rollOutcome, not by the cosmetic animation.
-  rollFrameHandle=setInterval(()=>{
-    if(!game||game.phase!=='rolling')return;
-    const frame=$('rolling-icon');
-    if(frame)frame.innerHTML=modeArt(randomOne(game.modes));
-  },135);
+  // The mode is decided once; the moving reel is presentation only.
   setTimeout(()=>{
-    if(rollFrameHandle!==null){clearInterval(rollFrameHandle);rollFrameHandle=null;}
-    if(!game||game.phase!=='rolling')return;
-    game.current=rollOutcome();game.phase='task';
-    persist();sfx('go');render();
-  },1050);
+    if(!game||game.phase!=='rolling'||activeScene!=='game')return;
+    const winner=$('reel-track')?.lastElementChild;
+    if(winner)winner.classList.add('reel-item--landed');
+    setTimeout(()=>{
+      if(!game||game.phase!=='rolling'||activeScene!=='game')return;
+      game.phase='task';persist();sfx('go');render();
+    },330);
+  },2050);
 }
+
 function toggleWord() {
   if(!game||!['task','play'].includes(game.phase))return;
   if(game.current.modeId==='blitz'&&game.phase==='play')return;
@@ -589,10 +660,11 @@ function resumeTimer() {
   persist();sfx('go');render();
 }
 function backToMenu() {
-  if(game&&!['results','home'].includes(game.phase)&&!window.confirm('Завершить партию? Текущий счёт будет потерян.'))return;
   stopTicking();
-  if(rollFrameHandle!==null){clearInterval(rollFrameHandle);rollFrameHandle=null;}
-  game=null;persist();setScene('home');
+  if(game?.phase==='rolling')game.phase='ready';
+  if(game?.phase==='results')game=null;
+  persist();
+  setScene('home');
   renderOptions();
 }
 function handleAction(action) {
@@ -653,6 +725,10 @@ function restoreSession() {
     game.current.blitzWords=[game.current.word];
     game.current.blitzIndex=0;game.current.blitzCorrect=0;game.current.blitzSkipped=0;
   }
+  if(game.current?.modeId==='blitz'&&!Array.isArray(game.current.blitzQueue)){
+    game.current.blitzQueue=Array.from({length:game.current.blitzWords.length},(_,i)=>i)
+      .slice(Math.min(game.current.blitzIndex||0,game.current.blitzWords.length));
+  }
   game.complications=game.complications!==false;
   game.dice=game.dice!==false;
   if(game.current&&!game.current.difficulty)game.current.difficulty=game.difficulty==='mixed'?'medium':game.difficulty;
@@ -699,6 +775,13 @@ function setupEvents() {
   $('toggle-complications').addEventListener('change',event=>{
     options.complications=event.target.checked;persist();
   });
+  $('new-game-menu').addEventListener('click',openSetup);
+  $('continue-game').addEventListener('click',continueGame);
+  $('settings-menu').addEventListener('click',()=>openAdvanced('home'));
+  $('setup-back').addEventListener('click',()=>setScene('home'));
+  $('go-advanced').addEventListener('click',()=>openAdvanced('setup'));
+  $('advanced-back').addEventListener('click',closeAdvanced);
+  $('advanced-done').addEventListener('click',closeAdvanced);
   $('start-game').addEventListener('click',newGame);
   $('play-content').addEventListener('click',event=>{
     const button=event.target.closest('[data-action]');
@@ -730,6 +813,9 @@ function boot() {
   restoreSession();
   setSoundIcon();
   renderOptions();
-  render();
+  // Even when a match is saved, start at the main menu to offer Continue.
+  setScene('home');
+  if('serviceWorker' in navigator && location.protocol.startsWith('http'))
+    navigator.serviceWorker.register('./sw.js').catch(()=>{});
 }
 boot();
