@@ -109,5 +109,24 @@ async function isInViewport(page){
    console.log(device.name,JSON.stringify({ready,task,first,align,dialogs,errors}));
    await page.close();
   }
+  // The hard/medium auto-start path passes through a one-second countdown;
+  // check all THREE states have the exact same word-card geometry.
+  const medium=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
+  await medium.goto(URL,{waitUntil:'load'});
+  await medium.locator('#new-game-menu').click();
+  await medium.evaluate(()=>{options.modes=['talk'];options.dice=false;options.difficulty='medium';});
+  await medium.locator('#start-game').click();
+  await medium.locator('[data-action="roll"]').click();
+  const cardTop=()=>medium.locator('.round-fixed-card .challenge-card').evaluate(el=>el.getBoundingClientRect().top);
+  const taskTop=await cardTop();
+  await medium.locator('[data-action="toggle-word"]').click();
+  assert.equal(await medium.locator('.is-countdown').count(),1);
+  const countdownTop=await cardTop();
+  await medium.waitForSelector('.is-play #active-timer',{timeout:4500});
+  const timerTop=await cardTop();
+  assert.ok(Math.abs(taskTop-countdownTop)<=2 && Math.abs(taskTop-timerTop)<=2,
+    'Autostart card jumps: '+JSON.stringify({taskTop,countdownTop,timerTop}));
+  await medium.screenshot({path:'artifacts/iskra-polish/phone-autostart-fixed-card.png'});
+  await medium.close();
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
