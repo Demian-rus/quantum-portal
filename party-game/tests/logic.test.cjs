@@ -432,3 +432,38 @@ test('Russian long prompt has a syllabic optional break without changing stored 
  assert.ok(marked.includes('ПАРАЛЛЕЛЬ\u00adНАЯ'));
  assert.equal(marked.replace(/\u00ad/g,''),raw);
 });
+
+test('all seven modes use the correct, small and transparent WebP illustrations',()=>{
+ const h=harness();
+ const expected={talk:'talk',mime:'mime',draw:'draw',sing:'sing',yesno:'yesno',secret:'secret',blitz:'blitz'};
+ const assetMap=JSON.parse(h.eval('JSON.stringify(MODE_ASSETS)'));
+ assert.deepEqual(Object.keys(assetMap).sort(),Object.keys(expected).sort());
+ for(const [mode,name] of Object.entries(expected)){
+   assert.equal(assetMap[mode],'./assets/modes/'+name+'.webp');
+   const file=fs.readFileSync(path.join(__dirname,'../assets/modes',name+'.webp'));
+   assert.ok(file.length<30000,'Icon is too large for a mobile PWA: '+name);
+   assert.equal(file.toString('ascii',0,4),'RIFF','Missing WebP RIFF header '+name);
+   assert.equal(file.toString('ascii',8,12),'WEBP','Missing WebP signature '+name);
+ }
+});
+test('reel sequence repeats around the chosen mode without modifying game mode or score',()=>{
+ const h=harness();
+ h.eval('soundOn=false;options.modes=["talk","draw","yesno"];newGame();roll()');
+ assert.equal(h.eval('game.phase'),'rolling');
+ const chosen=h.eval('game.current.modeId');
+ const before=h.eval('game.scores.slice()');
+ const seq=Array.from(h.eval('rollSequence'));
+ assert.ok(seq.length>=35,'Wheel still ends after too few icons');
+ const landing=Math.max(7,3+3);
+ assert.equal(seq[landing],chosen,'Center-landing icon does not match chosen mode');
+ assert.ok(seq.length-landing>7,'Wheel ends at winner instead of extending right');
+ for(let i=1;i<seq.length;i++){
+   const allowed=Array.from(h.eval('game.modes'));
+   const first=allowed.indexOf(seq[i-1]);
+   assert.equal(seq[i],allowed[(first+1)%allowed.length],'Broken loop at '+i);
+ }
+ assert.deepEqual(Array.from(h.eval('game.scores')),Array.from(before));
+ h.pending.shift()(); // transition into the existing task screen
+ assert.equal(h.eval('game.phase'),'task');
+ assert.equal(h.eval('game.current.modeId'),chosen,'Wheel changed the outcome');
+});

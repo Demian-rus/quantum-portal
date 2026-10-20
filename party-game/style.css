@@ -668,7 +668,7 @@ body::after {
   font-size:clamp(28px,4.9dvh,44px);letter-spacing:.01em;line-height:1;
 }
 .scene--game .timer-track {display:none;}
-/* Carousel, moving right to left and dissolving at its edges. */
+/* Repeating horizontal carousel, moving left-to-right and fading at both edges. */
 .reel-window {
   flex:0 0 auto;position:relative;overflow:hidden;
   width:min(100%,620px);height:clamp(148px,30dvh,235px);
@@ -678,8 +678,9 @@ body::after {
 .reel-window::after {content:"";position:absolute;left:50%;top:6%;bottom:5%;width:2px;transform:translateX(-50%);background:#ffb7b964;}
 .reel-track {
   position:absolute;left:0;top:0;height:100%;display:flex;align-items:center;
-  gap:clamp(12px,2vw,21px);padding-left:calc(50% - 54px);width:max-content;
-  transition:transform 1.95s cubic-bezier(.12,.77,.12,1);
+  gap:clamp(12px,2vw,21px);padding:0;width:max-content;
+  /* JS sets the starting position without a transition, then an ease-out roll. */
+  transition:transform 2850ms cubic-bezier(.08,.72,.12,1);
   will-change:transform;
 }
 .reel-item {

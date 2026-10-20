@@ -358,33 +358,60 @@ function showReady() {
     '<p class="play-subtitle">Передайте телефон своей команде. '+(game.dice?'Запустите карусель и узнайте режим.':'Получите случайное задание.')+'</p>'+
     makeButton(game.dice?'ВЫБРАТЬ РЕЖИМ':'ПОЛУЧИТЬ ЗАДАНИЕ','roll','button-primary button-big');
 }
+// The wheel is a window into a repeating ring, not a strip that ends on the prize.
+const ROLL_SPIN_MS=2850;
+const ROLL_HOLD_MS=450;
 function showRolling() {
   $('play-content').className='play-inner is-rolling-screen';
   $('play-step').textContent='ВЫБОР РЕЖИМА';
   const pool=game.modes.length?game.modes:['talk'];
-  rollSequence=Array.from({length:17},(_,i)=>
-    i===16?game.current.modeId:pool[i%pool.length]);
+  const target=game.current.modeId;
+  const winnerAt=pool.indexOf(target);
+  // The selected mode is not the last card: keep visible neighbours on BOTH sides.
+  const landingIndex=Math.max(7,pool.length+3);
+  const travel=Math.max(28,pool.length*4);
+  const startIndex=landingIndex+travel;
+  const itemCount=startIndex+Math.max(7,pool.length+3);
+  const wrap=index=>(index%pool.length+pool.length)%pool.length;
+  rollSequence=Array.from({length:itemCount},(_,i)=>
+    pool[wrap(i-landingIndex+winnerAt)]);
   $('play-content').innerHTML=
     '<span class="game-eyebrow">КАКОЙ РЕЖИМ ВЫПАДЕТ?</span>'+
-    '<div class="reel-window" id="reel-window" aria-label="Карусель игровых режимов">'+
+    '<div class="reel-window" id="reel-window" aria-label="Карусель игровых режимов" data-winner="'+target+'">'+
       '<div class="reel-track" id="reel-track">'+
-      rollSequence.map((id,i)=>'<div class="reel-item '+(i===16?'reel-item--winner':'')+'">'+
+      rollSequence.map((id,i)=>'<div class="reel-item'+(i===landingIndex?' reel-item--winner':'')+
+        '" data-mode="'+id+'" data-reel-index="'+i+'">'+
       modeArt(id)+'<span>'+escapeHTML(getMode(id).title)+'</span></div>').join('')+
       '</div></div>'+
     '<p class="play-subtitle">Карусель выбирает случайный режим...</p>';
-  const track=$('reel-track'),last=track?.lastElementChild,windowEl=$('reel-window');
-  if(track&&last&&windowEl) {
-    const position=()=>{
-      if(game?.phase!=='rolling')return;
-      const offset=windowEl.clientWidth/2-last.offsetLeft-last.offsetWidth/2;
-      track.style.transform='translate3d('+offset+'px,0,0)';
-    };
-    if(typeof requestAnimationFrame==='function')
-      requestAnimationFrame(()=>requestAnimationFrame(position));
-    else position();
-  }
+  const track=$('reel-track'),windowEl=$('reel-window');
+  const cards=track?.children;
+  if(!track||!windowEl||!cards?.[startIndex]||!cards?.[landingIndex])return;
+  const activeRound=game.current;
+  const at=index=>windowEl.clientWidth/2-cards[index].offsetLeft-cards[index].offsetWidth/2;
+  const start=at(startIndex),finish=at(landingIndex);
+  track.style.transition='none';
+  track.style.transform='translate3d('+start+'px,0,0)';
+  // Two frames guarantee that even a fast Android browser paints the starting
+  // position before animating. The strip moves left-to-right, then eases out.
+  const markWinner=()=>{
+    if(game?.phase==='rolling'&&game.current===activeRound&&activeScene==='game')
+      track.querySelector('.reel-item--winner')?.classList.add('reel-item--landed');
+  };
+  track.addEventListener('transitionend',event=>{
+    if(event.propertyName==='transform')markWinner();
+  },{once:true});
+  const animate=()=>{
+    if(game?.phase!=='rolling'||game.current!==activeRound||activeScene!=='game')return;
+    const reduce=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    track.style.transition='transform '+(reduce?1:ROLL_SPIN_MS)+'ms cubic-bezier(.08,.72,.12,1)';
+    track.style.transform='translate3d('+finish+'px,0,0)';
+    if(reduce)markWinner();
+  };
+  if(typeof requestAnimationFrame==='function')
+    requestAnimationFrame(()=>requestAnimationFrame(animate));
+  else animate();
 }
-
 function modeInformation() {
   const mode=getMode(game.current.modeId);
   const method=getMode(game.current.methodId);
@@ -679,13 +706,14 @@ function roll() {
   }
   game.current=rollOutcome();
   game.phase='rolling';persist();sfx('roll');render();
-  // The mode is decided once; the moving reel is presentation only.
+  // The mode was chosen BEFORE the animation; visual movement never rerolls it.
+  const current=game.current;
+  const reduce=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const spin=reduce?1:ROLL_SPIN_MS;
   setTimeout(()=>{
-    if(!game||game.phase!=='rolling'||activeScene!=='game')return;
-    const winner=$('reel-track')?.lastElementChild;
-    if(winner)winner.classList.add('reel-item--landed');
+    if(!game||game.phase!=='rolling'||game.current!==current||activeScene!=='game')return;
     game.phase='task';persist();sfx('go');render();
-  },2050);
+  },spin+ROLL_HOLD_MS);
 }
 
 function toggleWord() {
