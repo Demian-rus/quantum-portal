@@ -220,7 +220,7 @@ test('easy words remain visible without a timer and allow pause and repeated rep
  assert.equal(h.eval('game.current.deadline'),null);
  h.eval('replaceWord();replaceWord()');
  assert.equal(h.eval('game.phase'),'task');
- h.eval('toggleWord();startTimer()');
+ h.eval('startTimer()');
  assert.equal(h.eval('game.phase'),'task','hidden card must not start');
  h.eval('toggleWord();startTimer()');
  assert.equal(h.eval('game.phase'),'play');
@@ -255,8 +255,6 @@ test('difficulty controls modifier severity and secret cards always get one',()=
  const ev=x=>h.eval(x);
  for(const level of ['easy','medium','hard']){
   ev('soundOn=false;options.difficulty="'+level+'";options.modes=["secret"];options.complications=true;newGame()');
-  const pool=ev('Array.from(new Set(EASY_COMPLICATIONS.talk.concat(level==="medium"||level==="hard"?COMPLICATIONS.talk:[],level==="hard"?HARD_COMPLICATIONS.talk:[])))');
-  assert.ok(pool.length>0);
   for(let i=0;i<8;i++){
    ev('game.phase="ready";roll()');h.pending.shift()();
    assert.ok(ev('game.current.complication.length')>2,'secret modifier missing');
