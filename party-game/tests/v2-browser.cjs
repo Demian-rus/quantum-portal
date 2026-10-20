@@ -53,7 +53,7 @@ async function configureOnly(page,id) {
       assert.equal(state.duration,135);
       assert.equal(state.dice,true,'Carousel is the only normal game selection method');
       const icon=page.locator('.mode-symbol img.mode-art');
-      assert.equal(await icon.getAttribute('src'),'./assets/modes/yesno.webp','Danetki must display the mystery-person icon');
+      assert.equal(await icon.getAttribute('src'),'./assets/modes/yesno.webp?v=2','Danetki must display the mystery-person icon');
       assert.ok(await icon.evaluate(el=>el.complete&&el.naturalWidth>=256),'Generated artwork not loaded');
       await page.screenshot({path:'artifacts/iskra-v2/'+device.name+'-yesno.png',fullPage:true});
       await page.locator('[data-action="toggle-word"]').click();
