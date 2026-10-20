@@ -79,7 +79,7 @@ const {chromium} = require('playwright-core');
       await page.locator('#continue-game').click();
       await page.waitForSelector('[data-action="roll"]');
       assert.equal(Number(await page.locator('#score-a').textContent()),scored,'lost saved score');
-      assert.equal(await page.locator('.topbar').count(),1);
+      assert.equal(await page.locator('.topbar').count(),0,'Top-right overlays must be removed');
       const dims=await page.evaluate(()=>({width:document.documentElement.scrollWidth,
         viewport:window.innerWidth,play:document.querySelector('.play-card').getBoundingClientRect().width}));
       assert.ok(dims.width<=dims.viewport+2,'game horizontal scroll: '+JSON.stringify(dims));
