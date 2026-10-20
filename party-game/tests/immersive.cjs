@@ -73,8 +73,36 @@ const URL='http://127.0.0.1:8765/party-game/';
       await page.locator('[data-action="roll"]').click();
       await page.waitForSelector('.reel-window',{state:'visible'});
       const images=await page.locator('.reel-item img').count();
-      assert.equal(images,17);
+      assert.ok(images>=35,'The reel needs repeating tiles, not a final card: '+images);
+      const first=await page.evaluate(()=>{
+        const t=document.getElementById('reel-track');
+        return {x:t.getBoundingClientRect().left,items:t.children.length};
+      });
       await page.screenshot({path:'artifacts/iskra-immersive/'+device.name+'-reel.png',fullPage:true});
+      await page.waitForSelector('.reel-item--landed',{timeout:4500});
+      const landing=await page.evaluate(()=>{
+        const windowEl=document.getElementById('reel-window');
+        const winner=document.querySelector('.reel-item--winner');
+        const before=winner.previousElementSibling;
+        const after=winner.nextElementSibling;
+        const rect=windowEl.getBoundingClientRect();
+        const w=winner.getBoundingClientRect();
+        const left=before.getBoundingClientRect(),right=after.getBoundingClientRect();
+        return {target:game.current.modeId,winner:winner.dataset.mode,
+          centerError:Math.abs((w.left+w.right)/2-(rect.left+rect.right)/2),
+          beforeVisible:left.right>rect.left+1,afterVisible:right.left<rect.right-1,
+          leftId:before.dataset.mode,rightId:after.dataset.mode,
+          x:document.getElementById('reel-track').getBoundingClientRect().left,
+          loaded:[...windowEl.querySelectorAll('img')].every(img=>img.complete&&img.naturalWidth===256)
+        };
+      });
+      assert.equal(landing.winner,landing.target,'Carousel displayed the wrong selected mode');
+      assert.ok(landing.centerError<=3,'The selected icon did not land at center: '+JSON.stringify(landing));
+      assert.ok(landing.beforeVisible&&landing.afterVisible,
+        'The reel must have visible tiles BOTH before and after the winner: '+JSON.stringify(landing));
+      assert.ok(landing.x>first.x+500,'The carousel did not travel from left to right: '+JSON.stringify({first,landing}));
+      assert.ok(landing.loaded,'Some of the new WebP icons failed to load');
+      await page.screenshot({path:'artifacts/iskra-immersive/'+device.name+'-reel-landed.png',fullPage:true});
       await page.waitForSelector('[data-action="toggle-word"]',{timeout:5000});
       await page.screenshot({path:'artifacts/iskra-immersive/'+device.name+'-task.png',fullPage:true});
       await page.locator('#exit-game').click();
