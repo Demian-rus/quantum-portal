@@ -117,7 +117,7 @@ test('reloading after deadline shows judgement rather than restarting a round',(
 });
 test('team names are escaped to prevent injection into game views',()=>{
   const h=harness();
-  h.elements.get('team-a').value='<img src=x onerror=alert(1)>';
+  h.context.document.getElementById('team-a').value='<img src=x onerror=alert(1)>';
   h.eval('newGame()');
   assert.ok(h.elements.get('play-content').innerHTML.includes('&lt;img'));
   assert.ok(!h.elements.get('play-content').innerHTML.includes('<img'));
