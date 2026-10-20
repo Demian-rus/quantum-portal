@@ -407,8 +407,7 @@ function onGenerateCore() {
   };
   const level = levelMap[levelRaw] || 'легкий';
 
-  // на всякий случай записываем назад нормализованное значение
-  document.getElementById('sel-level').value = level;
+  // Keep easy/medium/hard as the UI value for correct settings synchronization.
 
   const theme = themeRaw; // тут русские: "физика", "математика", "физмат", "история", ...
 

@@ -613,15 +613,9 @@ setTimeout(() => {
         handleInput(key);
       }
     } else if (currentSection === 'quant') {
-      if (key === 'Backspace') {
-        if (typeof quantBackspace === 'function') {
-          quantBackspace();
-        }
-      } else {
-        if (typeof quantGuessLetter === 'function') {
-          quantGuessLetter(key);
-        }
-      }
+      if (key === 'Backspace') window.quantBackspace?.();
+      else if (key === 'Enter') window.quantEnter?.();
+      else window.quantGuessLetter?.(key);
     }
   });
 })();
