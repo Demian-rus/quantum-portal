@@ -52,7 +52,7 @@
           <label class="team-input-wrap team-input-wrap--b"><span><span class="team-spot team-spot--b"></span> КОМАНДА 2</span><input id="team-b" type="text" maxlength="24" value="Кометы" placeholder="Название команды" autocomplete="off" spellcheck="false"></label>
         </div>
         <div class="settings-grid">
-          <fieldset class="option-set"><legend>СЛОЖНОСТЬ</legend><div class="choices" data-setting="difficulty"><button type="button" data-value="easy" class="is-chosen">Легко</button><button type="button" data-value="medium">Норм</button><button type="button" data-value="hard">Хард</button><button type="button" data-value="mixed">Микс</button></div></fieldset>
+          <fieldset class="option-set"><legend>СЛОЖНОСТЬ</legend><div class="choices" data-setting="difficulty"><button type="button" data-value="easy" class="is-chosen">Легко</button><button type="button" data-value="medium">Средний</button><button type="button" data-value="hard">Сложный</button><button type="button" data-value="mixed">Микс</button></div></fieldset>
           <fieldset class="option-set"><legend>ВРЕМЯ РАУНДА</legend><div class="choices" data-setting="duration"><button type="button" data-value="45">45 с</button><button type="button" data-value="60" class="is-chosen">60 с</button><button type="button" data-value="90">90 с</button></div></fieldset>
           <fieldset class="option-set"><legend>КОЛИЧЕСТВО ХОДОВ</legend><div class="choices" data-setting="rounds"><button type="button" data-value="8">8</button><button type="button" data-value="12" class="is-chosen">12</button><button type="button" data-value="20">20</button></div></fieldset>
         </div>
@@ -70,14 +70,14 @@
                 <button type="button" data-value="true" class="is-chosen">🎲 С кубиком</button>
                 <button type="button" data-value="false">Без кубика</button>
               </div>
-              <p class="advanced-help">Без кубика игра выбирает один из отмеченных режимов автоматически, без анимации броска.</p>
+              <p class="advanced-help">Без кубика задание выбирается сразу. С кубиком режим определяется с анимацией.</p>
             </div>
             <fieldset class="advanced-section">
               <legend>АКТИВНЫЕ РЕЖИМЫ</legend>
               <div class="toggle-grid" id="mode-toggles">
-                <label><input type="checkbox" value="talk" checked><span>Говори <b>+1</b></span></label>
-                <label><input type="checkbox" value="mime" checked><span>Покажи <b>+2</b></span></label>
-                <label><input type="checkbox" value="draw" checked><span>Рисуй <b>+2</b></span></label>
+                <label><input type="checkbox" value="talk" checked><span>Слова <b>+1</b></span></label>
+                <label><input type="checkbox" value="mime" checked><span>Жесты <b>+2</b></span></label>
+                <label><input type="checkbox" value="draw" checked><span>Нарисуй <b>+2</b></span></label>
                 <label><input type="checkbox" value="sing" checked><span>Напой <b>+2</b></span></label>
                 <label><input type="checkbox" value="yesno" checked><span>Данетки <b>+2</b></span></label>
                 <label><input type="checkbox" value="secret" checked><span>Секретка <b>+3</b></span></label>
@@ -108,7 +108,7 @@
         <div class="match-team match-team--b" id="match-team-b"><b id="score-b">0</b><span class="match-team-label"><span id="label-team-b">Кометы</span><i class="team-spot team-spot--b"></i></span></div>
       </div>
       <div class="play-card">
-        <div class="play-card-head"><span class="section-kicker" id="play-step">ПЕРЕДАЙТЕ ТЕЛЕФОН</span><button id="exit-game" type="button" class="text-link">Завершить игру ↗</button></div>
+        <div class="play-card-head"><span class="section-kicker" id="play-step">ПЕРЕДАЙТЕ ТЕЛЕФОН</span><button id="exit-game" type="button" class="text-link">Завершить игру</button></div>
         <div class="play-inner" id="play-content" aria-live="polite"></div>
       </div>
       <div class="play-footer"><span>ИСКРА</span><span>ПОБЕДИТ САМАЯ ШУМНАЯ КОМАНДА</span></div>
@@ -126,12 +126,12 @@
     <ol class="rules-list">
       <li>Разделитесь на две команды и выберите сложность, таймер и количество ходов.</li>
       <li>Команда бросает виртуальный кубик либо играет без броска, если этот вариант выбран в настройках.</li>
-      <li>Откройте секретное задание так, чтобы соперники его не увидели. В «Данетках» загадайте личность или персонажа и отвечайте только «да», «нет» или «не знаю». Запустите таймер.</li>
-      <li>После раунда нажмите <b>✓</b>, чтобы засчитать результат, или <b>×</b>, чтобы отменить. «Говори» приносит 1 очко, «Покажи», «Рисуй», «Напой» и «Данетки» — по 2, «Секретка» — 3. В «Блице» за 30 секунд можно угадать 3–8 слов: каждое верное слово приносит 1 очко.</li>
+      <li>В лёгкой сложности можно заменить слово и вручную запустить или поставить таймер на паузу. В средней и сложной сложности отсчёт автоматически начинается через секунду после открытия задания; паузы и замены слова нет. В «Данетках» отвечайте только «да», «нет» или «не знаю».</li>
+      <li>После раунда нажмите <b>✓</b>, чтобы засчитать результат, или <b>×</b>, чтобы отменить. «Слова» приносят 1 очко, «Жесты», «Нарисуй», «Напой» и «Данетки» — по 2, «Секретка» — 3. В «Блице» за 30 секунд можно угадать 3–8 слов: каждое верное слово приносит 1 очко.</li>
       <li>Передавайте устройство по очереди. Победитель определяется общим счётом.</li>
     </ol>
     <p class="rule-note">Звук включается только после нажатия кнопки. Игра сохраняется в этом браузере, а интернет после загрузки не нужен.</p>
-    <button id="rules-understood" class="button button-primary" type="button">ВСЁ ПОНЯТНО ↗</button>
+    <button id="rules-understood" class="button button-primary" type="button">ВСЁ ПОНЯТНО</button>
   </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>

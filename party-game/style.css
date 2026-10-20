@@ -378,3 +378,41 @@ a{color:inherit}
   .mode-symbol .mode-art{width:79%;height:79%;}
   .ready-avatar .mode-art {width:65px;height:65px;}
 }
+
+/* V3 alignment and timer: a single text run with natural typographic colon. */
+.play-timer {
+  display:block;
+  font-family:var(--font-body);
+  font-weight:800;
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum";
+  font-size:clamp(64px,10vw,114px);
+  line-height:1.12;
+  letter-spacing:0.035em;
+  white-space:nowrap;
+  text-shadow:0 10px 36px #10071f70;
+}
+.settings-grid { align-items:stretch; }
+.option-set { display:flex; flex-direction:column; min-width:0; }
+.option-set legend { float:none; min-height:26px; line-height:1.45; }
+.settings-grid .choices { margin-top:auto; min-height:48px; align-items:stretch; }
+.settings-grid .choices button { display:grid; place-items:center; padding-inline:5px; min-width:0; }
+.advanced-numbers { align-items:stretch; }
+.number-option {
+  display:grid;
+  grid-template-rows:minmax(34px,auto) 49px minmax(24px,auto);
+  align-items:start;
+  gap:9px;
+}
+.number-option input { height:49px; min-height:49px; align-self:center; }
+.number-option span { align-self:end; }
+.advanced-section, .advanced-body { min-width:0; }
+.mode-selector button { min-width:0; }
+@media(max-width:700px){
+  .play-timer { font-size:clamp(60px,16vw,92px);letter-spacing:.026em; }
+  .number-option {
+    grid-template-rows:minmax(38px,auto) 45px minmax(24px,auto);
+  }
+  .number-option input {height:45px;min-height:45px;}
+  .settings-grid .choices {min-height:46px;}
+}
