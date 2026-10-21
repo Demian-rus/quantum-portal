@@ -458,13 +458,13 @@ test('Russian long prompt has a syllabic optional break without changing stored 
  assert.equal(marked.replace(/\u00ad/g,''),raw);
 });
 
-test('all seven modes use the correct, small and transparent WebP illustrations',()=>{
+test('seven active and one staged mode use transparent WebP illustrations',()=>{
  const h=harness();
- const expected={talk:'talk',mime:'mime',draw:'draw',sing:'sing',yesno:'yesno',secret:'secret',blitz:'blitz'};
+ const expected={talk:'talk',mime:'mime',draw:'draw',sing:'sing',yesno:'yesno',secret:'secret',blitz:'blitz',approx:'approx'};
  const assetMap=JSON.parse(h.eval('JSON.stringify(MODE_ASSETS)'));
  assert.deepEqual(Object.keys(assetMap).sort(),Object.keys(expected).sort());
  for(const [mode,name] of Object.entries(expected)){
-   assert.equal(assetMap[mode],'./assets/modes/'+name+'.webp?v=2');
+   assert.equal(assetMap[mode],'./assets/modes/'+name+'.webp?v=3');
    const file=fs.readFileSync(path.join(__dirname,'../assets/modes',name+'.webp'));
    assert.ok(file.length<90000,'Icon is too large for a mobile PWA: '+name);
    assert.equal(file.toString('ascii',0,4),'RIFF','Missing WebP RIFF header '+name);
@@ -504,7 +504,7 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v22-20261021-menu/);
+ assert.match(worker,/kvip-pwa-v23-20261021-icons/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
 
@@ -809,7 +809,7 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  for(const file of ['rules.js?v=1','penalties.js?v=1','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=1','presets.js?v=1','app.js?v=17']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
- assert.match(sw,/kvip-pwa-v22-20261021-menu/);
+ assert.match(sw,/kvip-pwa-v23-20261021-icons/);
 });
 
 
