@@ -41,6 +41,7 @@ function harness(existing=new Map()) {
   vm.runInContext(read('rules.js'),context);
   vm.runInContext(read('penalties.js'),context);
   vm.runInContext(read('modifiers.js'),context);
+  vm.runInContext(read('round-planner.js'),context);
   vm.runInContext(read('app.js'),context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
 }
@@ -499,7 +500,7 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v19-20261021-modifiers/);
+ assert.match(worker,/kvip-pwa-v20-20261021-planner/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
 
@@ -801,10 +802,10 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['rules.js?v=1','penalties.js?v=1','modifiers.js?v=1','app.js?v=14']){
+ for(const file of ['rules.js?v=1','penalties.js?v=1','modifiers.js?v=1','round-planner.js?v=1','app.js?v=15']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
- assert.match(sw,/kvip-pwa-v19-20261021-modifiers/);
+ assert.match(sw,/kvip-pwa-v20-20261021-planner/);
 });
 
 
@@ -929,4 +930,128 @@ test('saved modifier text and ID restore without selecting a replacement',()=>{
  const old=harness(stored);
  assert.equal(old.eval('game.current.complication'),'Старое неизменное ограничение');
  assert.equal(old.eval('game.current.complicationId'),undefined);
+});
+
+test('paired Mix plans 2, 12 and 100 turns deterministically and balances every cycle',()=>{
+ const h=harness();
+ for(const count of [2,12,100]){
+  h.eval('var plan=freshRoundPlan(),levels=[],rngCalls=0;');
+  for(let i=0;i<count;i++){
+   h.eval('var result=planRoundDifficulty(plan,'+i+',"mixed",()=>{rngCalls++;return .7});plan=result.state;levels.push(result.difficulty);');
+   if(i%2)assert.equal(h.eval('levels['+i+']'),h.eval('levels['+(i-1)+']'));
+  }
+  const levels=Array.from(h.eval('levels'));
+  for(let i=0;i+6<=count;i+=6)
+   assert.deepEqual(levels.slice(i,i+6).sort(),['easy','easy','hard','hard','medium','medium']);
+  const counts=['easy','medium','hard'].map(level=>levels.filter(x=>x===level).length);
+  assert.ok(Math.max(...counts)-Math.min(...counts)<=2);
+  assert.equal(h.eval('rngCalls'),Math.ceil(count/6)*2);
+ }
+ // Fisher–Yates can produce every ordering using a controlled random source.
+ const permutations=new Set();
+ for(const a of [0,.34,.99])for(const b of [0,.99])
+  permutations.add(h.eval('JSON.stringify(planRoundDifficulty(freshRoundPlan(),0,"mixed",(()=>{let values=['+a+','+b+'];return ()=>values.shift()})()).state.levels)'));
+ assert.equal(permutations.size,6);
+});
+test('pair plans, active cards, used history and modifier survive reload without RNG',()=>{
+ const stored=new Map(),a=harness(stored);
+ a.eval("soundOn=false;options.difficulty='mixed';options.modes=['talk'];options.dice=false;options.riskRounds=false;newGame();roll()");
+ const level=a.eval('game.current.difficulty');
+ const active=a.eval('JSON.stringify([game.current,game.used,game.plannerState])');
+ const b=harness(stored);
+ assert.equal(b.eval('JSON.stringify([game.current,game.used,game.plannerState])'),active);
+ b.eval('game.phase="judge";judge(false)');
+ const next=harness(stored);
+ const plan=next.eval('JSON.stringify(game.plannerState)');
+ next.eval("game.dice=false;Math.random=()=>.99;roll()");
+ assert.equal(next.eval('game.current.difficulty'),level);
+ assert.equal(next.eval('JSON.stringify(game.plannerState)'),plan);
+ // Restoring the actual running timer also retains the complete selected outcome.
+ next.eval('toggleWord();game.current.autoStartAt=Date.now()-1;tick();startTimer();persist()');
+ const playing=next.eval('JSON.stringify(game.current)');
+ const again=harness(stored);
+ assert.equal(again.eval('JSON.stringify(game.current)'),playing);
+});
+test('reloading during the carousel opens its saved card and never draws twice',()=>{
+ const stored=new Map(),a=harness(stored);
+ a.eval("soundOn=false;options.difficulty='mixed';options.modes=['secret'];newGame();roll()");
+ assert.equal(a.eval('game.phase'),'rolling');
+ const card=a.eval('JSON.stringify(game.current)'),used=a.eval('JSON.stringify(game.used)');
+ const b=harness(stored);
+ assert.equal(b.eval('game.phase'),'task');
+ b.eval('continueGame();roll()');
+ assert.equal(b.eval('JSON.stringify(game.current)'),card);
+ assert.equal(b.eval('JSON.stringify(game.used)'),used);
+});
+test('paired Mix survives a threshold tie and additional complete pairs',()=>{
+ const h=harness();
+ h.eval("soundOn=false;options.difficulty='mixed';options.modes=['talk'];options.dice=false;options.riskRounds=false;newGame();game.scores=[100,100]");
+ for(let i=0;i<8;i++){
+  h.eval('roll()');
+  const level=h.eval('game.current.difficulty');
+  if(i%2===0)h.eval('var pairLevel=game.current.difficulty');
+  else assert.equal(level,h.eval('pairLevel'));
+  h.eval('game.phase="judge";judge(false)');
+  assert.equal(h.eval('game.phase'),'ready','Tie must continue even after planned cycles');
+ }
+ h.eval('roll();game.phase="judge";judge(true)');
+ assert.equal(h.eval('game.phase'),'ready','Reply still required');
+ h.eval('roll();game.phase="judge";judge(false)');
+ assert.equal(h.eval('game.phase'),'results');
+});
+test('fixed tiers do not consume planner RNG; Blitz remains easy words and three points',()=>{
+ const h=harness();
+ for(const level of ['easy','medium','hard']){
+  assert.equal(h.eval('planRoundDifficulty(freshRoundPlan(),99,"'+level+'",()=>{throw Error("RNG consumed")}).difficulty'),level);
+  h.eval('soundOn=false;options.modes=["blitz"];options.difficulty="'+level+'";options.dice=false;newGame();roll()');
+  assert.equal(h.eval('game.current.points'),3);
+  assert.equal(h.eval('game.current.blitzWords.every(w=>getPromptPool("blitz","easy").includes(w))'),true);
+ }
+ assert.equal(h.eval('game.rulesVersion'),3);
+});
+test('historical Mix without plannerVersion keeps independent difficulty draws',()=>{
+ const stored=new Map(),a=harness(stored);
+ a.eval("soundOn=false;options.difficulty='mixed';newGame();delete game.plannerVersion;delete game.plannerState;persist()");
+ const b=harness(stored);
+ assert.equal(b.eval('game.plannerVersion'),undefined);
+ b.eval('Math.random=()=>0');assert.equal(b.eval('chooseDifficulty()'),'easy');
+ b.eval('Math.random=()=>.99');assert.equal(b.eval('chooseDifficulty()'),'hard');
+ assert.equal(b.eval('game.plannerState'),undefined);
+});
+test('unsupported save/rule/planner versions never overwrite the original session',()=>{
+ for(const update of ['saved.version=99','saved.game.rulesVersion=99',
+  'saved.game.plannerVersion=99','saved.game.plannerState={cycleIndex:0,levels:["easy","easy","hard"]}']){
+  const stored=new Map(),a=harness(stored);a.eval('soundOn=false;newGame()');
+  const saved=JSON.parse(stored.get('iskra-party:v1'));
+  eval(update);
+  const original=JSON.stringify(saved);stored.set('iskra-party:v1',original);
+  const b=harness(stored);
+  assert.equal(b.eval('game'),null);assert.equal(b.eval('storageBlocked'),true);
+  b.eval('openSetup();newGame();persist()');
+  assert.equal(stored.get('iskra-party:v1'),original);
+ }
+ const h=harness();
+ assert.throws(()=>h.eval('planRoundDifficulty(freshRoundPlan(),1,"mixed",()=>0)'),/Missing QUIP plan/);
+});
+
+
+test('completed 12-turn Mix restores results at a cycle boundary without blocking saves',()=>{
+ const stored=new Map(),a=harness(stored);
+ a.eval("soundOn=false;options.difficulty='mixed';options.finishType='rounds';options.rounds=12;options.modes=['talk'];options.dice=false;newGame()");
+ for(let i=0;i<12;i++)a.eval('roll();game.phase="judge";judge(false)');
+ assert.equal(a.eval('game.phase'),'results');
+ const b=harness(stored);
+ assert.equal(b.eval('storageBlocked'),false);
+ assert.equal(b.eval('game.phase'),'results');
+ b.eval('newGame()');assert.equal(b.eval('game.phase'),'ready');
+});
+
+
+test('leaving the carousel for the menu preserves its selected card on Continue',()=>{
+ const h=harness();
+ h.eval("soundOn=false;options.difficulty='mixed';newGame();roll()");
+ const selected=h.eval('JSON.stringify([game.current,game.used,game.plannerState])');
+ h.eval('backToMenu();continueGame();roll()');
+ assert.equal(h.eval('game.phase'),'task');
+ assert.equal(h.eval('JSON.stringify([game.current,game.used,game.plannerState])'),selected);
 });
