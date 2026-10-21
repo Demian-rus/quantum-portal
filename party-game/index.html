@@ -10,7 +10,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=17">
+  <link rel="stylesheet" href="./style.css?v=18">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
   <script src="./curated-words.js?v=1" defer></script>
@@ -26,7 +26,7 @@
   <script src="./round-planner.js?v=1" defer></script>
   <script src="./content-packs.js?v=4" defer></script>
   <script src="./presets.js?v=3" defer></script>
-  <script src="./app.js?v=20" defer></script>
+  <script src="./app.js?v=21" defer></script>
 </head>
 <body>
 
@@ -102,8 +102,8 @@
         </div>
         <div class="settings-grid settings-grid--compact">
           <fieldset class="option-set"><legend>СЛОЖНОСТЬ</legend><div class="choices" data-setting="difficulty"><button type="button" data-value="easy" class="is-chosen">Легко</button><button type="button" data-value="medium">Средний</button><button type="button" data-value="hard">Сложный</button><button type="button" data-value="mixed">Микс</button></div></fieldset>
-          <fieldset class="option-set"><legend id="setup-finish-label">МАКСИМУМ ОЧКОВ</legend><div class="setup-metric" id="score-goal-preview">25 очков</div><input class="setup-range" id="quick-target-score" type="range" min="15" max="100" step="5" value="25" aria-label="Максимум очков"><small id="score-goal-caption">У каждого игрока будет ответный ход</small></fieldset>
-          <fieldset class="option-set"><legend>МИНИМАЛЬНОЕ ВРЕМЯ</legend><div class="setup-metric"><span id="base-duration-value">60 с</span></div><input class="setup-range" id="quick-duration" type="range" min="30" max="90" step="5" value="60" aria-label="Минимальное время"><small>Нарисуй, Напой, Данетки и Блиц получают +30 с</small></fieldset>
+          <fieldset class="option-set"><legend id="setup-finish-label">МАКСИМУМ ОЧКОВ</legend><div class="setup-metric" id="score-goal-preview">25 очков</div><div class="choices quick-choices" id="quick-score-choices" data-setting="targetScore" aria-label="Максимум очков"><button type="button" data-value="15">15</button><button type="button" data-value="30">30</button><button type="button" data-value="60">60</button><button type="button" data-value="100">100</button></div><small id="score-goal-caption">У каждого игрока будет ответный ход</small></fieldset>
+          <fieldset class="option-set"><legend>МИНИМАЛЬНОЕ ВРЕМЯ</legend><div class="setup-metric"><span id="base-duration-value">60 с</span></div><div class="choices quick-choices" data-setting="duration" aria-label="Минимальное время"><button type="button" data-value="30">30</button><button type="button" data-value="45">45</button><button type="button" data-value="60">60</button></div><small>Нарисуй, Напой, Данетки и Блиц получают +30 с</small></fieldset>
         </div>
         <button id="go-advanced" class="button setup-advanced-link" type="button">ТОНКАЯ НАСТРОЙКА <span aria-hidden="true">Настроить режимы и правила</span></button>
         <div class="setup-bottom"><p>Один телефон — два соперника. В свой ход вы загадываете, соперник отгадывает и зарабатывает очки.</p><button id="start-game" class="button button-primary button-big" type="button">НАЧАТЬ ИГРУ</button></div>
@@ -125,28 +125,32 @@
             </fieldset>
             <div class="slider-option"><div class="slider-title"><label for="base-duration">Минимальное время</label><output id="base-duration-value-advanced">60 с</output></div><input id="base-duration" type="range" min="30" max="90" step="5" value="60"><div class="slider-extremes"><span>30 с</span><span>90 с</span></div><small>Нарисуй, Напой, Данетки и Блиц: +30 с. При базовых 60 секундах — 90 секунд; максимум 120 секунд. Жесты — базовое время.</small></div>
             <label class="modifier-toggle"><input id="toggle-risk" type="checkbox" checked><span><strong>Риск-раунды ⚡</strong><small>Примерно каждый пятый ход после первых двух: успех — обычные очки, провал — потеря до 2 очков. Счёт не может стать отрицательным.</small></span></label>
-            <fieldset class="advanced-section">
-              <legend>АКТИВНЫЕ РЕЖИМЫ</legend>
-              <div class="toggle-grid" id="mode-toggles">
-                <label><input type="checkbox" value="talk" checked><span>Слова <b>+1</b></span></label>
-                <label><input type="checkbox" value="mime" checked><span>Жесты <b>+1</b></span></label>
-                <label><input type="checkbox" value="draw" checked><span>Нарисуй <b>+1</b></span></label>
-                <label><input type="checkbox" value="sing" checked><span>Напой <b>+1</b></span></label>
-                <label><input type="checkbox" value="yesno" checked><span>Данетки <b>+2</b></span></label>
-                <label><input type="checkbox" value="secret" checked><span>Секретка <b>+3</b></span></label>
-                <label><input type="checkbox" value="blitz" checked><span>Блиц <b>+2 за 3/3</b></span></label>
-                <label><input type="checkbox" value="approx" checked><span>Примерно <b>+1</b></span></label>
+            <details class="settings-fold" id="mode-settings">
+              <summary><span class="settings-fold-label">АКТИВНЫЕ РЕЖИМЫ <span class="settings-fold-count">· <span id="mode-selection-count"></span></span></span><svg class="settings-fold-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+              <div class="settings-fold-body">
+                <div class="toggle-grid mode-grid" id="mode-toggles">
+                  <label><input type="checkbox" value="talk" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Слова</strong><b></b></span></span></label>
+                  <label><input type="checkbox" value="mime" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Жесты</strong><b></b></span></span></label>
+                  <label><input type="checkbox" value="draw" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Нарисуй</strong><b></b></span></span></label>
+                  <label><input type="checkbox" value="sing" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Напой</strong><b></b></span></span></label>
+                  <label><input type="checkbox" value="yesno" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Данетки</strong><b></b></span></span></label>
+                  <label><input type="checkbox" value="secret" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Секретка</strong><b></b></span></span></label>
+                  <label><input type="checkbox" value="blitz" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Блиц</strong><b></b></span></span></label>
+                  <label><input type="checkbox" value="approx" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Примерно</strong><b></b></span></span></label>
+                </div>
               </div>
-            </fieldset>
-            <fieldset class="advanced-section">
-              <legend>ЧТО ЗАГАДЫВАТЬ</legend>
-              <div class="toggle-grid" id="content-toggles">
-                <label><input type="checkbox" value="word" checked><span>Одиночные слова</span></label>
-                <label><input type="checkbox" value="phrase" checked><span>Словосочетания</span></label>
-                <label><input type="checkbox" value="idiom" checked><span>Поговорки и фразеологизмы</span></label>
+            </details>
+            <details class="settings-fold" id="content-settings">
+              <summary><span class="settings-fold-label">ЧТО ЗАГАДЫВАТЬ <span class="settings-fold-count">· <span id="content-selection-count"></span></span></span><svg class="settings-fold-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+              <div class="settings-fold-body">
+                <div class="toggle-grid" id="content-toggles">
+                  <label><input type="checkbox" value="word" checked><span>Одиночные слова</span></label>
+                  <label><input type="checkbox" value="phrase" checked><span>Словосочетания</span></label>
+                  <label><input type="checkbox" value="idiom" checked><span>Поговорки и фразеологизмы</span></label>
+                </div>
+                <p class="advanced-help">«Примерно»: обе команды называют число, без таймера, риска и усложнений. У «Напой» темы подобраны по существующим известным песням разных жанров. В «Данетках» герои и знаменитости распределены по узнаваемости.</p>
               </div>
-              <p class="advanced-help">«Примерно»: обе команды называют число, без таймера, риска и усложнений. У «Напой» темы подобраны по существующим известным песням разных жанров. В «Данетках» герои и знаменитости распределены по узнаваемости.</p>
-            </fieldset>
+            </details>
             <label class="modifier-toggle"><input id="toggle-complications" type="checkbox" checked><span><strong>Случайные усложнения</strong><small>Появляются примерно в каждом третьем раунде; в «Секретке» всегда. Успешный раунд с усложнением даёт ещё +1.</small></span></label>
           </div>
         </div>

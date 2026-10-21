@@ -185,6 +185,8 @@ function openSetup(from='game-type') {
 }
 function openAdvanced(from='setup') {
   advancedReturn=from;
+  $('mode-settings').open=false;
+  $('content-settings').open=false;
   renderOptions();
   setScene('advanced');
   $('advanced-scroll').scrollTop=0;
@@ -204,15 +206,14 @@ function continueGame() {
 function renderOptions() {
   try{$('setup-pack-caption').textContent=getContentPack(options.contentPack).name;}
   catch{$('setup-pack-caption').textContent='Набор недоступен';}
-  for(const setting of ['difficulty','duration','rounds']) {
+  for(const setting of ['difficulty','duration','rounds','targetScore']) {
     document.querySelectorAll('.choices[data-setting="'+setting+'"] button').forEach(button=>{
       const selected=String(options[setting])===button.dataset.value;
       button.classList.toggle('is-chosen',selected);
       button.setAttribute('aria-pressed',String(selected));
     });
   }
-  const numbers={'base-duration':options.duration,'quick-duration':options.duration,'target-score':options.targetScore,
-    'quick-target-score':options.targetScore,'custom-rounds':options.rounds};
+  const numbers={'base-duration':options.duration,'target-score':options.targetScore,'custom-rounds':options.rounds};
   $('base-duration-value').textContent=options.duration+' с';
   $('target-score-value').textContent=options.targetScore+' очков';
   $('rounds-value').textContent=options.rounds+' ходов';
@@ -223,18 +224,22 @@ function renderOptions() {
   $('score-goal-preview').textContent=options.finishType==='score'?options.targetScore+' очков':'После '+options.rounds+' ходов';
   $('score-goal-caption').textContent=options.finishType==='score'?'У каждого игрока будет ответный ход':'Одинаковое число ходов у обоих игроков';
   $('setup-finish-label').textContent=options.finishType==='score'?'МАКСИМУМ ОЧКОВ':'КОЛИЧЕСТВО ХОДОВ';
-  $('quick-target-score').hidden=options.finishType!=='score';
+  $('quick-score-choices').hidden=options.finishType!=='score';
   $('finish-score-settings').hidden=options.finishType!=='score';
   $('finish-rounds-settings').hidden=options.finishType!=='rounds';
   for(const [id,value] of Object.entries(numbers)) {
     const input=$(id);
     if(input && document.activeElement!==input)input.value=String(value);
   }
+  $('mode-selection-count').textContent=options.modes.length+' ИЗ '+DEFAULT_MODES.length;
+  $('content-selection-count').textContent=options.promptTypes.length+' ИЗ '+PROMPT_TYPES.length;
   document.querySelectorAll('#mode-toggles input').forEach(input=>{
     input.checked=options.modes.includes(input.value);
-    const config=getModeConfig(input.value),label=input.closest('label').querySelector('b');
+    const tile=input.closest('label'),art=tile.querySelector('img');
+    if(art.getAttribute('src')!==MODE_ASSETS[input.value])art.src=MODE_ASSETS[input.value];
+    const config=getModeConfig(input.value),label=tile.querySelector('b');
     label.textContent='+'+(config.basePoints+(config.id==='secret'?config.modifierBonus:0))+
-      (config.blitzWordsCount?' за '+config.blitzWordsCount+'/'+config.blitzWordsCount:'');
+      (config.blitzWordsCount?' · '+config.blitzWordsCount+'/'+config.blitzWordsCount:'');
   });
   document.querySelectorAll('#content-toggles input').forEach(input=>{input.checked=options.promptTypes.includes(input.value);});
   $('toggle-complications').checked=options.complications;
@@ -475,9 +480,10 @@ function showApprox(){
  $('play-content').innerHTML=
   '<div class="approx-heading">'+symbol('approx')+'<h2 class="play-title">ПРИМЕРНО</h2>'+
   '<p class="play-subtitle">'+(revealed?'Решите вместе, кому начислить очки.':'Назовите ответы вслух, затем откройте правильный.')+'</p></div>'+
-  '<div class="approx-card" tabindex="0"><p class="approx-question">'+escapeHTML(q.question)+'</p>'+
-  (revealed?'<div class="approx-answer"><span>ПРАВИЛЬНЫЙ ОТВЕТ</span><strong>'+escapeHTML(q.answer)+' '+escapeHTML(q.unit||'')+'</strong></div>'+
-   (q.note?'<p class="approx-note">'+escapeHTML(q.note)+'</p>':''):'')+'</div>'+
+  '<div class="approx-card'+(revealed?' is-revealed':'')+'">'+
+  (revealed?'<div class="approx-answer"><span>ПРАВИЛЬНЫЙ ОТВЕТ</span><strong>'+escapeHTML(q.answer)+' '+escapeHTML(q.unit||'')+'</strong></div>':'')+
+  '<div class="approx-copy" tabindex="0" aria-label="Вопрос и пояснение"><p class="approx-question">'+escapeHTML(q.question)+'</p>'+
+   (revealed&&q.note?'<p class="approx-note">'+escapeHTML(q.note)+'</p>':'')+'</div></div>'+
   '<div class="approx-actions">'+(revealed?
    makeButton(escapeHTML(game.teams[0])+' +1','award-a','button-primary')+
    makeButton(escapeHTML(game.teams[1])+' +1','award-b','button-coral')+
@@ -965,9 +971,7 @@ function setupEvents() {
   });
   for(const [id,key,min,max,step] of [
     ['base-duration','duration',30,90,5],
-    ['quick-duration','duration',30,90,5],
     ['target-score','targetScore',15,100,5],
-    ['quick-target-score','targetScore',15,100,5],
     ['custom-rounds','rounds',2,100,2]
   ]) {
     $(id).addEventListener('input',event=>{

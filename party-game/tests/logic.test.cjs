@@ -516,7 +516,7 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v26-20261021-game-types/);
+ assert.match(worker,/kvip-pwa-v27-20261021-ui/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
 
@@ -818,10 +818,10 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['approx-questions.js?v=1','mode-config.js?v=2','rules.js?v=2','penalties.js?v=2','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=4','presets.js?v=3','app.js?v=20']){
+ for(const file of ['approx-questions.js?v=1','mode-config.js?v=2','rules.js?v=2','penalties.js?v=2','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=4','presets.js?v=3','app.js?v=21']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
- assert.match(sw,/kvip-pwa-v26-20261021-game-types/);
+ assert.match(sw,/kvip-pwa-v27-20261021-ui/);
 });
 
 
@@ -1217,7 +1217,7 @@ test('all eight active mode icons exist and load from versioned URLs',()=>{
   assert.equal(h.eval('DEFAULT_MODES.includes("approx")'),true);
   const sw=read('sw.js'),html=read('index.html');
   assert.ok(html.includes("mode-images.js?v=6"));
-  assert.match(sw,/kvip-pwa-v26-20261021-game-types/);
+  assert.match(sw,/kvip-pwa-v27-20261021-ui/);
   for(const mode of modes){
     assert.equal(assets[mode],'./assets/modes/'+mode+'.webp?v=3');
     assert.ok(sw.includes("'approx'")||mode!=='approx');
@@ -1406,4 +1406,18 @@ test('enabled but incomplete topic is disabled for the selected modes and levels
  assert.equal(h.eval('selectTheme("fixture-topic",1)'),false);
  h.eval('options.difficulty="easy"');assert.equal(h.eval('selectTheme("fixture-topic",1)'),true);
  h.eval('options.difficulty="hard";newGame()');assert.equal(h.eval('game'),null);
+});
+test('advanced folds reset on entry while selected settings and custom values stay intact',()=>{
+ const h=harness();h.eval('options.modes=["talk","approx"];options.promptTypes=["idiom"];options.duration=75;options.targetScore=35;persist()');
+ const stored=h.storage.get('iskra-party:v1'),before=h.eval('JSON.stringify(options)');
+ h.eval('$("mode-settings").open=true;$("content-settings").open=true;openAdvanced()');
+ assert.equal(h.elements.get('mode-settings').open,false);assert.equal(h.elements.get('content-settings').open,false);
+ assert.equal(h.elements.get('mode-selection-count').textContent,'2 ИЗ 8');
+ assert.equal(h.elements.get('content-selection-count').textContent,'1 ИЗ 3');
+ h.eval('$("mode-settings").open=true;closeAdvanced();openAdvanced()');
+ assert.equal(h.elements.get('mode-settings').open,false);assert.equal(h.eval('JSON.stringify(options)'),before);
+ assert.equal(h.storage.get('iskra-party:v1'),stored,'Fold state must not introduce save fields or writes');
+ const reloaded=harness(h.storage);assert.deepEqual(JSON.parse(reloaded.eval('JSON.stringify(options)')),JSON.parse(before));
+ assert.equal(reloaded.elements.get('score-goal-preview').textContent,'35 очков');
+ assert.equal(reloaded.elements.get('base-duration-value').textContent,'75 с');
 });
