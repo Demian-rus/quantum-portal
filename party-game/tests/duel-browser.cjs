@@ -112,5 +112,41 @@ const URL='http://127.0.0.1:8765/party-game/';
    assert.deepEqual(await page.evaluate(()=>game.scores),[1,1]);
    assert.deepEqual(errors,[]);await page.close();
   }
+  for(const [width,height] of [[320,568],[390,844],[844,390]]){
+   const context=await browser.newContext({viewport:{width,height}}),page=await context.newPage(),errors=[];
+   page.on('pageerror',error=>errors.push(error.message));
+   await page.goto(URL,{waitUntil:'load'});
+   await page.evaluate(()=>{soundOn=false;options.modes=['approx'];options.dice=false;options.difficulty='hard';newGame()});
+   for(const choice of ['a','b','both','none']){
+    await page.evaluate(()=>{game.dice=false});
+    await page.locator('[data-action="roll"]').click();
+    assert.equal(await page.locator('.is-approx img').getAttribute('src'),'./assets/modes/approx.webp?v=3');
+    assert.equal(await page.locator('#active-timer').count(),0);
+    assert.equal(await page.locator('.risk-notice').count(),0);
+    const question=await page.evaluate(()=>game.current.question);
+    await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
+    assert.deepEqual(await page.evaluate(()=>game.current.question),question);
+    assert.equal(await page.locator('.approx-answer').count(),0);
+    await page.locator('[data-action="reveal-approx"]').click();
+    await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
+    assert.deepEqual(await page.evaluate(()=>game.current.question),question);
+    assert.equal(await page.locator('[data-action^="award-"]').count(),4);
+    const geometry=await page.locator('[data-action^="award-"]').evaluateAll(nodes=>nodes.map(node=>{
+     const r=node.getBoundingClientRect();return {top:r.top,bottom:r.bottom,left:r.left,right:r.right,height:r.height};
+    }));
+    assert.ok(geometry.every(r=>r.top>=0&&r.bottom<=height+1&&r.left>=0&&r.right<=width+1&&r.height>=44),JSON.stringify(geometry));
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+    if(choice==='a')await page.screenshot({path:'artifacts/quip-duel/approx-'+width+'x'+height+'.png'});
+    await page.locator('[data-action="award-'+choice+'"]').click();
+   }
+   assert.deepEqual(await page.evaluate(()=>game.scores),[2,2]);
+   assert.equal(await page.evaluate(()=>game.roundIndex),4);
+   await page.evaluate(async()=>{await navigator.serviceWorker.ready});
+   await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
+   await page.evaluate(()=>{game.dice=false});await page.locator('[data-action="roll"]').click();
+   await page.locator('[data-action="reveal-approx"]').click();
+   assert.equal(await page.locator('[data-action^="award-"]').count(),4);
+   assert.deepEqual(errors,[]);await context.close();
+  }
  }finally{await browser.close()}
 })().catch(e=>{console.error(e);process.exitCode=1});

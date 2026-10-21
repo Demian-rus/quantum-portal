@@ -39,6 +39,7 @@ function harness(existing=new Map(),randomizeStarter=false) {
   vm.runInContext(read('mode-images.js'),context);
   vm.runInContext(read('cards.js'),context);
   vm.runInContext(read('mode-config.js'),context);
+  vm.runInContext(read('approx-questions.js'),context);
   vm.runInContext(read('rules.js'),context);
   vm.runInContext(read('penalties.js'),context);
   vm.runInContext(read('modifiers.js'),context);
@@ -49,8 +50,10 @@ function harness(existing=new Map(),randomizeStarter=false) {
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
   vm.runInContext(`function legacyGame(version=3){
+    options.modes=options.modes.filter(id=>id!=='approx');
+    if(options.contentPack?.id==='general')options.contentPack={id:'general',version:1};
     newGame();if(game&&game.phase==='ready'&&game.roundIndex===0){
-      game.rulesVersion=version;delete game.modeConfigVersion;game.blitzCount=5;persist();
+      game.rulesVersion=version;delete game.modeConfigVersion;game.blitzCount=5;game.modes=game.modes.filter(id=>id!=='approx');persist();
     }
   }`,context);
   // Scoring fixtures choose a fixed starting player; dedicated tests exercise both draws.
@@ -512,7 +515,7 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v24-20261021-rules4/);
+ assert.match(worker,/kvip-pwa-v25-20261021-approx/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
 
@@ -814,10 +817,10 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['mode-config.js?v=1','rules.js?v=2','penalties.js?v=2','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=2','presets.js?v=2','app.js?v=18']){
+ for(const file of ['approx-questions.js?v=1','mode-config.js?v=2','rules.js?v=2','penalties.js?v=2','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=3','presets.js?v=3','app.js?v=19']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
- assert.match(sw,/kvip-pwa-v24-20261021-rules4/);
+ assert.match(sw,/kvip-pwa-v25-20261021-approx/);
 });
 
 
@@ -1206,14 +1209,14 @@ test('other-games navigation preserves the unfinished match and has six inert pl
 });
 
 // Every approved icon must be a valid WebP file, including the reserved approx art.
-test('all eight mode icons exist, load from versioned URLs, and approx is dormant',()=>{
+test('all eight active mode icons exist and load from versioned URLs',()=>{
   const h=harness(),assets=JSON.parse(h.eval('JSON.stringify(MODE_ASSETS)'));
   const modes=['talk','mime','draw','sing','yesno','secret','blitz','approx'];
   assert.deepEqual(Object.keys(assets),modes);
-  assert.equal(h.eval('DEFAULT_MODES.includes("approx")'),false,'Approx mode belongs to future gameplay changes');
+  assert.equal(h.eval('DEFAULT_MODES.includes("approx")'),true);
   const sw=read('sw.js'),html=read('index.html');
   assert.ok(html.includes("mode-images.js?v=6"));
-  assert.match(sw,/kvip-pwa-v24-20261021-rules4/);
+  assert.match(sw,/kvip-pwa-v25-20261021-approx/);
   for(const mode of modes){
     assert.equal(assets[mode],'./assets/modes/'+mode+'.webp?v=3');
     assert.ok(sw.includes("'approx'")||mode!=='approx');
@@ -1280,4 +1283,67 @@ test('V1 V2 V3 historical definitions and five-word outcomes stay intact alongsi
  }
  h.eval('game.rulesVersion=4;game.roundIndex=2');
  assert.equal(h.eval('shouldSelectRisk(game,0,"approx")'),false);
+});
+test('Approx catalog has 60 stable unique questions, sources and 20 per tier',()=>{
+ const h=harness(),rows=JSON.parse(h.eval('JSON.stringify(QUIP_APPROX_QUESTIONS)'));
+ assert.equal(rows.length,60);assert.equal(new Set(rows.map(q=>q.id)).size,60);
+ assert.equal(new Set(rows.map(q=>q.question)).size,60);
+ for(const level of ['easy','medium','hard'])assert.equal(rows.filter(q=>q.difficulty===level).length,20);
+ for(const q of rows){
+  assert.match(q.id,/^approx-\d{4}$/);assert.ok(q.answer&&q.question&&q.categories.length&&q.source);
+  if(q.source.startsWith('formula:'))assert.equal(Number(q.answer),vm.runInNewContext(q.source.slice(8)));
+ }
+ assert.equal(h.eval('checkContentPack({id:"general",version:2},freshOptions()).available'),true);
+ assert.equal(h.eval('getPackQuestionPool({id:"general",version:1},"easy").length'),0);
+});
+test('Approx question snapshots have no timer, modifier or risk at every difficulty',()=>{
+ for(const level of ['easy','medium','hard']){
+  const h=harness();h.eval('soundOn=false;options.modes=["approx"];options.dice=false;options.difficulty="'+level+'";Math.random=()=>0;newGame();game.roundIndex=4;roll()');
+  assert.equal(h.eval('game.current.question.difficulty'),level);
+  assert.equal(h.eval('game.current.word'),h.eval('game.current.question.question'));
+  assert.equal(h.eval('game.current.risk'),false);assert.equal(h.eval('game.current.complication'),'');
+  assert.equal(h.eval('game.current.points'),1);assert.equal(h.eval('game.current.seconds'),0);
+  const before=h.eval('JSON.stringify(game.current)');
+  h.eval('toggleWord();startTimer();replaceWord();pauseTimer();resumeTimer();beginAutomaticRound();tick();finishTimer("early");judge(true);awardApprox("both")');
+  assert.equal(h.eval('game.phase'),'task');assert.equal(h.eval('JSON.stringify(game.current)'),before);
+  assert.equal(h.eval('game.roundIndex'),4);assert.ok(!h.elements.get('play-content').innerHTML.includes('timer-ring'));
+ }
+});
+test('Approx awards all four manual choices once and records recipients, answer and deltas',()=>{
+ for(const [choice,deltas] of Object.entries({a:[1,0],b:[0,1],both:[1,1],none:[0,0]})){
+  const h=harness();h.eval('soundOn=false;options.modes=["approx"];options.dice=false;newGame();roll();revealApprox()');
+  const answer=h.eval('game.current.question.answer');
+  assert.equal((h.elements.get('play-content').innerHTML.match(/data-action="award-/g)||[]).length,4);
+  h.eval('awardApprox("'+choice+'");awardApprox("both");judge(true)');
+  assert.deepEqual(Array.from(h.eval('game.scores')),deltas);assert.equal(h.eval('game.roundIndex'),1);
+  assert.equal(h.eval('game.history.length'),1);assert.equal(h.eval('game.history[0].answer'),answer);
+  assert.equal(h.eval('game.history[0].sharedAward'),choice==='both');
+  assert.deepEqual(Array.from(h.eval('game.history[0].deltas')),deltas);
+  const html=h.eval('historyMarkup(game.history[0],0)');
+  assert.ok(html.includes('ПРИМЕРНО')&&html.includes('Ответ:'));
+  assert.ok(html.includes(choice==='both'?'Обе команды':choice==='none'?'Никому':choice==='a'?'Молнии':'Кометы'));
+ }
+});
+test('Approx reload preserves question, answer and reveal state before and after disclosure',()=>{
+ for(const revealed of [false,true]){
+  const stored=new Map(),a=harness(stored);
+  a.eval('soundOn=false;options.modes=["approx"];options.dice=false;options.difficulty="mixed";newGame();roll()');
+  if(revealed)a.eval('revealApprox()');
+  a.eval('game.dice=true;persist()');
+  const before=a.eval('JSON.stringify(game)');
+  const b=harness(stored);b.eval('continueGame()');
+  assert.equal(b.eval('JSON.stringify(game)'),before);
+  assert.equal(b.eval('game.phase'),revealed?'judge':'task');
+  if(!revealed)b.eval('revealApprox()');
+  b.eval('awardApprox("both")');assert.deepEqual(Array.from(b.eval('game.scores')),[1,1]);
+ }
+});
+test('Approx exhausts each tier before repeats and preserves full-pair match completion',()=>{
+ const h=harness();h.eval('soundOn=false;options.modes=["approx"];options.dice=false;newGame();Math.random=()=>0');
+ const ids=[];
+ for(let i=0;i<20;i++){h.eval('roll()');ids.push(h.eval('game.current.question.id'));h.eval('revealApprox();awardApprox("none")');}
+ assert.equal(new Set(ids).size,20);
+ h.eval('game.targetScore=15;game.scores=[14,14];roll();revealApprox();awardApprox("a")');assert.equal(h.eval('game.phase'),'ready');
+ h.eval('roll();revealApprox();awardApprox("both")');assert.equal(h.eval('game.phase'),'results');
+ assert.deepEqual(Array.from(h.eval('game.scores')),[16,15]);
 });

@@ -10,7 +10,7 @@ function defineContentPacks(entries){
    cardIds:entry.criteria?.cardIds,sourcePacks:entry.criteria?.sourcePacks}))
    if(!Array.isArray(values)||values.some(x=>typeof x!=='string'||!x)||new Set(values).size!==values.length)
     throw Error('Invalid pack '+field+': '+key);
-  if(!entry.types.length||entry.types.some(t=>!PARTY_CARD_TYPES.includes(t))||
+  if(!entry.types.length||entry.types.some(t=>![...PARTY_CARD_TYPES,'number'].includes(t))||
     !Number.isInteger(entry.minCardsPerPool)||entry.minCardsPerPool<1||typeof entry.enabled!=='boolean')
    throw Error('Invalid pack types/availability: '+key);
   registry[key]=Object.freeze({...entry,categories:Object.freeze(entry.categories.slice()),
@@ -20,6 +20,8 @@ function defineContentPacks(entries){
  return Object.freeze(registry);
 }
 const QUIP_CONTENT_PACKS=defineContentPacks([
+ {id:'general',version:2,name:'Общий словарь',enabled:true,categories:[],types:[...PARTY_CARD_TYPES,'number'],
+  criteria:{cardIds:[],sourcePacks:[]},minCardsPerPool:1},
  {id:'general',version:1,name:'Общий словарь',enabled:true,categories:[],types:PARTY_CARD_TYPES,
   criteria:{cardIds:[],sourcePacks:[]},minCardsPerPool:1},
  ...[['geography','География'],['biology','Биология'],['animals','Животные'],['history','История'],
@@ -47,8 +49,17 @@ function getPackCardPool(selection,kind,level,promptTypes,cards=PARTY_CARDS,regi
   seen.add(card.id);return true;
  });
 }
+function getPackQuestionPool(selection,level,questions=QUIP_APPROX_QUESTIONS,registry=QUIP_CONTENT_PACKS){
+ const pack=getContentPack(selection,registry);
+ if(!PARTY_CARD_LEVELS.includes(level))throw Error('Unknown question difficulty');
+ if(!pack.types.includes('number'))return [];
+ return questions.filter(question=>question.difficulty===level&&
+  (!pack.categories.length||pack.categories.some(tag=>question.categories.includes(tag)))&&
+  (!pack.criteria.cardIds.length||pack.criteria.cardIds.includes(question.id))&&
+  (!pack.criteria.sourcePacks.length||pack.criteria.sourcePacks.includes(question.pack)));
+}
 // Each reachable mode/tier must be playable, especially all five unique Blitz words.
-function checkContentPack(selection,settings,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACKS){
+function checkContentPack(selection,settings,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACKS,questions=QUIP_APPROX_QUESTIONS){
  const pack=getContentPack(selection,registry),problems=[];
  if(!pack.enabled)problems.push('Набор пока недоступен: '+pack.name);
  const levels=settings.difficulty==='mixed'?PARTY_CARD_LEVELS:[settings.difficulty];
@@ -59,8 +70,8 @@ function checkContentPack(selection,settings,cards=PARTY_CARDS,registry=QUIP_CON
   const kind=getModeConfig(method).cardType;
   if(!kind)throw Error('Unknown QUIP mode: '+method);
   for(const level of levels){
-   const pool=getPackCardPool(selection,kind,level,settings.promptTypes,cards,registry);
-   const count=new Set(pool.map(card=>card.text)).size,required=Math.max(pack.minCardsPerPool,kind==='blitz'?(settings.rulesVersion&&settings.rulesVersion<4?5:getModeConfig('blitz').blitzWordsCount):1);
+   const pool=kind==='number'?getPackQuestionPool(selection,level,questions,registry):getPackCardPool(selection,kind,level,settings.promptTypes,cards,registry);
+   const count=new Set(pool.map(card=>card.text||card.question)).size,required=Math.max(pack.minCardsPerPool,kind==='blitz'?(settings.rulesVersion&&settings.rulesVersion<4?5:getModeConfig('blitz').blitzWordsCount):1);
    if(count<required)problems.push(method+'/'+level+': '+count+' из '+required+' заданий');
   }
  }
