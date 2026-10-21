@@ -53,8 +53,8 @@
         </div>
         <div class="settings-grid settings-grid--compact">
           <fieldset class="option-set"><legend>СЛОЖНОСТЬ</legend><div class="choices" data-setting="difficulty"><button type="button" data-value="easy" class="is-chosen">Легко</button><button type="button" data-value="medium">Средний</button><button type="button" data-value="hard">Сложный</button><button type="button" data-value="mixed">Микс</button></div></fieldset>
-          <fieldset class="option-set"><legend id="setup-finish-label">ЦЕЛЬ ПАРТИИ</legend><div class="setup-metric" id="score-goal-preview">До 25 очков</div><small id="score-goal-caption">У каждого игрока будет ответный ход</small></fieldset>
-          <fieldset class="option-set"><legend>ТЕМП ИГРЫ</legend><div class="setup-metric"><span id="base-duration-value">30 с</span> на «Слова»</div><small>Рисование и Данетки получают больше времени</small></fieldset>
+          <fieldset class="option-set"><legend id="setup-finish-label">ЦЕЛЬ ПАРТИИ</legend><div class="setup-metric" id="score-goal-preview">До 25 очков</div><input class="setup-range" id="quick-target-score" type="range" min="15" max="100" step="5" value="25" aria-label="Цель по очкам"><small id="score-goal-caption">У каждого игрока будет ответный ход</small></fieldset>
+          <fieldset class="option-set"><legend>ТЕМП ИГРЫ</legend><div class="setup-metric"><span id="base-duration-value">30 с</span> на «Слова»</div><input class="setup-range" id="quick-duration" type="range" min="30" max="90" step="5" value="30" aria-label="Базовое время на Слова"><small>Рисование и Данетки получают больше времени</small></fieldset>
         </div>
         <button id="go-advanced" class="button setup-advanced-link" type="button">ТОНКАЯ НАСТРОЙКА <span aria-hidden="true">Настроить режимы и правила</span></button>
         <div class="setup-bottom"><p>Один телефон — два соперника. В свой ход вы загадываете, соперник отгадывает и зарабатывает очки.</p><button id="start-game" class="button button-primary button-big" type="button">НАЧАТЬ ИГРУ</button></div>
