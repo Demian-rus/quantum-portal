@@ -258,6 +258,8 @@ function renderOptions() {
   const numbers={'base-duration':options.duration,'target-score':options.targetScore,'custom-rounds':options.rounds};
   $('base-duration-value').textContent=options.duration+' с';
   $('target-score-value').textContent=options.targetScore+' очков';
+  $('rounds-value').textContent=options.rounds+' ходов';
+  $('base-duration-value-advanced').textContent=options.duration+' с';
   $('finish-score').checked=options.finishType==='score';
   $('finish-rounds').checked=options.finishType==='rounds';
   $('toggle-risk').checked=options.riskRounds;
@@ -475,8 +477,8 @@ function showTask() {
       (c.complication?'<br><strong>УСЛОЖНЕНИЕ: '+escapeHTML(c.complication)+'</strong>':'')+'</div>'+
       (secret?'<span class="secret-flag">СЕКРЕТКА · +'+c.points+' ОЧКА</span>':
         '<span class="score-note">ЗА ВЕРНЫЙ ОТВЕТ: +'+(c.modeId==='blitz'?'3 ЗА ВСЕ 5 СЛОВ':c.points)+'</span>')+
-    '</div>'+
     (c.risk?'<p class="risk-notice">⚡ РИСК-РАУНД: ПРОВАЛ — ДО −2 ОЧКОВ</p>':'')+
+    '</div>'+
     '<div class="round-fixed-card">'+taskMarkup(!c.visible)+'</div>'+
     '<div class="round-bottom round-bottom--task">'+taskControls(c)+'</div>';
 }
@@ -692,7 +694,7 @@ function showResults() {
     '<div class="final-score">'+item(0)+'<span class="final-score-divider">:</span>'+item(1)+'</div>'+
     '<div class="inline-actions">'+makeButton('СЫГРАТЬ ЕЩЁ','again','button-primary button-big')+
     makeButton('В ГЛАВНОЕ МЕНЮ','menu')+'</div>'+
-    '<div class="history-block"><h3>ИСТОРИЯ ХОДОВ</h3>'+
+    '<div class="history-block"><h3>ИСТОРИЯ ХОДОВ · ОЧКИ ОТГАДЫВАЮЩЕГО</h3>'+
     game.history.map((row,index)=>
       '<div class="history-row"><span>'+(index+1)+'. '+escapeHTML(row.team)+' · '+
       escapeHTML(getMode(row.mode)?.title||'')+' · '+escapeHTML(row.word)+'</span>'+
