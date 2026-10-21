@@ -1346,7 +1346,7 @@ body[data-screen="results"]::after {
 .scene--game .is-ready .ready-content .play-title {
  width:100%;max-width:100%;min-width:0;margin:clamp(8px,2.4dvh,26px) 0 0;
  flex:0 0 auto;
- font-size:clamp(17px,5.2vw,35px);
+ font-size:clamp(21px,6.6vw,37px);
  line-height:1.16;letter-spacing:-.055em;
  text-wrap:initial;white-space:nowrap;
  overflow:visible;overflow-wrap:normal;word-break:normal;
@@ -1403,7 +1403,7 @@ body[data-screen="results"]::after {
 @media(max-height:740px) and (max-width:779px) {
  .scene--game .is-ready .ready-content {gap:clamp(4px,.85dvh,9px);padding-top:5px}
  .scene--game .is-ready .ready-content .play-title {
-   font-size:clamp(16px,5vw,27px);margin-top:clamp(6px,1.9dvh,15px);
+   font-size:clamp(18px,5.5vw,29px);margin-top:clamp(6px,1.9dvh,15px);
  }
  .scene--game .is-ready .ready-content .play-subtitle {font-size:clamp(10px,1.65dvh,12px)}
  .scene--game .is-rolling-screen .reel-window {height:clamp(193px,33dvh,225px)}
@@ -1413,7 +1413,7 @@ body[data-screen="results"]::after {
 @media(max-width:355px) {
  .scene--game .play-card-head #play-step {font-size:9px;letter-spacing:0}
  .scene--game .play-card-head #exit-game {font-size:10px}
- .scene--game .is-ready .ready-content .play-title {font-size:clamp(15px,4.8vw,20px)}
+ .scene--game .is-ready .ready-content .play-title {font-size:clamp(17px,5.35vw,22px)}
  .scene--game .reel-item {flex-basis:148px}
  .scene--game .reel-item img {width:138px;height:138px}
 }
