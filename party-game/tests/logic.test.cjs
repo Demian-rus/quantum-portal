@@ -654,7 +654,7 @@ test('song themes all have named examples and span different genres',()=>{
    genres.add(entry.genre);
    all.push(entry.topic);
   }
-  assert.deepEqual(Array.from(h.eval('getPromptPool("songs","'+level+'")')),catalog.map(x=>x.topic));
+  assert.deepEqual(Array.from(h.eval('getPromptPool("songs","'+level+'")')).slice(0,catalog.length),catalog.map(x=>x.topic));
  }
  assert.equal(all.length,new Set(all).size,'A song theme cannot repeat at multiple levels');
  assert.ok(genres.has('поп')&&genres.has('рок')&&genres.has('рэп')&&genres.has('зарубежное'));
@@ -682,12 +682,13 @@ test('new games use a one-minute base and +30s in long modes including Blitz',()
  assert.equal(h.eval('game.current.blitzWords.length'),5);
 });
 
-test('card catalog v1 has all 3016 active tasks and immutable unique IDs',()=>{
+test('card catalog v1 retains all 3016 historical tasks and unique IDs',()=>{
  const h=harness(),cards=JSON.parse(h.eval('JSON.stringify(PARTY_CARDS)'));
  assert.equal(h.eval('PARTY_CARD_SCHEMA_VERSION'),1);
- assert.equal(cards.length,3016);
- assert.equal(new Set(cards.map(c=>c.id)).size,3016);
- assert.deepEqual(Object.fromEntries(['word','phrase','idiom','song','person'].map(t=>[t,cards.filter(c=>c.type===t).length])),
+ const historical=cards.filter(c=>Number(c.id.split('-')[1])<8000);
+ assert.equal(historical.length,3016);
+ assert.equal(new Set(cards.map(c=>c.id)).size,cards.length);
+ assert.deepEqual(Object.fromEntries(['word','phrase','idiom','song','person'].map(t=>[t,historical.filter(c=>c.type===t).length])),
    {word:1846,phrase:496,idiom:142,song:215,person:317});
  for(const c of cards){
   assert.match(c.id,/^(word|phrase|idiom|song|person)-[0-9]{6}$/);
@@ -721,8 +722,8 @@ test('typed source retains old playable words, songs, people and blitz constrain
   }
  }
  assert.equal(h.eval("getCardPool('blitz','hard').every(c=>c.difficulty==='easy'&&c.text.length<=12)"),true);
- assert.ok(read('index.html').includes('./cards.js?v=1'));
- assert.ok(read('sw.js').includes('./cards.js?v=1'));
+ assert.ok(read('index.html').includes('./cards.js?v=2'));
+ assert.ok(read('sw.js').includes('./cards.js?v=2'));
 });
 test('text-only saved rounds still restore unchanged after catalog migration',()=>{
  const saved=new Map(),a=harness(saved);
@@ -819,7 +820,7 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['approx-questions.js?v=1','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=2','round-planner.js?v=1','content-packs.js?v=4','presets.js?v=3','app.js?v=25']){
+ for(const file of ['approx-questions.js?v=2','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=2','round-planner.js?v=1','content-packs.js?v=4','presets.js?v=3','app.js?v=25']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
  assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);
@@ -1075,7 +1076,7 @@ test('leaving the carousel for the menu preserves its selected card on Continue'
 
 test('general pack preserves all existing pools, IDs, types and difficulties',()=>{
  const h=harness();h.eval('soundOn=false;legacyGame()');
- assert.equal(h.eval('PARTY_CARDS.length'),3016);
+ assert.equal(h.eval('PARTY_CARDS.filter(c=>Number(c.id.split("-")[1])<8000).length'),3016);
  for(const kind of ['words','songs','people','blitz'])for(const level of ['easy','medium','hard']){
   const expected=Array.from(h.eval('getCardPool("'+kind+'","'+level+'",game.promptTypes).map(c=>c.id)')).sort();
   const actual=Array.from(h.eval('getPackCardPool(game.contentPack,"'+kind+'","'+level+'",game.promptTypes).map(c=>c.id)')).sort();
@@ -1287,7 +1288,7 @@ test('V1 V2 V3 historical definitions and five-word outcomes stay intact alongsi
  assert.equal(h.eval('shouldSelectRisk(game,0,"approx")'),false);
 });
 test('Approx catalog has 60 stable unique questions, sources and 20 per tier',()=>{
- const h=harness(),rows=JSON.parse(h.eval('JSON.stringify(QUIP_APPROX_QUESTIONS)'));
+ const h=harness(),rows=JSON.parse(h.eval('JSON.stringify(QUIP_APPROX_QUESTIONS.filter(q=>Number(q.id.slice(7))<8000))'));
  assert.equal(rows.length,60);assert.equal(new Set(rows.map(q=>q.id)).size,60);
  assert.equal(new Set(rows.map(q=>q.question)).size,60);
  for(const level of ['easy','medium','hard'])assert.equal(rows.filter(q=>q.difficulty===level).length,20);
@@ -1671,4 +1672,53 @@ test('unsupported modifier policies and invalid recent state protect the origina
   const stored=new Map(),a=harness(stored);a.eval('soundOn=false;newGame();'+change+';persist()');const original=stored.get('iskra-party:v1');
   const b=harness(stored);assert.equal(b.eval('storageBlocked'),true);b.eval('newGame();persist()');assert.equal(stored.get('iskra-party:v1'),original);
  }
+});
+
+// TASK 008: authoritative data is extended, never re-created from legacy dictionaries.
+test('TASK008 keeps every pre-expansion card and numeric question byte-equivalent',()=>{
+ const {loadCatalog}=require('../scripts/catalog-audit.cjs'),crypto=require('node:crypto');const {cards,questions}=loadCatalog();
+ const digest=rows=>crypto.createHash('sha256').update(JSON.stringify(rows)).digest('hex');
+ assert.equal(digest(cards.filter(c=>Number(c.id.split('-')[1])<8000)),'cc04a3d94b191c8857a32103f973d60f60f2004801df748f3de0a8c06bfeb9c9');
+ assert.equal(digest(questions.filter(q=>Number(q.id.slice(7))<8000)),'e8a835f803b54f1694ba08f43faca16b3ec4e82a3cd5727e0408f067275fdb5e');
+});
+test('TASK008 A adds the authored minimum for every type with meaningful tier coverage',()=>{
+ const {loadCatalog}=require('../scripts/catalog-audit.cjs'),{cards,questions}=loadCatalog(),rows=cards.filter(c=>Number(c.id.split('-')[1])>=8000&&Number(c.id.split('-')[1])<9000);
+ assert.equal(rows.length,220);
+ for(const [type,min] of Object.entries({word:100,phrase:45,idiom:25,song:25,person:25})){
+  assert.equal(rows.filter(c=>c.type===type).length,min);
+  for(const difficulty of ['easy','medium','hard'])assert.ok(rows.filter(c=>c.type===type&&c.difficulty===difficulty).length>=8,type+'/'+difficulty);
+ }
+ const numbers=questions.filter(q=>Number(q.id.slice(7))>=8000&&Number(q.id.slice(7))<8100);
+ assert.equal(numbers.length,30);for(const level of ['easy','medium','hard'])assert.equal(numbers.filter(q=>q.difficulty===level).length,10);
+});
+test('TASK008 new prompts have no normalized collisions with any active prompt or song title',()=>{
+ const {loadCatalog,normalize}=require('../scripts/catalog-audit.cjs'),{cards,questions}=loadCatalog();
+ const seen=new Map(),songTitles=new Map();
+ for(const card of cards){const key=normalize(card.text),newCard=Number(card.id.split('-')[1])>=8000;
+  if(newCard)assert.equal(seen.has(key),false,card.id+' collides with '+seen.get(key));
+  seen.set(key,card.id);
+  if(card.type==='song'){const title=normalize(card.meta.title);if(newCard)assert.equal(songTitles.has(title),false,card.id+' repeats song '+songTitles.get(title));songTitles.set(title,card.id);}
+ }
+ assert.equal(new Set(questions.map(q=>normalize(q.question))).size,questions.length);
+ assert.equal(new Set([...cards,...questions].map(c=>c.id)).size,cards.length+questions.length);
+});
+test('TASK008 numeric additions carry units, categories, sources and checked derivations',()=>{
+ const {loadCatalog}=require('../scripts/catalog-audit.cjs'),{questions}=loadCatalog();
+ for(const q of questions.filter(q=>Number(q.id.slice(7))>=8000)){
+  assert.ok(q.unit&&q.note!==undefined&&q.categories.length&&q.answer&&q.pack);
+  assert.match(q.source,/^(https:\/\/|formula:|definition:)/);
+  assert.ok(q.question.length<=220,q.id);
+  if(q.source.startsWith('formula:'))assert.equal(Number(q.answer),vm.runInNewContext(q.source.slice(8)),q.id);
+ }
+});
+test('TASK008 additions enter standard pools without empty tiers or duplicate Blitz words',()=>{
+ const h=harness();h.eval('soundOn=false;options.complications=false;options.dice=false;newGame()');
+ for(const kind of ['words','songs','people','blitz'])for(const level of ['easy','medium','hard'])assert.ok(h.eval('getPromptPool("'+kind+'","'+level+'").length')>=50,kind+'/'+level);
+ h.eval('options.modes=["blitz"];newGame();Math.random=()=>0');const used=[];
+ for(let i=0;i<20;i++){h.eval('roll()');const words=Array.from(h.eval('game.current.blitzWords'));assert.equal(new Set(words).size,3);for(const word of words){assert.equal(used.includes(word),false);used.push(word)}h.eval('game.phase="judge";judge(false)');}
+ assert.equal(new Set(used).size,60);
+ assert.equal(h.eval('getPackQuestionPool({id:"general",version:2},"hard").some(q=>q.id==="approx-8030")'),true);
+});
+test('TASK008 audit reports cross-type duplicates separately and is deterministic',()=>{
+ const {audit}=require('../scripts/catalog-audit.cjs'),a=audit();assert.deepEqual(a,audit());assert.equal(a.exactDuplicates.length,26);assert.equal(a.normalizedDuplicates.length,26);assert.equal(a.questionDuplicates.length,0);assert.ok(a.blitz>=750);
 });

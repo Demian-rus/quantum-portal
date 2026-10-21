@@ -83,10 +83,41 @@ const QUIP_APPROX_QUESTIONS=Object.freeze([
  ['0057','hard','Сколько клавиш было у первого фортепиано Бартоломео Кристофори согласно истории инструмента Yamaha?','54','','culture,history','Ранний инструмент имел меньший диапазон, чем современный.','piano'],
  ['0058','hard','Сколько секунд в двух часах и 35 минутах?','9300','секунд','science','2 × 3600 + 35 × 60.','formula:2*3600+35*60'],
  ['0059','hard','Сколькими способами можно выбрать двух человек из десяти, если порядок не важен?','45','','science','10 × 9 / 2.','formula:10*9/2'],
- ['0060','hard','Чему равна сумма внутренних углов выпуклого десятиугольника?','1440','°','science','(n − 2) × 180° при n = 10.','formula:(10-2)*180']
-].map(([id,difficulty,question,answer,unit,categories,note,source])=>Object.freeze({
+ ['0060','hard','Чему равна сумма внутренних углов выпуклого десятиугольника?','1440','°','science','(n − 2) × 180° при n = 10.','formula:(10-2)*180'],
+ // TASK 008 A: verified facts or explicit calculations.
+ ["8001","easy","Сколько карт в стандартной полной колоде без джокеров?","52","карты","culture","Речь о 52-карточной колоде, а не о колоде для преферанса.","https://bicyclecards.com/how-to-play/bingo","approx-general-2026"],
+ ["8002","easy","Сколько игроков одной футбольной команды находится на поле при полном составе, включая вратаря?","11","игроков","culture","По Правилам игры IFAB 2026/27; без удалений и временного ухода с поля.","https://www.theifab.com/laws/latest/the-players/","approx-general-2026"],
+ ["8003","easy","Сколько игроков одной команды одновременно на площадке в обычном баскетболе при полном составе?","5","игроков","culture","Баскетбол 5×5, по правилам FIBA 2026; не формат 3×3.","https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2026-v1-1.pdf","approx-general-2026"],
+ ["8004","easy","Сколько клеток на обычном поле для крестиков-ноликов размером 3 на 3?","9","клеток","general","3 ряда по 3 клетки.","formula:3*3","approx-general-2026"],
+ ["8005","easy","Сколько яиц в трёх полных десятках?","30","яиц","general","","formula:3*10","approx-general-2026"],
+ ["8006","easy","Сколько крыльев у взрослой стрекозы?","4","крыла","nature,animals","Две пары крыльев.","https://www.nhm.ac.uk/discover/dragonflies-the-ultimate-hunters.html","approx-general-2026"],
+ ["8007","easy","Какой по счёту от Солнца является Земля?","3","планета","science","","https://science.nasa.gov/earth/facts/","approx-general-2026"],
+ ["8008","easy","Сколько нулей в десятичной записи числа один миллион?","6","нулей","science","1 000 000.","formula:6","approx-general-2026"],
+ ["8009","easy","Сколько букв в современном русском алфавите, включая ё?","33","буквы","culture","Ё считается отдельной буквой.","https://gramota.ru/biblioteka/slovari/slovar-9/russkiy-alfavit-172","approx-general-2026"],
+ ["8010","easy","Сколько миллиметров в одном сантиметре?","10","мм","science","Сантиметр — 10⁻² м, миллиметр — 10⁻³ м.","https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf","approx-general-2026"],
+ ["8011","medium","В каком году торжественно открыли Статую Свободы в Нью-Йорке?","1886","год","history,geography","28 октября 1886 года.","https://www.nps.gov/stli/","approx-general-2026"],
+ ["8012","medium","В каком году в Афинах прошли первые Олимпийские игры современности?","1896","год","history,culture","","https://www.olympics.com/en/olympic-games/athens-1896","approx-general-2026"],
+ ["8013","medium","Сколько белых пешек стоит на доске в начальной позиции обычных шахмат?","8","пешек","culture","У каждого цвета по восемь пешек.","https://handbook.fide.com/chapter/e012023","approx-general-2026"],
+ ["8014","medium","Сколько фигур и пешек обоих цветов вместе в начальной позиции обычных шахмат?","32","штуки","culture","По 16 у каждой стороны; пешки включены в подсчёт.","https://handbook.fide.com/chapter/e012023","approx-general-2026"],
+ ["8015","medium","Сколько квадратных метров в одном гектаре?","10000","м²","geography,science","Квадрат со стороной 100 метров.","https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf","approx-general-2026"],
+ ["8016","medium","Сколько минут в полутора сутках?","2160","минут","general","","formula:1.5*24*60","approx-general-2026"],
+ ["8017","medium","На сколько кусков разделят четыре пирога, если каждый нарезать на шесть равных частей?","24","куска","general","","formula:4*6","approx-general-2026"],
+ ["8018","medium","В каком году состоялось торжественное открытие Суэцкого канала для судоходства?","1869","год","history,geography","17 ноября 1869 года; не более позднее расширение канала.","https://www.suezcanal.gov.eg/English/About/SuezCanal/Pages/CanalHistory.aspx","approx-general-2026"],
+ ["8019","medium","Сколько минут длится основное время обычного футбольного матча без перерыва и добавленного времени?","90","минут","culture","Два тайма по 45 минут; по IFAB 2026/27, без сокращения регламентом.","https://www.theifab.com/laws/latest/the-duration-of-the-match/","approx-general-2026"],
+ ["8020","medium","Сколько граммов сахара в пакете массой 2,5 килограмма?","2500","г","general","","formula:2.5*1000","approx-general-2026"],
+ ["8021","hard","Скольким метрам точно равна международная морская миля?","1852","м","geography","Международное определение; не сухопутная миля.","https://www.noaa.gov/maritime-zones-and-boundaries","approx-general-2026"],
+ ["8022","hard","Сколько секунд в 365 сутках, если каждые сутки считать ровно по 24 часа?","31536000","секунд","science","Модельный невисокосный год без добавочных секунд.","formula:365*24*60*60","approx-general-2026"],
+ ["8023","hard","Сколько костяшек в полном обычном наборе домино «дубль-шесть»?","28","костяшек","culture","Все неупорядоченные пары значений от 0 до 6, включая дубли.","formula:7*8/2","approx-general-2026"],
+ ["8024","hard","Чему равна диагональ прямоугольного экрана со сторонами 30 и 40 сантиметров?","50","см","science","По теореме Пифагора.","formula:Math.sqrt(30**2+40**2)","approx-general-2026"],
+ ["8025","hard","Сколько миллилитров сиропа в 750 мл напитка, если сироп занимает одну пятую объёма?","150","мл","general","Объёмы считаются аддитивными; условие задачи.","formula:750/5","approx-general-2026"],
+ ["8026","hard","В каком году Эйфелева башня впервые открылась для посетителей?","1889","год","history,geography","Открытие для публики — 15 мая 1889 года.","https://www.toureiffel.paris/en/news/events/eiffel-tower-turns-120","approx-general-2026"],
+ ["8027","hard","Сколько суток прошло с начала невисокосного года к концу 30 апреля включительно?","120","суток","general","","formula:31+28+31+30","approx-general-2026"],
+ ["8028","hard","Сколько тонн составляет ровно миллион килограммов?","1000","тонн","science","Одна тонна равна 1000 кг.","https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf","approx-general-2026"],
+ ["8029","hard","На сколько градусов поворачивается минутная стрелка исправных часов за 17 минут?","102","°","general","","formula:360*17/60","approx-general-2026"],
+ ["8030","hard","Какова высота Статуи Свободы от земли до кончика факела вместе с постаментом, округлённая до целого метра?","93","м","geography,culture","В таблице NPS указано 92,99 м; сама статуя без постамента ниже.","https://www.nps.gov/stli/learn/historyculture/statue-statistics.htm","approx-general-2026"]
+].map(([id,difficulty,question,answer,unit,categories,note,source,pack='approx-core-v1'])=>Object.freeze({
  id:'approx-'+id,question,answer,unit,difficulty,categories:Object.freeze(categories.split(',')),note,
- source:QUIP_APPROX_SOURCES[source]||source,pack:'approx-core-v1'
+ source:QUIP_APPROX_SOURCES[source]||source,pack
 })));
 function getApproxQuestionPool(level){
  if(!PARTY_CARD_LEVELS.includes(level))throw Error('Unknown question difficulty');
