@@ -420,11 +420,23 @@ test('judge puts the negative decision left and positive decision right in every
   const h=harness();
   h.eval('soundOn=false;options.modes=["'+mode+'"];newGame();roll()');
   h.pending.shift()();
-  h.eval('toggleWord();startTimer();finishTimer("timeout")');
+  h.eval('toggleWord();startTimer()');
+  if(mode==='blitz')h.eval('game.current.blitzCorrect=5');
+  h.eval('finishTimer("timeout")');
   const markup=h.elements.get('play-content').innerHTML;
   assert.ok(markup.indexOf('data-action="no"')<markup.indexOf('data-action="yes"'),mode);
   assert.ok(markup.indexOf('judgement--no')<markup.indexOf('judgement--yes'),mode);
  }
+});
+test('incomplete V5 Blitz offers only a finalization button and awards nothing',()=>{
+ const h=harness();
+ h.eval('soundOn=false;options.modes=["blitz"];options.dice=false;options.riskRounds=false;newGame();roll();toggleWord();startTimer();finishTimer("timeout")');
+ const markup=h.elements.get('play-content').innerHTML;
+ assert.ok(markup.includes('data-action="no"'));
+ assert.ok(!markup.includes('data-action="yes"'));
+ assert.ok(markup.includes('ЗАВЕРШИТЬ РАУНД'));
+ h.eval('judge(false)');
+ assert.deepEqual(Array.from(h.eval('game.scores')),[0,0]);
 });
 test('Russian long prompt has a syllabic optional break without changing stored words',()=>{
  const h=harness();
