@@ -314,10 +314,12 @@ function getPromptPool(kind,level) {
   if(kind==='songs')return merge(PARTY_SONGS[level]||PARTY_SONGS.easy,extra?.songs?.[level]);
   if(kind==='people')return merge(PARTY_PEOPLE[level]||PARTY_PEOPLE.easy,extra?.people?.[level]);
   const original=PARTY_WORDS[level]||PARTY_WORDS.easy;
+  const addedWords=extra?.word?.[level]||[];
   const groups={
-    word:merge(original.filter(word=>!word.includes(' ')),(extra?.word?.[level]||[]).filter(word=>!word.includes(' '))),
+    word:merge(original.filter(word=>!word.includes(' ')),addedWords.filter(word=>!word.includes(' '))),
     // Earlier versions accidentally buried 49 multiword cards in the single-word pack.
-    phrase:merge([...(PARTY_PHRASES[level]||PARTY_PHRASES.easy),...original.filter(word=>word.includes(' '))],extra?.phrase?.[level]),
+    phrase:merge([...(PARTY_PHRASES[level]||PARTY_PHRASES.easy),
+      ...original.filter(word=>word.includes(' ')),...addedWords.filter(word=>word.includes(' '))],extra?.phrase?.[level]),
     idiom:merge(PARTY_IDIOMS[level]||PARTY_IDIOMS.easy,extra?.idiom?.[level])
   };
   return [...new Set((game.promptTypes?.length?game.promptTypes:PROMPT_TYPES)
@@ -326,7 +328,8 @@ function getPromptPool(kind,level) {
 function pullWord(kind, level=chooseDifficulty()) {
   const pool=getPromptPool(kind,level);
   if(!pool?.length)throw Error('Нет слов для выбранных настроек');
-  const key=level+':'+kind+':'+(game.promptTypes||[]).join(',');
+  // Blitz uses the same easy-word pool at every difficulty: avoid repeats across levels.
+  const key=(kind==='blitz'?'easy':level)+':'+kind+':'+(game.promptTypes||[]).join(',');
   let used=game.used[key]||[];
   let free=pool.filter(word=>!used.includes(word));
   if(!free.length){used=[];free=pool.slice();}
