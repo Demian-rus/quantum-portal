@@ -306,6 +306,9 @@ function chooseDifficulty() {
 function getPromptPool(kind,level) {
   const extra=typeof PARTY_EXPANSION==='undefined'?null:PARTY_EXPANSION;
   const merge=(primary,added)=>[...new Set([...(primary||[]),...(added||[])])];
+  // Blitz must remain playable: five familiar, short single words in only 30 seconds.
+  if(kind==='blitz')return merge(PARTY_WORDS.easy.filter(word=>!word.includes(' ')&&word.length<=13),
+    (extra?.word?.easy||[]).filter(word=>!word.includes(' ')&&word.length<=13));
   if(kind==='songs')return merge(PARTY_SONGS[level]||PARTY_SONGS.easy,extra?.songs?.[level]);
   if(kind==='people')return merge(PARTY_PEOPLE[level]||PARTY_PEOPLE.easy,extra?.people?.[level]);
   const original=PARTY_WORDS[level]||PARTY_WORDS.easy;
@@ -342,12 +345,12 @@ function rollOutcome() {
   }
   if(mode.id==='secret'||(game.complications&&Math.random()<.35))
     complication=selectComplication(actualMode.id,level);
-  const word=pullWord(actualMode.kind,level);
+  const word=pullWord(mode.id==='blitz'?'blitz':actualMode.kind,level);
   return {
     modeId:mode.id,methodId:actualMode.id,word,complication,difficulty:level,
     points:SCORE[mode.id]||1,seconds:durationForMode(mode.id,actualMode.id,game.duration),
     risk:game.riskRounds&&game.roundIndex>=2&&Math.random()<.2,
-    blitzWords:mode.id==='blitz'?[word,...Array.from({length:4},()=>pullWord('words',level))]:null,
+    blitzWords:mode.id==='blitz'?[word,...Array.from({length:4},()=>pullWord('blitz',level))]:null,
     blitzIndex:0,blitzCorrect:0,
     blitzQueue:mode.id==='blitz'?Array.from({length:5},(_,i)=>i):null,
     visible:false,paused:false,remainingMs:null,deadline:null,autoStartAt:null,
