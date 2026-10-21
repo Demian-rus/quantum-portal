@@ -52,6 +52,8 @@ const {chromium} = require('playwright-core');
       await page.locator('#custom-rounds').evaluate(el=>{el.value='8';el.dispatchEvent(new Event('input',{bubbles:true}))});
       await page.locator('#base-duration').evaluate(el=>{el.value='45';el.dispatchEvent(new Event('input',{bubbles:true}))});
       await page.locator('#advanced-done').click();
+      // Generic timer/judgement scenario must not randomly select all-or-nothing Blitz.
+      await page.evaluate(()=>{options.modes=['talk'];});
       assert.equal(await page.locator('#scene-preferences').isVisible(),false);
       await page.locator('#start-game').click();
       assert.equal(await page.locator('#scene-game').isVisible(),true);
