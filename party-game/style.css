@@ -1283,3 +1283,158 @@ body[data-screen="results"]::after {
  .settings-grid--compact .option-set:first-child{grid-column:auto}
  .setup-range{height:32px}
 }
+
+/* QUIP mobile polish: aligned actions and enlarged roulette, 2026-10-21.
+   Keep the approved background, illustrated assets and task-card geometry. */
+.scene--game .play-card-head {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  column-gap:clamp(7px,2vw,15px);
+  min-height:clamp(43px,6dvh,54px);
+}
+.scene--game .play-card-head #play-step {
+  display:block;
+  min-width:0;
+  max-width:100%;
+  overflow:visible;
+  text-overflow:clip;
+  white-space:normal;
+  overflow-wrap:normal;
+  word-break:normal;
+  line-height:1.35;
+  letter-spacing:clamp(.2px,.13vw,1.1px);
+  font-size:clamp(10px,2.65vw,13px);
+}
+.scene--game .play-card-head .text-link {
+  flex:0 0 auto;
+  justify-self:end;
+  white-space:nowrap;
+  min-height:34px;
+  display:flex;
+  align-items:center;
+}
+.scene--game .play-inner.is-ready {
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:minmax(0,1fr) auto;
+  align-items:stretch;
+  justify-items:stretch;
+  justify-content:stretch;
+  padding:0;
+  gap:0;
+}
+.scene--game .is-ready .ready-content {
+  width:100%;
+  min-height:0;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+  gap:clamp(8px,1.9dvh,19px);
+  padding:clamp(8px,2.6dvh,25px) 0 6px;
+  overflow:hidden;
+  text-align:center;
+}
+.scene--game .is-ready .ready-content .game-eyebrow { flex:0 0 auto; }
+.scene--game .is-ready .ready-content .ready-avatar { flex:0 1 auto; }
+.scene--game .is-ready .ready-content .play-title {
+  max-width:100%;
+  width:100%;
+  flex:0 0 auto;
+  min-width:0;
+  font-size:clamp(25px,7.5vw,43px);
+  line-height:1.12;
+  letter-spacing:-.04em;
+  overflow-wrap:anywhere;
+}
+.scene--game .is-ready .ready-content .play-title em {
+  display:block;
+  max-width:100%;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+}
+.scene--game .is-ready .ready-content .play-subtitle {
+  flex:0 1 auto;
+  min-height:0;
+  max-width:min(100%,440px);
+  font-size:clamp(11px,1.8dvh,15px);
+  line-height:1.45;
+  overflow-wrap:break-word;
+}
+.scene--game .is-ready .ready-action-slot {
+  box-sizing:border-box;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  padding:0 4px clamp(12px,3.6dvh,38px);
+  flex:0 0 auto;
+}
+.scene--game .is-ready .ready-action-slot [data-action="roll"] {
+  width:min(100%,510px);
+  min-height:clamp(50px,7dvh,64px);
+  max-width:510px;
+  margin:0;
+}
+/* Fixed bottom offsets match the task screen's .round-bottom--task. */
+.scene--game .stable-round .round-bottom--task {
+  padding-bottom:clamp(12px,3.6dvh,38px);
+}
+/* Reel center and selection math continue to be calculated from measured tiles. */
+.scene--game .play-inner.is-rolling-screen {
+  gap:clamp(9px,1.8dvh,20px);
+  justify-content:center;
+}
+.scene--game .is-rolling-screen .reel-window {
+  height:clamp(212px,36dvh,315px);
+  max-width:100%;
+}
+.scene--game .reel-item {
+  flex:0 0 clamp(156px,39vw,187px);
+  gap:clamp(5px,1.3dvh,11px);
+  transform:scale(.91);
+  opacity:.78;
+}
+.scene--game .reel-item img {
+  width:clamp(144px,37vw,166px);
+  height:clamp(144px,37vw,166px);
+  object-fit:contain;
+}
+.scene--game .reel-item span {
+  max-width:100%;
+  font-size:clamp(10px,1.5dvh,13px);
+  line-height:1.25;
+  white-space:nowrap;
+}
+.scene--game .reel-item--landed {transform:scale(1.11);opacity:1}
+/* Long player names have a bounded label rather than pushing the score away. */
+.scene--game .match-team-meta {flex:1 1 auto;min-width:0;overflow:hidden}
+.scene--game .match-team b {flex:0 0 auto}
+.scene--game .match-team-label {max-width:100%;min-width:0;overflow:hidden}
+.scene--game .match-team-label [id^="label-team"] {
+  display:block;
+  min-width:0;
+  max-width:100%;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.scene--game .match-team-label .team-spot {flex:0 0 auto}
+@media(max-height:740px) {
+  .scene--game .is-ready .ready-content {gap:clamp(6px,1.2dvh,10px);padding-top:clamp(6px,2dvh,14px)}
+  .scene--game .is-ready .ready-content .play-title {font-size:clamp(24px,7.3vw,33px)}
+  .scene--game .is-ready .ready-content .play-subtitle {font-size:clamp(10px,1.7dvh,13px)}
+  .scene--game .is-rolling-screen .reel-window {height:clamp(193px,33dvh,225px)}
+  .scene--game .reel-item {flex-basis:clamp(149px,41vw,168px)}
+  .scene--game .reel-item img {width:clamp(139px,38vw,152px);height:clamp(139px,38vw,152px)}
+}
+@media(max-width:355px) {
+  .scene--game .play-card-head #play-step {font-size:10px;letter-spacing:0}
+  .scene--game .play-card-head .text-link {font-size:10px}
+  .scene--game .is-ready .ready-content .play-title {font-size:clamp(23px,7.25vw,31px)}
+  .scene--game .reel-item {flex-basis:148px}
+  .scene--game .reel-item img {width:138px;height:138px}
+}
