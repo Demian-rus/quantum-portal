@@ -38,7 +38,7 @@ module.exports=async function thematicUI(browser,url){
    await page.locator('[data-action="toggle-word"]').click();if(device.name==='phone')await screenshot(page,topic,'phone-round');
    await page.locator('[data-action="start-timer"]').click();await page.locator('[data-action="base-now"]').click();
    assert.equal(await page.evaluate(()=>game.history[0].outcome),'base-only');assert.deepEqual(await page.evaluate(()=>game.scores),awardTo==='setter'?[1,0]:[0,1]);
-   await page.locator('[data-action="next"]').click();await page.locator('[data-action="roll"]').click();await assertRoundSource(page,topic.source);await page.locator('[data-action="toggle-word"]').click();await page.locator('[data-action="start-timer"]').click();await page.locator('[data-action="correct-now"]').click();
+   assert.equal(await page.evaluate(()=>game.phase),'ready');await page.locator('[data-action="roll"]').click();await assertRoundSource(page,topic.source);await page.locator('[data-action="toggle-word"]').click();await page.locator('[data-action="start-timer"]').click();await page.locator('[data-action="correct-now"]').click();
    assert.equal(await page.evaluate(()=>game.phase),'results');assert.equal(await page.evaluate(()=>game.contentPack.id),topic.id);await page.locator('[data-action="again"]').click();assert.equal(await page.evaluate(()=>game.roundIndex),0);assert.equal(await page.evaluate(()=>game.contentPack.id),topic.id);
    if(device.name==='phone'){
     for(const mode of ['mime','draw','yesno','secret','blitz','approx']){
