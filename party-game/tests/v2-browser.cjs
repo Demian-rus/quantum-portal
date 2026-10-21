@@ -6,6 +6,7 @@ const URL='http://127.0.0.1:8765/party-game/';
 async function configureOnly(page,id) {
   await page.locator('#go-advanced').click();
   await page.locator('#mode-settings > summary').click();
+  await page.locator('#mode-toggles input[value="'+id+'"]').check({force:true});
   const inputs=page.locator('#mode-toggles input');
   for(let i=0;i<await inputs.count();i++){
     const current=inputs.nth(i);
@@ -25,7 +26,7 @@ async function configureOnly(page,id) {
       const errors=[];
       page.on('pageerror',e=>errors.push(e.message));
       await page.goto(URL,{waitUntil:'load'});
-      await page.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
+      await page.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
       await page.locator('#new-game-menu').click();
       await page.locator('#standard-game').click();
       await page.locator('[data-setting="difficulty"] [data-value="hard"]').click();
@@ -81,7 +82,7 @@ async function configureOnly(page,id) {
     const blitz=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
     const errs=[];blitz.on('pageerror',e=>errs.push(e.message));
     await blitz.goto(URL,{waitUntil:'load'});
-      await blitz.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
+      await blitz.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
     await blitz.locator('#new-game-menu').click();
       await blitz.locator('#standard-game').click();
     await configureOnly(blitz,'blitz');

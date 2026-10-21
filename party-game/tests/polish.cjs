@@ -19,7 +19,7 @@ async function isInViewport(page){
    page.on('dialog',d=>{dialogs.push(d.message());d.dismiss()});
    page.on('pageerror',e=>errors.push(e.message));
    await page.goto(URL,{waitUntil:'load'});
-      await page.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
+      await page.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
    // Test the three approved backgrounds on every device, including preferences.
    const art=async expected=>page.evaluate(expected=>{
      const bg=getComputedStyle(document.body,'::before').backgroundImage;
@@ -189,7 +189,7 @@ async function isInViewport(page){
   // check all THREE states have the exact same word-card geometry.
   const medium=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
   await medium.goto(URL,{waitUntil:'load'});
-      await medium.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
+      await medium.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
   await medium.locator('#new-game-menu').click();
       await medium.locator('#standard-game').click();
   await medium.evaluate(()=>{options.modes=['talk'];options.dice=false;options.difficulty='medium';});
@@ -209,7 +209,7 @@ async function isInViewport(page){
   // Blitz keeps the same left-red/right-green spatial language as other modes.
   const blitz=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
   await blitz.goto(URL,{waitUntil:'load'});
-      await blitz.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
+      await blitz.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
   await blitz.locator('#new-game-menu').click();
       await blitz.locator('#standard-game').click();
   await blitz.evaluate(()=>{options.modes=['blitz'];options.difficulty='easy';});

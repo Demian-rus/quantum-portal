@@ -1715,3 +1715,9 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
   #rules-understood{min-height:44px;padding:6px}
 }
 @media(prefers-reduced-motion:reduce){.rules-dialog *{scroll-behavior:auto}}
+
+/* Award policy stays directly below the players in the ordinary setup. */
+.award-policy{position:relative;margin-top:18px;z-index:1}
+.award-policy .choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;max-width:720px}
+.award-policy .choices button{min-width:0;min-height:44px;padding:10px 3px;font-size:clamp(11px,2.6vw,13px);letter-spacing:0}
+.score-recipient{margin:0;color:#bedff3;font-size:12px;line-height:1.4;overflow-wrap:anywhere}
