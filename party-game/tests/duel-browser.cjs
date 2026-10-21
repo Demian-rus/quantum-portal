@@ -92,7 +92,7 @@ const URL='http://127.0.0.1:8765/party-game/';
    await page.goto(URL,{waitUntil:'load'});
    await page.locator('#new-game-menu').click();
       await page.locator('#standard-game').click();
-   await page.evaluate(starter=>{chooseStartingTeam=()=>starter;options.complications=false;options.modes=['talk'];options.dice=false;options.finishType='rounds';options.rounds=2;options.riskRounds=false;soundOn=false},starter);
+   await page.evaluate(starter=>{chooseStartingTeam=()=>starter;options.awardTo='guesser';options.complications=false;options.modes=['talk'];options.dice=false;options.finishType='rounds';options.rounds=2;options.riskRounds=false;soundOn=false},starter);
    await page.locator('#start-game').click();
    const setter=starter===0?'a':'b',guesser=starter===0?'b':'a';
    assert.equal(await page.locator('#role-'+setter).textContent(),'ЗАГАДЫВАЕТ');
