@@ -134,6 +134,11 @@ const URL='http://127.0.0.1:8765/party-game/';
     await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
     assert.deepEqual(await page.evaluate(()=>game.current.question),question);
     assert.equal(await page.locator('[data-action^="award-"]').count(),4);
+    const answerVisible=await page.locator('.approx-answer strong').evaluate(answer=>{
+     const r=answer.getBoundingClientRect(),card=answer.closest('.approx-card').getBoundingClientRect();
+     return r.top>=card.top&&r.bottom<=card.bottom&&r.left>=card.left&&r.right<=card.right;
+    });
+    assert.equal(answerVisible,true,'Revealed numeric answer must be visible without scrolling');
     const geometry=await page.locator('[data-action^="award-"]').evaluateAll(nodes=>nodes.map(node=>{
      const r=node.getBoundingClientRect();return {top:r.top,bottom:r.bottom,left:r.left,right:r.right,height:r.height};
     }));
