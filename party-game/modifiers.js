@@ -127,3 +127,48 @@ function chooseModifier({modeId,methodId,difficulty,complications},random=Math.r
  if(!pool.length)throw Error('No applicable modifier: '+methodId+'/'+difficulty);
  return pool[Math.floor(random()*pool.length)];
 }
+
+// Selection policies are independent of score rules and the immutable catalog.
+const QUIP_MODIFIER_SELECTION_VERSION=1;
+const QUIP_MODIFIER_SELECTION_POLICIES=Object.freeze({
+ 1:Object.freeze({defaultChance:20,minChance:10,maxChance:100,step:5,recentLimit:5})
+});
+function normalizeModifierText(text){
+ return String(text).normalize('NFKC').toLocaleLowerCase('ru').replace(/ё/g,'е').replace(/[^\p{L}\p{N}]+/gu,' ').trim();
+}
+function modifierSelectionPolicy(match){
+ if(match.modifierSelectionVersion==null){
+  if(match.modifierChance!=null||match.modifierRecent!=null)throw Error('Missing QUIP modifier selection version');
+  return null;
+ }
+ const policy=QUIP_MODIFIER_SELECTION_POLICIES[match.modifierSelectionVersion];
+ if(!policy||!Number.isInteger(match.modifierChance)||match.modifierChance<policy.minChance||match.modifierChance>policy.maxChance||
+  (match.modifierChance-policy.minChance)%policy.step||!Array.isArray(match.modifierRecent)||match.modifierRecent.length>policy.recentLimit||
+  match.modifierRecent.some(entry=>!entry||typeof entry.id!=='string'||typeof entry.key!=='string'))
+  throw Error('Unsupported QUIP modifier selection policy/state');
+ return policy;
+}
+function sanitizeModifierChance(value){
+ const policy=QUIP_MODIFIER_SELECTION_POLICIES[QUIP_MODIFIER_SELECTION_VERSION];
+ const number=value==null?NaN:Number(value);
+ return Number.isFinite(number)?Math.max(policy.minChance,Math.min(policy.maxChance,policy.step*Math.round(number/policy.step))):policy.defaultChance;
+}
+function choosePartyModifier(match,request,random=Math.random,registry=QUIP_MODIFIERS){
+ const policy=modifierSelectionPolicy(match);
+ if(!policy)return {modifier:chooseModifier(request,random),recent:null};
+ const recent=match.modifierRecent;
+ const roll=()=>{const value=random();if(!Number.isFinite(value)||value<0||value>=1)throw Error('Invalid QUIP modifier random value');return value;};
+ if(!modeConfigForGame(match,request.modeId).usesModifiers||
+  request.modeId!=='secret'&&(!request.complications||roll()>=match.modifierChance/100))return {modifier:null,recent};
+ const pool=getModifierPool(request.methodId,request.difficulty,registry);
+ if(!pool.length)throw Error('No applicable modifier: '+request.methodId+'/'+request.difficulty);
+ let candidates=[];
+ // Release the oldest restriction first. At most recentLimit + 1 bounded passes.
+ for(let dropped=0;dropped<=recent.length;dropped++){
+  const blocked=recent.slice(dropped);
+  candidates=pool.filter(entry=>!blocked.some(previous=>previous.id===entry.id||previous.key===normalizeModifierText(entry.text)));
+  if(candidates.length)break;
+ }
+ const modifier=candidates[Math.floor(roll()*candidates.length)];
+ return {modifier,recent:[...recent,{id:modifier.id,key:normalizeModifierText(modifier.text)}].slice(-policy.recentLimit)};
+}

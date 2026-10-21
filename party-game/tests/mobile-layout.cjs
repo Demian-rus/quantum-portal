@@ -53,6 +53,7 @@ function fitsViewport(g,device,stage) {
     headless:true,args:['--no-sandbox']
   });
   try{
+    await require('./modifier-frequency.cjs')(browser,URL);
     await require('./round-outcomes.cjs')(browser,URL);
     await require('./award-policy.cjs')(browser,URL);
     await require('./rules-guide.cjs')(browser,URL);

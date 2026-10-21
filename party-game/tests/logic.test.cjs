@@ -54,10 +54,10 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
     options.modes=options.modes.filter(id=>id!=='approx');
     if(options.contentPack?.id==='general')options.contentPack={id:'general',version:1};
     newGame();if(game&&game.phase==='ready'&&game.roundIndex===0){
-      game.rulesVersion=version;delete game.modeConfigVersion;delete game.awardTo;delete game.awardPolicyVersion;game.blitzCount=5;game.modes=game.modes.filter(id=>id!=='approx');persist();
+      game.rulesVersion=version;delete game.modeConfigVersion;delete game.awardTo;delete game.awardPolicyVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;game.blitzCount=5;game.modes=game.modes.filter(id=>id!=='approx');persist();
     }
   }`,context);
-  vm.runInContext("function v4Game(){newGame();game.rulesVersion=4;persist()}",context);
+  vm.runInContext("function v4Game(){newGame();game.rulesVersion=4;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;persist()}",context);
   // Scoring fixtures choose a fixed starting player; dedicated tests exercise both draws.
   if(!randomizeStarter)vm.runInContext('chooseStartingTeam=()=>0',context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
@@ -819,7 +819,7 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['approx-questions.js?v=1','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=4','presets.js?v=3','app.js?v=24']){
+ for(const file of ['approx-questions.js?v=1','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=2','round-planner.js?v=1','content-packs.js?v=4','presets.js?v=3','app.js?v=25']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
  assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);
@@ -1583,5 +1583,92 @@ test('V5 reload pays the saved base and bonus without recomputing the selected c
   b.eval('rewardForRound=()=>999;judge(true,'+full+')');assert.equal(b.eval('game.history[0].awarded'),full?3:2);
   assert.equal(b.eval('game.history[0].modifierPoints'),full?1:0);
   assert.match(b.eval('historyMarkup(game.history[0],0)'),full?/С усложнением/:/Без усложнения/);
+ }
+});
+
+function modifierSelectionHarness(chance=20,recent=[],pool){
+ const h=harness();h.context.testMatch={scoringVersion:2,rulesVersion:5,modeConfigVersion:1,modifierSelectionVersion:1,modifierChance:chance,modifierRecent:recent};
+ h.context.testRequest={modeId:'talk',methodId:'talk',difficulty:'easy',complications:true};h.context.testPool=pool;
+ h.context.testRandom=()=>0;return h;
+}
+test('new modifier selection defaults and ranges come from the independent policy',()=>{
+ const h=harness();assert.equal(h.eval('options.modifierChance'),20);
+ assert.deepEqual(JSON.parse(h.eval('JSON.stringify(QUIP_MODIFIER_SELECTION_POLICIES[1])')),{defaultChance:20,minChance:10,maxChance:100,step:5,recentLimit:5});
+ for(const [raw,expected] of [[undefined,20],[0,10],[102,100],[36,35],[100,100]]){
+  h.context.rawChance=raw;assert.equal(h.eval('sanitizeModifierChance(rawChance)'),expected);
+ }
+ h.eval('soundOn=false;newGame()');assert.equal(h.eval('game.modifierSelectionVersion'),1);assert.equal(h.eval('game.modifierChance'),20);assert.equal(h.eval('game.rulesVersion'),5);
+});
+test('optional modifier probability has deterministic boundaries and no guaranteed batch quota',()=>{
+ for(const chance of [10,20,50,100]){
+  const h=modifierSelectionHarness(chance);let picked=0;
+  for(let i=0;i<100;i++){
+   let calls=0;h.context.testRandom=()=>calls++===0?i/100:0;
+   if(h.eval('choosePartyModifier(testMatch,testRequest,testRandom).modifier!==null'))picked++;
+  }
+  assert.equal(picked,chance);
+ }
+ const h=modifierSelectionHarness(20);h.context.testRandom=()=>.2;assert.equal(h.eval('choosePartyModifier(testMatch,testRequest,testRandom).modifier'),null);
+ h.context.testRequest.complications=false;h.context.testRandom=()=>{throw Error('RNG should not be used')};assert.equal(h.eval('choosePartyModifier(testMatch,testRequest,testRandom).modifier'),null);
+});
+test('Secret always selects a modifier and Approx never selects one at any chance or level',()=>{
+ for(const chance of [10,20,100])for(const difficulty of ['easy','medium','hard']){
+  const h=modifierSelectionHarness(chance);h.context.testRequest={modeId:'secret',methodId:'talk',difficulty,complications:false};h.context.testRandom=()=>.9999;
+  assert.ok(h.eval('choosePartyModifier(testMatch,testRequest,testRandom).modifier'));
+  h.context.testRequest={modeId:'approx',methodId:'approx',difficulty,complications:true};h.context.testRandom=()=>{throw Error('Approx must not draw a modifier')};
+  assert.equal(h.eval('choosePartyModifier(testMatch,testRequest,testRandom).modifier'),null);
+ }
+});
+test('recent modifier exclusion compares both IDs and normalized text across tiers',()=>{
+ const pool=[{id:'one',text:'Показывай как робот.',severity:'easy',modes:['talk'],enabled:true},
+ {id:'duplicate',text:'  ПОКАЗЫВАЙ  КАК РОБОТ! ',severity:'medium',modes:['talk'],enabled:true},
+ {id:'alternative',text:'Говори шёпотом.',severity:'hard',modes:['talk'],enabled:true}];
+ const h=modifierSelectionHarness(100,[{id:'one',key:'показывай как робот'}],pool);h.context.testRequest.difficulty='hard';
+ const before=JSON.stringify(h.context.testMatch),selection=h.eval('choosePartyModifier(testMatch,testRequest,testRandom,testPool)');
+ assert.equal(selection.modifier.id,'alternative');assert.equal(selection.recent.at(-1).key,'говори шепотом');assert.equal(JSON.stringify(h.context.testMatch),before);
+ assert.equal(h.eval('normalizeModifierText("ГОВОРИ ШЁПОТОМ!!!")'),h.eval('normalizeModifierText("говори  шепотом.")'));
+});
+test('small modifier pools relax oldest restrictions safely and keep the latest avoidance',()=>{
+ const pool=[{id:'one',text:'Первое условие.',severity:'easy',modes:['talk'],enabled:true}];
+ const recent=Array.from({length:5},()=>({id:'one',key:'первое условие'}));
+ const h=modifierSelectionHarness(100,recent,pool);const selected=h.eval('choosePartyModifier(testMatch,testRequest,testRandom,testPool)');
+ assert.equal(selected.modifier.id,'one');assert.equal(selected.recent.length,5);
+ h.context.testPool=[...pool,{id:'two',text:'Второе условие.',severity:'easy',modes:['talk'],enabled:true}];
+ h.context.testMatch.modifierRecent=[{id:'two',key:'второе условие'},{id:'one',key:'первое условие'}];
+ assert.equal(h.eval('choosePartyModifier(testMatch,testRequest,testRandom,testPool).modifier.id'),'two');
+});
+test('real rounds maintain five selected modifiers without recent text repeats or catalog mutations',()=>{
+ const h=harness();h.eval('soundOn=false;options.modes=["talk"];options.modifierChance=100;options.difficulty="hard";options.dice=false;options.riskRounds=false;Math.random=()=>0;newGame()');
+ const catalog=h.eval('JSON.stringify(QUIP_MODIFIERS)'),keys=[];
+ for(let i=0;i<9;i++){
+  h.eval('roll()');const key=h.eval('normalizeModifierText(game.current.complication)');
+  assert.equal(keys.slice(-5).includes(key),false,'Recent text repeated');keys.push(key);
+  assert.ok(h.eval('game.modifierRecent.length')<=5);h.eval('game.phase="judge";judge(false)');
+ }
+ assert.equal(h.eval('game.modifierRecent.length'),5);assert.equal(h.eval('JSON.stringify(QUIP_MODIFIERS)'),catalog);
+});
+test('chance and recent state are snapshotted per party and restored with the selected modifier',()=>{
+ const stored=new Map(),a=harness(stored);a.eval('soundOn=false;options.modes=["secret"];options.modifierChance=100;options.dice=false;newGame();roll();persist()');
+ const round=a.eval('JSON.stringify(game.current)'),recent=a.eval('JSON.stringify(game.modifierRecent)');
+ a.eval('options.modifierChance=10;options.complications=false;persist()');const b=harness(stored);
+ assert.equal(b.eval('game.modifierChance'),100);assert.equal(b.eval('options.modifierChance'),10);assert.equal(b.eval('game.complications'),true);
+ assert.equal(b.eval('JSON.stringify(game.current)'),round);assert.equal(b.eval('JSON.stringify(game.modifierRecent)'),recent);
+ b.eval('Math.random=()=>{throw Error("No reroll on restore/render")};render()');assert.equal(b.eval('JSON.stringify(game.current)'),round);
+});
+test('pre-C parties retain the historical 35 percent path independently of score versions and options',()=>{
+ for(const version of [1,2,3,4,5]){
+  const h=modifierSelectionHarness(20);h.context.testMatch={scoringVersion:2,rulesVersion:version};let calls=0;h.context.testRandom=()=>calls++===0?.3:0;
+  assert.ok(h.eval('choosePartyModifier(testMatch,testRequest,testRandom).modifier'));
+  h.context.testMatch={scoringVersion:2,rulesVersion:version};calls=0;h.context.testRandom=()=>calls++===0?.35:0;
+  assert.equal(h.eval('choosePartyModifier(testMatch,testRequest,testRandom).modifier'),null);
+  assert.equal(h.eval('modifierSelectionPolicy(testMatch)'),null);
+ }
+ const stored=new Map(),a=harness(stored);a.eval('soundOn=false;newGame();delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;persist()');
+ const b=harness(stored);assert.equal(b.eval('game.modifierSelectionVersion'),undefined);assert.equal(b.eval('game.modifierChance'),undefined);assert.equal(b.eval('game.modifierRecent'),undefined);
+});
+test('unsupported modifier policies and invalid recent state protect the original saved party',()=>{
+ for(const change of ['game.modifierSelectionVersion=99','game.modifierChance=22','game.modifierRecent=null']){
+  const stored=new Map(),a=harness(stored);a.eval('soundOn=false;newGame();'+change+';persist()');const original=stored.get('iskra-party:v1');
+  const b=harness(stored);assert.equal(b.eval('storageBlocked'),true);b.eval('newGame();persist()');assert.equal(stored.get('iskra-party:v1'),original);
  }
 });

@@ -1785,3 +1785,8 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
  .scene--game .judge-copy .judge-team-name{display:inline}
  .scene--game .judge-copy .play-title em{display:inline;margin:0 0 0 7px;font-size:16px}
 }
+
+.modifier-settings{min-width:0;display:grid;gap:10px;align-content:start}
+.modifier-frequency{padding:14px;border:1px solid #7e91c066;border-radius:15px;background:#15172ed9}
+.modifier-frequency .slider-title{gap:12px;align-items:center}
+.modifier-frequency output{min-width:4ch;color:#a5edff}
