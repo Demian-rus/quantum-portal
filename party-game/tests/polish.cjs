@@ -10,7 +10,7 @@ async function isInViewport(page){
  });
 }
 (async()=>{
- fs.mkdirSync('artifacts/iskra-polish',{recursive:true});
+ fs.mkdirSync('artifacts/quip-polish',{recursive:true});
  const browser=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
  try{
   for(const device of [{name:'small',width:360,height:640},{name:'phone',width:390,height:844},{name:'large',width:412,height:915},{name:'desktop',width:1440,height:900}]){
@@ -28,7 +28,7 @@ async function isInViewport(page){
    const homeArt=await art('home');
    assert.ok(homeArt.bg.includes('bg-home.webp?v=3'),'Home artwork was not loaded');
    assert.equal(homeArt.neon,'#54e8ff');
-   if(device.name==='phone')await page.screenshot({path:'artifacts/iskra-polish/phone-kvip-home.png'});
+   if(device.name==='phone')await page.screenshot({path:'artifacts/quip-polish/phone-kvip-home.png'});
    await page.locator('#settings-menu').click();
    const prefArt=await art('setup');
    assert.ok(prefArt.bg.includes('bg-setup.webp?v=3'),'Preferences should share the settings backdrop');
@@ -38,7 +38,7 @@ async function isInViewport(page){
    assert.ok(setupArt.bg.includes('bg-setup.webp?v=3'),'Party setup art mismatch');
    const chosen=await page.locator('.choices .is-chosen').first().evaluate(el=>getComputedStyle(el).backgroundImage);
    assert.match(chosen,/gradient/,'Old flat lime selection still active');
-   if(device.name==='phone')await page.screenshot({path:'artifacts/iskra-polish/phone-kvip-setup.png'});
+   if(device.name==='phone')await page.screenshot({path:'artifacts/quip-polish/phone-kvip-setup.png'});
    const selection=await page.evaluate(()=>{
      const label=document.querySelector('.choices[data-setting="difficulty"] [data-value="medium"]');
      const start=new Event('selectstart',{bubbles:true,cancelable:true});
@@ -56,7 +56,7 @@ async function isInViewport(page){
    await page.locator('#start-game').click();
    assert.ok((await art('game')).bg.includes('bg-game.webp?v=3'),'Game background mismatch');
    await page.waitForSelector('[data-action="roll"]');
-   if(device.name==='phone')await page.screenshot({path:'artifacts/iskra-polish/phone-kvip-game-ready.png'});
+   if(device.name==='phone')await page.screenshot({path:'artifacts/quip-polish/phone-kvip-game-ready.png'});
    const ready=await page.evaluate(()=>{
     const a=document.querySelector('.is-ready .ready-avatar').getBoundingClientRect();
     const bar=document.querySelector('.play-card-head').getBoundingClientRect();
@@ -64,10 +64,10 @@ async function isInViewport(page){
    });
    assert.ok(ready.avatarWidth>=108,'Ready artwork is too small '+JSON.stringify(ready));
    assert.ok(ready.avatarTop>=ready.headBottom&&ready.avatarTop<ready.viewport*.60,'Ready image is not near header '+JSON.stringify(ready));
-   await page.screenshot({path:'artifacts/iskra-polish/'+device.name+'-ready.png'});
+   await page.screenshot({path:'artifacts/quip-polish/'+device.name+'-ready.png'});
    await page.locator('[data-action="roll"]').click();
    await page.waitForSelector('[data-action="toggle-word"]');
-   await page.screenshot({path:'artifacts/iskra-polish/'+device.name+'-task-closed.png'});
+   await page.screenshot({path:'artifacts/quip-polish/'+device.name+'-task-closed.png'});
    const hiddenCardHeight=await page.locator('.is-task .challenge-card').evaluate(el=>el.getBoundingClientRect().height);
    await page.locator('[data-action="toggle-word"]').click();
    // Reproduce the reported two-line prompt on every viewport.
@@ -110,9 +110,9 @@ async function isInViewport(page){
    assert.equal(russian.hyphens,'auto');
    assert.equal(russian.wordBreak,'normal');
    assert.ok(russian.width<russian.cardWidth,'Long Russian prompt does not fit');
-   await page.screenshot({path:'artifacts/iskra-polish/'+device.name+'-russian-hyphen.png'});
+   await page.screenshot({path:'artifacts/quip-polish/'+device.name+'-russian-hyphen.png'});
    await page.evaluate(()=>{game.current.word='ПОТЕРЯННЫЙ ТЕЛЕФОН';render();});
-   await page.screenshot({path:'artifacts/iskra-polish/'+device.name+'-task-controls.png'});
+   await page.screenshot({path:'artifacts/quip-polish/'+device.name+'-task-controls.png'});
    await page.locator('.is-task [data-action="start-timer"]').click();
    assert.equal(await page.locator('.is-play [data-action="correct-now"]').count(),1);
    assert.equal(await page.locator('.is-play [data-action="pause"]').count(),1);
@@ -136,14 +136,14 @@ async function isInViewport(page){
      geometry.actions[2].width>geometry.actions[1].width,'Side decisions must be larger');
    assert.equal(geometry.actions[0].color,'rgb(255, 255, 255)');
    assert.equal(geometry.actions[2].color,'rgb(255, 255, 255)');
-   await page.screenshot({path:'artifacts/iskra-polish/'+device.name+'-timer-controls.png'});
+   await page.screenshot({path:'artifacts/quip-polish/'+device.name+'-timer-controls.png'});
    const first=await isInViewport(page);
    assert.ok(first.page<=first.window+2&&first.inside<=first.height+4,'Game scroll overflow '+JSON.stringify(first));
    await page.locator('[data-action="correct-now"]').click();
    assert.equal(await page.locator('#score-b').textContent(),'1');
    assert.equal(await page.locator('#round-now').textContent(),'2');
    assert.equal(await page.locator('[data-action="roll"]').count(),1,'Extra next-step confirmation');
-   await page.screenshot({path:'artifacts/iskra-polish/'+device.name+'-next-turn.png'});
+   await page.screenshot({path:'artifacts/quip-polish/'+device.name+'-next-turn.png'});
    // Intentionally create another game while one is saved; nothing must summon a system alert.
    await page.locator('#exit-game').click();
    await page.locator('#new-game-menu').click();
@@ -175,7 +175,7 @@ async function isInViewport(page){
    })));
    assert.deepEqual(judgeSides.map(x=>x.action),['no','yes'],'Judge order must be red then green');
    assert.ok(judgeSides[0].x<judgeSides[1].x);
-   await page.screenshot({path:'artifacts/iskra-polish/'+device.name+'-judgement.png'});
+   await page.screenshot({path:'artifacts/quip-polish/'+device.name+'-judgement.png'});
    await page.locator('[data-action="no"]').click();
    assert.equal(await page.locator('[data-action="roll"]').count(),1);
    assert.deepEqual(errors,[],'Browser JS errors');
@@ -199,7 +199,7 @@ async function isInViewport(page){
   const timerTop=await cardTop();
   assert.ok(Math.abs(taskTop-countdownTop)<=2 && Math.abs(taskTop-timerTop)<=2,
     'Autostart card jumps: '+JSON.stringify({taskTop,countdownTop,timerTop}));
-  await medium.screenshot({path:'artifacts/iskra-polish/phone-autostart-fixed-card.png'});
+  await medium.screenshot({path:'artifacts/quip-polish/phone-autostart-fixed-card.png'});
   await medium.close();
   // Blitz keeps the same left-red/right-green spatial language as other modes.
   const blitz=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
@@ -225,7 +225,7 @@ async function isInViewport(page){
   const blitzFit=await isInViewport(blitz);
   assert.ok(blitzFit.page<=blitzFit.window+2&&blitzFit.inside<=blitzFit.height+4,
     'Blitz layout scrolls '+JSON.stringify(blitzFit));
-  await blitz.screenshot({path:'artifacts/iskra-polish/phone-blitz-red-left-green-right.png'});
+  await blitz.screenshot({path:'artifacts/quip-polish/phone-blitz-red-left-green-right.png'});
   await blitz.locator('[data-action="blitz-skip"]').click();
   await blitz.evaluate(()=>{for(let i=0;i<43;i++)advanceBlitz(false);});
   const status=await blitz.locator('.blitz-status').evaluate(el=>({
@@ -244,7 +244,7 @@ async function isInViewport(page){
   assert.deepEqual(blitzJudge.map(x=>x.action),['no','yes']);
   assert.ok(blitzJudge[0].x<blitzJudge[1].x);
   assert.ok(!(await blitz.locator('.is-judge').innerText()).includes('Пропущено'));
-  await blitz.screenshot({path:'artifacts/iskra-polish/phone-blitz-result-red-left-green-right.png'});
+  await blitz.screenshot({path:'artifacts/quip-polish/phone-blitz-result-red-left-green-right.png'});
   await blitz.close();
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
