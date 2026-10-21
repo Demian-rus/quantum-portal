@@ -30,12 +30,12 @@ jobs:
       - run: npm install --no-save playwright-core@1.55.0
       - run: |
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/quip-http.log 2>&1 &
+      - run: node party-game/tests/mobile-layout.cjs
       - run: node party-game/tests/browser.cjs
       - run: node party-game/tests/v2-browser.cjs
       - run: node party-game/tests/immersive.cjs
       - run: node party-game/tests/polish.cjs
       - run: node party-game/tests/duel-browser.cjs
-      - run: node party-game/tests/mobile-layout.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
