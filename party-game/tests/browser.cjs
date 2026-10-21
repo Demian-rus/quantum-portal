@@ -21,6 +21,7 @@ const {chromium} = require('playwright-core');
       const errors=[];
       page.on('pageerror',e=>errors.push(e.message));
       await page.goto('http://127.0.0.1:8765/party-game/',{waitUntil:'load'});
+      await page.evaluate(()=>{chooseStartingTeam=()=>0});
       await page.waitForSelector('#new-game-menu');
       assert.ok(await page.locator('#new-game-menu').isVisible());
       assert.equal(await page.locator('#continue-game').isDisabled(),true);

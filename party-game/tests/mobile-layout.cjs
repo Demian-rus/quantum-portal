@@ -61,6 +61,7 @@ function fitsViewport(g,device,stage) {
       const errors=[];
       page.on('pageerror',error=>errors.push(error.message));
       await page.goto(URL,{waitUntil:'load'});
+      await page.evaluate(()=>{chooseStartingTeam=()=>0});
       await page.locator('#new-game-menu').click();
       if(device.width>=780){
         const setup=await page.evaluate(()=>({

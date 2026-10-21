@@ -24,6 +24,7 @@ async function configureOnly(page,id) {
       const errors=[];
       page.on('pageerror',e=>errors.push(e.message));
       await page.goto(URL,{waitUntil:'load'});
+      await page.evaluate(()=>{chooseStartingTeam=()=>0});
       await page.locator('#new-game-menu').click();
       await page.locator('[data-setting="difficulty"] [data-value="hard"]').click();
       await configureOnly(page,'yesno');
@@ -78,6 +79,7 @@ async function configureOnly(page,id) {
     const blitz=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
     const errs=[];blitz.on('pageerror',e=>errs.push(e.message));
     await blitz.goto(URL,{waitUntil:'load'});
+      await blitz.evaluate(()=>{chooseStartingTeam=()=>0});
     await blitz.locator('#new-game-menu').click();
     await configureOnly(blitz,'blitz');
     await blitz.locator('#advanced-done').click();
