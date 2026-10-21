@@ -37,6 +37,7 @@ function harness(existing=new Map()) {
   vm.runInContext(read('curated-songs.js'),context);
   vm.runInContext(read('curated-people.js'),context);
   vm.runInContext(read('mode-images.js'),context);
+  vm.runInContext(read('cards.js'),context);
   vm.runInContext(read('app.js'),context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
 }
@@ -495,7 +496,7 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v16-20261021-vocabulary/);
+ assert.match(worker,/kvip-pwa-v17-20261021-cards/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
 
@@ -609,7 +610,7 @@ test('new difficulty taxonomy chooses concrete easy, culinary medium, technical 
  const h=harness();
  h.eval('soundOn=false;newGame()');
  assert.ok(h.eval("getPromptPool('words','easy').includes('КОРАБЛЬ')"));
- assert.ok(h.eval("getPromptPool('words','medium').includes('МАТЧА')"));
+ assert.ok(h.eval("getPromptPool('words','medium').includes('МАЧТА')"));
  assert.ok(h.eval("getPromptPool('words','hard').includes('ВАТЕРЛИНИЯ')"));
  for(const type of ['word','phrase','idiom']){
   const levels=['easy','medium','hard'].map(level=>Array.from(h.eval('PARTY_VOCABULARY.'+type+'.'+level)));
@@ -658,4 +659,55 @@ test('new games use a one-minute base and +30s in long modes including Blitz',()
  h.eval("soundOn=false;options.duration=60;options.modes=['blitz'];newGame();roll()");
  assert.equal(h.eval('game.current.seconds'),90);
  assert.equal(h.eval('game.current.blitzWords.length'),5);
+});
+
+test('card catalog v1 has all 3016 active tasks and immutable unique IDs',()=>{
+ const h=harness(),cards=JSON.parse(h.eval('JSON.stringify(PARTY_CARDS)'));
+ assert.equal(h.eval('PARTY_CARD_SCHEMA_VERSION'),1);
+ assert.equal(cards.length,3016);
+ assert.equal(new Set(cards.map(c=>c.id)).size,3016);
+ assert.deepEqual(Object.fromEntries(['word','phrase','idiom','song','person'].map(t=>[t,cards.filter(c=>c.type===t).length])),
+   {word:1846,phrase:496,idiom:142,song:215,person:317});
+ for(const c of cards){
+  assert.match(c.id,/^(word|phrase|idiom|song|person)-\\d{6}$/);
+  assert.ok(c.text.trim().length>1);
+  assert.ok(['easy','medium','hard'].includes(c.difficulty));
+  assert.ok(['word','phrase','idiom','song','person'].includes(c.type));
+  assert.ok(Array.isArray(c.categories)&&c.categories.every(x=>/^[a-z][a-z0-9-]*$/.test(x)));
+  assert.equal(c.categories.length,new Set(c.categories).size);
+  assert.ok(['core','music','people'].includes(c.pack));
+  if(c.type==='song')assert.ok(c.meta.title&&c.meta.artist&&c.meta.genre);
+ }
+ assert.equal(h.eval("getCardById('word-000001').text"),'КАРАНДАШ');
+ assert.equal(h.eval("getCardById('unknown')"),null);
+ assert.equal(h.eval('Object.isFrozen(PARTY_CARDS[0])&&Object.isFrozen(PARTY_CARDS[0].categories)'),true);
+ const mast=cards.filter(c=>c.text==='МАЧТА');
+ assert.deepEqual(mast.map(c=>[c.id,c.type,c.difficulty,c.categories]),[['word-000710','word','medium',['transport','marine']]]);
+ assert.equal(cards.some(c=>c.text==='МАТЧА'),false);
+});
+test('typed source retains old playable words, songs, people and blitz constraints',()=>{
+ const h=harness();h.eval('soundOn=false;newGame()');
+ for(const level of ['easy','medium','hard']){
+  for(const type of ['word','phrase','idiom']){
+   const cards=Array.from(h.eval("getCardPool('words','"+level+"',['"+type+"']).map(c=>c.text)"));
+   const legacyView=Array.from(h.eval("PARTY_VOCABULARY."+type+"."+level));
+   assert.deepEqual(cards,legacyView);
+  }
+  for(const [kind,type] of [['songs','song'],['people','person']]){
+   const cards=Array.from(h.eval("getCardPool('"+kind+"','"+level+"').map(c=>c.text)"));
+   const prompts=Array.from(h.eval("getPromptPool('"+kind+"','"+level+"')"));
+   assert.deepEqual(cards,prompts);
+  }
+ }
+ assert.equal(h.eval("getCardPool('blitz','hard').every(c=>c.difficulty==='easy'&&c.text.length<=12)"),true);
+ assert.ok(read('index.html').includes('./cards.js?v=1'));
+ assert.ok(read('sw.js').includes('./cards.js?v=1'));
+});
+test('text-only saved rounds still restore unchanged after catalog migration',()=>{
+ const saved=new Map(),a=harness(saved);
+ a.eval("soundOn=false;options.modes=['talk'];options.dice=false;newGame();roll();game.current.word='СТИРАЛЬНАЯ МАШИНА';game.phase='task';persist()");
+ const b=harness(saved);
+ assert.equal(b.eval('game.current.word'),'СТИРАЛЬНАЯ МАШИНА');
+ assert.equal(b.eval('game.phase'),'task');
+ assert.equal(b.eval('game.scoringVersion'),2);
 });
