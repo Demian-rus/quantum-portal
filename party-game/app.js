@@ -47,6 +47,14 @@ function displayPrompt(value) {
   return escapeHTML(value).replace(/ПАРАЛЛЕЛЬНАЯ/gi, match =>
     match.slice(0,-3)+'\u00ad'+match.slice(-3));
 }
+function displayTeamName(value){
+  const chars=Array.from(String(value));
+  if(chars.length>16&&!/\s/u.test(value)){
+    const mid=Math.ceil(chars.length/2);
+    return escapeHTML(chars.slice(0,mid).join(''))+'<wbr>'+escapeHTML(chars.slice(mid).join(''));
+  }
+  return escapeHTML(value);
+}
 function readSaved() {
   try {
     const obj=JSON.parse(localStorage.getItem(STORAGE_KEY));
@@ -175,7 +183,7 @@ function rulesGuidePage(id) {
     const extra=id==='secret'?[...new Set(Object.values(QUIP_MODES_V4).filter(m=>m.secretMethod).map(m=>m.durationBonus))].sort((a,b)=>a-b):[mode.durationBonus];
     blocks.push(['Время','Базовое время: '+min+'–'+max+' с.'+(id==='secret'?' По выбранному способу: +'+extra.join(' или +')+' с.':extra[0]?' Ещё +'+extra[0]+' с на ход.':' Без добавочного времени.')]);
   }else blocks.push(['Без отсчёта','Время не ограничено. Таймера нет.']);
-  if(mode.usesModifiers)blocks.push(['Усложнение',id==='secret'? '+'+base+' базовых и обязательный +'+mode.modifierBonus+' за успех. Итого +'+(base+mode.modifierBonus)+'.':'Если выпало усложнение, успех добавит +'+mode.modifierBonus+' к базовой награде. Оно не обязательно.']);
+  if(mode.usesModifiers)blocks.push(['Усложнение',id==='secret'? '+'+base+' базовых и обязательный +'+mode.modifierBonus+' за успех. Итого +'+(base+mode.modifierBonus)+'. Если основное задание угадано, а усложнение нарушено — только +'+base+'.':'Если выпало усложнение, успех добавит +'+mode.modifierBonus+' к базовой награде. Если условие нарушено, но ответ угадан — только базовые очки. Оно не обязательно.']);
   if(mode.allowsRisk)blocks.push(['Риск','Если выпал риск-раунд, за неудачу можно потерять до '+rules.risk.loss+' очков, без ухода ниже '+rules.risk.minScore+'.']);
   else blocks.push(['Без дополнительных условий','Риска и усложнений нет.']);
   return {id,title:mode.title,reward:id==='secret'?'+'+base+' + '+mode.modifierBonus+' = +'+(base+mode.modifierBonus)+' за успех':'+'+base+' за успех',blocks};
@@ -483,6 +491,7 @@ const CONTROL_ICONS=Object.freeze({
   x:'<path d="M6 6l12 12M18 6 6 18"/>',
   pause:'<path d="M9 5v14M15 5v14"/>',
   play:'<path d="m8 5 11 7-11 7V5Z"/>',
+  'check-minus':'<path d="m3 12 4 4 7-9M15 16h6"/>',
   check:'<path d="m4 12 5 5L20 6"/>'
 });
 function iconButton(icon,action,label,variant='muted') {
@@ -650,14 +659,27 @@ function blitzStatus() {
   return '<div class="blitz-status"><b>ОСТАЛОСЬ: '+left+'</b>'+
     '<b>ОТГАДАНО: '+c.blitzCorrect+'</b></div>';
 }
+function allowsModifierResult(){
+ return ruleSetForGame(game).splitModifierOutcome===true&&Boolean(game.current?.complication);
+}
+function resultControls(duringPlay=false){
+ const modified=allowsModifierResult();
+ const option=(icon,action,label,variant)=>'<div class="judgement-option">'+iconButton(icon,action,label,variant+' prominent')+'<span>'+label+'</span></div>';
+ return '<div class="three-answer-actions verdict-actions'+(duringPlay?'':' judgement-grid')+'">'+
+  option('x',duringPlay?'wrong-now':'no','НЕ УГАДАЛИ','danger')+
+  (modified?option('check-minus',duringPlay?'base-now':'base','БЕЗ УСЛОЖНЕНИЯ','partial'):
+   duringPlay?'<div class="verdict-visibility">'+iconButton(game.current.visible?'eye-off':'eye','toggle-word',game.current.visible?'Скрыть слово':'Показать слово')+'</div>':'<span aria-hidden="true"></span>')+
+  option('check',duringPlay?'correct-now':'yes',modified?'ВЫПОЛНИЛИ':'УГАДАЛИ','success')+'</div>';
+}
 function showTimer() {
   $('play-content').className='play-inner is-play stable-round';
   $('play-step').textContent=game.scoringVersion===2?'ОТГАДЫВАЕТ '+guessingTeam():'ВРЕМЯ ПОШЛО';
   const c=game.current,remaining=c.paused?c.remainingMs:c.deadline-Date.now();
-  const shown=Math.max(0,remaining),blitz=c.modeId==='blitz';
+  const shown=Math.max(0,remaining),blitz=c.modeId==='blitz',modified=allowsModifierResult();
   $('play-content').innerHTML=
     '<div class="round-top round-top--timer">'+
       '<span class="game-eyebrow">'+escapeHTML(modeInformation().name)+' · '+c.seconds+' СЕКУНД</span>'+
+      (modified?'<div class="timer-cluster">':'')+
       '<div class="timer-ring'+(shown<=10000?' warning':'')+'" aria-label="Таймер">'+
         '<svg viewBox="0 0 200 200" class="ring-svg" aria-hidden="true">'+
           '<circle class="ring-bg" cx="100" cy="100" r="88" />'+
@@ -665,6 +687,7 @@ function showTimer() {
         '</svg>'+
         '<div id="active-timer" class="play-timer'+(shown<=10000?' warning':'')+'" role="timer" aria-label="Оставшееся время">'+timerMarkup(shown)+'</div>'+
       '</div>'+
+      (modified?iconButton(c.visible?'eye-off':'eye','toggle-word',c.visible?'Скрыть слово':'Показать слово')+'</div>':'')+
       (allowPause()?'<div class="timer-pause">'+iconButton(c.paused?'play':'pause',c.paused?'resume':'pause',c.paused?'Продолжить':'Пауза')+'</div>':'')+
       (blitz?blitzStatus():'')+
       (c.risk?'<p class="risk-notice">⚡ РИСК: ПРОВАЛ −'+ruleSetForGame(game).risk.loss+' ОЧКА</p>':'')+
@@ -678,11 +701,7 @@ function showTimer() {
         '<div class="blitz-control">'+iconButton('check','blitz-correct',game.scoringVersion===2?'Слово отгадано':'Угадали — +1 очко','success prominent')+
           '<span>'+(game.scoringVersion===2?'ОТГАДАНО':'УГАДАЛИ +1')+'</span></div>'+
         '</div><div class="minor-action">'+makeButton('ЗАВЕРШИТЬ БЛИЦ','finish-early','button-quiet')+'</div>':
-        '<div class="three-answer-actions">'+
-          iconButton('x','wrong-now','Не угадали — завершить ход','danger prominent')+
-          iconButton(c.visible?'eye-off':'eye','toggle-word',c.visible?'Скрыть слово':'Показать слово')+
-          iconButton('check','correct-now','Угадали — засчитать очки','success prominent')+
-        '</div>')+
+        resultControls(true))+
     '</div>';
   updateTimerVisual(shown);
 }
@@ -776,35 +795,28 @@ function finishTimer(reason) {
   render();
 }
 function showJudge() {
-  $('play-content').className='play-inner is-judge';
+  $('play-content').className='play-inner is-judge verdict-round';
   $('play-step').textContent='ИТОГ РАУНДА';
   const c=game.current,blitz=c.modeId==='blitz';
   const incompleteBlitz=blitz&&game.scoringVersion===2&&c.blitzCorrect<blitzRequiredForRound(game,c);
-  $('play-content').innerHTML=
+  const points=allowsModifierResult()?'Основа +'+c.basePoints+' · усложнение +'+c.modifierPoints:
+    'Награда: +'+(blitz&&ruleSetForGame(game).legacyBlitz?c.blitzCorrect:incompleteBlitz?0:c.points);
+  $('play-content').innerHTML='<div class="judge-copy" tabindex="0" role="region" aria-label="Итог раунда">'+
     '<span class="game-eyebrow">'+(c.finishedReason==='timeout'?'ВРЕМЯ ВЫШЛО':'РАУНД ЗАКОНЧЕН')+'</span>'+
     symbol(blitz?'blitz':c.methodId)+
-    '<h2 class="play-title">'+(blitz?'РЕЗУЛЬТАТ <em>БЛИЦА</em>':'ОТГАДЫВАЮЩИЙ <em>УГАДАЛ?</em>')+'</h2>'+
-    '<p class="play-subtitle">'+(blitz?'Отгадано '+c.blitzCorrect+' из '+c.blitzWords.length+'. '+(game.scoringVersion===2?'Все '+c.blitzWords.length+' слов дают '+c.points+' очка.':'За каждое отгаданное слово — одно очко (старая партия).'):'Нажмите галочку, если ответ верный, или крестик, если нет.')+'</p>'+
-    '<p class="score-note">'+(blitz?'Награда: <b>'+(game.scoringVersion===2?(c.blitzCorrect===blitzRequiredForRound(game,c)?'+'+c.points:'0'):('+'+c.blitzCorrect))+' очков</b>':
-    'Было загадано: <b>'+escapeHTML(c.word)+'</b> · За ответ: +'+c.points)+'</p>'+
+    '<h2 class="play-title"><span class="judge-team-name'+(guessingTeam().length>16?' judge-team-name--long':'')+'">'+displayTeamName(guessingTeam())+'</span> <em>УГАДАЛИ?</em></h2>'+
+    '<p class="score-note">'+(blitz?'Отгадано '+c.blitzCorrect+' из '+c.blitzWords.length+(ruleSetForGame(game).legacyBlitz?'. За каждое отгаданное слово — одно очко (старая партия).':''):'Было загадано: <b>'+escapeHTML(c.word)+'</b>')+'</p>'+
+    '<p class="score-note">'+points+'</p>'+
     '<p class="score-recipient">Очки получит <b>'+escapeHTML(awardTeam())+'</b></p>'+
-    (c.risk?'<p class="risk-notice">⚡ Провал: потеря до '+ruleSetForGame(game).risk.loss+' очков у '+escapeHTML(awardTeam())+'</p>':'')+
-    (incompleteBlitz?'<div class="inline-actions">'+makeButton('ЗАВЕРШИТЬ РАУНД','no','button-primary button-big')+'</div>':
-    '<div class="judgement-grid">'+
-      '<div class="judgement-option">'+
-        '<button class="judgement judgement--no" data-action="no" type="button" aria-label="Не засчитывать"><svg viewBox="0 0 64 64"><path d="m17 17 30 30M47 17 17 47"/></svg></button>'+
-        '<span>'+(blitz?'ОТМЕНИТЬ':'НЕ УГАДАЛИ')+'</span>'+
-      '</div>'+
-      '<div class="judgement-option">'+
-        '<button class="judgement judgement--yes" data-action="yes" type="button" aria-label="Засчитать ответ"><svg viewBox="0 0 64 64"><path d="m13 33 13 13 25-28"/></svg></button>'+
-        '<span>'+(blitz?'ЗАСЧИТАТЬ':'УГАДАЛИ')+'</span>'+
-      '</div>'+
-    '</div>');
+    (c.risk?'<p class="risk-notice">⚡ Провал: до −'+ruleSetForGame(game).risk.loss+' очков у '+escapeHTML(awardTeam())+'</p>':'')+
+    '</div><div class="round-bottom round-bottom--judge">'+
+    (incompleteBlitz?'<div class="incomplete-blitz">'+makeButton('ЗАВЕРШИТЬ РАУНД','no','button-primary')+'</div>':resultControls())+'</div>';
 }
-function recordAnswer(yes) {
+function recordAnswer(yes,modifierSuccess=true) {
   if(!game||!['judge','play'].includes(game.phase)||roundInteraction()!=='explain')return;
+  if(yes&&!modifierSuccess&&!allowsModifierResult())return;
   const teamIndex=awardTeamIndex(),c=game.current;
-  const outcome=settleQuipRound(game,c,yes,game.scores[teamIndex]);
+  const outcome=settleQuipRound(game,c,{taskSuccess:yes,modifierSuccess},game.scores[teamIndex]);
   game.scores[teamIndex]+=outcome.delta;
   game.history.push({
     team:game.teams[teamIndex],setter:currentTeam(),mode:c.modeId,
@@ -812,9 +824,11 @@ function recordAnswer(yes) {
     word:c.modeId==='blitz'?c.blitzWords.join(' / '):c.word,
     awarded:outcome.delta,correct:outcome.success,risk:!!c.risk,
     rulesVersion:outcome.rulesVersion,difficulty:c.difficulty,
-    basePoints:c.basePoints,modifierPoints:outcome.success?(c.modifierPoints||0):0
+    basePoints:c.basePoints,modifierPoints:outcome.success?(outcome.modifierAwarded??c.modifierPoints??0):0,
+    ...(ruleSetForGame(game).splitModifierOutcome?{outcome:outcome.outcome,taskSuccess:outcome.taskSuccess,
+      modifierSuccess:outcome.modifierSuccess,baseAwarded:outcome.baseAwarded,reward:outcome.reward,penalty:outcome.penalty,modeName:getMode(c.modeId).title}:{})
   });
-  completeRound(yes);
+  completeRound(outcome.success);
 }
 function completeRound(success){
   game.roundIndex++;
@@ -823,12 +837,12 @@ function completeRound(success){
   game.current=null;
   stopTicking();persist();sfx(success?'win':'fail');render();
 }
-function correctNow() {
+function correctNow(modifierSuccess=true) {
   if(!game||game.phase!=='play'||game.current?.modeId==='blitz')return;
   const c=game.current;
   if(!c.paused&&Date.now()>=c.deadline){finishTimer('timeout');return;}
   if(c.paused&&(c.remainingMs??0)<=0){finishTimer('timeout');return;}
-  recordAnswer(true);
+  recordAnswer(true,modifierSuccess);
 }
 function wrongNow() {
   if(!game||game.phase!=='play'||game.current?.modeId==='blitz')return;
@@ -836,9 +850,9 @@ function wrongNow() {
   if(!c.paused && Date.now()>=c.deadline){finishTimer('timeout');return;}
   recordAnswer(false);
 }
-function judge(yes) {
+function judge(yes,modifierSuccess=true) {
   if(!game||game.phase!=='judge')return;
-  recordAnswer(yes);
+  recordAnswer(yes,modifierSuccess);
 }
 function showBetween() {
   $('play-content').className='play-inner is-between';
@@ -857,7 +871,8 @@ function historyMarkup(row,index){
   (row.sharedAward?'Обе команды':row.recipientNames.length?escapeHTML(row.recipientNames.join(', ')):'Никому')+
   '</span><b>'+row.deltas.map(delta=>'+'+delta).join(' / ')+'</b></div>';
  return '<div class="history-row"><span>'+(index+1)+'. '+escapeHTML(row.team)+' · '+
-  escapeHTML(getMode(row.mode)?.title||'')+' · '+escapeHTML(row.word)+'</span>'+
+  escapeHTML(getMode(row.mode)?.title||'')+' · '+escapeHTML(row.word)+
+  (row.outcome?' · '+(row.outcome==='failed'?'Не угадали':row.outcome==='base-only'?'Без усложнения':row.modifierSuccess===true?'С усложнением':'Угадали'):'')+'</span>'+
   '<b>'+(row.awarded>0?'+'+row.awarded:row.awarded)+'</b></div>';
 }
 function showResults() {
@@ -1000,10 +1015,12 @@ function handleAction(action) {
     case 'resume':return resumeTimer();
     case 'finish-early':return finishTimer('early');
     case 'correct-now':return correctNow();
+    case 'base-now':return correctNow(false);
     case 'wrong-now':return wrongNow();
     case 'blitz-correct':return advanceBlitz(true);
     case 'blitz-skip':return advanceBlitz(false);
     case 'yes':return judge(true);
+    case 'base':return judge(true,false);
     case 'no':return judge(false);
     case 'next':if(game?.phase==='between'){game.phase='ready';game.current=null;persist();render();}return;
     case 'again':if(game?.phase==='results'){game=null;newGame();}return;

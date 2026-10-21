@@ -19,6 +19,7 @@ async function geometry(page){
 }
 async function shot(page,name){
  await page.waitForFunction(()=>!document.getElementById("toast").classList.contains("show"));
+ await page.locator("#toast").evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{}))));
  await page.locator('#scene-setup,#scene-advanced').evaluateAll(async els=>{for(const el of els)await Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{})))});
  await page.screenshot({path:'artifacts/quip-mobile-layout/task007a-'+name+'.png'});
 }
