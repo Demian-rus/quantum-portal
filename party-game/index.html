@@ -18,13 +18,14 @@
   <script src="./curated-people.js?v=1" defer></script>
   <script src="./mode-images.js?v=6" defer></script>
   <script src="./cards.js?v=1" defer></script>
-  <script src="./rules.js?v=1" defer></script>
-  <script src="./penalties.js?v=1" defer></script>
+  <script src="./mode-config.js?v=1" defer></script>
+  <script src="./rules.js?v=2" defer></script>
+  <script src="./penalties.js?v=2" defer></script>
   <script src="./modifiers.js?v=1" defer></script>
   <script src="./round-planner.js?v=1" defer></script>
-  <script src="./content-packs.js?v=1" defer></script>
-  <script src="./presets.js?v=1" defer></script>
-  <script src="./app.js?v=17" defer></script>
+  <script src="./content-packs.js?v=2" defer></script>
+  <script src="./presets.js?v=2" defer></script>
+  <script src="./app.js?v=18" defer></script>
 </head>
 <body>
 
@@ -107,12 +108,12 @@
               <legend>АКТИВНЫЕ РЕЖИМЫ</legend>
               <div class="toggle-grid" id="mode-toggles">
                 <label><input type="checkbox" value="talk" checked><span>Слова <b>+1</b></span></label>
-                <label><input type="checkbox" value="mime" checked><span>Жесты <b>+2</b></span></label>
-                <label><input type="checkbox" value="draw" checked><span>Нарисуй <b>+2</b></span></label>
-                <label><input type="checkbox" value="sing" checked><span>Напой <b>+2</b></span></label>
+                <label><input type="checkbox" value="mime" checked><span>Жесты <b>+1</b></span></label>
+                <label><input type="checkbox" value="draw" checked><span>Нарисуй <b>+1</b></span></label>
+                <label><input type="checkbox" value="sing" checked><span>Напой <b>+1</b></span></label>
                 <label><input type="checkbox" value="yesno" checked><span>Данетки <b>+2</b></span></label>
                 <label><input type="checkbox" value="secret" checked><span>Секретка <b>+3</b></span></label>
-                <label><input type="checkbox" value="blitz" checked><span>Блиц <b>+3 за 5/5</b></span></label>
+                <label><input type="checkbox" value="blitz" checked><span>Блиц <b>+2 за 3/3</b></span></label>
               </div>
             </fieldset>
             <fieldset class="advanced-section">
@@ -124,7 +125,7 @@
               </div>
               <p class="advanced-help">У «Напой» темы подобраны по существующим известным песням разных жанров. В «Данетках» герои и знаменитости распределены по узнаваемости.</p>
             </fieldset>
-            <label class="modifier-toggle"><input id="toggle-complications" type="checkbox" checked><span><strong>Случайные усложнения</strong><small>Появляются примерно в каждом третьем раунде; в «Секретке» всегда.</small></span></label>
+            <label class="modifier-toggle"><input id="toggle-complications" type="checkbox" checked><span><strong>Случайные усложнения</strong><small>Появляются примерно в каждом третьем раунде; в «Секретке» всегда. Успешный раунд с усложнением даёт ещё +1.</small></span></label>
           </div>
         </div>
 
@@ -157,7 +158,7 @@
       <li>Играют двое. В свой ход вы загадываете, а соперник отгадывает и зарабатывает очки. Затем роли меняются.</li>
       <li>Карусель случайно выбирает один из включённых игровых режимов.</li>
       <li>В лёгкой сложности можно заменить слово и вручную запустить или поставить таймер на паузу. Базовое время задаётся ползунком 30–90 секунд (обычно 60). «Нарисуй», «Напой», «Данетки» и «Блиц» получают ещё 30 секунд, максимум 120. «Слова» и «Жесты» используют базовое время. В средней и сложной сложности отсчёт автоматически начинается через секунду после открытия задания; паузы и замены слова нет. В «Данетках» отвечайте только «да», «нет» или «не знаю».</li>
-      <li>Пока идёт время, зелёная галочка сразу засчитывает ответ, красный крестик завершает ход без очков (в риск-раунде снимается до 2 очков). После истечения времени можно подтвердить, успели ли угадать. «Слова» приносят 1 очко, «Жесты», «Нарисуй», «Напой» и «Данетки» — по 2, «Секретка» — 3. В «Блице» за базовое время плюс 30 секунд нужно отгадать все пять слов — это 3 очка, за неполный результат баллов нет.</li>
+      <li>Пока идёт время, зелёная галочка сразу засчитывает ответ, красный крестик завершает ход без очков (в риск-раунде снимается до 2 очков). После истечения времени можно подтвердить, успели ли угадать. «Слова» приносят 1 очко, «Жесты», «Нарисуй» и «Напой» — по 1, «Данетки» — 2. Успешное усложнение даёт ещё 1 очко; «Секретка» всегда даёт 2 + 1. В «Блице» за базовое время плюс 30 секунд нужно отгадать все три слова — это 2 очка, за неполный результат баллов нет.</li>
       <li>По очереди загадывайте друг другу. Очки получает отгадывающий. Игра заканчивается при достижении цели после ответного хода соперника или по чётному числу ходов. Риск-раунды могут отнять до 2 очков за провал.</li>
     </ol>
     <p class="rule-note">Звук включается только после нажатия кнопки. Игра сохраняется в этом браузере, а интернет после загрузки не нужен.</p>

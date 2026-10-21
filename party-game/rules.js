@@ -1,6 +1,6 @@
 'use strict';
 // Immutable rules. Never edit existing versions: saved matches depend on them.
-const QUIP_RULE_VERSION=3;
+const QUIP_RULE_VERSION=4;
 const QUIP_DIFFICULTIES=Object.freeze(['easy','medium','hard']);
 const freezeQuipRewards=rows=>Object.freeze(Object.fromEntries(Object.entries(rows).map(([key,tiers])=>[key,Object.freeze({...tiers})])));
 const CLASSIC_QUIP_REWARDS=freezeQuipRewards({
@@ -19,10 +19,13 @@ function makeQuipRule(version,rewards,legacyBlitz=false){
  return Object.freeze({version,rewards,legacyBlitz,blitzRequired:5,
   risk:Object.freeze({firstRoundIndex:2,chance:.2,loss:legacyBlitz?0:2,minScore:0})});
 }
+const V4_QUIP_REWARDS=freezeQuipRewards(Object.fromEntries(Object.values(QUIP_MODES_V4)
+ .map(mode=>[mode.id,Object.fromEntries(QUIP_DIFFICULTIES.map(level=>[level,mode.basePoints]))])));
 const QUIP_RULESETS=Object.freeze({
  1:makeQuipRule(1,CLASSIC_QUIP_REWARDS,true),
  2:makeQuipRule(2,CLASSIC_QUIP_REWARDS),
- 3:makeQuipRule(3,GRADED_QUIP_REWARDS)
+ 3:makeQuipRule(3,GRADED_QUIP_REWARDS),
+ 4:Object.freeze({...makeQuipRule(4,V4_QUIP_REWARDS),modeConfigVersion:1,blitzRequired:3})
 });
 function ruleSetForGame(match){
  if(!match||match.scoringVersion!==2)return QUIP_RULESETS[1];
@@ -32,9 +35,10 @@ function ruleSetForGame(match){
  if(!rules)throw Error('Unsupported QUIP rulesVersion: '+String(match.rulesVersion));
  return rules;
 }
-function rewardForRound(match,mode,difficulty){
+function rewardForRound(match,mode,difficulty,hasModifier=false){
  const table=ruleSetForGame(match).rewards[mode];
  if(!table||!QUIP_DIFFICULTIES.includes(difficulty))
   throw Error('Unknown mode/difficulty for rewards: '+mode+'/'+difficulty);
- return table[difficulty];
+ const bonus=ruleSetForGame(match).version>=4&&hasModifier?modeConfigForGame(match,mode).modifierBonus:0;
+ return table[difficulty]+bonus;
 }
