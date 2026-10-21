@@ -139,7 +139,10 @@ const URL='http://127.0.0.1:8765/party-game/';
     }));
     assert.ok(geometry.every(r=>r.top>=0&&r.bottom<=height+1&&r.left>=0&&r.right<=width+1&&r.height>=44),JSON.stringify(geometry));
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
-    if(choice==='a')await page.screenshot({path:'artifacts/quip-duel/approx-'+width+'x'+height+'.png'});
+    if(choice==='a'){
+     await page.locator('#scene-game').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
+     await page.screenshot({path:'artifacts/quip-duel/approx-'+width+'x'+height+'.png'});
+    }
     await page.locator('[data-action="award-'+choice+'"]').click();
    }
    assert.deepEqual(await page.evaluate(()=>game.scores),[2,2]);

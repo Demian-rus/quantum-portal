@@ -93,6 +93,7 @@ function fitsViewport(g,device,stage) {
         const box=await page.locator('#'+id).boundingBox();
         assert.ok(box&&box.width>=44&&box.height>=44,'Game-type touch target too small');
       }
+      await page.locator('#scene-game-type').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
       await page.screenshot({path:'artifacts/quip-mobile-layout/'+device.name+'-game-type.png'});
       await page.locator('#thematic-game').click();
       assert.equal(await page.locator('#scene-themes').isVisible(),true);
@@ -103,6 +104,7 @@ function fitsViewport(g,device,stage) {
         cards:[...document.querySelectorAll('.theme-choice')].map(el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right}})}));
       assert.ok(themeLayout.w<=device.width+2&&themeLayout.h<=device.height+2,JSON.stringify(themeLayout));
       assert.ok(themeLayout.cards.every(r=>r.left>=0&&r.right<=device.width+1),'Theme card outside viewport');
+      await page.locator('#scene-themes').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
       await page.screenshot({path:'artifacts/quip-mobile-layout/'+device.name+'-themes.png'});
       await page.locator('#themes-back').click();
       await page.locator('#game-type-back').click();
