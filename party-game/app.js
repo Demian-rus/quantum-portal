@@ -34,6 +34,7 @@ const freshOptions = () => ({
 let options = freshOptions();
 let soundOn = true;
 let game = null;
+let storageBlocked=false;
 let rafId = 0;
 let intervalId = null;
 let rollFrameHandle = null;
@@ -58,10 +59,12 @@ function displayPrompt(value) {
 function readSaved() {
   try {
     const obj=JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if(obj&&obj.version!==1){storageBlocked=true;return null;}
     return obj?.version===1 ? obj : null;
   } catch { return null; }
 }
 function persist() {
+  if(storageBlocked)return;
   try { localStorage.setItem(STORAGE_KEY,JSON.stringify({version:1,options,soundOn,game})); }
   catch { /* Private browsing might block storage; a session still works. */ }
 }
@@ -180,7 +183,7 @@ function closeAdvanced() {
 }
 function continueGame() {
   if(!hasUnfinishedGame())return;
-  if(game.phase==='rolling')game.phase='ready';
+  if(game.phase==='rolling')game.phase=game.current?'task':'ready';
   if(game.phase==='countdown'&&Date.now()>=game.current.autoStartAt)beginAutomaticRound();
   if(game.phase==='play'&&!game.current.paused&&game.current.deadline<=Date.now())
     finishTimer('timeout');
@@ -242,7 +245,12 @@ function pickMode() {
   return randomOne(candidates.length?candidates:allowed);
 }
 function chooseDifficulty() {
-  return game.difficulty==='mixed'?randomOne(['easy','medium','hard']):game.difficulty;
+  if(game.plannerVersion==null)
+    return game.difficulty==='mixed'?randomOne(['easy','medium','hard']):game.difficulty;
+  validateRoundPlan(game.plannerVersion,game.plannerState);
+  const planned=planRoundDifficulty(game.plannerState,game.roundIndex,game.difficulty);
+  game.plannerState=planned.state;
+  return planned.difficulty;
 }
 // The card catalog owns all active content and metadata; legacy saves still use text.
 const PARTY_VOCABULARY=Object.freeze(Object.fromEntries(
@@ -668,6 +676,7 @@ function render() {
   else stopTicking();
 }
 function newGame() {
+  if(storageBlocked){toast('Сохранение несовместимо с этой версией игры. Данные сохранены.');return;}
   // START is the explicit action; don't repeat it with a native confirmation.
   if(!options.modes.length){toast('Выберите хотя бы один игровой режим');return;}
   if(!options.promptTypes.length && options.modes.some(id=>['talk','mime','draw','blitz','secret'].includes(id))){toast('Выберите тип заданий');return;}
@@ -677,6 +686,7 @@ function newGame() {
     teams:[teamA,teamB],scores:[0,0],roundIndex:0,
     rounds:options.rounds,targetScore:options.targetScore,finishType:options.finishType,
     riskRounds:options.riskRounds,scoringVersion:2,rulesVersion:QUIP_RULE_VERSION,
+    plannerVersion:QUIP_PLANNER_VERSION,plannerState:freshRoundPlan(),
     duration:options.duration,difficulty:options.difficulty,
     modes:options.modes.slice(),promptTypes:options.promptTypes.slice(),
     dice:options.dice,complications:options.complications,blitzCount:5,
@@ -793,7 +803,14 @@ function restoreSession() {
   const candidate=saved.game;
   if(!candidate||!Array.isArray(candidate.teams)||candidate.teams.length!==2||
       !Array.isArray(candidate.scores)||!Number.isInteger(candidate.roundIndex))return;
-  if(candidate.phase==='rolling')candidate.phase='ready';
+  try{
+    if(candidate.scoringVersion!=null&&![1,2].includes(candidate.scoringVersion))
+      throw Error('Unsupported QUIP scoringVersion');
+    if(candidate.rulesVersion!=null&&!Object.hasOwn(QUIP_RULESETS,candidate.rulesVersion))
+      throw Error('Unsupported QUIP rulesVersion');
+    if(candidate.plannerVersion!=null)validatePlannedGame(candidate);
+  }catch{storageBlocked=true;return;}
+  if(candidate.phase==='rolling')candidate.phase=candidate.current?'task':'ready';
   if(candidate.phase==='countdown' && (candidate.current?.autoStartAt||0)<=Date.now()){
     candidate.phase='play';
     candidate.current.deadline=candidate.current.autoStartAt+candidate.current.seconds*1000;
@@ -918,6 +935,7 @@ function boot() {
   renderOptions();
   // Even when a match is saved, start at the main menu to offer Continue.
   setScene('home');
+  if(storageBlocked)toast('Сохранение несовместимо с этой версией игры. Данные сохранены.');
   if('serviceWorker' in navigator && location.protocol.startsWith('http'))
     navigator.serviceWorker.register('./sw.js').catch(()=>{});
 }
