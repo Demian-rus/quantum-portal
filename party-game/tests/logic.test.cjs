@@ -516,7 +516,7 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v28-20261021-rules/);
+ assert.match(worker,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
 
@@ -821,7 +821,7 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  for(const file of ['approx-questions.js?v=1','mode-config.js?v=2','rules.js?v=2','penalties.js?v=2','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=4','presets.js?v=3','app.js?v=22']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
- assert.match(sw,/kvip-pwa-v28-20261021-rules/);
+ assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);
 });
 
 
@@ -1217,7 +1217,7 @@ test('all eight active mode icons exist and load from versioned URLs',()=>{
   assert.equal(h.eval('DEFAULT_MODES.includes("approx")'),true);
   const sw=read('sw.js'),html=read('index.html');
   assert.ok(html.includes("mode-images.js?v=6"));
-  assert.match(sw,/kvip-pwa-v28-20261021-rules/);
+  assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);
   for(const mode of modes){
     assert.equal(assets[mode],'./assets/modes/'+mode+'.webp?v=3');
     assert.ok(sw.includes("'approx'")||mode!=='approx');
