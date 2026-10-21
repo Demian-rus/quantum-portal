@@ -234,7 +234,7 @@ async function isInViewport(page){
       text:x.textContent,color:getComputedStyle(x).color,x:x.getBoundingClientRect().x
     }))
   }));
-  assert.deepEqual(status.labels.map(x=>x.text),['ОСТАЛОСЬ: 4','ОТГАДАНО: 0']);
+  assert.deepEqual(status.labels.map(x=>x.text),['ОСТАЛОСЬ: 5','ОТГАДАНО: 0']);
   assert.equal(status.labels[0].color,status.labels[1].color);
   assert.ok(status.labels[0].x<status.labels[1].x);
   assert.ok(!status.text.includes('Пропущено'));
