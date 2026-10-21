@@ -68,7 +68,8 @@ function sanitizeTeam(name,fallback) {
   return str || fallback;
 }
 function randomOne(list) { return list[Math.floor(Math.random()*list.length)]; }
-function currentTeamIndex() { return game.roundIndex%2; }
+function chooseStartingTeam(random=Math.random) { return random()<.5?0:1; }
+function currentTeamIndex() { return (game.roundIndex+(game.startingTeamIndex??0))%2; }
 function currentTeam() { return game.teams[currentTeamIndex()]; }
 function guessingTeamIndex() { return game.scoringVersion===2?(currentTeamIndex()+1)%2:currentTeamIndex(); }
 function guessingTeam() { return game.teams[guessingTeamIndex()]; }
@@ -151,7 +152,7 @@ function updateContinue() {
 }
 function setScene(which) {
   activeScene=which;
-  for(const scene of ['home','preferences','setup','advanced','game','results'])
+  for(const scene of ['home','other-games','preferences','setup','advanced','game','results'])
     $('scene-'+scene).hidden=scene!==which;
   document.body.dataset.screen=which;
   updateContinue();
@@ -201,9 +202,9 @@ function renderOptions() {
   $('finish-score').checked=options.finishType==='score';
   $('finish-rounds').checked=options.finishType==='rounds';
   $('toggle-risk').checked=options.riskRounds;
-  $('score-goal-preview').textContent=options.finishType==='score'?'До '+options.targetScore+' очков':'После '+options.rounds+' ходов';
+  $('score-goal-preview').textContent=options.finishType==='score'?options.targetScore+' очков':'После '+options.rounds+' ходов';
   $('score-goal-caption').textContent=options.finishType==='score'?'У каждого игрока будет ответный ход':'Одинаковое число ходов у обоих игроков';
-  $('setup-finish-label').textContent=options.finishType==='score'?'ЦЕЛЬ ПАРТИИ':'КОЛИЧЕСТВО ХОДОВ';
+  $('setup-finish-label').textContent=options.finishType==='score'?'МАКСИМУМ ОЧКОВ':'КОЛИЧЕСТВО ХОДОВ';
   $('quick-target-score').hidden=options.finishType!=='score';
   $('finish-score-settings').hidden=options.finishType!=='score';
   $('finish-rounds-settings').hidden=options.finishType!=='rounds';
@@ -688,7 +689,7 @@ function newGame() {
   const teamA=sanitizeTeam($('team-a').value,'Молнии');
   const teamB=sanitizeTeam($('team-b').value,'Кометы');
   game={
-    teams:[teamA,teamB],scores:[0,0],roundIndex:0,
+    teams:[teamA,teamB],scores:[0,0],roundIndex:0,startingTeamIndex:chooseStartingTeam(),
     rounds:options.rounds,targetScore:options.targetScore,finishType:options.finishType,
     riskRounds:options.riskRounds,scoringVersion:2,rulesVersion:QUIP_RULE_VERSION,
     plannerVersion:QUIP_PLANNER_VERSION,plannerState:freshRoundPlan(),
@@ -812,6 +813,8 @@ function restoreSession() {
   if(!candidate||!Array.isArray(candidate.teams)||candidate.teams.length!==2||
       !Array.isArray(candidate.scores)||!Number.isInteger(candidate.roundIndex))return;
   try{
+    if(candidate.startingTeamIndex!=null&&![0,1].includes(candidate.startingTeamIndex))
+      throw Error('Invalid starting player');
     if(candidate.scoringVersion!=null&&![1,2].includes(candidate.scoringVersion))
       throw Error('Unsupported QUIP scoringVersion');
     if(candidate.rulesVersion!=null&&!Object.hasOwn(QUIP_RULESETS,candidate.rulesVersion))
@@ -903,6 +906,8 @@ function setupEvents() {
   $('new-game-menu').addEventListener('click',openSetup);
   $('continue-game').addEventListener('click',continueGame);
   $('settings-menu').addEventListener('click',openPreferences);
+  $('other-games-menu').addEventListener('click',()=>setScene('other-games'));
+  $('other-games-back').addEventListener('click',()=>setScene('home'));
   $('preferences-back').addEventListener('click',()=>setScene('home'));
   $('preferences-rules').addEventListener('click',openRules);
   $('setup-back').addEventListener('click',()=>setScene('home'));

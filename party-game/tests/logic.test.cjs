@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const read = name => fs.readFileSync(path.join(__dirname,'..',name),'utf8');
-function harness(existing=new Map()) {
+function harness(existing=new Map(),randomizeStarter=false) {
   const pending=[];
   const elements=new Map();
   const element = id => {
@@ -45,6 +45,8 @@ function harness(existing=new Map()) {
   vm.runInContext(read('content-packs.js'),context);
   vm.runInContext(read('presets.js'),context);
   vm.runInContext(read('app.js'),context);
+  // Scoring fixtures choose a fixed starting player; dedicated tests exercise both draws.
+  if(!randomizeStarter)vm.runInContext('chooseStartingTeam=()=>0',context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
 }
 test('vocabulary is varied, unique within packs and contains at least 400 prompts',()=>{
@@ -502,7 +504,7 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v21-20261021-packs/);
+ assert.match(worker,/kvip-pwa-v22-20261021-menu/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
 
@@ -804,10 +806,10 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['rules.js?v=1','penalties.js?v=1','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=1','presets.js?v=1','app.js?v=16']){
+ for(const file of ['rules.js?v=1','penalties.js?v=1','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=1','presets.js?v=1','app.js?v=17']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
- assert.match(sw,/kvip-pwa-v21-20261021-packs/);
+ assert.match(sw,/kvip-pwa-v22-20261021-menu/);
 });
 
 
@@ -1022,7 +1024,7 @@ test('historical Mix without plannerVersion keeps independent difficulty draws',
 });
 test('unsupported save/rule/planner versions never overwrite the original session',()=>{
  for(const update of ['saved.version=99','saved.game.rulesVersion=99',
-  'saved.game.plannerVersion=99','saved.game.plannerState={cycleIndex:0,levels:["easy","easy","hard"]}']){
+  'saved.game.startingTeamIndex=99','saved.game.plannerVersion=99','saved.game.plannerState={cycleIndex:0,levels:["easy","easy","hard"]}']){
   const stored=new Map(),a=harness(stored);a.eval('soundOn=false;newGame()');
   const saved=JSON.parse(stored.get('iskra-party:v1'));
   eval(update);
@@ -1145,4 +1147,52 @@ test('preset overrides reject invalid settings and preserve declared versions',(
  h.eval('var firstPreset=QUIP_PARTY_PRESETS["classic-duel@1"];var versions=definePartyPresets([firstPreset,{...firstPreset,version:2,settings:{...firstPreset.settings,duration:30}}]);');
  assert.equal(h.eval('optionsForPartyPreset("classic-duel",1,{},versions).duration'),60);
  assert.equal(h.eval('optionsForPartyPreset("classic-duel",2,{},versions).duration'),30);
+});
+
+
+test('new matches draw each starter once, alternate roles, preserve scores and reply fairness',()=>{
+ for(const roll of [0,.499999,.5,.999999]){
+  const h=harness(new Map(),true),starter=roll<.5?0:1,guesser=(starter+1)%2;
+  h.eval('soundOn=false;options.modes=["talk"];options.dice=false;options.riskRounds=false;options.finishType="rounds";options.rounds=2;var draws=0;Math.random=()=>{draws++;return '+roll+'};newGame()');
+  assert.equal(h.eval('draws'),1);
+  assert.equal(h.eval('game.startingTeamIndex'),starter);
+  assert.equal(h.eval('currentTeamIndex()'),starter);assert.equal(h.eval('guessingTeamIndex()'),guesser);
+  h.eval('roll();game.phase="judge";judge(true)');
+  assert.equal(h.eval('game.scores['+guesser+']'),1);
+  assert.equal(h.eval('currentTeamIndex()'),guesser);
+  h.eval('roll();game.phase="judge";judge(true)');
+  assert.deepEqual(Array.from(h.eval('game.scores')),[1,1]);assert.equal(h.eval('game.phase'),'results');
+ }
+});
+test('random starter persists; old saves without it retain the original first player',()=>{
+ const stored=new Map(),a=harness(stored,true);
+ a.eval('soundOn=false;Math.random=()=>.99;newGame();persist()');
+ const b=harness(stored,true);
+ assert.equal(b.eval('game.startingTeamIndex'),1);assert.equal(b.eval('currentTeamIndex()'),1);
+ b.eval('Math.random=()=>{throw Error("Restoration consumed RNG")};continueGame()');
+ b.eval('delete game.startingTeamIndex;persist()');
+ const old=harness(stored,true);
+ assert.equal(old.eval('game.startingTeamIndex'),undefined);assert.equal(old.eval('currentTeamIndex()'),0);
+});
+test('a score-threshold match grants a reply for either selected starter',()=>{
+ for(const starter of [0,1]){
+  const h=harness();
+  h.eval('soundOn=false;chooseStartingTeam=()=>'+starter+';options.modes=["talk"];options.dice=false;options.riskRounds=false;options.targetScore=15;newGame();game.scores=[14,14];roll();game.phase="judge";judge(true)');
+  assert.equal(h.eval('game.phase'),'ready');
+  h.eval('roll();game.phase="judge";judge(false)');assert.equal(h.eval('game.phase'),'results');
+  assert.equal(h.eval('game.scores['+((starter+1)%2)+']'),15);
+ }
+});
+
+
+test('other-games navigation preserves the unfinished match and has six inert placeholders',()=>{
+ const h=harness();h.eval('soundOn=false;newGame();backToMenu()');
+ const before=h.eval('JSON.stringify(game)');
+ h.eval('setScene("other-games")');assert.equal(h.eval('activeScene'),'other-games');
+ h.eval('setScene("home");continueGame()');
+ assert.equal(h.eval('JSON.stringify(game)'),before);
+ const html=read('index.html');
+ assert.equal((html.match(/class="other-game-tile"/g)||[]).length,6);
+ assert.doesNotMatch(html.match(/<ul class="other-games-grid"[\s\S]*?<\/ul>/)[0],/<a|<button/);
+ assert.ok(html.includes('МИНИМАЛЬНОЕ ВРЕМЯ'));assert.ok(html.includes('МАКСИМУМ ОЧКОВ'));
 });

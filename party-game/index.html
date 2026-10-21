@@ -10,7 +10,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=14">
+  <link rel="stylesheet" href="./style.css?v=15">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
   <script src="./curated-words.js?v=1" defer></script>
@@ -24,7 +24,7 @@
   <script src="./round-planner.js?v=1" defer></script>
   <script src="./content-packs.js?v=1" defer></script>
   <script src="./presets.js?v=1" defer></script>
-  <script src="./app.js?v=16" defer></script>
+  <script src="./app.js?v=17" defer></script>
 </head>
 <body>
 
@@ -37,7 +37,24 @@
         <button id="new-game-menu" class="home-action home-action--primary" type="button">НОВАЯ ИГРА</button>
         <button id="settings-menu" class="home-action home-action--settings" type="button">НАСТРОЙКИ</button>
       </div>
+      <button id="other-games-menu" class="home-action home-action--settings other-games-menu" type="button">ДРУГИЕ ИГРЫ</button>
       <p class="home-footnote">ИГРА НА ДВОИХ · ЗАГАДЫВАЙ И ОТГАДЫВАЙ</p>
+    </section>
+    <section class="scene scene--other-games immersive-screen" id="scene-other-games" hidden aria-labelledby="other-games-title">
+      <button class="scene-back" id="other-games-back" type="button" aria-label="Вернуться в меню">‹ <span>МЕНЮ</span></button>
+      <div class="settings-scroller">
+        <div class="other-games-panel">
+          <h1 class="preferences-title" id="other-games-title">ДРУГИЕ ИГРЫ</h1>
+          <ul class="other-games-grid" id="other-games-grid" aria-label="Список игр">
+            <li class="other-game-tile" aria-label="Игра 1 — скоро"><div class="other-game-image" aria-hidden="true"></div><span class="other-game-name">Скоро</span></li>
+            <li class="other-game-tile" aria-label="Игра 2 — скоро"><div class="other-game-image" aria-hidden="true"></div><span class="other-game-name">Скоро</span></li>
+            <li class="other-game-tile" aria-label="Игра 3 — скоро"><div class="other-game-image" aria-hidden="true"></div><span class="other-game-name">Скоро</span></li>
+            <li class="other-game-tile" aria-label="Игра 4 — скоро"><div class="other-game-image" aria-hidden="true"></div><span class="other-game-name">Скоро</span></li>
+            <li class="other-game-tile" aria-label="Игра 5 — скоро"><div class="other-game-image" aria-hidden="true"></div><span class="other-game-name">Скоро</span></li>
+            <li class="other-game-tile" aria-label="Игра 6 — скоро"><div class="other-game-image" aria-hidden="true"></div><span class="other-game-name">Скоро</span></li>
+          </ul>
+        </div>
+      </div>
     </section>
     <section class="scene scene--preferences immersive-screen" id="scene-preferences" hidden>
       <button class="scene-back" id="preferences-back" type="button" aria-label="Вернуться в меню">‹ <span>МЕНЮ</span></button>
@@ -63,8 +80,8 @@
         </div>
         <div class="settings-grid settings-grid--compact">
           <fieldset class="option-set"><legend>СЛОЖНОСТЬ</legend><div class="choices" data-setting="difficulty"><button type="button" data-value="easy" class="is-chosen">Легко</button><button type="button" data-value="medium">Средний</button><button type="button" data-value="hard">Сложный</button><button type="button" data-value="mixed">Микс</button></div></fieldset>
-          <fieldset class="option-set"><legend id="setup-finish-label">ЦЕЛЬ ПАРТИИ</legend><div class="setup-metric" id="score-goal-preview">До 25 очков</div><input class="setup-range" id="quick-target-score" type="range" min="15" max="100" step="5" value="25" aria-label="Цель по очкам"><small id="score-goal-caption">У каждого игрока будет ответный ход</small></fieldset>
-          <fieldset class="option-set"><legend>ТЕМП ИГРЫ</legend><div class="setup-metric"><span id="base-duration-value">60 с</span> на «Слова»</div><input class="setup-range" id="quick-duration" type="range" min="30" max="90" step="5" value="60" aria-label="Базовое время на Слова"><small>Нарисуй, Напой, Данетки и Блиц получают +30 с</small></fieldset>
+          <fieldset class="option-set"><legend id="setup-finish-label">МАКСИМУМ ОЧКОВ</legend><div class="setup-metric" id="score-goal-preview">25 очков</div><input class="setup-range" id="quick-target-score" type="range" min="15" max="100" step="5" value="25" aria-label="Максимум очков"><small id="score-goal-caption">У каждого игрока будет ответный ход</small></fieldset>
+          <fieldset class="option-set"><legend>МИНИМАЛЬНОЕ ВРЕМЯ</legend><div class="setup-metric"><span id="base-duration-value">60 с</span></div><input class="setup-range" id="quick-duration" type="range" min="30" max="90" step="5" value="60" aria-label="Минимальное время"><small>Нарисуй, Напой, Данетки и Блиц получают +30 с</small></fieldset>
         </div>
         <button id="go-advanced" class="button setup-advanced-link" type="button">ТОНКАЯ НАСТРОЙКА <span aria-hidden="true">Настроить режимы и правила</span></button>
         <div class="setup-bottom"><p>Один телефон — два соперника. В свой ход вы загадываете, соперник отгадывает и зарабатывает очки.</p><button id="start-game" class="button button-primary button-big" type="button">НАЧАТЬ ИГРУ</button></div>
@@ -80,11 +97,11 @@
           
           <div class="advanced-body">
             <fieldset class="advanced-section"><legend>КОГДА ЗАКАНЧИВАЕТСЯ ПАРТИЯ</legend>
-              <div class="finish-choices"><label><input type="radio" name="finish-type" id="finish-score" value="score" checked><span>До цели по очкам</span></label><label><input type="radio" name="finish-type" id="finish-rounds" value="rounds"><span>По числу ходов</span></label></div>
-              <div id="finish-score-settings" class="slider-option"><div class="slider-title"><label for="target-score">Цель по очкам</label><output id="target-score-value">25 очков</output></div><input id="target-score" type="range" min="15" max="100" step="5" value="25"><div class="slider-extremes"><span>15</span><span>100</span></div><small>После достижения цели у соперника будет ответный ход. При ничьей игра продолжается.</small></div>
+              <div class="finish-choices"><label><input type="radio" name="finish-type" id="finish-score" value="score" checked><span>Максимум очков</span></label><label><input type="radio" name="finish-type" id="finish-rounds" value="rounds"><span>По числу ходов</span></label></div>
+              <div id="finish-score-settings" class="slider-option"><div class="slider-title"><label for="target-score">Максимум очков</label><output id="target-score-value">25 очков</output></div><input id="target-score" type="range" min="15" max="100" step="5" value="25"><div class="slider-extremes"><span>15</span><span>100</span></div><small>После достижения цели у соперника будет ответный ход. При ничьей игра продолжается.</small></div>
               <div id="finish-rounds-settings" class="slider-option" hidden><div class="slider-title"><label for="custom-rounds">Общее число ходов</label><output id="rounds-value">12</output></div><input id="custom-rounds" type="range" min="2" max="100" step="2" value="12"><div class="slider-extremes"><span>2</span><span>100</span></div><small>У каждого игрока поровну ходов.</small></div>
             </fieldset>
-            <div class="slider-option"><div class="slider-title"><label for="base-duration">Время на «Слова»</label><output id="base-duration-value-advanced">60 с</output></div><input id="base-duration" type="range" min="30" max="90" step="5" value="60"><div class="slider-extremes"><span>30 с</span><span>90 с</span></div><small>Нарисуй, Напой, Данетки и Блиц: +30 с. При базовых 60 секундах — 90 секунд; максимум 120 секунд. Жесты — базовое время.</small></div>
+            <div class="slider-option"><div class="slider-title"><label for="base-duration">Минимальное время</label><output id="base-duration-value-advanced">60 с</output></div><input id="base-duration" type="range" min="30" max="90" step="5" value="60"><div class="slider-extremes"><span>30 с</span><span>90 с</span></div><small>Нарисуй, Напой, Данетки и Блиц: +30 с. При базовых 60 секундах — 90 секунд; максимум 120 секунд. Жесты — базовое время.</small></div>
             <label class="modifier-toggle"><input id="toggle-risk" type="checkbox" checked><span><strong>Риск-раунды ⚡</strong><small>Примерно каждый пятый ход после первых двух: успех — обычные очки, провал — потеря до 2 очков. Счёт не может стать отрицательным.</small></span></label>
             <fieldset class="advanced-section">
               <legend>АКТИВНЫЕ РЕЖИМЫ</legend>
