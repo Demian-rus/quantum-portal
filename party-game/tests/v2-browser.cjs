@@ -5,6 +5,7 @@ const {chromium} = require('playwright-core');
 const URL='http://127.0.0.1:8765/party-game/';
 async function configureOnly(page,id) {
   await page.locator('#go-advanced').click();
+  await page.locator('#mode-settings > summary').click();
   const inputs=page.locator('#mode-toggles input');
   for(let i=0;i<await inputs.count();i++){
     const current=inputs.nth(i);
