@@ -1196,3 +1196,22 @@ test('other-games navigation preserves the unfinished match and has six inert pl
  assert.doesNotMatch(html.match(/<ul class="other-games-grid"[\s\S]*?<\/ul>/)[0],/<a|<button/);
  assert.ok(html.includes('МИНИМАЛЬНОЕ ВРЕМЯ'));assert.ok(html.includes('МАКСИМУМ ОЧКОВ'));
 });
+
+// Every approved icon must be a valid WebP file, including the reserved approx art.
+test('all eight mode icons exist, load from versioned URLs, and approx is dormant',()=>{
+  const h=harness(),assets=JSON.parse(h.eval('JSON.stringify(MODE_ASSETS)'));
+  const modes=['talk','mime','draw','sing','yesno','secret','blitz','approx'];
+  assert.deepEqual(Object.keys(assets),modes);
+  assert.equal(h.eval('DEFAULT_MODES.includes("approx")'),false,'Approx mode belongs to future gameplay changes');
+  const sw=read('sw.js'),html=read('index.html');
+  assert.match(html,/mode-images\\.js\\?v=6/);
+  assert.match(sw,/kvip-pwa-v23-20261021-icons/);
+  for(const mode of modes){
+    assert.equal(assets[mode],'./assets/modes/'+mode+'.webp?v=3');
+    assert.ok(sw.includes("'approx'")||mode!=='approx');
+    const file=fs.readFileSync(path.join(__dirname,'..','assets','modes',mode+'.webp'));
+    assert.ok(file.length>1000,mode+' is empty');
+    assert.equal(file.toString('ascii',0,4),'RIFF',mode+' RIFF header');
+    assert.equal(file.toString('ascii',8,12),'WEBP',mode+' WebP header');
+  }
+});

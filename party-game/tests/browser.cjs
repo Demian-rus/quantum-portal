@@ -21,6 +21,15 @@ const {chromium} = require('playwright-core');
       const errors=[];
       page.on('pageerror',e=>errors.push(e.message));
       await page.goto('http://127.0.0.1:8765/party-game/',{waitUntil:'load'});
+      // New assets must actually decode in Chromium; approx art is preloaded but not selectable yet.
+      const modeIcons=await page.evaluate(async()=>Promise.all(Object.entries(MODE_ASSETS).map(async ([mode,url])=>{
+        const img=new Image();img.src=url;
+        try{await img.decode();return {mode,width:img.naturalWidth,height:img.naturalHeight,ok:true};}
+        catch{return {mode,ok:false};}
+      })));
+      assert.equal(modeIcons.length,8);
+      assert.ok(modeIcons.every(i=>i.ok&&i.width===512&&i.height===512),
+        'Mode icons could not be decoded: '+JSON.stringify(modeIcons));
       await page.evaluate(()=>{chooseStartingTeam=()=>0});
       await page.waitForSelector('#new-game-menu');
       assert.ok(await page.locator('#new-game-menu').isVisible());
