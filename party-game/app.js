@@ -476,6 +476,7 @@ function showTask() {
       (secret?'<span class="secret-flag">СЕКРЕТКА · +'+c.points+' ОЧКА</span>':
         '<span class="score-note">ЗА ВЕРНЫЙ ОТВЕТ: +'+(c.modeId==='blitz'?'3 ЗА ВСЕ 5 СЛОВ':c.points)+'</span>')+
     '</div>'+
+    (c.risk?'<p class="risk-notice">⚡ РИСК-РАУНД: ПРОВАЛ — ДО −2 ОЧКОВ</p>':'')+
     '<div class="round-fixed-card">'+taskMarkup(!c.visible)+'</div>'+
     '<div class="round-bottom round-bottom--task">'+taskControls(c)+'</div>';
 }
@@ -820,13 +821,16 @@ function sanitizeOptions(raw) {
   const base=freshOptions();
   if(!raw||typeof raw!=='object')return base;
   const difficulty=['easy','medium','hard','mixed'].includes(raw.difficulty)?raw.difficulty:base.difficulty;
-  const duration=Math.max(15,Math.min(300,Number(raw.duration)||base.duration));
-  const rounds=Math.max(2,Math.min(100,Math.round(Number(raw.rounds)||base.rounds)));
-  const blitzCount=Math.max(3,Math.min(8,Math.round(Number(raw.blitzCount)||base.blitzCount)));
+  const duration=Math.max(30,Math.min(90,Math.round(Number(raw.duration)||base.duration)));
+  const rounds=Math.max(2,Math.min(100,2*Math.round((Number(raw.rounds)||base.rounds)/2)));
+  const targetScore=Math.max(15,Math.min(100,5*Math.round((Number(raw.targetScore)||base.targetScore)/5)));
+  const finishType=raw.finishType==='rounds'?'rounds':'score';
+  const riskRounds=raw.riskRounds!==false;
+  const blitzCount=5;
   const modes=Array.isArray(raw.modes)?DEFAULT_MODES.filter(id=>raw.modes.includes(id)):base.modes;
   const promptTypes=Array.isArray(raw.promptTypes)?PROMPT_TYPES.filter(id=>raw.promptTypes.includes(id)):base.promptTypes;
-  return {difficulty,duration,rounds,blitzCount,modes,promptTypes,
-    dice:true,complications:raw.complications!==false,scoring:'standard'};
+  return {difficulty,duration,rounds,targetScore,finishType,riskRounds,blitzCount,modes,promptTypes,
+    dice:true,complications:raw.complications!==false,scoring:'duel'};
 }
 function restoreSession() {
   const saved=readSaved();
@@ -881,15 +885,15 @@ function setupEvents() {
       renderOptions();persist();sfx('button');
     });
   });
-  for(const [id,key,min,max] of [
-    ['custom-duration','duration',15,300],
-    ['custom-rounds','rounds',2,100],
-    ['custom-blitz','blitzCount',3,8]
+  for(const [id,key,min,max,step] of [
+    ['base-duration','duration',30,90,5],
+    ['target-score','targetScore',15,100,5],
+    ['custom-rounds','rounds',2,100,2]
   ]) {
-    $(id).addEventListener('change',event=>{
+    $(id).addEventListener('input',event=>{
       const requested=Number(event.target.value);
       if(!Number.isFinite(requested)){renderOptions();return;}
-      options[key]=Math.max(min,Math.min(max,Math.round(requested)));
+      options[key]=Math.max(min,Math.min(max,step*Math.round(requested/step)));
       renderOptions();persist();
     });
   }
@@ -906,6 +910,12 @@ function setupEvents() {
       persist();renderOptions();
     });
   }
+  document.querySelectorAll('input[name="finish-type"]').forEach(input=>input.addEventListener('change',event=>{
+    options.finishType=event.target.value;persist();renderOptions();sfx('button');
+  }));
+  $('toggle-risk').addEventListener('change',event=>{
+    options.riskRounds=event.target.checked;persist();
+  });
   $('toggle-complications').addEventListener('change',event=>{
     options.complications=event.target.checked;persist();
   });
