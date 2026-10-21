@@ -7,7 +7,7 @@ const MODE_LIST = Object.freeze([
   {id:'sing',title:'НАПОЙ',rule:'Напевай песню, связанную с темой. Соперник должен отгадать тему.',kind:'songs',points:2},
   {id:'yesno',title:'ДАНЕТКИ',rule:'Загадывающий видит персонажа и отвечает на вопросы соперника только «да», «нет» или «не знаю». Отгадывающий должен назвать персонажа.',kind:'people',points:2},
   {id:'secret',title:'СЕКРЕТКА',rule:'Случайное задание с обязательным усложнением. Принесёт 3 очка.',kind:'words',points:3},
-  {id:'blitz',title:'БЛИЦ',rule:'Отгадай все 5 слов за 30 секунд! За 5 из 5 получи 3 очка. За неполный результат — 0.',kind:'words',seconds:30}
+  {id:'blitz',title:'БЛИЦ',rule:'Отгадай все 5 слов за отведённое время! За 5 из 5 получи 3 очка. За неполный результат — 0.',kind:'words',points:3}
 ]);
 const COMPLICATIONS = Object.freeze({
   talk: [
@@ -89,7 +89,7 @@ function symbol(id,extra='') {
 const $ = id => document.getElementById(id);
 function timerMarkup(ms) { return formatTimer(ms); }
 const freshOptions = () => ({
-  difficulty:'easy',duration:30,rounds:12,finishType:'score',targetScore:25,riskRounds:true,
+  difficulty:'easy',duration:60,rounds:12,finishType:'score',targetScore:25,riskRounds:true,
   dice:true,complications:true,
   modes:DEFAULT_MODES.slice(), promptTypes:PROMPT_TYPES.slice(),blitzCount:5,
   scoring:'duel'
@@ -138,10 +138,12 @@ function currentTeam() { return game.teams[currentTeamIndex()]; }
 function guessingTeamIndex() { return game.scoringVersion===2?(currentTeamIndex()+1)%2:currentTeamIndex(); }
 function guessingTeam() { return game.teams[guessingTeamIndex()]; }
 function durationForMode(id,methodId,base) {
-  if(id==='blitz')return 30;
+  // Duration is measured from the same user-selected base for all modes.
+  // Four cognitively/time-intensive modes get an additional 30 seconds.
+  // No hidden 90-second cap: 30–90 base => 60–120 extended.
   const mode=id==='secret'?methodId:id;
-  const bonus={talk:0,mime:15,draw:30,sing:15,yesno:30}[mode]||0;
-  return Math.min(90,Math.max(30,base+bonus));
+  const bonus=['draw','sing','yesno','blitz'].includes(mode)?30:0;
+  return Math.max(30,Math.min(90,base))+bonus;
 }
 function matchComplete() {
   if(game.finishType!=='score')return game.roundIndex>=game.rounds;
