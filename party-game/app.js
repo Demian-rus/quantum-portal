@@ -307,25 +307,46 @@ function pickMode() {
 function chooseDifficulty() {
   return game.difficulty==='mixed'?randomOne(['easy','medium','hard']):game.difficulty;
 }
-function getPromptPool(kind,level) {
+// Compile once: the curated difficulty tier takes precedence over legacy packs.
+// Each lexical card belongs to exactly one level within its content type.
+const VOCAB_LEVELS=['easy','medium','hard'];
+function compileVocabularyType(type) {
+  const assigned=new Map();
+  const add=(items,level)=>{for(const value of items||[]){
+    if(typeof value==='string'&&value.trim()&&!assigned.has(value.trim()))assigned.set(value.trim(),level);
+  }};
+  const curated=typeof PARTY_CURATED_WORDS==='undefined'?null:PARTY_CURATED_WORDS[type];
+  for(const level of VOCAB_LEVELS)add(curated?.[level],level);
   const extra=typeof PARTY_EXPANSION==='undefined'?null:PARTY_EXPANSION;
-  const merge=(primary,added)=>[...new Set([...(primary||[]),...(added||[])])];
-  // Blitz must remain playable: five familiar, short single words in only 30 seconds.
-  if(kind==='blitz')return merge(PARTY_WORDS.easy.filter(word=>!word.includes(' ')&&word.length<=13),
-    (extra?.word?.easy||[]).filter(word=>!word.includes(' ')&&word.length<=13));
-  if(kind==='songs')return merge(PARTY_SONGS[level]||PARTY_SONGS.easy,extra?.songs?.[level]);
-  if(kind==='people')return merge(PARTY_PEOPLE[level]||PARTY_PEOPLE.easy,extra?.people?.[level]);
-  const original=PARTY_WORDS[level]||PARTY_WORDS.easy;
-  const addedWords=extra?.word?.[level]||[];
-  const groups={
-    word:merge(original.filter(word=>!word.includes(' ')),addedWords.filter(word=>!word.includes(' '))),
-    // Earlier versions accidentally buried 49 multiword cards in the single-word pack.
-    phrase:merge([...(PARTY_PHRASES[level]||PARTY_PHRASES.easy),
-      ...original.filter(word=>word.includes(' ')),...addedWords.filter(word=>word.includes(' '))],extra?.phrase?.[level]),
-    idiom:merge(PARTY_IDIOMS[level]||PARTY_IDIOMS.easy,extra?.idiom?.[level])
-  };
+  for(const level of VOCAB_LEVELS){
+    const old=PARTY_WORDS[level]||[];
+    const extraWords=extra?.word?.[level]||[];
+    if(type==='word')add([...old,...extraWords].filter(v=>!v.includes(' ')),level);
+    if(type==='phrase')add([
+      ...(PARTY_PHRASES[level]||[]),
+      ...old.filter(v=>v.includes(' ')),
+      ...extraWords.filter(v=>v.includes(' ')),
+      ...(extra?.phrase?.[level]||[])
+    ],level);
+    if(type==='idiom')add([...(PARTY_IDIOMS[level]||[]),...(extra?.idiom?.[level]||[])],level);
+  }
+  const buckets=Object.fromEntries(VOCAB_LEVELS.map(level=>[level,[]]));
+  for(const [value,level] of assigned)buckets[level].push(value);
+  return Object.freeze(Object.fromEntries(VOCAB_LEVELS.map(level=>
+    [level,Object.freeze(buckets[level])])));
+}
+const PARTY_VOCABULARY=Object.freeze({
+  word:compileVocabularyType('word'),
+  phrase:compileVocabularyType('phrase'),
+  idiom:compileVocabularyType('idiom')
+});
+function getPromptPool(kind,level) {
+  const tier=VOCAB_LEVELS.includes(level)?level:'easy';
+  if(kind==='songs')return PARTY_TRACK_CATALOG[tier].map(entry=>entry.topic);
+  if(kind==='people')return PARTY_CURATED_PEOPLE[tier];
+  if(kind==='blitz')return PARTY_VOCABULARY.word.easy.filter(word=>word.length<=12);
   return [...new Set((game.promptTypes?.length?game.promptTypes:PROMPT_TYPES)
-    .flatMap(type=>groups[type]||[]))];
+    .flatMap(type=>PARTY_VOCABULARY[type]?.[tier]||[]))];
 }
 function pullWord(kind, level=chooseDifficulty()) {
   const pool=getPromptPool(kind,level);
