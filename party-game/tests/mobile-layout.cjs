@@ -8,7 +8,9 @@ const devices=[
   {name:'small',width:360,height:640},
   {name:'phone',width:390,height:844},
   {name:'android',width:412,height:915},
-  {name:'desktop',width:1280,height:800}
+  {name:'tablet-landscape',width:1024,height:768},
+  {name:'desktop',width:1280,height:800},
+  {name:'wide-desktop',width:1920,height:1080}
 ];
 const geometry=()=>({
   viewport:{w:innerWidth,h:innerHeight},
@@ -26,6 +28,7 @@ const geometry=()=>({
 });
 const selectors=[
   '.play-card','.play-card-head','#play-step','#exit-game','.is-ready .play-title',
+  '.is-ready .ready-avatar','.is-ready .play-subtitle',
   '.is-ready .ready-content','.is-ready [data-action="roll"]',
   '#label-team-a','#score-a','.reel-window','.reel-item img',
   '.reel-track','.play-inner',
@@ -59,6 +62,20 @@ function fitsViewport(g,device,stage) {
       page.on('pageerror',error=>errors.push(error.message));
       await page.goto(URL,{waitUntil:'load'});
       await page.locator('#new-game-menu').click();
+      if(device.width>=780){
+        const setup=await page.evaluate(()=>({
+          viewport:innerWidth,
+          panel:document.getElementById('setup-panel').getBoundingClientRect().width,
+          bgTitle:getComputedStyle(document.getElementById('scene-setup'),'::before').display,
+          cols:getComputedStyle(document.querySelector('.settings-grid--compact')).gridTemplateColumns
+        }));
+        assert.ok(setup.panel>=device.width*.78,
+          'Wide setup form remains a tiny central card: '+JSON.stringify(setup));
+        assert.equal(setup.bgTitle,'none','Unwanted ghost title appears above setup on wide screens');
+        assert.ok(setup.cols.split(' ').length>=2,
+          'Wide settings fail to use multiple columns: '+JSON.stringify(setup));
+        await page.screenshot({path:'artifacts/quip-mobile-layout/'+device.name+'-setup.png'});
+      }
       await page.locator('#team-a').fill('ПЕРВЫЙСУПЕРДЛИННЫЙИГРОК');
       await page.locator('#team-b').fill('ВТОРОЙСУПЕРДЛИННЫЙИГРОК');
       await page.evaluate(()=>{options.modes=['talk'];soundOn=false;persist()});
@@ -75,6 +92,22 @@ function fitsViewport(g,device,stage) {
       const title=at(ready,'.is-ready .play-title');
       const readyContent=at(ready,'.is-ready .ready-content');
       const readyButton=at(ready,'.is-ready [data-action="roll"]');
+      const avatar=at(ready,'.is-ready .ready-avatar');
+      const description=at(ready,'.is-ready .play-subtitle');
+      const titleTextWidth=await page.locator('.is-ready .play-title').evaluate(el=>{
+        const range=document.createRange();range.selectNodeContents(el.firstChild);
+        return range.getBoundingClientRect().width;
+      });
+      assert.ok(titleTextWidth<=title.width+2,
+        'Word ЗАГАДЫВАЕТ is clipped: '+JSON.stringify({device,titleTextWidth,title}));
+      if(device.width<780){
+        assert.ok(avatar.top<device.height*.41,
+          'Main artwork was moved down with CTA: '+JSON.stringify({device,avatar}));
+        assert.ok(title.top<device.height*.68,
+          'Main heading was moved down with CTA: '+JSON.stringify({device,title}));
+      }
+      assert.ok(description.bottom<readyButton.top-5,
+        'Main description collides with the bottom CTA: '+JSON.stringify({device,description,readyButton}));
       const name=at(ready,'#label-team-a'),score=at(ready,'#score-a');
       assert.ok(kicker.right<=menu.left-2,'header overlaps menu: '+JSON.stringify(ready));
       assert.ok(kicker.scroll<=kicker.client+2,'header label vertically clipped: '+JSON.stringify(ready));
