@@ -552,3 +552,38 @@ test('expanded word pools recover previously lost phrases and de-duplicate',()=>
  }
  assert.ok(count>=1400,'Extended pools too small: '+count);
 });
+
+
+test('upgrading a saved pre-V5 Blitz preserves the old per-word scoring',()=>{
+ const stored=new Map();
+ const initial=harness(stored);
+ initial.eval("soundOn=false;newGame();game.scoringVersion=undefined;game.finishType='rounds';game.rounds=12;game.riskRounds=false;game.current={modeId:'blitz',methodId:'blitz',word:'КОТ',blitzWords:['КОТ','ДОМ','ЛЕС','МЯЧ'],blitzCorrect:2,points:1,finishedReason:'timeout',risk:false};game.phase='judge';persist()");
+ const resumed=harness(stored);
+ assert.equal(resumed.eval('game.scoringVersion'),undefined);
+ assert.match(resumed.elements.get('play-content').innerHTML,/За каждое отгаданное слово/);
+ resumed.eval('judge(true)');
+ assert.deepEqual(Array.from(resumed.eval('game.scores')),[2,0]);
+ assert.equal(resumed.eval('game.history[0].awarded'),2);
+ assert.equal(resumed.eval('game.phase'),'ready');
+});
+test('all legacy and expanded multiword cards remain available as phrases',()=>{
+ const h=harness();
+ h.eval('soundOn=false;newGame()');
+ assert.equal(h.eval("getPromptPool('words','easy').includes('СТИРАЛЬНАЯ МАШИНА')"),true);
+ assert.equal(h.eval("getPromptPool('words','medium').includes('РУЧНАЯ КЛАДЬ')"),true);
+ assert.equal(h.eval("getPromptPool('words','medium').includes('РУЧНАЯ КЛАДЬ') && !getPromptPool('words','medium').includes('РУЧНАЯ КЛАДЬ РУЧНАЯ КЛАДЬ')"),true);
+ h.eval("game.promptTypes=['word']");
+ assert.equal(h.eval("getPromptPool('words','medium').includes('РУЧНАЯ КЛАДЬ')"),false);
+ h.eval("game.promptTypes=['phrase']");
+ assert.equal(h.eval("getPromptPool('words','medium').includes('РУЧНАЯ КЛАДЬ')"),true);
+});
+test('blitz repetition history spans all difficulty levels',()=>{
+ const h=harness();
+ h.eval('soundOn=false;newGame()');
+ h.eval("game.used={};pullWord('blitz','easy')");
+ const first=h.eval("game.used['easy:blitz:word,phrase,idiom'][0]");
+ assert.equal(typeof first,'string');
+ h.eval("pullWord('blitz','hard')");
+ assert.equal(h.eval("game.used['easy:blitz:word,phrase,idiom'].length"),2);
+ assert.equal(h.eval("game.used['hard:blitz:word,phrase,idiom']"),undefined);
+});
