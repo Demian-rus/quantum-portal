@@ -1581,3 +1581,31 @@ body[data-screen="other-games"]::after {background:linear-gradient(180deg,#07051
 }
 .history-row span{min-width:0;overflow-wrap:anywhere}
 .history-row b{flex-shrink:0}
+
+/* The two entry scenes reuse the existing background and scroll container. */
+body[data-screen="game-type"]::before,body[data-screen="themes"]::before{background-image:url('./assets/bg-setup.webp?v=3')}
+.scene--selection .settings-scroller{inset-block-start:calc(env(safe-area-inset-top) + 70px);padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+.selection-panel{width:min(100%,900px);margin:0 auto;padding:clamp(16px,3vw,34px);border:1px solid #9fafff73;border-radius:23px;background:linear-gradient(143deg,#12152ded,#201339e9);box-shadow:0 14px 38px #030313b5;backdrop-filter:blur(13px)}
+.selection-panel .preferences-title{font-size:clamp(24px,5vw,38px);margin:10px 0 14px}
+.selection-intro{color:#c9d3ee;font-size:14px;line-height:1.5;margin:0 0 24px}
+.game-type-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.game-type-choice{position:relative;display:flex;flex-direction:column;gap:14px;text-align:left;min-width:0;padding:24px;border:1px solid #9bb8ff99;border-radius:20px;background:linear-gradient(135deg,#263858bd,#302443e0);color:#f5f5ff;cursor:pointer}
+.game-type-choice strong{font-family:var(--font-title);font-size:clamp(19px,3vw,27px);line-height:1.25}
+.game-type-choice>span:not(.choice-number):not(.choice-next){font-size:13px;line-height:1.5;color:#cedcf8;max-width:80%}
+.choice-number{font:800 13px var(--font-body);color:var(--lime);letter-spacing:.12em}
+.choice-next{position:absolute;right:22px;bottom:20px;color:#8ff5ff;font-size:28px}
+.game-type-choice:hover,.game-type-choice:focus-visible{border-color:#a5f6ff;box-shadow:0 0 18px #55dfff30}
+.theme-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:24px}
+.theme-choice{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:19px 15px;min-width:0;min-height:94px;border:1px solid #96c8ff99;border-radius:15px;background:#233552cc;color:#f3f8ff;cursor:pointer;text-align:left}
+.theme-choice strong{font-size:15px;overflow-wrap:anywhere}
+.theme-choice span{font-size:12px;color:#a4edff}
+.theme-choice:disabled{cursor:default;background:#171b30c9;border-color:#7b82a04f;color:#b7bed2}
+.theme-choice:disabled span{color:#a3aabe}
+.setup-pack-caption{display:block;font-size:12px;color:#c3d6ef;line-height:1.5;margin-top:5px}
+@media(max-width:600px){
+ .game-type-choices{grid-template-columns:minmax(0,1fr);gap:12px}
+ .game-type-choice{padding:18px;gap:10px}
+ .theme-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .selection-intro{margin-bottom:18px;font-size:13px}
+ .theme-choice{padding:15px 12px;min-height:85px}
+}

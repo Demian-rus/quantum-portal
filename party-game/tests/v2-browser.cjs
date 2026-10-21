@@ -26,6 +26,7 @@ async function configureOnly(page,id) {
       await page.goto(URL,{waitUntil:'load'});
       await page.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
       await page.locator('#new-game-menu').click();
+      await page.locator('#standard-game').click();
       await page.locator('[data-setting="difficulty"] [data-value="hard"]').click();
       await configureOnly(page,'yesno');
       assert.equal(await page.locator('[data-setting="dice"]').count(),0,'Old dice choice must be removed');
@@ -81,6 +82,7 @@ async function configureOnly(page,id) {
     await blitz.goto(URL,{waitUntil:'load'});
       await blitz.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
     await blitz.locator('#new-game-menu').click();
+      await blitz.locator('#standard-game').click();
     await configureOnly(blitz,'blitz');
     await blitz.locator('#advanced-done').click();
     await blitz.locator('#start-game').click();

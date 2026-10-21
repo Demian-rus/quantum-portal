@@ -35,6 +35,7 @@ async function isInViewport(page){
    assert.ok(prefArt.bg.includes('bg-setup.webp?v=3'),'Preferences should share the settings backdrop');
    await page.locator('#preferences-back').click();
    await page.locator('#new-game-menu').click();
+      await page.locator('#standard-game').click();
    const setupArt=await art('setup');
    assert.ok(setupArt.bg.includes('bg-setup.webp?v=3'),'Party setup art mismatch');
    const chosen=await page.locator('.choices .is-chosen').first().evaluate(el=>getComputedStyle(el).backgroundImage);
@@ -148,6 +149,7 @@ async function isInViewport(page){
    // Intentionally create another game while one is saved; nothing must summon a system alert.
    await page.locator('#exit-game').click();
    await page.locator('#new-game-menu').click();
+      await page.locator('#standard-game').click();
    await page.locator('#start-game').click();
    assert.deepEqual(dialogs,[],'Unexpected native browser confirmations');
    await page.evaluate(()=>{options.modes=['talk'];options.dice=false;options.difficulty='easy';});
@@ -189,6 +191,7 @@ async function isInViewport(page){
   await medium.goto(URL,{waitUntil:'load'});
       await medium.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
   await medium.locator('#new-game-menu').click();
+      await medium.locator('#standard-game').click();
   await medium.evaluate(()=>{options.modes=['talk'];options.dice=false;options.difficulty='medium';});
   await medium.locator('#start-game').click();
   await medium.locator('[data-action="roll"]').click();
@@ -208,6 +211,7 @@ async function isInViewport(page){
   await blitz.goto(URL,{waitUntil:'load'});
       await blitz.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
   await blitz.locator('#new-game-menu').click();
+      await blitz.locator('#standard-game').click();
   await blitz.evaluate(()=>{options.modes=['blitz'];options.difficulty='easy';});
   await blitz.locator('#start-game').click();
   await blitz.locator('[data-action="roll"]').click();

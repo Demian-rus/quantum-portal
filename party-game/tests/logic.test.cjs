@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const read = name => fs.readFileSync(path.join(__dirname,'..',name),'utf8');
-function harness(existing=new Map(),randomizeStarter=false) {
+function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
   const pending=[];
   const elements=new Map();
   const element = id => {
@@ -44,7 +44,8 @@ function harness(existing=new Map(),randomizeStarter=false) {
   vm.runInContext(read('penalties.js'),context);
   vm.runInContext(read('modifiers.js'),context);
   vm.runInContext(read('round-planner.js'),context);
-  vm.runInContext(read('content-packs.js'),context);
+  const packSource=fixturePack?read('content-packs.js').replace('const QUIP_CONTENT_PACKS=defineContentPacks([','const QUIP_CONTENT_PACKS=defineContentPacks(['+JSON.stringify(fixturePack)+','):read('content-packs.js');
+  vm.runInContext(packSource,context);
   vm.runInContext(read('presets.js'),context);
   vm.runInContext(read('app.js'),context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
@@ -515,7 +516,7 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v25-20261021-approx/);
+ assert.match(worker,/kvip-pwa-v26-20261021-game-types/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
 
@@ -817,10 +818,10 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['approx-questions.js?v=1','mode-config.js?v=2','rules.js?v=2','penalties.js?v=2','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=3','presets.js?v=3','app.js?v=19']){
+ for(const file of ['approx-questions.js?v=1','mode-config.js?v=2','rules.js?v=2','penalties.js?v=2','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=4','presets.js?v=3','app.js?v=20']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
- assert.match(sw,/kvip-pwa-v25-20261021-approx/);
+ assert.match(sw,/kvip-pwa-v26-20261021-game-types/);
 });
 
 
@@ -1216,7 +1217,7 @@ test('all eight active mode icons exist and load from versioned URLs',()=>{
   assert.equal(h.eval('DEFAULT_MODES.includes("approx")'),true);
   const sw=read('sw.js'),html=read('index.html');
   assert.ok(html.includes("mode-images.js?v=6"));
-  assert.match(sw,/kvip-pwa-v25-20261021-approx/);
+  assert.match(sw,/kvip-pwa-v26-20261021-game-types/);
   for(const mode of modes){
     assert.equal(assets[mode],'./assets/modes/'+mode+'.webp?v=3');
     assert.ok(sw.includes("'approx'")||mode!=='approx');
@@ -1346,4 +1347,63 @@ test('Approx exhausts each tier before repeats and preserves full-pair match com
  h.eval('game.targetScore=15;game.scores=[14,14];roll();revealApprox();awardApprox("a")');assert.equal(h.eval('game.phase'),'ready');
  h.eval('roll();revealApprox();awardApprox("both")');assert.equal(h.eval('game.phase'),'results');
  assert.deepEqual(Array.from(h.eval('game.scores')),[16,15]);
+});
+
+
+test('game-type navigation uses shared settings and preserves an unfinished match',()=>{
+ const h=harness();h.eval('soundOn=false;newGame();game.scores=[7,8];backToMenu()');
+ const saved=h.eval('JSON.stringify(game)');
+ h.eval('openGameType()');assert.equal(h.eval('activeScene'),'game-type');
+ h.eval('openThemes()');assert.equal(h.eval('activeScene'),'themes');
+ assert.equal((h.elements.get('theme-list').innerHTML.match(/ disabled aria-disabled="true"/g)||[]).length,6);
+ assert.ok(h.elements.get('themes-caption').textContent.includes('ещё готовятся'));
+ h.eval('selectStandardGame()');assert.equal(h.eval('activeScene'),'setup');
+ assert.equal(h.eval('options.contentPack.id'),'general');assert.equal(h.eval('options.contentPack.version'),2);
+ assert.equal(h.eval('setupReturn'),'game-type');
+ assert.equal(h.eval('JSON.stringify(game)'),saved);
+ h.eval('setScene("home");continueGame()');assert.equal(h.eval('JSON.stringify(game)'),saved);
+});
+test('all six empty topics remain disabled and cannot start or silently use general',()=>{
+ const h=harness();h.eval('soundOn=false;newGame();game.scores=[4,9];backToMenu()');
+ const gameBefore=h.eval('JSON.stringify(game)'),optionsBefore=h.eval('JSON.stringify(options)');
+ const themes=JSON.parse(h.eval('JSON.stringify(listThematicPacks(options))'));
+ assert.deepEqual(themes.map(entry=>entry.pack.id),['geography','biology','animals','history','science','culture']);
+ for(const {pack,available} of themes){
+  assert.equal(available,false);assert.equal(h.eval('selectTheme("'+pack.id+'",'+pack.version+')'),false);
+  assert.equal(h.eval('JSON.stringify(options)'),optionsBefore);
+  h.eval('options.contentPack={id:"'+pack.id+'",version:'+pack.version+'};newGame()');
+  assert.equal(h.eval('JSON.stringify(game)'),gameBefore);
+  h.eval('options.contentPack={id:"general",version:2}');
+ }
+ assert.equal(h.eval('selectTheme("missing",1)'),false);
+ assert.equal(h.eval('selectTheme("general",2)'),false);
+});
+const fixtureTopic={id:'fixture-topic',version:1,name:'Тестовая тема',enabled:true,categories:[],types:['word'],
+ criteria:{cardIds:['word-000001','word-000002','word-000003'],sourcePacks:['core']},minCardsPerPool:1};
+test('populated fixture topic selects the same setup, filters cards and restores the selection',()=>{
+ const storage=new Map(),a=harness(storage,false,fixtureTopic);
+ a.eval('soundOn=false;options.modes=["talk"];options.promptTypes=["word"];options.dice=false;options.duration=45;openGameType();openThemes()');
+ assert.equal(a.eval('selectTheme("fixture-topic",1)'),true);
+ assert.equal(a.eval('activeScene'),'setup');assert.equal(a.eval('setupReturn'),'themes');
+ assert.equal(a.elements.get('setup-pack-caption').textContent,'Тестовая тема');
+ a.eval('newGame();roll()');assert.equal(a.eval('game.contentPack.id'),'fixture-topic');
+ assert.equal(a.eval('game.duration'),45);
+ assert.ok(['КАРАНДАШ','СУНДУК','ПУЗЫРЬ'].includes(a.eval('game.current.word')));
+ const selected=a.eval('JSON.stringify([game.contentPack,game.current,game.used])');
+ const b=harness(storage,false,fixtureTopic);b.eval('continueGame()');
+ assert.equal(b.eval('JSON.stringify([game.contentPack,game.current,game.used])'),selected);
+ assert.equal(b.eval('options.contentPack.id'),'fixture-topic');
+ const before=b.eval('JSON.stringify(game)');
+ b.eval('openGameType();selectStandardGame()');
+ assert.equal(b.eval('options.contentPack.id'),'general');assert.equal(b.eval('options.duration'),45);
+ assert.equal(b.eval('JSON.stringify(game)'),before);
+ b.eval('options.modes=["talk"];newGame()');assert.equal(b.eval('game.contentPack.id'),'general');
+});
+test('enabled but incomplete topic is disabled for the selected modes and levels',()=>{
+ const h=harness(new Map(),false,fixtureTopic);
+ assert.equal(h.eval('listThematicPacks(options).find(entry=>entry.pack.id==="fixture-topic").available'),false);
+ h.eval('options.modes=["talk"];options.promptTypes=["word"];options.difficulty="mixed"');
+ assert.equal(h.eval('selectTheme("fixture-topic",1)'),false);
+ h.eval('options.difficulty="easy"');assert.equal(h.eval('selectTheme("fixture-topic",1)'),true);
+ h.eval('options.difficulty="hard";newGame()');assert.equal(h.eval('game'),null);
 });

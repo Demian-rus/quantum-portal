@@ -28,6 +28,12 @@ const QUIP_CONTENT_PACKS=defineContentPacks([
   ['science','Наука'],['culture','Культура']].map(([id,name])=>({id,version:1,name,enabled:false,
    categories:[id],types:['word','phrase','idiom'],criteria:{cardIds:[],sourcePacks:[]},minCardsPerPool:1}))
 ]);
+function listThematicPacks(settings,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACKS,questions=QUIP_APPROX_QUESTIONS){
+ const latest=new Map();
+ for(const pack of Object.values(registry))if(pack.id!=='general'&&(!latest.has(pack.id)||latest.get(pack.id).version<pack.version))
+  latest.set(pack.id,pack);
+ return [...latest.values()].map(pack=>({pack,...checkContentPack({id:pack.id,version:pack.version},settings,cards,registry,questions)}));
+}
 function getContentPack(selection,registry=QUIP_CONTENT_PACKS){
  const pack=registry[selection?.id+'@'+selection?.version];
  if(!pack)throw Error('Unknown QUIP content pack/version');

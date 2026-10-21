@@ -88,6 +88,27 @@ function fitsViewport(g,device,stage) {
       await page.locator('#other-games-back').click();
       await page.locator('#scene-home').waitFor({state:'visible'});
       await page.locator('#new-game-menu').click();
+      assert.equal(await page.locator('#scene-game-type').isVisible(),true);
+      for(const id of ['standard-game','thematic-game']){
+        const box=await page.locator('#'+id).boundingBox();
+        assert.ok(box&&box.width>=44&&box.height>=44,'Game-type touch target too small');
+      }
+      await page.screenshot({path:'artifacts/quip-mobile-layout/'+device.name+'-game-type.png'});
+      await page.locator('#thematic-game').click();
+      assert.equal(await page.locator('#scene-themes').isVisible(),true);
+      assert.equal(await page.locator('#theme-list button:disabled').count(),6);
+      assert.equal(await page.locator('#theme-list button:not(:disabled)').count(),0);
+      assert.ok((await page.locator('#themes-caption').textContent()).includes('ещё готовятся'));
+      const themeLayout=await page.evaluate(()=>({w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight,
+        cards:[...document.querySelectorAll('.theme-choice')].map(el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right}})}));
+      assert.ok(themeLayout.w<=device.width+2&&themeLayout.h<=device.height+2,JSON.stringify(themeLayout));
+      assert.ok(themeLayout.cards.every(r=>r.left>=0&&r.right<=device.width+1),'Theme card outside viewport');
+      await page.screenshot({path:'artifacts/quip-mobile-layout/'+device.name+'-themes.png'});
+      await page.locator('#themes-back').click();
+      await page.locator('#game-type-back').click();
+      assert.equal(await page.locator('#scene-home').isVisible(),true);
+      await page.locator('#new-game-menu').click();
+      await page.locator('#standard-game').click();
       if(device.width>=780){
         const setup=await page.evaluate(()=>({
           viewport:innerWidth,

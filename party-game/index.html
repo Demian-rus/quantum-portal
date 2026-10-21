@@ -10,7 +10,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=16">
+  <link rel="stylesheet" href="./style.css?v=17">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
   <script src="./curated-words.js?v=1" defer></script>
@@ -24,9 +24,9 @@
   <script src="./penalties.js?v=2" defer></script>
   <script src="./modifiers.js?v=1" defer></script>
   <script src="./round-planner.js?v=1" defer></script>
-  <script src="./content-packs.js?v=3" defer></script>
+  <script src="./content-packs.js?v=4" defer></script>
   <script src="./presets.js?v=3" defer></script>
-  <script src="./app.js?v=19" defer></script>
+  <script src="./app.js?v=20" defer></script>
 </head>
 <body>
 
@@ -71,11 +71,31 @@
         <button id="preferences-rules" class="preferences-rules" type="button">Правила игры <span aria-hidden="true">›</span></button>
       </div>
     </section>
+    <section class="scene scene--selection immersive-screen" id="scene-game-type" hidden aria-labelledby="game-type-title">
+      <button class="scene-back" id="game-type-back" type="button" aria-label="Вернуться в меню">‹ <span>МЕНЮ</span></button>
+      <div class="settings-scroller"><div class="selection-panel">
+        <span class="section-kicker">НОВАЯ ИГРА</span><h1 class="preferences-title" id="game-type-title">КАК ИГРАЕМ?</h1>
+        <p class="selection-intro">Выберите словарь для этой партии</p>
+        <div class="game-type-choices">
+          <button id="standard-game" class="game-type-choice" type="button"><span class="choice-number" aria-hidden="true">01</span><strong>Стандартная игра</strong><span>Общий словарь · все игровые режимы</span><span class="choice-next" aria-hidden="true">→</span></button>
+          <button id="thematic-game" class="game-type-choice" type="button"><span class="choice-number" aria-hidden="true">02</span><strong>Тематическая игра</strong><span>Задания на одну выбранную тему</span><span class="choice-next" aria-hidden="true">→</span></button>
+        </div>
+      </div></div>
+    </section>
+    <section class="scene scene--selection immersive-screen" id="scene-themes" hidden aria-labelledby="themes-title">
+      <button class="scene-back" id="themes-back" type="button" aria-label="Вернуться к выбору типа игры">‹ <span>НАЗАД</span></button>
+      <div class="settings-scroller" id="themes-scroll"><div class="selection-panel">
+        <span class="section-kicker">ТЕМАТИЧЕСКАЯ ИГРА</span><h1 class="preferences-title" id="themes-title">ВЫБЕРИТЕ ТЕМУ</h1>
+        <p class="selection-intro" id="themes-caption"></p>
+        <div class="theme-list" id="theme-list" aria-label="Темы партий"></div>
+        <button id="themes-standard" class="button button-secondary" type="button">СТАНДАРТНАЯ ИГРА</button>
+      </div></div>
+    </section>
     <section class="scene scene--setup immersive-screen" id="scene-setup" hidden>
-      <button class="scene-back" id="setup-back" type="button" aria-label="Вернуться в меню">‹ <span>МЕНЮ</span></button>
+      <button class="scene-back" id="setup-back" type="button" aria-label="Вернуться к выбору игры">‹ <span>НАЗАД</span></button>
       <div class="settings-scroller" id="setup-scroll">
               <div class="setup-panel" id="setup-panel">
-        <div class="setup-top"><span class="section-kicker">НАСТРОЙКИ ПАРТИИ</span></div>
+        <div class="setup-top"><span class="section-kicker">НАСТРОЙКИ ПАРТИИ</span><span class="setup-pack-caption" id="setup-pack-caption">Общий словарь</span></div>
         <div class="setup-grid">
           <label class="team-input-wrap team-input-wrap--a"><span><span class="team-spot team-spot--a"></span> ИГРОК 1</span><input id="team-a" type="text" maxlength="24" value="Молнии" placeholder="Имя игрока" autocomplete="off" spellcheck="false"></label>
           <label class="team-input-wrap team-input-wrap--b"><span><span class="team-spot team-spot--b"></span> ИГРОК 2</span><input id="team-b" type="text" maxlength="24" value="Кометы" placeholder="Имя игрока" autocomplete="off" spellcheck="false"></label>
