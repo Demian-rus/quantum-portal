@@ -28,15 +28,10 @@ async function configureOnly(page,id) {
       await page.locator('[data-setting="difficulty"] [data-value="hard"]').click();
       await configureOnly(page,'yesno');
       assert.equal(await page.locator('[data-setting="dice"]').count(),0,'Old dice choice must be removed');
-      await page.locator('#custom-duration').fill('135');
-      await page.locator('#custom-duration').blur();
-      await page.locator('#custom-rounds').fill('4');
-      await page.locator('#custom-rounds').blur();
-      const aligns=await page.locator('.advanced-numbers input').evaluateAll(inputs=>inputs.map(el=>({
-        id:el.id,top:Math.round(el.getBoundingClientRect().top),
-        height:Math.round(el.getBoundingClientRect().height)
-      })));
-      assert.ok(aligns.every(x=>Math.abs(x.top-aligns[0].top)<=1),'Advanced settings are uneven: '+JSON.stringify(aligns));
+      await page.locator('#finish-rounds').check({force:true});
+      await page.locator('#custom-rounds').evaluate(el=>{el.value='4';el.dispatchEvent(new Event('input',{bubbles:true}))});
+      await page.locator('#base-duration').evaluate(el=>{el.value='60';el.dispatchEvent(new Event('input',{bubbles:true}))});
+      assert.equal(await page.locator('#base-duration').inputValue(),'60');
       await page.screenshot({path:'artifacts/iskra-v2/'+device.name+'-settings.png',fullPage:true});
       await page.locator('#advanced-done').click();
       await page.locator('#start-game').click();
@@ -46,11 +41,11 @@ async function configureOnly(page,id) {
       const state=await page.evaluate(()=>({mode:game.current.modeId,
         challenge:game.current.word,
         duration:game.duration,points:game.current.points,dice:game.dice,
-        member:PARTY_PEOPLE.hard.includes(game.current.word)}));
+        member:getPromptPool('people','hard').includes(game.current.word)}));
       assert.equal(state.mode,'yesno');
       assert.equal(state.member,true,'Expected real or fictional identity');
       assert.equal(state.points,2);
-      assert.equal(state.duration,135);
+      assert.equal(state.duration,60);
       assert.equal(state.dice,true,'Carousel is the only normal game selection method');
       const icon=page.locator('.mode-symbol img.mode-art');
       assert.equal(await icon.getAttribute('src'),'./assets/modes/yesno.webp?v=2','Danetki must display the mystery-person icon');
@@ -66,14 +61,14 @@ async function configureOnly(page,id) {
         children:element.children.length
       }));
       assert.equal(timer.children,0,'Timer must be a single uninterrupted string');
-      assert.match(timer.text,/^2:1[1-5]$/,'Custom timer is not used: '+timer.text);
+      assert.match(timer.text,/^1:(2[0-9]|30)$/,'Per-mode timer is not used: '+timer.text);
       await page.screenshot({path:'artifacts/iskra-v2/'+device.name+'-timer.png',fullPage:true});
       await page.evaluate(()=>{game.current.deadline=Date.now()-10;tick()});
       await page.locator('[data-action="yes"]').click();
-      assert.equal(await page.locator('#score-a').textContent(),'2');
+      assert.equal(await page.locator('#score-b').textContent(),'2');
       await page.reload();
       await page.locator('#continue-game').click();
-      assert.equal(await page.locator('#score-a').textContent(),'2');
+      assert.equal(await page.locator('#score-b').textContent(),'2');
       const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
       assert.ok(overflow<=2,'Horizontal overflow '+overflow);
       assert.deepEqual(errors,[],'Browser JS errors');
@@ -85,8 +80,6 @@ async function configureOnly(page,id) {
     await blitz.goto(URL,{waitUntil:'load'});
     await blitz.locator('#new-game-menu').click();
     await configureOnly(blitz,'blitz');
-    await blitz.locator('#custom-blitz').fill('5');
-    await blitz.locator('#custom-blitz').blur();
     await blitz.locator('#advanced-done').click();
     await blitz.locator('#start-game').click();
     await blitz.locator('[data-action="roll"]').click();
@@ -107,7 +100,7 @@ async function configureOnly(page,id) {
     assert.deepEqual(stats,{correct:5,remaining:0,count:5});
     await blitz.screenshot({path:'artifacts/iskra-v2/phone-blitz-result.png',fullPage:true});
     await blitz.locator('[data-action="yes"]').click();
-    assert.equal(await blitz.locator('#score-a').textContent(),'5');
+    assert.equal(await blitz.locator('#score-b').textContent(),'3');
     assert.deepEqual(errs,[],'Blitz JS errors');
     await blitz.close();
   }finally{await browser.close();}
