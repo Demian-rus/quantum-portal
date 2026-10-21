@@ -17,7 +17,7 @@ function symbol(id,extra='') {
 const $ = id => document.getElementById(id);
 function timerMarkup(ms) { return formatTimer(ms); }
 function pointNoun(n) { return n%10===1&&n%100!==11?'ОЧКО':([2,3,4].includes(n%10)&&!(n%100>=12&&n%100<=14)?'ОЧКА':'ОЧКОВ'); }
-const freshOptions = () => optionsForPartyPreset('classic-duel',2);
+const freshOptions = () => optionsForPartyPreset('classic-duel',3);
 let options = freshOptions();
 let soundOn = true;
 let game = null;
@@ -228,6 +228,12 @@ function renderMatch() {
   const legacy=game.scoringVersion!==2;
   $('role-a').textContent=legacy?(currentTeamIndex()===0?'ХОД':'ЖДЁТ'):(guessingTeamIndex()===0?'ОТГАДЫВАЕТ':'ЗАГАДЫВАЕТ');
   $('role-b').textContent=legacy?(currentTeamIndex()===1?'ХОД':'ЖДЁТ'):(guessingTeamIndex()===1?'ОТГАДЫВАЕТ':'ЗАГАДЫВАЕТ');
+  if(game.current&&modeConfigForGame(game,game.current.modeId).supportsSharedAward){
+    for(const id of ['a','b']){
+      $('role-'+id).textContent='НАЗЫВАЕТ ЧИСЛО';
+      $('match-team-'+id).classList.add('is-turn');
+    }
+  }
   $('match-center-label').textContent=game.finishType==='score'?'ЦЕЛЬ '+game.targetScore:'ПО ЧИСЛУ ХОДОВ';
 }
 function pickMode() {
@@ -268,6 +274,20 @@ function pullWord(kind, level=chooseDifficulty(),excluded=[]) {
   used.push(word);game.used[key]=used;
   return word;
 }
+function pullApproxQuestion(level){
+ const pool=getPackQuestionPool(game.contentPack,level);
+ if(!pool.length)throw Error('Нет числовых вопросов для выбранных настроек');
+ const key='approx:'+level;
+ let used=game.used[key]||[],free=pool.filter(question=>!used.includes(question.id));
+ if(!free.length){used=[];free=pool;}
+ const question=randomOne(free);used.push(question.id);game.used[key]=used;
+ return {...question,categories:question.categories.slice()};
+}
+function roundInteraction(){return modeConfigForGame(game,game.current.modeId).interaction;}
+const ROUND_INTERACTIONS=Object.freeze({
+ explain:Object.freeze({task:showTask,judge:showJudge}),
+ estimate:Object.freeze({task:showApprox,judge:showApprox})
+});
 function rollOutcome() {
   const mode=pickMode(),config=modeConfigForGame(game,mode.id);
   game.modeHistory.push(mode.id);
@@ -280,11 +300,12 @@ function rollOutcome() {
   }
   const modifier=config.usesModifiers?chooseModifier({modeId:mode.id,methodId:actualMode.id,
     difficulty:level,complications:game.complications}):null;
-  const word=pullWord(mode.id==='blitz'?'blitz':actualMode.kind,level);
+  const question=config.cardType==='number'?pullApproxQuestion(level):null;
+  const word=question?question.question:pullWord(mode.id==='blitz'?'blitz':actualMode.kind,level);
   const blitzWords=mode.id==='blitz'?[word]:null;
   if(blitzWords)while(blitzWords.length<config.blitzWordsCount)blitzWords.push(pullWord('blitz',level,blitzWords));
   return {
-    modeId:mode.id,methodId:actualMode.id,word,complication:modifier?.text||'',
+    modeId:mode.id,methodId:actualMode.id,word,...(question?{question}:{}),complication:modifier?.text||'',
     complicationId:modifier?.id||null,modifierVersion:QUIP_MODIFIER_VERSION,difficulty:level,
     basePoints:rewardForRound(game,mode.id,level),
     modifierPoints:ruleSetForGame(game).version>=4&&modifier?config.modifierBonus:0,
@@ -421,6 +442,38 @@ function taskMarkup(hidden) {
     (hidden?'НАЖМИ, ЧТОБЫ ОТКРЫТЬ':word)+'</div>'+
     (hidden?'':'<span class="challenge-details">ЗАПОМНИ И НАЧИНАЙ!</span>')+'</div>';
 }
+function showApprox(){
+ const c=game.current,q=c.question,revealed=game.phase==='judge';
+ $('play-content').className='play-inner is-approx';
+ $('play-step').textContent='ОБЕ КОМАНДЫ НАЗЫВАЮТ ЧИСЛО';
+ $('play-content').innerHTML=
+  '<div class="approx-heading">'+symbol('approx')+'<h2 class="play-title">ПРИМЕРНО</h2>'+
+  '<p class="play-subtitle">'+(revealed?'Решите вместе, кому начислить очки.':'Назовите ответы вслух, затем откройте правильный.')+'</p></div>'+
+  '<div class="approx-card" tabindex="0"><p class="approx-question">'+escapeHTML(q.question)+'</p>'+
+  (revealed?'<div class="approx-answer"><span>ПРАВИЛЬНЫЙ ОТВЕТ</span><strong>'+escapeHTML(q.answer)+' '+escapeHTML(q.unit||'')+'</strong></div>'+
+   (q.note?'<p class="approx-note">'+escapeHTML(q.note)+'</p>':''):'')+'</div>'+
+  '<div class="approx-actions">'+(revealed?
+   makeButton(escapeHTML(game.teams[0])+' +1','award-a','button-primary')+
+   makeButton(escapeHTML(game.teams[1])+' +1','award-b','button-coral')+
+   makeButton('Обе команды +1','award-both')+makeButton('Никому','award-none'):
+   makeButton('Показать ответ','reveal-approx','button-primary button-big'))+'</div>';
+}
+function revealApprox(){
+ if(!game||game.phase!=='task'||roundInteraction()!=='estimate')return;
+ game.phase='judge';game.current.answerRevealed=true;persist();render();
+}
+function awardApprox(choice){
+ if(!game||game.phase!=='judge'||roundInteraction()!=='estimate'||!game.current.answerRevealed)return;
+ const c=game.current,outcome=settleSharedAward(c,choice);
+ outcome.deltas.forEach((delta,index)=>{game.scores[index]+=delta;});
+ game.history.push({mode:c.modeId,word:c.question.question,questionId:c.question.id,
+  answer:c.question.answer,unit:c.question.unit,note:c.question.note,difficulty:c.difficulty,
+  recipients:outcome.recipients,recipientNames:outcome.recipients.map(index=>game.teams[index]),
+  sharedAward:choice==='both',deltas:outcome.deltas,awarded:outcome.deltas.reduce((a,b)=>a+b,0),
+  correct:outcome.recipients.length>0,risk:false,basePoints:c.basePoints,modifierPoints:0,
+  rulesVersion:game.rulesVersion,setter:currentTeam()});
+ completeRound(outcome.recipients.length>0);
+}
 function showTask() {
   $('play-content').className='play-inner is-task stable-round';
   const {mode,secret,name,rule}=modeInformation();
@@ -514,7 +567,7 @@ function stopTicking() {
   if(intervalId!==null){clearInterval(intervalId);intervalId=null;}
 }
 function beginAutomaticRound() {
-  if(!game||game.phase!=='countdown')return;
+  if(!game||!roundUsesTimer()||game.phase!=='countdown')return;
   const c=game.current;
   const startAt=c.autoStartAt || Date.now();
   c.deadline=startAt+c.seconds*1000;
@@ -541,7 +594,7 @@ function startTicking() {
   tick();
 }
 function tick() {
-  if(!game)return;
+  if(!game||!roundUsesTimer())return;
   if(game.phase==='countdown'){
     if(Date.now()>=game.current.autoStartAt)beginAutomaticRound();
     return;
@@ -557,7 +610,7 @@ function tick() {
   if(remain<=0)finishTimer('timeout');
 }
 function finishTimer(reason) {
-  if(!game||game.phase!=='play')return;
+  if(!game||!roundUsesTimer()||game.phase!=='play')return;
   stopTicking();
   game.phase='judge';
   game.current.finishedReason=reason;
@@ -596,7 +649,7 @@ function showJudge() {
     '</div>');
 }
 function recordAnswer(yes) {
-  if(!game||!['judge','play'].includes(game.phase))return;
+  if(!game||!['judge','play'].includes(game.phase)||roundInteraction()!=='explain')return;
   const teamIndex=guessingTeamIndex(),c=game.current;
   const outcome=settleQuipRound(game,c,yes,game.scores[teamIndex]);
   game.scores[teamIndex]+=outcome.delta;
@@ -607,11 +660,14 @@ function recordAnswer(yes) {
     rulesVersion:outcome.rulesVersion,difficulty:c.difficulty,
     basePoints:c.basePoints,modifierPoints:outcome.success?(c.modifierPoints||0):0
   });
+  completeRound(yes);
+}
+function completeRound(success){
   game.roundIndex++;
   // Confirmation is the final action for a round; no extra Next button.
   game.phase=matchComplete()?'results':'ready';
   game.current=null;
-  stopTicking();persist();sfx(yes?'win':'fail');render();
+  stopTicking();persist();sfx(success?'win':'fail');render();
 }
 function correctNow() {
   if(!game||game.phase!=='play'||game.current?.modeId==='blitz')return;
@@ -641,6 +697,15 @@ function showBetween() {
     '<p class="play-subtitle">Следующий ход: <b>'+escapeHTML(currentTeam())+'</b>. Передайте телефон этой команде.</p>'+
     makeButton('СЛЕДУЮЩИЙ ХОД','next','button-primary button-big');
 }
+function historyMarkup(row,index){
+ if(row.mode==='approx')return '<div class="history-row"><span>'+(index+1)+'. ПРИМЕРНО · '+escapeHTML(row.word)+
+  ' · Ответ: '+escapeHTML(row.answer)+' '+escapeHTML(row.unit||'')+' · '+
+  (row.sharedAward?'Обе команды':row.recipientNames.length?escapeHTML(row.recipientNames.join(', ')):'Никому')+
+  '</span><b>'+row.deltas.map(delta=>'+'+delta).join(' / ')+'</b></div>';
+ return '<div class="history-row"><span>'+(index+1)+'. '+escapeHTML(row.team)+' · '+
+  escapeHTML(getMode(row.mode)?.title||'')+' · '+escapeHTML(row.word)+'</span>'+
+  '<b>'+(row.awarded>0?'+'+row.awarded:row.awarded)+'</b></div>';
+}
 function showResults() {
   setScene('results');
   const [a,b]=game.scores;
@@ -656,10 +721,7 @@ function showResults() {
     '<div class="inline-actions">'+makeButton('СЫГРАТЬ ЕЩЁ','again','button-primary button-big')+
     makeButton('В ГЛАВНОЕ МЕНЮ','menu')+'</div>'+
     '<div class="history-block"><h3>ИСТОРИЯ ХОДОВ · ОЧКИ ОТГАДЫВАЮЩЕГО</h3>'+
-    game.history.map((row,index)=>
-      '<div class="history-row"><span>'+(index+1)+'. '+escapeHTML(row.team)+' · '+
-      escapeHTML(getMode(row.mode)?.title||'')+' · '+escapeHTML(row.word)+'</span>'+
-      '<b>'+(row.awarded>0?'+'+row.awarded:row.awarded)+'</b></div>').join('')+
+    game.history.map(historyMarkup).join('')+
     '</div>';
 }
 function render() {
@@ -669,10 +731,10 @@ function render() {
   renderMatch();
   if(game.phase==='ready')showReady();
   else if(game.phase==='rolling')showRolling();
-  else if(game.phase==='task')showTask();
+  else if(game.phase==='task')ROUND_INTERACTIONS[roundInteraction()].task();
   else if(game.phase==='countdown')showCountdown();
   else if(game.phase==='play')showTimer();
-  else if(game.phase==='judge')showJudge();
+  else if(game.phase==='judge')ROUND_INTERACTIONS[roundInteraction()].judge();
   else if(game.phase==='between')showBetween();
   if(game.phase==='countdown'||(game.phase==='play'&&!game.current.paused))startTicking();
   else stopTicking();
@@ -682,7 +744,9 @@ function newGame() {
   // START is the explicit action; don't repeat it with a native confirmation.
   if(!options.modes.length){toast('Выберите хотя бы один игровой режим');return;}
   if(!options.promptTypes.length && options.modes.some(id=>['talk','mime','draw','blitz','secret'].includes(id))){toast('Выберите тип заданий');return;}
-  const contentPack=options.contentPack||{id:'general',version:1};
+  let contentPack=options.contentPack||{id:'general',version:2};
+  // Upgrade only new general parties needing numeric content, never an active saved match.
+  if(contentPack.id==='general'&&contentPack.version===1&&options.modes.includes('approx'))contentPack={id:'general',version:2};
   try{
     if(!checkContentPack(contentPack,options).available){
       toast('Набор заданий недоступен для выбранных настроек.');return;
@@ -734,7 +798,7 @@ function toggleWord() {
   render();
 }
 function replaceWord() {
-  if(!game||game.phase!=='task'||!allowPause()||game.current.modeId==='blitz')return;
+  if(!game||!roundUsesTimer()||game.phase!=='task'||!allowPause()||game.current.modeId==='blitz')return;
   game.current.word=pullWord(getMode(game.current.methodId).kind,game.current.difficulty);
   game.current.visible=false;
   persist();sfx('button');render();
@@ -749,14 +813,14 @@ function startTimer() {
   persist();sfx('go');render();
 }
 function pauseTimer() {
-  if(!game||game.phase!=='play'||game.current.paused||!allowPause())return;
+  if(!game||!roundUsesTimer()||game.phase!=='play'||game.current.paused||!allowPause())return;
   game.current.remainingMs=Math.max(0,game.current.deadline-Date.now());
   game.current.paused=true;
   game.current.deadline=null;
   persist();render();
 }
 function resumeTimer() {
-  if(!game||game.phase!=='play'||!game.current.paused||!allowPause())return;
+  if(!game||!roundUsesTimer()||game.phase!=='play'||!game.current.paused||!allowPause())return;
   game.current.deadline=Date.now()+game.current.remainingMs;
   game.current.paused=false;
   persist();sfx('go');render();
@@ -772,6 +836,8 @@ function backToMenu() {
 function handleAction(action) {
   switch(action) {
     case 'roll':return roll();
+    case 'reveal-approx':return revealApprox();
+    case 'award-a':case 'award-b':case 'award-both':case 'award-none':return awardApprox(action.slice(6));
     case 'toggle-word':return toggleWord();
     case 'replace-word':return replaceWord();
     case 'start-timer':return startTimer();
@@ -839,7 +905,7 @@ function restoreSession() {
     candidate.current.finishedReason='timeout';
   }
   game=candidate;
-  game.modes=game.modes||DEFAULT_MODES.slice();
+  game.modes=game.modes||(ruleSetForGame(game).version<4?Object.keys(QUIP_LEGACY_MODES):DEFAULT_MODES).slice();
   game.promptTypes=game.promptTypes||PROMPT_TYPES.slice();
   game.blitzCount=game.blitzCount||4;
   game.finishType=game.finishType||'rounds';

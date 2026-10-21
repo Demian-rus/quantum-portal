@@ -34,6 +34,8 @@ const QUIP_CLASSIC_OPTIONS=freezePresetValue({difficulty:'easy',duration:60,roun
  modes:['talk','mime','draw','sing','yesno','secret','blitz'],promptTypes:['word','phrase','idiom'],
  contentPack:{id:'general',version:1}});
 const QUIP_PARTY_PRESETS=definePartyPresets([
+ {id:'classic-duel',version:3,name:'Классическая дуэль',enabled:true,settings:{...QUIP_CLASSIC_OPTIONS,blitzCount:3,modes:Object.keys(QUIP_MODES_V4),contentPack:{id:'general',version:2}}},
+ {id:'hardcore',version:3,name:'Хардкор',enabled:true,settings:{...QUIP_CLASSIC_OPTIONS,difficulty:'hard',duration:30,blitzCount:3,modes:Object.keys(QUIP_MODES_V4),contentPack:{id:'general',version:2}}},
  {id:'classic-duel',version:2,name:'Классическая дуэль',enabled:true,settings:{...QUIP_CLASSIC_OPTIONS,blitzCount:3}},
  {id:'hardcore',version:2,name:'Хардкор',enabled:true,settings:{...QUIP_CLASSIC_OPTIONS,difficulty:'hard',duration:30,blitzCount:3}},
  {id:'classic-duel',version:1,name:'Классическая дуэль',enabled:true,settings:QUIP_CLASSIC_OPTIONS},
