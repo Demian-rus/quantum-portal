@@ -397,11 +397,15 @@ function showReady() {
   const index=currentTeamIndex();
   const team=escapeHTML(currentTeam()),opponent=escapeHTML(guessingTeam());
   $('play-content').innerHTML=
-    '<span class="game-eyebrow">ХОД '+(game.roundIndex+1)+(game.finishType==='score'?' · ДО '+game.targetScore+' ОЧКОВ':' ИЗ '+game.rounds)+'</span>'+
-    '<div class="ready-avatar '+(index===1?'is-blue':'')+'">'+modeArt('secret')+'</div>'+
-    '<h2 class="play-title">'+(game.scoringVersion===2?'ЗАГАДЫВАЕТ':'НА ОЧЕРЕДИ')+'<br><em>'+team+'</em></h2>'+
-    '<p class="play-subtitle">'+(game.scoringVersion===2?'<strong>'+opponent+'</strong> отгадывает и получает очки. Покажите задание только загадывающему.':'Продолжение сохранённой партии по прежним правилам: очки получает команда текущего хода.')+'</p>'+
-    makeButton(game.dice?'ВЫБРАТЬ РЕЖИМ':'ПОЛУЧИТЬ ЗАДАНИЕ','roll','button-primary button-big');
+    '<div class="ready-content">'+
+      '<span class="game-eyebrow">ХОД '+(game.roundIndex+1)+(game.finishType==='score'?' · ДО '+game.targetScore+' ОЧКОВ':' ИЗ '+game.rounds)+'</span>'+
+      '<div class="ready-avatar '+(index===1?'is-blue':'')+'">'+modeArt('secret')+'</div>'+
+      '<h2 class="play-title">'+(game.scoringVersion===2?'ЗАГАДЫВАЕТ':'НА ОЧЕРЕДИ')+'<br><em>'+team+'</em></h2>'+
+      '<p class="play-subtitle">'+(game.scoringVersion===2?'<strong>'+opponent+'</strong> отгадывает и получает очки. Покажите задание только загадывающему.':'Продолжение сохранённой партии по прежним правилам: очки получает команда текущего хода.')+'</p>'+
+    '</div>'+
+    '<div class="ready-action-slot">'+
+      makeButton(game.dice?'ВЫБРАТЬ РЕЖИМ':'ПОЛУЧИТЬ ЗАДАНИЕ','roll','button-primary button-big')+
+    '</div>';
 }
 // The wheel is a window into a repeating ring, not a strip that ends on the prize.
 const ROLL_SPIN_MS=2850;
