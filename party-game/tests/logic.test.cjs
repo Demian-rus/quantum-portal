@@ -42,6 +42,8 @@ function harness(existing=new Map()) {
   vm.runInContext(read('penalties.js'),context);
   vm.runInContext(read('modifiers.js'),context);
   vm.runInContext(read('round-planner.js'),context);
+  vm.runInContext(read('content-packs.js'),context);
+  vm.runInContext(read('presets.js'),context);
   vm.runInContext(read('app.js'),context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
 }
@@ -500,7 +502,7 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v20-20261021-planner/);
+ assert.match(worker,/kvip-pwa-v21-20261021-packs/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
 
@@ -802,10 +804,10 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['rules.js?v=1','penalties.js?v=1','modifiers.js?v=1','round-planner.js?v=1','app.js?v=15']){
+ for(const file of ['rules.js?v=1','penalties.js?v=1','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=1','presets.js?v=1','app.js?v=16']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
- assert.match(sw,/kvip-pwa-v20-20261021-planner/);
+ assert.match(sw,/kvip-pwa-v21-20261021-packs/);
 });
 
 
@@ -1054,4 +1056,93 @@ test('leaving the carousel for the menu preserves its selected card on Continue'
  h.eval('backToMenu();continueGame();roll()');
  assert.equal(h.eval('game.phase'),'task');
  assert.equal(h.eval('JSON.stringify([game.current,game.used,game.plannerState])'),selected);
+});
+
+test('general pack preserves all existing pools, IDs, types and difficulties',()=>{
+ const h=harness();h.eval('soundOn=false;newGame()');
+ assert.equal(h.eval('PARTY_CARDS.length'),3016);
+ for(const kind of ['words','songs','people','blitz'])for(const level of ['easy','medium','hard']){
+  const expected=Array.from(h.eval('getCardPool("'+kind+'","'+level+'",game.promptTypes).map(c=>c.id)')).sort();
+  const actual=Array.from(h.eval('getPackCardPool(game.contentPack,"'+kind+'","'+level+'",game.promptTypes).map(c=>c.id)')).sort();
+  assert.deepEqual(actual,expected,kind+'/'+level);
+ }
+ assert.equal(h.eval('checkContentPack(game.contentPack,{...options,difficulty:"mixed"}).available'),true);
+});
+test('custom registries filter categories, sources, IDs and reject duplicates or types',()=>{
+ const h=harness();
+ h.eval(`var fixtureCards=[
+  {id:'a',text:'КОТ',type:'word',difficulty:'easy',categories:['animals'],pack:'custom'},
+  {id:'b',text:'ДОМ',type:'word',difficulty:'easy',categories:['geography'],pack:'custom'},
+  {id:'c',text:'ПЁС',type:'word',difficulty:'hard',categories:['animals'],pack:'custom'},
+  {id:'d',text:'ЛЕВ',type:'word',difficulty:'easy',categories:['animals'],pack:'other'},
+  {id:'a',text:'КОТ',type:'word',difficulty:'easy',categories:['animals'],pack:'custom'}];
+  var descriptor={id:'custom-animals',version:1,name:'Тест',enabled:true,categories:['animals'],
+   types:['word'],criteria:{cardIds:['a','c','d'],sourcePacks:['custom']},minCardsPerPool:1};
+  var registry=defineContentPacks([descriptor]);var selection={id:'custom-animals',version:1};`);
+ assert.deepEqual(Array.from(h.eval('getPackCardPool(selection,"words","easy",["word"],fixtureCards,registry).map(c=>c.id)')),['a']);
+ assert.deepEqual(Array.from(h.eval('getPackCardPool(selection,"words","hard",["word"],fixtureCards,registry).map(c=>c.id)')),['c']);
+ assert.equal(h.eval('getPackCardPool(selection,"songs","easy",null,fixtureCards,registry).length'),0);
+ assert.throws(()=>h.eval('defineContentPacks([descriptor,descriptor])'),/duplicate/);
+ assert.throws(()=>h.eval('defineContentPacks([{...descriptor,types:["bogus"]}])'),/types/);
+ assert.throws(()=>h.eval('getPackCardPool(selection,"words","easy",["person"],fixtureCards,registry)'),/Incompatible/);
+ assert.equal(h.eval('checkContentPack(selection,{difficulty:"easy",modes:["sing"],promptTypes:["word"]},fixtureCards,registry).available'),false);
+ assert.equal(h.eval('checkContentPack(selection,{difficulty:"easy",modes:["blitz"],promptTypes:["word"]},fixtureCards,registry).available'),false,'Blitz needs five unique texts');
+ assert.equal(h.eval('checkContentPack(selection,{difficulty:"easy",modes:["secret"],promptTypes:["word"]},fixtureCards,registry).available'),false,'Secret-only must support all five methods');
+ assert.equal(h.eval('checkContentPack(selection,{difficulty:"mixed",modes:["talk"],promptTypes:["word"]},fixtureCards,registry).available'),false,'Missing medium cannot silently use another tier');
+});
+test('empty themes stay unavailable without fallback and cannot replace an active match',()=>{
+ const h=harness();h.eval('soundOn=false;newGame();game.scores=[7,8];persist()');
+ const before=h.eval('JSON.stringify(game)');
+ assert.equal(h.eval('checkContentPack({id:"geography",version:1},options).available'),false);
+ h.eval('options.contentPack={id:"geography",version:1};newGame()');
+ assert.equal(h.eval('JSON.stringify(game)'),before);
+ assert.equal(h.eval('getPackCardPool({id:"geography",version:1},"words","easy").length'),0);
+ assert.throws(()=>h.eval('getContentPack({id:"missing",version:1})'),/Unknown/);
+});
+test('declarative presets are versioned snapshots independent of existing matches',()=>{
+ const h=harness();
+ const keys=Array.from(h.eval('Object.keys(QUIP_PARTY_PRESETS)'));
+ assert.equal(keys.length,new Set(keys).size);
+ assert.equal(h.eval('Object.isFrozen(QUIP_PARTY_PRESETS["classic-duel@1"].settings.modes)'),true);
+ assert.throws(()=>h.eval('definePartyPresets([QUIP_PARTY_PRESETS["classic-duel@1"],QUIP_PARTY_PRESETS["classic-duel@1"]])'),/duplicate/);
+ assert.throws(()=>h.eval('optionsForPartyPreset("thematic",1)'),/Unavailable/);
+ h.eval('soundOn=false;options=optionsForPartyPreset("classic-duel",1,{duration:45});newGame()');
+ const before=h.eval('JSON.stringify(game)');
+ h.eval('options=optionsForPartyPreset("hardcore",1);options.modes.pop();options.contentPack.id="future"');
+ assert.equal(h.eval('JSON.stringify(game)'),before);
+ assert.equal(h.eval('game.duration'),45);
+ assert.equal(h.eval('game.preset.id'),'classic-duel');
+ assert.equal(h.eval('QUIP_PARTY_PRESETS["hardcore@1"].settings.modes.length'),7);
+});
+test('old general matches and new content selections restore without migration',()=>{
+ for(const legacy of [false,true]){
+  const stored=new Map(),a=harness(stored);a.eval('soundOn=false;newGame();roll()');
+  if(legacy)a.eval('delete game.contentPack;delete game.preset');
+  a.eval('persist()');const card=a.eval('JSON.stringify(game.current)');
+  const b=harness(stored);
+  assert.equal(b.eval('JSON.stringify(game.current)'),card);
+  assert.equal(b.eval('storageBlocked'),false);
+  if(legacy)assert.equal(b.eval('game.contentPack'),undefined);
+  else assert.equal(b.eval('game.contentPack.version'),1);
+ }
+ const stored=new Map(),a=harness(stored);a.eval('soundOn=false;newGame();game.contentPack.version=999;persist()');
+ const original=stored.get('iskra-party:v1'),b=harness(stored);b.eval('persist();newGame()');
+ assert.equal(b.eval('storageBlocked'),true);assert.equal(stored.get('iskra-party:v1'),original);
+});
+
+test('small Blitz pools do not repeat a word across a used-history reset',()=>{
+ const h=harness();h.eval("soundOn=false;options.modes=['blitz'];options.dice=false;newGame();Math.random=()=>0;getPromptPool=()=>['КОТ','ДОМ','ЛЕС','ЛЕВ','ПЁС','НОС'];");
+ for(let i=0;i<4;i++){
+  h.eval('game.phase="ready";roll()');
+  const words=Array.from(h.eval('game.current.blitzWords'));
+  assert.equal(words.length,5);assert.equal(new Set(words).size,5);
+ }
+});
+test('preset overrides reject invalid settings and preserve declared versions',()=>{
+ const h=harness();
+ for(const update of ['{duration:999}','{difficulty:"impossible"}','{rounds:3}','{modes:["bogus"]}','{targetScore:0}'])
+  assert.throws(()=>h.eval('optionsForPartyPreset("classic-duel",1,'+update+')'),/Invalid/);
+ h.eval('var firstPreset=QUIP_PARTY_PRESETS["classic-duel@1"];var versions=definePartyPresets([firstPreset,{...firstPreset,version:2,settings:{...firstPreset.settings,duration:30}}]);');
+ assert.equal(h.eval('optionsForPartyPreset("classic-duel",1,{},versions).duration'),60);
+ assert.equal(h.eval('optionsForPartyPreset("classic-duel",2,{},versions).duration'),30);
 });

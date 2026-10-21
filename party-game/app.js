@@ -25,12 +25,7 @@ function symbol(id,extra='') {
 const $ = id => document.getElementById(id);
 function timerMarkup(ms) { return formatTimer(ms); }
 function pointNoun(n) { return n%10===1&&n%100!==11?'ОЧКО':([2,3,4].includes(n%10)&&!(n%100>=12&&n%100<=14)?'ОЧКА':'ОЧКОВ'); }
-const freshOptions = () => ({
-  difficulty:'easy',duration:60,rounds:12,finishType:'score',targetScore:25,riskRounds:true,
-  dice:true,complications:true,
-  modes:DEFAULT_MODES.slice(), promptTypes:PROMPT_TYPES.slice(),blitzCount:5,
-  scoring:'duel'
-});
+const freshOptions = () => optionsForPartyPreset('classic-duel',1);
 let options = freshOptions();
 let soundOn = true;
 let game = null;
@@ -259,10 +254,12 @@ const PARTY_VOCABULARY=Object.freeze(Object.fromEntries(
   ))])
 ));
 function getPromptPool(kind,level){
-  return [...new Set(getCardPool(kind,level,game?.promptTypes).map(card=>card.text))];
+  const cards=game?.contentPack?getPackCardPool(game.contentPack,kind,level,game.promptTypes):
+    getCardPool(kind,level,game?.promptTypes);
+  return [...new Set(cards.map(card=>card.text))];
 }
-function pullWord(kind, level=chooseDifficulty()) {
-  const pool=getPromptPool(kind,level);
+function pullWord(kind, level=chooseDifficulty(),excluded=[]) {
+  const pool=getPromptPool(kind,level).filter(word=>!excluded.includes(word));
   if(!pool?.length)throw Error('Нет слов для выбранных настроек');
   // Blitz uses the same easy-word pool at every difficulty: avoid repeats across levels.
   const key=(kind==='blitz'?'easy':level)+':'+kind+':'+(game.promptTypes||[]).join(',');
@@ -286,13 +283,15 @@ function rollOutcome() {
   const modifier=chooseModifier({modeId:mode.id,methodId:actualMode.id,
     difficulty:level,complications:game.complications});
   const word=pullWord(mode.id==='blitz'?'blitz':actualMode.kind,level);
+  const blitzWords=mode.id==='blitz'?[word]:null;
+  if(blitzWords)while(blitzWords.length<5)blitzWords.push(pullWord('blitz',level,blitzWords));
   return {
     modeId:mode.id,methodId:actualMode.id,word,complication:modifier?.text||'',
     complicationId:modifier?.id||null,modifierVersion:QUIP_MODIFIER_VERSION,difficulty:level,
     points:rewardForRound(game,mode.id,level),seconds:durationForMode(mode.id,actualMode.id,game.duration),
     risk:game.riskRounds&&game.roundIndex>=ruleSetForGame(game).risk.firstRoundIndex&&
       shouldSelectRisk(game,Math.random()),
-    blitzWords:mode.id==='blitz'?[word,...Array.from({length:4},()=>pullWord('blitz',level))]:null,
+    blitzWords,
     blitzIndex:0,blitzCorrect:0,
     blitzQueue:mode.id==='blitz'?Array.from({length:5},(_,i)=>i):null,
     visible:false,paused:false,remainingMs:null,deadline:null,autoStartAt:null,
@@ -680,6 +679,12 @@ function newGame() {
   // START is the explicit action; don't repeat it with a native confirmation.
   if(!options.modes.length){toast('Выберите хотя бы один игровой режим');return;}
   if(!options.promptTypes.length && options.modes.some(id=>['talk','mime','draw','blitz','secret'].includes(id))){toast('Выберите тип заданий');return;}
+  const contentPack=options.contentPack||{id:'general',version:1};
+  try{
+    if(!checkContentPack(contentPack,options).available){
+      toast('Набор заданий недоступен для выбранных настроек.');return;
+    }
+  }catch{toast('Набор заданий недоступен для выбранных настроек.');return;}
   const teamA=sanitizeTeam($('team-a').value,'Молнии');
   const teamB=sanitizeTeam($('team-b').value,'Кометы');
   game={
@@ -688,6 +693,7 @@ function newGame() {
     riskRounds:options.riskRounds,scoringVersion:2,rulesVersion:QUIP_RULE_VERSION,
     plannerVersion:QUIP_PLANNER_VERSION,plannerState:freshRoundPlan(),
     duration:options.duration,difficulty:options.difficulty,
+    contentPack:{...contentPack},preset:options.preset?{...options.preset}:null,
     modes:options.modes.slice(),promptTypes:options.promptTypes.slice(),
     dice:options.dice,complications:options.complications,blitzCount:5,
     current:null,modeHistory:[],used:{},history:[],phase:'ready'
@@ -793,7 +799,9 @@ function sanitizeOptions(raw) {
   const modes=Array.isArray(raw.modes)?DEFAULT_MODES.filter(id=>raw.modes.includes(id)):base.modes;
   const promptTypes=Array.isArray(raw.promptTypes)?PROMPT_TYPES.filter(id=>raw.promptTypes.includes(id)):base.promptTypes;
   return {difficulty,duration,rounds,targetScore,finishType,riskRounds,blitzCount,modes,promptTypes,
-    dice:true,complications:raw.complications!==false,scoring:'duel'};
+    dice:true,complications:raw.complications!==false,scoring:'duel',
+    contentPack:raw.contentPack?{id:raw.contentPack.id,version:raw.contentPack.version}:base.contentPack,
+    preset:raw.preset?{id:raw.preset.id,version:raw.preset.version}:base.preset};
 }
 function restoreSession() {
   const saved=readSaved();
@@ -809,6 +817,7 @@ function restoreSession() {
     if(candidate.rulesVersion!=null&&!Object.hasOwn(QUIP_RULESETS,candidate.rulesVersion))
       throw Error('Unsupported QUIP rulesVersion');
     if(candidate.plannerVersion!=null)validatePlannedGame(candidate);
+    if(candidate.contentPack)getContentPack(candidate.contentPack);
   }catch{storageBlocked=true;return;}
   if(candidate.phase==='rolling')candidate.phase=candidate.current?'task':'ready';
   if(candidate.phase==='countdown' && (candidate.current?.autoStartAt||0)<=Date.now()){

@@ -1,5 +1,5 @@
-const CACHE='kvip-pwa-v20-20261021-planner';
-const CORE=['./','./index.html','./style.css?v=14','./cards.js?v=1','./rules.js?v=1','./penalties.js?v=1','./modifiers.js?v=1','./round-planner.js?v=1','./app.js?v=15','./words.js?v=2','./extra-words.js?v=1','./curated-words.js?v=1','./curated-songs.js?v=1','./curated-people.js?v=1','./mode-images.js?v=5','./manifest.webmanifest','./assets/bg-home.webp?v=3','./assets/bg-setup.webp?v=3','./assets/bg-game.webp?v=3','./assets/icon-192.png','./assets/icon-512.png',...['talk','mime','draw','sing','yesno','secret','blitz'].map(id=>'./assets/modes/'+id+'.webp?v=2')];
+const CACHE='kvip-pwa-v21-20261021-packs';
+const CORE=['./','./index.html','./style.css?v=14','./cards.js?v=1','./rules.js?v=1','./penalties.js?v=1','./modifiers.js?v=1','./round-planner.js?v=1','./content-packs.js?v=1','./presets.js?v=1','./app.js?v=16','./words.js?v=2','./extra-words.js?v=1','./curated-words.js?v=1','./curated-songs.js?v=1','./curated-people.js?v=1','./mode-images.js?v=5','./manifest.webmanifest','./assets/bg-home.webp?v=3','./assets/bg-setup.webp?v=3','./assets/bg-game.webp?v=3','./assets/icon-192.png','./assets/icon-512.png',...['talk','mime','draw','sing','yesno','secret','blitz'].map(id=>'./assets/modes/'+id+'.webp?v=2')];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));
 });
