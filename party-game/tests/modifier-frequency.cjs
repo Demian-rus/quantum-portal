@@ -30,6 +30,10 @@ async function offlineUpgrade(browser,url){
   // Install the actual stage-B bundle and worker, then update to stage C.
   // All other precached production resources are unchanged between these commits.
   write(legacy);
+  // Give historical assets a historical Last-Modified value. The local static
+  // server has one-second precision; two writes within a second can yield a
+  // false HTTP 304 despite different bytes during this synthetic deployment.
+  for(const name of files)fs.utimesSync(path.join(root,'party-game',name),new Date('2026-01-01'),new Date('2026-01-01'));
   await page.goto(url,{waitUntil:'load'});await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
   assert.ok(await page.evaluate(key=>caches.has(key),oldCache));
   await page.evaluate(()=>{
@@ -47,6 +51,8 @@ async function offlineUpgrade(browser,url){
   });
   await page.waitForFunction(async ({oldCache,currentCache})=>(await caches.has(currentCache))&&!(await caches.has(oldCache)),{oldCache,currentCache});
   assert.equal(await page.evaluate(()=>localStorage.getItem(STORAGE_KEY)),snapshot.stored);
+  const cachedIndex=await page.evaluate(async key=>{const response=await (await caches.open(key)).match('./index.html');return response.text()},currentCache);
+  assert.ok(cachedIndex.includes('./app.js?v=25'),'New worker must cache the stage-C index');
   await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
   assert.equal(await page.evaluate(()=>JSON.stringify(game)),snapshot.game);assert.equal(await page.evaluate(()=>game.modifierSelectionVersion),undefined);
   assert.equal(await page.evaluate(()=>options.modifierChance),20);
