@@ -483,3 +483,72 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.match(worker,/kvip-pwa-v13-20261021-duel/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
+
+
+test('duel score goal gives the opponent a reply, then extends a tie',()=>{
+ const h=harness();
+ h.eval("soundOn=false;options.finishType='score';options.targetScore=15;options.modes=['talk'];options.dice=false;options.riskRounds=false;newGame();game.scores=[14,14];");
+ h.eval('roll();toggleWord();startTimer();correctNow()');
+ assert.deepEqual(Array.from(h.eval('game.scores')),[14,15]);
+ assert.equal(h.eval('game.phase'),'ready','First player to threshold cannot finish before reply');
+ h.eval('roll();toggleWord();startTimer();correctNow()');
+ assert.deepEqual(Array.from(h.eval('game.scores')),[15,15]);
+ assert.equal(h.eval('game.phase'),'ready','Tied players must continue in pairs');
+ h.eval('roll();toggleWord();startTimer();correctNow()');
+ assert.deepEqual(Array.from(h.eval('game.scores')),[15,16]);
+ assert.equal(h.eval('game.phase'),'ready','Opponent still gets reply');
+ h.eval('roll();toggleWord();startTimer();wrongNow()');
+ assert.equal(h.eval('game.phase'),'results');
+ assert.deepEqual(Array.from(h.eval('game.scores')),[15,16]);
+});
+test('fixed turn matches always use an equal even number of turns',()=>{
+ const h=harness();
+ assert.equal(h.eval("sanitizeOptions({finishType:'rounds',rounds:5}).rounds"),6);
+ assert.equal(h.eval("sanitizeOptions({finishType:'rounds',rounds:99}).rounds"),100);
+ assert.equal(h.eval("sanitizeOptions({finishType:'rounds',rounds:1}).rounds"),2);
+ assert.equal(h.eval("sanitizeOptions({finishType:'score',targetScore:300}).targetScore"),100);
+ assert.equal(h.eval("sanitizeOptions({finishType:'score',targetScore:5}).targetScore"),15);
+});
+test('mode-specific seconds follow base slider and capped bonus',()=>{
+ const h=harness();
+ for(const [mode,method,base,expected] of [
+  ['talk','talk',30,30],['mime','mime',30,45],['draw','draw',30,60],
+  ['yesno','yesno',30,60],['sing','sing',30,45],
+  ['secret','draw',30,60],['blitz','blitz',90,30],
+  ['draw','draw',80,90],['talk','talk',90,90]
+ ]) assert.equal(h.eval("durationForMode('"+mode+"','"+method+"',"+base+")"),expected,mode);
+});
+test('risk losses are bounded at zero and charged to the guesser only',()=>{
+ const h=harness();
+ h.eval("soundOn=false;options.modes=['talk'];options.dice=false;options.riskRounds=true;newGame();game.scores=[10,1];roll();game.current.risk=true;toggleWord();startTimer();wrongNow()");
+ assert.deepEqual(Array.from(h.eval('game.scores')),[10,0]);
+ assert.equal(h.eval('game.history[0].awarded'),-1);
+ h.eval('roll();game.current.risk=true;toggleWord();startTimer();wrongNow()');
+ assert.equal(h.eval('game.scores[0]'),8);
+ assert.equal(h.eval('game.history[1].awarded'),-2);
+});
+test('blitz is always five words and requires all five for three points',()=>{
+ const h=harness();
+ h.eval("soundOn=false;options.modes=['blitz'];options.dice=false;options.riskRounds=false;options.blitzCount=8;newGame();roll()");
+ assert.equal(h.eval('game.current.blitzWords.length'),5);
+ h.eval('toggleWord();startTimer();advanceBlitz(true);advanceBlitz(true);advanceBlitz(true);advanceBlitz(true);finishTimer("early");judge(true)');
+ assert.deepEqual(Array.from(h.eval('game.scores')),[0,0],'Four of five cannot award points');
+ h.eval('roll();toggleWord();startTimer();advanceBlitz(true);advanceBlitz(true);advanceBlitz(true);advanceBlitz(true);advanceBlitz(true)');
+ assert.equal(h.eval('game.phase'),'judge');
+ h.eval('judge(true)');
+ assert.deepEqual(Array.from(h.eval('game.scores')),[3,0],'Five of five should award three points to the new guesser');
+});
+test('expanded word pools recover previously lost phrases and de-duplicate',()=>{
+ const h=harness();
+ h.eval('soundOn=false;newGame()');
+ const oldWord='СТИРАЛЬНАЯ МАШИНА';
+ assert.equal(h.eval("getPromptPool('words','easy').includes('СТИРАЛЬНАЯ МАШИНА')"),true);
+ assert.equal(h.eval("getPromptPool('words','easy').includes('ХОМЯК')"),true);
+ let count=0;
+ for(const kind of ['words','songs','people'])for(const level of ['easy','medium','hard']){
+  const data=Array.from(h.eval("getPromptPool('"+kind+"','"+level+"')"));
+  assert.equal(data.length,new Set(data).size,'Duplicate in '+kind+'/'+level);
+  count+=data.length;
+ }
+ assert.ok(count>=1400,'Extended pools too small: '+count);
+});
