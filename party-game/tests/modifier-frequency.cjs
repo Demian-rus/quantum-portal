@@ -19,7 +19,7 @@ async function offlineUpgrade(browser,url){
  // necessary, without switching branches or changing the checkout's files.
  const git=args=>execFileSync('git',args,{cwd:root,timeout:30000,maxBuffer:2*1024*1024,stdio:['ignore','pipe','pipe']});
  try{git(['cat-file','-e',legacyCommit+'^{commit}'])}catch{git(['fetch','--depth=1','origin',legacyCommit])}
- const files=['sw.js','index.html','style.css','app.js','modifiers.js'];
+ const files=['sw.js','index.html','style.css','app.js','modifiers.js','cards.js','approx-questions.js','content-packs.js'];
  const current=new Map(files.map(name=>[name,fs.readFileSync(path.join(root,'party-game',name))]));
  const legacy=new Map(files.map(name=>[name,git(['show',legacyCommit+':party-game/'+name])]));
  const cache=source=>source.toString().match(/const CACHE='([^']+)'/)[1];
@@ -52,7 +52,7 @@ async function offlineUpgrade(browser,url){
   await page.waitForFunction(async ({oldCache,currentCache})=>(await caches.has(currentCache))&&!(await caches.has(oldCache)),{oldCache,currentCache});
   assert.equal(await page.evaluate(()=>localStorage.getItem(STORAGE_KEY)),snapshot.stored);
   const cachedIndex=await page.evaluate(async key=>{const response=await (await caches.open(key)).match('./index.html');return response.text()},currentCache);
-  assert.ok(cachedIndex.includes('./app.js?v=25'),'New worker must cache the stage-C index');
+  assert.ok(cachedIndex.includes(current.get('index.html').toString().match(/src="([^"]*app\.js[^"]*)"/)[1]),'New worker must cache the deployed index');
   await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
   assert.equal(await page.evaluate(()=>JSON.stringify(game)),snapshot.game);assert.equal(await page.evaluate(()=>game.modifierSelectionVersion),undefined);
   assert.equal(await page.evaluate(()=>options.modifierChance),20);
