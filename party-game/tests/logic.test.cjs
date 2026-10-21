@@ -167,7 +167,7 @@ test('blitz is a sequence with correct, skip, no timer reset and per-word points
  h.pending.shift()();
  assert.equal(h.eval('game.current.blitzWords.length'),5);
  assert.equal(new Set(h.eval('game.current.blitzWords')).size,5);
- assert.equal(h.eval('game.current.seconds'),30);
+ assert.equal(h.eval('game.current.seconds'),90);
  h.eval('toggleWord();startTimer()');
  const deadline=h.eval('game.current.deadline');
  h.eval('advanceBlitz(true)');
