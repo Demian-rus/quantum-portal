@@ -301,15 +301,19 @@ function chooseDifficulty() {
   return game.difficulty==='mixed'?randomOne(['easy','medium','hard']):game.difficulty;
 }
 function getPromptPool(kind,level) {
-  if(kind==='songs')return PARTY_SONGS[level]||PARTY_SONGS.easy;
-  if(kind==='people')return PARTY_PEOPLE[level]||PARTY_PEOPLE.easy;
+  const extra=typeof PARTY_EXPANSION==='undefined'?null:PARTY_EXPANSION;
+  const merge=(primary,added)=>[...new Set([...(primary||[]),...(added||[])])];
+  if(kind==='songs')return merge(PARTY_SONGS[level]||PARTY_SONGS.easy,extra?.songs?.[level]);
+  if(kind==='people')return merge(PARTY_PEOPLE[level]||PARTY_PEOPLE.easy,extra?.people?.[level]);
+  const original=PARTY_WORDS[level]||PARTY_WORDS.easy;
   const groups={
-    word:(PARTY_WORDS[level]||PARTY_WORDS.easy).filter(word=>!word.includes(' ')),
-    phrase:PARTY_PHRASES[level]||PARTY_PHRASES.easy,
-    idiom:PARTY_IDIOMS[level]||PARTY_IDIOMS.easy
+    word:merge(original.filter(word=>!word.includes(' ')),(extra?.word?.[level]||[]).filter(word=>!word.includes(' '))),
+    // Earlier versions accidentally buried 49 multiword cards in the single-word pack.
+    phrase:merge([...(PARTY_PHRASES[level]||PARTY_PHRASES.easy),...original.filter(word=>word.includes(' '))],extra?.phrase?.[level]),
+    idiom:merge(PARTY_IDIOMS[level]||PARTY_IDIOMS.easy,extra?.idiom?.[level])
   };
-  return (game.promptTypes?.length?game.promptTypes:PROMPT_TYPES)
-    .flatMap(type=>groups[type]||[]);
+  return [...new Set((game.promptTypes?.length?game.promptTypes:PROMPT_TYPES)
+    .flatMap(type=>groups[type]||[]))];
 }
 function pullWord(kind, level=chooseDifficulty()) {
   const pool=getPromptPool(kind,level);
