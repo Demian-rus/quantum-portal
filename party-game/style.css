@@ -1286,3 +1286,39 @@ body[data-screen="results"]::after {
 @media(hover:none) {
   .home-action:hover:not(:disabled),.button:hover {transform:none;}
 }
+
+/* QUIP duel V5: tactile score/time sliders and explicit match roles. */
+.settings-grid--compact .option-set {min-width:0}
+.setup-metric {font:800 clamp(16px,2.5vw,22px) var(--font-title);color:#e0faff;padding:10px 0 7px;line-height:1.25}
+.settings-grid--compact .option-set>small {color:#b8c5e4;line-height:1.5;font-size:11px;display:block}
+.slider-option {background:#10152bd6;border:1px solid #728ee180;border-radius:16px;padding:17px;display:grid;gap:7px;min-width:0}
+.slider-option[hidden],#finish-score-settings[hidden],#finish-rounds-settings[hidden]{display:none!important}
+.slider-title {display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.slider-title label {font-weight:850;color:#f2f4ff;font-size:13px}
+.slider-title output {font:850 19px var(--font-title);color:#82efff;font-variant-numeric:tabular-nums}
+.slider-option input[type=range] {width:100%;height:36px;cursor:pointer;accent-color:#70eaff;touch-action:pan-x;background:transparent}
+.slider-extremes {display:flex;justify-content:space-between;color:#9db9d6;font-size:11px;font-weight:750}
+.slider-option>small{font-size:11px;line-height:1.55;color:#aebcdc}
+.finish-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:13px}
+.finish-choices label{cursor:pointer;position:relative;min-width:0}
+.finish-choices input{position:absolute;opacity:0;width:1px;height:1px}
+.finish-choices span{min-height:54px;display:grid;place-items:center;text-align:center;border:1px solid #728bcc77;border-radius:13px;background:#12162fcf;color:#bec9e6;padding:9px;font-size:12px;font-weight:800}
+.finish-choices input:checked+span{border-color:#68ecff;background:#123955;color:#d9ffff;box-shadow:0 0 0 1px #68edff55}
+.finish-choices input:focus-visible+span{outline:3px solid #b4f7ff;outline-offset:3px}
+.scene--game .match-team-meta{min-width:0;display:flex;flex-direction:column;gap:5px}
+.scene--game .match-team-meta>small{font-size:clamp(7px,1.5vw,9px);font-weight:900;letter-spacing:.045em;color:#a9e8f8;line-height:1.2}
+.scene--game .match-team.is-turn .match-team-meta>small{color:#e7fcff}
+.scene--game .risk-notice{margin:0;padding:3px 8px;border-radius:8px;background:#702449c7;color:#fff4c5;font-size:clamp(9px,1.45dvh,12px);font-weight:900;text-align:center;line-height:1.3}
+.scene--game .round-top .risk-notice{max-width:100%;flex-shrink:0}
+@media(max-width:700px){
+ .settings-grid--compact{grid-template-columns:1fr 1fr;gap:14px}
+ .settings-grid--compact .option-set:first-child{grid-column:1 / -1}
+ .scene--game .match-team{gap:5px}
+ .scene--game .match-team-meta>small{font-size:8px;letter-spacing:0}
+ .slider-option{padding:14px}
+}
+@media(max-width:355px){
+ .settings-grid--compact{grid-template-columns:1fr}
+ .settings-grid--compact .option-set:first-child{grid-column:auto}
+ .scene--game .match-team-meta>small{font-size:7px}
+}
