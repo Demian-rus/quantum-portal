@@ -44,7 +44,7 @@ async function configureOnly(page,id) {
         member:getPromptPool('people','hard').includes(game.current.word)}));
       assert.equal(state.mode,'yesno');
       assert.equal(state.member,true,'Expected real or fictional identity');
-      assert.equal(state.points,2);
+      assert.equal(state.points,4,'Hard Danetki use the V3 graded 2/3/4 points table');
       assert.equal(state.duration,60);
       assert.equal(state.dice,true,'Carousel is the only normal game selection method');
       const icon=page.locator('.mode-symbol img.mode-art');
@@ -65,10 +65,10 @@ async function configureOnly(page,id) {
       await page.screenshot({path:'artifacts/quip-v2/'+device.name+'-timer.png',fullPage:true});
       await page.evaluate(()=>{game.current.deadline=Date.now()-10;tick()});
       await page.locator('[data-action="yes"]').click();
-      assert.equal(await page.locator('#score-b').textContent(),'2');
+      assert.equal(await page.locator('#score-b').textContent(),String(state.points));
       await page.reload();
       await page.locator('#continue-game').click();
-      assert.equal(await page.locator('#score-b').textContent(),'2');
+      assert.equal(await page.locator('#score-b').textContent(),String(state.points));
       const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
       assert.ok(overflow<=2,'Horizontal overflow '+overflow);
       assert.deepEqual(errors,[],'Browser JS errors');
