@@ -5,9 +5,9 @@ const MODE_LIST = Object.freeze([
   {id:'mime',title:'ЖЕСТЫ',rule:'Только жесты и мимика. Нельзя говорить или издавать звуки.',kind:'words',points:2},
   {id:'draw',title:'НАРИСУЙ',rule:'Рисуй на бумаге, не используя буквы, цифры и жесты.',kind:'words',points:2},
   {id:'sing',title:'НАПОЙ',rule:'Напой песню, связанную с темой. Команда угадывает саму тему.',kind:'songs',points:2},
-  {id:'yesno',title:'ДАНЕТКИ',rule:'Соперники задают вопросы. Отвечай только «да», «нет» или «не знаю». Нужно угадать личность или персонажа.',kind:'people',points:2},
+  {id:'yesno',title:'ДАНЕТКИ',rule:'Загадывающий видит персонажа и отвечает на вопросы соперника только «да», «нет» или «не знаю». Отгадывающий должен назвать персонажа.',kind:'people',points:2},
   {id:'secret',title:'СЕКРЕТКА',rule:'Случайное задание с обязательным усложнением. Принесёт 3 очка.',kind:'words',points:3},
-  {id:'blitz',title:'БЛИЦ',rule:'За 30 секунд отгадай несколько слов подряд. Каждое угаданное слово — 1 очко.',kind:'words',seconds:30}
+  {id:'blitz',title:'БЛИЦ',rule:'Отгадай все 5 слов за 30 секунд! За 5 из 5 получи 3 очка. За неполный результат — 0.',kind:'words',seconds:30}
 ]);
 const COMPLICATIONS = Object.freeze({
   talk: [
@@ -488,7 +488,7 @@ function showTask() {
       '<div class="mode-rule">'+escapeHTML(rule)+
       (c.complication?'<br><strong>УСЛОЖНЕНИЕ: '+escapeHTML(c.complication)+'</strong>':'')+'</div>'+
       (secret?'<span class="secret-flag">СЕКРЕТКА · +'+c.points+' ОЧКА</span>':
-        '<span class="score-note">ЗА ВЕРНЫЙ ОТВЕТ: +'+(c.modeId==='blitz'?'3 ЗА ВСЕ 5 СЛОВ':c.points)+'</span>')+
+        '<span class="score-note">ЗА ВЕРНЫЙ ОТВЕТ: +'+(c.modeId==='blitz'?(game.scoringVersion===2?'3 ЗА ВСЕ 5 СЛОВ':'1 ЗА СЛОВО'):c.points)+'</span>')+
     (c.risk?'<p class="risk-notice">⚡ РИСК-РАУНД: ПРОВАЛ — ДО −2 ОЧКОВ</p>':'')+
     '</div>'+
     '<div class="round-fixed-card">'+taskMarkup(!c.visible)+'</div>'+
@@ -525,8 +525,8 @@ function showTimer() {
         '<div class="blitz-control">'+iconButton('x','blitz-skip','Пропустить слово','danger prominent')+
           '<span>ПРОПУСТИТЬ</span></div>'+
         '<span aria-hidden="true"></span>'+
-        '<div class="blitz-control">'+iconButton('check','blitz-correct','Угадали — +1 очко','success prominent')+
-          '<span>УГАДАЛИ +1</span></div>'+
+        '<div class="blitz-control">'+iconButton('check','blitz-correct',game.scoringVersion===2?'Слово отгадано':'Угадали — +1 очко','success prominent')+
+          '<span>'+(game.scoringVersion===2?'ОТГАДАНО':'УГАДАЛИ +1')+'</span></div>'+
         '</div><div class="minor-action">'+makeButton('ЗАВЕРШИТЬ БЛИЦ','finish-early','button-quiet')+'</div>':
         '<div class="three-answer-actions">'+
           iconButton('x','wrong-now','Не угадали — завершить ход','danger prominent')+
@@ -632,9 +632,9 @@ function showJudge() {
   $('play-content').innerHTML=
     '<span class="game-eyebrow">'+(c.finishedReason==='timeout'?'ВРЕМЯ ВЫШЛО':'РАУНД ЗАКОНЧЕН')+'</span>'+
     symbol(blitz?'blitz':c.methodId)+
-    '<h2 class="play-title">'+(blitz?'РЕЗУЛЬТАТ <em>БЛИЦА</em>':'КОМАНДА <em>УГАДАЛА?</em>')+'</h2>'+
-    '<p class="play-subtitle">'+(blitz?'Отгадано '+c.blitzCorrect+' из 5. Три очка начисляются только за все пять слов.':'Нажмите галочку, если ответ верный, или крестик, если нет.')+'</p>'+
-    '<p class="score-note">'+(blitz?'Награда: <b>'+(c.blitzCorrect===5?'+3':'0')+' очков</b>':
+    '<h2 class="play-title">'+(blitz?'РЕЗУЛЬТАТ <em>БЛИЦА</em>':'ОТГАДЫВАЮЩИЙ <em>УГАДАЛ?</em>')+'</h2>'+
+    '<p class="play-subtitle">'+(blitz?'Отгадано '+c.blitzCorrect+' из '+c.blitzWords.length+'. '+(game.scoringVersion===2?'Три очка начисляются только за все пять слов.':'За каждое отгаданное слово — одно очко (старая партия).'):'Нажмите галочку, если ответ верный, или крестик, если нет.')+'</p>'+
+    '<p class="score-note">'+(blitz?'Награда: <b>'+(game.scoringVersion===2?(c.blitzCorrect===5?'+3':'0'):('+'+c.blitzCorrect))+' очков</b>':
     'Было загадано: <b>'+escapeHTML(c.word)+'</b> · За ответ: +'+c.points)+'</p>'+ 
     (c.risk?'<p class="risk-notice">⚡ Провал: потеря до 2 очков у отгадывающего</p>':'')+
     '<div class="judgement-grid">'+
@@ -651,8 +651,11 @@ function showJudge() {
 function recordAnswer(yes) {
   if(!game||!['judge','play'].includes(game.phase))return;
   const teamIndex=guessingTeamIndex(),c=game.current;
-  const success=yes&&(c.modeId!=='blitz'||c.blitzCorrect===5);
-  const points=success?c.points:(c.risk?-Math.min(2,game.scores[teamIndex]):0);
+  const newDuel=game.scoringVersion===2;
+  const success=yes&&(!newDuel||c.modeId!=='blitz'||c.blitzCorrect===5);
+  // Preserve the original per-word Blitz scoring in unfinished pre-V5 sessions.
+  const points=success?(c.modeId==='blitz'&&!newDuel?c.blitzCorrect:c.points):
+    (newDuel&&c.risk?-Math.min(2,game.scores[teamIndex]):0);
   game.scores[teamIndex]+=points;
   game.history.push({
     team:game.teams[teamIndex],setter:currentTeam(),mode:c.modeId,
