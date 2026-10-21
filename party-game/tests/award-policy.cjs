@@ -18,6 +18,7 @@ async function geometry(page){
  assert.equal(await page.locator('#scene-advanced [data-setting="awardTo"]').count(),0);
 }
 async function shot(page,name){
+ await page.waitForFunction(()=>!document.getElementById("toast").classList.contains("show"));
  await page.locator('#scene-setup,#scene-advanced').evaluateAll(async els=>{for(const el of els)await Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{})))});
  await page.screenshot({path:'artifacts/quip-mobile-layout/task007a-'+name+'.png'});
 }
