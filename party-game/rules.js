@@ -42,3 +42,16 @@ function rewardForRound(match,mode,difficulty,hasModifier=false){
  const bonus=ruleSetForGame(match).version>=4&&hasModifier?modeConfigForGame(match,mode).modifierBonus:0;
  return table[difficulty]+bonus;
 }
+
+// Recipient policy is independent of rule versions and player roles.
+const QUIP_AWARD_POLICY_VERSION=1;
+function validateAwardPolicy(match){
+ if(match.awardPolicyVersion==null&&match.awardTo==null)return;
+ if(match.awardPolicyVersion!==QUIP_AWARD_POLICY_VERSION||!['setter','guesser'].includes(match.awardTo))
+  throw Error('Unsupported QUIP award policy');
+}
+function awardRecipientIndex(match,setterIndex){
+ validateAwardPolicy(match);
+ const setter=match.awardPolicyVersion==null?match.scoringVersion!==2:match.awardTo==='setter';
+ return setter?setterIndex:(setterIndex+1)%2;
+}

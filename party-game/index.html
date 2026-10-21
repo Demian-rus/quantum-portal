@@ -10,7 +10,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=20">
+  <link rel="stylesheet" href="./style.css?v=21">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
   <script src="./curated-words.js?v=1" defer></script>
@@ -20,13 +20,13 @@
   <script src="./cards.js?v=1" defer></script>
   <script src="./approx-questions.js?v=1" defer></script>
   <script src="./mode-config.js?v=2" defer></script>
-  <script src="./rules.js?v=2" defer></script>
+  <script src="./rules.js?v=3" defer></script>
   <script src="./penalties.js?v=2" defer></script>
   <script src="./modifiers.js?v=1" defer></script>
   <script src="./round-planner.js?v=1" defer></script>
   <script src="./content-packs.js?v=4" defer></script>
   <script src="./presets.js?v=3" defer></script>
-  <script src="./app.js?v=22" defer></script>
+  <script src="./app.js?v=23" defer></script>
 </head>
 <body>
 
@@ -100,13 +100,14 @@
           <label class="team-input-wrap team-input-wrap--a"><span><span class="team-spot team-spot--a"></span> ИГРОК 1</span><input id="team-a" type="text" maxlength="24" value="Молнии" placeholder="Имя игрока" autocomplete="off" spellcheck="false"></label>
           <label class="team-input-wrap team-input-wrap--b"><span><span class="team-spot team-spot--b"></span> ИГРОК 2</span><input id="team-b" type="text" maxlength="24" value="Кометы" placeholder="Имя игрока" autocomplete="off" spellcheck="false"></label>
         </div>
+        <fieldset class="option-set award-policy"><legend>КТО ПОЛУЧАЕТ ОЧКИ</legend><div id="award-policy-choices" class="choices" data-setting="awardTo" aria-label="Кто получает очки"><button type="button" data-value="setter">ЗАГАДЫВАЮЩИЙ</button><button type="button" data-value="guesser">ОТГАДЫВАЮЩИЙ</button></div></fieldset>
         <div class="settings-grid settings-grid--compact">
           <fieldset class="option-set"><legend>СЛОЖНОСТЬ</legend><div class="choices" data-setting="difficulty"><button type="button" data-value="easy" class="is-chosen">Легко</button><button type="button" data-value="medium">Средний</button><button type="button" data-value="hard">Сложный</button><button type="button" data-value="mixed">Микс</button></div></fieldset>
           <fieldset class="option-set"><legend id="setup-finish-label">МАКСИМУМ ОЧКОВ</legend><div class="setup-metric" id="score-goal-preview">25 очков</div><div class="choices quick-choices" id="quick-score-choices" data-setting="targetScore" aria-label="Максимум очков"><button type="button" data-value="15">15</button><button type="button" data-value="30">30</button><button type="button" data-value="60">60</button><button type="button" data-value="100">100</button></div><small id="score-goal-caption">У каждого игрока будет ответный ход</small></fieldset>
           <fieldset class="option-set"><legend>МИНИМАЛЬНОЕ ВРЕМЯ</legend><div class="setup-metric"><span id="base-duration-value">60 с</span></div><div class="choices quick-choices" data-setting="duration" aria-label="Минимальное время"><button type="button" data-value="30">30</button><button type="button" data-value="45">45</button><button type="button" data-value="60">60</button></div><small>Нарисуй, Напой, Данетки и Блиц получают +30 с</small></fieldset>
         </div>
         <button id="go-advanced" class="button setup-advanced-link" type="button">ТОНКАЯ НАСТРОЙКА <span aria-hidden="true">Настроить режимы и правила</span></button>
-        <div class="setup-bottom"><p>Один телефон — два соперника. В свой ход вы загадываете, соперник отгадывает и зарабатывает очки.</p><button id="start-game" class="button button-primary button-big" type="button">НАЧАТЬ ИГРУ</button></div>
+        <div class="setup-bottom"><p id="setup-award-caption"></p><button id="start-game" class="button button-primary button-big" type="button">НАЧАТЬ ИГРУ</button></div>
       </div>
 
       </div>

@@ -30,7 +30,7 @@ const {chromium} = require('playwright-core');
       assert.equal(modeIcons.length,8);
       assert.ok(modeIcons.every(i=>i.ok&&i.width===512&&i.height===512),
         'Mode icons could not be decoded: '+JSON.stringify(modeIcons));
-      await page.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
+      await page.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
       await page.waitForSelector('#new-game-menu');
       assert.ok(await page.locator('#new-game-menu').isVisible());
       assert.equal(await page.locator('#continue-game').isDisabled(),true);

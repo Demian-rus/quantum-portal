@@ -54,7 +54,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
     options.modes=options.modes.filter(id=>id!=='approx');
     if(options.contentPack?.id==='general')options.contentPack={id:'general',version:1};
     newGame();if(game&&game.phase==='ready'&&game.roundIndex===0){
-      game.rulesVersion=version;delete game.modeConfigVersion;game.blitzCount=5;game.modes=game.modes.filter(id=>id!=='approx');persist();
+      game.rulesVersion=version;delete game.modeConfigVersion;delete game.awardTo;delete game.awardPolicyVersion;game.blitzCount=5;game.modes=game.modes.filter(id=>id!=='approx');persist();
     }
   }`,context);
   // Scoring fixtures choose a fixed starting player; dedicated tests exercise both draws.
@@ -818,7 +818,7 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['approx-questions.js?v=1','mode-config.js?v=2','rules.js?v=2','penalties.js?v=2','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=4','presets.js?v=3','app.js?v=22']){
+ for(const file of ['approx-questions.js?v=1','mode-config.js?v=2','rules.js?v=3','penalties.js?v=2','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=4','presets.js?v=3','app.js?v=23']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
  assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);
@@ -1243,7 +1243,7 @@ test('V4 fixed rewards cover all eight configured modes and all difficulties',()
 });
 test('V4 modifier bonus is snapshotted, paid once on success and absent on failure',()=>{
  for(const success of [true,false])for(const mode of ['talk','mime','draw','sing','yesno','secret']){
-  const h=harness();h.eval('soundOn=false;options.modes=["'+mode+'"];options.dice=false;options.riskRounds=false;Math.random=()=>0;newGame();roll()');
+  const h=harness();h.eval('soundOn=false;options.awardTo="guesser";options.modes=["'+mode+'"];options.dice=false;options.riskRounds=false;Math.random=()=>0;newGame();roll()');
   const base=h.eval('game.current.basePoints');
   assert.ok(h.eval('game.current.complication'));
   assert.equal(h.eval('game.current.modifierPoints'),1);assert.equal(h.eval('game.current.points'),base+1);
@@ -1253,12 +1253,12 @@ test('V4 modifier bonus is snapshotted, paid once on success and absent on failu
   assert.equal(h.eval('game.history[0].modifierPoints'),success?1:0);
   assert.equal(h.eval('game.history[0].rulesVersion'),4);
  }
- const h=harness();h.eval('soundOn=false;options.modes=["secret"];options.complications=false;options.dice=false;newGame();roll()');
+ const h=harness();h.eval('soundOn=false;options.awardTo="guesser";options.modes=["secret"];options.complications=false;options.dice=false;newGame();roll()');
  assert.equal(h.eval('game.current.points'),3,'Secret always includes the bonus');
 });
 test('V4 Blitz draws three unique easy words and requires all three for two base points',()=>{
  for(const correct of [0,1,2,3])for(const complication of [false,true]){
-  const h=harness();h.eval('soundOn=false;options.modes=["blitz"];options.dice=false;options.riskRounds=false;options.complications='+complication+';Math.random=()=>0;newGame();roll()');
+  const h=harness();h.eval('soundOn=false;options.awardTo="guesser";options.modes=["blitz"];options.dice=false;options.riskRounds=false;options.complications='+complication+';Math.random=()=>0;newGame();roll()');
   assert.equal(h.eval('game.current.blitzWords.length'),3);assert.equal(h.eval('game.current.blitzQueue.length'),3);
   assert.equal(new Set(h.eval('game.current.blitzWords')).size,3);
   h.eval('game.current.blitzCorrect='+correct+';game.phase="judge";judge(true)');
@@ -1446,4 +1446,70 @@ test('guide timing follows the settings range and each configured mode bonus',()
  assert.match(h.eval("JSON.stringify(rulesGuidePage('talk'))"),/35–85 с.*Без добавочного времени/);
  assert.match(h.eval("JSON.stringify(rulesGuidePage('secret'))"),/\+0 или \+30 с/);
  assert.doesNotMatch(h.eval("JSON.stringify(rulesGuidePage('approx'))"),/35–85/);
+});
+
+test('new award defaults select the setter and leave immutable presets intact',()=>{
+ const h=harness();assert.equal(h.eval('options.awardTo'),'setter');
+ assert.equal(h.eval('options.modes.includes("yesno")'),false);
+ assert.equal(h.eval('QUIP_PARTY_PRESETS["classic-duel@3"].settings.modes.includes("yesno")'),true);
+ h.eval('soundOn=false;newGame()');assert.equal(h.eval('game.awardPolicyVersion'),1);assert.equal(h.eval('game.awardTo'),'setter');
+ assert.equal(h.eval('game.scoringVersion'),2);assert.equal(h.eval('game.rulesVersion'),4);
+});
+test('award selection disables yesno only on a deliberate transition and retains manual overrides',()=>{
+ const h=harness();h.eval('options.awardTo="guesser";options.modes=DEFAULT_MODES.slice()');
+ h.eval('selectAwardTo("setter")');assert.equal(h.eval('options.modes.includes("yesno")'),false);
+ assert.equal(h.eval('options.modes.length'),7);
+ h.eval('options.modes.push("yesno");renderOptions();openAdvanced();closeAdvanced();selectAwardTo("setter")');
+ assert.equal(h.eval('options.modes.includes("yesno")'),true);
+ const modes=h.eval('JSON.stringify(options.modes)');h.eval('selectAwardTo("guesser")');assert.equal(h.eval('JSON.stringify(options.modes)'),modes);
+ h.eval('options.modes=["yesno"];selectAwardTo("setter")');assert.deepEqual(Array.from(h.eval('options.modes')),['talk']);
+ assert.match(h.elements.get('toast').textContent,/Слова/);
+});
+test('award policy routes success, risk and full Blitz to either role without changing roles',()=>{
+ for(const policy of ['setter','guesser'])for(const starter of [0,1])for(const mode of ['talk','blitz'])for(const success of [true,false]){
+  const h=harness();h.eval('soundOn=false;options.awardTo="'+policy+'";options.modes=["'+mode+'"];options.dice=false;options.complications=false;chooseStartingTeam=()=>'+starter+';newGame();roll();game.scores=[5,5];game.current.risk=true;game.current.blitzCorrect=3;game.phase="judge"');
+  const setter=h.eval('currentTeamIndex()'),guesser=h.eval('guessingTeamIndex()'),recipient=policy==='setter'?setter:guesser;
+  assert.equal(setter,starter);assert.equal(guesser,1-starter);assert.equal(h.eval('awardTeamIndex()'),recipient);
+  const base=mode==='blitz'?2:1;h.eval('judge('+success+');judge(true)');
+  const expected=[5,5];expected[recipient]+=success?base:-2;
+  assert.deepEqual(Array.from(h.eval('game.scores')),expected);
+  assert.equal(h.eval('game.history[0].recipientIndex'),recipient);assert.equal(h.eval('game.history[0].setter'),h.eval('game.teams['+setter+']'));
+ }
+});
+test('manual Approx awards ignore both recipient policies for all four outcomes',()=>{
+ for(const policy of ['setter','guesser'])for(const result of ['a','b','both','none']){
+  const h=harness();h.eval('soundOn=false;options.awardTo="'+policy+'";options.modes=["approx"];options.dice=false;newGame();roll();revealApprox();awardApprox("'+result+'")');
+  assert.deepEqual(Array.from(h.eval('game.scores')),result==='a'?[1,0]:result==='b'?[0,1]:result==='both'?[1,1]:[0,0]);
+ }
+});
+test('a started award policy survives future-setting edits, reload and offline snapshots',()=>{
+ for(const policy of ['setter','guesser']){
+  const stored=new Map(),a=harness(stored);a.eval('soundOn=false;options.awardTo="'+policy+'";options.modes=["talk"];options.complications=false;options.dice=false;newGame();roll();persist()');
+  const round=a.eval('JSON.stringify(game.current)');a.eval('selectAwardTo("'+(policy==='setter'?'guesser':'setter')+'");persist()');
+  const b=harness(stored);assert.equal(b.eval('game.awardTo'),policy);assert.equal(b.eval('JSON.stringify(game.current)'),round);
+  b.eval('game.phase="judge";judge(true)');assert.equal(b.eval('game.scores['+(policy==='setter'?0:1)+']'),1);
+ }
+});
+test('pre-policy V1 V2 V3 V4 games keep historical recipient and stable current cost',()=>{
+ for(const version of [1,2,3,4]){
+  const stored=new Map(),a=harness(stored);a.eval('soundOn=false;options.modes=["talk"];options.dice=false;options.complications=false;legacyGame('+version+');'+(version===1?'game.scoringVersion=undefined;':'')+'roll();persist()');
+  const round=a.eval('JSON.stringify(game.current)'),points=a.eval('game.current.points');
+  const b=harness(stored);assert.equal(b.eval('game.awardPolicyVersion'),undefined);assert.equal(b.eval('JSON.stringify(game.current)'),round);
+  b.eval('options.awardTo="setter";game.phase="judge";judge(true)');
+  assert.equal(b.eval('game.scores['+(version===1?0:1)+']'),points);
+ }
+});
+test('unknown award policies protect the original save from replacement',()=>{
+ const stored=new Map(),a=harness(stored);a.eval('soundOn=false;newGame();game.awardPolicyVersion=99;persist()');
+ const original=stored.get('iskra-party:v1'),b=harness(stored);assert.equal(b.eval('storageBlocked'),true);b.eval('newGame();persist()');assert.equal(stored.get('iskra-party:v1'),original);
+});
+test('both recipient policies preserve reply turns, ties and round-count boundaries',()=>{
+ for(const policy of ['setter','guesser']){
+  const h=harness();h.eval('soundOn=false;options.awardTo="'+policy+'";options.modes=["talk"];options.complications=false;options.dice=false;options.targetScore=1;newGame()');
+  for(const yes of [true,true,true,false])h.eval('roll();game.phase="judge";judge('+yes+')');
+  assert.equal(h.eval('game.phase'),'results');assert.equal(h.eval('game.roundIndex'),4);assert.notEqual(h.eval('game.scores[0]'),h.eval('game.scores[1]'));
+  h.eval('options.finishType="rounds";options.rounds=2;newGame()');
+  for(let i=0;i<2;i++)h.eval('roll();game.phase="judge";judge(false)');
+  assert.equal(h.eval('game.phase'),'results');assert.deepEqual(Array.from(h.eval('game.scores')),[0,0]);
+ }
 });

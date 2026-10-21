@@ -17,7 +17,10 @@ function symbol(id,extra='') {
 const $ = id => document.getElementById(id);
 function timerMarkup(ms) { return formatTimer(ms); }
 function pointNoun(n) { return n%10===1&&n%100!==11?'ОЧКО':([2,3,4].includes(n%10)&&!(n%100>=12&&n%100<=14)?'ОЧКА':'ОЧКОВ'); }
-const freshOptions = () => optionsForPartyPreset('classic-duel',3);
+const freshOptions = () => {
+  const settings=optionsForPartyPreset('classic-duel',3);
+  return {...settings,awardTo:'setter',modes:settings.modes.filter(id=>id!=='yesno')};
+};
 let options = freshOptions();
 let soundOn = true;
 let game = null;
@@ -66,6 +69,17 @@ function currentTeamIndex() { return (game.roundIndex+(game.startingTeamIndex??0
 function currentTeam() { return game.teams[currentTeamIndex()]; }
 function guessingTeamIndex() { return game.scoringVersion===2?(currentTeamIndex()+1)%2:currentTeamIndex(); }
 function guessingTeam() { return game.teams[guessingTeamIndex()]; }
+function awardTeamIndex() { return awardRecipientIndex(game,currentTeamIndex()); }
+function awardTeam() { return game.teams[awardTeamIndex()]; }
+function selectAwardTo(value){
+  if(!['setter','guesser'].includes(value)||value===options.awardTo)return;
+  options.awardTo=value;
+  if(value==='setter'&&options.modes.includes('yesno')){
+    options.modes=options.modes.filter(id=>id!=='yesno');
+    if(!options.modes.length){options.modes=['talk'];toast('Данетки отключены. Включены «Слова», чтобы остался хотя бы один режим.');}
+    else toast('Данетки отключены. Их можно снова включить в тонкой настройке.');
+  }
+}
 function durationForMode(id,methodId,base) {
  const config=modeConfigForGame(game,id==='secret'?methodId:id);
  return config.usesTimer?Math.max(30,Math.min(90,base))+config.durationBonus:0;
@@ -142,7 +156,7 @@ function rulesGuidePage(id) {
   const bonus=config('talk').modifierBonus;
   if(id==='general')return {id,title:'ОБЩИЕ ПРАВИЛА',reward:'Два соперника · один телефон',blocks:[
     ['Ход за ходом','Соревнуются две команды или два игрока. Первый загадывающий выбирается случайно, затем роли меняются. Режим случайный — из включённых.'],
-    ['Кому очки','Обычно очки получает отгадывающий. В «Примерно» отвечают обе команды.'],
+    ['Кому очки','В настройках выберите получателя: загадывающий (по умолчанию) или отгадывающий. В «Примерно» отвечают обе команды, очки присуждаются вручную.'],
     ['Как победить','При игре до цели у соперника есть ответный ход. После полной пары при равенстве игра продолжается. При игре по числу ходов возможна ничья.'],
     ['Бонус и риск','Успешное усложнение добавляет +'+bonus+'. В риск-раунде неудача отнимает до '+rules.risk.loss+' очков, но счёт не падает ниже '+rules.risk.minScore+'. Эти опции можно отключить; в «Секретке» усложнение обязательно.'],
     ['Сложность и таймер','Лёгкая: ручной старт, пауза и замена слова там, где она разрешена. Средняя и сложная: автоматический старт через секунду, без паузы и замены. В «Примерно» таймера нет.'],
@@ -311,7 +325,7 @@ function continueGame() {
 function renderOptions() {
   try{$('setup-pack-caption').textContent=getContentPack(options.contentPack).name;}
   catch{$('setup-pack-caption').textContent='Набор недоступен';}
-  for(const setting of ['difficulty','duration','rounds','targetScore']) {
+  for(const setting of ['difficulty','duration','rounds','targetScore','awardTo']) {
     document.querySelectorAll('.choices[data-setting="'+setting+'"] button').forEach(button=>{
       const selected=String(options[setting])===button.dataset.value;
       button.classList.toggle('is-chosen',selected);
@@ -348,6 +362,7 @@ function renderOptions() {
   });
   document.querySelectorAll('#content-toggles input').forEach(input=>{input.checked=options.promptTypes.includes(input.value);});
   $('toggle-complications').checked=options.complications;
+  $('setup-award-caption').textContent='Один телефон — два соперника. Очки получает '+(options.awardTo==='setter'?'загадывающий':'отгадывающий')+'. В «Примерно» — ручной выбор.';
 }
 function renderMatch() {
   $('label-team-a').textContent=game.teams[0];
@@ -495,7 +510,7 @@ function showReady() {
       '<span class="game-eyebrow">ХОД '+(game.roundIndex+1)+(game.finishType==='score'?' · ДО '+game.targetScore+' ОЧКОВ':' ИЗ '+game.rounds)+'</span>'+
       '<div class="ready-avatar '+(index===1?'is-blue':'')+'">'+modeArt('secret')+'</div>'+
       '<h2 class="play-title">'+(game.scoringVersion===2?'ЗАГАДЫВАЕТ':'НА ОЧЕРЕДИ')+'<br><em>'+team+'</em></h2>'+
-      '<p class="play-subtitle">'+(game.scoringVersion===2?'<strong>'+opponent+'</strong> отгадывает и получает очки. Покажите задание только загадывающему.':'Продолжение сохранённой партии по прежним правилам: очки получает команда текущего хода.')+'</p>'+
+      '<p class="play-subtitle">'+(game.scoringVersion===2?'<strong>'+opponent+'</strong> отгадывает. Очки получает <strong>'+escapeHTML(awardTeam())+'</strong>. Задание видит только загадывающий.':'Продолжение сохранённой партии по прежним правилам: очки получает команда текущего хода.')+'</p>'+
     '</div>'+
     '<div class="ready-action-slot">'+
       makeButton(game.dice?'ВЫБРАТЬ РЕЖИМ':'ПОЛУЧИТЬ ЗАДАНИЕ','roll','button-primary button-big')+
@@ -771,8 +786,9 @@ function showJudge() {
     '<h2 class="play-title">'+(blitz?'РЕЗУЛЬТАТ <em>БЛИЦА</em>':'ОТГАДЫВАЮЩИЙ <em>УГАДАЛ?</em>')+'</h2>'+
     '<p class="play-subtitle">'+(blitz?'Отгадано '+c.blitzCorrect+' из '+c.blitzWords.length+'. '+(game.scoringVersion===2?'Все '+c.blitzWords.length+' слов дают '+c.points+' очка.':'За каждое отгаданное слово — одно очко (старая партия).'):'Нажмите галочку, если ответ верный, или крестик, если нет.')+'</p>'+
     '<p class="score-note">'+(blitz?'Награда: <b>'+(game.scoringVersion===2?(c.blitzCorrect===blitzRequiredForRound(game,c)?'+'+c.points:'0'):('+'+c.blitzCorrect))+' очков</b>':
-    'Было загадано: <b>'+escapeHTML(c.word)+'</b> · За ответ: +'+c.points)+'</p>'+ 
-    (c.risk?'<p class="risk-notice">⚡ Провал: потеря до '+ruleSetForGame(game).risk.loss+' очков у отгадывающего</p>':'')+
+    'Было загадано: <b>'+escapeHTML(c.word)+'</b> · За ответ: +'+c.points)+'</p>'+
+    '<p class="score-recipient">Очки получит <b>'+escapeHTML(awardTeam())+'</b></p>'+
+    (c.risk?'<p class="risk-notice">⚡ Провал: потеря до '+ruleSetForGame(game).risk.loss+' очков у '+escapeHTML(awardTeam())+'</p>':'')+
     (incompleteBlitz?'<div class="inline-actions">'+makeButton('ЗАВЕРШИТЬ РАУНД','no','button-primary button-big')+'</div>':
     '<div class="judgement-grid">'+
       '<div class="judgement-option">'+
@@ -787,11 +803,12 @@ function showJudge() {
 }
 function recordAnswer(yes) {
   if(!game||!['judge','play'].includes(game.phase)||roundInteraction()!=='explain')return;
-  const teamIndex=guessingTeamIndex(),c=game.current;
+  const teamIndex=awardTeamIndex(),c=game.current;
   const outcome=settleQuipRound(game,c,yes,game.scores[teamIndex]);
   game.scores[teamIndex]+=outcome.delta;
   game.history.push({
     team:game.teams[teamIndex],setter:currentTeam(),mode:c.modeId,
+    ...(game.awardPolicyVersion?{recipientIndex:teamIndex,awardTo:game.awardTo,awardPolicyVersion:game.awardPolicyVersion}:{}),
     word:c.modeId==='blitz'?c.blitzWords.join(' / '):c.word,
     awarded:outcome.delta,correct:outcome.success,risk:!!c.risk,
     rulesVersion:outcome.rulesVersion,difficulty:c.difficulty,
@@ -857,7 +874,7 @@ function showResults() {
     '<div class="final-score">'+item(0)+'<span class="final-score-divider">:</span>'+item(1)+'</div>'+
     '<div class="inline-actions">'+makeButton('СЫГРАТЬ ЕЩЁ','again','button-primary button-big')+
     makeButton('В ГЛАВНОЕ МЕНЮ','menu')+'</div>'+
-    '<div class="history-block"><h3>ИСТОРИЯ ХОДОВ · ОЧКИ ОТГАДЫВАЮЩЕГО</h3>'+
+    '<div class="history-block"><h3>ИСТОРИЯ ХОДОВ</h3>'+
     game.history.map(historyMarkup).join('')+
     '</div>';
 }
@@ -895,6 +912,7 @@ function newGame() {
     teams:[teamA,teamB],scores:[0,0],roundIndex:0,startingTeamIndex:chooseStartingTeam(),
     rounds:options.rounds,targetScore:options.targetScore,finishType:options.finishType,
     riskRounds:options.riskRounds,scoringVersion:2,rulesVersion:QUIP_RULE_VERSION,modeConfigVersion:QUIP_MODE_CONFIG_VERSION,
+    awardPolicyVersion:QUIP_AWARD_POLICY_VERSION,awardTo:['setter','guesser'].includes(options.awardTo)?options.awardTo:'setter',
     plannerVersion:QUIP_PLANNER_VERSION,plannerState:freshRoundPlan(),
     duration:options.duration,difficulty:options.difficulty,
     contentPack:{...contentPack},preset:options.preset?{...options.preset}:null,
@@ -1005,6 +1023,7 @@ function sanitizeOptions(raw) {
   const modes=Array.isArray(raw.modes)?DEFAULT_MODES.filter(id=>raw.modes.includes(id)):base.modes;
   const promptTypes=Array.isArray(raw.promptTypes)?PROMPT_TYPES.filter(id=>raw.promptTypes.includes(id)):base.promptTypes;
   return {difficulty,duration,rounds,targetScore,finishType,riskRounds,blitzCount,modes,promptTypes,
+    awardTo:['setter','guesser'].includes(raw.awardTo)?raw.awardTo:base.awardTo,
     dice:true,complications:raw.complications!==false,scoring:'duel',
     contentPack:raw.contentPack?{id:raw.contentPack.id,version:raw.contentPack.version}:base.contentPack,
     preset:raw.preset?{id:raw.preset.id,version:raw.preset.version}:base.preset};
@@ -1026,6 +1045,7 @@ function restoreSession() {
       throw Error('Unsupported QUIP rulesVersion');
     if(candidate.modeConfigVersion!=null&&!QUIP_MODE_CONFIGS[candidate.modeConfigVersion])
       throw Error('Unknown mode config version');
+    validateAwardPolicy(candidate);
     if(candidate.plannerVersion!=null)validatePlannedGame(candidate);
     if(candidate.contentPack)getContentPack(candidate.contentPack);
   }catch{storageBlocked=true;return;}
@@ -1070,7 +1090,8 @@ function setupEvents() {
       if(!button)return;
       const setting=group.dataset.setting;
       const value=button.dataset.value;
-      options[setting]=setting==='difficulty'?value:Number(value);
+      if(setting==='awardTo')selectAwardTo(value);
+      else options[setting]=setting==='difficulty'?value:Number(value);
       renderOptions();persist();sfx('button');
     });
   });
