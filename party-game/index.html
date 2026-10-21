@@ -10,7 +10,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=22">
+  <link rel="stylesheet" href="./style.css?v=23">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
   <script src="./curated-words.js?v=1" defer></script>
@@ -22,11 +22,11 @@
   <script src="./mode-config.js?v=2" defer></script>
   <script src="./rules.js?v=4" defer></script>
   <script src="./penalties.js?v=3" defer></script>
-  <script src="./modifiers.js?v=1" defer></script>
+  <script src="./modifiers.js?v=2" defer></script>
   <script src="./round-planner.js?v=1" defer></script>
   <script src="./content-packs.js?v=4" defer></script>
   <script src="./presets.js?v=3" defer></script>
-  <script src="./app.js?v=24" defer></script>
+  <script src="./app.js?v=25" defer></script>
 </head>
 <body>
 
@@ -152,7 +152,10 @@
                 <p class="advanced-help">«Примерно»: обе команды называют число, без таймера, риска и усложнений. У «Напой» темы подобраны по существующим известным песням разных жанров. В «Данетках» герои и знаменитости распределены по узнаваемости.</p>
               </div>
             </details>
-            <label class="modifier-toggle"><input id="toggle-complications" type="checkbox" checked><span><strong>Случайные усложнения</strong><small>Появляются примерно в каждом третьем раунде; в «Секретке» всегда. Успешный раунд с усложнением даёт ещё +1.</small></span></label>
+            <div class="modifier-settings">
+              <label class="modifier-toggle"><input id="toggle-complications" type="checkbox" checked><span><strong>Случайные усложнения</strong><small>В «Секретке» усложнение обязательно, в «Примерно» его нет. Выполнение условия добавляет +1 к базовым очкам.</small></span></label>
+              <div class="slider-option modifier-frequency" id="modifier-chance-settings"><div class="slider-title"><label for="modifier-chance">Частота усложнений</label><output id="modifier-chance-value">20%</output></div><input id="modifier-chance" type="range" min="10" max="100" step="5" value="20"><div class="slider-extremes"><span>10%</span><span>100%</span></div><small>Шанс в каждом подходящем раунде, без гарантированного числа выпадений.</small></div>
+            </div>
           </div>
         </div>
 

@@ -1,0 +1,95 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const devices=[{name:'narrow',width:320,height:568},{name:'phone',width:390,height:844},{name:'desktop',width:1440,height:900}];
+async function openSetup(page){await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();}
+async function advanced(page){await page.locator('#go-advanced').click();}
+async function frequency(page,value){await page.locator('#modifier-chance').evaluate((el,v)=>{el.value=v;el.dispatchEvent(new Event('input',{bubbles:true}))},String(value));}
+async function align(page){
+ await page.locator('.modifier-settings').evaluate(el=>{const scroller=document.getElementById('advanced-scroll');scroller.scrollTop+=el.getBoundingClientRect().top-scroller.getBoundingClientRect().top-10});
+}
+async function shot(page,name){
+ await align(page);await page.locator('#scene-advanced').evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{}))));
+ await page.screenshot({path:'artifacts/quip-mobile-layout/task007c-'+name+'.png'});
+}
+async function offlineUpgrade(browser,url){
+ const file=require('node:path').resolve(__dirname,'../sw.js'),source=fs.readFileSync(file,'utf8');
+ const oldCache='kvip-pwa-v31-task007-upgrade';
+ const currentCache=source.match(/const CACHE='([^']+)'/)[1];
+ const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage();
+ try{
+  // A test-only old cache tag exercises installation/activation against the same
+  // server. The production worker bytes are restored before the update request.
+  fs.writeFileSync(file,source.replace(/const CACHE='[^']+'/,"const CACHE='"+oldCache+"'"));
+  await page.goto(url,{waitUntil:'load'});await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
+  assert.ok(await page.evaluate(key=>caches.has(key),oldCache));
+  await page.evaluate(()=>{
+   soundOn=false;options.modes=['talk'];options.modifierChance=100;options.dice=false;Math.random=()=>0;chooseStartingTeam=()=>0;newGame();roll();
+   // An actual pre-C V5 save has no frequency/recency policy, even when the next
+   // application's settings add it. Its current complication remains authoritative.
+   delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;delete options.modifierChance;
+   game.dice=true;options.dice=true;game.phase='judge';game.current.finishedReason='timeout';persist();render();
+  });
+  const snapshot=await page.evaluate(()=>({stored:localStorage.getItem(STORAGE_KEY),game:JSON.stringify(game)}));
+  fs.writeFileSync(file,source);
+  await page.evaluate(async()=>{
+   const changed=new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));
+   await navigator.serviceWorker.register('./sw.js?qa-task007-upgrade',{scope:'./',updateViaCache:'none'});
+   if(!navigator.serviceWorker.controller?.scriptURL.includes('qa-task007-upgrade'))
+    await Promise.race([changed,new Promise((_,reject)=>setTimeout(()=>reject(Error('Worker update timed out')),15000))]);
+  });
+  await page.waitForFunction(async ({oldCache,currentCache})=>(await caches.has(currentCache))&&!(await caches.has(oldCache)),{oldCache,currentCache});
+  assert.equal(await page.evaluate(()=>localStorage.getItem(STORAGE_KEY)),snapshot.stored);
+  await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
+  assert.equal(await page.evaluate(()=>JSON.stringify(game)),snapshot.game);assert.equal(await page.evaluate(()=>game.modifierSelectionVersion),undefined);
+  await page.locator('[data-action="base"]').click();assert.deepEqual(await page.evaluate(()=>game.scores),[1,0]);
+  console.log('task007c offline worker update PASS',oldCache,'→',currentCache,'pre-C party preserved');
+ }finally{fs.writeFileSync(file,source);await context.close();}
+}
+module.exports=async function frequencyUI(browser,url){
+ fs.mkdirSync('artifacts/quip-mobile-layout',{recursive:true});
+ for(const device of devices){
+  const context=await browser.newContext({viewport:{width:device.width,height:device.height},deviceScaleFactor:device.name==='phone'?2:1});
+  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+  try{
+   await page.goto(url,{waitUntil:'load'});await openSetup(page);await advanced(page);
+   const checkbox=page.locator('#toggle-complications'),slider=page.locator('#modifier-chance');
+   assert.equal(await checkbox.isChecked(),true);assert.equal(await slider.inputValue(),'20');assert.equal(await page.locator('#modifier-chance-value').textContent(),'20%');
+   for(const [name,value] of [['min','10'],['max','100'],['step','5']])assert.equal(await slider.getAttribute(name),value);
+   assert.equal(await slider.isVisible(),true);if(device.name==='phone')await shot(page,'phone-20');
+   await frequency(page,100);assert.equal(await page.locator('#modifier-chance-value').textContent(),'100%');
+   if(device.name==='phone')await shot(page,'phone-100');
+   await checkbox.uncheck();assert.equal(await slider.isVisible(),false);assert.equal(await page.evaluate(()=>options.modifierChance),100);
+   if(device.name==='phone')await shot(page,'phone-off');
+   await checkbox.check();assert.equal(await slider.inputValue(),'100');
+   await frequency(page,35);await page.locator('#advanced-done').click();await advanced(page);assert.equal(await slider.inputValue(),'35');
+   await page.reload({waitUntil:'load'});await openSetup(page);await advanced(page);assert.equal(await slider.inputValue(),'35');
+   await align(page);
+   const g=await page.evaluate(()=>{
+    const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return {top:r.top,bottom:r.bottom,left:r.left,right:r.right}};
+    return {box:rect('.modifier-toggle'),frequency:rect('#modifier-chance-settings'),range:rect('#modifier-chance'),w:innerWidth,sw:document.documentElement.scrollWidth,sh:document.documentElement.scrollHeight,h:innerHeight};
+   });
+   assert.ok(g.frequency.top>=g.box.bottom+5&&g.range.left>=0&&g.range.right<=g.w&&g.sw<=g.w+1&&g.sh<=g.h+1,JSON.stringify(g));
+   await frequency(page,100);await page.locator('#advanced-done').click();
+   await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.dice=false;chooseStartingTeam=()=>0;Math.random=()=>.9999});
+   await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();
+   assert.equal(await page.evaluate(()=>game.modifierChance),100);assert.equal(await page.evaluate(()=>game.modifierSelectionVersion),1);assert.ok(await page.evaluate(()=>game.current.complication));
+   await page.evaluate(()=>{game.dice=true;options.dice=true;persist()});
+   const snapshot=await page.evaluate(()=>({game:JSON.stringify(game),round:JSON.stringify(game.current),recent:JSON.stringify(game.modifierRecent)}));
+   await page.locator('#exit-game').click();await openSetup(page);await advanced(page);await frequency(page,20);await checkbox.uncheck();await page.locator('#advanced-done').click();
+   assert.equal(await page.evaluate(()=>JSON.stringify(game)),snapshot.game,'Future frequency changed active party');
+   await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
+   await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
+   assert.equal(await page.evaluate(()=>JSON.stringify(game.current)),snapshot.round);assert.equal(await page.evaluate(()=>JSON.stringify(game.modifierRecent)),snapshot.recent);assert.equal(await page.evaluate(()=>game.modifierChance),100);
+   await page.locator('[data-action="toggle-word"]').click();await page.locator('[data-action="start-timer"]').click();await page.locator('[data-action="base-now"]').click();
+   assert.deepEqual(await page.evaluate(()=>game.scores),[1,0]);
+   // The special modes keep their conditions even offline and with opposite flags.
+   await page.evaluate(()=>{options.modes=['secret'];options.complications=false;options.modifierChance=10;options.dice=false;newGame();roll()});
+   assert.ok(await page.evaluate(()=>game.current.complication));
+   await page.evaluate(()=>{options.modes=['approx'];options.complications=true;options.modifierChance=100;newGame();roll()});
+   assert.equal(await page.evaluate(()=>game.current.complication),'');assert.equal(await page.evaluate(()=>game.current.usesTimer),false);
+   assert.deepEqual(errors,[]);console.log('task007c frequency PASS',device.name);
+  }finally{await context.close();}
+ }
+ await offlineUpgrade(browser,url);
+};
