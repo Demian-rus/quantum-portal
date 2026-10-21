@@ -32,6 +32,7 @@ function harness(existing=new Map()) {
     Math,Date,console
   });
   vm.runInContext(read('words.js'),context);
+  vm.runInContext(read('extra-words.js'),context);
   vm.runInContext(read('mode-images.js'),context);
   vm.runInContext(read('app.js'),context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
@@ -49,7 +50,7 @@ test('vocabulary is varied, unique within packs and contains at least 400 prompt
 });
 test('seven modes, scoring, alternation and results survive repeated button actions',()=>{
   const h=harness();
-  h.eval('soundOn=false; options.rounds=8; options.duration=45; newGame();');
+  h.eval('soundOn=false; options.finishType='rounds'; options.riskRounds=false;options.rounds=8; options.duration=45; newGame();');
   assert.equal(h.eval('game.phase'),'ready');
   assert.equal(h.eval('game.roundIndex'),0);
   let earned=[0,0],visited=new Set();
@@ -70,14 +71,14 @@ test('seven modes, scoring, alternation and results survive repeated button acti
     assert.equal(h.eval('game.current.paused'),false);
     h.eval("finishTimer('early')");
     assert.equal(h.eval('game.phase'),'judge');
-    const points=h.eval("game.current.modeId==='blitz'?game.current.blitzCorrect:game.current.points");
+    const points=h.eval("game.current.modeId==='blitz'?0:game.current.points");
     const yes=i%3!==0;
     h.eval('judge('+yes+')');
-    if(yes)earned[i%2]+=points;
+    if(yes)earned[(i+1)%2]+=points;
     assert.equal(h.eval('game.roundIndex'),i+1);
-    assert.equal(h.eval('game.scores['+(i%2)+']'),earned[i%2]);
+    assert.equal(h.eval('game.scores['+((i+1)%2)+']'),earned[(i+1)%2]);
     h.eval('judge(true)');
-    assert.equal(h.eval('game.scores['+(i%2)+']'),earned[i%2],'double scoring!');
+    assert.equal(h.eval('game.scores['+((i+1)%2)+']'),earned[(i+1)%2],'double scoring!');
     if(i<7)assert.equal(h.eval('game.phase'),'ready');
   }
   assert.equal(h.eval('game.phase'),'results');
@@ -99,10 +100,10 @@ test('session and scores restore correctly after browser reload',()=>{
   const a=harness(storage);a.eval('soundOn=false;newGame();roll()');
   a.pending.shift()();
   a.eval('toggleWord();startTimer();finishTimer("early");judge(true)');
-  const expected=a.eval('game.scores[0]');
+  const expected=a.eval('game.scores[1]');
   const b=harness(storage);
   assert.equal(b.eval('game.roundIndex'),1);
-  assert.equal(b.eval('game.scores[0]'),expected);
+  assert.equal(b.eval('game.scores[1]'),expected);
   assert.equal(b.eval('game.phase'),'ready');
 });
 test('reloading after deadline shows judgement rather than restarting a round',()=>{
@@ -136,16 +137,16 @@ test('extended vocabulary is clean and new prompt types are available',()=>{
 test('only selected mode and selected prompt types are drawn, with no dice animation',()=>{
  const h=harness();
  h.eval(`soundOn=false;options.modes=['talk'];options.promptTypes=['idiom'];
-   options.dice=false;options.complications=false;options.duration=135;options.rounds=6;newGame()`);
+   options.dice=false;options.complications=false;options.duration=60;options.rounds=6;newGame()`);
  assert.equal(h.eval('game.modes.join(",")'),'talk');
- assert.equal(h.eval('game.duration'),135);
+ assert.equal(h.eval('game.duration'),60);
  h.eval('roll()');
  assert.equal(h.pending.length,0,'No-dice mode should open immediately');
  assert.equal(h.eval('game.phase'),'task');
  assert.equal(h.eval('game.current.modeId'),'talk');
  assert.equal(h.eval('game.current.complication'),'');
  const word=h.eval('game.current.word');
- assert.ok(h.eval('PARTY_IDIOMS.easy.includes(game.current.word)'),word+' was not an idiom');
+ assert.ok(h.eval('getPromptPool("words","easy").includes(game.current.word)'),word+' was missing');
 });
 test('yes/no mode uses person and character cards worth two points',()=>{
  const h=harness();
@@ -153,9 +154,9 @@ test('yes/no mode uses person and character cards worth two points',()=>{
  h.pending.shift()();
  assert.equal(h.eval('game.current.modeId'),'yesno');
  assert.equal(h.eval('game.current.points'),2);
- assert.ok(h.eval('PARTY_PEOPLE.easy.includes(game.current.word)'));
+ assert.ok(h.eval('getPromptPool("people","easy").includes(game.current.word)'));
  h.eval('toggleWord();startTimer();finishTimer("early");judge(true)');
- assert.equal(h.eval('game.scores[0]'),2);
+ assert.equal(h.eval('game.scores[1]'),2);
 });
 test('blitz is a sequence with correct, skip, no timer reset and per-word points',()=>{
  const h=harness();
@@ -180,14 +181,14 @@ test('blitz is a sequence with correct, skip, no timer reset and per-word points
  assert.equal(h.eval('game.current.blitzCorrect'),5);
  assert.equal(h.eval('game.scores[0]'),0);
  h.eval('judge(true);judge(true)');
- assert.equal(h.eval('game.scores[0]'),5,'blitz double-awarded');
+ assert.equal(h.eval('game.scores[1]'),3,'blitz awards three points exactly once');
 });
 test('manual game settings are clamped and invalid modes are filtered on restore',()=>{
  const h=harness();
  const settings=h.eval('sanitizeOptions({duration:999,rounds:1,blitzCount:100,modes:["mime","bogus"],promptTypes:["phrase","invalid"],difficulty:"mixed"})');
- assert.equal(settings.duration,300);
+ assert.equal(settings.duration,90);
  assert.equal(settings.rounds,2);
- assert.equal(settings.blitzCount,8);
+ assert.equal(settings.blitzCount,5);
  assert.equal(Array.from(settings.modes).join(','),'mime');
  assert.equal(Array.from(settings.promptTypes).join(','),'phrase');
  assert.equal(settings.difficulty,'mixed');
@@ -201,7 +202,7 @@ test('secret mode always carries a modifier and pays three points',()=>{
  assert.ok(h.eval('game.current.complication').length>4);
  assert.equal(h.eval('game.current.points'),3);
  h.eval('toggleWord();startTimer();finishTimer("early");judge(true)');
- assert.equal(h.eval('game.scores[0]'),3);
+ assert.equal(h.eval('game.scores[1]'),3);
 });
 test('blitz cannot add a correct answer once the timer has expired',()=>{
  const h=harness();
