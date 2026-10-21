@@ -1,13 +1,13 @@
 'use strict';
 const STORAGE_KEY = 'iskra-party:v1';
 const MODE_LIST = Object.freeze([
-  {id:'talk',title:'СЛОВА',rule:'Объясняй словами, не называя ответ и однокоренные слова.',kind:'words',points:1},
-  {id:'mime',title:'ЖЕСТЫ',rule:'Только жесты и мимика. Нельзя говорить или издавать звуки.',kind:'words',points:2},
-  {id:'draw',title:'НАРИСУЙ',rule:'Рисуй на бумаге, не используя буквы, цифры и жесты.',kind:'words',points:2},
-  {id:'sing',title:'НАПОЙ',rule:'Напевай песню, связанную с темой. Соперник должен отгадать тему.',kind:'songs',points:2},
-  {id:'yesno',title:'ДАНЕТКИ',rule:'Загадывающий видит персонажа и отвечает на вопросы соперника только «да», «нет» или «не знаю». Отгадывающий должен назвать персонажа.',kind:'people',points:2},
-  {id:'secret',title:'СЕКРЕТКА',rule:'Случайное задание с обязательным усложнением. Принесёт 3 очка.',kind:'words',points:3},
-  {id:'blitz',title:'БЛИЦ',rule:'Отгадай все 5 слов за отведённое время! За 5 из 5 получи 3 очка. За неполный результат — 0.',kind:'words',points:3}
+  {id:'talk',title:'СЛОВА',rule:'Объясняй словами, не называя ответ и однокоренные слова.',kind:'words'},
+  {id:'mime',title:'ЖЕСТЫ',rule:'Только жесты и мимика. Нельзя говорить или издавать звуки.',kind:'words'},
+  {id:'draw',title:'НАРИСУЙ',rule:'Рисуй на бумаге, не используя буквы, цифры и жесты.',kind:'words'},
+  {id:'sing',title:'НАПОЙ',rule:'Напевай песню, связанную с темой. Соперник должен отгадать тему.',kind:'songs'},
+  {id:'yesno',title:'ДАНЕТКИ',rule:'Загадывающий видит персонажа и отвечает на вопросы соперника только «да», «нет» или «не знаю». Отгадывающий должен назвать персонажа.',kind:'people'},
+  {id:'secret',title:'СЕКРЕТКА',rule:'Случайное задание с обязательным усложнением.',kind:'words'},
+  {id:'blitz',title:'БЛИЦ',rule:'Отгадай все 5 слов за отведённое время! За 5 из 5 получи 3 очка. За неполный результат — 0.',kind:'words'}
 ]);
 const COMPLICATIONS = Object.freeze({
   talk: [
@@ -78,7 +78,6 @@ function selectComplication(id,level) {
 }
 const DEFAULT_MODES = Object.freeze(MODE_LIST.map(mode=>mode.id));
 const PROMPT_TYPES = Object.freeze(['word','phrase','idiom']);
-const SCORE = Object.freeze({talk:1,mime:2,draw:2,sing:2,yesno:2,secret:3,blitz:3});
 function modeArt(id) {
   const safe=DEFAULT_MODES.includes(id)?id:'secret';
   return '<img class="mode-art" src="'+MODE_ASSETS[safe]+'" alt="" decoding="async" draggable="false">';
@@ -88,6 +87,7 @@ function symbol(id,extra='') {
 }
 const $ = id => document.getElementById(id);
 function timerMarkup(ms) { return formatTimer(ms); }
+function pointNoun(n) { return n%10===1&&n%100!==11?'ОЧКО':([2,3,4].includes(n%10)&&!(n%100>=12&&n%100<=14)?'ОЧКА':'ОЧКОВ'); }
 const freshOptions = () => ({
   difficulty:'easy',duration:60,rounds:12,finishType:'score',targetScore:25,riskRounds:true,
   dice:true,complications:true,
@@ -344,8 +344,9 @@ function rollOutcome() {
   const word=pullWord(mode.id==='blitz'?'blitz':actualMode.kind,level);
   return {
     modeId:mode.id,methodId:actualMode.id,word,complication,difficulty:level,
-    points:SCORE[mode.id]||1,seconds:durationForMode(mode.id,actualMode.id,game.duration),
-    risk:game.riskRounds&&game.roundIndex>=2&&Math.random()<.2,
+    points:rewardForRound(game,mode.id,level),seconds:durationForMode(mode.id,actualMode.id,game.duration),
+    risk:game.riskRounds&&game.roundIndex>=ruleSetForGame(game).risk.firstRoundIndex&&
+      shouldSelectRisk(game,Math.random()),
     blitzWords:mode.id==='blitz'?[word,...Array.from({length:4},()=>pullWord('blitz',level))]:null,
     blitzIndex:0,blitzCorrect:0,
     blitzQueue:mode.id==='blitz'?Array.from({length:5},(_,i)=>i):null,
@@ -485,9 +486,9 @@ function showTask() {
       '<h2 class="play-title mode-name">'+escapeHTML(name)+'</h2>'+
       '<div class="mode-rule">'+escapeHTML(rule)+
       (c.complication?'<br><strong>УСЛОЖНЕНИЕ: '+escapeHTML(c.complication)+'</strong>':'')+'</div>'+
-      (secret?'<span class="secret-flag">СЕКРЕТКА · +'+c.points+' ОЧКА</span>':
-        '<span class="score-note">ЗА ВЕРНЫЙ ОТВЕТ: +'+(c.modeId==='blitz'?(game.scoringVersion===2?'3 ЗА ВСЕ 5 СЛОВ':'1 ЗА СЛОВО'):c.points)+'</span>')+
-    (c.risk?'<p class="risk-notice">⚡ РИСК-РАУНД: ПРОВАЛ — ДО −2 ОЧКОВ</p>':'')+
+      (secret?'<span class="secret-flag">СЕКРЕТКА · +'+c.points+' '+pointNoun(c.points)+'</span>':
+        '<span class="score-note">ЗА ВЕРНЫЙ ОТВЕТ: +'+(c.modeId==='blitz'?(game.scoringVersion===2?c.points+' ЗА ВСЕ 5 СЛОВ':'1 ЗА СЛОВО'):c.points)+'</span>')+
+    (c.risk?'<p class="risk-notice">⚡ РИСК-РАУНД: ПРОВАЛ — ДО −'+ruleSetForGame(game).risk.loss+' ОЧКОВ</p>':'')+
     '</div>'+
     '<div class="round-fixed-card">'+taskMarkup(!c.visible)+'</div>'+
     '<div class="round-bottom round-bottom--task">'+taskControls(c)+'</div>';
@@ -515,7 +516,7 @@ function showTimer() {
       '</div>'+
       (allowPause()?'<div class="timer-pause">'+iconButton(c.paused?'play':'pause',c.paused?'resume':'pause',c.paused?'Продолжить':'Пауза')+'</div>':'')+
       (blitz?blitzStatus():'')+
-      (c.risk?'<p class="risk-notice">⚡ РИСК: ПРОВАЛ −2 ОЧКА</p>':'')+
+      (c.risk?'<p class="risk-notice">⚡ РИСК: ПРОВАЛ −'+ruleSetForGame(game).risk.loss+' ОЧКА</p>':'')+
     '</div>'+
     '<div class="round-fixed-card">'+taskMarkup(blitz?false:!c.visible)+'</div>'+
     '<div class="round-bottom round-bottom--play">'+
@@ -632,10 +633,10 @@ function showJudge() {
     '<span class="game-eyebrow">'+(c.finishedReason==='timeout'?'ВРЕМЯ ВЫШЛО':'РАУНД ЗАКОНЧЕН')+'</span>'+
     symbol(blitz?'blitz':c.methodId)+
     '<h2 class="play-title">'+(blitz?'РЕЗУЛЬТАТ <em>БЛИЦА</em>':'ОТГАДЫВАЮЩИЙ <em>УГАДАЛ?</em>')+'</h2>'+
-    '<p class="play-subtitle">'+(blitz?'Отгадано '+c.blitzCorrect+' из '+c.blitzWords.length+'. '+(game.scoringVersion===2?'Три очка начисляются только за все пять слов.':'За каждое отгаданное слово — одно очко (старая партия).'):'Нажмите галочку, если ответ верный, или крестик, если нет.')+'</p>'+
-    '<p class="score-note">'+(blitz?'Награда: <b>'+(game.scoringVersion===2?(c.blitzCorrect===5?'+3':'0'):('+'+c.blitzCorrect))+' очков</b>':
+    '<p class="play-subtitle">'+(blitz?'Отгадано '+c.blitzCorrect+' из '+c.blitzWords.length+'. '+(game.scoringVersion===2?'Все '+c.blitzWords.length+' слов дают '+c.points+' очка.':'За каждое отгаданное слово — одно очко (старая партия).'):'Нажмите галочку, если ответ верный, или крестик, если нет.')+'</p>'+
+    '<p class="score-note">'+(blitz?'Награда: <b>'+(game.scoringVersion===2?(c.blitzCorrect===5?'+'+c.points:'0'):('+'+c.blitzCorrect))+' очков</b>':
     'Было загадано: <b>'+escapeHTML(c.word)+'</b> · За ответ: +'+c.points)+'</p>'+ 
-    (c.risk?'<p class="risk-notice">⚡ Провал: потеря до 2 очков у отгадывающего</p>':'')+
+    (c.risk?'<p class="risk-notice">⚡ Провал: потеря до '+ruleSetForGame(game).risk.loss+' очков у отгадывающего</p>':'')+
     (incompleteBlitz?'<div class="inline-actions">'+makeButton('ЗАВЕРШИТЬ РАУНД','no','button-primary button-big')+'</div>':
     '<div class="judgement-grid">'+
       '<div class="judgement-option">'+
@@ -651,15 +652,13 @@ function showJudge() {
 function recordAnswer(yes) {
   if(!game||!['judge','play'].includes(game.phase))return;
   const teamIndex=guessingTeamIndex(),c=game.current;
-  const newDuel=game.scoringVersion===2;
-  const success=yes&&(!newDuel||c.modeId!=='blitz'||c.blitzCorrect===5);
-  // Preserve the original per-word Blitz scoring in unfinished pre-V5 sessions.
-  const points=success?(c.modeId==='blitz'&&!newDuel?c.blitzCorrect:c.points):
-    (newDuel&&c.risk?-Math.min(2,game.scores[teamIndex]):0);
-  game.scores[teamIndex]+=points;
+  const outcome=settleQuipRound(game,c,yes,game.scores[teamIndex]);
+  game.scores[teamIndex]+=outcome.delta;
   game.history.push({
     team:game.teams[teamIndex],setter:currentTeam(),mode:c.modeId,
-    word:c.modeId==='blitz'?c.blitzWords.join(' / '):c.word,awarded:points,correct:success,risk:!!c.risk
+    word:c.modeId==='blitz'?c.blitzWords.join(' / '):c.word,
+    awarded:outcome.delta,correct:outcome.success,risk:!!c.risk,
+    rulesVersion:outcome.rulesVersion,difficulty:c.difficulty
   });
   game.roundIndex++;
   // Confirmation is the final action for a round; no extra Next button.
@@ -740,7 +739,7 @@ function newGame() {
   game={
     teams:[teamA,teamB],scores:[0,0],roundIndex:0,
     rounds:options.rounds,targetScore:options.targetScore,finishType:options.finishType,
-    riskRounds:options.riskRounds,scoringVersion:2,
+    riskRounds:options.riskRounds,scoringVersion:2,rulesVersion:QUIP_RULE_VERSION,
     duration:options.duration,difficulty:options.difficulty,
     modes:options.modes.slice(),promptTypes:options.promptTypes.slice(),
     dice:options.dice,complications:options.complications,blitzCount:5,
