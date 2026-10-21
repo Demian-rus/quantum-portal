@@ -280,22 +280,22 @@ test('countdown survives reload and respects its original start timestamp',()=>{
 
 test('blitz queues skipped prompts again without increasing maximum score',()=>{
  const h=harness();
- h.eval('soundOn=false;options.modes=["blitz"];options.blitzCount=3;newGame();roll()');
+ h.eval('soundOn=false;options.modes=["blitz"];newGame();roll()');
  h.pending.shift()();
  h.eval('toggleWord();startTimer()');
  const first=h.eval('game.current.word');
  const deadline=h.eval('game.current.deadline');
  h.eval('advanceBlitz(false)');
- assert.equal(h.eval('game.current.blitzQueue.length'),3);
- h.eval('advanceBlitz(true);advanceBlitz(true)');
+ assert.equal(h.eval('game.current.blitzQueue.length'),5);
+ h.eval('advanceBlitz(true);advanceBlitz(true);advanceBlitz(true);advanceBlitz(true)');
  assert.equal(h.eval('game.phase'),'play','The skipped word must remain pending');
  assert.equal(h.eval('game.current.word'),first,'Skipped word never cycled back');
  assert.equal(h.eval('game.current.deadline'),deadline,'Clock reset when recycling words');
  h.eval('advanceBlitz(true)');
  assert.equal(h.eval('game.phase'),'judge');
- assert.equal(h.eval('game.current.blitzCorrect'),3);
+ assert.equal(h.eval('game.current.blitzCorrect'),5);
  h.eval('judge(true)');
- assert.equal(h.eval('game.scores[0]'),3,'Repeated prompt was counted twice');
+ assert.equal(h.eval('game.scores[1]'),3,'Repeated prompt was counted twice');
 });
 test('returning to home preserves a game and enables Continue',()=>{
  const h=harness();
@@ -321,10 +321,10 @@ test('a correct answer on the timer awards once and immediately advances teams',
  h.eval('handleAction("correct-now")');
  assert.equal(h.eval('game.phase'),'ready');
  assert.equal(h.eval('game.roundIndex'),1);
- assert.equal(h.eval('game.scores[0]'),1);
+ assert.equal(h.eval('game.scores[1]'),1);
  assert.equal(h.eval('game.history[0].word'),word);
  h.eval('handleAction("correct-now");judge(true)');
- assert.equal(h.eval('game.scores[0]'),1);
+ assert.equal(h.eval('game.scores[1]'),1);
 });
 test('expired timer cannot be credited by quick success',()=>{
  const h=harness();
@@ -406,10 +406,10 @@ test('blitz skips can cycle endlessly without counting or displaying skips',()=>
  h.eval('toggleWord();startTimer()');
  for(let i=0;i<44;i++)h.eval('advanceBlitz(false)');
  assert.equal(h.eval('game.current.blitzCorrect'),0);
- assert.equal(h.eval('game.current.blitzQueue.length'),4);
+ assert.equal(h.eval('game.current.blitzQueue.length'),5);
  assert.equal(h.eval('game.current.blitzSkipped'),undefined);
  const status=h.eval('blitzStatus()');
- assert.ok(status.includes('ОСТАЛОСЬ: 4'));
+ assert.ok(status.includes('ОСТАЛОСЬ: 5'));
  assert.ok(status.includes('ОТГАДАНО: 0'));
  assert.ok(!status.includes('Пропущено'));
  h.eval('finishTimer("timeout")');
@@ -480,6 +480,6 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v12-20261020-scenes/);
+ assert.match(worker,/kvip-pwa-v13-20261021-duel/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
