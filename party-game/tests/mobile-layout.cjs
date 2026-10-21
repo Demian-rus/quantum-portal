@@ -62,6 +62,31 @@ function fitsViewport(g,device,stage) {
       page.on('pageerror',error=>errors.push(error.message));
       await page.goto(URL,{waitUntil:'load'});
       await page.evaluate(()=>{chooseStartingTeam=()=>0});
+      const homeButtons=await page.evaluate(()=>{
+        const rect=id=>{const r=document.getElementById(id).getBoundingClientRect();return {top:r.top,bottom:r.bottom,height:r.height}};
+        return {settings:rect('settings-menu'),other:rect('other-games-menu'),footnote:document.querySelector('.home-footnote').getBoundingClientRect().top};
+      });
+      assert.ok(homeButtons.other.height>=44,'Other-games touch target too small');
+      assert.ok(homeButtons.other.top>homeButtons.settings.bottom+4,'Other-games button overlaps main menu');
+      assert.ok(homeButtons.other.bottom<homeButtons.footnote,'Other-games button overlaps footer');
+      await page.locator('#other-games-menu').click();
+      await page.locator('#scene-other-games').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
+      const gallery=await page.evaluate(()=>{
+        const r=document.getElementById('other-games-grid').getBoundingClientRect();
+        return {left:r.left,right:r.right,width:r.width,page:document.documentElement.scrollWidth,
+          cells:[...document.querySelectorAll('.other-game-image')].map(el=>{const b=el.getBoundingClientRect();return {x:b.x,y:b.y,width:b.width,height:b.height,right:b.right,bottom:b.bottom}})};
+      });
+      assert.equal(gallery.cells.length,6);
+      for(const cell of gallery.cells)assert.ok(Math.abs(cell.width-cell.height)<=1,'Gallery image is not square');
+      assert.ok(Math.abs(gallery.cells[0].y-gallery.cells[2].y)<=1,'Expected three tiles in first row');
+      assert.ok(Math.abs(gallery.cells[3].y-gallery.cells[5].y)<=1,'Expected three tiles in second row');
+      assert.ok(gallery.cells[3].y>gallery.cells[0].bottom,'Gallery rows overlap');
+      assert.ok(Math.abs(gallery.left-(device.width-gallery.right))<=2,'Gallery is not centered');
+      assert.ok(gallery.page<=device.width+2,'Gallery causes horizontal overflow');
+      assert.equal(await page.locator('#other-games-grid a, #other-games-grid button').count(),0);
+      await page.screenshot({path:'artifacts/quip-mobile-layout/'+device.name+'-other-games.png'});
+      await page.locator('#other-games-back').click();
+      await page.locator('#scene-home').waitFor({state:'visible'});
       await page.locator('#new-game-menu').click();
       if(device.width>=780){
         const setup=await page.evaluate(()=>({

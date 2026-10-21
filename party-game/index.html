@@ -10,7 +10,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=14">
+  <link rel="stylesheet" href="./style.css?v=15">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
   <script src="./curated-words.js?v=1" defer></script>
@@ -37,7 +37,24 @@
         <button id="new-game-menu" class="home-action home-action--primary" type="button">НОВАЯ ИГРА</button>
         <button id="settings-menu" class="home-action home-action--settings" type="button">НАСТРОЙКИ</button>
       </div>
+      <button id="other-games-menu" class="home-action home-action--settings other-games-menu" type="button">ДРУГИЕ ИГРЫ</button>
       <p class="home-footnote">ИГРА НА ДВОИХ · ЗАГАДЫВАЙ И ОТГАДЫВАЙ</p>
+    </section>
+    <section class="scene scene--other-games immersive-screen" id="scene-other-games" hidden aria-labelledby="other-games-title">
+      <button class="scene-back" id="other-games-back" type="button" aria-label="Вернуться в меню">‹ <span>МЕНЮ</span></button>
+      <div class="settings-scroller">
+        <div class="other-games-panel">
+          <h1 class="preferences-title" id="other-games-title">ДРУГИЕ ИГРЫ</h1>
+          <ul class="other-games-grid" id="other-games-grid" aria-label="Список игр">
+            <li class="other-game-tile" aria-label="Игра 1 — скоро"><div class="other-game-image" aria-hidden="true"></div><span class="other-game-name">Скоро</span></li>
+            <li class="other-game-tile" aria-label="Игра 2 — скоро"><div class="other-game-image" aria-hidden="true"></div><span class="other-game-name">Скоро</span></li>
+            <li class="other-game-tile" aria-label="Игра 3 — скоро"><div class="other-game-image" aria-hidden="true"></div><span class="other-game-name">Скоро</span></li>
+            <li class="other-game-tile" aria-label="Игра 4 — скоро"><div class="other-game-image" aria-hidden="true"></div><span class="other-game-name">Скоро</span></li>
+            <li class="other-game-tile" aria-label="Игра 5 — скоро"><div class="other-game-image" aria-hidden="true"></div><span class="other-game-name">Скоро</span></li>
+            <li class="other-game-tile" aria-label="Игра 6 — скоро"><div class="other-game-image" aria-hidden="true"></div><span class="other-game-name">Скоро</span></li>
+          </ul>
+        </div>
+      </div>
     </section>
     <section class="scene scene--preferences immersive-screen" id="scene-preferences" hidden>
       <button class="scene-back" id="preferences-back" type="button" aria-label="Вернуться в меню">‹ <span>МЕНЮ</span></button>

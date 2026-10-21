@@ -1024,7 +1024,7 @@ test('historical Mix without plannerVersion keeps independent difficulty draws',
 });
 test('unsupported save/rule/planner versions never overwrite the original session',()=>{
  for(const update of ['saved.version=99','saved.game.rulesVersion=99',
-  'saved.game.plannerVersion=99','saved.game.plannerState={cycleIndex:0,levels:["easy","easy","hard"]}']){
+  'saved.game.startingTeamIndex=99','saved.game.plannerVersion=99','saved.game.plannerState={cycleIndex:0,levels:["easy","easy","hard"]}']){
   const stored=new Map(),a=harness(stored);a.eval('soundOn=false;newGame()');
   const saved=JSON.parse(stored.get('iskra-party:v1'));
   eval(update);
@@ -1182,4 +1182,17 @@ test('a score-threshold match grants a reply for either selected starter',()=>{
   h.eval('roll();game.phase="judge";judge(false)');assert.equal(h.eval('game.phase'),'results');
   assert.equal(h.eval('game.scores['+((starter+1)%2)+']'),15);
  }
+});
+
+
+test('other-games navigation preserves the unfinished match and has six inert placeholders',()=>{
+ const h=harness();h.eval('soundOn=false;newGame();backToMenu()');
+ const before=h.eval('JSON.stringify(game)');
+ h.eval('setScene("other-games")');assert.equal(h.eval('activeScene'),'other-games');
+ h.eval('setScene("home");continueGame()');
+ assert.equal(h.eval('JSON.stringify(game)'),before);
+ const html=read('index.html');
+ assert.equal((html.match(/class="other-game-tile"/g)||[]).length,6);
+ assert.doesNotMatch(html.match(/<ul class="other-games-grid"[\s\S]*?<\/ul>/)[0],/<a|<button/);
+ assert.ok(html.includes('МИНИМАЛЬНОЕ ВРЕМЯ'));assert.ok(html.includes('МАКСИМУМ ОЧКОВ'));
 });

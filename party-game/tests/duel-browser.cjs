@@ -84,5 +84,33 @@ const URL='http://127.0.0.1:8765/party-game/';
   assert.deepEqual(errors,[]);
   console.log('paired-mix offline reload PASS');
   await context.close();
+  for(const starter of [0,1]){
+   const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[];
+   page.on('pageerror',e=>errors.push(e.message));
+   await page.goto(URL,{waitUntil:'load'});
+   await page.locator('#new-game-menu').click();
+   await page.evaluate(starter=>{chooseStartingTeam=()=>starter;options.modes=['talk'];options.dice=false;options.finishType='rounds';options.rounds=2;options.riskRounds=false;soundOn=false},starter);
+   await page.locator('#start-game').click();
+   const setter=starter===0?'a':'b',guesser=starter===0?'b':'a';
+   assert.equal(await page.locator('#role-'+setter).textContent(),'ЗАГАДЫВАЕТ');
+   assert.equal(await page.locator('#role-'+guesser).textContent(),'ОТГАДЫВАЕТ');
+   await page.locator('[data-action="roll"]').click();
+   await page.locator('[data-action="toggle-word"]').click();
+   await page.locator('[data-action="start-timer"]').click();
+   await page.locator('[data-action="correct-now"]').click();
+   assert.equal(await page.locator('#score-'+guesser).textContent(),'1');
+   await page.reload({waitUntil:'load'});
+   await page.locator('#continue-game').click();
+   assert.equal(await page.evaluate(()=>game.startingTeamIndex),starter);
+   assert.equal(await page.locator('#role-'+guesser).textContent(),'ЗАГАДЫВАЕТ');
+   await page.evaluate(()=>{game.dice=false});
+   await page.locator('[data-action="roll"]').click();
+   await page.locator('[data-action="toggle-word"]').click();
+   await page.locator('[data-action="start-timer"]').click();
+   await page.locator('[data-action="correct-now"]').click();
+   assert.equal(await page.evaluate(()=>game.phase),'results');
+   assert.deepEqual(await page.evaluate(()=>game.scores),[1,1]);
+   assert.deepEqual(errors,[]);await page.close();
+  }
  }finally{await browser.close()}
 })().catch(e=>{console.error(e);process.exitCode=1});

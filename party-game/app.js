@@ -152,7 +152,7 @@ function updateContinue() {
 }
 function setScene(which) {
   activeScene=which;
-  for(const scene of ['home','preferences','setup','advanced','game','results'])
+  for(const scene of ['home','other-games','preferences','setup','advanced','game','results'])
     $('scene-'+scene).hidden=scene!==which;
   document.body.dataset.screen=which;
   updateContinue();
@@ -906,6 +906,8 @@ function setupEvents() {
   $('new-game-menu').addEventListener('click',openSetup);
   $('continue-game').addEventListener('click',continueGame);
   $('settings-menu').addEventListener('click',openPreferences);
+  $('other-games-menu').addEventListener('click',()=>setScene('other-games'));
+  $('other-games-back').addEventListener('click',()=>setScene('home'));
   $('preferences-back').addEventListener('click',()=>setScene('home'));
   $('preferences-rules').addEventListener('click',openRules);
   $('setup-back').addEventListener('click',()=>setScene('home'));
