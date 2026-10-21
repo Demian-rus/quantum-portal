@@ -754,7 +754,7 @@ function resumeTimer() {
 }
 function backToMenu() {
   stopTicking();
-  if(game?.phase==='rolling')game.phase='ready';
+  if(game?.phase==='rolling')game.phase=game.current?'task':'ready';
   if(game?.phase==='results')game=null;
   persist();
   setScene('home');

@@ -1045,3 +1045,13 @@ test('completed 12-turn Mix restores results at a cycle boundary without blockin
  assert.equal(b.eval('game.phase'),'results');
  b.eval('newGame()');assert.equal(b.eval('game.phase'),'ready');
 });
+
+
+test('leaving the carousel for the menu preserves its selected card on Continue',()=>{
+ const h=harness();
+ h.eval("soundOn=false;options.difficulty='mixed';newGame();roll()");
+ const selected=h.eval('JSON.stringify([game.current,game.used,game.plannerState])');
+ h.eval('backToMenu();continueGame();roll()');
+ assert.equal(h.eval('game.phase'),'task');
+ assert.equal(h.eval('JSON.stringify([game.current,game.used,game.plannerState])'),selected);
+});
