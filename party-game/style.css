@@ -1767,3 +1767,8 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
  .scene--game .judge-copy .play-title,.scene--game .judge-team-name{font-size:17px}
  .scene--game .judge-copy .score-note,.scene--game .judge-copy .score-recipient{font-size:11px}
 }
+@media(max-height:480px){
+ .scene--game .stable-round .round-bottom--play{position:relative}
+ .scene--game .stable-round .round-bottom--play .minor-action{position:absolute;left:50%;bottom:calc(var(--decision-bottom) + 22px);transform:translateX(-50%);width:min(25%,140px);margin:0}
+ .scene--game .stable-round .round-bottom--play .minor-action .button{width:100%;min-height:44px;padding:4px;font-size:9px;white-space:normal}
+}

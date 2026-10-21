@@ -86,6 +86,7 @@ module.exports=async function outcomes(browser,url){
    await page.evaluate(()=>handleAction('base'));assert.equal(await page.evaluate(()=>game.roundIndex),0);
    await page.locator('[data-action="yes"]').click();assert.equal(await page.evaluate(()=>game.history[0].awarded),2);
    await fixture(page,{mode:'blitz'});
+   if(device.height<=390)await shot(page,device.name+'-blitz-playing');
    for(let i=0;i<3;i++)await page.locator('[data-action="blitz-correct"]').click();
    await controls(page,'judge',true);await page.locator('[data-action="base"]').click();assert.deepEqual(await page.evaluate(()=>game.scores),[2,0]);
    await fixture(page,{mode:'blitz'});await expire(page);
