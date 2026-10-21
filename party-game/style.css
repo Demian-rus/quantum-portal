@@ -1643,7 +1643,7 @@ body[data-screen="game-type"]::before,body[data-screen="themes"]::before{backgro
 .settings-fold>summary:focus-visible{outline:2px solid #89eeff;outline-offset:-3px;border-radius:12px}
 .settings-fold-body{padding:10px 8px}
 #mode-toggles{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:min(100%,820px);margin-inline:auto}
-#mode-toggles label>.mode-tile{display:grid;grid-template-columns:clamp(32px,6vw,52px) minmax(0,1fr);align-items:center;justify-content:initial;gap:7px;min-height:70px;padding:8px;border:1px solid #7788ac57;border-radius:12px;background:#171b30d9;color:#d5dced;box-shadow:none}
+#mode-toggles label>.mode-tile{display:grid;grid-template-columns:clamp(32px,6vw,52px) minmax(0,1fr);align-items:center;justify-content:initial;gap:7px;min-height:70px;padding:8px;border:1px solid #7788ac57;border-radius:12px;background:#171b30d9;color:#d5dced;box-shadow:none;transition:none}
 #mode-toggles .mode-tile-art{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain;filter:grayscale(.85) saturate(.35);opacity:.57}
 #mode-toggles .mode-tile-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;min-width:0}
 #mode-toggles .mode-tile-copy strong{font-size:clamp(11px,2.7vw,15px);line-height:1.25;font-weight:750;max-width:100%;overflow-wrap:break-word;hyphens:auto}
