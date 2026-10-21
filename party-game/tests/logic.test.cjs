@@ -1204,7 +1204,7 @@ test('all eight mode icons exist, load from versioned URLs, and approx is dorman
   assert.deepEqual(Object.keys(assets),modes);
   assert.equal(h.eval('DEFAULT_MODES.includes("approx")'),false,'Approx mode belongs to future gameplay changes');
   const sw=read('sw.js'),html=read('index.html');
-  assert.match(html,/mode-images\\.js\\?v=6/);
+  assert.ok(html.includes("mode-images.js?v=6"));
   assert.match(sw,/kvip-pwa-v23-20261021-icons/);
   for(const mode of modes){
     assert.equal(assets[mode],'./assets/modes/'+mode+'.webp?v=3');
