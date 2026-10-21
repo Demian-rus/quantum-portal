@@ -314,7 +314,7 @@ const PARTY_VOCABULARY=Object.freeze(Object.fromEntries(
   ))])
 ));
 function getPromptPool(kind,level){
-  return [...new Set(getCardPool(kind,level,game.promptTypes).map(card=>card.text))];
+  return [...new Set(getCardPool(kind,level,game?.promptTypes).map(card=>card.text))];
 }
 function pullWord(kind, level=chooseDifficulty()) {
   const pool=getPromptPool(kind,level);
