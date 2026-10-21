@@ -29,7 +29,7 @@ function harness(existing=new Map()) {
     setInterval:()=>7,clearInterval(){},
     setTimeout:fn=>{pending.push(fn);return pending.length},
     clearTimeout(){},
-    Math,Date,console
+    Math:Object.create(Math),Date,console
   });
   vm.runInContext(read('words.js'),context);
   vm.runInContext(read('extra-words.js'),context);
@@ -40,6 +40,7 @@ function harness(existing=new Map()) {
   vm.runInContext(read('cards.js'),context);
   vm.runInContext(read('rules.js'),context);
   vm.runInContext(read('penalties.js'),context);
+  vm.runInContext(read('modifiers.js'),context);
   vm.runInContext(read('app.js'),context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
 }
@@ -268,7 +269,7 @@ test('difficulty controls modifier severity and secret cards always get one',()=
    assert.ok(ev('game.current.complication.length')>2,'secret modifier missing');
    if(level==='easy'){
     const id=ev('game.current.methodId');
-    assert.ok(ev('EASY_COMPLICATIONS[game.current.methodId].includes(game.current.complication)'),'hard modifier in easy');
+    assert.ok(ev("getModifierPool(game.current.methodId,'easy').some(m=>m.text===game.current.complication)"),'hard modifier in easy');
    }
   }
  }
@@ -498,7 +499,7 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v18-20261021-rules/);
+ assert.match(worker,/kvip-pwa-v19-20261021-modifiers/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
 
@@ -800,8 +801,132 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['rules.js?v=1','penalties.js?v=1','app.js?v=13']){
+ for(const file of ['rules.js?v=1','penalties.js?v=1','modifiers.js?v=1','app.js?v=14']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
- assert.match(sw,/kvip-pwa-v18-20261021-rules/);
+ assert.match(sw,/kvip-pwa-v19-20261021-modifiers/);
+});
+
+
+test('modifier registry preserves every historical pool including duplicate weights',()=>{
+ const h=harness(),crypto=require('node:crypto');
+ const expected={
+  "talk-easy": {
+    "count": 6,
+    "sha256": "8e417d77066ee4b00c40d695e8c8ac870531769b812c1c9a5644bdda6e3d37dd"
+  },
+  "mime-easy": {
+    "count": 5,
+    "sha256": "0b0e2ad9383046f0247204d071fc7d3d5061202fa62b60c40472b02b1f708bd6"
+  },
+  "draw-easy": {
+    "count": 5,
+    "sha256": "d4f3e18cbdf900c21625b94ef9cf317896e1d118fcad4cff2f423442a1feea1e"
+  },
+  "sing-easy": {
+    "count": 5,
+    "sha256": "79680aa09dd55682a4d6a6e8cc809565a6b504e3cd08e6f0fcfc8456ecd6d85f"
+  },
+  "yesno-easy": {
+    "count": 4,
+    "sha256": "6506dfd603e75690fec965a7b82bd01aae7ae7649f43592a076b3483e5e88361"
+  },
+  "blitz-easy": {
+    "count": 3,
+    "sha256": "4ae0872e68f1e5b6cc49aae17b0bcb5bfc98ed46feb01ca7ea5afab995f25191"
+  },
+  "talk-medium": {
+    "count": 12,
+    "sha256": "3b87cb2d38cdc0dd3eaba1f372d62099d4599710b7e5f04d9a7a10bae4fd53f9"
+  },
+  "mime-medium": {
+    "count": 10,
+    "sha256": "dc98e163a3c330d101383d49a18b656a62d67740a6091cec559853a5572a6ae4"
+  },
+  "draw-medium": {
+    "count": 10,
+    "sha256": "47b7707386218dfb857ebc7bd7e93c786707e3814086ebb37b21aaa9f0ab6004"
+  },
+  "sing-medium": {
+    "count": 10,
+    "sha256": "53994fc5f06d5f6ac0301c535c9bec56764f3b696dc82aaeb3cc9789972fc2d3"
+  },
+  "yesno-medium": {
+    "count": 8,
+    "sha256": "e134d433c395c4b1386899564ae44019c465f9eb63599990f58a8caf0b82b830"
+  },
+  "blitz-medium": {
+    "count": 6,
+    "sha256": "4744fe97a46a4d783b1c983ced68ae9aafa0cda82d0abbbc31f0bae4c1359474"
+  },
+  "talk-hard": {
+    "count": 6,
+    "sha256": "b6acfe6dcebf7ecb4887adc6a0c438aa932b61ff4c0c0e93063e85ad7dfd5a31"
+  },
+  "mime-hard": {
+    "count": 5,
+    "sha256": "90dd62bb859b2e4aeeeb42767f06b4142504f4b64154de65418d9dd3f2583822"
+  },
+  "draw-hard": {
+    "count": 5,
+    "sha256": "b1daa8a4e999571f7320e0e257bc88cae656a3844f35dded976ea4ba7feeb99d"
+  },
+  "sing-hard": {
+    "count": 4,
+    "sha256": "4d99fdb9322de61f81fece60a5998e7c58d2b235bb595fb9fead8d2bd7705b90"
+  },
+  "yesno-hard": {
+    "count": 4,
+    "sha256": "876a0af62c796fed38094c0ff6c29d4eb6d7ae357d9324c35be97bce6ebf6fae"
+  },
+  "blitz-hard": {
+    "count": 4,
+    "sha256": "9388a16d491168e16e0048b579b0d12cac466bf690e15aa3e014f5e9c6a83967"
+  }
+};
+ const rows=JSON.parse(h.eval('JSON.stringify(QUIP_MODIFIERS)'));
+ assert.equal(new Set(rows.map(m=>m.id)).size,rows.length);
+ assert.equal(rows.length,112);
+ for(const [key,ref] of Object.entries(expected)){
+  const [mode,severity]=key.split('-');
+  const texts=rows.filter(m=>m.modes.includes(mode)&&m.severity===severity).map(m=>m.text);
+  assert.equal(texts.length,ref.count,key);
+  assert.equal(crypto.createHash('sha256').update(JSON.stringify(texts)).digest('hex'),ref.sha256,key);
+ }
+ for(const mode of ['talk','mime','draw','sing','yesno','blitz'])
+ for(const level of ['easy','medium','hard']){
+  const pool=JSON.parse(h.eval('JSON.stringify(getModifierPool('+JSON.stringify(mode)+','+JSON.stringify(level)+'))'));
+  assert.ok(pool.length>0);
+  assert.ok(pool.every(m=>m.enabled&&m.modes.includes(mode)));
+  assert.ok(pool.every(m=>['easy','medium','hard'].indexOf(m.severity)<=['easy','medium','hard'].indexOf(level)));
+ }
+ assert.equal(h.eval("getModifierPool('talk','hard',[{enabled:false,modes:['talk'],severity:'easy'}]).length"),0);
+});
+test('modifier selection obeys the 35% boundary and mandatory Secret restriction',()=>{
+ const h=harness();
+ assert.equal(h.eval("chooseModifier({modeId:'talk',methodId:'talk',difficulty:'hard',complications:false},()=>0)"),null);
+ assert.equal(h.eval("chooseModifier({modeId:'talk',methodId:'talk',difficulty:'hard',complications:true},()=>.35)"),null);
+ assert.ok(h.eval("chooseModifier({modeId:'talk',methodId:'talk',difficulty:'hard',complications:true},()=>.349999).id"));
+ for(const allowed of [['secret'],['secret','mime'],['secret','draw','yesno']]){
+  h.eval('soundOn=false;options.modes='+JSON.stringify(allowed)+';options.complications=false;newGame();pickMode=()=>getMode("secret")');
+  for(let i=0;i<30;i++){
+   h.eval("Math.random=()=>"+(i/30));
+   const outcome=JSON.parse(h.eval("JSON.stringify(rollOutcome())"));
+   assert.equal(outcome.modeId,'secret');
+   const methods=allowed.length===1?['talk','mime','draw','sing','yesno']:allowed;
+   assert.ok(methods.includes(outcome.methodId));
+   assert.ok(outcome.complicationId&&outcome.complication);
+  }
+ }
+});
+test('saved modifier text and ID restore without selecting a replacement',()=>{
+ const stored=new Map(),a=harness(stored);
+ a.eval("soundOn=false;options.modes=['secret'];options.dice=false;newGame();roll();persist()");
+ const snapshot=a.eval('JSON.stringify(game.current)');
+ const b=harness(stored);
+ assert.equal(b.eval('JSON.stringify(game.current)'),snapshot);
+ b.eval("delete game.current.complicationId;delete game.current.modifierVersion;game.current.complication='Старое неизменное ограничение';persist()");
+ const old=harness(stored);
+ assert.equal(old.eval('game.current.complication'),'Старое неизменное ограничение');
+ assert.equal(old.eval('game.current.complicationId'),undefined);
 });
