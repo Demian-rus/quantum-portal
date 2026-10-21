@@ -516,7 +516,7 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v27-20261021-ui/);
+ assert.match(worker,/kvip-pwa-v28-20261021-rules/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
 
@@ -818,10 +818,10 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['approx-questions.js?v=1','mode-config.js?v=2','rules.js?v=2','penalties.js?v=2','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=4','presets.js?v=3','app.js?v=21']){
+ for(const file of ['approx-questions.js?v=1','mode-config.js?v=2','rules.js?v=2','penalties.js?v=2','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=4','presets.js?v=3','app.js?v=22']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
- assert.match(sw,/kvip-pwa-v27-20261021-ui/);
+ assert.match(sw,/kvip-pwa-v28-20261021-rules/);
 });
 
 
@@ -1217,7 +1217,7 @@ test('all eight active mode icons exist and load from versioned URLs',()=>{
   assert.equal(h.eval('DEFAULT_MODES.includes("approx")'),true);
   const sw=read('sw.js'),html=read('index.html');
   assert.ok(html.includes("mode-images.js?v=6"));
-  assert.match(sw,/kvip-pwa-v27-20261021-ui/);
+  assert.match(sw,/kvip-pwa-v28-20261021-rules/);
   for(const mode of modes){
     assert.equal(assets[mode],'./assets/modes/'+mode+'.webp?v=3');
     assert.ok(sw.includes("'approx'")||mode!=='approx');
@@ -1420,4 +1420,30 @@ test('advanced folds reset on entry while selected settings and custom values st
  const reloaded=harness(h.storage);assert.deepEqual(JSON.parse(reloaded.eval('JSON.stringify(options)')),JSON.parse(before));
  assert.equal(reloaded.elements.get('score-goal-preview').textContent,'35 очков');
  assert.equal(reloaded.elements.get('base-duration-value').textContent,'75 с');
+});
+
+
+test('rules guide describes V4 while historical matches and saves remain untouched',()=>{
+ const h=harness();h.eval("$('base-duration').min='30';$('base-duration').max='90'");
+ assert.deepEqual(Array.from(h.eval('RULES_GUIDE_ORDER')),['general','talk','mime','draw','sing','yesno','secret','blitz','approx']);
+ for(const version of [1,2,3,4]){
+  h.eval('soundOn=false;legacyGame('+version+');game.current=rollOutcome();game.phase="task";persist()');
+  const stored=h.storage.get('iskra-party:v1'),match=h.eval('JSON.stringify(game)');
+  const pages=h.eval('RULES_GUIDE_ORDER.map(rulesGuidePage)');
+  assert.equal(pages[7].reward,'+2 за успех');
+  assert.match(JSON.stringify(pages[7]),/3\/3 → \+2/);
+  assert.doesNotMatch(JSON.stringify(pages[7]),/5 слов|5\/5/);
+  assert.equal(pages[6].reward,'+2 + 1 = +3 за успех');
+  assert.match(JSON.stringify(pages[8]),/Таймера нет/);
+  assert.match(JSON.stringify(pages[8]),/Риска и усложнений нет/);
+  assert.equal(h.eval('JSON.stringify(game)'),match);
+  assert.equal(h.storage.get('iskra-party:v1'),stored);
+ }
+});
+test('guide timing follows the settings range and each configured mode bonus',()=>{
+ const h=harness();h.eval("$('base-duration').min='35';$('base-duration').max='85'");
+ assert.match(h.eval("JSON.stringify(rulesGuidePage('draw'))"),/35–85 с.*\+30 с/);
+ assert.match(h.eval("JSON.stringify(rulesGuidePage('talk'))"),/35–85 с.*Без добавочного времени/);
+ assert.match(h.eval("JSON.stringify(rulesGuidePage('secret'))"),/\+0 или \+30 с/);
+ assert.doesNotMatch(h.eval("JSON.stringify(rulesGuidePage('approx'))"),/35–85/);
 });
