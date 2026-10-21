@@ -38,6 +38,8 @@ function harness(existing=new Map()) {
   vm.runInContext(read('curated-people.js'),context);
   vm.runInContext(read('mode-images.js'),context);
   vm.runInContext(read('cards.js'),context);
+  vm.runInContext(read('rules.js'),context);
+  vm.runInContext(read('penalties.js'),context);
   vm.runInContext(read('app.js'),context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
 }
@@ -496,7 +498,7 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v17-20261021-cards/);
+ assert.match(worker,/kvip-pwa-v18-20261021-rules/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
 
@@ -710,4 +712,96 @@ test('text-only saved rounds still restore unchanged after catalog migration',()
  assert.equal(b.eval('game.current.word'),'СТИРАЛЬНАЯ МАШИНА');
  assert.equal(b.eval('game.phase'),'task');
  assert.equal(b.eval('game.scoringVersion'),2);
+});
+
+test('all version 3 rewards follow the selected difficulty; Blitz stays three',()=>{
+ const h=harness(),table={talk:[1,2,3],mime:[2,3,4],draw:[2,3,4],
+  sing:[2,3,4],yesno:[2,3,4],secret:[3,4,5],blitz:[3,3,3]};
+ h.eval('soundOn=false;newGame()');
+ assert.equal(h.eval('game.rulesVersion'),3);
+ assert.equal(h.eval('QUIP_RULE_VERSION'),3);
+ for(const [mode,tiers] of Object.entries(table))
+  for(const [i,level] of ['easy','medium','hard'].entries())
+   assert.equal(h.eval("rewardForRound(game,'"+mode+"','"+level+"')"),tiers[i],mode+'/'+level);
+ assert.equal(h.eval('Object.isFrozen(QUIP_RULESETS[3].rewards.talk)'),true);
+ assert.equal(h.eval('Object.isFrozen(QUIP_RULESETS[3].risk)'),true);
+ assert.throws(()=>h.eval("rewardForRound(game,'unknown','medium')"),/Unknown mode/);
+});
+test('medium and hard grades pay the guesser with visible Secret reward',()=>{
+ for(const [level,mode,reward] of [['medium','talk',2],['hard','talk',3],['medium','mime',3],
+  ['hard','draw',4],['hard','sing',4],['medium','yesno',3],['hard','secret',5],['hard','blitz',3]]){
+  const h=harness();
+  h.eval("soundOn=false;options.difficulty='"+level+"';options.modes=['"+mode+"'];options.riskRounds=false;newGame();roll()");
+  assert.equal(h.eval('game.current.points'),reward);
+  h.pending.shift()(); // show task screen after carousel
+  if(mode==='secret')assert.ok(h.elements.get('play-content').innerHTML.includes('+5 ОЧКОВ'));
+  h.eval("game.current.blitzCorrect=5;game.phase='judge';judge(true)");
+  assert.deepEqual(Array.from(h.eval('game.scores')),[0,reward]);
+  assert.equal(h.eval('game.history[0].rulesVersion'),3);
+  assert.equal(h.eval('game.history[0].difficulty'),level);
+ }
+});
+test('risk is eligible after two turns, a deterministic 20% draw, and switchable',()=>{
+ const h=harness();h.eval('soundOn=false;newGame()');
+ assert.equal(h.eval('shouldSelectRisk(game,0)'),false);
+ h.eval('game.roundIndex=2');
+ assert.equal(h.eval('shouldSelectRisk(game,0.199999)'),true);
+ assert.equal(h.eval('shouldSelectRisk(game,0.2)'),false);
+ assert.equal(h.eval('shouldSelectRisk(game,1)'),false);
+ assert.equal(h.eval('shouldSelectRisk(game,NaN)'),false);
+ h.eval('game.riskRounds=false');
+ assert.equal(h.eval('shouldSelectRisk(game,0)'),false);
+});
+test('risk settlement is pure, caps losses at current score, rewards success',()=>{
+ const h=harness();h.eval('soundOn=false;newGame()');
+ for(const [score,success,risk,expected] of [[0,false,true,0],[1,false,true,-1],
+   [10,false,true,-2],[10,false,false,0],[1,true,true,5]]){
+  const result=JSON.parse(h.eval("JSON.stringify(settleQuipRound(game,{modeId:'secret',points:5,risk:"+risk+"}, "+success+","+score+"))"));
+  assert.equal(result.delta,expected);
+  assert.equal(result.success,success);
+  assert.equal(result.rulesVersion,3);
+ }
+ assert.deepEqual(Array.from(h.eval('game.scores')),[0,0]);
+});
+test('a saved V2 duel without rulesVersion retains flat points and risk',()=>{
+ const stored=new Map(),a=harness(stored);
+ a.eval("soundOn=false;options.difficulty='hard';newGame();delete game.rulesVersion;game.scores=[10,10];persist()");
+ const b=harness(stored);
+ assert.equal(b.eval('game.rulesVersion'),undefined);
+ assert.equal(b.eval('ruleSetForGame(game).version'),2);
+ b.eval("game.modes=['talk'];roll()");
+ assert.equal(b.eval('game.current.points'),1,'hard words in old V2 are still one point');
+ b.eval("game.current.risk=true;game.phase='judge';judge(false)");
+ assert.deepEqual(Array.from(b.eval('game.scores')),[10,8]);
+ assert.equal(b.eval('game.history[0].rulesVersion'),2);
+});
+test('saved pre-V5 party retains setter points and per-word Blitz score',()=>{
+ const stored=new Map(),a=harness(stored);
+ a.eval("soundOn=false;newGame();game.scoringVersion=undefined;delete game.rulesVersion;game.difficulty='hard';game.finishType='rounds';game.rounds=12;game.riskRounds=false;persist()");
+ const b=harness(stored);
+ assert.equal(b.eval('ruleSetForGame(game).version'),1);
+ b.eval("game.modes=['blitz'];roll()");
+ b.eval("game.current.blitzCorrect=2;game.current.risk=true;game.phase='judge';judge(true)");
+ assert.deepEqual(Array.from(b.eval('game.scores')),[2,0]);
+ assert.equal(b.eval('game.history[0].rulesVersion'),1);
+});
+test('new hard reward and rulesVersion persist across a reload',()=>{
+ const stored=new Map(),a=harness(stored);
+ a.eval("soundOn=false;options.difficulty='hard';options.modes=['secret'];newGame();roll()");
+ assert.equal(a.eval('game.current.points'),5);
+ const b=harness(stored);
+ assert.equal(b.eval('game.rulesVersion'),3);
+ assert.equal(b.eval('game.current.points'),5);
+ b.eval("game.phase='judge';judge(true)");
+ assert.deepEqual(Array.from(b.eval('game.scores')),[0,5]);
+});
+test('offline engine scripts and old storage envelope are preserved',()=>{
+ const h=harness();h.eval('soundOn=false;newGame()');
+ assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
+ assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
+ const html=read('index.html'),sw=read('sw.js');
+ for(const file of ['rules.js?v=1','penalties.js?v=1','app.js?v=13']){
+  assert.ok(html.includes(file));assert.ok(sw.includes(file));
+ }
+ assert.match(sw,/kvip-pwa-v18-20261021-rules/);
 });
