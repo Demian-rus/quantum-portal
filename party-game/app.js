@@ -30,6 +30,7 @@ let lastChimeAt = null;
 let toastTimeout = null;
 let activeScene='home';
 let advancedReturn='setup';
+let setupReturn='game-type';
 let rollSequence=[];
 
 function escapeHTML(value) {
@@ -144,7 +145,7 @@ function updateContinue() {
 }
 function setScene(which) {
   activeScene=which;
-  for(const scene of ['home','other-games','preferences','setup','advanced','game','results'])
+  for(const scene of ['home','other-games','preferences','game-type','themes','setup','advanced','game','results'])
     $('scene-'+scene).hidden=scene!==which;
   document.body.dataset.screen=which;
   updateContinue();
@@ -153,7 +154,30 @@ function openPreferences() {
   setSoundIcon();
   setScene('preferences');
 }
-function openSetup() {
+function openGameType(){setScene('game-type');}
+function selectStandardGame(){
+ options.contentPack={id:'general',version:2};persist();openSetup('game-type');
+}
+function renderThemes(){
+ const entries=listThematicPacks(options);
+ $('theme-list').innerHTML=entries.map(({pack,available})=>
+  '<button type="button" class="theme-choice" data-theme="'+pack.id+'" data-version="'+pack.version+'"'+
+  (available?'':' disabled aria-disabled="true"')+'><strong>'+escapeHTML(pack.name)+'</strong><span>'+
+  (available?'Выбрать тему':'Скоро')+'</span></button>').join('');
+ $('themes-caption').textContent=entries.some(entry=>entry.available)?
+  'Выберите тему, затем настройте партию.':'Тематические наборы ещё готовятся. Пока можно сыграть в стандартную игру.';
+}
+function openThemes(){renderThemes();setScene('themes');$('themes-scroll').scrollTop=0;}
+function selectTheme(id,version){
+ const selection={id,version};
+ try{
+  const pack=getContentPack(selection);
+  if(pack.id==='general'||!checkContentPack(selection,options).available){toast('Эта тема пока недоступна.');return false;}
+ }catch{toast('Эта тема пока недоступна.');return false;}
+ options.contentPack=selection;persist();openSetup('themes');return true;
+}
+function openSetup(from='game-type') {
+  setupReturn=from;
   // Opening setup keeps any unfinished session untouched until the user starts a new one.
   renderOptions();
   setScene('setup');
@@ -178,6 +202,8 @@ function continueGame() {
   render();
 }
 function renderOptions() {
+  try{$('setup-pack-caption').textContent=getContentPack(options.contentPack).name;}
+  catch{$('setup-pack-caption').textContent='Набор недоступен';}
   for(const setting of ['difficulty','duration','rounds']) {
     document.querySelectorAll('.choices[data-setting="'+setting+'"] button').forEach(button=>{
       const selected=String(options[setting])===button.dataset.value;
@@ -973,14 +999,23 @@ function setupEvents() {
   $('toggle-complications').addEventListener('change',event=>{
     options.complications=event.target.checked;persist();
   });
-  $('new-game-menu').addEventListener('click',openSetup);
+  $('new-game-menu').addEventListener('click',openGameType);
+  $('game-type-back').addEventListener('click',()=>setScene('home'));
+  $('standard-game').addEventListener('click',selectStandardGame);
+  $('thematic-game').addEventListener('click',openThemes);
+  $('themes-back').addEventListener('click',openGameType);
+  $('themes-standard').addEventListener('click',selectStandardGame);
+  $('theme-list').addEventListener('click',event=>{
+    const button=event.target.closest('[data-theme]');
+    if(button&&!button.disabled)selectTheme(button.dataset.theme,Number(button.dataset.version));
+  });
   $('continue-game').addEventListener('click',continueGame);
   $('settings-menu').addEventListener('click',openPreferences);
   $('other-games-menu').addEventListener('click',()=>setScene('other-games'));
   $('other-games-back').addEventListener('click',()=>setScene('home'));
   $('preferences-back').addEventListener('click',()=>setScene('home'));
   $('preferences-rules').addEventListener('click',openRules);
-  $('setup-back').addEventListener('click',()=>setScene('home'));
+  $('setup-back').addEventListener('click',()=>setupReturn==='themes'?openThemes():openGameType());
   $('go-advanced').addEventListener('click',()=>openAdvanced('setup'));
   $('advanced-back').addEventListener('click',closeAdvanced);
   $('advanced-done').addEventListener('click',closeAdvanced);

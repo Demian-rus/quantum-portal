@@ -13,6 +13,7 @@ const URL='http://127.0.0.1:8765/party-game/';
    await page.goto(URL,{waitUntil:'load'});
       await page.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
    await page.locator('#new-game-menu').click();
+      await page.locator('#standard-game').click();
    await page.locator('#team-a').fill('Молнии');
    await page.locator('#team-b').fill('Кометы');
    await page.locator('#quick-target-score').evaluate(el=>{el.value='35';el.dispatchEvent(new Event('input',{bubbles:true}))});
@@ -58,6 +59,7 @@ const URL='http://127.0.0.1:8765/party-game/';
   await page.goto(URL,{waitUntil:'load'});
       await page.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
   await page.locator('#new-game-menu').click();
+      await page.locator('#standard-game').click();
   await page.evaluate(()=>{options.difficulty='mixed';options.modes=['secret'];soundOn=false;});
   await page.locator('#start-game').click();
   await page.locator('[data-action="roll"]').click();
@@ -89,6 +91,7 @@ const URL='http://127.0.0.1:8765/party-game/';
    page.on('pageerror',e=>errors.push(e.message));
    await page.goto(URL,{waitUntil:'load'});
    await page.locator('#new-game-menu').click();
+      await page.locator('#standard-game').click();
    await page.evaluate(starter=>{chooseStartingTeam=()=>starter;options.complications=false;options.modes=['talk'];options.dice=false;options.finishType='rounds';options.rounds=2;options.riskRounds=false;soundOn=false},starter);
    await page.locator('#start-game').click();
    const setter=starter===0?'a':'b',guesser=starter===0?'b':'a';
@@ -131,12 +134,20 @@ const URL='http://127.0.0.1:8765/party-game/';
     await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
     assert.deepEqual(await page.evaluate(()=>game.current.question),question);
     assert.equal(await page.locator('[data-action^="award-"]').count(),4);
+    const answerVisible=await page.locator('.approx-answer strong').evaluate(answer=>{
+     const r=answer.getBoundingClientRect(),card=answer.closest('.approx-card').getBoundingClientRect();
+     return r.top>=card.top&&r.bottom<=card.bottom&&r.left>=card.left&&r.right<=card.right;
+    });
+    assert.equal(answerVisible,true,'Revealed numeric answer must be visible without scrolling');
     const geometry=await page.locator('[data-action^="award-"]').evaluateAll(nodes=>nodes.map(node=>{
      const r=node.getBoundingClientRect();return {top:r.top,bottom:r.bottom,left:r.left,right:r.right,height:r.height};
     }));
     assert.ok(geometry.every(r=>r.top>=0&&r.bottom<=height+1&&r.left>=0&&r.right<=width+1&&r.height>=44),JSON.stringify(geometry));
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
-    if(choice==='a')await page.screenshot({path:'artifacts/quip-duel/approx-'+width+'x'+height+'.png'});
+    if(choice==='a'){
+     await page.locator('#scene-game').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
+     await page.screenshot({path:'artifacts/quip-duel/approx-'+width+'x'+height+'.png'});
+    }
     await page.locator('[data-action="award-'+choice+'"]').click();
    }
    assert.deepEqual(await page.evaluate(()=>game.scores),[2,2]);
@@ -146,6 +157,37 @@ const URL='http://127.0.0.1:8765/party-game/';
    await page.evaluate(()=>{game.dice=false});await page.locator('[data-action="roll"]').click();
    await page.locator('[data-action="reveal-approx"]').click();
    assert.equal(await page.locator('[data-action^="award-"]').count(),4);
+   assert.deepEqual(errors,[]);await context.close();
+  }
+  // A ready topic is injected only in this test context; production topics stay Soon.
+  {
+   const context=await browser.newContext({viewport:{width:390,height:844},serviceWorkers:'block'});
+   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+   const fixture={id:'fixture-topic',version:1,name:'Тестовая тема',enabled:true,categories:[],types:['word'],
+    criteria:{cardIds:['word-000001','word-000002','word-000003'],sourcePacks:['core']},minCardsPerPool:1};
+   await page.route('**/content-packs.js*',async route=>{
+    const response=await route.fetch();
+    const body=(await response.text()).replace('const QUIP_CONTENT_PACKS=defineContentPacks([',
+     'const QUIP_CONTENT_PACKS=defineContentPacks(['+JSON.stringify(fixture)+',');
+    await route.fulfill({response,body});
+   });
+   await page.goto(URL,{waitUntil:'load'});
+   await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.promptTypes=['word'];options.dice=false;options.complications=false;options.duration=45});
+   await page.locator('#new-game-menu').click();await page.locator('#thematic-game').click();
+   await page.locator('[data-theme="fixture-topic"]').click();
+   assert.equal(await page.locator('#scene-setup').isVisible(),true);
+   assert.equal(await page.locator('#setup-pack-caption').textContent(),'Тестовая тема');
+   assert.equal(await page.locator('#base-duration-value').textContent(),'45 с');
+   await page.locator('#setup-back').click();assert.equal(await page.locator('#scene-themes').isVisible(),true);
+   await page.locator('[data-theme="fixture-topic"]').click();await page.locator('#start-game').click();
+   await page.locator('[data-action="roll"]').click();
+   const card=await page.evaluate(()=>({pack:game.contentPack,current:game.current}));
+   assert.equal(card.pack.id,'fixture-topic');assert.ok(['КАРАНДАШ','СУНДУК','ПУЗЫРЬ'].includes(card.current.word));
+   await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
+   assert.deepEqual(await page.evaluate(()=>({pack:game.contentPack,current:game.current})),card);
+   await page.locator('#exit-game').click();await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();
+   assert.equal(await page.locator('#setup-pack-caption').textContent(),'Общий словарь');
+   assert.equal(await page.evaluate(()=>game.contentPack.id),'fixture-topic','Setup must preserve unfinished topic match');
    assert.deepEqual(errors,[]);await context.close();
   }
  }finally{await browser.close()}

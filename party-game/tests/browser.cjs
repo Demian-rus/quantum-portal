@@ -54,6 +54,7 @@ const {chromium} = require('playwright-core');
       assert.equal(await page.locator('#sound-toggle').isChecked(),false);
       await page.locator('#preferences-back').click();
       await page.locator('#new-game-menu').click();
+      await page.locator('#standard-game').click();
       await page.fill('#team-a','Крутые коты');
       await page.fill('#team-b','Синие кометы');
       await page.locator('[data-setting="difficulty"] [data-value="medium"]').click();

@@ -32,6 +32,7 @@ const URL='http://127.0.0.1:8765/party-game/';
       assert.ok(home.scroll<=home.viewport+2,'Home scrolls: '+JSON.stringify(home));
       await page.screenshot({path:'artifacts/quip-immersive/'+device.name+'-home.png',fullPage:true});
       await page.locator('#new-game-menu').click();
+      await page.locator('#standard-game').click();
       await page.locator('[data-setting="difficulty"] [data-value="medium"]').click();
       assert.equal(await page.locator('#scene-setup').isVisible(),true);
       const setup=await page.evaluate(()=>({
