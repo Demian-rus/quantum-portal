@@ -1331,3 +1331,14 @@ body[data-screen="results"]::after {
 .scene--game #play-step{display:block;max-width:100%;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .scene--game .play-card-head{min-width:0}
 .scene--game .play-card-head .text-link{flex:0 0 auto}
+
+/* Main setup ranges use the same tactile style as advanced settings. */
+.setup-range{display:block;width:100%;height:28px;margin:5px 0 7px;cursor:pointer;accent-color:#7de8ff;touch-action:pan-x}
+.setup-range[hidden]{display:none!important}
+.settings-grid--compact .option-set{align-content:start}
+.settings-grid--compact .option-set>.setup-metric{min-height:30px}
+@media(max-width:700px){
+ .settings-grid--compact{grid-template-columns:1fr;gap:13px;margin-block:18px}
+ .settings-grid--compact .option-set:first-child{grid-column:auto}
+ .setup-range{height:32px}
+}
