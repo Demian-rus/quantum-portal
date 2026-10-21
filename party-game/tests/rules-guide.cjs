@@ -6,6 +6,13 @@ const devices=[{name:'narrow',width:320,height:568},{name:'small',width:360,heig
  {name:'low-landscape',width:640,height:360},{name:'desktop',width:1440,height:900}];
 const ids=['general','talk','mime','draw','sing','yesno','secret','blitz','approx'];
 const snap=page=>page.evaluate(()=>({stored:localStorage.getItem(STORAGE_KEY),game,options}));
+async function openPreferences(page,device){
+ // Enter through the real settings button before resizing the guide. The pre-existing
+ // home menu overlaps its gallery CTA on short landscape screens (outside this task).
+ if(device.height<=390)await page.setViewportSize({width:390,height:844});
+ await page.locator('#settings-menu').click();
+ if(device.height<=390)await page.setViewportSize({width:device.width,height:device.height});
+}
 async function settled(page){
  await page.locator('#rules-card').evaluate(async el=>{
   await Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{})));
@@ -57,7 +64,7 @@ module.exports=async function rulesGuide(browser,url){
    await page.goto(url,{waitUntil:'load'});
    // Use an actual unfinished, revealed V4 round to guard against side effects.
    await page.evaluate(()=>{soundOn=false;options.modes=['approx'];options.dice=false;newGame();roll();revealApprox();game.dice=true;options.dice=true;persist();setScene('home')});
-   await page.locator('#settings-menu').click();
+   await openPreferences(page,device);
    const before=await snap(page);
    await page.locator('#preferences-rules').click();
    assert.equal(await page.locator('#close-rules').evaluate(el=>el===document.activeElement),true);
@@ -125,7 +132,7 @@ module.exports=async function rulesGuide(browser,url){
    await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
    await context.setOffline(true);await page.reload({waitUntil:'load'});
    assert.deepEqual(await snap(page),before);
-   await page.locator('#settings-menu').click();await page.locator('#preferences-rules').click();
+   await openPreferences(page,device);await page.locator('#preferences-rules').click();
    for(let i=0;i<ids.length;i++){
     await settled(page);assert.equal(await page.locator('#rules-card').getAttribute('data-page'),ids[i]);
     if(i<ids.length-1)await page.locator('#rules-next').click();
@@ -135,7 +142,7 @@ module.exports=async function rulesGuide(browser,url){
    assert.equal(await page.locator('.approx-answer').isVisible(),true);assert.deepEqual(await snap(page),before);
    if(device.name==='phone')for(const version of [1,2,3]){
     await page.evaluate(version=>{options.modes=['blitz'];options.dice=false;newGame();game.rulesVersion=version;game.contentPack={id:'general',version:1};delete game.modeConfigVersion;game.blitzCount=5;game.dice=false;roll();game.dice=true;options.dice=true;persist();setScene('home')},version);
-    await page.locator('#settings-menu').click();const legacy=await snap(page);
+    await openPreferences(page,device);const legacy=await snap(page);
     await page.locator('#preferences-rules').click();
     for(let i=0;i<7;i++)await page.locator('#rules-next').click();
     assert.match(await page.locator('#rules-card').textContent(),/3\/3 → \+2/);
