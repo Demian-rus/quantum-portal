@@ -47,6 +47,14 @@ function displayPrompt(value) {
   return escapeHTML(value).replace(/ПАРАЛЛЕЛЬНАЯ/gi, match =>
     match.slice(0,-3)+'\u00ad'+match.slice(-3));
 }
+function displayTeamName(value){
+  const chars=Array.from(String(value));
+  if(chars.length>16&&!/\s/u.test(value)){
+    const mid=Math.ceil(chars.length/2);
+    return escapeHTML(chars.slice(0,mid).join(''))+'<wbr>'+escapeHTML(chars.slice(mid).join(''));
+  }
+  return escapeHTML(value);
+}
 function readSaved() {
   try {
     const obj=JSON.parse(localStorage.getItem(STORAGE_KEY));
@@ -796,7 +804,7 @@ function showJudge() {
   $('play-content').innerHTML='<div class="judge-copy" tabindex="0" role="region" aria-label="Итог раунда">'+
     '<span class="game-eyebrow">'+(c.finishedReason==='timeout'?'ВРЕМЯ ВЫШЛО':'РАУНД ЗАКОНЧЕН')+'</span>'+
     symbol(blitz?'blitz':c.methodId)+
-    '<h2 class="play-title"><span class="judge-team-name'+(guessingTeam().length>16?' judge-team-name--long':'')+'">'+escapeHTML(guessingTeam())+'</span><em>УГАДАЛИ?</em></h2>'+
+    '<h2 class="play-title"><span class="judge-team-name'+(guessingTeam().length>16?' judge-team-name--long':'')+'">'+displayTeamName(guessingTeam())+'</span> <em>УГАДАЛИ?</em></h2>'+
     '<p class="score-note">'+(blitz?'Отгадано '+c.blitzCorrect+' из '+c.blitzWords.length+(ruleSetForGame(game).legacyBlitz?'. За каждое отгаданное слово — одно очко (старая партия).':''):'Было загадано: <b>'+escapeHTML(c.word)+'</b>')+'</p>'+
     '<p class="score-note">'+points+'</p>'+
     '<p class="score-recipient">Очки получит <b>'+escapeHTML(awardTeam())+'</b></p>'+
