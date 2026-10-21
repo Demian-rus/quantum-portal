@@ -6,7 +6,7 @@ function freezePresetValue(value){
  return value;
 }
 function validatePresetSettings(settings){
- const modes=['talk','mime','draw','sing','yesno','secret','blitz'];
+ const modes=Object.values(QUIP_MODES_V4).filter(mode=>mode.enabled).map(mode=>mode.id);
  if(!settings||!['easy','medium','hard','mixed'].includes(settings.difficulty)||
   !['score','rounds'].includes(settings.finishType)||
   !Number.isInteger(settings.duration)||settings.duration<30||settings.duration>90||settings.duration%5||
@@ -34,6 +34,8 @@ const QUIP_CLASSIC_OPTIONS=freezePresetValue({difficulty:'easy',duration:60,roun
  modes:['talk','mime','draw','sing','yesno','secret','blitz'],promptTypes:['word','phrase','idiom'],
  contentPack:{id:'general',version:1}});
 const QUIP_PARTY_PRESETS=definePartyPresets([
+ {id:'classic-duel',version:2,name:'Классическая дуэль',enabled:true,settings:{...QUIP_CLASSIC_OPTIONS,blitzCount:3}},
+ {id:'hardcore',version:2,name:'Хардкор',enabled:true,settings:{...QUIP_CLASSIC_OPTIONS,difficulty:'hard',duration:30,blitzCount:3}},
  {id:'classic-duel',version:1,name:'Классическая дуэль',enabled:true,settings:QUIP_CLASSIC_OPTIONS},
  {id:'thematic',version:1,name:'Тематическая партия',enabled:false,
   settings:{...QUIP_CLASSIC_OPTIONS,modes:['talk','mime','draw'],contentPack:{id:'geography',version:1}}},

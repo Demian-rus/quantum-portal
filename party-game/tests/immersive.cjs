@@ -16,7 +16,7 @@ const URL='http://127.0.0.1:8765/party-game/';
       const page=await browser.newPage({viewport:{width:device.width,height:device.height},deviceScaleFactor:device.width<500?2:1});
       const errors=[];page.on('pageerror',e=>errors.push(e.message));
       await page.goto(URL,{waitUntil:'load'});
-      await page.evaluate(()=>{chooseStartingTeam=()=>0});
+      await page.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
       await page.waitForSelector('#new-game-menu',{state:'visible'});
       const home=await page.evaluate(()=>{
         const e=document.getElementById('scene-home');
@@ -137,7 +137,7 @@ const URL='http://127.0.0.1:8765/party-game/';
     }
     const page=await browser.newPage({viewport:{width:390,height:844}});
     await page.goto(URL,{waitUntil:'load'});
-      await page.evaluate(()=>{chooseStartingTeam=()=>0});
+      await page.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
     const manifest=await page.evaluate(async()=>{
       const response=await fetch('./manifest.webmanifest');return response.json();
     });

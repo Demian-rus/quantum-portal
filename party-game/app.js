@@ -1,14 +1,6 @@
 'use strict';
 const STORAGE_KEY = 'iskra-party:v1';
-const MODE_LIST = Object.freeze([
-  {id:'talk',title:'СЛОВА',rule:'Объясняй словами, не называя ответ и однокоренные слова.',kind:'words'},
-  {id:'mime',title:'ЖЕСТЫ',rule:'Только жесты и мимика. Нельзя говорить или издавать звуки.',kind:'words'},
-  {id:'draw',title:'НАРИСУЙ',rule:'Рисуй на бумаге, не используя буквы, цифры и жесты.',kind:'words'},
-  {id:'sing',title:'НАПОЙ',rule:'Напевай песню, связанную с темой. Соперник должен отгадать тему.',kind:'songs'},
-  {id:'yesno',title:'ДАНЕТКИ',rule:'Загадывающий видит персонажа и отвечает на вопросы соперника только «да», «нет» или «не знаю». Отгадывающий должен назвать персонажа.',kind:'people'},
-  {id:'secret',title:'СЕКРЕТКА',rule:'Случайное задание с обязательным усложнением.',kind:'words'},
-  {id:'blitz',title:'БЛИЦ',rule:'Отгадай все 5 слов за отведённое время! За 5 из 5 получи 3 очка. За неполный результат — 0.',kind:'words'}
-]);
+const MODE_LIST=Object.freeze(Object.values(QUIP_MODES_V4).filter(mode=>mode.enabled));
 function severityForRound() {
   return game.current?.difficulty || game.difficulty;
 }
@@ -25,7 +17,7 @@ function symbol(id,extra='') {
 const $ = id => document.getElementById(id);
 function timerMarkup(ms) { return formatTimer(ms); }
 function pointNoun(n) { return n%10===1&&n%100!==11?'ОЧКО':([2,3,4].includes(n%10)&&!(n%100>=12&&n%100<=14)?'ОЧКА':'ОЧКОВ'); }
-const freshOptions = () => optionsForPartyPreset('classic-duel',1);
+const freshOptions = () => optionsForPartyPreset('classic-duel',2);
 let options = freshOptions();
 let soundOn = true;
 let game = null;
@@ -74,12 +66,12 @@ function currentTeam() { return game.teams[currentTeamIndex()]; }
 function guessingTeamIndex() { return game.scoringVersion===2?(currentTeamIndex()+1)%2:currentTeamIndex(); }
 function guessingTeam() { return game.teams[guessingTeamIndex()]; }
 function durationForMode(id,methodId,base) {
-  // Duration is measured from the same user-selected base for all modes.
-  // Four cognitively/time-intensive modes get an additional 30 seconds.
-  // No hidden 90-second cap: 30–90 base => 60–120 extended.
-  const mode=id==='secret'?methodId:id;
-  const bonus=['draw','sing','yesno','blitz'].includes(mode)?30:0;
-  return Math.max(30,Math.min(90,base))+bonus;
+ const config=modeConfigForGame(game,id==='secret'?methodId:id);
+ return config.usesTimer?Math.max(30,Math.min(90,base))+config.durationBonus:0;
+}
+function roundUsesTimer(){
+ if(!game?.current)return false;
+ return game?.current?.usesTimer??modeConfigForGame(game,game.current.modeId).usesTimer;
 }
 function matchComplete() {
   if(game.finishType!=='score')return game.roundIndex>=game.rounds;
@@ -212,7 +204,12 @@ function renderOptions() {
     const input=$(id);
     if(input && document.activeElement!==input)input.value=String(value);
   }
-  document.querySelectorAll('#mode-toggles input').forEach(input=>{input.checked=options.modes.includes(input.value);});
+  document.querySelectorAll('#mode-toggles input').forEach(input=>{
+    input.checked=options.modes.includes(input.value);
+    const config=getModeConfig(input.value),label=input.closest('label').querySelector('b');
+    label.textContent='+'+(config.basePoints+(config.id==='secret'?config.modifierBonus:0))+
+      (config.blitzWordsCount?' за '+config.blitzWordsCount+'/'+config.blitzWordsCount:'');
+  });
   document.querySelectorAll('#content-toggles input').forEach(input=>{input.checked=options.promptTypes.includes(input.value);});
   $('toggle-complications').checked=options.complications;
 }
@@ -272,29 +269,32 @@ function pullWord(kind, level=chooseDifficulty(),excluded=[]) {
   return word;
 }
 function rollOutcome() {
-  const mode=pickMode();
+  const mode=pickMode(),config=modeConfigForGame(game,mode.id);
   game.modeHistory.push(mode.id);
   let actualMode=mode;
   const level=chooseDifficulty();
   if(mode.id==='secret'){
-    const submodes=MODE_LIST.filter(m=>['talk','mime','draw','sing','yesno'].includes(m.id));
+    const submodes=MODE_LIST.filter(m=>m.secretMethod);
     const enabled=submodes.filter(m=>game.modes.includes(m.id));
     actualMode=randomOne(enabled.length?enabled:submodes);
   }
-  const modifier=chooseModifier({modeId:mode.id,methodId:actualMode.id,
-    difficulty:level,complications:game.complications});
+  const modifier=config.usesModifiers?chooseModifier({modeId:mode.id,methodId:actualMode.id,
+    difficulty:level,complications:game.complications}):null;
   const word=pullWord(mode.id==='blitz'?'blitz':actualMode.kind,level);
   const blitzWords=mode.id==='blitz'?[word]:null;
-  if(blitzWords)while(blitzWords.length<5)blitzWords.push(pullWord('blitz',level,blitzWords));
+  if(blitzWords)while(blitzWords.length<config.blitzWordsCount)blitzWords.push(pullWord('blitz',level,blitzWords));
   return {
     modeId:mode.id,methodId:actualMode.id,word,complication:modifier?.text||'',
     complicationId:modifier?.id||null,modifierVersion:QUIP_MODIFIER_VERSION,difficulty:level,
-    points:rewardForRound(game,mode.id,level),seconds:durationForMode(mode.id,actualMode.id,game.duration),
-    risk:game.riskRounds&&game.roundIndex>=ruleSetForGame(game).risk.firstRoundIndex&&
-      shouldSelectRisk(game,Math.random()),
+    basePoints:rewardForRound(game,mode.id,level),
+    modifierPoints:ruleSetForGame(game).version>=4&&modifier?config.modifierBonus:0,
+    points:rewardForRound(game,mode.id,level,!!modifier),usesTimer:config.usesTimer,
+    blitzRequired:config.blitzWordsCount,seconds:durationForMode(mode.id,actualMode.id,game.duration),
+    risk:config.allowsRisk&&game.riskRounds&&game.roundIndex>=ruleSetForGame(game).risk.firstRoundIndex&&
+      shouldSelectRisk(game,Math.random(),mode.id),
     blitzWords,
     blitzIndex:0,blitzCorrect:0,
-    blitzQueue:mode.id==='blitz'?Array.from({length:5},(_,i)=>i):null,
+    blitzQueue:mode.id==='blitz'?Array.from({length:config.blitzWordsCount},(_,i)=>i):null,
     visible:false,paused:false,remainingMs:null,deadline:null,autoStartAt:null,
     finishedReason:null,replaced:false
   };
@@ -405,7 +405,8 @@ function modeInformation() {
   return {
     mode,method,secret,
     name:secret?'СЕКРЕТКА: '+method.title:mode.title,
-    rule:method.rule
+    rule:mode.id==='blitz'&&ruleSetForGame(game).version>=4?
+      'Отгадайте все '+game.current.blitzWords.length+' слова за один таймер. Очки только за полный результат.':method.rule
   };
 }
 function taskMarkup(hidden) {
@@ -432,7 +433,7 @@ function showTask() {
       '<div class="mode-rule">'+escapeHTML(rule)+
       (c.complication?'<br><strong>УСЛОЖНЕНИЕ: '+escapeHTML(c.complication)+'</strong>':'')+'</div>'+
       (secret?'<span class="secret-flag">СЕКРЕТКА · +'+c.points+' '+pointNoun(c.points)+'</span>':
-        '<span class="score-note">ЗА ВЕРНЫЙ ОТВЕТ: +'+(c.modeId==='blitz'?(game.scoringVersion===2?c.points+' ЗА ВСЕ 5 СЛОВ':'1 ЗА СЛОВО'):c.points)+'</span>')+
+        '<span class="score-note">ЗА ВЕРНЫЙ ОТВЕТ: +'+(c.modeId==='blitz'?(game.scoringVersion===2?c.points+' ЗА ВСЕ '+c.blitzWords.length+' СЛОВ':'1 ЗА СЛОВО'):c.points)+'</span>')+
     (c.risk?'<p class="risk-notice">⚡ РИСК-РАУНД: ПРОВАЛ — ДО −'+ruleSetForGame(game).risk.loss+' ОЧКОВ</p>':'')+
     '</div>'+
     '<div class="round-fixed-card">'+taskMarkup(!c.visible)+'</div>'+
@@ -573,13 +574,13 @@ function showJudge() {
   $('play-content').className='play-inner is-judge';
   $('play-step').textContent='ИТОГ РАУНДА';
   const c=game.current,blitz=c.modeId==='blitz';
-  const incompleteBlitz=blitz&&game.scoringVersion===2&&c.blitzCorrect<5;
+  const incompleteBlitz=blitz&&game.scoringVersion===2&&c.blitzCorrect<blitzRequiredForRound(game,c);
   $('play-content').innerHTML=
     '<span class="game-eyebrow">'+(c.finishedReason==='timeout'?'ВРЕМЯ ВЫШЛО':'РАУНД ЗАКОНЧЕН')+'</span>'+
     symbol(blitz?'blitz':c.methodId)+
     '<h2 class="play-title">'+(blitz?'РЕЗУЛЬТАТ <em>БЛИЦА</em>':'ОТГАДЫВАЮЩИЙ <em>УГАДАЛ?</em>')+'</h2>'+
     '<p class="play-subtitle">'+(blitz?'Отгадано '+c.blitzCorrect+' из '+c.blitzWords.length+'. '+(game.scoringVersion===2?'Все '+c.blitzWords.length+' слов дают '+c.points+' очка.':'За каждое отгаданное слово — одно очко (старая партия).'):'Нажмите галочку, если ответ верный, или крестик, если нет.')+'</p>'+
-    '<p class="score-note">'+(blitz?'Награда: <b>'+(game.scoringVersion===2?(c.blitzCorrect===5?'+'+c.points:'0'):('+'+c.blitzCorrect))+' очков</b>':
+    '<p class="score-note">'+(blitz?'Награда: <b>'+(game.scoringVersion===2?(c.blitzCorrect===blitzRequiredForRound(game,c)?'+'+c.points:'0'):('+'+c.blitzCorrect))+' очков</b>':
     'Было загадано: <b>'+escapeHTML(c.word)+'</b> · За ответ: +'+c.points)+'</p>'+ 
     (c.risk?'<p class="risk-notice">⚡ Провал: потеря до '+ruleSetForGame(game).risk.loss+' очков у отгадывающего</p>':'')+
     (incompleteBlitz?'<div class="inline-actions">'+makeButton('ЗАВЕРШИТЬ РАУНД','no','button-primary button-big')+'</div>':
@@ -603,7 +604,8 @@ function recordAnswer(yes) {
     team:game.teams[teamIndex],setter:currentTeam(),mode:c.modeId,
     word:c.modeId==='blitz'?c.blitzWords.join(' / '):c.word,
     awarded:outcome.delta,correct:outcome.success,risk:!!c.risk,
-    rulesVersion:outcome.rulesVersion,difficulty:c.difficulty
+    rulesVersion:outcome.rulesVersion,difficulty:c.difficulty,
+    basePoints:c.basePoints,modifierPoints:outcome.success?(c.modifierPoints||0):0
   });
   game.roundIndex++;
   // Confirmation is the final action for a round; no extra Next button.
@@ -691,12 +693,12 @@ function newGame() {
   game={
     teams:[teamA,teamB],scores:[0,0],roundIndex:0,startingTeamIndex:chooseStartingTeam(),
     rounds:options.rounds,targetScore:options.targetScore,finishType:options.finishType,
-    riskRounds:options.riskRounds,scoringVersion:2,rulesVersion:QUIP_RULE_VERSION,
+    riskRounds:options.riskRounds,scoringVersion:2,rulesVersion:QUIP_RULE_VERSION,modeConfigVersion:QUIP_MODE_CONFIG_VERSION,
     plannerVersion:QUIP_PLANNER_VERSION,plannerState:freshRoundPlan(),
     duration:options.duration,difficulty:options.difficulty,
     contentPack:{...contentPack},preset:options.preset?{...options.preset}:null,
     modes:options.modes.slice(),promptTypes:options.promptTypes.slice(),
-    dice:options.dice,complications:options.complications,blitzCount:5,
+    dice:options.dice,complications:options.complications,blitzCount:getModeConfig('blitz').blitzWordsCount,
     current:null,modeHistory:[],used:{},history:[],phase:'ready'
   };
   persist();sfx('go');render();
@@ -720,7 +722,7 @@ function roll() {
 }
 
 function toggleWord() {
-  if(!game||!['task','play'].includes(game.phase))return;
+  if(!game||!roundUsesTimer()||!['task','play'].includes(game.phase))return;
   if(game.current.modeId==='blitz'&&game.phase==='play')return;
   // Revealing or hiding an answer never pauses or restarts the clock.
   game.current.visible=!game.current.visible;
@@ -738,7 +740,7 @@ function replaceWord() {
   persist();sfx('button');render();
 }
 function startTimer() {
-  if(!game||game.phase!=='task'||!game.current.visible||!allowPause())return;
+  if(!game||!roundUsesTimer()||game.phase!=='task'||!game.current.visible||!allowPause())return;
   game.phase='play';
   game.current.deadline=Date.now()+game.current.seconds*1000;
   game.current.remainingMs=null;
@@ -796,7 +798,7 @@ function sanitizeOptions(raw) {
   const targetScore=Math.max(15,Math.min(100,5*Math.round((Number(raw.targetScore)||base.targetScore)/5)));
   const finishType=raw.finishType==='rounds'?'rounds':'score';
   const riskRounds=raw.riskRounds!==false;
-  const blitzCount=5;
+  const blitzCount=getModeConfig('blitz').blitzWordsCount;
   const modes=Array.isArray(raw.modes)?DEFAULT_MODES.filter(id=>raw.modes.includes(id)):base.modes;
   const promptTypes=Array.isArray(raw.promptTypes)?PROMPT_TYPES.filter(id=>raw.promptTypes.includes(id)):base.promptTypes;
   return {difficulty,duration,rounds,targetScore,finishType,riskRounds,blitzCount,modes,promptTypes,
@@ -819,6 +821,8 @@ function restoreSession() {
       throw Error('Unsupported QUIP scoringVersion');
     if(candidate.rulesVersion!=null&&!Object.hasOwn(QUIP_RULESETS,candidate.rulesVersion))
       throw Error('Unsupported QUIP rulesVersion');
+    if(candidate.modeConfigVersion!=null&&!QUIP_MODE_CONFIGS[candidate.modeConfigVersion])
+      throw Error('Unknown mode config version');
     if(candidate.plannerVersion!=null)validatePlannedGame(candidate);
     if(candidate.contentPack)getContentPack(candidate.contentPack);
   }catch{storageBlocked=true;return;}

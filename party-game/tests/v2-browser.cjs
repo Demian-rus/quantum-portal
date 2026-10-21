@@ -24,7 +24,7 @@ async function configureOnly(page,id) {
       const errors=[];
       page.on('pageerror',e=>errors.push(e.message));
       await page.goto(URL,{waitUntil:'load'});
-      await page.evaluate(()=>{chooseStartingTeam=()=>0});
+      await page.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
       await page.locator('#new-game-menu').click();
       await page.locator('[data-setting="difficulty"] [data-value="hard"]').click();
       await configureOnly(page,'yesno');
@@ -45,7 +45,7 @@ async function configureOnly(page,id) {
         member:getPromptPool('people','hard').includes(game.current.word)}));
       assert.equal(state.mode,'yesno');
       assert.equal(state.member,true,'Expected real or fictional identity');
-      assert.equal(state.points,4,'Hard Danetki use the V3 graded 2/3/4 points table');
+      assert.equal(state.points,2,'V4 Danetki have a fixed two-point base reward');
       assert.equal(state.duration,60);
       assert.equal(state.dice,true,'Carousel is the only normal game selection method');
       const icon=page.locator('.mode-symbol img.mode-art');
@@ -79,7 +79,7 @@ async function configureOnly(page,id) {
     const blitz=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
     const errs=[];blitz.on('pageerror',e=>errs.push(e.message));
     await blitz.goto(URL,{waitUntil:'load'});
-      await blitz.evaluate(()=>{chooseStartingTeam=()=>0});
+      await blitz.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
     await blitz.locator('#new-game-menu').click();
     await configureOnly(blitz,'blitz');
     await blitz.locator('#advanced-done').click();
@@ -90,19 +90,18 @@ async function configureOnly(page,id) {
     await blitz.locator('[data-action="start-timer"]').click();
     assert.equal(await blitz.locator('.blitz-status').count(),1);
     const start=await blitz.evaluate(()=>game.current.deadline);
-    for(const action of ['blitz-correct','blitz-skip','blitz-correct','blitz-correct','blitz-skip']){
+    for(const action of ['blitz-correct','blitz-skip','blitz-correct']){
       await blitz.locator('[data-action="'+action+'"]').click();
     }
     assert.equal(await blitz.locator('[data-action="yes"]').count(),0,'Skipped words must return');
     await blitz.locator('[data-action="blitz-correct"]').click();
-    await blitz.locator('[data-action="blitz-correct"]').click();
     assert.equal(await blitz.locator('[data-action="yes"]').count(),1);
     const stats=await blitz.evaluate(()=>({correct:game.current.blitzCorrect,
       remaining:game.current.blitzQueue.length,count:game.current.blitzWords.length}));
-    assert.deepEqual(stats,{correct:5,remaining:0,count:5});
+    assert.deepEqual(stats,{correct:3,remaining:0,count:3});
     await blitz.screenshot({path:'artifacts/quip-v2/phone-blitz-result.png',fullPage:true});
     await blitz.locator('[data-action="yes"]').click();
-    assert.equal(await blitz.locator('#score-b').textContent(),'3');
+    assert.equal(await blitz.locator('#score-b').textContent(),'2');
     assert.deepEqual(errs,[],'Blitz JS errors');
     await blitz.close();
   }finally{await browser.close();}

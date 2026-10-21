@@ -52,15 +52,15 @@ function checkContentPack(selection,settings,cards=PARTY_CARDS,registry=QUIP_CON
  const pack=getContentPack(selection,registry),problems=[];
  if(!pack.enabled)problems.push('Набор пока недоступен: '+pack.name);
  const levels=settings.difficulty==='mixed'?PARTY_CARD_LEVELS:[settings.difficulty];
- const basic=['talk','mime','draw','sing','yesno'];
+ const basic=Object.values(QUIP_MODES_V4).filter(mode=>mode.secretMethod).map(mode=>mode.id);
  const methods=new Set(settings.modes.flatMap(mode=>mode==='secret'?
   (basic.some(x=>settings.modes.includes(x))?basic.filter(x=>settings.modes.includes(x)):basic):[mode]));
  for(const method of methods){
-  const kind={talk:'words',mime:'words',draw:'words',sing:'songs',yesno:'people',blitz:'blitz'}[method];
+  const kind=getModeConfig(method).cardType;
   if(!kind)throw Error('Unknown QUIP mode: '+method);
   for(const level of levels){
    const pool=getPackCardPool(selection,kind,level,settings.promptTypes,cards,registry);
-   const count=new Set(pool.map(card=>card.text)).size,required=Math.max(pack.minCardsPerPool,kind==='blitz'?5:1);
+   const count=new Set(pool.map(card=>card.text)).size,required=Math.max(pack.minCardsPerPool,kind==='blitz'?(settings.rulesVersion&&settings.rulesVersion<4?5:getModeConfig('blitz').blitzWordsCount):1);
    if(count<required)problems.push(method+'/'+level+': '+count+' из '+required+' заданий');
   }
  }
