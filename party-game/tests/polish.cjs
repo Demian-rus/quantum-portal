@@ -239,12 +239,11 @@ async function isInViewport(page){
   assert.ok(status.labels[0].x<status.labels[1].x);
   assert.ok(!status.text.includes('Пропущено'));
   await blitz.evaluate(()=>{game.current.deadline=Date.now()-1;tick()});
-  const blitzJudge=await blitz.locator('.is-judge .judgement-option button').evaluateAll(nodes=>
-    nodes.map(el=>({action:el.dataset.action,x:el.getBoundingClientRect().x})));
-  assert.deepEqual(blitzJudge.map(x=>x.action),['no','yes']);
-  assert.ok(blitzJudge[0].x<blitzJudge[1].x);
+  const blitzJudge=await blitz.locator('.is-judge button[data-action]').evaluateAll(nodes=>
+    nodes.map(el=>el.dataset.action));
+  assert.deepEqual(blitzJudge,['no'],'Incomplete Blitz must have one finalization button');
   assert.ok(!(await blitz.locator('.is-judge').innerText()).includes('Пропущено'));
-  await blitz.screenshot({path:'artifacts/quip-polish/phone-blitz-result-red-left-green-right.png'});
+  await blitz.screenshot({path:'artifacts/quip-polish/phone-blitz-incomplete-finalize.png'});
   await blitz.close();
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
