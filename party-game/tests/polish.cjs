@@ -140,7 +140,7 @@ async function isInViewport(page){
    const first=await isInViewport(page);
    assert.ok(first.page<=first.window+2&&first.inside<=first.height+4,'Game scroll overflow '+JSON.stringify(first));
    await page.locator('[data-action="correct-now"]').click();
-   assert.equal(await page.locator('#score-a').textContent(),'1');
+   assert.equal(await page.locator('#score-b').textContent(),'1');
    assert.equal(await page.locator('#round-now').textContent(),'2');
    assert.equal(await page.locator('[data-action="roll"]').count(),1,'Extra next-step confirmation');
    await page.screenshot({path:'artifacts/iskra-polish/'+device.name+'-next-turn.png'});
