@@ -458,13 +458,13 @@ test('Russian long prompt has a syllabic optional break without changing stored 
  assert.equal(marked.replace(/\u00ad/g,''),raw);
 });
 
-test('all seven modes use the correct, small and transparent WebP illustrations',()=>{
+test('seven active and one staged mode use transparent WebP illustrations',()=>{
  const h=harness();
- const expected={talk:'talk',mime:'mime',draw:'draw',sing:'sing',yesno:'yesno',secret:'secret',blitz:'blitz'};
+ const expected={talk:'talk',mime:'mime',draw:'draw',sing:'sing',yesno:'yesno',secret:'secret',blitz:'blitz',approx:'approx'};
  const assetMap=JSON.parse(h.eval('JSON.stringify(MODE_ASSETS)'));
  assert.deepEqual(Object.keys(assetMap).sort(),Object.keys(expected).sort());
  for(const [mode,name] of Object.entries(expected)){
-   assert.equal(assetMap[mode],'./assets/modes/'+name+'.webp?v=2');
+   assert.equal(assetMap[mode],'./assets/modes/'+name+'.webp?v=3');
    const file=fs.readFileSync(path.join(__dirname,'../assets/modes',name+'.webp'));
    assert.ok(file.length<90000,'Icon is too large for a mobile PWA: '+name);
    assert.equal(file.toString('ascii',0,4),'RIFF','Missing WebP RIFF header '+name);
@@ -504,7 +504,7 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v22-20261021-menu/);
+ assert.match(worker,/kvip-pwa-v23-20261021-icons/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
 
@@ -809,7 +809,7 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  for(const file of ['rules.js?v=1','penalties.js?v=1','modifiers.js?v=1','round-planner.js?v=1','content-packs.js?v=1','presets.js?v=1','app.js?v=17']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
- assert.match(sw,/kvip-pwa-v22-20261021-menu/);
+ assert.match(sw,/kvip-pwa-v23-20261021-icons/);
 });
 
 
@@ -1195,4 +1195,23 @@ test('other-games navigation preserves the unfinished match and has six inert pl
  assert.equal((html.match(/class="other-game-tile"/g)||[]).length,6);
  assert.doesNotMatch(html.match(/<ul class="other-games-grid"[\s\S]*?<\/ul>/)[0],/<a|<button/);
  assert.ok(html.includes('МИНИМАЛЬНОЕ ВРЕМЯ'));assert.ok(html.includes('МАКСИМУМ ОЧКОВ'));
+});
+
+// Every approved icon must be a valid WebP file, including the reserved approx art.
+test('all eight mode icons exist, load from versioned URLs, and approx is dormant',()=>{
+  const h=harness(),assets=JSON.parse(h.eval('JSON.stringify(MODE_ASSETS)'));
+  const modes=['talk','mime','draw','sing','yesno','secret','blitz','approx'];
+  assert.deepEqual(Object.keys(assets),modes);
+  assert.equal(h.eval('DEFAULT_MODES.includes("approx")'),false,'Approx mode belongs to future gameplay changes');
+  const sw=read('sw.js'),html=read('index.html');
+  assert.ok(html.includes("mode-images.js?v=6"));
+  assert.match(sw,/kvip-pwa-v23-20261021-icons/);
+  for(const mode of modes){
+    assert.equal(assets[mode],'./assets/modes/'+mode+'.webp?v=3');
+    assert.ok(sw.includes("'approx'")||mode!=='approx');
+    const file=fs.readFileSync(path.join(__dirname,'..','assets','modes',mode+'.webp'));
+    assert.ok(file.length>1000,mode+' is empty');
+    assert.equal(file.toString('ascii',0,4),'RIFF',mode+' RIFF header');
+    assert.equal(file.toString('ascii',8,12),'WEBP',mode+' WebP header');
+  }
 });
