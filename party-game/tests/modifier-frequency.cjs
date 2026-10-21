@@ -13,25 +13,32 @@ async function shot(page,name){
  await page.screenshot({path:'artifacts/quip-mobile-layout/task007c-'+name+'.png'});
 }
 async function offlineUpgrade(browser,url){
- const file=require('node:path').resolve(__dirname,'../sw.js'),source=fs.readFileSync(file,'utf8');
- const oldCache='kvip-pwa-v31-task007-upgrade';
- const currentCache=source.match(/const CACHE='([^']+)'/)[1];
+ const path=require('node:path'),{execFileSync}=require('node:child_process');
+ const root=path.resolve(__dirname,'../..'),legacyCommit='b532dbc474e577db2d21ead89b63993d13575d9d';
+ // The Actions checkout is shallow. Fetch this immutable pre-C fixture only when
+ // necessary, without switching branches or changing the checkout's files.
+ const git=args=>execFileSync('git',args,{cwd:root,timeout:30000,maxBuffer:2*1024*1024,stdio:['ignore','pipe','pipe']});
+ try{git(['cat-file','-e',legacyCommit+'^{commit}'])}catch{git(['fetch','--depth=1','origin',legacyCommit])}
+ const files=['sw.js','index.html','style.css','app.js','modifiers.js'];
+ const current=new Map(files.map(name=>[name,fs.readFileSync(path.join(root,'party-game',name))]));
+ const legacy=new Map(files.map(name=>[name,git(['show',legacyCommit+':party-game/'+name])]));
+ const cache=source=>source.toString().match(/const CACHE='([^']+)'/)[1];
+ const oldCache=cache(legacy.get('sw.js')),currentCache=cache(current.get('sw.js'));
+ const write=sources=>{for(const [name,source] of sources)fs.writeFileSync(path.join(root,'party-game',name),source)};
  const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage();
  try{
-  // A test-only old cache tag exercises installation/activation against the same
-  // server. The production worker bytes are restored before the update request.
-  fs.writeFileSync(file,source.replace(/const CACHE='[^']+'/,"const CACHE='"+oldCache+"'"));
+  // Install the actual stage-B bundle and worker, then update to stage C.
+  // All other precached production resources are unchanged between these commits.
+  write(legacy);
   await page.goto(url,{waitUntil:'load'});await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
   assert.ok(await page.evaluate(key=>caches.has(key),oldCache));
   await page.evaluate(()=>{
-   soundOn=false;options.modes=['talk'];options.modifierChance=100;options.dice=false;Math.random=()=>0;chooseStartingTeam=()=>0;newGame();roll();
-   // An actual pre-C V5 save has no frequency/recency policy, even when the next
-   // application's settings add it. Its current complication remains authoritative.
-   delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;delete options.modifierChance;
+   soundOn=false;options.modes=['talk'];options.dice=false;Math.random=()=>0;chooseStartingTeam=()=>0;newGame();roll();
    game.dice=true;options.dice=true;game.phase='judge';game.current.finishedReason='timeout';persist();render();
   });
+  assert.equal(await page.evaluate(()=>game.modifierSelectionVersion),undefined);
   const snapshot=await page.evaluate(()=>({stored:localStorage.getItem(STORAGE_KEY),game:JSON.stringify(game)}));
-  fs.writeFileSync(file,source);
+  write(current);
   await page.evaluate(async()=>{
    const changed=new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));
    await navigator.serviceWorker.register('./sw.js?qa-task007-upgrade',{scope:'./',updateViaCache:'none'});
@@ -42,9 +49,10 @@ async function offlineUpgrade(browser,url){
   assert.equal(await page.evaluate(()=>localStorage.getItem(STORAGE_KEY)),snapshot.stored);
   await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
   assert.equal(await page.evaluate(()=>JSON.stringify(game)),snapshot.game);assert.equal(await page.evaluate(()=>game.modifierSelectionVersion),undefined);
+  assert.equal(await page.evaluate(()=>options.modifierChance),20);
   await page.locator('[data-action="base"]').click();assert.deepEqual(await page.evaluate(()=>game.scores),[1,0]);
-  console.log('task007c offline worker update PASS',oldCache,'→',currentCache,'pre-C party preserved');
- }finally{fs.writeFileSync(file,source);await context.close();}
+  console.log('task007c offline worker update PASS',legacyCommit,oldCache,'→',currentCache,'pre-C party preserved');
+ }finally{write(current);await context.close();}
 }
 module.exports=async function frequencyUI(browser,url){
  fs.mkdirSync('artifacts/quip-mobile-layout',{recursive:true});
