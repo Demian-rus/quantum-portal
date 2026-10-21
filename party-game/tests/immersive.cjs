@@ -4,7 +4,7 @@ const fs=require('node:fs');
 const {chromium}=require('playwright-core');
 const URL='http://127.0.0.1:8765/party-game/';
 (async()=>{
-  fs.mkdirSync('artifacts/iskra-immersive',{recursive:true});
+  fs.mkdirSync('artifacts/quip-immersive',{recursive:true});
   const browser=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
   try{
     for(const device of [
@@ -28,7 +28,7 @@ const URL='http://127.0.0.1:8765/party-game/';
       assert.equal(home.gameDisabled,true);
       assert.ok(home.bg.includes('bg-home.webp'),JSON.stringify(home));
       assert.ok(home.scroll<=home.viewport+2,'Home scrolls: '+JSON.stringify(home));
-      await page.screenshot({path:'artifacts/iskra-immersive/'+device.name+'-home.png',fullPage:true});
+      await page.screenshot({path:'artifacts/quip-immersive/'+device.name+'-home.png',fullPage:true});
       await page.locator('#new-game-menu').click();
       await page.locator('[data-setting="difficulty"] [data-value="medium"]').click();
       assert.equal(await page.locator('#scene-setup').isVisible(),true);
@@ -48,14 +48,14 @@ const URL='http://127.0.0.1:8765/party-game/';
         assert.ok(scrolled,'Long setup form must scroll inside its own pane');
         await page.locator('#setup-scroll').evaluate(el=>el.scrollTop=0);
       }
-      await page.screenshot({path:'artifacts/iskra-immersive/'+device.name+'-setup.png',fullPage:true});
+      await page.screenshot({path:'artifacts/quip-immersive/'+device.name+'-setup.png',fullPage:true});
       await page.locator('#go-advanced').click();
       assert.equal(await page.locator('#scene-advanced').isVisible(),true);
       const before=await page.evaluate(()=>getComputedStyle(document.body,'::before').backgroundImage);
       await page.locator('#advanced-scroll').evaluate(el=>el.scrollTop=el.scrollHeight);
       const after=await page.evaluate(()=>getComputedStyle(document.body,'::before').backgroundImage);
       assert.equal(before,after,'Backdrop should stay fixed behind scrolling options');
-      await page.screenshot({path:'artifacts/iskra-immersive/'+device.name+'-advanced.png',fullPage:true});
+      await page.screenshot({path:'artifacts/quip-immersive/'+device.name+'-advanced.png',fullPage:true});
       await page.locator('#advanced-done').click();
       await page.locator('#start-game').click();
       assert.equal(await page.locator('#scene-game').isVisible(),true);
@@ -68,7 +68,7 @@ const URL='http://127.0.0.1:8765/party-game/';
       assert.ok(ready.bg.includes('bg-game.webp'),JSON.stringify(ready));
       assert.ok(ready.scroll<=ready.viewport+2,'Game scrolls document');
       assert.ok(ready.viewScroll<=ready.viewHeight+3,'Game itself overflows: '+JSON.stringify(ready));
-      await page.screenshot({path:'artifacts/iskra-immersive/'+device.name+'-ready.png',fullPage:true});
+      await page.screenshot({path:'artifacts/quip-immersive/'+device.name+'-ready.png',fullPage:true});
       await page.evaluate(()=>{soundOn=false;persist();});
       await page.locator('[data-action="roll"]').click();
       await page.waitForSelector('.reel-window',{state:'visible'});
@@ -101,7 +101,7 @@ const URL='http://127.0.0.1:8765/party-game/';
         requestAnimationFrame(sample);
         return {x:t.getBoundingClientRect().left,items:t.children.length};
       });
-      await page.screenshot({path:'artifacts/iskra-immersive/'+device.name+'-reel.png',fullPage:true});
+      await page.screenshot({path:'artifacts/quip-immersive/'+device.name+'-reel.png',fullPage:true});
       await page.waitForSelector('[data-action="toggle-word"]',{timeout:5000});
       const landing=await page.evaluate(()=>window.__iskraReelProbe.best);
       assert.equal(landing.winner,landing.target,'Carousel displayed the wrong selected mode');
@@ -110,7 +110,7 @@ const URL='http://127.0.0.1:8765/party-game/';
         'The reel must have visible tiles BOTH before and after the winner: '+JSON.stringify(landing));
       assert.ok(landing.x>first.x+500,'The carousel did not travel from left to right: '+JSON.stringify({first,landing}));
       assert.ok(landing.loaded,'Some of the new WebP icons failed to load');
-      await page.screenshot({path:'artifacts/iskra-immersive/'+device.name+'-task.png',fullPage:true});
+      await page.screenshot({path:'artifacts/quip-immersive/'+device.name+'-task.png',fullPage:true});
       await page.locator('#exit-game').click();
       assert.equal(await page.locator('#scene-home').isVisible(),true);
       assert.equal(await page.locator('#continue-game').isEnabled(),true);
@@ -121,7 +121,7 @@ const URL='http://127.0.0.1:8765/party-game/';
       await page.locator('[data-action="toggle-word"]').click();
       await page.waitForSelector('#active-timer',{timeout:4500});
       assert.equal(await page.locator('.ring-svg .ring-progress').count(),1);
-      await page.screenshot({path:'artifacts/iskra-immersive/'+device.name+'-circular-timer.png',fullPage:true});
+      await page.screenshot({path:'artifacts/quip-immersive/'+device.name+'-circular-timer.png',fullPage:true});
       const state=await page.evaluate(()=>({
         scroll:document.documentElement.scrollHeight,
         h:innerHeight,gameScroll:document.getElementById('scene-game').scrollHeight,

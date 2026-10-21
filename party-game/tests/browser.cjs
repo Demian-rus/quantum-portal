@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const {chromium} = require('playwright-core');
 (async()=>{
-  fs.mkdirSync('artifacts/iskra',{recursive:true});
+  fs.mkdirSync('artifacts/quip',{recursive:true});
   const browser=await chromium.launch({
     executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',
     headless:true,args:['--no-sandbox']
@@ -37,7 +37,7 @@ const {chromium} = require('playwright-core');
       }
       assert.ok(home.width<=home.bodyWidth+2,'home horizontal scrolling '+JSON.stringify(home));
       assert.ok(home.button>=52,'touch target too small');
-      await page.screenshot({path:'artifacts/iskra/'+profile.name+'-home.png',fullPage:true});
+      await page.screenshot({path:'artifacts/quip/'+profile.name+'-home.png',fullPage:true});
       await page.locator('#settings-menu').click();
       assert.equal(await page.locator('#scene-preferences').isVisible(),true);
       await page.locator('#sound-toggle').uncheck();
@@ -47,15 +47,20 @@ const {chromium} = require('playwright-core');
       await page.fill('#team-a','Крутые коты');
       await page.fill('#team-b','Синие кометы');
       await page.locator('[data-setting="difficulty"] [data-value="medium"]').click();
-      await page.locator('[data-setting="rounds"] [data-value="8"]').click();
-      await page.locator('[data-setting="duration"] [data-value="45"]').click();
+      await page.locator('#go-advanced').click();
+      await page.locator('#finish-rounds').check({force:true});
+      await page.locator('#custom-rounds').evaluate(el=>{el.value='8';el.dispatchEvent(new Event('input',{bubbles:true}))});
+      await page.locator('#base-duration').evaluate(el=>{el.value='45';el.dispatchEvent(new Event('input',{bubbles:true}))});
+      await page.locator('#advanced-done').click();
+      // Generic timer/judgement scenario must not randomly select all-or-nothing Blitz.
+      await page.evaluate(()=>{options.modes=['talk'];});
       assert.equal(await page.locator('#scene-preferences').isVisible(),false);
       await page.locator('#start-game').click();
       assert.equal(await page.locator('#scene-game').isVisible(),true);
       await page.waitForSelector('[data-action="roll"]');
       assert.equal(await page.locator('#label-team-a').textContent(),'Крутые коты');
       assert.equal(await page.locator('#round-total').textContent(),'8');
-      await page.screenshot({path:'artifacts/iskra/'+profile.name+'-ready.png',fullPage:true});
+      await page.screenshot({path:'artifacts/quip/'+profile.name+'-ready.png',fullPage:true});
       await page.locator('[data-action="roll"]').click();
       await page.waitForSelector('[data-action="toggle-word"]',{timeout:5500});
       assert.equal(await page.locator('.challenge-word').textContent(),'НАЖМИ, ЧТОБЫ ОТКРЫТЬ');
@@ -64,13 +69,13 @@ const {chromium} = require('playwright-core');
       assert.equal(await page.locator('[data-action="start-timer"]').count(),0,'Medium timer must start automatically');
       await page.waitForSelector('#active-timer',{timeout:4000});
       assert.equal(await page.locator('[data-action="pause"]').count(),0,'Medium timer cannot pause');
-      await page.screenshot({path:'artifacts/iskra/'+profile.name+'-timer.png',fullPage:true});
+      await page.screenshot({path:'artifacts/quip/'+profile.name+'-timer.png',fullPage:true});
       await page.evaluate(()=>{game.current.deadline=Date.now()-50;tick();});
       await page.waitForSelector('[data-action="yes"]',{timeout:4000});
       assert.equal(await page.locator('[data-action="no"]').count(),1);
-      await page.screenshot({path:'artifacts/iskra/'+profile.name+'-judge.png',fullPage:true});
+      await page.screenshot({path:'artifacts/quip/'+profile.name+'-judge.png',fullPage:true});
       await page.locator('[data-action="yes"]').click();
-      const scored=Number(await page.locator('#score-a').textContent());
+      const scored=Number(await page.locator('#score-b').textContent());
       assert.ok(scored>=0&&scored<=3,'wrong awarded points '+scored);
       assert.equal(await page.locator('#round-now').textContent(),'2');
       await page.reload({waitUntil:'load'});
@@ -78,7 +83,7 @@ const {chromium} = require('playwright-core');
       assert.equal(await page.locator('#continue-game').isEnabled(),true);
       await page.locator('#continue-game').click();
       await page.waitForSelector('[data-action="roll"]');
-      assert.equal(Number(await page.locator('#score-a').textContent()),scored,'lost saved score');
+      assert.equal(Number(await page.locator('#score-b').textContent()),scored,'lost saved score');
       assert.equal(await page.locator('.topbar').count(),0,'Top-right overlays must be removed');
       const dims=await page.evaluate(()=>({width:document.documentElement.scrollWidth,
         viewport:window.innerWidth,play:document.querySelector('.play-card').getBoundingClientRect().width}));

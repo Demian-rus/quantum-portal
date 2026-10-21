@@ -2,16 +2,11 @@ name: КВИП game checks
 on:
   push:
     branches:
-      - feat/iskra-party-game-20261020
-      - feat/iskra-v2-20261020
-      - feat/iskra-v3-rules-and-art-20261020
-      - feat/iskra-immersive-pwa-20261020
-      - feat/iskra-ux-controls-20261020
-      - feat/iskra-v4-2-screen-controls-20261020
       - main
+      - 'feat/quip-*'
     paths:
       - 'party-game/**'
-      - '.github/workflows/iskra-game.yml'
+      - '.github/workflows/quip-game.yml'
   pull_request:
     paths:
       - 'party-game/**'
@@ -34,18 +29,20 @@ jobs:
           node-version: '22'
       - run: npm install --no-save playwright-core@1.55.0
       - run: |
-          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/iskra-http.log 2>&1 &
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/quip-http.log 2>&1 &
       - run: node party-game/tests/browser.cjs
       - run: node party-game/tests/v2-browser.cjs
       - run: node party-game/tests/immersive.cjs
       - run: node party-game/tests/polish.cjs
+      - run: node party-game/tests/duel-browser.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: iskra-browser-screenshots
+          name: quip-browser-screenshots
           path: |
-            artifacts/iskra
-            artifacts/iskra-v2
-            artifacts/iskra-immersive
-            artifacts/iskra-polish
+            artifacts/quip
+            artifacts/quip-v2
+            artifacts/quip-immersive
+            artifacts/quip-polish
+            artifacts/quip-duel
           if-no-files-found: ignore

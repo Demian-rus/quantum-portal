@@ -4,16 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#100d22">
-  <meta name="description" content="КВИП — вечеринка из семи игровых режимов. Объясняй, показывай, рисуй, пой и побеждай своей командой.">
+  <meta name="description" content="КВИП — дуэльная игра на одном телефоне. Загадывай, отгадывай, рискуй и набирай очки в семи режимах.">
   <title>КВИП — игра для компании</title>
   <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
   <link rel="manifest" href="./manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=11">
+  <link rel="stylesheet" href="./style.css?v=12">
   <script src="./words.js?v=2" defer></script>
+  <script src="./extra-words.js?v=1" defer></script>
   <script src="./mode-images.js?v=5" defer></script>
-  <script src="./app.js?v=9" defer></script>
+  <script src="./app.js?v=10" defer></script>
 </head>
 <body>
 
@@ -26,7 +27,7 @@
         <button id="new-game-menu" class="home-action home-action--primary" type="button">НОВАЯ ИГРА</button>
         <button id="settings-menu" class="home-action home-action--settings" type="button">НАСТРОЙКИ</button>
       </div>
-      <p class="home-footnote">ИГРА ДЛЯ ДВУХ КОМАНД</p>
+      <p class="home-footnote">ИГРА НА ДВОИХ · ЗАГАДЫВАЙ И ОТГАДЫВАЙ</p>
     </section>
     <section class="scene scene--preferences immersive-screen" id="scene-preferences" hidden>
       <button class="scene-back" id="preferences-back" type="button" aria-label="Вернуться в меню">‹ <span>МЕНЮ</span></button>
@@ -47,16 +48,16 @@
               <div class="setup-panel" id="setup-panel">
         <div class="setup-top"><span class="section-kicker">НАСТРОЙКИ ПАРТИИ</span></div>
         <div class="setup-grid">
-          <label class="team-input-wrap team-input-wrap--a"><span><span class="team-spot team-spot--a"></span> КОМАНДА 1</span><input id="team-a" type="text" maxlength="24" value="Молнии" placeholder="Название команды" autocomplete="off" spellcheck="false"></label>
-          <label class="team-input-wrap team-input-wrap--b"><span><span class="team-spot team-spot--b"></span> КОМАНДА 2</span><input id="team-b" type="text" maxlength="24" value="Кометы" placeholder="Название команды" autocomplete="off" spellcheck="false"></label>
+          <label class="team-input-wrap team-input-wrap--a"><span><span class="team-spot team-spot--a"></span> ИГРОК 1</span><input id="team-a" type="text" maxlength="24" value="Молнии" placeholder="Имя игрока" autocomplete="off" spellcheck="false"></label>
+          <label class="team-input-wrap team-input-wrap--b"><span><span class="team-spot team-spot--b"></span> ИГРОК 2</span><input id="team-b" type="text" maxlength="24" value="Кометы" placeholder="Имя игрока" autocomplete="off" spellcheck="false"></label>
         </div>
-        <div class="settings-grid">
+        <div class="settings-grid settings-grid--compact">
           <fieldset class="option-set"><legend>СЛОЖНОСТЬ</legend><div class="choices" data-setting="difficulty"><button type="button" data-value="easy" class="is-chosen">Легко</button><button type="button" data-value="medium">Средний</button><button type="button" data-value="hard">Сложный</button><button type="button" data-value="mixed">Микс</button></div></fieldset>
-          <fieldset class="option-set"><legend>ВРЕМЯ РАУНДА</legend><div class="choices" data-setting="duration"><button type="button" data-value="45">45 с</button><button type="button" data-value="60" class="is-chosen">60 с</button><button type="button" data-value="90">90 с</button></div></fieldset>
-          <fieldset class="option-set"><legend>КОЛИЧЕСТВО ХОДОВ</legend><div class="choices" data-setting="rounds"><button type="button" data-value="8">8</button><button type="button" data-value="12" class="is-chosen">12</button><button type="button" data-value="20">20</button></div></fieldset>
+          <fieldset class="option-set"><legend id="setup-finish-label">ЦЕЛЬ ПАРТИИ</legend><div class="setup-metric" id="score-goal-preview">До 25 очков</div><input class="setup-range" id="quick-target-score" type="range" min="15" max="100" step="5" value="25" aria-label="Цель по очкам"><small id="score-goal-caption">У каждого игрока будет ответный ход</small></fieldset>
+          <fieldset class="option-set"><legend>ТЕМП ИГРЫ</legend><div class="setup-metric"><span id="base-duration-value">30 с</span> на «Слова»</div><input class="setup-range" id="quick-duration" type="range" min="30" max="90" step="5" value="30" aria-label="Базовое время на Слова"><small>Рисование и Данетки получают больше времени</small></fieldset>
         </div>
         <button id="go-advanced" class="button setup-advanced-link" type="button">ТОНКАЯ НАСТРОЙКА <span aria-hidden="true">Настроить режимы и правила</span></button>
-        <div class="setup-bottom"><p>Один телефон — две команды. Передавайте устройство между командами. Настройте режимы и задания под себя.</p><button id="start-game" class="button button-primary button-big" type="button">НАЧАТЬ ИГРУ</button></div>
+        <div class="setup-bottom"><p>Один телефон — два соперника. В свой ход вы загадываете, соперник отгадывает и зарабатывает очки.</p><button id="start-game" class="button button-primary button-big" type="button">НАЧАТЬ ИГРУ</button></div>
       </div>
 
       </div>
@@ -68,11 +69,13 @@
                 <div class="advanced-panel advanced-panel--full" id="advanced-options">
           
           <div class="advanced-body">
-            <div class="advanced-numbers">
-              <label class="number-option">Секунд на раунд <input id="custom-duration" type="number" min="15" max="300" step="5" value="60" inputmode="numeric"><span>15–300 с</span></label>
-              <label class="number-option">Всего ходов <input id="custom-rounds" type="number" min="2" max="100" step="1" value="12" inputmode="numeric"><span>2–100 ходов</span></label>
-              <label class="number-option">Слов в блице <input id="custom-blitz" type="number" min="3" max="8" step="1" value="4" inputmode="numeric"><span>3–8 слов</span></label>
-            </div>
+            <fieldset class="advanced-section"><legend>КОГДА ЗАКАНЧИВАЕТСЯ ПАРТИЯ</legend>
+              <div class="finish-choices"><label><input type="radio" name="finish-type" id="finish-score" value="score" checked><span>До цели по очкам</span></label><label><input type="radio" name="finish-type" id="finish-rounds" value="rounds"><span>По числу ходов</span></label></div>
+              <div id="finish-score-settings" class="slider-option"><div class="slider-title"><label for="target-score">Цель по очкам</label><output id="target-score-value">25 очков</output></div><input id="target-score" type="range" min="15" max="100" step="5" value="25"><div class="slider-extremes"><span>15</span><span>100</span></div><small>После достижения цели у соперника будет ответный ход. При ничьей игра продолжается.</small></div>
+              <div id="finish-rounds-settings" class="slider-option" hidden><div class="slider-title"><label for="custom-rounds">Общее число ходов</label><output id="rounds-value">12</output></div><input id="custom-rounds" type="range" min="2" max="100" step="2" value="12"><div class="slider-extremes"><span>2</span><span>100</span></div><small>У каждого игрока поровну ходов.</small></div>
+            </fieldset>
+            <div class="slider-option"><div class="slider-title"><label for="base-duration">Время на «Слова»</label><output id="base-duration-value-advanced">30 с</output></div><input id="base-duration" type="range" min="30" max="90" step="5" value="30"><div class="slider-extremes"><span>30 с</span><span>90 с</span></div><small>Жесты и Напой: +15 с, рисунок и Данетки: +30 с (не более 90 с). Блиц всегда 30 с.</small></div>
+            <label class="modifier-toggle"><input id="toggle-risk" type="checkbox" checked><span><strong>Риск-раунды ⚡</strong><small>Примерно каждый пятый ход после первых двух: успех — обычные очки, провал — потеря до 2 очков. Счёт не может стать отрицательным.</small></span></label>
             <fieldset class="advanced-section">
               <legend>АКТИВНЫЕ РЕЖИМЫ</legend>
               <div class="toggle-grid" id="mode-toggles">
@@ -82,7 +85,7 @@
                 <label><input type="checkbox" value="sing" checked><span>Напой <b>+2</b></span></label>
                 <label><input type="checkbox" value="yesno" checked><span>Данетки <b>+2</b></span></label>
                 <label><input type="checkbox" value="secret" checked><span>Секретка <b>+3</b></span></label>
-                <label><input type="checkbox" value="blitz" checked><span>Блиц <b>+1/слово</b></span></label>
+                <label><input type="checkbox" value="blitz" checked><span>Блиц <b>+3 за 5/5</b></span></label>
               </div>
             </fieldset>
             <fieldset class="advanced-section">
@@ -103,9 +106,9 @@
     </section>
     <section class="scene scene--game" id="scene-game" hidden>
       <div class="match-bar">
-        <div class="match-team" id="match-team-a"><span class="match-team-label"><i class="team-spot team-spot--a"></i><span id="label-team-a">Молнии</span></span><b id="score-a">0</b></div>
-        <div class="match-center"><span class="match-center-label">ХОД <strong id="round-now">1</strong> / <span id="round-total">12</span></span><div class="match-progress"><span id="match-progress"></span></div></div>
-        <div class="match-team match-team--b" id="match-team-b"><b id="score-b">0</b><span class="match-team-label"><span id="label-team-b">Кометы</span><i class="team-spot team-spot--b"></i></span></div>
+        <div class="match-team" id="match-team-a"><span class="match-team-meta"><span class="match-team-label"><i class="team-spot team-spot--a"></i><span id="label-team-a">Молнии</span></span><small id="role-a">ЗАГАДЫВАЕТ</small></span><b id="score-a">0</b></div>
+        <div class="match-center"><span class="match-center-label" id="match-center-label">ЦЕЛЬ 25</span><span class="match-turn-counter">ХОД <strong id="round-now">1</strong><span id="round-slash"> / </span><span id="round-total">12</span></span><div class="match-progress"><span id="match-progress"></span></div></div>
+        <div class="match-team match-team--b" id="match-team-b"><b id="score-b">0</b><span class="match-team-meta"><span class="match-team-label"><span id="label-team-b">Кометы</span><i class="team-spot team-spot--b"></i></span><small id="role-b">ОТГАДЫВАЕТ</small></span></div>
       </div>
       <div class="play-card">
         <div class="play-card-head"><span class="section-kicker" id="play-step">ПЕРЕДАЙТЕ ТЕЛЕФОН</span><button id="exit-game" type="button" class="text-link">В МЕНЮ</button></div>
@@ -124,11 +127,11 @@
     <button type="button" class="dialog-close" id="close-rules" aria-label="Закрыть">×</button>
     <span class="section-kicker">ПРАВИЛА ИГРЫ</span><h2 id="rules-title">Просто. Шумно. Весело.</h2>
     <ol class="rules-list">
-      <li>Разделитесь на две команды и выберите сложность, таймер и количество ходов.</li>
+      <li>Играют двое. В свой ход вы загадываете, а соперник отгадывает и зарабатывает очки. Затем роли меняются.</li>
       <li>Карусель случайно выбирает один из включённых игровых режимов.</li>
-      <li>В лёгкой сложности можно заменить слово и вручную запустить или поставить таймер на паузу. В средней и сложной сложности отсчёт автоматически начинается через секунду после открытия задания; паузы и замены слова нет. В «Данетках» отвечайте только «да», «нет» или «не знаю».</li>
-      <li>Пока идёт время, зелёная галочка сразу засчитывает ответ, красный крестик завершает ход без очков. После истечения времени можно подтвердить, успели ли угадать. «Слова» приносят 1 очко, «Жесты», «Нарисуй», «Напой» и «Данетки» — по 2, «Секретка» — 3. В «Блице» за 30 секунд можно угадать 3–8 слов: каждое верное слово приносит 1 очко.</li>
-      <li>Передавайте устройство по очереди. Победитель определяется общим счётом.</li>
+      <li>В лёгкой сложности можно заменить слово и вручную запустить или поставить таймер на паузу. Время на «Слова» задаётся ползунком 30–90 секунд; другим режимам добавляется время, максимум 90 секунд. В средней и сложной сложности отсчёт автоматически начинается через секунду после открытия задания; паузы и замены слова нет. В «Данетках» отвечайте только «да», «нет» или «не знаю».</li>
+      <li>Пока идёт время, зелёная галочка сразу засчитывает ответ, красный крестик завершает ход без очков (в риск-раунде снимается до 2 очков). После истечения времени можно подтвердить, успели ли угадать. «Слова» приносят 1 очко, «Жесты», «Нарисуй», «Напой» и «Данетки» — по 2, «Секретка» — 3. В «Блице» за 30 секунд нужно отгадать все пять слов — это 3 очка, за неполный результат баллов нет.</li>
+      <li>По очереди загадывайте друг другу. Очки получает отгадывающий. Игра заканчивается при достижении цели после ответного хода соперника или по чётному числу ходов. Риск-раунды могут отнять до 2 очков за провал.</li>
     </ol>
     <p class="rule-note">Звук включается только после нажатия кнопки. Игра сохраняется в этом браузере, а интернет после загрузки не нужен.</p>
     <button id="rules-understood" class="button button-primary" type="button">ВСЁ ПОНЯТНО</button>
