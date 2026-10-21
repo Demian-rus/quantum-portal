@@ -632,6 +632,7 @@ function showJudge() {
   $('play-content').className='play-inner is-judge';
   $('play-step').textContent='ИТОГ РАУНДА';
   const c=game.current,blitz=c.modeId==='blitz';
+  const incompleteBlitz=blitz&&game.scoringVersion===2&&c.blitzCorrect<5;
   $('play-content').innerHTML=
     '<span class="game-eyebrow">'+(c.finishedReason==='timeout'?'ВРЕМЯ ВЫШЛО':'РАУНД ЗАКОНЧЕН')+'</span>'+
     symbol(blitz?'blitz':c.methodId)+
@@ -640,6 +641,7 @@ function showJudge() {
     '<p class="score-note">'+(blitz?'Награда: <b>'+(game.scoringVersion===2?(c.blitzCorrect===5?'+3':'0'):('+'+c.blitzCorrect))+' очков</b>':
     'Было загадано: <b>'+escapeHTML(c.word)+'</b> · За ответ: +'+c.points)+'</p>'+ 
     (c.risk?'<p class="risk-notice">⚡ Провал: потеря до 2 очков у отгадывающего</p>':'')+
+    (incompleteBlitz?'<div class="inline-actions">'+makeButton('ЗАВЕРШИТЬ РАУНД','no','button-primary button-big')+'</div>':
     '<div class="judgement-grid">'+
       '<div class="judgement-option">'+
         '<button class="judgement judgement--no" data-action="no" type="button" aria-label="Не засчитывать"><svg viewBox="0 0 64 64"><path d="m17 17 30 30M47 17 17 47"/></svg></button>'+
@@ -649,7 +651,7 @@ function showJudge() {
         '<button class="judgement judgement--yes" data-action="yes" type="button" aria-label="Засчитать ответ"><svg viewBox="0 0 64 64"><path d="m13 33 13 13 25-28"/></svg></button>'+
         '<span>'+(blitz?'ЗАСЧИТАТЬ':'УГАДАЛИ')+'</span>'+
       '</div>'+
-    '</div>';
+    '</div>');
 }
 function recordAnswer(yes) {
   if(!game||!['judge','play'].includes(game.phase))return;
