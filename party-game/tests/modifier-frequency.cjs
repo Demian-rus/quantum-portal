@@ -75,7 +75,7 @@ module.exports=async function frequencyUI(browser,url){
    await align(page);
    const g=await page.evaluate(()=>{
     const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return {top:r.top,bottom:r.bottom,left:r.left,right:r.right}};
-    return {box:rect('.modifier-toggle'),frequency:rect('#modifier-chance-settings'),range:rect('#modifier-chance'),w:innerWidth,sw:document.documentElement.scrollWidth,sh:document.documentElement.scrollHeight,h:innerHeight};
+    return {box:rect('.modifier-settings .modifier-toggle'),frequency:rect('#modifier-chance-settings'),range:rect('#modifier-chance'),w:innerWidth,sw:document.documentElement.scrollWidth,sh:document.documentElement.scrollHeight,h:innerHeight};
    });
    assert.ok(g.frequency.top>=g.box.bottom+5&&g.range.left>=0&&g.range.right<=g.w&&g.sw<=g.w+1&&g.sh<=g.h+1,JSON.stringify(g));
    await frequency(page,100);await page.locator('#advanced-done').click();
