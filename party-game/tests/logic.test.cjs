@@ -560,6 +560,7 @@ test('upgrading a saved pre-V5 Blitz preserves the old per-word scoring',()=>{
  initial.eval("soundOn=false;newGame();game.scoringVersion=undefined;game.finishType='rounds';game.rounds=12;game.riskRounds=false;game.current={modeId:'blitz',methodId:'blitz',word:'КОТ',blitzWords:['КОТ','ДОМ','ЛЕС','МЯЧ'],blitzCorrect:2,points:1,finishedReason:'timeout',risk:false};game.phase='judge';persist()");
  const resumed=harness(stored);
  assert.equal(resumed.eval('game.scoringVersion'),undefined);
+ resumed.eval('continueGame()');
  assert.match(resumed.elements.get('play-content').innerHTML,/За каждое отгаданное слово/);
  resumed.eval('judge(true)');
  assert.deepEqual(Array.from(resumed.eval('game.scores')),[2,0]);
