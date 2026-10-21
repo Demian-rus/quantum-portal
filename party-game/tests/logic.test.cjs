@@ -669,7 +669,7 @@ test('card catalog v1 has all 3016 active tasks and immutable unique IDs',()=>{
  assert.deepEqual(Object.fromEntries(['word','phrase','idiom','song','person'].map(t=>[t,cards.filter(c=>c.type===t).length])),
    {word:1846,phrase:496,idiom:142,song:215,person:317});
  for(const c of cards){
-  assert.match(c.id,/^(word|phrase|idiom|song|person)-\\d{6}$/);
+  assert.match(c.id,/^(word|phrase|idiom|song|person)-[0-9]{6}$/);
   assert.ok(c.text.trim().length>1);
   assert.ok(['easy','medium','hard'].includes(c.difficulty));
   assert.ok(['word','phrase','idiom','song','person'].includes(c.type));
