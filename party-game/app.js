@@ -78,7 +78,7 @@ function selectComplication(id,level) {
 }
 const DEFAULT_MODES = Object.freeze(MODE_LIST.map(mode=>mode.id));
 const PROMPT_TYPES = Object.freeze(['word','phrase','idiom']);
-const SCORE = Object.freeze({talk:1,mime:2,draw:2,sing:2,yesno:2,secret:3,blitz:1});
+const SCORE = Object.freeze({talk:1,mime:2,draw:2,sing:2,yesno:2,secret:3,blitz:3});
 function modeArt(id) {
   const safe=DEFAULT_MODES.includes(id)?id:'secret';
   return '<img class="mode-art" src="'+MODE_ASSETS[safe]+'" alt="" decoding="async" draggable="false">';
@@ -89,9 +89,10 @@ function symbol(id,extra='') {
 const $ = id => document.getElementById(id);
 function timerMarkup(ms) { return formatTimer(ms); }
 const freshOptions = () => ({
-  difficulty:'easy',duration:60,rounds:12, dice:true, complications:true,
-  modes:DEFAULT_MODES.slice(), promptTypes:PROMPT_TYPES.slice(),blitzCount:4,
-  scoring:'standard'
+  difficulty:'easy',duration:30,rounds:12,finishType:'score',targetScore:25,riskRounds:true,
+  dice:true,complications:true,
+  modes:DEFAULT_MODES.slice(), promptTypes:PROMPT_TYPES.slice(),blitzCount:5,
+  scoring:'duel'
 });
 let options = freshOptions();
 let soundOn = true;
@@ -134,6 +135,19 @@ function sanitizeTeam(name,fallback) {
 function randomOne(list) { return list[Math.floor(Math.random()*list.length)]; }
 function currentTeamIndex() { return game.roundIndex%2; }
 function currentTeam() { return game.teams[currentTeamIndex()]; }
+function guessingTeamIndex() { return game.scoringVersion===2?(currentTeamIndex()+1)%2:currentTeamIndex(); }
+function guessingTeam() { return game.teams[guessingTeamIndex()]; }
+function durationForMode(id,methodId,base) {
+  if(id==='blitz')return 30;
+  const mode=id==='secret'?methodId:id;
+  const bonus={talk:0,mime:15,draw:30,sing:15,yesno:30}[mode]||0;
+  return Math.min(90,Math.max(30,base+bonus));
+}
+function matchComplete() {
+  if(game.finishType!=='score')return game.roundIndex>=game.rounds;
+  // The second player always has a reply turn; ties continue in pairs.
+  return game.roundIndex%2===0 && Math.max(...game.scores)>=game.targetScore && game.scores[0]!==game.scores[1];
+}
 function currentMode() { return MODE_LIST.find(mode=>mode.id===game.current?.modeId); }
 function getMode(id) { return MODE_LIST.find(m=>m.id===id); }
 function formatTimer(ms) {
@@ -241,7 +255,17 @@ function renderOptions() {
       button.setAttribute('aria-pressed',String(selected));
     });
   }
-  const numbers={'custom-duration':options.duration,'custom-rounds':options.rounds,'custom-blitz':options.blitzCount};
+  const numbers={'base-duration':options.duration,'target-score':options.targetScore,'custom-rounds':options.rounds};
+  $('base-duration-value').textContent=options.duration+' с';
+  $('target-score-value').textContent=options.targetScore+' очков';
+  $('finish-score').checked=options.finishType==='score';
+  $('finish-rounds').checked=options.finishType==='rounds';
+  $('toggle-risk').checked=options.riskRounds;
+  $('score-goal-preview').textContent=options.finishType==='score'?'До '+options.targetScore+' очков':'После '+options.rounds+' ходов';
+  $('score-goal-caption').textContent=options.finishType==='score'?'У каждого игрока будет ответный ход':'Одинаковое число ходов у обоих игроков';
+  $('setup-finish-label').textContent=options.finishType==='score'?'ЦЕЛЬ ПАРТИИ':'КОЛИЧЕСТВО ХОДОВ';
+  $('finish-score-settings').hidden=options.finishType!=='score';
+  $('finish-rounds-settings').hidden=options.finishType!=='rounds';
   for(const [id,value] of Object.entries(numbers)) {
     const input=$(id);
     if(input && document.activeElement!==input)input.value=String(value);
@@ -255,11 +279,14 @@ function renderMatch() {
   $('label-team-b').textContent=game.teams[1];
   $('score-a').textContent=game.scores[0];
   $('score-b').textContent=game.scores[1];
-  $('round-now').textContent=Math.min(game.roundIndex+1,game.rounds);
-  $('round-total').textContent=game.rounds;
-  $('match-progress').style.width=(game.roundIndex/game.rounds*100)+'%';
-  $('match-team-a').classList.toggle('is-turn',currentTeamIndex()===0);
-  $('match-team-b').classList.toggle('is-turn',currentTeamIndex()===1);
+  $('round-now').textContent=game.roundIndex+1;
+  $('round-total').textContent=game.finishType==='score'?'∞':game.rounds;
+  $('match-progress').style.width=game.finishType==='score'?(Math.min(100,Math.max(...game.scores)/game.targetScore*100))+'%':(game.roundIndex/game.rounds*100)+'%';
+  $('match-team-a').classList.toggle('is-turn',guessingTeamIndex()===0);
+  $('match-team-b').classList.toggle('is-turn',guessingTeamIndex()===1);
+  $('role-a').textContent=guessingTeamIndex()===0?'ОТГАДЫВАЕТ':'ЗАГАДЫВАЕТ';
+  $('role-b').textContent=guessingTeamIndex()===1?'ОТГАДЫВАЕТ':'ЗАГАДЫВАЕТ';
+  $('match-center-label').textContent=game.finishType==='score'?'ДО '+game.targetScore+' ОЧКОВ':'ХОД '+(game.roundIndex+1)+' / '+game.rounds;
 }
 function pickMode() {
   const allowed=MODE_LIST.filter(m=>game.modes.includes(m.id));
@@ -309,10 +336,11 @@ function rollOutcome() {
   const word=pullWord(actualMode.kind,level);
   return {
     modeId:mode.id,methodId:actualMode.id,word,complication,difficulty:level,
-    points:SCORE[mode.id]||1,seconds:mode.seconds||game.duration,
-    blitzWords:mode.id==='blitz'?[word,...Array.from({length:game.blitzCount-1},()=>pullWord('words',level))]:null,
+    points:SCORE[mode.id]||1,seconds:durationForMode(mode.id,actualMode.id,game.duration),
+    risk:game.riskRounds&&game.roundIndex>=2&&Math.random()<.2,
+    blitzWords:mode.id==='blitz'?[word,...Array.from({length:4},()=>pullWord('words',level))]:null,
     blitzIndex:0,blitzCorrect:0,
-    blitzQueue:mode.id==='blitz'?Array.from({length:game.blitzCount},(_,i)=>i):null,
+    blitzQueue:mode.id==='blitz'?Array.from({length:5},(_,i)=>i):null,
     visible:false,paused:false,remainingMs:null,deadline:null,autoStartAt:null,
     finishedReason:null,replaced:false
   };
@@ -691,9 +719,11 @@ function newGame() {
   const teamB=sanitizeTeam($('team-b').value,'Кометы');
   game={
     teams:[teamA,teamB],scores:[0,0],roundIndex:0,
-    rounds:options.rounds,duration:options.duration,difficulty:options.difficulty,
+    rounds:options.rounds,targetScore:options.targetScore,finishType:options.finishType,
+    riskRounds:options.riskRounds,scoringVersion:2,
+    duration:options.duration,difficulty:options.difficulty,
     modes:options.modes.slice(),promptTypes:options.promptTypes.slice(),
-    dice:options.dice,complications:options.complications,blitzCount:options.blitzCount,
+    dice:options.dice,complications:options.complications,blitzCount:5,
     current:null,modeHistory:[],used:{},history:[],phase:'ready'
   };
   persist();sfx('go');render();
@@ -820,6 +850,9 @@ function restoreSession() {
   game.modes=game.modes||DEFAULT_MODES.slice();
   game.promptTypes=game.promptTypes||PROMPT_TYPES.slice();
   game.blitzCount=game.blitzCount||4;
+  game.finishType=game.finishType||'rounds';
+  game.targetScore=game.targetScore||25;
+  game.riskRounds=game.riskRounds===true;
   if(game.current?.modeId==='blitz'&&!Array.isArray(game.current.blitzWords)){
     game.current.blitzWords=[game.current.word];
     game.current.blitzIndex=0;game.current.blitzCorrect=0;
