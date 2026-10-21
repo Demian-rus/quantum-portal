@@ -50,7 +50,7 @@ test('vocabulary is varied, unique within packs and contains at least 400 prompt
 });
 test('seven modes, scoring, alternation and results survive repeated button actions',()=>{
   const h=harness();
-  h.eval('soundOn=false; options.finishType='rounds'; options.riskRounds=false;options.rounds=8; options.duration=45; newGame();');
+  h.eval("soundOn=false; options.finishType='rounds'; options.riskRounds=false;options.rounds=8; options.duration=45; newGame();");
   assert.equal(h.eval('game.phase'),'ready');
   assert.equal(h.eval('game.roundIndex'),0);
   let earned=[0,0],visited=new Set();
