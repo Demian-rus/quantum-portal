@@ -17,6 +17,10 @@ async function scrollFold(page,id){
   p.scrollTop+=el.getBoundingClientRect().top-p.getBoundingClientRect().top-8;},id);
 }
 async function checkGrid(page){
+ await page.locator('#mode-toggles img').evaluateAll(async images=>{
+  await Promise.all(images.map(image=>image.decode()));
+  await new Promise(requestAnimationFrame);await new Promise(requestAnimationFrame);
+ });
  const grid=await page.locator('#mode-toggles').evaluate(el=>({columns:getComputedStyle(el).gridTemplateColumns,
   tiles:[...el.querySelectorAll('label')].map(label=>{const r=label.getBoundingClientRect(),tile=label.querySelector('.mode-tile');
    return {x:r.x,y:r.y,w:r.width,h:r.height,sw:tile.scrollWidth,cw:tile.clientWidth,
