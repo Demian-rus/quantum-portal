@@ -1,7 +1,9 @@
 const CACHE='kvip-pwa-v32-20261021-modifiers';
 const CORE=['./','./index.html','./style.css?v=23','./cards.js?v=1','./approx-questions.js?v=1','./mode-config.js?v=2','./rules.js?v=4','./penalties.js?v=3','./modifiers.js?v=2','./round-planner.js?v=1','./content-packs.js?v=4','./presets.js?v=3','./app.js?v=25','./words.js?v=2','./extra-words.js?v=1','./curated-words.js?v=1','./curated-songs.js?v=1','./curated-people.js?v=1','./mode-images.js?v=6','./manifest.webmanifest','./assets/bg-home.webp?v=4','./assets/bg-setup.webp?v=3','./assets/bg-game.webp?v=3','./assets/icon-192.png','./assets/icon-512.png',...['talk','mime','draw','sing','yesno','secret','blitz','approx'].map(id=>'./assets/modes/'+id+'.webp?v=3')];
 self.addEventListener('install',event=>{
-  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));
+  // A new worker must cache the deployed bundle, even while older HTTP responses
+  // are still fresh. Otherwise an offline reload can reopen the previous UI.
+  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE.map(url=>new Request(url,{cache:'reload'})))).then(()=>self.skipWaiting()));
 });
 self.addEventListener('activate',event=>{
   event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>(key.startsWith('iskra-pwa-')||key.startsWith('kvip-pwa-'))&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));
