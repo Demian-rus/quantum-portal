@@ -19,7 +19,7 @@ function timerMarkup(ms) { return formatTimer(ms); }
 function pointNoun(n) { return n%10===1&&n%100!==11?'ОЧКО':([2,3,4].includes(n%10)&&!(n%100>=12&&n%100<=14)?'ОЧКА':'ОЧКОВ'); }
 const freshOptions = () => {
   const settings=optionsForPartyPreset('classic-duel',3);
-  return {...settings,awardTo:'setter',modifierChance:QUIP_MODIFIER_SELECTION_POLICIES[QUIP_MODIFIER_SELECTION_VERSION].defaultChance,modes:settings.modes.filter(id=>id!=='yesno')};
+  return {...settings,packPreferences:{},awardTo:'setter',modifierChance:QUIP_MODIFIER_SELECTION_POLICIES[QUIP_MODIFIER_SELECTION_VERSION].defaultChance,modes:settings.modes.filter(id=>id!=='yesno')};
 };
 let options = freshOptions();
 let soundOn = true;
@@ -282,9 +282,16 @@ function openPreferences() {
   setScene('preferences');
 }
 function openGameType(){setScene('game-type');}
-function selectStandardGame(){
- options.contentPack={id:'general',version:2};persist();openSetup('game-type');
+function rememberPackSettings(){
+ const selection=options.contentPack,key=selection.id+'@'+selection.version;
+ options.packPreferences={...(options.packPreferences||{}),[key]:{modes:options.modes.slice(),promptTypes:options.promptTypes.slice()}};
 }
+function changeSetupPack(selection,from){
+ const next=packSetupSettings(selection,options);
+ rememberPackSettings();options={...options,...next,packPreferences:options.packPreferences};
+ persist();openSetup(from);
+}
+function selectStandardGame(){changeSetupPack({id:'general',version:2},'game-type');}
 function renderThemes(){
  const entries=listThematicPacks(options);
  $('theme-list').innerHTML=entries.map(({pack,available})=>
@@ -299,9 +306,9 @@ function selectTheme(id,version){
  const selection={id,version};
  try{
   const pack=getContentPack(selection);
-  if(pack.id==='general'||!checkContentPack(selection,options).available){toast('Эта тема пока недоступна.');return false;}
+  if(pack.id==='general'||!checkContentPack(selection,packSetupSettings(selection,options)).available){toast('Эта тема пока недоступна.');return false;}
  }catch{toast('Эта тема пока недоступна.');return false;}
- options.contentPack=selection;persist();openSetup('themes');return true;
+ changeSetupPack(selection,'themes');return true;
 }
 function openSetup(from='game-type') {
   setupReturn=from;
@@ -331,7 +338,8 @@ function continueGame() {
   render();
 }
 function renderOptions() {
-  try{$('setup-pack-caption').textContent=getContentPack(options.contentPack).name;}
+  let setupPack=null;
+  try{setupPack=getContentPack(options.contentPack);$('setup-pack-caption').textContent=setupPack.name;}
   catch{$('setup-pack-caption').textContent='Набор недоступен';}
   for(const setting of ['difficulty','duration','rounds','targetScore','awardTo']) {
     document.querySelectorAll('.choices[data-setting="'+setting+'"] button').forEach(button=>{
@@ -364,11 +372,18 @@ function renderOptions() {
     input.checked=options.modes.includes(input.value);
     const tile=input.closest('label'),art=tile.querySelector('img');
     if(art.getAttribute('src')!==MODE_ASSETS[input.value])art.src=MODE_ASSETS[input.value];
+    const status=setupPack?packModeAvailability(options.contentPack,options,input.value):{available:false,reason:'Набор недоступен'};
+    input.disabled=!status.available;tile.title=status.reason;
+    tile.querySelector('.mode-availability').textContent=status.reason;
     const config=getModeConfig(input.value),label=tile.querySelector('b');
     label.textContent='+'+(config.basePoints+(config.id==='secret'?config.modifierBonus:0))+
       (config.blitzWordsCount?' · '+config.blitzWordsCount+'/'+config.blitzWordsCount:'');
   });
-  document.querySelectorAll('#content-toggles input').forEach(input=>{input.checked=options.promptTypes.includes(input.value);});
+  document.querySelectorAll('#content-toggles input').forEach(input=>{
+    input.checked=options.promptTypes.includes(input.value);
+    const unavailable=!setupPack||!!setupPack.allowedModes&&!setupPack.types.includes(input.value);
+    input.disabled=unavailable;input.closest('label').querySelector('.content-availability').textContent=unavailable?'В этой теме нет таких заданий':'';
+  });
   $('toggle-complications').checked=options.complications;
   $('modifier-chance-settings').hidden=!options.complications;
   $('modifier-chance-value').textContent=options.modifierChance+'%';
@@ -455,9 +470,7 @@ function rollOutcome() {
   let actualMode=mode;
   const level=chooseDifficulty();
   if(mode.id==='secret'){
-    const submodes=MODE_LIST.filter(m=>m.secretMethod);
-    const enabled=submodes.filter(m=>game.modes.includes(m.id));
-    actualMode=randomOne(enabled.length?enabled:submodes);
+    actualMode=getMode(randomOne(secretMethodsForPack(game.contentPack,game)));
   }
   const selection=config.usesModifiers?choosePartyModifier(game,{modeId:mode.id,methodId:actualMode.id,
     difficulty:level,complications:game.complications}):null;
@@ -1047,6 +1060,7 @@ function sanitizeOptions(raw) {
   return {difficulty,duration,rounds,targetScore,finishType,riskRounds,blitzCount,modes,promptTypes,
     awardTo:['setter','guesser'].includes(raw.awardTo)?raw.awardTo:base.awardTo,
     modifierChance:sanitizeModifierChance(raw.modifierChance),
+    packPreferences:Object.fromEntries(Object.entries(raw.packPreferences||{}).filter(([key,value])=>/^[a-z][a-z0-9-]*@[1-9][0-9]*$/.test(key)&&value&&Array.isArray(value.modes)&&Array.isArray(value.promptTypes)).map(([key,value])=>[key,{modes:DEFAULT_MODES.filter(id=>value.modes.includes(id)),promptTypes:PROMPT_TYPES.filter(id=>value.promptTypes.includes(id))}])) ,
     dice:true,complications:raw.complications!==false,scoring:'duel',
     contentPack:raw.contentPack?{id:raw.contentPack.id,version:raw.contentPack.version}:base.contentPack,
     preset:raw.preset?{id:raw.preset.id,version:raw.preset.version}:base.preset};
