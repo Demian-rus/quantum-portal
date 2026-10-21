@@ -202,9 +202,9 @@ function renderOptions() {
   $('finish-score').checked=options.finishType==='score';
   $('finish-rounds').checked=options.finishType==='rounds';
   $('toggle-risk').checked=options.riskRounds;
-  $('score-goal-preview').textContent=options.finishType==='score'?'До '+options.targetScore+' очков':'После '+options.rounds+' ходов';
+  $('score-goal-preview').textContent=options.finishType==='score'?options.targetScore+' очков':'После '+options.rounds+' ходов';
   $('score-goal-caption').textContent=options.finishType==='score'?'У каждого игрока будет ответный ход':'Одинаковое число ходов у обоих игроков';
-  $('setup-finish-label').textContent=options.finishType==='score'?'ЦЕЛЬ ПАРТИИ':'КОЛИЧЕСТВО ХОДОВ';
+  $('setup-finish-label').textContent=options.finishType==='score'?'МАКСИМУМ ОЧКОВ':'КОЛИЧЕСТВО ХОДОВ';
   $('quick-target-score').hidden=options.finishType!=='score';
   $('finish-score-settings').hidden=options.finishType!=='score';
   $('finish-rounds-settings').hidden=options.finishType!=='rounds';

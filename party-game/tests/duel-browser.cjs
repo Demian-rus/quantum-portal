@@ -17,7 +17,7 @@ const URL='http://127.0.0.1:8765/party-game/';
    await page.locator('#team-b').fill('Кометы');
    await page.locator('#quick-target-score').evaluate(el=>{el.value='35';el.dispatchEvent(new Event('input',{bubbles:true}))});
    await page.locator('#quick-duration').evaluate(el=>{el.value='45';el.dispatchEvent(new Event('input',{bubbles:true}))});
-   assert.equal(await page.locator('#score-goal-preview').textContent(),'До 35 очков');
+   assert.equal(await page.locator('#score-goal-preview').textContent(),'35 очков');
    assert.equal(await page.locator('#base-duration-value').textContent(),'45 с');
    await page.locator('#go-advanced').click();
    assert.equal(await page.locator('#target-score').inputValue(),'35');
