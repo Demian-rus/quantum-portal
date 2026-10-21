@@ -796,7 +796,7 @@ function showJudge() {
   $('play-content').innerHTML='<div class="judge-copy" tabindex="0" role="region" aria-label="Итог раунда">'+
     '<span class="game-eyebrow">'+(c.finishedReason==='timeout'?'ВРЕМЯ ВЫШЛО':'РАУНД ЗАКОНЧЕН')+'</span>'+
     symbol(blitz?'blitz':c.methodId)+
-    '<h2 class="play-title"><span class="judge-team-name">'+escapeHTML(guessingTeam())+'</span><em>УГАДАЛИ?</em></h2>'+
+    '<h2 class="play-title"><span class="judge-team-name'+(guessingTeam().length>16?' judge-team-name--long':'')+'">'+escapeHTML(guessingTeam())+'</span><em>УГАДАЛИ?</em></h2>'+
     '<p class="score-note">'+(blitz?'Отгадано '+c.blitzCorrect+' из '+c.blitzWords.length+(ruleSetForGame(game).legacyBlitz?'. За каждое отгаданное слово — одно очко (старая партия).':''):'Было загадано: <b>'+escapeHTML(c.word)+'</b>')+'</p>'+
     '<p class="score-note">'+points+'</p>'+
     '<p class="score-recipient">Очки получит <b>'+escapeHTML(awardTeam())+'</b></p>'+
