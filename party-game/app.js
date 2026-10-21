@@ -282,14 +282,16 @@ function renderMatch() {
   $('score-a').textContent=game.scores[0];
   $('score-b').textContent=game.scores[1];
   $('round-now').textContent=game.roundIndex+1;
-  $('round-total').textContent=game.finishType==='score'?'∞':game.rounds;
+  $('round-total').textContent=game.finishType==='score'?'':game.rounds;
+  $('round-total').hidden=game.finishType==='score';
+  $('round-slash').hidden=game.finishType==='score';
   $('match-progress').style.width=game.finishType==='score'?(Math.min(100,Math.max(...game.scores)/game.targetScore*100))+'%':(game.roundIndex/game.rounds*100)+'%';
   $('match-team-a').classList.toggle('is-turn',guessingTeamIndex()===0);
   $('match-team-b').classList.toggle('is-turn',guessingTeamIndex()===1);
   const legacy=game.scoringVersion!==2;
   $('role-a').textContent=legacy?(currentTeamIndex()===0?'ХОД':'ЖДЁТ'):(guessingTeamIndex()===0?'ОТГАДЫВАЕТ':'ЗАГАДЫВАЕТ');
   $('role-b').textContent=legacy?(currentTeamIndex()===1?'ХОД':'ЖДЁТ'):(guessingTeamIndex()===1?'ОТГАДЫВАЕТ':'ЗАГАДЫВАЕТ');
-  $('match-center-label').textContent=game.finishType==='score'?'ДО '+game.targetScore+' ОЧКОВ':'ХОД '+(game.roundIndex+1)+' / '+game.rounds;
+  $('match-center-label').textContent=game.finishType==='score'?'ЦЕЛЬ '+game.targetScore:'ПО ЧИСЛУ ХОДОВ';
 }
 function pickMode() {
   const allowed=MODE_LIST.filter(m=>game.modes.includes(m.id));
@@ -472,7 +474,7 @@ function taskMarkup(hidden) {
 function showTask() {
   $('play-content').className='play-inner is-task stable-round';
   const {mode,secret,name,rule}=modeInformation();
-  $('play-step').textContent=game.scoringVersion===2?'ЗАГАДЫВАЕТ '+currentTeam()+' · ОТГАДЫВАЕТ '+guessingTeam():'ЗАДАНИЕ ДЛЯ '+currentTeam();
+  $('play-step').textContent=game.scoringVersion===2?'ЗАГАДЫВАЕТ: '+currentTeam():'ЗАДАНИЕ ДЛЯ '+currentTeam();
   const c=game.current;
   $('play-content').innerHTML=
     '<div class="round-top round-top--task">'+
