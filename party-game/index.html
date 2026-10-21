@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#100d22">
-  <meta name="description" content="КВИП — вечеринка из семи игровых режимов. Объясняй, показывай, рисуй, пой и побеждай своей командой.">
+  <meta name="description" content="КВИП — дуэльная игра на одном телефоне. Загадывай, отгадывай, рискуй и набирай очки в семи режимах.">
   <title>КВИП — игра для компании</title>
   <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
   <link rel="manifest" href="./manifest.webmanifest">
@@ -48,8 +48,8 @@
               <div class="setup-panel" id="setup-panel">
         <div class="setup-top"><span class="section-kicker">НАСТРОЙКИ ПАРТИИ</span></div>
         <div class="setup-grid">
-          <label class="team-input-wrap team-input-wrap--a"><span><span class="team-spot team-spot--a"></span> КОМАНДА 1</span><input id="team-a" type="text" maxlength="24" value="Молнии" placeholder="Название команды" autocomplete="off" spellcheck="false"></label>
-          <label class="team-input-wrap team-input-wrap--b"><span><span class="team-spot team-spot--b"></span> КОМАНДА 2</span><input id="team-b" type="text" maxlength="24" value="Кометы" placeholder="Название команды" autocomplete="off" spellcheck="false"></label>
+          <label class="team-input-wrap team-input-wrap--a"><span><span class="team-spot team-spot--a"></span> ИГРОК 1</span><input id="team-a" type="text" maxlength="24" value="Молнии" placeholder="Имя игрока" autocomplete="off" spellcheck="false"></label>
+          <label class="team-input-wrap team-input-wrap--b"><span><span class="team-spot team-spot--b"></span> ИГРОК 2</span><input id="team-b" type="text" maxlength="24" value="Кометы" placeholder="Имя игрока" autocomplete="off" spellcheck="false"></label>
         </div>
         <div class="settings-grid settings-grid--compact">
           <fieldset class="option-set"><legend>СЛОЖНОСТЬ</legend><div class="choices" data-setting="difficulty"><button type="button" data-value="easy" class="is-chosen">Легко</button><button type="button" data-value="medium">Средний</button><button type="button" data-value="hard">Сложный</button><button type="button" data-value="mixed">Микс</button></div></fieldset>
@@ -85,7 +85,7 @@
                 <label><input type="checkbox" value="sing" checked><span>Напой <b>+2</b></span></label>
                 <label><input type="checkbox" value="yesno" checked><span>Данетки <b>+2</b></span></label>
                 <label><input type="checkbox" value="secret" checked><span>Секретка <b>+3</b></span></label>
-                <label><input type="checkbox" value="blitz" checked><span>Блиц <b>+1/слово</b></span></label>
+                <label><input type="checkbox" value="blitz" checked><span>Блиц <b>+3 за 5/5</b></span></label>
               </div>
             </fieldset>
             <fieldset class="advanced-section">
@@ -130,7 +130,7 @@
       <li>Играют двое. В свой ход вы загадываете, а соперник отгадывает и зарабатывает очки. Затем роли меняются.</li>
       <li>Карусель случайно выбирает один из включённых игровых режимов.</li>
       <li>В лёгкой сложности можно заменить слово и вручную запустить или поставить таймер на паузу. Время на «Слова» задаётся ползунком 30–90 секунд; другим режимам добавляется время, максимум 90 секунд. В средней и сложной сложности отсчёт автоматически начинается через секунду после открытия задания; паузы и замены слова нет. В «Данетках» отвечайте только «да», «нет» или «не знаю».</li>
-      <li>Пока идёт время, зелёная галочка сразу засчитывает ответ, красный крестик завершает ход без очков. После истечения времени можно подтвердить, успели ли угадать. «Слова» приносят 1 очко, «Жесты», «Нарисуй», «Напой» и «Данетки» — по 2, «Секретка» — 3. В «Блице» за 30 секунд нужно отгадать все пять слов — это 3 очка, за неполный результат баллов нет.</li>
+      <li>Пока идёт время, зелёная галочка сразу засчитывает ответ, красный крестик завершает ход без очков (в риск-раунде снимается до 2 очков). После истечения времени можно подтвердить, успели ли угадать. «Слова» приносят 1 очко, «Жесты», «Нарисуй», «Напой» и «Данетки» — по 2, «Секретка» — 3. В «Блице» за 30 секунд нужно отгадать все пять слов — это 3 очка, за неполный результат баллов нет.</li>
       <li>По очереди загадывайте друг другу. Очки получает отгадывающий. Игра заканчивается при достижении цели после ответного хода соперника или по чётному числу ходов. Риск-раунды могут отнять до 2 очков за провал.</li>
     </ol>
     <p class="rule-note">Звук включается только после нажатия кнопки. Игра сохраняется в этом браузере, а интернет после загрузки не нужен.</p>
