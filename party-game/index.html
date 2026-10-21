@@ -10,7 +10,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=18">
+  <link rel="stylesheet" href="./style.css?v=19">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
   <script src="./curated-words.js?v=1" defer></script>
@@ -26,7 +26,7 @@
   <script src="./round-planner.js?v=1" defer></script>
   <script src="./content-packs.js?v=4" defer></script>
   <script src="./presets.js?v=3" defer></script>
-  <script src="./app.js?v=21" defer></script>
+  <script src="./app.js?v=22" defer></script>
 </head>
 <body>
 
@@ -177,19 +177,17 @@
   </main>
 </div>
 <div class="dialog-backdrop" id="rules-backdrop" hidden>
-  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="rules-title">
-    <button type="button" class="dialog-close" id="close-rules" aria-label="Закрыть">×</button>
-    <span class="section-kicker">ПРАВИЛА ИГРЫ</span><h2 id="rules-title">Просто. Шумно. Весело.</h2>
-    <ol class="rules-list">
-      <li>Играют двое. В свой ход вы загадываете, а соперник отгадывает и зарабатывает очки. Затем роли меняются.</li>
-      <li>Карусель случайно выбирает один из включённых игровых режимов.</li>
-      <li>В лёгкой сложности можно заменить слово и вручную запустить или поставить таймер на паузу. Базовое время задаётся ползунком 30–90 секунд (обычно 60). «Нарисуй», «Напой», «Данетки» и «Блиц» получают ещё 30 секунд, максимум 120. «Слова» и «Жесты» используют базовое время. В средней и сложной сложности отсчёт автоматически начинается через секунду после открытия задания; паузы и замены слова нет. В «Данетках» отвечайте только «да», «нет» или «не знаю».</li>
-      <li>Пока идёт время, зелёная галочка сразу засчитывает ответ, красный крестик завершает ход без очков (в риск-раунде снимается до 2 очков). После истечения времени можно подтвердить, успели ли угадать. «Слова» приносят 1 очко, «Жесты», «Нарисуй» и «Напой» — по 1, «Данетки» — 2. Успешное усложнение даёт ещё 1 очко; «Секретка» всегда даёт 2 + 1. В «Блице» за базовое время плюс 30 секунд нужно отгадать все три слова — это 2 очка, за неполный результат баллов нет.</li>
-      <li>«Примерно»: обе команды устно называют число. Таймера, риска и усложнений нет. Нажмите «Показать ответ» и вручную присудите +1 первой, второй, обеим командам или никому. Игра не сравнивает ответы автоматически.</li>
-      <li>По очереди загадывайте друг другу. Очки получает отгадывающий. Игра заканчивается при достижении цели после ответного хода соперника или по чётному числу ходов. Риск-раунды могут отнять до 2 очков за провал.</li>
-    </ol>
-    <p class="rule-note">Звук включается только после нажатия кнопки. Игра сохраняется в этом браузере, а интернет после загрузки не нужен.</p>
-    <button id="rules-understood" class="button button-primary" type="button">ВСЁ ПОНЯТНО</button>
+  <div class="dialog rules-dialog" role="dialog" aria-modal="true" aria-labelledby="rules-title">
+    <header class="rules-header"><h2 id="rules-title">ПРАВИЛА ИГРЫ</h2><button type="button" class="dialog-close" id="close-rules" aria-label="Закрыть правила игры">×</button></header>
+    <article id="rules-card" class="rules-card" aria-labelledby="rules-card-title"></article>
+    <footer class="rules-footer">
+      <nav class="rules-nav" aria-label="Карточки правил">
+        <button id="rules-prev" type="button" aria-label="Предыдущая карточка">‹</button>
+        <span id="rules-page-status" role="status" aria-live="polite" aria-atomic="true">1 / 9</span>
+        <button id="rules-next" type="button" aria-label="Следующая карточка">›</button>
+      </nav>
+      <button id="rules-understood" type="button">ВСЁ ПОНЯТНО</button>
+    </footer>
   </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>

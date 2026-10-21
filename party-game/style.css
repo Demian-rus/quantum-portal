@@ -130,9 +130,6 @@ a{color:inherit}
 .dialog{max-width:570px;width:100%;max-height:min(720px,90dvh);overflow:auto;padding:32px;border-radius:25px;background:#2b1d3e;border:1px solid #9177aa;box-shadow:0 40px 100px #030106;position:relative}
 .dialog h2{font:800 clamp(24px,5vw,33px) var(--font-title);letter-spacing:-.05em}
 .dialog-close{position:absolute;right:15px;top:10px;font-size:31px;border:0;background:none;color:#d6c6e8}
-.rules-list{padding-left:24px;display:grid;gap:13px;color:#ebdef1;font-size:14px;line-height:1.6}
-.rules-list li::marker{color:var(--coral);font-weight:900}
-.rule-note{background:#1d122e;border-radius:13px;color:#a99abf;font-size:12px;padding:14px;line-height:1.6}
 .dialog .button{width:100%;padding:16px}
 .toast{position:fixed;bottom:26px;left:50%;z-index:50;transform:translate(-50%,30px);padding:12px 18px;border-radius:12px;background:#c8f48a;color:#192a1f;font-size:13px;font-weight:900;opacity:0;pointer-events:none;transition:.2s;box-shadow:0 10px 30px #05030d}
 .toast.show{opacity:1;transform:translate(-50%,0)}
@@ -1661,3 +1658,60 @@ body[data-screen="game-type"]::before,body[data-screen="themes"]::before{backgro
 .quick-choices{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:4px;margin:4px 0 8px;padding:4px}
 .quick-choices button{min-width:0;min-height:44px;padding:8px 4px;font-size:13px}
 #quick-score-choices[hidden]{display:none}
+
+/* TASK 006: fixed guide shell; only the copy scrolls, controls stay in view. */
+body.rules-open{overflow:hidden;overscroll-behavior:none}
+#rules-backdrop{padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+.rules-dialog{
+  width:min(100%,680px);height:min(760px,calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom)));
+  max-width:680px;max-height:none;overflow:hidden;padding:18px;
+  display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:12px;
+  background:linear-gradient(145deg,#14152ef5,#271437f5);border:1px solid #8ecbed8c;
+  box-shadow:0 24px 70px #060312c9,0 0 26px #90baff16;
+}
+.rules-header{display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0}
+.rules-dialog .rules-header h2{margin:0;font:800 clamp(15px,3.8vw,21px)/1.4 var(--font-title);letter-spacing:.02em;color:#edf3ff}
+.rules-dialog .dialog-close{position:static;flex:0 0 44px;width:44px;height:44px;display:grid;place-items:center;padding:0;border:1px solid #b6a1d35c;border-radius:13px;background:#3723448c;color:#f3e6ff;line-height:1}
+.rules-card{min-height:0;min-width:0;overflow:hidden;display:grid;grid-template-rows:auto minmax(0,1fr);gap:16px;padding:20px;border-radius:19px;border:1px solid #94caff66;background:linear-gradient(135deg,#28325170,#281d3eab);box-shadow:inset 0 1px 0 #b5c6ff19;touch-action:pan-y pinch-zoom}
+.rules-card-heading{display:flex;align-items:center;gap:18px;min-width:0}
+.rules-art{display:block;width:116px;height:116px;object-fit:contain;flex:0 0 auto;filter:drop-shadow(0 4px 14px #9d79d538)}
+.rules-general-mark{display:grid;place-items:center;flex:0 0 116px;height:78px;border-radius:19px;border:1px solid #b8b5f76e;background:linear-gradient(135deg,#59538d45,#b8529340);color:#b5f3ff;font:800 19px var(--font-title);letter-spacing:.02em;text-shadow:0 0 20px #8ae8ff55}
+.rules-card-title{min-width:0}
+.rules-card-title h3{margin:0 0 8px;font:800 clamp(17px,4.7vw,27px)/1.35 var(--font-title);color:#fff2fc;overflow-wrap:anywhere}
+.rules-reward{margin:0;color:#9fecff;font:800 14px/1.5 var(--font-body)}
+.rules-copy{overflow-y:auto;overflow-x:hidden;min-height:0;min-width:0;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#9da6d780 transparent;padding:1px 7px 4px 1px;scroll-behavior:auto;color:#e0e5f5;font-size:15px;line-height:1.55;overflow-wrap:anywhere;outline-offset:-3px}
+.rules-copy section+section{margin-top:15px}
+.rules-copy h4{margin:0 0 4px;color:#f0b9e4;font-size:12px;font-weight:800;letter-spacing:.025em}
+.rules-copy p{margin:0}
+.rules-copy:focus-visible{outline:2px solid #9fecff;border-radius:5px}
+.rules-footer{display:grid;gap:5px}
+.rules-nav{display:grid;grid-template-columns:48px 1fr 48px;align-items:center;gap:12px}
+.rules-nav button{height:44px;border:1px solid #a7ccff87;border-radius:13px;background:#34446480;color:#dcf9ff;font:500 32px/1 var(--font-body)}
+.rules-nav button:disabled{opacity:.35;background:#232239;border-color:#9384aa4d}
+#rules-page-status{text-align:center;font:800 14px/1.4 var(--font-body);color:#e0eaff;letter-spacing:.08em}
+#rules-understood{justify-self:center;min-height:36px;padding:6px 16px;border:0;border-radius:10px;background:transparent;color:#d9c6e6;font:800 11px/1.4 var(--font-body);letter-spacing:.07em}
+#rules-understood:hover{background:#a790ce1c;color:#fff}
+@media(max-width:420px){
+  .rules-dialog{padding:12px;gap:10px;border-radius:21px}
+  .rules-card{padding:14px;gap:12px}
+  .rules-card-heading{gap:12px}
+  .rules-art{width:82px;height:82px}
+  .rules-general-mark{flex-basis:82px;height:65px;font-size:14px;border-radius:14px}
+  .rules-reward{font-size:13px}
+  .rules-copy{font-size:14px;line-height:1.5}
+  .rules-copy section+section{margin-top:12px}
+}
+@media(max-height:480px){
+  .rules-dialog{width:min(100%,820px);max-width:820px;padding:10px 14px;gap:7px;border-radius:19px}
+  .rules-card{grid-template-columns:minmax(165px,.8fr) minmax(0,1.65fr);grid-template-rows:minmax(0,1fr);gap:18px;padding:12px}
+  .rules-card-heading{flex-direction:column;justify-content:center;align-self:center;gap:7px;text-align:center}
+  .rules-art{width:64px;height:64px}
+  .rules-general-mark{flex:0 0 auto;width:90px;height:45px;font-size:15px}
+  .rules-card-title h3{font-size:17px;margin-bottom:5px}
+  .rules-copy{font-size:14px;line-height:1.5}
+  .rules-copy section+section{margin-top:10px}
+  .rules-footer{grid-template-columns:1fr auto;align-items:center;gap:18px}
+  .rules-nav{max-width:360px;width:100%;justify-self:center}
+  #rules-understood{min-height:44px;padding:6px}
+}
+@media(prefers-reduced-motion:reduce){.rules-dialog *{scroll-behavior:auto}}

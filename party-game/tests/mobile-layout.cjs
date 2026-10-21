@@ -53,6 +53,7 @@ function fitsViewport(g,device,stage) {
     headless:true,args:['--no-sandbox']
   });
   try{
+    await require('./rules-guide.cjs')(browser,URL);
     await require('./ui-task005.cjs')(browser,URL);
     for(const device of devices) {
       const page=await browser.newPage({
