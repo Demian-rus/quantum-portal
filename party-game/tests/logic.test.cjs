@@ -33,6 +33,9 @@ function harness(existing=new Map()) {
   });
   vm.runInContext(read('words.js'),context);
   vm.runInContext(read('extra-words.js'),context);
+  vm.runInContext(read('curated-words.js'),context);
+  vm.runInContext(read('curated-songs.js'),context);
+  vm.runInContext(read('curated-people.js'),context);
   vm.runInContext(read('mode-images.js'),context);
   vm.runInContext(read('app.js'),context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
@@ -164,7 +167,7 @@ test('blitz is a sequence with correct, skip, no timer reset and per-word points
  h.pending.shift()();
  assert.equal(h.eval('game.current.blitzWords.length'),5);
  assert.equal(new Set(h.eval('game.current.blitzWords')).size,5);
- assert.equal(h.eval('game.current.seconds'),30);
+ assert.equal(h.eval('game.current.seconds'),90);
  h.eval('toggleWord();startTimer()');
  const deadline=h.eval('game.current.deadline');
  h.eval('advanceBlitz(true)');
@@ -492,7 +495,7 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/kvip-pwa-v15-20261021-responsive/);
+ assert.match(worker,/kvip-pwa-v16-20261021-vocabulary/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
 
@@ -524,10 +527,10 @@ test('fixed turn matches always use an equal even number of turns',()=>{
 test('mode-specific seconds follow base slider and capped bonus',()=>{
  const h=harness();
  for(const [mode,method,base,expected] of [
-  ['talk','talk',30,30],['mime','mime',30,45],['draw','draw',30,60],
-  ['yesno','yesno',30,60],['sing','sing',30,45],
-  ['secret','draw',30,60],['blitz','blitz',90,30],
-  ['draw','draw',80,90],['talk','talk',90,90]
+  ['talk','talk',60,60],['mime','mime',60,60],['draw','draw',60,90],
+  ['yesno','yesno',60,90],['sing','sing',60,90],
+  ['secret','draw',60,90],['secret','mime',60,60],['blitz','blitz',60,90],
+  ['draw','draw',90,120],['sing','sing',30,60],['talk','talk',90,90]
  ]) assert.equal(h.eval("durationForMode('"+mode+"','"+method+"',"+base+")"),expected,mode);
 });
 test('risk losses are bounded at zero and charged to the guesser only',()=>{
@@ -599,4 +602,60 @@ test('blitz repetition history spans all difficulty levels',()=>{
  h.eval("pullWord('blitz','hard')");
  assert.equal(h.eval("game.used['easy:blitz:word,phrase,idiom'].length"),2);
  assert.equal(h.eval("game.used['hard:blitz:word,phrase,idiom']"),undefined);
+});
+
+
+test('new difficulty taxonomy chooses concrete easy, culinary medium, technical hard',()=>{
+ const h=harness();
+ h.eval('soundOn=false;newGame()');
+ assert.ok(h.eval("getPromptPool('words','easy').includes('КОРАБЛЬ')"));
+ assert.ok(h.eval("getPromptPool('words','medium').includes('МАТЧА')"));
+ assert.ok(h.eval("getPromptPool('words','hard').includes('ВАТЕРЛИНИЯ')"));
+ for(const type of ['word','phrase','idiom']){
+  const levels=['easy','medium','hard'].map(level=>Array.from(h.eval('PARTY_VOCABULARY.'+type+'.'+level)));
+  for(let i=0;i<levels.length;i++){
+   assert.equal(levels[i].length,new Set(levels[i]).size,'Duplicated '+type+' pool');
+   for(let j=i+1;j<levels.length;j++){
+    assert.equal(levels[i].filter(x=>levels[j].includes(x)).length,0,'Cross-tier duplicate '+type);
+   }
+  }
+ }
+});
+test('song themes all have named examples and span different genres',()=>{
+ const h=harness();
+ let all=[],genres=new Set();
+ for(const level of ['easy','medium','hard']){
+  const catalog=Array.from(h.eval('PARTY_TRACK_CATALOG.'+level));
+  assert.ok(catalog.length>=40,level+' needs at least forty song topics');
+  for(const entry of catalog){
+   assert.ok(entry.topic&&entry.title&&entry.artist&&entry.genre);
+   genres.add(entry.genre);
+   all.push(entry.topic);
+  }
+  assert.deepEqual(Array.from(h.eval('getPromptPool("songs","'+level+'")')),catalog.map(x=>x.topic));
+ }
+ assert.equal(all.length,new Set(all).size,'A song theme cannot repeat at multiple levels');
+ assert.ok(genres.has('поп')&&genres.has('рок')&&genres.has('рэп')&&genres.has('зарубежное'));
+});
+test('Danetki uses a graded, broadly recognisable cast instead of obscure legacy cards',()=>{
+ const h=harness();
+ let all=[];
+ for(const level of ['easy','medium','hard']){
+  const people=Array.from(h.eval('getPromptPool("people","'+level+'")'));
+  assert.ok(people.length>=90,'Too few famous names in '+level);
+  assert.equal(people.length,new Set(people).size);
+  all.push(...people);
+ }
+ assert.equal(all.length,new Set(all).size);
+ assert.ok(h.eval("getPromptPool('people','easy').includes('ГАРРИ ПОТТЕР')"));
+ assert.ok(h.eval("getPromptPool('people','medium').includes('НИКОЛА ТЕСЛА')"));
+ assert.ok(h.eval("getPromptPool('people','hard').includes('САРУМАН')"));
+ assert.ok(!h.eval("getPromptPool('people','hard').includes('МИШЕЛЬ ДЕ МОНТЕНЬ')"));
+});
+test('new games use a one-minute base and +30s in long modes including Blitz',()=>{
+ const h=harness();
+ assert.equal(h.eval("sanitizeOptions({}).duration"),60);
+ h.eval("soundOn=false;options.duration=60;options.modes=['blitz'];newGame();roll()");
+ assert.equal(h.eval('game.current.seconds'),90);
+ assert.equal(h.eval('game.current.blitzWords.length'),5);
 });

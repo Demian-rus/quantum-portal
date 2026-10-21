@@ -13,8 +13,11 @@
   <link rel="stylesheet" href="./style.css?v=14">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
+  <script src="./curated-words.js?v=1" defer></script>
+  <script src="./curated-songs.js?v=1" defer></script>
+  <script src="./curated-people.js?v=1" defer></script>
   <script src="./mode-images.js?v=5" defer></script>
-  <script src="./app.js?v=10" defer></script>
+  <script src="./app.js?v=11" defer></script>
 </head>
 <body>
 
@@ -54,7 +57,7 @@
         <div class="settings-grid settings-grid--compact">
           <fieldset class="option-set"><legend>СЛОЖНОСТЬ</legend><div class="choices" data-setting="difficulty"><button type="button" data-value="easy" class="is-chosen">Легко</button><button type="button" data-value="medium">Средний</button><button type="button" data-value="hard">Сложный</button><button type="button" data-value="mixed">Микс</button></div></fieldset>
           <fieldset class="option-set"><legend id="setup-finish-label">ЦЕЛЬ ПАРТИИ</legend><div class="setup-metric" id="score-goal-preview">До 25 очков</div><input class="setup-range" id="quick-target-score" type="range" min="15" max="100" step="5" value="25" aria-label="Цель по очкам"><small id="score-goal-caption">У каждого игрока будет ответный ход</small></fieldset>
-          <fieldset class="option-set"><legend>ТЕМП ИГРЫ</legend><div class="setup-metric"><span id="base-duration-value">30 с</span> на «Слова»</div><input class="setup-range" id="quick-duration" type="range" min="30" max="90" step="5" value="30" aria-label="Базовое время на Слова"><small>Рисование и Данетки получают больше времени</small></fieldset>
+          <fieldset class="option-set"><legend>ТЕМП ИГРЫ</legend><div class="setup-metric"><span id="base-duration-value">60 с</span> на «Слова»</div><input class="setup-range" id="quick-duration" type="range" min="30" max="90" step="5" value="60" aria-label="Базовое время на Слова"><small>Нарисуй, Напой, Данетки и Блиц получают +30 с</small></fieldset>
         </div>
         <button id="go-advanced" class="button setup-advanced-link" type="button">ТОНКАЯ НАСТРОЙКА <span aria-hidden="true">Настроить режимы и правила</span></button>
         <div class="setup-bottom"><p>Один телефон — два соперника. В свой ход вы загадываете, соперник отгадывает и зарабатывает очки.</p><button id="start-game" class="button button-primary button-big" type="button">НАЧАТЬ ИГРУ</button></div>
@@ -74,7 +77,7 @@
               <div id="finish-score-settings" class="slider-option"><div class="slider-title"><label for="target-score">Цель по очкам</label><output id="target-score-value">25 очков</output></div><input id="target-score" type="range" min="15" max="100" step="5" value="25"><div class="slider-extremes"><span>15</span><span>100</span></div><small>После достижения цели у соперника будет ответный ход. При ничьей игра продолжается.</small></div>
               <div id="finish-rounds-settings" class="slider-option" hidden><div class="slider-title"><label for="custom-rounds">Общее число ходов</label><output id="rounds-value">12</output></div><input id="custom-rounds" type="range" min="2" max="100" step="2" value="12"><div class="slider-extremes"><span>2</span><span>100</span></div><small>У каждого игрока поровну ходов.</small></div>
             </fieldset>
-            <div class="slider-option"><div class="slider-title"><label for="base-duration">Время на «Слова»</label><output id="base-duration-value-advanced">30 с</output></div><input id="base-duration" type="range" min="30" max="90" step="5" value="30"><div class="slider-extremes"><span>30 с</span><span>90 с</span></div><small>Жесты и Напой: +15 с, рисунок и Данетки: +30 с (не более 90 с). Блиц всегда 30 с.</small></div>
+            <div class="slider-option"><div class="slider-title"><label for="base-duration">Время на «Слова»</label><output id="base-duration-value-advanced">60 с</output></div><input id="base-duration" type="range" min="30" max="90" step="5" value="60"><div class="slider-extremes"><span>30 с</span><span>90 с</span></div><small>Нарисуй, Напой, Данетки и Блиц: +30 с. При базовых 60 секундах — 90 секунд; максимум 120 секунд. Жесты — базовое время.</small></div>
             <label class="modifier-toggle"><input id="toggle-risk" type="checkbox" checked><span><strong>Риск-раунды ⚡</strong><small>Примерно каждый пятый ход после первых двух: успех — обычные очки, провал — потеря до 2 очков. Счёт не может стать отрицательным.</small></span></label>
             <fieldset class="advanced-section">
               <legend>АКТИВНЫЕ РЕЖИМЫ</legend>
@@ -95,7 +98,7 @@
                 <label><input type="checkbox" value="phrase" checked><span>Словосочетания</span></label>
                 <label><input type="checkbox" value="idiom" checked><span>Поговорки и фразеологизмы</span></label>
               </div>
-              <p class="advanced-help">У «Напой» отдельные темы песен, у «Данеток» — реальные люди и вымышленные персонажи.</p>
+              <p class="advanced-help">У «Напой» темы подобраны по существующим известным песням разных жанров. В «Данетках» герои и знаменитости распределены по узнаваемости.</p>
             </fieldset>
             <label class="modifier-toggle"><input id="toggle-complications" type="checkbox" checked><span><strong>Случайные усложнения</strong><small>Появляются примерно в каждом третьем раунде; в «Секретке» всегда.</small></span></label>
           </div>
@@ -129,8 +132,8 @@
     <ol class="rules-list">
       <li>Играют двое. В свой ход вы загадываете, а соперник отгадывает и зарабатывает очки. Затем роли меняются.</li>
       <li>Карусель случайно выбирает один из включённых игровых режимов.</li>
-      <li>В лёгкой сложности можно заменить слово и вручную запустить или поставить таймер на паузу. Время на «Слова» задаётся ползунком 30–90 секунд; другим режимам добавляется время, максимум 90 секунд. В средней и сложной сложности отсчёт автоматически начинается через секунду после открытия задания; паузы и замены слова нет. В «Данетках» отвечайте только «да», «нет» или «не знаю».</li>
-      <li>Пока идёт время, зелёная галочка сразу засчитывает ответ, красный крестик завершает ход без очков (в риск-раунде снимается до 2 очков). После истечения времени можно подтвердить, успели ли угадать. «Слова» приносят 1 очко, «Жесты», «Нарисуй», «Напой» и «Данетки» — по 2, «Секретка» — 3. В «Блице» за 30 секунд нужно отгадать все пять слов — это 3 очка, за неполный результат баллов нет.</li>
+      <li>В лёгкой сложности можно заменить слово и вручную запустить или поставить таймер на паузу. Базовое время задаётся ползунком 30–90 секунд (обычно 60). «Нарисуй», «Напой», «Данетки» и «Блиц» получают ещё 30 секунд, максимум 120. «Слова» и «Жесты» используют базовое время. В средней и сложной сложности отсчёт автоматически начинается через секунду после открытия задания; паузы и замены слова нет. В «Данетках» отвечайте только «да», «нет» или «не знаю».</li>
+      <li>Пока идёт время, зелёная галочка сразу засчитывает ответ, красный крестик завершает ход без очков (в риск-раунде снимается до 2 очков). После истечения времени можно подтвердить, успели ли угадать. «Слова» приносят 1 очко, «Жесты», «Нарисуй», «Напой» и «Данетки» — по 2, «Секретка» — 3. В «Блице» за базовое время плюс 30 секунд нужно отгадать все пять слов — это 3 очка, за неполный результат баллов нет.</li>
       <li>По очереди загадывайте друг другу. Очки получает отгадывающий. Игра заканчивается при достижении цели после ответного хода соперника или по чётному числу ходов. Риск-раунды могут отнять до 2 очков за провал.</li>
     </ol>
     <p class="rule-note">Звук включается только после нажатия кнопки. Игра сохраняется в этом браузере, а интернет после загрузки не нужен.</p>
