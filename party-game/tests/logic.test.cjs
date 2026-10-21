@@ -1033,3 +1033,15 @@ test('unsupported save/rule/planner versions never overwrite the original sessio
  const h=harness();
  assert.throws(()=>h.eval('planRoundDifficulty(freshRoundPlan(),1,"mixed",()=>0)'),/Missing QUIP plan/);
 });
+
+
+test('completed 12-turn Mix restores results at a cycle boundary without blocking saves',()=>{
+ const stored=new Map(),a=harness(stored);
+ a.eval("soundOn=false;options.difficulty='mixed';options.finishType='rounds';options.rounds=12;options.modes=['talk'];options.dice=false;newGame()");
+ for(let i=0;i<12;i++)a.eval('roll();game.phase="judge";judge(false)');
+ assert.equal(a.eval('game.phase'),'results');
+ const b=harness(stored);
+ assert.equal(b.eval('storageBlocked'),false);
+ assert.equal(b.eval('game.phase'),'results');
+ b.eval('newGame()');assert.equal(b.eval('game.phase'),'ready');
+});
