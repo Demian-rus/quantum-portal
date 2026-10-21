@@ -286,8 +286,9 @@ function renderMatch() {
   $('match-progress').style.width=game.finishType==='score'?(Math.min(100,Math.max(...game.scores)/game.targetScore*100))+'%':(game.roundIndex/game.rounds*100)+'%';
   $('match-team-a').classList.toggle('is-turn',guessingTeamIndex()===0);
   $('match-team-b').classList.toggle('is-turn',guessingTeamIndex()===1);
-  $('role-a').textContent=guessingTeamIndex()===0?'ОТГАДЫВАЕТ':'ЗАГАДЫВАЕТ';
-  $('role-b').textContent=guessingTeamIndex()===1?'ОТГАДЫВАЕТ':'ЗАГАДЫВАЕТ';
+  const legacy=game.scoringVersion!==2;
+  $('role-a').textContent=legacy?(currentTeamIndex()===0?'ХОД':'ЖДЁТ'):(guessingTeamIndex()===0?'ОТГАДЫВАЕТ':'ЗАГАДЫВАЕТ');
+  $('role-b').textContent=legacy?(currentTeamIndex()===1?'ХОД':'ЖДЁТ'):(guessingTeamIndex()===1?'ОТГАДЫВАЕТ':'ЗАГАДЫВАЕТ');
   $('match-center-label').textContent=game.finishType==='score'?'ДО '+game.targetScore+' ОЧКОВ':'ХОД '+(game.roundIndex+1)+' / '+game.rounds;
 }
 function pickMode() {
@@ -388,8 +389,8 @@ function showReady() {
   $('play-content').innerHTML=
     '<span class="game-eyebrow">ХОД '+(game.roundIndex+1)+(game.finishType==='score'?' · ДО '+game.targetScore+' ОЧКОВ':' ИЗ '+game.rounds)+'</span>'+
     '<div class="ready-avatar '+(index===1?'is-blue':'')+'">'+modeArt('secret')+'</div>'+
-    '<h2 class="play-title">ЗАГАДЫВАЕТ<br><em>'+team+'</em></h2>'+
-    '<p class="play-subtitle"><strong>'+opponent+'</strong> отгадывает и получает очки. Покажите задание только загадывающему.</p>'+
+    '<h2 class="play-title">'+(game.scoringVersion===2?'ЗАГАДЫВАЕТ':'НА ОЧЕРЕДИ')+'<br><em>'+team+'</em></h2>'+
+    '<p class="play-subtitle">'+(game.scoringVersion===2?'<strong>'+opponent+'</strong> отгадывает и получает очки. Покажите задание только загадывающему.':'Продолжение сохранённой партии по прежним правилам: очки получает команда текущего хода.')+'</p>'+
     makeButton(game.dice?'ВЫБРАТЬ РЕЖИМ':'ПОЛУЧИТЬ ЗАДАНИЕ','roll','button-primary button-big');
 }
 // The wheel is a window into a repeating ring, not a strip that ends on the prize.
@@ -471,7 +472,7 @@ function taskMarkup(hidden) {
 function showTask() {
   $('play-content').className='play-inner is-task stable-round';
   const {mode,secret,name,rule}=modeInformation();
-  $('play-step').textContent='ЗАГАДЫВАЕТ '+currentTeam()+' · ОТГАДЫВАЕТ '+guessingTeam();
+  $('play-step').textContent=game.scoringVersion===2?'ЗАГАДЫВАЕТ '+currentTeam()+' · ОТГАДЫВАЕТ '+guessingTeam():'ЗАДАНИЕ ДЛЯ '+currentTeam();
   const c=game.current;
   $('play-content').innerHTML=
     '<div class="round-top round-top--task">'+
@@ -494,7 +495,7 @@ function blitzStatus() {
 }
 function showTimer() {
   $('play-content').className='play-inner is-play stable-round';
-  $('play-step').textContent='ОТГАДЫВАЕТ '+guessingTeam();
+  $('play-step').textContent=game.scoringVersion===2?'ОТГАДЫВАЕТ '+guessingTeam():'ВРЕМЯ ПОШЛО';
   const c=game.current,remaining=c.paused?c.remainingMs:c.deadline-Date.now();
   const shown=Math.max(0,remaining),blitz=c.modeId==='blitz';
   $('play-content').innerHTML=
