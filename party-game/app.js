@@ -255,7 +255,8 @@ function renderOptions() {
       button.setAttribute('aria-pressed',String(selected));
     });
   }
-  const numbers={'base-duration':options.duration,'target-score':options.targetScore,'custom-rounds':options.rounds};
+  const numbers={'base-duration':options.duration,'quick-duration':options.duration,'target-score':options.targetScore,
+    'quick-target-score':options.targetScore,'custom-rounds':options.rounds};
   $('base-duration-value').textContent=options.duration+' с';
   $('target-score-value').textContent=options.targetScore+' очков';
   $('rounds-value').textContent=options.rounds+' ходов';
@@ -266,6 +267,7 @@ function renderOptions() {
   $('score-goal-preview').textContent=options.finishType==='score'?'До '+options.targetScore+' очков':'После '+options.rounds+' ходов';
   $('score-goal-caption').textContent=options.finishType==='score'?'У каждого игрока будет ответный ход':'Одинаковое число ходов у обоих игроков';
   $('setup-finish-label').textContent=options.finishType==='score'?'ЦЕЛЬ ПАРТИИ':'КОЛИЧЕСТВО ХОДОВ';
+  $('quick-target-score').hidden=options.finishType!=='score';
   $('finish-score-settings').hidden=options.finishType!=='score';
   $('finish-rounds-settings').hidden=options.finishType!=='rounds';
   for(const [id,value] of Object.entries(numbers)) {
@@ -899,7 +901,9 @@ function setupEvents() {
   });
   for(const [id,key,min,max,step] of [
     ['base-duration','duration',30,90,5],
+    ['quick-duration','duration',30,90,5],
     ['target-score','targetScore',15,100,5],
+    ['quick-target-score','targetScore',15,100,5],
     ['custom-rounds','rounds',2,100,2]
   ]) {
     $(id).addEventListener('input',event=>{
