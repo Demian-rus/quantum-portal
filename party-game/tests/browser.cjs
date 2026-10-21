@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const {chromium} = require('playwright-core');
 (async()=>{
-  fs.mkdirSync('artifacts/iskra',{recursive:true});
+  fs.mkdirSync('artifacts/quip',{recursive:true});
   const browser=await chromium.launch({
     executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',
     headless:true,args:['--no-sandbox']
@@ -37,7 +37,7 @@ const {chromium} = require('playwright-core');
       }
       assert.ok(home.width<=home.bodyWidth+2,'home horizontal scrolling '+JSON.stringify(home));
       assert.ok(home.button>=52,'touch target too small');
-      await page.screenshot({path:'artifacts/iskra/'+profile.name+'-home.png',fullPage:true});
+      await page.screenshot({path:'artifacts/quip/'+profile.name+'-home.png',fullPage:true});
       await page.locator('#settings-menu').click();
       assert.equal(await page.locator('#scene-preferences').isVisible(),true);
       await page.locator('#sound-toggle').uncheck();
@@ -58,7 +58,7 @@ const {chromium} = require('playwright-core');
       await page.waitForSelector('[data-action="roll"]');
       assert.equal(await page.locator('#label-team-a').textContent(),'Крутые коты');
       assert.equal(await page.locator('#round-total').textContent(),'8');
-      await page.screenshot({path:'artifacts/iskra/'+profile.name+'-ready.png',fullPage:true});
+      await page.screenshot({path:'artifacts/quip/'+profile.name+'-ready.png',fullPage:true});
       await page.locator('[data-action="roll"]').click();
       await page.waitForSelector('[data-action="toggle-word"]',{timeout:5500});
       assert.equal(await page.locator('.challenge-word').textContent(),'НАЖМИ, ЧТОБЫ ОТКРЫТЬ');
@@ -67,11 +67,11 @@ const {chromium} = require('playwright-core');
       assert.equal(await page.locator('[data-action="start-timer"]').count(),0,'Medium timer must start automatically');
       await page.waitForSelector('#active-timer',{timeout:4000});
       assert.equal(await page.locator('[data-action="pause"]').count(),0,'Medium timer cannot pause');
-      await page.screenshot({path:'artifacts/iskra/'+profile.name+'-timer.png',fullPage:true});
+      await page.screenshot({path:'artifacts/quip/'+profile.name+'-timer.png',fullPage:true});
       await page.evaluate(()=>{game.current.deadline=Date.now()-50;tick();});
       await page.waitForSelector('[data-action="yes"]',{timeout:4000});
       assert.equal(await page.locator('[data-action="no"]').count(),1);
-      await page.screenshot({path:'artifacts/iskra/'+profile.name+'-judge.png',fullPage:true});
+      await page.screenshot({path:'artifacts/quip/'+profile.name+'-judge.png',fullPage:true});
       await page.locator('[data-action="yes"]').click();
       const scored=Number(await page.locator('#score-b').textContent());
       assert.ok(scored>=0&&scored<=3,'wrong awarded points '+scored);
