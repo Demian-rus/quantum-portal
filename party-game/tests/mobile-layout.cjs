@@ -25,7 +25,7 @@ const geometry=()=>({
   }
 });
 const selectors=[
-  '.play-card-head','#play-step','#exit-game','.is-ready .play-title',
+  '.play-card','.play-card-head','#play-step','#exit-game','.is-ready .play-title',
   '.is-ready .ready-content','.is-ready [data-action="roll"]',
   '#label-team-a','#score-a','.reel-window','.reel-item img',
   '.reel-track','.play-inner',
@@ -101,6 +101,7 @@ function fitsViewport(g,device,stage) {
       const task=await take(page);
       fitsViewport(task,device,'task');
       const openButton=at(task,'.is-task .task-open [data-action="toggle-word"]');
+      console.log('CTA-DIAG',device.name,JSON.stringify({readyButton,openButton,readyContent,readyInner:at(ready,'.play-inner'),taskInner:at(task,'.play-inner'),readyHead:at(ready,'.play-card-head'),taskHead:at(task,'.play-card-head'),readyCard:at(ready,'.play-card'),taskCard:at(task,'.play-card')}));
       assert.ok(openButton&&Math.abs(openButton.bottom-readyButton.bottom)<=3,
         'Ready/task bottom buttons differ: '+JSON.stringify({device,readyButton,openButton}));
       assert.ok(Math.abs(openButton.top-readyButton.top)<=3,
