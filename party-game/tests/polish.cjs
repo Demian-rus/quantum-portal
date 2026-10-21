@@ -27,7 +27,7 @@ async function isInViewport(page){
        neon:getComputedStyle(document.documentElement).getPropertyValue('--kvip-electric').trim()};
    },expected);
    const homeArt=await art('home');
-   assert.ok(homeArt.bg.includes('bg-home.webp?v=3'),'Home artwork was not loaded');
+   assert.ok(homeArt.bg.includes('bg-home.webp?v=4'),'Home artwork was not loaded');
    assert.equal(homeArt.neon,'#54e8ff');
    if(device.name==='phone')await page.screenshot({path:'artifacts/quip-polish/phone-kvip-home.png'});
    await page.locator('#settings-menu').click();
