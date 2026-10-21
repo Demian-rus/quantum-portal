@@ -376,14 +376,14 @@ function taskControls(c) {
 }
 function showReady() {
   $('play-content').className='play-inner is-ready';
-  $('play-step').textContent='ПЕРЕДАЙТЕ ТЕЛЕФОН';
+  $('play-step').textContent='ПЕРЕДАЙТЕ ТЕЛЕФОН ЗАГАДЫВАЮЩЕМУ';
   const index=currentTeamIndex();
-  const team=escapeHTML(currentTeam());
+  const team=escapeHTML(currentTeam()),opponent=escapeHTML(guessingTeam());
   $('play-content').innerHTML=
-    '<span class="game-eyebrow">ХОД '+(game.roundIndex+1)+' ИЗ '+game.rounds+'</span>'+
+    '<span class="game-eyebrow">ХОД '+(game.roundIndex+1)+(game.finishType==='score'?' · ДО '+game.targetScore+' ОЧКОВ':' ИЗ '+game.rounds)+'</span>'+
     '<div class="ready-avatar '+(index===1?'is-blue':'')+'">'+modeArt('secret')+'</div>'+
-    '<h2 class="play-title">НА ОЧЕРЕДИ<br><em>'+team+'</em></h2>'+
-    '<p class="play-subtitle">Передайте телефон своей команде. '+(game.dice?'Запустите карусель и узнайте режим.':'Получите случайное задание.')+'</p>'+
+    '<h2 class="play-title">ЗАГАДЫВАЕТ<br><em>'+team+'</em></h2>'+
+    '<p class="play-subtitle"><strong>'+opponent+'</strong> отгадывает и получает очки. Покажите задание только загадывающему.</p>'+
     makeButton(game.dice?'ВЫБРАТЬ РЕЖИМ':'ПОЛУЧИТЬ ЗАДАНИЕ','roll','button-primary button-big');
 }
 // The wheel is a window into a repeating ring, not a strip that ends on the prize.
@@ -465,7 +465,7 @@ function taskMarkup(hidden) {
 function showTask() {
   $('play-content').className='play-inner is-task stable-round';
   const {mode,secret,name,rule}=modeInformation();
-  $('play-step').textContent='ВАМ ВЫПАЛО';
+  $('play-step').textContent='ЗАГАДЫВАЕТ '+currentTeam()+' · ОТГАДЫВАЕТ '+guessingTeam();
   const c=game.current;
   $('play-content').innerHTML=
     '<div class="round-top round-top--task">'+
@@ -474,7 +474,7 @@ function showTask() {
       '<div class="mode-rule">'+escapeHTML(rule)+
       (c.complication?'<br><strong>УСЛОЖНЕНИЕ: '+escapeHTML(c.complication)+'</strong>':'')+'</div>'+
       (secret?'<span class="secret-flag">СЕКРЕТКА · +'+c.points+' ОЧКА</span>':
-        '<span class="score-note">ЗА ВЕРНЫЙ ОТВЕТ: +'+(c.modeId==='blitz'?'1 ЗА СЛОВО':c.points)+'</span>')+
+        '<span class="score-note">ЗА ВЕРНЫЙ ОТВЕТ: +'+(c.modeId==='blitz'?'3 ЗА ВСЕ 5 СЛОВ':c.points)+'</span>')+
     '</div>'+
     '<div class="round-fixed-card">'+taskMarkup(!c.visible)+'</div>'+
     '<div class="round-bottom round-bottom--task">'+taskControls(c)+'</div>';
@@ -487,7 +487,7 @@ function blitzStatus() {
 }
 function showTimer() {
   $('play-content').className='play-inner is-play stable-round';
-  $('play-step').textContent='ВРЕМЯ ПОШЛО';
+  $('play-step').textContent='ОТГАДЫВАЕТ '+guessingTeam();
   const c=game.current,remaining=c.paused?c.remainingMs:c.deadline-Date.now();
   const shown=Math.max(0,remaining),blitz=c.modeId==='blitz';
   $('play-content').innerHTML=
@@ -502,6 +502,7 @@ function showTimer() {
       '</div>'+
       (allowPause()?'<div class="timer-pause">'+iconButton(c.paused?'play':'pause',c.paused?'resume':'pause',c.paused?'Продолжить':'Пауза')+'</div>':'')+
       (blitz?blitzStatus():'')+
+      (c.risk?'<p class="risk-notice">⚡ РИСК: ПРОВАЛ −2 ОЧКА</p>':'')+
     '</div>'+
     '<div class="round-fixed-card">'+taskMarkup(blitz?false:!c.visible)+'</div>'+
     '<div class="round-bottom round-bottom--play">'+
