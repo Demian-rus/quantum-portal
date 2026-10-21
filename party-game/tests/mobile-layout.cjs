@@ -62,6 +62,7 @@ function fitsViewport(g,device,stage) {
       page.on('pageerror',error=>errors.push(error.message));
       await page.goto(URL,{waitUntil:'load'});
       await page.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
+      await page.locator('#scene-home').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
       const homeButtons=await page.evaluate(()=>{
         const rect=id=>{const r=document.getElementById(id).getBoundingClientRect();return {top:r.top,bottom:r.bottom,height:r.height}};
         return {settings:rect('settings-menu'),other:rect('other-games-menu'),footnote:document.querySelector('.home-footnote').getBoundingClientRect().top};
