@@ -24,7 +24,20 @@ const geometry=()=>({
       clientWidth:element.clientWidth,scrollWidth:element.scrollWidth};
   }
 });
-const take=async page=>page.evaluate(`(${geometry.toString()})()`);
+const selectors=[
+  '.play-card-head','#play-step','#exit-game','.is-ready .play-title',
+  '.is-ready .ready-content','.is-ready [data-action="roll"]',
+  '#label-team-a','#score-a','.reel-window','.reel-item img',
+  '.reel-track','.play-inner',
+  '.is-task .task-open [data-action="toggle-word"]',
+  '.round-fixed-card','.round-bottom--task'
+];
+const take=async page=>page.evaluate(`(()=>{
+  const g=(${geometry.toString()})();
+  return {viewport:g.viewport,document:g.document,scene:g.scene,
+    rects:Object.fromEntries(${JSON.stringify(selectors)}.map(sel=>[sel,g.rect(sel)]))};
+})()`);
+const at=(result,selector)=>result.rects[selector];
 function fitsViewport(g,device,stage) {
   assert.ok(g.document.h<=device.height+3,'document height overflow '+stage+': '+JSON.stringify(g));
   assert.ok(g.document.w<=device.width+3,'document width overflow '+stage+': '+JSON.stringify(g));
@@ -52,13 +65,13 @@ function fitsViewport(g,device,stage) {
       await page.locator('#start-game').click();
       const ready=await take(page);
       fitsViewport(ready,device,'ready');
-      const header=ready.rect('.play-card-head');
-      const kicker=ready.rect('#play-step');
-      const menu=ready.rect('#exit-game');
-      const title=ready.rect('.is-ready .play-title');
-      const readyContent=ready.rect('.is-ready .ready-content');
-      const readyButton=ready.rect('.is-ready [data-action="roll"]');
-      const name=ready.rect('#label-team-a'),score=ready.rect('#score-a');
+      const header=at(ready,'.play-card-head');
+      const kicker=at(ready,'#play-step');
+      const menu=at(ready,'#exit-game');
+      const title=at(ready,'.is-ready .play-title');
+      const readyContent=at(ready,'.is-ready .ready-content');
+      const readyButton=at(ready,'.is-ready [data-action="roll"]');
+      const name=at(ready,'#label-team-a'),score=at(ready,'#score-a');
       assert.ok(kicker.right<=menu.left-2,'header overlaps menu: '+JSON.stringify(ready));
       assert.ok(kicker.scroll<=kicker.client+2,'header label vertically clipped: '+JSON.stringify(ready));
       assert.ok(title.scrollWidth<=title.clientWidth+2,'ready heading horizontally clipped: '+JSON.stringify(ready));
@@ -72,14 +85,14 @@ function fitsViewport(g,device,stage) {
       await page.waitForSelector('.reel-window',{state:'visible'});
       const carousel=await take(page);
       fitsViewport(carousel,device,'rolling');
-      const reel=carousel.rect('.reel-window');
-      const art=carousel.rect('.reel-item img');
-      const reelTrack=carousel.rect('.reel-track');
+      const reel=at(carousel,'.reel-window');
+      const art=at(carousel,'.reel-item img');
+      const reelTrack=at(carousel,'.reel-track');
       assert.ok(art.width>=125,'Carousel icon is not enlarged: '+JSON.stringify(carousel));
       assert.ok(reel.bottom<=device.height-2,'Carousel clips bottom: '+JSON.stringify(carousel));
-      assert.ok(reel.top>carousel.rect('.play-card-head').bottom,
+      assert.ok(reel.top>at(carousel,'.play-card-head').bottom,
         'Carousel overlaps header: '+JSON.stringify(carousel));
-      assert.ok(reel.width<=carousel.rect('.play-inner').width+2,
+      assert.ok(reel.width<=at(carousel,'.play-inner').width+2,
         'Carousel wider than card: '+JSON.stringify(carousel));
       assert.ok(reelTrack.width>reel.width*3,'Carousel animation lost repeating track');
       await page.screenshot({path:'artifacts/quip-mobile-layout/'+device.name+'-carousel.png'});
@@ -87,7 +100,7 @@ function fitsViewport(g,device,stage) {
       await page.locator('.is-task .task-open [data-action="toggle-word"]').waitFor({timeout:6500});
       const task=await take(page);
       fitsViewport(task,device,'task');
-      const openButton=task.rect('.is-task .task-open [data-action="toggle-word"]');
+      const openButton=at(task,'.is-task .task-open [data-action="toggle-word"]');
       assert.ok(openButton&&Math.abs(openButton.bottom-readyButton.bottom)<=3,
         'Ready/task bottom buttons differ: '+JSON.stringify({device,readyButton,openButton}));
       assert.ok(Math.abs(openButton.top-readyButton.top)<=3,
@@ -102,7 +115,7 @@ function fitsViewport(g,device,stage) {
       });
       const longTask=await take(page);
       fitsViewport(longTask,device,'long-task');
-      assert.ok(longTask.rect('.round-fixed-card').bottom<=longTask.rect('.round-bottom--task').bottom,
+      assert.ok(at(longTask,'.round-fixed-card').bottom<=at(longTask,'.round-bottom--task').bottom,
         'Long card overlaps action region: '+JSON.stringify(longTask));
 
       await page.locator('.is-task .task-open [data-action="toggle-word"]').click();
