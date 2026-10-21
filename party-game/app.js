@@ -618,10 +618,10 @@ function showJudge() {
     '<span class="game-eyebrow">'+(c.finishedReason==='timeout'?'ВРЕМЯ ВЫШЛО':'РАУНД ЗАКОНЧЕН')+'</span>'+
     symbol(blitz?'blitz':c.methodId)+
     '<h2 class="play-title">'+(blitz?'РЕЗУЛЬТАТ <em>БЛИЦА</em>':'КОМАНДА <em>УГАДАЛА?</em>')+'</h2>'+
-    '<p class="play-subtitle">'+(blitz?'Отгадано '+c.blitzCorrect+' из '+c.blitzWords.length+
-    '. Засчитайте очки или отмените результат.':'Нажмите галочку, если ответ верный, или крестик, если нет.')+'</p>'+
-    '<p class="score-note">'+(blitz?'Награда: <b>+'+c.blitzCorrect+' очков</b>':
-    'Было загадано: <b>'+escapeHTML(c.word)+'</b> · За ответ: +'+c.points)+'</p>'+
+    '<p class="play-subtitle">'+(blitz?'Отгадано '+c.blitzCorrect+' из 5. Три очка начисляются только за все пять слов.':'Нажмите галочку, если ответ верный, или крестик, если нет.')+'</p>'+
+    '<p class="score-note">'+(blitz?'Награда: <b>'+(c.blitzCorrect===5?'+3':'0')+' очков</b>':
+    'Было загадано: <b>'+escapeHTML(c.word)+'</b> · За ответ: +'+c.points)+'</p>'+ 
+    (c.risk?'<p class="risk-notice">⚡ Провал: потеря до 2 очков у отгадывающего</p>':'')+
     '<div class="judgement-grid">'+
       '<div class="judgement-option">'+
         '<button class="judgement judgement--no" data-action="no" type="button" aria-label="Не засчитывать"><svg viewBox="0 0 64 64"><path d="m17 17 30 30M47 17 17 47"/></svg></button>'+
@@ -635,16 +635,17 @@ function showJudge() {
 }
 function recordAnswer(yes) {
   if(!game||!['judge','play'].includes(game.phase))return;
-  const teamIndex=currentTeamIndex(),c=game.current;
-  const points=yes?(c.modeId==='blitz'?c.blitzCorrect:c.points):0;
+  const teamIndex=guessingTeamIndex(),c=game.current;
+  const success=yes&&(c.modeId!=='blitz'||c.blitzCorrect===5);
+  const points=success?c.points:(c.risk?-Math.min(2,game.scores[teamIndex]):0);
   game.scores[teamIndex]+=points;
   game.history.push({
-    team:game.teams[teamIndex],mode:c.modeId,
-    word:c.modeId==='blitz'?c.blitzWords.join(' / '):c.word,awarded:points,correct:yes
+    team:game.teams[teamIndex],setter:currentTeam(),mode:c.modeId,
+    word:c.modeId==='blitz'?c.blitzWords.join(' / '):c.word,awarded:points,correct:success,risk:!!c.risk
   });
   game.roundIndex++;
   // Confirmation is the final action for a round; no extra Next button.
-  game.phase=game.roundIndex>=game.rounds?'results':'ready';
+  game.phase=matchComplete()?'results':'ready';
   game.current=null;
   stopTicking();persist();sfx(yes?'win':'fail');render();
 }
@@ -694,7 +695,7 @@ function showResults() {
     game.history.map((row,index)=>
       '<div class="history-row"><span>'+(index+1)+'. '+escapeHTML(row.team)+' · '+
       escapeHTML(getMode(row.mode)?.title||'')+' · '+escapeHTML(row.word)+'</span>'+
-      '<b>'+(row.correct?'+'+row.awarded:'0')+'</b></div>').join('')+
+      '<b>'+(row.awarded>0?'+'+row.awarded:row.awarded)+'</b></div>').join('')+
     '</div>';
 }
 function render() {
