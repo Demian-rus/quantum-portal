@@ -63,6 +63,10 @@ function fitsViewport(g,device,stage) {
       await page.locator('#team-b').fill('ВТОРОЙСУПЕРДЛИННЫЙИГРОК');
       await page.evaluate(()=>{options.modes=['talk'];soundOn=false;persist()});
       await page.locator('#start-game').click();
+      // The scene enters with a 7px translateY animation. Compare settled
+      // coordinates, not a transient animation frame immediately after start.
+      await page.locator('#scene-game').evaluate(el=>Promise.all(
+        el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
       const ready=await take(page);
       fitsViewport(ready,device,'ready');
       const header=at(ready,'.play-card-head');
@@ -101,7 +105,6 @@ function fitsViewport(g,device,stage) {
       const task=await take(page);
       fitsViewport(task,device,'task');
       const openButton=at(task,'.is-task .task-open [data-action="toggle-word"]');
-      console.log('CTA-DIAG',device.name,JSON.stringify({readyButton,openButton,readyContent,readyInner:at(ready,'.play-inner'),taskInner:at(task,'.play-inner'),readyHead:at(ready,'.play-card-head'),taskHead:at(task,'.play-card-head'),readyCard:at(ready,'.play-card'),taskCard:at(task,'.play-card')}));
       assert.ok(openButton&&Math.abs(openButton.bottom-readyButton.bottom)<=3,
         'Ready/task bottom buttons differ: '+JSON.stringify({device,readyButton,openButton}));
       assert.ok(Math.abs(openButton.top-readyButton.top)<=3,
