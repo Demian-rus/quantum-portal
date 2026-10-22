@@ -142,7 +142,7 @@ module.exports=async function rulesGuide(browser,url){
    await page.locator('#preferences-back').click();await page.locator('#continue-game').click();
    assert.equal(await page.locator('.approx-answer').isVisible(),true);assert.deepEqual(await snap(page),before);
    if(device.name==='phone')for(const version of [1,2,3]){
-    await page.evaluate(version=>{options.modes=['blitz'];options.dice=false;newGame();game.rulesVersion=version;game.contentPack={id:'general',version:1};delete game.modeConfigVersion;delete game.awardPolicyVersion;delete game.awardTo;game.blitzCount=5;game.dice=false;roll();game.dice=true;options.dice=true;persist();setScene('home')},version);
+    await page.evaluate(version=>{options.modes=['blitz'];options.dice=false;newGame();game.rulesVersion=version;game.contentPack={id:'general',version:1};delete game.modeConfigVersion;delete game.modeCompatibilityVersion;delete game.awardPolicyVersion;delete game.awardTo;game.blitzCount=5;game.dice=false;roll();game.dice=true;options.dice=true;persist();setScene('home')},version);
     await openPreferences(page,device);const legacy=await snap(page);
     await page.locator('#preferences-rules').click();
     for(let i=0;i<7;i++)await page.locator('#rules-next').click();

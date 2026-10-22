@@ -58,10 +58,11 @@ function poolReport(){
  }return result})()`)));
 }
 function checkSettings(){
+ // Frozen TASK008 content coverage; current recipient policy is tested separately in TASK009 G.
  const h=createSimulation(8008);return JSON.parse(JSON.stringify(h.eval(`(()=>{
  let checked=0;for(const id of ['geography','science']){const selection={id,version:2},modes=getContentPack(selection).allowedModes;
  for(let mask=1;mask<2**modes.length;mask++)for(const promptTypes of [['word'],['phrase'],['word','phrase']])for(const difficulty of ['easy','medium','hard','mixed']){
- const result=checkContentPack(selection,{...options,modes:modes.filter((_,i)=>mask&(1<<i)),promptTypes,difficulty});checked++;if(!result.available)throw Error(JSON.stringify({id,mask,promptTypes,difficulty,result}));
+ const result=checkContentPack(selection,{...options,modeCompatibilityVersion:null,modes:modes.filter((_,i)=>mask&(1<<i)),promptTypes,difficulty});checked++;if(!result.available)throw Error(JSON.stringify({id,mask,promptTypes,difficulty,result}));
  }}return {checked,deadEnds:0}})()`)));
 }
 function audit({rounds=1200,seed=8008}={}){

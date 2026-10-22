@@ -49,7 +49,7 @@ async function settingsUI(browser,url,device){
  const context=await browser.newContext({viewport:{width:device.width,height:device.height},deviceScaleFactor:device.name==='phone'?2:1});
  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
  try{
-  await page.goto(url,{waitUntil:'load'});await page.evaluate(()=>{options.modes=DEFAULT_MODES.slice()});await openSetup(page);
+  await page.goto(url,{waitUntil:'load'});await page.evaluate(()=>{options.awardTo='guesser';options.modes=DEFAULT_MODES.slice()});await openSetup(page);
   assert.equal(await page.locator('#scene-setup input[type="range"]').count(),0,'Basic setup must use buttons');
   for(const [field,values] of [['targetScore',[15,30,60,100]],['duration',[30,45,60]]]){
    const group=page.locator('.quick-choices[data-setting="'+field+'"]');

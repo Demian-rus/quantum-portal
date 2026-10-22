@@ -39,6 +39,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
   vm.runInContext(read('mode-images.js'),context);
   vm.runInContext(read('cards.js'),context);
   vm.runInContext(read('mode-config.js'),context);
+  vm.runInContext(read('mode-compatibility.js'),context);
   vm.runInContext(read('approx-questions.js'),context);
   vm.runInContext(read('rules.js'),context);
   vm.runInContext(read('penalties.js'),context);
@@ -52,14 +53,15 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
   vm.runInContext(read('app.js'),context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
-  vm.runInContext(`function legacyGame(version=3){
+  vm.runInContext(`function startHistoricalFixture(){const awardTo=options.awardTo;options.awardTo='guesser';newGame();options.awardTo=awardTo;if(game){game.awardTo=awardTo;delete game.modeCompatibilityVersion;}}
+  function legacyGame(version=3){
     options.modes=options.modes.filter(id=>id!=='approx');
     if(options.contentPack?.id==='general')options.contentPack={id:'general',version:1};
-    newGame();if(game&&game.phase==='ready'&&game.roundIndex===0){
+    startHistoricalFixture();if(game&&game.phase==='ready'&&game.roundIndex===0){
       game.rulesVersion=version;game.contentPack={id:'general',version:1};delete game.taskHistoryVersion;delete game.taskHistory;delete game.modeConfigVersion;delete game.awardTo;delete game.awardPolicyVersion;delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;game.blitzCount=5;game.modes=game.modes.filter(id=>id!=='approx');persist();
     }
   }`,context);
-  vm.runInContext("function v4Game(){newGame();game.rulesVersion=4;delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;persist()}",context);
+  vm.runInContext("function v4Game(){startHistoricalFixture();game.rulesVersion=4;delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;persist()}",context);
   // Scoring fixtures choose a fixed starting player; dedicated tests exercise both draws.
   if(!randomizeStarter)vm.runInContext('chooseStartingTeam=()=>0',context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
@@ -1461,15 +1463,12 @@ test('new award defaults select the setter and leave immutable presets intact',(
  h.eval('soundOn=false;newGame()');assert.equal(h.eval('game.awardPolicyVersion'),1);assert.equal(h.eval('game.awardTo'),'setter');
  assert.equal(h.eval('game.scoringVersion'),2);assert.equal(h.eval('game.rulesVersion'),5);
 });
-test('award selection disables yesno only on a deliberate transition and retains manual overrides',()=>{
- const h=harness();h.eval('options.awardTo="guesser";options.modes=DEFAULT_MODES.slice()');
- h.eval('selectAwardTo("setter")');assert.equal(h.eval('options.modes.includes("yesno")'),false);
- assert.equal(h.eval('options.modes.length'),7);
- h.eval('options.modes.push("yesno");renderOptions();openAdvanced();closeAdvanced();selectAwardTo("setter")');
- assert.equal(h.eval('options.modes.includes("yesno")'),true);
+test('award selection removes incompatible modes without a fallback and blocks manual reactivation',()=>{
+ const h=harness();h.eval('options.awardTo="guesser";options.modes=DEFAULT_MODES.slice();selectAwardTo("setter")');
+ assert.equal(h.eval('options.modes.includes("yesno")'),false);assert.equal(h.eval('options.modes.length'),7);
+ assert.equal(h.eval('selectSetupMode("yesno",true)'),false);
  const modes=h.eval('JSON.stringify(options.modes)');h.eval('selectAwardTo("guesser")');assert.equal(h.eval('JSON.stringify(options.modes)'),modes);
- h.eval('options.modes=["yesno"];selectAwardTo("setter")');assert.deepEqual(Array.from(h.eval('options.modes')),['talk']);
- assert.match(h.elements.get('toast').textContent,/Слова/);
+ h.eval('options.modes=["yesno"];selectAwardTo("setter")');assert.deepEqual(Array.from(h.eval('options.modes')),[]);assert.match(h.elements.get('toast').textContent,/Выберите/);
 });
 test('award policy routes success, risk and full Blitz to either role without changing roles',()=>{
  for(const policy of ['setter','guesser'])for(const starter of [0,1])for(const mode of ['talk','blitz'])for(const success of [true,false]){
@@ -1535,7 +1534,7 @@ test('V5 splits base and modifier rewards without mutating the round or score',(
 });
 test('V5 settles all configured explanations and recipient policies for three outcomes',()=>{
  for(const policy of ['setter','guesser'])for(const mode of ['talk','mime','draw','sing','yesno','secret','blitz'])for(const outcome of ['failed','base-only','complete']){
-  const h=harness();h.eval('soundOn=false;options.awardTo="'+policy+'";options.modes=["'+mode+'"];options.complications=true;options.dice=false;Math.random=()=>0;newGame();game.modifierSelectionVersion=1;delete game.modifierCatalogVersion;roll();game.current.blitzCorrect=3;game.phase="judge"');
+  const h=harness();h.eval('soundOn=false;options.awardTo="'+policy+'";options.modes=["'+mode+'"];options.complications=true;options.dice=false;Math.random=()=>0;startHistoricalFixture();game.modifierSelectionVersion=1;delete game.modifierCatalogVersion;roll();game.current.blitzCorrect=3;game.phase="judge"');
   const base=h.eval('game.current.basePoints');h.eval('judge('+(outcome!=='failed')+','+(outcome==='complete')+')');
   const recipient=policy==='setter'?0:1,earned=outcome==='failed'?0:base+(outcome==='complete'?1:0);
   assert.equal(h.eval('game.scores['+recipient+']'),earned);
@@ -1643,7 +1642,7 @@ test('small modifier pools relax oldest restrictions safely and keep the latest 
  assert.equal(h.eval('choosePartyModifier(testMatch,testRequest,testRandom,testPool).modifier.id'),'two');
 });
 test('historical V1 real rounds maintain five selected modifiers without recent text repeats or catalog mutations',()=>{
- const h=harness();h.eval('soundOn=false;options.modes=["talk"];options.modifierChance=100;options.difficulty="hard";options.dice=false;options.riskRounds=false;Math.random=()=>0;newGame();game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
+ const h=harness();h.eval('soundOn=false;options.modes=["talk"];options.modifierChance=100;options.difficulty="hard";options.dice=false;options.riskRounds=false;Math.random=()=>0;newGame();delete game.modeCompatibilityVersion;game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
  const catalog=h.eval('JSON.stringify(QUIP_MODIFIERS)'),keys=[];
  for(let i=0;i<9;i++){
   h.eval('roll()');const key=h.eval('normalizeModifierText(game.current.complication)');
@@ -1739,7 +1738,7 @@ test('TASK008 geography v2 is authored, isolated and leaves every v1 declaration
  for(const level of ['easy','medium','hard']){assert.equal(h.eval('getPackQuestionPool({id:"geography",version:2},"'+level+'").every(q=>q.pack==="geography-v2")'),true);assert.equal(h.eval('getPackCardPool({id:"geography",version:2},"words","'+level+'",["word","phrase"]).every(c=>c.pack==="geography-v2")'),true);}
 });
 test('TASK008 geography is selectable from standard singing and idiom-only preferences without mutating them',()=>{
- const h=harness();h.eval('options.modes=["sing","yesno"];options.promptTypes=["idiom"];options.difficulty="mixed"');
+ const h=harness();h.eval('options.awardTo="guesser";options.modes=["sing","yesno"];options.promptTypes=["idiom"];options.difficulty="mixed"');
  const before=h.eval('JSON.stringify(options)');assert.equal(h.eval('listThematicPacks(options).find(e=>e.pack.id==="geography").available'),true);assert.equal(h.eval('JSON.stringify(options)'),before);
  assert.equal(h.eval('selectTheme("geography",2)'),true);assert.equal(h.eval('activeScene'),'setup');assert.equal(h.eval('options.modes.includes("sing")'),false);assert.deepEqual(Array.from(h.eval('options.promptTypes')),['word','phrase']);
  h.eval('options.modes=["draw","approx"];options.promptTypes=["phrase"];persist();selectStandardGame()');
@@ -1750,7 +1749,7 @@ test('TASK008 geography is selectable from standard singing and idiom-only prefe
 test('TASK008 geography has no dead ends for any nonempty permitted mode combination or prompt subset',()=>{
  const h=harness();h.eval('const geo={id:"geography",version:2},geoModes=QUIP_CONTENT_PACKS["geography@2"].allowedModes');
  assert.equal(h.eval(`(()=>{for(let mask=1;mask<2**geoModes.length;mask++)for(const promptTypes of [['word'],['phrase'],['word','phrase']]){
- const settings={...options,difficulty:'mixed',promptTypes,modes:geoModes.filter((_,i)=>mask&(1<<i))};if(!checkContentPack(geo,settings).available)return JSON.stringify(settings);
+ const settings={...options,modeCompatibilityVersion:null,difficulty:'mixed',promptTypes,modes:geoModes.filter((_,i)=>mask&(1<<i))};if(!checkContentPack(geo,settings).available)return JSON.stringify(settings);
  }return true})()`),true);
  assert.equal(h.eval('checkContentPack(geo,{...options,modes:["sing"]}).available'),false);
  assert.equal(h.eval('checkContentPack(geo,{...options,modes:["talk"],promptTypes:["idiom"]}).available'),false);
@@ -1758,7 +1757,7 @@ test('TASK008 geography has no dead ends for any nonempty permitted mode combina
 });
 test('TASK008 geography Secret-only never chooses singing or common-catalog content',()=>{
  const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation(808);
- h.eval('options.difficulty="mixed";selectTheme("geography",2);options.modes=["secret"];options.dice=false;newGame();game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
+ h.eval('options.difficulty="mixed";selectTheme("geography",2);options.modes=["secret"];options.dice=false;newGame();delete game.modeCompatibilityVersion;game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
  const result=h.eval(`(()=>{const methods=new Set(),levels=[];for(let i=0;i<60;i++){game.current=rollOutcome();methods.add(game.current.methodId);levels.push(game.current.difficulty);
  const pool=getPackCardPool(game.contentPack,getMode(game.current.methodId).kind,game.current.difficulty,game.promptTypes);if(!pool.some(c=>c.text===game.current.word)||game.current.methodId==='sing'||!game.current.complication)return false;game.roundIndex++;game.current=null}
  return {methods:[...methods].sort(),levels:levels.reduce((counts,l)=>(counts[l]=(counts[l]||0)+1,counts),{})}})()`);
@@ -1791,14 +1790,14 @@ test('TASK008 science v2 adds 150 distinct prompts and 30 sourced questions with
  for(const kind of ['words','people','blitz'])for(const level of ['easy','medium','hard'])assert.equal(h.eval('getPackCardPool({id:"science",version:2},"'+kind+'","'+level+'",["word","phrase"]).every(c=>c.pack==="science-v2")'),true);
 });
 test('TASK008 standard, geography and science keep independent preferences across reload and protect a running round',()=>{
- const h=harness();h.eval('options.modes=["sing"];options.promptTypes=["idiom"];selectTheme("geography",2);options.modes=["draw","approx"];options.promptTypes=["phrase"];selectTheme("science",2);options.modes=["secret","yesno"];options.promptTypes=["word"];options.dice=false;newGame();roll();game.dice=true;persist();const scienceSnapshot=JSON.stringify(game);selectTheme("geography",2)');
+ const h=harness();h.eval('options.awardTo="guesser";options.modes=["sing"];options.promptTypes=["idiom"];selectTheme("geography",2);options.modes=["draw","approx"];options.promptTypes=["phrase"];selectTheme("science",2);options.modes=["secret","yesno"];options.promptTypes=["word"];options.dice=false;newGame();roll();game.dice=true;persist();const scienceSnapshot=JSON.stringify(game);selectTheme("geography",2)');
  assert.deepEqual(Array.from(h.eval('options.modes')),['draw','approx']);assert.deepEqual(Array.from(h.eval('options.promptTypes')),['phrase']);assert.equal(h.eval('JSON.stringify(game)'),h.eval('scienceSnapshot'));
  const reload=harness(h.storage);assert.equal(reload.eval('JSON.stringify(game)'),h.eval('scienceSnapshot'));reload.eval('selectStandardGame()');assert.deepEqual(Array.from(reload.eval('options.modes')),['sing']);assert.deepEqual(Array.from(reload.eval('options.promptTypes')),['idiom']);
  reload.eval('selectTheme("science",2)');assert.deepEqual(Array.from(reload.eval('options.modes')),['yesno','secret']);assert.deepEqual(Array.from(reload.eval('options.promptTypes')),['word']);
 });
 test('TASK008 both thematic registries have no dead-end mode, type or difficulty settings',()=>{
  const {checkSettings}=require('../scripts/balance-audit.cjs');assert.deepEqual(checkSettings(),{checked:3048,deadEnds:0});
- const h=harness();h.eval('selectTheme("science",2);options.modes=["secret"];options.difficulty="mixed";options.dice=false;newGame();game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
+ const h=harness();h.eval('selectTheme("science",2);options.modes=["secret"];options.difficulty="mixed";options.dice=false;newGame();delete game.modeCompatibilityVersion;game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
  const results=h.eval(`(()=>{const methods=new Set(),seen=[];for(let i=0;i<120;i++){const c=rollOutcome();methods.add(c.methodId);if(!c.complication||c.methodId==='sing')return false;
  const pool=getPackCardPool(game.contentPack,getMode(c.methodId).kind,c.difficulty,game.promptTypes);if(!pool.some(row=>row.text===c.word)||!pool.every(row=>row.pack==='science-v2'))return false;seen.push(c.difficulty);game.roundIndex++}return {methods:[...methods].sort(),counts:['easy','medium','hard'].map(l=>seen.filter(x=>x===l).length)}})()`);
  assert.deepEqual(Array.from(results.methods),['draw','mime','talk','yesno']);assert.deepEqual(Array.from(results.counts),[40,40,40]);

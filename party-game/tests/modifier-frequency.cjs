@@ -20,7 +20,7 @@ async function offlineUpgrade(browser,url){
  // necessary, without switching branches or changing the checkout's files.
  const git=args=>execFileSync('git',args,{cwd:root,timeout:30000,maxBuffer:2*1024*1024,stdio:['ignore','pipe','pipe']});
  try{git(['cat-file','-e',legacyCommit+'^{commit}'])}catch{git(['fetch','--depth=1','origin',legacyCommit])}
- const files=['sw.js','index.html','style.css','app.js','modifiers.js','cards.js','approx-questions.js','content-packs.js'];
+ const files=['sw.js','index.html','style.css','app.js','modifiers.js','cards.js','approx-questions.js','content-packs.js','presets.js'];
  const current=new Map(files.map(name=>[name,fs.readFileSync(path.join(root,'party-game',name))]));
  const legacy=new Map(files.map(name=>[name,git(['show',legacyCommit+':party-game/'+name])]));
  const cache=source=>source.toString().match(/const CACHE='([^']+)'/)[1];
@@ -29,7 +29,7 @@ async function offlineUpgrade(browser,url){
  const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage();
  try{
   // Install the actual stage-B bundle and worker, then update to stage C.
-  // All other precached production resources are unchanged between these commits.
+  // Include historical presets: G presets depend on a module absent from the old index.
   write(legacy);
   // Give historical assets a historical Last-Modified value. The local static
   // server has one-second precision; two writes within a second can yield a
