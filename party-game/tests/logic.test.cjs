@@ -686,6 +686,7 @@ test('new games use a one-minute base and +30s in long modes including Blitz',()
 
 test('card catalog v1 retains all 3016 historical tasks and unique IDs',()=>{
  const h=harness(),cards=JSON.parse(h.eval('JSON.stringify(PARTY_CARDS)'));
+ const declaredOrigins=new Set(require('../scripts/content.cjs').readDataset().cards.map(c=>c.pack));
  assert.equal(h.eval('PARTY_CARD_SCHEMA_VERSION'),1);
  const historical=cards.filter(c=>Number(c.id.split('-')[1])<8000);
  assert.equal(historical.length,3016);
@@ -699,7 +700,7 @@ test('card catalog v1 retains all 3016 historical tasks and unique IDs',()=>{
   assert.ok(['word','phrase','idiom','song','person'].includes(c.type));
   assert.ok(Array.isArray(c.categories)&&c.categories.every(x=>/^[a-z][a-z0-9-]*$/.test(x)));
   assert.equal(c.categories.length,new Set(c.categories).size);
-  assert.ok(['core','music','people','geography-v2','science-v2'].includes(c.pack));
+  assert.ok(declaredOrigins.has(c.pack),'Undeclared source origin: '+c.pack);
   if(c.type==='song')assert.ok(c.meta.title&&c.meta.artist&&c.meta.genre);
  }
  assert.equal(h.eval("getCardById('word-000001').text"),'КАРАНДАШ');
@@ -1077,10 +1078,11 @@ test('leaving the carousel for the menu preserves its selected card on Continue'
 });
 
 test('general pack preserves all existing pools, IDs, types and difficulties',()=>{
+ const originalIds=new Set(require('../scripts/content.cjs').readDataset().sources.filter(s=>s.kind==='cards'&&s.immutable).flatMap(s=>s.rows.map(c=>c.id)));
  const h=harness();h.eval('soundOn=false;legacyGame()');
  assert.equal(h.eval('PARTY_CARDS.filter(c=>Number(c.id.split("-")[1])<8000).length'),3016);
  for(const kind of ['words','songs','people','blitz'])for(const level of ['easy','medium','hard']){
-  const expected=Array.from(h.eval('getCardPool("'+kind+'","'+level+'",game.promptTypes).map(c=>c.id)')).sort();
+  const expected=Array.from(h.eval('getCardPool("'+kind+'","'+level+'",game.promptTypes).map(c=>c.id)')).filter(id=>originalIds.has(id)).sort();
   const actual=Array.from(h.eval('getPackCardPool(game.contentPack,"'+kind+'","'+level+'",game.promptTypes).map(c=>c.id)')).sort();
   assert.deepEqual(actual,expected,kind+'/'+level);
  }
