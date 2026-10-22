@@ -1,0 +1,980 @@
+[
+  {
+    "id": "approx-21001",
+    "question": "Какова высота горы Фудзи над уровнем моря?",
+    "answer": "3776",
+    "unit": "м",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "note": "Высота над уровнем моря, не перепад от подножия; источник JNTO.",
+    "source": "https://www.japan.travel/national-parks/parks/fuji-hakone-izu/explore/",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "retained-approx-8111",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-8111"
+    }
+  },
+  {
+    "id": "approx-21002",
+    "question": "Какова максимальная глубина Байкала?",
+    "answer": "1642",
+    "unit": "м",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "note": "Максимум по батиметрической карте INTAS 2002; не средняя глубина.",
+    "source": "https://www.lin.irk.ru/intas/morphometry.htm",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "retained-approx-8112",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-8112"
+    }
+  },
+  {
+    "id": "approx-21003",
+    "question": "Какова полная длина Суэцкого канала по справочнику его администрации 2026 года?",
+    "answer": "193,3",
+    "unit": "км",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "note": "193,30 км; не длина отдельной новой параллельной секции.",
+    "source": "https://www.suezcanal.gov.eg/English/Pages/FAQ.aspx",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "retained-approx-8117",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-8117"
+    }
+  },
+  {
+    "id": "approx-21004",
+    "question": "Какова высота Килиманджаро над уровнем моря?",
+    "answer": "5895",
+    "unit": "м",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "note": "Высшая точка — пик Ухуру на Кибо.",
+    "source": "https://www.tanzaniaparks.go.tz/kilimanjaro",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "retained-approx-8118",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-8118"
+    }
+  },
+  {
+    "id": "approx-21005",
+    "question": "Какова площадь всей территории государства Мальта?",
+    "answer": "316",
+    "unit": "км²",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "note": "Вся территория Мальты, не только главный остров.",
+    "source": "https://nao.gov.mt/wp-content/uploads/2025/07/InterregJuly2025.pdf",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "retained-approx-8121",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-8121"
+    }
+  },
+  {
+    "id": "approx-21006",
+    "question": "Какова приблизительная длина Панамского канала между океанами?",
+    "answer": "80",
+    "unit": "км",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "note": "Округлённое значение из публикации администрации 2015 года.",
+    "source": "https://pancanal.com/canal-de-panama-celebra-101-anos-de-operacion/",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "retained-approx-8125",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-8125"
+    }
+  },
+  {
+    "id": "approx-21007",
+    "question": "Какова максимальная глубина озера Крейтер в США?",
+    "answer": "592",
+    "unit": "м",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "note": "В справке NPS — 1943 фута, или 592 м.",
+    "source": "https://www.nps.gov/places/crater-lake.htm",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "retained-approx-8127",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-8127"
+    }
+  },
+  {
+    "id": "approx-21008",
+    "difficulty": "medium",
+    "question": "Каков судоходный просвет под мостом Золотые Ворота при среднем уровне высокой воды?",
+    "answer": "67",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "technology"
+    ],
+    "note": "Оператор указывает clearance above mean higher high water. Это просвет под конструкцией, а не отметка поверхности дороги.",
+    "source": "https://www.goldengate.org/bridge/history-research/statistics-data/design-construction-stats/",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "golden",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20004"
+    }
+  },
+  {
+    "id": "approx-21009",
+    "difficulty": "hard",
+    "question": "Сколько окон в Эмпайр-стейт-билдинг?",
+    "answer": "6514",
+    "unit": "окон",
+    "categories": [
+      "technology"
+    ],
+    "note": "Число из справочника владельца, проверенного в октябре 2026 года.",
+    "source": "https://www.esbnyc.com/about/facts-figures",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "empire",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20008"
+    }
+  },
+  {
+    "id": "approx-21010",
+    "difficulty": "medium",
+    "question": "Какова максимальная глубина озера Йеллоустон?",
+    "answer": "131",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "Это максимальная, а не средняя глубина.",
+    "source": "https://www.nps.gov/yell/planyourvisit/parkfacts.htm",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "yellowstone",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20011"
+    }
+  },
+  {
+    "id": "approx-21011",
+    "difficulty": "easy",
+    "question": "Каков примерно рост взрослого императорского пингвина?",
+    "answer": "115",
+    "unit": "см",
+    "categories": [
+      "animals",
+      "nature",
+      "science"
+    ],
+    "note": "Усреднённый справочный ориентир; не рекорд отдельной птицы.",
+    "source": "https://www.bas.ac.uk/wp-content/uploads/2015/05/Public-information-leaflet_PENGUINS_2017.pdf",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "penguins",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20031"
+    }
+  },
+  {
+    "id": "approx-21012",
+    "difficulty": "medium",
+    "question": "Сколько примерно весит малый пингвин?",
+    "answer": "1.1",
+    "unit": "кг",
+    "categories": [
+      "animals",
+      "nature",
+      "science"
+    ],
+    "note": "Один из самых маленьких пингвинов; справочная приблизительная масса.",
+    "source": "https://www.bas.ac.uk/wp-content/uploads/2015/05/Public-information-leaflet_PENGUINS_2017.pdf",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "penguins",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20032"
+    }
+  },
+  {
+    "id": "approx-21013",
+    "difficulty": "easy",
+    "question": "Каков размах крыльев пассажирского Airbus A380?",
+    "answer": "79.8",
+    "unit": "м",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "Геометрический размах, а не длина самолёта.",
+    "source": "https://www.airbus.com/sites/g/files/jlcbta136/files/2021-10/EN-Airbus-A380-Facts-and-Figures_0.pdf",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "a380",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20039"
+    }
+  },
+  {
+    "id": "approx-21014",
+    "difficulty": "medium",
+    "question": "Какова максимальная взлётная масса самого тяжёлого пассажирского варианта Airbus A380?",
+    "answer": "575",
+    "unit": "т",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "Справочник Airbus 2021 года: самый тяжёлый из описанных вариантов. Это масса всего заправленного самолёта, не полезная нагрузка.",
+    "source": "https://www.airbus.com/sites/g/files/jlcbta136/files/2021-10/EN-Airbus-A380-Facts-and-Figures_0.pdf",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "a380",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20040"
+    }
+  },
+  {
+    "id": "approx-21015",
+    "difficulty": "medium",
+    "question": "Сколько пассажиров максимально разрешено перевозить на Airbus A380?",
+    "answer": "853",
+    "unit": "пассажира",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "Предельная сертифицированная вместимость; реальная компоновка авиакомпаний обычно меньше.",
+    "source": "https://www.airbus.com/sites/g/files/jlcbta136/files/2021-10/EN-Airbus-A380-Facts-and-Figures_0.pdf",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "a380",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20041"
+    }
+  },
+  {
+    "id": "approx-21016",
+    "difficulty": "hard",
+    "question": "Сколько весит наружная краска A380 вместе с грунтовкой по расчёту Airbus 2021 года?",
+    "answer": "531",
+    "unit": "кг",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "Масса верхнего покрытия и грунта по данным производителя.",
+    "source": "https://www.airbus.com/sites/g/files/jlcbta136/files/2021-10/EN-Airbus-A380-Facts-and-Figures_0.pdf",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "a380",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20042"
+    }
+  },
+  {
+    "id": "approx-21017",
+    "difficulty": "easy",
+    "question": "Какова первоначальная высота пирамиды Хеопса с ещё целой вершиной?",
+    "answer": "146.5",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "history",
+      "culture"
+    ],
+    "note": "Первоначальная высота с утраченной вершиной, не современная высота.",
+    "source": "https://egymonuments.gov.eg/monuments/the-great-pyramid/",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "giza",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20049"
+    }
+  },
+  {
+    "id": "approx-21018",
+    "difficulty": "easy",
+    "question": "Какова высота гигантской секвойи «Генерал Шерман»?",
+    "answer": "83.8",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "Справочный размер над основанием, не высота любой секвойи.",
+    "source": "https://home.nps.gov/seki/learn/nature/sherman.htm",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "sherman",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20050"
+    }
+  },
+  {
+    "id": "approx-21019",
+    "difficulty": "medium",
+    "question": "Какова средняя глубина Гранд-Каньона?",
+    "answer": "1600",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "Округлённая оценка 1,6 км, а не наибольшая глубина отдельного участка.",
+    "source": "https://www.nps.gov/grca/learn/management/statistics.htm",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "canyon",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20054"
+    }
+  },
+  {
+    "id": "approx-21020",
+    "difficulty": "medium",
+    "question": "До какой приблизительной толщины доходит антарктический ледяной щит?",
+    "answer": "4.8",
+    "unit": "км",
+    "categories": [
+      "geography",
+      "nature",
+      "science"
+    ],
+    "note": "Округлённая верхняя оценка BAS, не средняя толщина.",
+    "source": "https://www.bas.ac.uk/about/education-and-schools/antarctic-factsheet/",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "antarctic",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20057"
+    }
+  },
+  {
+    "id": "approx-21021",
+    "difficulty": "hard",
+    "question": "Какой процент поверхности Антарктиды примерно свободен от снега и льда?",
+    "answer": "0.4",
+    "unit": "%",
+    "categories": [
+      "geography",
+      "nature",
+      "science"
+    ],
+    "note": "Доля открытой поверхности материка; не доля воды во всём мировом льду.",
+    "source": "https://www.bas.ac.uk/about/education-and-schools/antarctic-factsheet/",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "antarctic",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20058"
+    }
+  },
+  {
+    "id": "approx-21022",
+    "difficulty": "easy",
+    "question": "Какова высота деревянной основы «Моны Лизы» без рамы?",
+    "answer": "79.4",
+    "unit": "см",
+    "categories": [
+      "culture",
+      "arts"
+    ],
+    "note": "Лувр, учётная карточка INV 779, проверенная в октябре 2026: высота 0,794 м без аксессуаров. Это измерение деревянной основы, а не распространённый размер 77 см из старых подписей.",
+    "source": "https://collections.louvre.fr/ark:/53355/cl010062370",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "monalisa",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20062"
+    }
+  },
+  {
+    "id": "approx-21023",
+    "difficulty": "hard",
+    "question": "Сколько примерно весит ствол Царь-пушки без лафета?",
+    "answer": "40",
+    "unit": "т",
+    "categories": [
+      "culture",
+      "history",
+      "technology"
+    ],
+    "note": "Музей округляет массу ствола до 40 тонн; лафет в неё не включён.",
+    "source": "https://kremlin-architectural-ensemble.kreml.ru/en-Us/artillery-guns/view/tsar-pushka-moskovskogo-kremlya/",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tsar-cannon",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20067"
+    }
+  },
+  {
+    "id": "approx-21024",
+    "difficulty": "medium",
+    "question": "Какова примерная длина тонкой кишки взрослого человека, до десятых метра?",
+    "answer": "6.7",
+    "unit": "м",
+    "categories": [
+      "biology",
+      "science"
+    ],
+    "note": "Справочный ориентир 22 фута ≈ 6,71 м; длина у разных людей и при разных измерениях варьирует.",
+    "source": "https://my.clevelandclinic.org/health/body/22135-small-intestine",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "intestine",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20068"
+    }
+  },
+  {
+    "id": "approx-21025",
+    "difficulty": "easy",
+    "question": "Сколько примерно весит мозг взрослого человека, до десятых килограмма?",
+    "answer": "1.4",
+    "unit": "кг",
+    "categories": [
+      "biology",
+      "science"
+    ],
+    "note": "Средний ориентир 3 фунта ≈ 1,36 кг; не масса мозга каждого человека.",
+    "source": "https://my.clevelandclinic.org/health/body/22638-brain",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "brain",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20069"
+    }
+  },
+  {
+    "id": "approx-21026",
+    "difficulty": "medium",
+    "question": "До скольких литров слюны обычно вырабатывается у взрослого человека за сутки?",
+    "answer": "2",
+    "unit": "л",
+    "categories": [
+      "biology",
+      "science"
+    ],
+    "note": "В справке указан ориентировочный диапазон 1–2 литра в день; спрашивается верхняя граница.",
+    "source": "https://my.clevelandclinic.org/health/body/23462-salivary-glands",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "saliva",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20070"
+    }
+  },
+  {
+    "id": "approx-21027",
+    "difficulty": "hard",
+    "question": "Сколько суток в среднем живёт эритроцит человека?",
+    "answer": "120",
+    "unit": "суток",
+    "categories": [
+      "biology",
+      "science"
+    ],
+    "note": "Приблизительное среднее для здорового организма, не предельная жизнь любой клетки.",
+    "source": "https://my.clevelandclinic.org/health/body/21691-function-of-red-blood-cells",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "rbc",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20071"
+    }
+  },
+  {
+    "id": "approx-21028",
+    "difficulty": "medium",
+    "question": "До какой длины доходит один беговой шаг гепарда?",
+    "answer": "6.7",
+    "unit": "м",
+    "categories": [
+      "animals",
+      "nature",
+      "science"
+    ],
+    "note": "Приведён диапазон 6–6,7 м; спрашивается верхний ориентир.",
+    "source": "https://animals.sandiegozoo.org/animals/cheetah",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "cheetah",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20074"
+    }
+  },
+  {
+    "id": "approx-21029",
+    "difficulty": "hard",
+    "question": "Какова примерная средняя площадь участка обитания большой панды?",
+    "answer": "5",
+    "unit": "км²",
+    "categories": [
+      "animals",
+      "nature",
+      "science"
+    ],
+    "note": "Зоопарк приводит около 5 км²; участки самцов и самок, а также условия питания различаются.",
+    "source": "https://animals.sandiegozoo.org/animals/giant-panda",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "panda",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20076"
+    }
+  },
+  {
+    "id": "approx-21030",
+    "difficulty": "medium",
+    "question": "До какой толщины может доходить подкожный жир белого медведя?",
+    "answer": "10",
+    "unit": "см",
+    "categories": [
+      "animals",
+      "nature",
+      "science"
+    ],
+    "note": "В справке дан ориентир 5–10 см; спрашивается верхняя граница.",
+    "source": "https://animals.sandiegozoo.org/animals/polar-bear",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "polar",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20077"
+    }
+  },
+  {
+    "id": "approx-21031",
+    "difficulty": "medium",
+    "question": "Сколько электронных ламп было в компьютере ENIAC?",
+    "answer": "18000",
+    "unit": "ламп",
+    "categories": [
+      "history",
+      "technology",
+      "science"
+    ],
+    "note": "Речь об ENIAC, не о более поздних транзисторных компьютерах.",
+    "source": "https://penntoday.upenn.edu/news/eniacs-anniversary-nod-its-female-computers",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "eniac",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20084"
+    }
+  },
+  {
+    "id": "approx-21032",
+    "difficulty": "hard",
+    "question": "Сколько миллионов паяных соединений сделали вручную при сборке ENIAC?",
+    "answer": "5",
+    "unit": "млн соединений",
+    "categories": [
+      "history",
+      "technology",
+      "science"
+    ],
+    "note": "Оценка исторического описания создателя компьютера; ответ в миллионах.",
+    "source": "https://penntoday.upenn.edu/news/eniacs-anniversary-nod-its-female-computers",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "eniac",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20085"
+    }
+  },
+  {
+    "id": "approx-21033",
+    "difficulty": "hard",
+    "question": "За сколько миллисекунд первый жёсткий диск IBM RAMAC примерно находил нужные данные?",
+    "answer": "800",
+    "unit": "мс",
+    "categories": [
+      "history",
+      "technology"
+    ],
+    "note": "Ориентир разработчика для первого продукта, не скорость современных дисков; цель была около полусекунды.",
+    "source": "https://www.ibm.com/history/ramac",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "ramac",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20086"
+    }
+  },
+  {
+    "id": "approx-21034",
+    "difficulty": "hard",
+    "question": "Какую приблизительную дистанцию прошёл плот «Кон-Тики» от Перу до Полинезии?",
+    "answer": "8000",
+    "unit": "км",
+    "categories": [
+      "history",
+      "geography",
+      "transport"
+    ],
+    "note": "Округлённая оценка музея, не кратчайшее расстояние по прямой.",
+    "source": "https://www.kon-tiki.no/en/news/visste-du-om-disse-fire-dristige-havkryssingsreisene-fr-kon-tiki",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "kontiki",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20093"
+    }
+  },
+  {
+    "id": "approx-21035",
+    "difficulty": "easy",
+    "question": "Сколько примерно весит крупный взрослый самец африканского слона?",
+    "answer": "6.8",
+    "unit": "т",
+    "categories": [
+      "animals",
+      "nature",
+      "science"
+    ],
+    "note": "Справочный ориентир крупного самца; не рекорд крупнейшего измеренного слона.",
+    "source": "https://animals.sandiegozoo.org/animals/elephant",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "elephant",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20096"
+    }
+  },
+  {
+    "id": "approx-21036",
+    "difficulty": "hard",
+    "question": "До скольких килограммов растительной пищи может съедать слон за день?",
+    "answer": "150",
+    "unit": "кг",
+    "categories": [
+      "animals",
+      "nature",
+      "science"
+    ],
+    "note": "Приведён ориентировочный диапазон 75–150 кг за день, а не единая норма для всех слонов.",
+    "source": "https://animals.sandiegozoo.org/animals/elephant",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "elephant",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20099"
+    }
+  },
+  {
+    "id": "approx-21037",
+    "difficulty": "medium",
+    "question": "Сколько литров воды может выпить сильно обезвоженный верблюд за один раз?",
+    "answer": "145",
+    "unit": "л",
+    "categories": [
+      "animals",
+      "nature",
+      "science"
+    ],
+    "note": "Предельный ориентир одной водопойной сессии после обезвоживания; не ежедневная норма.",
+    "source": "https://animals.sandiegozoo.org/animals/camel",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "camel",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20100"
+    }
+  },
+  {
+    "id": "approx-21038",
+    "difficulty": "easy",
+    "question": "Через сколько минут после рождения верблюжонок уже может идти рядом с матерью?",
+    "answer": "30",
+    "unit": "минут",
+    "categories": [
+      "animals",
+      "biology",
+      "science"
+    ],
+    "note": "Ориентир — в течение получаса; развитие отдельных животных может различаться.",
+    "source": "https://animals.sandiegozoo.org/animals/camel",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "camel",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20101"
+    }
+  },
+  {
+    "id": "approx-21039",
+    "difficulty": "medium",
+    "question": "До скольких месяцев длится беременность верблюда?",
+    "answer": "14",
+    "unit": "месяцев",
+    "categories": [
+      "animals",
+      "biology",
+      "science"
+    ],
+    "note": "В справке указан диапазон 12–14 месяцев; спрашивается верхняя граница.",
+    "source": "https://animals.sandiegozoo.org/animals/camel",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "camel",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20102"
+    }
+  },
+  {
+    "id": "approx-21040",
+    "difficulty": "hard",
+    "question": "Сколько килограммов дополнительного груза верблюд может без труда нести в пустынном переходе?",
+    "answer": "90",
+    "unit": "кг",
+    "categories": [
+      "animals",
+      "transport",
+      "science"
+    ],
+    "note": "Справка описывает переходы с дополнительным грузом около 90 кг; это не абсолютный рекорд грузоподъёмности.",
+    "source": "https://animals.sandiegozoo.org/animals/camel",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "camel",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20103"
+    }
+  },
+  {
+    "id": "approx-21041",
+    "difficulty": "hard",
+    "question": "Какова примерная длина перелёта рыжей колибри из Мексики на Аляску?",
+    "answer": "4800",
+    "unit": "км",
+    "categories": [
+      "animals",
+      "geography",
+      "science"
+    ],
+    "note": "Округлённая длина одного миграционного пути, не сумма перелётов туда и обратно.",
+    "source": "https://animals.sandiegozoo.org/animals/hummingbird",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "hummingbird",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20106"
+    }
+  },
+  {
+    "id": "approx-21042",
+    "difficulty": "medium",
+    "question": "С какой приблизительной скоростью ходит галапагосская гигантская черепаха?",
+    "answer": "0.26",
+    "unit": "км/ч",
+    "categories": [
+      "animals",
+      "nature",
+      "science"
+    ],
+    "note": "Ориентир обычной неторопливой ходьбы, не предельная скорость животного.",
+    "source": "https://animals.sandiegozoo.org/animals/galapagos-giant-tortoise",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tortoise",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20108"
+    }
+  },
+  {
+    "id": "approx-21043",
+    "difficulty": "hard",
+    "question": "До какой массы вырастают самцы галапагосской гигантской черепахи?",
+    "answer": "260",
+    "unit": "кг",
+    "categories": [
+      "animals",
+      "nature",
+      "science"
+    ],
+    "note": "Верхний ориентир таблицы для самцов; самки обычно меньше.",
+    "source": "https://animals.sandiegozoo.org/animals/galapagos-giant-tortoise",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tortoise",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20109"
+    }
+  },
+  {
+    "id": "approx-21044",
+    "difficulty": "easy",
+    "question": "Каков диаметр рекордного листа кувшинки Victoria boliviana в саду Ла-Ринконада в Боливии?",
+    "answer": "3.2",
+    "unit": "м",
+    "categories": [
+      "nature",
+      "biology",
+      "science"
+    ],
+    "note": "Конкретный измеренный лист; не средний размер всех кувшинок.",
+    "source": "https://www.kew.org/plants/victoria-boliviana",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "waterlily",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20116"
+    }
+  },
+  {
+    "id": "approx-21045",
+    "difficulty": "easy",
+    "question": "До какой высоты вырастает неразветвлённое соцветие аморфофаллуса титанического?",
+    "answer": "3",
+    "unit": "м",
+    "categories": [
+      "nature",
+      "biology",
+      "science"
+    ],
+    "note": "Речь о соцветии titan arum, а не об одиночном цветке.",
+    "source": "https://www.kew.org/plants/titan-arum",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "titan",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20118"
+    }
+  },
+  {
+    "id": "approx-21046",
+    "difficulty": "hard",
+    "question": "На сколько километров протянулась молния над США 22 октября 2017 года, округлённо до десятков?",
+    "answer": "830",
+    "unit": "км",
+    "categories": [
+      "nature",
+      "geography",
+      "science"
+    ],
+    "note": "ВМО приводит 829 ± 8 км по спутниковому анализу; округлено до десятков.",
+    "source": "https://wmo.int/news/media-centre/wmo-certifies-megaflash-lightning-record-usa",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "lightning-length",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20120"
+    }
+  },
+  {
+    "id": "approx-21047",
+    "difficulty": "easy",
+    "question": "Какова полная длина шведского корабля «Васа»?",
+    "answer": "69",
+    "unit": "м",
+    "categories": [
+      "history",
+      "transport",
+      "technology"
+    ],
+    "note": "Исторический корабль XVII века, не современная реплика.",
+    "source": "https://www.vasamuseet.se/en/explore/vasa-history/timeline",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "vasa",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20129"
+    }
+  },
+  {
+    "id": "approx-21048",
+    "difficulty": "easy",
+    "question": "Какова масса марсианского вертолёта Ingenuity?",
+    "answer": "1.8",
+    "unit": "кг",
+    "categories": [
+      "space",
+      "technology",
+      "science"
+    ],
+    "note": "Масса аппарата; она не уменьшается на Марсе вместе с силой тяжести.",
+    "source": "https://www.jpl.nasa.gov/news/press_kits/ingenuity/landing/quick_facts/",
+    "pack": "approx-estimation-revision-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "ingenuity",
+      "checkedAt": "2026-10-22",
+      "replacesQuestionId": "approx-20145"
+    }
+  }
+]

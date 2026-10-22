@@ -1,0 +1,2258 @@
+[
+  {
+    "id": "approx-22001",
+    "difficulty": "easy",
+    "question": "До какой высоты вырастает взрослый самец жирафа?",
+    "answer": "5.5",
+    "unit": "м",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница для самцов — 5,5 м.",
+    "source": "https://animals.sandiegozoo.org/animals/giraffe",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "giraffe",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "giraffe:height-male",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22002",
+    "difficulty": "medium",
+    "question": "Сколько примерно весит шея жирафа?",
+    "answer": "272",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Около 600 фунтов; метрическое значение справочника.",
+    "source": "https://animals.sandiegozoo.org/animals/giraffe",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "giraffe",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "giraffe:neck-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22003",
+    "difficulty": "medium",
+    "question": "Какого роста жирафёнок при рождении?",
+    "answer": "1.8",
+    "unit": "м",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Около 6 футов, или 1,8 м.",
+    "source": "https://animals.sandiegozoo.org/animals/giraffe",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "giraffe",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "giraffe:newborn-height",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22004",
+    "difficulty": "hard",
+    "question": "Каков примерно диаметр ступни жирафа?",
+    "answer": "30.5",
+    "unit": "см",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "12 дюймов = 30,48 см; округлено до десятых.",
+    "source": "https://animals.sandiegozoo.org/animals/giraffe",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "giraffe",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "giraffe:foot-diameter",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22005",
+    "difficulty": "easy",
+    "question": "До какой длины вырастает белый носорог?",
+    "answer": "4",
+    "unit": "м",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница диапазона 3,7–4 м.",
+    "source": "https://animals.sandiegozoo.org/animals/rhinoceros",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "rhino",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "rhino:white-length",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22006",
+    "difficulty": "medium",
+    "question": "С какой максимальной скоростью может бежать чёрный носорог?",
+    "answer": "64",
+    "unit": "км/ч",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Справочник указывает 40 миль/ч, примерно 64 км/ч.",
+    "source": "https://animals.sandiegozoo.org/animals/rhinoceros",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "rhino",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "rhino:black-speed",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22007",
+    "difficulty": "hard",
+    "question": "До какой длины может вырасти передний рог чёрного носорога?",
+    "answer": "1.3",
+    "unit": "м",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя оценка справочника; не средняя длина.",
+    "source": "https://animals.sandiegozoo.org/animals/rhinoceros",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "rhino",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "rhino:black-horn",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22008",
+    "difficulty": "easy",
+    "question": "Сколько примерно весит новорождённый тигрёнок?",
+    "answer": "1",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "В таблице — около 2,2 фунта, или 1 кг.",
+    "source": "https://animals.sandiegozoo.org/animals/tiger",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tiger",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "tiger:newborn-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22009",
+    "difficulty": "medium",
+    "question": "Сколько примерно суток длится беременность тигрицы?",
+    "answer": "103",
+    "unit": "суток",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Средний ориентир, а не фиксированный срок.",
+    "source": "https://animals.sandiegozoo.org/animals/tiger",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tiger",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "tiger:gestation",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22010",
+    "difficulty": "medium",
+    "question": "До какой длины доходит хвост тигра?",
+    "answer": "1.1",
+    "unit": "м",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница 0,7–1,1 м.",
+    "source": "https://animals.sandiegozoo.org/animals/tiger",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tiger",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "tiger:tail-length",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22011",
+    "difficulty": "medium",
+    "question": "Сколько килограммов пищи взрослый самец гориллы может съесть за день?",
+    "answer": "18",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхний ориентир — 40 фунтов, или 18 кг.",
+    "source": "https://animals.sandiegozoo.org/animals/gorilla",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gorilla",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "gorilla:daily-food",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22012",
+    "difficulty": "easy",
+    "question": "До какого роста может вырасти самец гориллы, стоящий прямо?",
+    "answer": "1.75",
+    "unit": "м",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница для самцов в справочнике.",
+    "source": "https://animals.sandiegozoo.org/animals/gorilla",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gorilla",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "gorilla:male-height",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22013",
+    "difficulty": "medium",
+    "question": "Каков средний рост взрослого самца орангутана?",
+    "answer": "136",
+    "unit": "см",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Среднее для самцов в таблице зоопарка; не рекорд.",
+    "source": "https://animals.sandiegozoo.org/animals/orangutan",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "orangutan",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "orangutan:male-height",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22014",
+    "difficulty": "hard",
+    "question": "До какой массы доходит новорождённый орангутан?",
+    "answer": "2",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница диапазона 1,5–2 кг.",
+    "source": "https://animals.sandiegozoo.org/animals/orangutan",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "orangutan",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "orangutan:newborn-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22015",
+    "difficulty": "easy",
+    "question": "До скольких часов в сутки коала может спать?",
+    "answer": "22",
+    "unit": "часов",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница обычного диапазона 18–22 часа.",
+    "source": "https://animals.sandiegozoo.org/animals/koala",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "koala",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "koala:sleep",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22016",
+    "difficulty": "hard",
+    "question": "До какой массы доходит детёныш коалы сразу после рождения?",
+    "answer": "1",
+    "unit": "г",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Диапазон 0,4–1 г; до перемещения в сумку.",
+    "source": "https://animals.sandiegozoo.org/animals/koala",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "koala",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "koala:newborn-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22017",
+    "difficulty": "medium",
+    "question": "До какой длины вырастает тело взрослой коалы?",
+    "answer": "80",
+    "unit": "см",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Длина головы и тела 60–80 см, верхняя граница.",
+    "source": "https://animals.sandiegozoo.org/animals/koala",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "koala",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "koala:body-length",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22018",
+    "difficulty": "easy",
+    "question": "Какова высота крупного бегемота в плечах?",
+    "answer": "1.6",
+    "unit": "м",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя оценка справочника.",
+    "source": "https://animals.sandiegozoo.org/animals/hippo",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "hippo",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "hippo:shoulder-height",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22019",
+    "difficulty": "medium",
+    "question": "Сколько примерно весит взрослая самка бегемота?",
+    "answer": "1400",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Среднее значение для самок, не максимум самцов.",
+    "source": "https://animals.sandiegozoo.org/animals/hippo",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "hippo",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "hippo:female-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22020",
+    "difficulty": "medium",
+    "question": "До какой длины вырастает бегемот?",
+    "answer": "5",
+    "unit": "м",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница 3,3–5 м.",
+    "source": "https://animals.sandiegozoo.org/animals/hippo",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "hippo",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "hippo:body-length",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22021",
+    "difficulty": "medium",
+    "question": "На каком расстоянии может быть слышен львиный рёв?",
+    "answer": "4.8",
+    "unit": "км",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "До 3 миль, или примерно 4,8 км; зависит от условий.",
+    "source": "https://animals.sandiegozoo.org/animals/lion",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "lion",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "lion:roar-distance",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22022",
+    "difficulty": "hard",
+    "question": "Сколько мяса крупный лев может съесть за один раз?",
+    "answer": "63",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхний ориентир одного кормления, не дневная норма.",
+    "source": "https://animals.sandiegozoo.org/animals/lion",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "lion",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "lion:meal-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22023",
+    "difficulty": "easy",
+    "question": "С какой скоростью может бежать львица на коротком спринте?",
+    "answer": "53",
+    "unit": "км/ч",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "До 33 миль/ч; кратковременная скорость.",
+    "source": "https://animals.sandiegozoo.org/animals/lion",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "lion",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "lion:female-speed",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22024",
+    "difficulty": "medium",
+    "question": "Какова жирность молока белой медведицы?",
+    "answer": "36",
+    "unit": "%",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Оценка зоопарка — 36% жира.",
+    "source": "https://animals.sandiegozoo.org/animals/polar-bear",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "polar-bear",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "polar-bear:milk-fat",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22025",
+    "difficulty": "easy",
+    "question": "Сколько примерно весит белый медвежонок при рождении?",
+    "answer": "0.5",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Чуть больше одного фунта; округлённый ориентир.",
+    "source": "https://animals.sandiegozoo.org/animals/polar-bear",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "polar-bear",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "polar-bear:newborn-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22026",
+    "difficulty": "medium",
+    "question": "До какой массы вырастает самец большого рыжего кенгуру?",
+    "answer": "85",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница 22–85 кг.",
+    "source": "https://animals.sandiegozoo.org/animals/kangaroo-and-wallaby",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "kangaroo",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "kangaroo:red-male-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22027",
+    "difficulty": "easy",
+    "question": "С какой скоростью может передвигаться прыжками большой рыжий кенгуру?",
+    "answer": "56",
+    "unit": "км/ч",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Кратковременный максимум — почти 35 миль/ч.",
+    "source": "https://animals.sandiegozoo.org/animals/kangaroo-and-wallaby",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "kangaroo",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "kangaroo:red-speed",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22028",
+    "difficulty": "medium",
+    "question": "Какова примерно длина языка гигантского муравьеда?",
+    "answer": "60",
+    "unit": "см",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Около 2 футов; самостоятельная характеристика языка.",
+    "source": "https://animals.sandiegozoo.org/animals/giant-anteater",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "anteater",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "anteater:tongue-length",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22029",
+    "difficulty": "hard",
+    "question": "Сколько муравьёв и термитов гигантский муравьед может съесть за сутки?",
+    "answer": "30000",
+    "unit": "насекомых",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя оценка зоопарка, не число при каждом кормлении.",
+    "source": "https://animals.sandiegozoo.org/animals/giant-anteater",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "anteater",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "anteater:daily-insects",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22030",
+    "difficulty": "hard",
+    "question": "Сколько раз в минуту муравьед может выбрасывать язык за добычей?",
+    "answer": "150",
+    "unit": "раз",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя частота при кормлении.",
+    "source": "https://animals.sandiegozoo.org/animals/giant-anteater",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "anteater",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "anteater:tongue-frequency",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22031",
+    "difficulty": "medium",
+    "question": "Какова приблизительная температура тела гигантского муравьеда, округлённо до целого градуса?",
+    "answer": "33",
+    "unit": "°C",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Около 33 °C; 91 °F ≈ 32,8 °C. В справочнике 32,7 °C, обе величины округляются до 33.",
+    "source": "https://animals.sandiegozoo.org/animals/giant-anteater",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "anteater",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "anteater:body-temperature",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22032",
+    "difficulty": "easy",
+    "question": "Какова высота капибары в плечах?",
+    "answer": "50",
+    "unit": "см",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Ориентир размерной таблицы зоопарка.",
+    "source": "https://animals.sandiegozoo.org/animals/capybara",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "capybara",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "capybara:shoulder-height",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22033",
+    "difficulty": "medium",
+    "question": "До какой массы вырастает крупная капибара?",
+    "answer": "79",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница справочника 27–79 кг.",
+    "source": "https://animals.sandiegozoo.org/animals/capybara",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "capybara",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "capybara:adult-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22034",
+    "difficulty": "medium",
+    "question": "До какой длины вырастает капибара?",
+    "answer": "130",
+    "unit": "см",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Длина тела 100–130 см, верхняя граница.",
+    "source": "https://animals.sandiegozoo.org/animals/capybara",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "capybara",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "capybara:body-length",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22035",
+    "difficulty": "easy",
+    "question": "До скольких килограммов вырастает самец малой панды?",
+    "answer": "6.2",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница диапазона самцов 4,5–6,2 кг.",
+    "source": "https://animals.sandiegozoo.org/animals/red-panda",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "red-panda",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "red-panda:male-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22036",
+    "difficulty": "medium",
+    "question": "До какой длины вырастает пушистый хвост малой панды?",
+    "answer": "49",
+    "unit": "см",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница 28–49 см.",
+    "source": "https://animals.sandiegozoo.org/animals/red-panda",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "red-panda",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "red-panda:tail-length",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22037",
+    "difficulty": "medium",
+    "question": "До какой длины вырастают верхние бивни бородавочника?",
+    "answer": "30",
+    "unit": "см",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница 25–30 см.",
+    "source": "https://animals.sandiegozoo.org/animals/warthog",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "warthog",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "warthog:upper-tusks",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22038",
+    "difficulty": "easy",
+    "question": "До какой массы вырастает самец бородавочника?",
+    "answer": "150",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница для самцов 60–150 кг.",
+    "source": "https://animals.sandiegozoo.org/animals/warthog",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "warthog",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "warthog:male-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22039",
+    "difficulty": "easy",
+    "question": "До какого роста вырастает розовый фламинго?",
+    "answer": "145",
+    "unit": "см",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Greater flamingo; верхняя граница 120–145 см.",
+    "source": "https://animals.sandiegozoo.org/animals/flamingo",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "flamingo",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "flamingo:greater-height",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22040",
+    "difficulty": "medium",
+    "question": "До какой массы вырастает розовый фламинго?",
+    "answer": "4.1",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Greater flamingo; верхняя граница 2,1–4,1 кг.",
+    "source": "https://animals.sandiegozoo.org/animals/flamingo",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "flamingo",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "flamingo:greater-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22041",
+    "difficulty": "easy",
+    "question": "До какого размаха крыльев вырастает белоголовый орлан?",
+    "answer": "2.4",
+    "unit": "м",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница 1,7–2,4 м.",
+    "source": "https://animals.sandiegozoo.org/animals/bald-eagle",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "eagle",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "eagle:wingspan",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22042",
+    "difficulty": "medium",
+    "question": "Сколько суток белоголовый орлан высиживает яйца?",
+    "answer": "35",
+    "unit": "суток",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Ориентир инкубации из таблицы зоопарка.",
+    "source": "https://animals.sandiegozoo.org/animals/bald-eagle",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "eagle",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "eagle:incubation",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22043",
+    "difficulty": "easy",
+    "question": "Каков максимальный размах крыльев андского кондора?",
+    "answer": "3.2",
+    "unit": "м",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя оценка 10,5 фута, или 3,2 м.",
+    "source": "https://animals.sandiegozoo.org/animals/andean-condor",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "condor",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "condor:wingspan",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22044",
+    "difficulty": "hard",
+    "question": "На какую высоту над землёй может подниматься андский кондор?",
+    "answer": "5500",
+    "unit": "м",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "До 18 тысяч футов над землёй; не высота горы над морем.",
+    "source": "https://animals.sandiegozoo.org/animals/andean-condor",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "condor",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "condor:flight-height",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22045",
+    "difficulty": "medium",
+    "question": "Каков примерно диаметр глаза страуса?",
+    "answer": "5",
+    "unit": "см",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Почти два дюйма — около 5 см.",
+    "source": "https://animals.sandiegozoo.org/animals/ostrich",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "ostrich",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "ostrich:eye-diameter",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22046",
+    "difficulty": "easy",
+    "question": "До какого роста вырастает самец страуса?",
+    "answer": "2.7",
+    "unit": "м",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница роста самцов в таблице.",
+    "source": "https://animals.sandiegozoo.org/animals/ostrich",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "ostrich",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "ostrich:male-height",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22047",
+    "difficulty": "hard",
+    "question": "Сколько присосок примерно на всех руках самки гигантского тихоокеанского осьминога?",
+    "answer": "2240",
+    "unit": "присосок",
+    "categories": [
+      "science",
+      "animals",
+      "marine"
+    ],
+    "note": "Самки; у самцов примерно на сто меньше. Не число рук.",
+    "source": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/giant-pacific-octopus",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "octopus",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "octopus:female-suckers",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22048",
+    "difficulty": "hard",
+    "question": "Сколько миллиграммов весит только что вылупившийся гигантский тихоокеанский осьминог?",
+    "answer": "22",
+    "unit": "мг",
+    "categories": [
+      "science",
+      "animals",
+      "marine"
+    ],
+    "note": "Новорождённый; масса взрослого совершенно иная.",
+    "source": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/giant-pacific-octopus",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "octopus",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "octopus:hatchling-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22049",
+    "difficulty": "medium",
+    "question": "Сколько весил рекордный гигантский тихоокеанский осьминог из справочника аквариума Монтерей?",
+    "answer": "91",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "marine"
+    ],
+    "note": "200 фунтов × 0,45359237 = 90,718 кг; округлено до целого.",
+    "source": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/giant-pacific-octopus",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "octopus",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "octopus:record-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22050",
+    "difficulty": "medium",
+    "question": "Какую долю своей массы калан съедает за день, в процентах?",
+    "answer": "25",
+    "unit": "%",
+    "categories": [
+      "science",
+      "animals",
+      "marine"
+    ],
+    "note": "Примерно четверть массы тела; зависит от особи и условий.",
+    "source": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/sea-otter",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "otter",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "otter:daily-food-fraction",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22051",
+    "difficulty": "easy",
+    "question": "До какой массы вырастает самец южного калана?",
+    "answer": "32",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "marine"
+    ],
+    "note": "Верхняя оценка для калифорнийского подвида.",
+    "source": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/sea-otter",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "otter",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "otter:male-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22052",
+    "difficulty": "hard",
+    "question": "До какой массы доходит здоровое сердце взрослого человека в обычном диапазоне?",
+    "answer": "425",
+    "unit": "г",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "Cleveland Clinic: 200–425 г; верхняя граница, не среднее.",
+    "source": "https://health.clevelandclinic.org/fun-facts-about-your-heart",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "heart",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "heart:adult-mass-upper",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22053",
+    "difficulty": "medium",
+    "question": "Сколько литров крови сердце взрослого примерно перекачивает за минуту?",
+    "answer": "5.7",
+    "unit": "л",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "Обычный ориентир — почти 1,5 американского галлона.",
+    "source": "https://health.clevelandclinic.org/fun-facts-about-your-heart",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "heart",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "heart:minute-flow",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22054",
+    "difficulty": "hard",
+    "question": "Сколько примерно фильтрующих единиц, нефронов, находится в одной почке человека?",
+    "answer": "1000000",
+    "unit": "нефронов",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "NIDDK: около миллиона в каждой почке, не в обеих вместе.",
+    "source": "https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "kidney",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "kidney:nephrons-per-kidney",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22055",
+    "difficulty": "hard",
+    "question": "Какова примерно общая площадь поверхности альвеол в лёгких взрослого человека?",
+    "answer": "70",
+    "unit": "м²",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "Средняя оценка NMHM; не внешняя поверхность лёгких.",
+    "source": "https://medicalmuseum.health.mil/index.cfm/visit/exhibits/past/visiblyhuman/page_03",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "lungs",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "lungs:alveolar-area",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22056",
+    "difficulty": "medium",
+    "question": "Сколько примерно дыхательных циклов, от вдоха до следующего вдоха, человек совершает за сутки?",
+    "answer": "20000",
+    "unit": "циклов",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "Ориентир NMHM — 20 тысяч в сутки; индивидуально меняется.",
+    "source": "https://medicalmuseum.health.mil/index.cfm/visit/exhibits/past/visiblyhuman/page_03",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "lungs",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "lungs:daily-breaths",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22057",
+    "difficulty": "medium",
+    "question": "Какова примерно площадь всей кожи взрослого человека?",
+    "answer": "2",
+    "unit": "м²",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "ACS: 22 квадратных фута = 2,044 м²; округлено до целого.",
+    "source": "https://www.acs.org/education/celebrating-chemistry-editions/2023-ncw/good-health-begins-with-your-skin.html",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "skin",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "skin:area",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22058",
+    "difficulty": "hard",
+    "question": "Сколько примерно весит вся кожа взрослого по оценке Американского химического общества?",
+    "answer": "3.6",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "8 фунтов = 3,629 кг; до десятых. Состав учитываемых слоёв влияет на оценку.",
+    "source": "https://www.acs.org/education/celebrating-chemistry-editions/2023-ncw/good-health-begins-with-your-skin.html",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "skin",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "skin:mass",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22059",
+    "difficulty": "easy",
+    "question": "Какова примерно длина пищевода взрослого человека?",
+    "answer": "25",
+    "unit": "см",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "NCI: около 10 дюймов, или 25 см.",
+    "source": "https://training.seer.cancer.gov/ugi/anatomy/esophagus.html",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "esophagus",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "esophagus:length",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22060",
+    "difficulty": "easy",
+    "question": "На сколько сантиметров за месяц в среднем отрастают волосы на голове?",
+    "answer": "1",
+    "unit": "см",
+    "categories": [
+      "science",
+      "biology",
+      "everyday"
+    ],
+    "note": "Средняя скорость; зависит от человека и стадии роста.",
+    "source": "https://www.unsw.edu.au/newsroom/news/2025/01/why-do-some-peoples-hair-and-nails-grow-quicker-than-mine",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "hair",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "hair:monthly-growth",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22061",
+    "difficulty": "medium",
+    "question": "На сколько миллиметров за месяц обычно отрастает ноготь на руке?",
+    "answer": "3",
+    "unit": "мм",
+    "categories": [
+      "science",
+      "biology",
+      "everyday"
+    ],
+    "note": "Около 3 мм в месяц; индивидуальные различия нормальны.",
+    "source": "https://my.clevelandclinic.org/health/body/nail-anatomy",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "nails",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "nails:finger-monthly-growth",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22062",
+    "difficulty": "medium",
+    "question": "На сколько миллиметров за месяц обычно отрастает ноготь на ноге?",
+    "answer": "1.5",
+    "unit": "мм",
+    "categories": [
+      "science",
+      "biology",
+      "everyday"
+    ],
+    "note": "Около 1,5 мм в месяц; отдельная характеристика ногтей ног.",
+    "source": "https://my.clevelandclinic.org/health/body/nail-anatomy",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "nails",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "nails:toe-monthly-growth",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22063",
+    "difficulty": "medium",
+    "question": "До какой температуры нагревается поверхность Меркурия днём?",
+    "answer": "430",
+    "unit": "°C",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Верхняя дневная оценка NASA, не средняя по планете.",
+    "source": "https://science.nasa.gov/mercury/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "mercury",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "mercury:day-temperature",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22064",
+    "difficulty": "medium",
+    "question": "До какой температуры может остывать поверхность Меркурия ночью?",
+    "answer": "-180",
+    "unit": "°C",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Нижняя ночная оценка NASA.",
+    "source": "https://science.nasa.gov/mercury/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "mercury",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "mercury:night-temperature",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22065",
+    "difficulty": "hard",
+    "question": "С какой скоростью Меркурий примерно движется по орбите вокруг Солнца?",
+    "answer": "47",
+    "unit": "км/с",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Ориентир NASA — почти 47 км/с; скорость меняется вдоль орбиты.",
+    "source": "https://science.nasa.gov/mercury/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "mercury",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "mercury:orbital-speed",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22066",
+    "difficulty": "easy",
+    "question": "Каков примерно диаметр Меркурия?",
+    "answer": "4880",
+    "unit": "км",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Радиус NASA 2440 км; диаметр вдвое больше. Радиус в условии не сообщается.",
+    "source": "https://science.nasa.gov/mercury/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "mercury",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "mercury:diameter",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22067",
+    "difficulty": "hard",
+    "question": "Каков диаметр огромного ударного бассейна Жары на Меркурии?",
+    "answer": "1550",
+    "unit": "км",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Caloris; оценка NASA 1550 км.",
+    "source": "https://science.nasa.gov/mercury/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "mercury",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "mercury:caloris-diameter",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22068",
+    "difficulty": "medium",
+    "question": "Какова примерно температура на поверхности Венеры?",
+    "answer": "467",
+    "unit": "°C",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "NASA: около 467 °C; поверхность, не облака.",
+    "source": "https://science.nasa.gov/venus/venus-facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "venus",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "venus:surface-temperature",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22069",
+    "difficulty": "hard",
+    "question": "Во сколько раз давление у поверхности Венеры выше земного на уровне моря?",
+    "answer": "93",
+    "unit": "раз",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Округлённый ориентир NASA.",
+    "source": "https://science.nasa.gov/venus/venus-facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "venus",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "venus:surface-pressure-ratio",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22070",
+    "difficulty": "easy",
+    "question": "Каков примерно диаметр Марса?",
+    "answer": "6780",
+    "unit": "км",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Удвоенный средний радиус NASA 3390 км.",
+    "source": "https://science.nasa.gov/mars/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "mars",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "mars:diameter",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22071",
+    "difficulty": "medium",
+    "question": "Сколько земных часов занимает один оборот Марса вокруг своей оси?",
+    "answer": "24.6",
+    "unit": "часа",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "NASA: округлённая длительность вращения 24,6 часа.",
+    "source": "https://science.nasa.gov/mars/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "mars",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "mars:rotation",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22072",
+    "difficulty": "hard",
+    "question": "Каково среднее расстояние Марса от Солнца в миллионах километров?",
+    "answer": "228",
+    "unit": "млн км",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Среднее орбитальное расстояние; не от Земли.",
+    "source": "https://science.nasa.gov/mars/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "mars",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "mars:sun-distance",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22073",
+    "difficulty": "easy",
+    "question": "Сколько часов занимает один оборот Юпитера вокруг своей оси?",
+    "answer": "9.9",
+    "unit": "часа",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Округлённое значение NASA.",
+    "source": "https://science.nasa.gov/jupiter/jupiter-facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "jupiter",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "jupiter:rotation",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22074",
+    "difficulty": "hard",
+    "question": "Какую глубину под верхушками облаков превышает Большое Красное Пятно Юпитера?",
+    "answer": "350",
+    "unit": "км",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "По результатам Juno — свыше 350 км; ответ — опубликованный порог.",
+    "source": "https://science.nasa.gov/jupiter/jupiter-facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "jupiter",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "jupiter:red-spot-depth-lower",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22075",
+    "difficulty": "medium",
+    "question": "До какой скорости доходят экваториальные ветры Юпитера, округлённо до десятков км/ч?",
+    "answer": "540",
+    "unit": "км/ч",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "NASA: до 539 км/ч; округлено до десятков.",
+    "source": "https://science.nasa.gov/jupiter/jupiter-facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "jupiter",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "jupiter:equatorial-wind",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22076",
+    "difficulty": "easy",
+    "question": "Каков экваториальный диаметр Сатурна без колец?",
+    "answer": "120500",
+    "unit": "км",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Округлённый диаметр NASA; кольца не учитываются.",
+    "source": "https://science.nasa.gov/saturn/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "saturn",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "saturn:equatorial-diameter",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22077",
+    "difficulty": "hard",
+    "question": "Какова типичная толщина основных колец Сатурна по вертикали?",
+    "answer": "10",
+    "unit": "м",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Ориентир NASA для основных колец, не всей системы пылевых колец.",
+    "source": "https://science.nasa.gov/saturn/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "saturn",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "saturn:main-ring-thickness",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22078",
+    "difficulty": "medium",
+    "question": "Какова ширина щели Кассини между кольцами Сатурна A и B?",
+    "answer": "4700",
+    "unit": "км",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Округлённая ширина NASA.",
+    "source": "https://science.nasa.gov/saturn/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "saturn",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "saturn:cassini-division-width",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22079",
+    "difficulty": "hard",
+    "question": "До какой скорости доходят ветры у экватора Сатурна?",
+    "answer": "1800",
+    "unit": "км/ч",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "NASA: 500 м/с; перевод в км/ч множителем 3,6.",
+    "source": "https://science.nasa.gov/saturn/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "saturn",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "saturn:equatorial-wind",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22080",
+    "difficulty": "easy",
+    "question": "Каков экваториальный диаметр Урана?",
+    "answer": "51118",
+    "unit": "км",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Диаметр NASA; не радиус и не диаметр с кольцами.",
+    "source": "https://science.nasa.gov/uranus/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "uranus",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "uranus:equatorial-diameter",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22081",
+    "difficulty": "medium",
+    "question": "Сколько земных лет длится год на Уране?",
+    "answer": "84",
+    "unit": "лет",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Один оборот вокруг Солнца, округлённо.",
+    "source": "https://science.nasa.gov/uranus/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "uranus",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "uranus:orbital-period",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22082",
+    "difficulty": "medium",
+    "question": "Сколько часов Урану нужно для одного оборота вокруг своей оси?",
+    "answer": "17",
+    "unit": "часов",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Округлённая длительность вращения NASA.",
+    "source": "https://science.nasa.gov/uranus/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "uranus",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "uranus:rotation",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22083",
+    "difficulty": "hard",
+    "question": "До какой температуры опускается атмосфера Урана в самых холодных областях?",
+    "answer": "-224",
+    "unit": "°C",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "NASA: минимум 49 K, или −224,2 °C; до целого.",
+    "source": "https://science.nasa.gov/uranus/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "uranus",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "uranus:atmosphere-min-temperature",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22084",
+    "difficulty": "medium",
+    "question": "До какой скорости могут разгоняться ветры на Уране?",
+    "answer": "900",
+    "unit": "км/ч",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Верхний ориентир NASA.",
+    "source": "https://science.nasa.gov/uranus/facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "uranus",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "uranus:wind",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22085",
+    "difficulty": "easy",
+    "question": "Каков экваториальный диаметр Нептуна?",
+    "answer": "49528",
+    "unit": "км",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "Диаметр NASA; не радиус и не размер кольцевой системы.",
+    "source": "https://science.nasa.gov/neptune/neptune-facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "neptune",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "neptune:equatorial-diameter",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22086",
+    "difficulty": "hard",
+    "question": "Какую скорость превышают самые быстрые ветры Нептуна?",
+    "answer": "2000",
+    "unit": "км/ч",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "note": "NASA: более 2000 км/ч; ответ — опубликованный порог.",
+    "source": "https://science.nasa.gov/neptune/neptune-facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "neptune",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "neptune:wind-lower",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22087",
+    "difficulty": "easy",
+    "question": "Какова общая высота всех каскадов Йосемитского водопада?",
+    "answer": "740",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "NPS: 2425 футов, округлённый справочный эквивалент 740 м.",
+    "source": "https://www.nps.gov/yose/planyourvisit/waterfalls.htm",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "yosemite",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "yosemite:yosemite-total-height",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22088",
+    "difficulty": "medium",
+    "question": "Какова высота водопада Брайдлвейл в Йосемитской долине?",
+    "answer": "190",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "Округлённый метрический ориентир NPS.",
+    "source": "https://www.nps.gov/yose/planyourvisit/waterfalls.htm",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "yosemite",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "yosemite:bridalveil-height",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22089",
+    "difficulty": "easy",
+    "question": "На сколько метров ниже уровня моря лежит впадина Бэдуотер в Долине Смерти?",
+    "answer": "86",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "Глубина по отношению к уровню моря; величина положительная.",
+    "source": "https://www.nps.gov/places/badwater-basin.htm",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "badwater",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "badwater:below-sea-level",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22090",
+    "difficulty": "hard",
+    "question": "Какую площадь примерно занимают солончаки Бэдуотер в Долине Смерти?",
+    "answer": "518",
+    "unit": "км²",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "NPS: почти 200 квадратных миль, или 518 км².",
+    "source": "https://www.nps.gov/places/badwater-basin.htm",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "badwater",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "badwater:salt-flat-area",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22091",
+    "difficulty": "medium",
+    "question": "До какой высоты поднимается струя гейзера Старый Служака в обычном диапазоне извержений?",
+    "answer": "55",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "NPS: диапазон 30–55 м; верхняя граница, не среднее.",
+    "source": "https://www.nps.gov/places/old-faithful-geyser.htm",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "faithful",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "faithful:plume-height-upper",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22092",
+    "difficulty": "easy",
+    "question": "Сколько минут в среднем проходит между извержениями гейзера Старый Служака по справке NPS 2024 года?",
+    "answer": "90",
+    "unit": "минут",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "Интервал меняется; справочный средний ориентир на указанную дату.",
+    "source": "https://www.nps.gov/places/old-faithful-geyser.htm",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "faithful",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "faithful:interval-2024",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22093",
+    "difficulty": "medium",
+    "question": "До скольких минут длится обычное извержение гейзера Старый Служака?",
+    "answer": "5",
+    "unit": "минут",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "Верхняя граница диапазона NPS 1,5–5 минут.",
+    "source": "https://www.nps.gov/places/old-faithful-geyser.htm",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "faithful",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "faithful:eruption-duration-upper",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22094",
+    "difficulty": "hard",
+    "question": "Сколько кубометров воды в среднем выбрасывал Старый Служака за извержение в исследовании 2025 года?",
+    "answer": "27.9",
+    "unit": "м³",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "note": "USGS: среднее по 45 извержениям, 27,9 ± 9,4 м³. Не максимум.",
+    "source": "https://www.usgs.gov/observatories/yvo/news/how-much-water-erupts-old-faithful-geyser",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "faithful-study",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "faithful-study:mean-water-2025",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22095",
+    "difficulty": "hard",
+    "question": "До какого объёма воды доходило извержение гейзера Пароход в измерениях 2018–2020 годов?",
+    "answer": "538",
+    "unit": "м³",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "note": "Steamboat; верхняя граница измеренного диапазона 134–538 м³.",
+    "source": "https://www.usgs.gov/observatories/yvo/news/how-much-water-erupts-old-faithful-geyser",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "faithful-study",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "faithful-study:steamboat-water-2020",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22096",
+    "difficulty": "medium",
+    "question": "Какова площадь пола Большого зала Карлсбадской пещеры?",
+    "answer": "3.3",
+    "unit": "га",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "NPS: Big Room, 8,2 акра, или около 3,3 га.",
+    "source": "https://www.nps.gov/cave/learn/news/interesting-facts-about-carlsbad-caverns.htm",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "carlsbad",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "carlsbad:big-room-area",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22097",
+    "difficulty": "hard",
+    "question": "На какую глубину уходит пещера Лечугилья по справочнику Карлсбадского парка 2025 года?",
+    "answer": "489",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "Глубина 1604,2 фута, или 489 м; не длина ходов.",
+    "source": "https://www.nps.gov/cave/learn/news/interesting-facts-about-carlsbad-caverns.htm",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "carlsbad",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "carlsbad:lechuguilla-depth-2025",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22098",
+    "difficulty": "hard",
+    "question": "Сколько летучих мышей примерно насчитывала крупнейшая колония Карлсбадской пещеры по справке 2025 года?",
+    "answer": "400000",
+    "unit": "мышей",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "Оценка NPS для бразильского складчатогуба; не точная перепись.",
+    "source": "https://www.nps.gov/cave/learn/news/interesting-facts-about-carlsbad-caverns.htm",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "carlsbad",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "carlsbad:bat-colony-2025",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22099",
+    "difficulty": "medium",
+    "question": "Какова высота водопада Риббон в Йосемитском парке?",
+    "answer": "490",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "NPS: 1612 футов; справочник округляет до 490 м.",
+    "source": "https://www.nps.gov/yose/planyourvisit/waterfalls.htm",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "yosemite",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "yosemite:ribbon-height",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22100",
+    "difficulty": "medium",
+    "question": "Какова суммарная высота каскадов водопада Сентинел в Йосемитском парке?",
+    "answer": "610",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "NPS: около 2000 футов, или 610 м; все каскады вместе.",
+    "source": "https://www.nps.gov/yose/planyourvisit/waterfalls.htm",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "yosemite",
+      "checkedAt": "2026-10-22",
+      "batch": 1,
+      "measurementKey": "yosemite:sentinel-height",
+      "topic": "nature"
+    }
+  }
+]
