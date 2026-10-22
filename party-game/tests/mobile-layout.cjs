@@ -53,6 +53,7 @@ function fitsViewport(g,device,stage) {
     headless:true,args:['--no-sandbox']
   });
   try{
+    await require('./thematic-game.cjs')(browser,URL);
     await require('./modifier-frequency.cjs')(browser,URL);
     await require('./round-outcomes.cjs')(browser,URL);
     await require('./award-policy.cjs')(browser,URL);
@@ -103,9 +104,10 @@ function fitsViewport(g,device,stage) {
       await page.screenshot({path:'artifacts/quip-mobile-layout/'+device.name+'-game-type.png'});
       await page.locator('#thematic-game').click();
       assert.equal(await page.locator('#scene-themes').isVisible(),true);
-      assert.equal(await page.locator('#theme-list button:disabled').count(),6);
-      assert.equal(await page.locator('#theme-list button:not(:disabled)').count(),0);
-      assert.ok((await page.locator('#themes-caption').textContent()).includes('ещё готовятся'));
+      assert.equal(await page.locator('#theme-list button:disabled').count(),5);
+      assert.equal(await page.locator('#theme-list button:not(:disabled)').count(),1);
+      assert.equal(await page.locator('[data-theme="geography"]:enabled').count(),1);
+      assert.ok((await page.locator('#themes-caption').textContent()).includes('Выберите тему'));
       const themeLayout=await page.evaluate(()=>({w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight,
         cards:[...document.querySelectorAll('.theme-choice')].map(el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right}})}));
       assert.ok(themeLayout.w<=device.width+2&&themeLayout.h<=device.height+2,JSON.stringify(themeLayout));

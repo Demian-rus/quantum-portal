@@ -697,7 +697,7 @@ test('card catalog v1 retains all 3016 historical tasks and unique IDs',()=>{
   assert.ok(['word','phrase','idiom','song','person'].includes(c.type));
   assert.ok(Array.isArray(c.categories)&&c.categories.every(x=>/^[a-z][a-z0-9-]*$/.test(x)));
   assert.equal(c.categories.length,new Set(c.categories).size);
-  assert.ok(['core','music','people'].includes(c.pack));
+  assert.ok(['core','music','people','geography-v2','science-v2'].includes(c.pack));
   if(c.type==='song')assert.ok(c.meta.title&&c.meta.artist&&c.meta.genre);
  }
  assert.equal(h.eval("getCardById('word-000001').text"),'КАРАНДАШ');
@@ -722,8 +722,8 @@ test('typed source retains old playable words, songs, people and blitz constrain
   }
  }
  assert.equal(h.eval("getCardPool('blitz','hard').every(c=>c.difficulty==='easy'&&c.text.length<=12)"),true);
- assert.ok(read('index.html').includes('./cards.js?v=2'));
- assert.ok(read('sw.js').includes('./cards.js?v=2'));
+ assert.ok(read('index.html').includes('./cards.js?v=3'));
+ assert.ok(read('sw.js').includes('./cards.js?v=3'));
 });
 test('text-only saved rounds still restore unchanged after catalog migration',()=>{
  const saved=new Map(),a=harness(saved);
@@ -820,7 +820,7 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['approx-questions.js?v=2','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=2','round-planner.js?v=1','content-packs.js?v=4','presets.js?v=3','app.js?v=25']){
+ for(const file of ['approx-questions.js?v=3','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=2','round-planner.js?v=1','content-packs.js?v=5','presets.js?v=3','app.js?v=26']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
  assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);
@@ -1106,13 +1106,13 @@ test('custom registries filter categories, sources, IDs and reject duplicates or
  assert.equal(h.eval('checkContentPack(selection,{difficulty:"easy",modes:["secret"],promptTypes:["word"]},fixtureCards,registry).available'),false,'Secret-only must support all five methods');
  assert.equal(h.eval('checkContentPack(selection,{difficulty:"mixed",modes:["talk"],promptTypes:["word"]},fixtureCards,registry).available'),false,'Missing medium cannot silently use another tier');
 });
-test('empty themes stay unavailable without fallback and cannot replace an active match',()=>{
+test('disabled historical theme stays unavailable without fallback and cannot replace an active match',()=>{
  const h=harness();h.eval('soundOn=false;legacyGame();game.scores=[7,8];persist()');
  const before=h.eval('JSON.stringify(game)');
  assert.equal(h.eval('checkContentPack({id:"geography",version:1},options).available'),false);
  h.eval('options.contentPack={id:"geography",version:1};legacyGame()');
  assert.equal(h.eval('JSON.stringify(game)'),before);
- assert.equal(h.eval('getPackCardPool({id:"geography",version:1},"words","easy").length'),0);
+ assert.equal(h.eval('getPackCardPool({id:"geography",version:1},"words","easy").every(card=>card.categories.includes("geography"))'),true);
  assert.throws(()=>h.eval('getContentPack({id:"missing",version:1})'),/Unknown/);
 });
 test('declarative presets are versioned snapshots independent of existing matches',()=>{
@@ -1357,18 +1357,18 @@ test('game-type navigation uses shared settings and preserves an unfinished matc
  const saved=h.eval('JSON.stringify(game)');
  h.eval('openGameType()');assert.equal(h.eval('activeScene'),'game-type');
  h.eval('openThemes()');assert.equal(h.eval('activeScene'),'themes');
- assert.equal((h.elements.get('theme-list').innerHTML.match(/ disabled aria-disabled="true"/g)||[]).length,6);
- assert.ok(h.elements.get('themes-caption').textContent.includes('ещё готовятся'));
+ assert.equal((h.elements.get('theme-list').innerHTML.match(/ disabled aria-disabled="true"/g)||[]).length,5);
+ assert.ok(h.elements.get('themes-caption').textContent.includes('Выберите тему'));
  h.eval('selectStandardGame()');assert.equal(h.eval('activeScene'),'setup');
  assert.equal(h.eval('options.contentPack.id'),'general');assert.equal(h.eval('options.contentPack.version'),2);
  assert.equal(h.eval('setupReturn'),'game-type');
  assert.equal(h.eval('JSON.stringify(game)'),saved);
  h.eval('setScene("home");continueGame()');assert.equal(h.eval('JSON.stringify(game)'),saved);
 });
-test('all six empty topics remain disabled and cannot start or silently use general',()=>{
+test('all six historical topic versions remain disabled and cannot start or silently use general',()=>{
  const h=harness();h.eval('soundOn=false;newGame();game.scores=[4,9];backToMenu()');
  const gameBefore=h.eval('JSON.stringify(game)'),optionsBefore=h.eval('JSON.stringify(options)');
- const themes=JSON.parse(h.eval('JSON.stringify(listThematicPacks(options))'));
+ const themes=JSON.parse(h.eval('JSON.stringify(Object.values(QUIP_CONTENT_PACKS).filter(pack=>pack.id!=="general"&&pack.version===1).map(pack=>({pack,...checkContentPack({id:pack.id,version:pack.version},options)})))'));
  assert.deepEqual(themes.map(entry=>entry.pack.id),['geography','biology','animals','history','science','culture']);
  for(const {pack,available} of themes){
   assert.equal(available,false);assert.equal(h.eval('selectTheme("'+pack.id+'",'+pack.version+')'),false);
@@ -1721,4 +1721,57 @@ test('TASK008 additions enter standard pools without empty tiers or duplicate Bl
 });
 test('TASK008 audit reports cross-type duplicates separately and is deterministic',()=>{
  const {audit}=require('../scripts/catalog-audit.cjs'),a=audit();assert.deepEqual(a,audit());assert.equal(a.exactDuplicates.length,26);assert.equal(a.normalizedDuplicates.length,26);assert.equal(a.questionDuplicates.length,0);assert.ok(a.blitz>=750);
+});
+
+test('TASK008 geography v2 is authored, isolated and leaves every v1 declaration disabled',()=>{
+ const {loadCatalog}=require('../scripts/catalog-audit.cjs'),{cards,questions}=loadCatalog(),rows=cards.filter(c=>c.pack==='geography-v2'),numbers=questions.filter(q=>q.pack==='geography-v2');
+ assert.equal(rows.length,150);assert.equal(numbers.length,30);
+ for(const [type,count] of Object.entries({word:90,phrase:35,person:25}))assert.equal(rows.filter(c=>c.type===type).length,count);
+ for(const level of ['easy','medium','hard']){assert.ok(rows.filter(c=>c.type==='word'&&c.difficulty===level).length>=30);assert.ok(rows.filter(c=>c.type==='person'&&c.difficulty===level).length>=8);assert.equal(numbers.filter(q=>q.difficulty===level).length,10)}
+ assert.ok([...rows,...numbers].every(c=>c.categories.includes('geography')));
+ const h=harness();assert.equal(h.eval('QUIP_CONTENT_PACKS["geography@1"].enabled'),false);assert.equal(h.eval('QUIP_CONTENT_PACKS["geography@2"].enabled'),true);
+ assert.equal(h.eval('Object.isFrozen(QUIP_CONTENT_PACKS["geography@2"].allowedModes)'),true);
+ assert.equal(h.eval('getPackCardPool({id:"geography",version:2},"songs","easy").length'),0);
+ for(const level of ['easy','medium','hard']){assert.equal(h.eval('getPackQuestionPool({id:"geography",version:2},"'+level+'").every(q=>q.pack==="geography-v2")'),true);assert.equal(h.eval('getPackCardPool({id:"geography",version:2},"words","'+level+'",["word","phrase"]).every(c=>c.pack==="geography-v2")'),true);}
+});
+test('TASK008 geography is selectable from standard singing and idiom-only preferences without mutating them',()=>{
+ const h=harness();h.eval('options.modes=["sing","yesno"];options.promptTypes=["idiom"];options.difficulty="mixed"');
+ const before=h.eval('JSON.stringify(options)');assert.equal(h.eval('listThematicPacks(options).find(e=>e.pack.id==="geography").available'),true);assert.equal(h.eval('JSON.stringify(options)'),before);
+ assert.equal(h.eval('selectTheme("geography",2)'),true);assert.equal(h.eval('activeScene'),'setup');assert.equal(h.eval('options.modes.includes("sing")'),false);assert.deepEqual(Array.from(h.eval('options.promptTypes')),['word','phrase']);
+ h.eval('options.modes=["draw","approx"];options.promptTypes=["phrase"];persist();selectStandardGame()');
+ assert.deepEqual(Array.from(h.eval('options.modes')),['sing','yesno']);assert.deepEqual(Array.from(h.eval('options.promptTypes')),['idiom']);
+ h.eval('selectTheme("geography",2)');assert.deepEqual(Array.from(h.eval('options.modes')),['draw','approx']);assert.deepEqual(Array.from(h.eval('options.promptTypes')),['phrase']);
+ const reloaded=harness(h.storage);reloaded.eval('selectStandardGame();selectTheme("geography",2)');assert.deepEqual(Array.from(reloaded.eval('options.modes')),['draw','approx']);
+});
+test('TASK008 geography has no dead ends for any nonempty permitted mode combination or prompt subset',()=>{
+ const h=harness();h.eval('const geo={id:"geography",version:2},geoModes=QUIP_CONTENT_PACKS["geography@2"].allowedModes');
+ assert.equal(h.eval(`(()=>{for(let mask=1;mask<2**geoModes.length;mask++)for(const promptTypes of [['word'],['phrase'],['word','phrase']]){
+ const settings={...options,difficulty:'mixed',promptTypes,modes:geoModes.filter((_,i)=>mask&(1<<i))};if(!checkContentPack(geo,settings).available)return JSON.stringify(settings);
+ }return true})()`),true);
+ assert.equal(h.eval('checkContentPack(geo,{...options,modes:["sing"]}).available'),false);
+ assert.equal(h.eval('checkContentPack(geo,{...options,modes:["talk"],promptTypes:["idiom"]}).available'),false);
+ h.eval('soundOn=false;newGame();const preservedGame=JSON.stringify(game);options.contentPack=geo;options.modes=["sing"];newGame()');assert.equal(h.eval('JSON.stringify(game)'),h.eval('preservedGame'));
+});
+test('TASK008 geography Secret-only never chooses singing or common-catalog content',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation(808);
+ h.eval('options.difficulty="mixed";selectTheme("geography",2);options.modes=["secret"];options.dice=false;newGame()');
+ const result=h.eval(`(()=>{const methods=new Set(),levels=[];for(let i=0;i<60;i++){game.current=rollOutcome();methods.add(game.current.methodId);levels.push(game.current.difficulty);
+ const pool=getPackCardPool(game.contentPack,getMode(game.current.methodId).kind,game.current.difficulty,game.promptTypes);if(!pool.some(c=>c.text===game.current.word)||game.current.methodId==='sing'||!game.current.complication)return false;game.roundIndex++;game.current=null}
+ return {methods:[...methods].sort(),levels:levels.reduce((counts,l)=>(counts[l]=(counts[l]||0)+1,counts),{})}})()`);
+ assert.deepEqual(Array.from(result.methods),['draw','mime','talk','yesno']);assert.deepEqual(JSON.parse(JSON.stringify(result.levels)),{easy:20,medium:20,hard:20});
+});
+test('TASK008 geography pools exhaust only after unused alternatives and Blitz stays unique',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation(82);h.eval('selectTheme("geography",2);options.dice=false;options.modes=["talk"];newGame()');
+ for(const kind of ['words','people','blitz'])for(const level of ['easy','medium','hard']){
+  h.context.kind=kind;h.context.tier=level;const result=h.eval('(()=>{const pool=getPromptPool(kind,tier),seen=[];for(let i=0;i<pool.length;i++)seen.push(pullWord(kind,tier));return {count:pool.length,unique:new Set(seen).size}})()');assert.equal(result.unique,result.count,kind+'/'+level);
+ }
+ h.eval('game.used={};options.modes=["blitz"];newGame()');const seen=[];for(let i=0;i<10;i++){const words=Array.from(h.eval('rollOutcome().blitzWords'));assert.equal(new Set(words).size,3);for(const w of words){assert.equal(seen.includes(w),false);seen.push(w)}}assert.equal(seen.length,30);
+});
+test('TASK008 geography awards, shared answers and save snapshots remain independent of future theme choices',()=>{
+ for(const awardTo of ['setter','guesser']){
+  const stored=new Map(),h=harness(stored);h.eval('soundOn=false;options.awardTo="'+awardTo+'";selectTheme("geography",2);options.modes=["talk"];options.dice=false;options.modifierChance=100;newGame();roll();persist()');
+  const selected=h.eval('JSON.stringify(game.current)');h.eval('selectStandardGame();options.modes=["sing"];persist()');const reload=harness(stored);assert.equal(reload.eval('game.contentPack.id'),'geography');assert.equal(reload.eval('JSON.stringify(game.current)'),selected);
+  reload.eval('game.phase="judge";judge(true,false)');assert.equal(reload.eval('game.scores['+(awardTo==='setter'?0:1)+']'),1);
+  reload.eval('selectTheme("geography",2);options.modes=["approx"];options.dice=false;newGame();roll()');assert.equal(reload.eval('game.current.question.pack'),'geography-v2');reload.eval('revealApprox();awardApprox("both")');assert.deepEqual(Array.from(reload.eval('game.scores')),[1,1]);
+ }
 });

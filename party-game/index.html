@@ -10,23 +10,23 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=23">
+  <link rel="stylesheet" href="./style.css?v=24">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
   <script src="./curated-words.js?v=1" defer></script>
   <script src="./curated-songs.js?v=1" defer></script>
   <script src="./curated-people.js?v=1" defer></script>
   <script src="./mode-images.js?v=6" defer></script>
-  <script src="./cards.js?v=2" defer></script>
-  <script src="./approx-questions.js?v=2" defer></script>
+  <script src="./cards.js?v=3" defer></script>
+  <script src="./approx-questions.js?v=3" defer></script>
   <script src="./mode-config.js?v=2" defer></script>
   <script src="./rules.js?v=4" defer></script>
   <script src="./penalties.js?v=3" defer></script>
   <script src="./modifiers.js?v=2" defer></script>
   <script src="./round-planner.js?v=1" defer></script>
-  <script src="./content-packs.js?v=4" defer></script>
+  <script src="./content-packs.js?v=5" defer></script>
   <script src="./presets.js?v=3" defer></script>
-  <script src="./app.js?v=25" defer></script>
+  <script src="./app.js?v=26" defer></script>
 </head>
 <body>
 
@@ -130,14 +130,14 @@
               <summary><span class="settings-fold-label">АКТИВНЫЕ РЕЖИМЫ <span class="settings-fold-count">· <span id="mode-selection-count"></span></span></span><svg class="settings-fold-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
               <div class="settings-fold-body">
                 <div class="toggle-grid mode-grid" id="mode-toggles">
-                  <label><input type="checkbox" value="talk" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Слова</strong><b></b></span></span></label>
-                  <label><input type="checkbox" value="mime" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Жесты</strong><b></b></span></span></label>
-                  <label><input type="checkbox" value="draw" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Нарисуй</strong><b></b></span></span></label>
-                  <label><input type="checkbox" value="sing" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Напой</strong><b></b></span></span></label>
-                  <label><input type="checkbox" value="yesno" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Данетки</strong><b></b></span></span></label>
-                  <label><input type="checkbox" value="secret" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Секретка</strong><b></b></span></span></label>
-                  <label><input type="checkbox" value="blitz" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Блиц</strong><b></b></span></span></label>
-                  <label><input type="checkbox" value="approx" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Примерно</strong><b></b></span></span></label>
+                  <label><input type="checkbox" value="talk" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Слова</strong><b></b><small class="mode-availability"></small></span></span></label>
+                  <label><input type="checkbox" value="mime" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Жесты</strong><b></b><small class="mode-availability"></small></span></span></label>
+                  <label><input type="checkbox" value="draw" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Нарисуй</strong><b></b><small class="mode-availability"></small></span></span></label>
+                  <label><input type="checkbox" value="sing" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Напой</strong><b></b><small class="mode-availability"></small></span></span></label>
+                  <label><input type="checkbox" value="yesno" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Данетки</strong><b></b><small class="mode-availability"></small></span></span></label>
+                  <label><input type="checkbox" value="secret" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Секретка</strong><b></b><small class="mode-availability"></small></span></span></label>
+                  <label><input type="checkbox" value="blitz" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Блиц</strong><b></b><small class="mode-availability"></small></span></span></label>
+                  <label><input type="checkbox" value="approx" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Примерно</strong><b></b><small class="mode-availability"></small></span></span></label>
                 </div>
               </div>
             </details>
@@ -145,9 +145,9 @@
               <summary><span class="settings-fold-label">ЧТО ЗАГАДЫВАТЬ <span class="settings-fold-count">· <span id="content-selection-count"></span></span></span><svg class="settings-fold-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
               <div class="settings-fold-body">
                 <div class="toggle-grid" id="content-toggles">
-                  <label><input type="checkbox" value="word" checked><span>Одиночные слова</span></label>
-                  <label><input type="checkbox" value="phrase" checked><span>Словосочетания</span></label>
-                  <label><input type="checkbox" value="idiom" checked><span>Поговорки и фразеологизмы</span></label>
+                  <label><input type="checkbox" value="word" checked><span>Одиночные слова<small class="content-availability"></small></span></label>
+                  <label><input type="checkbox" value="phrase" checked><span>Словосочетания<small class="content-availability"></small></span></label>
+                  <label><input type="checkbox" value="idiom" checked><span>Поговорки и фразеологизмы<small class="content-availability"></small></span></label>
                 </div>
                 <p class="advanced-help">«Примерно»: обе команды называют число, без таймера, риска и усложнений. У «Напой» темы подобраны по существующим известным песням разных жанров. В «Данетках» герои и знаменитости распределены по узнаваемости.</p>
               </div>
