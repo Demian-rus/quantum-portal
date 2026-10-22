@@ -10,7 +10,7 @@ module.exports=async function modifiersV2Browser(browser,url){
   assert.equal(await page.locator('[data-action="toggle-word"]').count(),1);
   await page.evaluate(()=>{options.awardTo='guesser';newGame();roll()});
   assert.equal(await page.evaluate(()=>game.current.complicationId),'v2-no-biography');
-  await page.evaluate(()=>{options.awardTo='setter';options.modes=['secret','yesno'];newGame();game.current=rollOutcome();game.phase='task';game.dice=true;persist();render()});
+  await page.evaluate(()=>{options.awardTo='setter';options.modes=['secret','yesno'];newGame();pickMode=()=>getMode('secret');game.current=rollOutcome();game.phase='task';game.dice=true;persist();render()});
   assert.notEqual(await page.evaluate(()=>game.current.methodId),'yesno');assert.ok(await page.evaluate(()=>game.current.complication));
   const snapshot=await page.evaluate(()=>JSON.stringify(game));
   await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);

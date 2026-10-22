@@ -1756,7 +1756,7 @@ test('TASK008 geography has no dead ends for any nonempty permitted mode combina
 });
 test('TASK008 geography Secret-only never chooses singing or common-catalog content',()=>{
  const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation(808);
- h.eval('options.difficulty="mixed";selectTheme("geography",2);options.modes=["secret"];options.dice=false;newGame()');
+ h.eval('options.difficulty="mixed";selectTheme("geography",2);options.modes=["secret"];options.dice=false;newGame();game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
  const result=h.eval(`(()=>{const methods=new Set(),levels=[];for(let i=0;i<60;i++){game.current=rollOutcome();methods.add(game.current.methodId);levels.push(game.current.difficulty);
  const pool=getPackCardPool(game.contentPack,getMode(game.current.methodId).kind,game.current.difficulty,game.promptTypes);if(!pool.some(c=>c.text===game.current.word)||game.current.methodId==='sing'||!game.current.complication)return false;game.roundIndex++;game.current=null}
  return {methods:[...methods].sort(),levels:levels.reduce((counts,l)=>(counts[l]=(counts[l]||0)+1,counts),{})}})()`);
@@ -1796,7 +1796,7 @@ test('TASK008 standard, geography and science keep independent preferences acros
 });
 test('TASK008 both thematic registries have no dead-end mode, type or difficulty settings',()=>{
  const {checkSettings}=require('../scripts/balance-audit.cjs');assert.deepEqual(checkSettings(),{checked:3048,deadEnds:0});
- const h=harness();h.eval('selectTheme("science",2);options.modes=["secret"];options.difficulty="mixed";options.dice=false;newGame()');
+ const h=harness();h.eval('selectTheme("science",2);options.modes=["secret"];options.difficulty="mixed";options.dice=false;newGame();game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
  const results=h.eval(`(()=>{const methods=new Set(),seen=[];for(let i=0;i<120;i++){const c=rollOutcome();methods.add(c.methodId);if(!c.complication||c.methodId==='sing')return false;
  const pool=getPackCardPool(game.contentPack,getMode(c.methodId).kind,c.difficulty,game.promptTypes);if(!pool.some(row=>row.text===c.word)||!pool.every(row=>row.pack==='science-v2'))return false;seen.push(c.difficulty);game.roundIndex++}return {methods:[...methods].sort(),counts:['easy','medium','hard'].map(l=>seen.filter(x=>x===l).length)}})()`);
  assert.deepEqual(Array.from(results.methods),['draw','mime','talk','yesno']);assert.deepEqual(Array.from(results.counts),[40,40,40]);
