@@ -14,6 +14,16 @@ test('Secret active mode shows no verbose helper text in selection tile; blocked
  const blocked=plain(h.eval('packModeAvailability(options.contentPack,options,"yesno")'));assert.equal(blocked.available,false);assert.match(blocked.reason,/отгадывающий/);
  const template=fs.readFileSync(require.resolve('../content/templates/content-packs.after.js'),'utf8');assert.doesNotMatch(template,/Если другие базовые способы не включены/);
 });
+test('Mode selection cards contain no explanatory paragraphs, including disabled Danetki and Secret',()=>{
+ const html=fs.readFileSync(require.resolve('../index.html'),'utf8');
+ const app=fs.readFileSync(require.resolve('../app.js'),'utf8');
+ assert.doesNotMatch(html,/mode-availability/);
+ assert.doesNotMatch(app,/mode-availability/);
+ const h=setup(['secret'],'setter');
+ const blocked=plain(h.eval('packModeAvailability(options.contentPack,options,"yesno")'));
+ assert.equal(blocked.available,false);
+ assert.match(blocked.reason,/отгадывающий/);
+});
 test('TASK009 G recipient changes and settings selection cannot reactivate an incompatible mode or hide an empty choice',()=>{
  const h=setup(['yesno'],'guesser');const game=h.eval('JSON.stringify(game)');h.eval('selectAwardTo("setter");renderOptions();persist()');assert.deepEqual(plain(h.eval('options.modes')),[]);assert.equal(h.eval('JSON.stringify(game)'),game);assert.equal(h.elements.get('start-game').disabled,true);assert.match(h.elements.get('setup-mode-notice').textContent,/Выберите/);
  assert.equal(h.eval('selectSetupMode("yesno",true)'),false);h.eval('newGame()');assert.equal(h.eval('JSON.stringify(game)'),game);
@@ -66,5 +76,5 @@ test('TASK009 G ordinary rewards/timers and all four manual Approx outcomes stay
  }
 });
 test('TASK009 G new compatibility script and changed scripts are versioned consistently for offline boot',()=>{
- const html=fs.readFileSync(require.resolve('../index.html'),'utf8'),worker=fs.readFileSync(require.resolve('../sw.js'),'utf8');for(const file of ['mode-compatibility.js','modifiers-v2.js','presets.js','content-packs.js','app.js']){const url=html.match(new RegExp(file.replace('.','\\.')+'\\?v=\\d+'))[0];assert.ok(worker.includes(url))}assert.match(worker,/kvip-pwa-v45-/);
+ const html=fs.readFileSync(require.resolve('../index.html'),'utf8'),worker=fs.readFileSync(require.resolve('../sw.js'),'utf8');for(const file of ['mode-compatibility.js','modifiers-v2.js','presets.js','content-packs.js','app.js']){const url=html.match(new RegExp(file.replace('.','\\.')+'\\?v=\\d+'))[0];assert.ok(worker.includes(url))}assert.match(worker,/kvip-pwa-v46-/);
 });

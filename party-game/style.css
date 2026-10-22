@@ -1791,7 +1791,7 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
 .modifier-frequency .slider-title{gap:12px;align-items:center}
 .modifier-frequency output{min-width:4ch;color:#a5edff}
 
-#mode-toggles .mode-availability:empty,#content-toggles .content-availability:empty{display:none}
-#mode-toggles .mode-availability,#content-toggles .content-availability{display:block;max-width:100%;color:#bec6dd;font-size:10px;line-height:1.3;overflow-wrap:anywhere;letter-spacing:0;font-weight:500}
+#content-toggles .content-availability:empty{display:none}
+#content-toggles .content-availability{display:block;max-width:100%;color:#bec6dd;font-size:10px;line-height:1.3;overflow-wrap:anywhere;letter-spacing:0;font-weight:500}
 #mode-toggles input:disabled+.mode-tile{border-style:dashed;cursor:not-allowed}
 #content-toggles input:disabled+span{display:flex;flex-direction:column;gap:4px;cursor:not-allowed}
