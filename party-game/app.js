@@ -521,19 +521,24 @@ function rollOutcome() {
   let actualMode=mode;
   const level=chooseDifficulty();
   if(mode.id==='secret'){
-    actualMode=getMode(randomOne(secretMethodsForPack(game.contentPack,game)));
+    actualMode=getMode(randomOne(game.modifierSelectionVersion===2?v2SecretMethods(game.contentPack,game,level):secretMethodsForPack(game.contentPack,game)));
   }
-  const selection=config.usesModifiers?choosePartyModifier(game,{modeId:mode.id,methodId:actualMode.id,
+  let selection=game.modifierSelectionVersion!==2&&config.usesModifiers?choosePartyModifier(game,{modeId:mode.id,methodId:actualMode.id,
     difficulty:level,complications:game.complications}):null;
-  const modifier=selection?.modifier||null;
-  if(selection&&game.modifierSelectionVersion!=null)game.modifierRecent=selection.recent;
   const question=config.cardType==='number'?pullApproxQuestion(level):null;
   const word=question?question.question:pullWord(mode.id==='blitz'?'blitz':actualMode.kind,level);
   const blitzWords=mode.id==='blitz'?[word]:null;
   if(blitzWords)while(blitzWords.length<config.blitzWordsCount)blitzWords.push(pullWord('blitz',level,blitzWords));
+  if(game.modifierSelectionVersion===2&&config.usesModifiers){
+    const card=getPackCardPool(game.contentPack,actualMode.kind,level,game.promptTypes).find(row=>row.text===word);
+    selection=choosePartyModifier(game,{modeId:mode.id,methodId:actualMode.id,difficulty:level,complications:game.complications,card,memory:taskMemory});
+  }
+  const modifier=selection?.modifier||null;
+  if(selection&&game.modifierSelectionVersion!=null)game.modifierRecent=selection.recent;
+  if(selection?.taskHistory)game.taskHistory=selection.taskHistory;
   return {
     modeId:mode.id,methodId:actualMode.id,word,...(question?{question}:{}),complication:modifier?.text||'',
-    complicationId:modifier?.id||null,modifierVersion:QUIP_MODIFIER_VERSION,difficulty:level,
+    complicationId:modifier?.id||null,modifierVersion:game.modifierCatalogVersion??QUIP_MODIFIER_VERSION,difficulty:level,
     basePoints:rewardForRound(game,mode.id,level),
     modifierPoints:ruleSetForGame(game).version>=4&&modifier?config.modifierBonus:0,
     points:rewardForRound(game,mode.id,level,!!modifier),usesTimer:config.usesTimer,
@@ -989,6 +994,9 @@ function newGame() {
     if(!checkContentPack(contentPack,options).available){
       toast('Набор заданий недоступен для выбранных настроек.');return;
     }
+    if(QUIP_MODIFIER_SELECTION_VERSION===2&&options.modes.includes('secret')){
+      for(const level of options.difficulty==='mixed'?PARTY_CARD_LEVELS:[options.difficulty])v2SecretMethods(contentPack,options,level);
+    }
   }catch{toast('Набор заданий недоступен для выбранных настроек.');return;}
   if(storageBlocked&&!recoverCorruptSave()){toast(storageNotice());return;}
   archiveCurrentTaskHistory();
@@ -1001,7 +1009,7 @@ function newGame() {
     rounds:options.rounds,targetScore:options.targetScore,finishType:options.finishType,
     riskRounds:options.riskRounds,scoringVersion:2,rulesVersion:QUIP_RULE_VERSION,modeConfigVersion:QUIP_MODE_CONFIG_VERSION,
     awardPolicyVersion:QUIP_AWARD_POLICY_VERSION,awardTo:['setter','guesser'].includes(options.awardTo)?options.awardTo:'setter',
-    modifierSelectionVersion:QUIP_MODIFIER_SELECTION_VERSION,modifierChance:sanitizeModifierChance(options.modifierChance),modifierRecent:[],
+    modifierCatalogVersion:QUIP_MODIFIER_CATALOG_V2,modifierSelectionVersion:QUIP_MODIFIER_SELECTION_VERSION,modifierChance:sanitizeModifierChance(options.modifierChance),modifierRecent:[],
     plannerVersion:QUIP_PLANNER_VERSION,plannerState:freshRoundPlan(),
     duration:options.duration,difficulty:options.difficulty,
     contentPack:{...contentPack},preset:options.preset?{...options.preset}:null,

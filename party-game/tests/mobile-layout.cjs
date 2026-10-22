@@ -56,6 +56,7 @@ function fitsViewport(g,device,stage) {
   try{
     await require('./storage-protection.cjs')(browser,URL);
     await require('./task-history-browser.cjs')(browser,URL);
+    await require('./modifiers-v2-browser.cjs')(browser,URL);
     await require('./thematic-game.cjs')(browser,URL);
     await require('./modifier-frequency.cjs')(browser,URL);
     await require('./round-outcomes.cjs')(browser,URL);

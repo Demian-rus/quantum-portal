@@ -45,6 +45,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
   vm.runInContext(read('modifiers.js'),context);
   vm.runInContext(read('round-planner.js'),context);
   vm.runInContext(read('task-history.js'),context);
+  vm.runInContext(read('modifiers-v2.js'),context);
   const packSource=fixturePack?read('content-packs.js').replace('const QUIP_CONTENT_PACKS=defineContentPacks([','const QUIP_CONTENT_PACKS=defineContentPacks(['+JSON.stringify(fixturePack)+','):read('content-packs.js');
   vm.runInContext(packSource,context);
   vm.runInContext(read('presets.js'),context);
@@ -55,10 +56,10 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
     options.modes=options.modes.filter(id=>id!=='approx');
     if(options.contentPack?.id==='general')options.contentPack={id:'general',version:1};
     newGame();if(game&&game.phase==='ready'&&game.roundIndex===0){
-      game.rulesVersion=version;delete game.taskHistoryVersion;delete game.taskHistory;delete game.modeConfigVersion;delete game.awardTo;delete game.awardPolicyVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;game.blitzCount=5;game.modes=game.modes.filter(id=>id!=='approx');persist();
+      game.rulesVersion=version;delete game.taskHistoryVersion;delete game.taskHistory;delete game.modeConfigVersion;delete game.awardTo;delete game.awardPolicyVersion;delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;game.blitzCount=5;game.modes=game.modes.filter(id=>id!=='approx');persist();
     }
   }`,context);
-  vm.runInContext("function v4Game(){newGame();game.rulesVersion=4;delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;persist()}",context);
+  vm.runInContext("function v4Game(){newGame();game.rulesVersion=4;delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;persist()}",context);
   // Scoring fixtures choose a fixed starting player; dedicated tests exercise both draws.
   if(!randomizeStarter)vm.runInContext('chooseStartingTeam=()=>0',context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
@@ -821,7 +822,7 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['approx-questions.js?v=5','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=2','round-planner.js?v=1','content-packs.js?v=7','presets.js?v=3','app.js?v=28']){
+ for(const file of ['approx-questions.js?v=5','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=3','round-planner.js?v=1','content-packs.js?v=7','presets.js?v=3','app.js?v=29']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
  assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);
@@ -1532,7 +1533,7 @@ test('V5 splits base and modifier rewards without mutating the round or score',(
 });
 test('V5 settles all configured explanations and recipient policies for three outcomes',()=>{
  for(const policy of ['setter','guesser'])for(const mode of ['talk','mime','draw','sing','yesno','secret','blitz'])for(const outcome of ['failed','base-only','complete']){
-  const h=harness();h.eval('soundOn=false;options.awardTo="'+policy+'";options.modes=["'+mode+'"];options.complications=true;options.dice=false;Math.random=()=>0;newGame();roll();game.current.blitzCorrect=3;game.phase="judge"');
+  const h=harness();h.eval('soundOn=false;options.awardTo="'+policy+'";options.modes=["'+mode+'"];options.complications=true;options.dice=false;Math.random=()=>0;newGame();game.modifierSelectionVersion=1;delete game.modifierCatalogVersion;roll();game.current.blitzCorrect=3;game.phase="judge"');
   const base=h.eval('game.current.basePoints');h.eval('judge('+(outcome!=='failed')+','+(outcome==='complete')+')');
   const recipient=policy==='setter'?0:1,earned=outcome==='failed'?0:base+(outcome==='complete'?1:0);
   assert.equal(h.eval('game.scores['+recipient+']'),earned);
@@ -1599,7 +1600,7 @@ test('new modifier selection defaults and ranges come from the independent polic
  for(const [raw,expected] of [[undefined,20],[0,10],[102,100],[36,35],[100,100]]){
   h.context.rawChance=raw;assert.equal(h.eval('sanitizeModifierChance(rawChance)'),expected);
  }
- h.eval('soundOn=false;newGame()');assert.equal(h.eval('game.modifierSelectionVersion'),1);assert.equal(h.eval('game.modifierChance'),20);assert.equal(h.eval('game.rulesVersion'),5);
+ h.eval('soundOn=false;newGame()');assert.equal(h.eval('game.modifierSelectionVersion'),2);assert.equal(h.eval('game.modifierChance'),20);assert.equal(h.eval('game.rulesVersion'),5);
 });
 test('optional modifier probability has deterministic boundaries and no guaranteed batch quota',()=>{
  for(const chance of [10,20,50,100]){
@@ -1639,8 +1640,8 @@ test('small modifier pools relax oldest restrictions safely and keep the latest 
  h.context.testMatch.modifierRecent=[{id:'two',key:'второе условие'},{id:'one',key:'первое условие'}];
  assert.equal(h.eval('choosePartyModifier(testMatch,testRequest,testRandom,testPool).modifier.id'),'two');
 });
-test('real rounds maintain five selected modifiers without recent text repeats or catalog mutations',()=>{
- const h=harness();h.eval('soundOn=false;options.modes=["talk"];options.modifierChance=100;options.difficulty="hard";options.dice=false;options.riskRounds=false;Math.random=()=>0;newGame()');
+test('historical V1 real rounds maintain five selected modifiers without recent text repeats or catalog mutations',()=>{
+ const h=harness();h.eval('soundOn=false;options.modes=["talk"];options.modifierChance=100;options.difficulty="hard";options.dice=false;options.riskRounds=false;Math.random=()=>0;newGame();game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
  const catalog=h.eval('JSON.stringify(QUIP_MODIFIERS)'),keys=[];
  for(let i=0;i<9;i++){
   h.eval('roll()');const key=h.eval('normalizeModifierText(game.current.complication)');
@@ -1665,7 +1666,7 @@ test('pre-C parties retain the historical 35 percent path independently of score
   assert.equal(h.eval('choosePartyModifier(testMatch,testRequest,testRandom).modifier'),null);
   assert.equal(h.eval('modifierSelectionPolicy(testMatch)'),null);
  }
- const stored=new Map(),a=harness(stored);a.eval('soundOn=false;newGame();delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;persist()');
+ const stored=new Map(),a=harness(stored);a.eval('soundOn=false;newGame();delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;persist()');
  const b=harness(stored);assert.equal(b.eval('game.modifierSelectionVersion'),undefined);assert.equal(b.eval('game.modifierChance'),undefined);assert.equal(b.eval('game.modifierRecent'),undefined);
 });
 test('unsupported modifier policies and invalid recent state protect the original saved party',()=>{
@@ -1755,7 +1756,7 @@ test('TASK008 geography has no dead ends for any nonempty permitted mode combina
 });
 test('TASK008 geography Secret-only never chooses singing or common-catalog content',()=>{
  const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation(808);
- h.eval('options.difficulty="mixed";selectTheme("geography",2);options.modes=["secret"];options.dice=false;newGame()');
+ h.eval('options.difficulty="mixed";selectTheme("geography",2);options.modes=["secret"];options.dice=false;newGame();game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
  const result=h.eval(`(()=>{const methods=new Set(),levels=[];for(let i=0;i<60;i++){game.current=rollOutcome();methods.add(game.current.methodId);levels.push(game.current.difficulty);
  const pool=getPackCardPool(game.contentPack,getMode(game.current.methodId).kind,game.current.difficulty,game.promptTypes);if(!pool.some(c=>c.text===game.current.word)||game.current.methodId==='sing'||!game.current.complication)return false;game.roundIndex++;game.current=null}
  return {methods:[...methods].sort(),levels:levels.reduce((counts,l)=>(counts[l]=(counts[l]||0)+1,counts),{})}})()`);
@@ -1795,7 +1796,7 @@ test('TASK008 standard, geography and science keep independent preferences acros
 });
 test('TASK008 both thematic registries have no dead-end mode, type or difficulty settings',()=>{
  const {checkSettings}=require('../scripts/balance-audit.cjs');assert.deepEqual(checkSettings(),{checked:3048,deadEnds:0});
- const h=harness();h.eval('selectTheme("science",2);options.modes=["secret"];options.difficulty="mixed";options.dice=false;newGame()');
+ const h=harness();h.eval('selectTheme("science",2);options.modes=["secret"];options.difficulty="mixed";options.dice=false;newGame();game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
  const results=h.eval(`(()=>{const methods=new Set(),seen=[];for(let i=0;i<120;i++){const c=rollOutcome();methods.add(c.methodId);if(!c.complication||c.methodId==='sing')return false;
  const pool=getPackCardPool(game.contentPack,getMode(c.methodId).kind,c.difficulty,game.promptTypes);if(!pool.some(row=>row.text===c.word)||!pool.every(row=>row.pack==='science-v2'))return false;seen.push(c.difficulty);game.roundIndex++}return {methods:[...methods].sort(),counts:['easy','medium','hard'].map(l=>seen.filter(x=>x===l).length)}})()`);
  assert.deepEqual(Array.from(results.methods),['draw','mime','talk','yesno']);assert.deepEqual(Array.from(results.counts),[40,40,40]);

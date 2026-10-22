@@ -129,9 +129,10 @@ function chooseModifier({modeId,methodId,difficulty,complications},random=Math.r
 }
 
 // Selection policies are independent of score rules and the immutable catalog.
-const QUIP_MODIFIER_SELECTION_VERSION=1;
+const QUIP_MODIFIER_SELECTION_VERSION=2;
 const QUIP_MODIFIER_SELECTION_POLICIES=Object.freeze({
- 1:Object.freeze({defaultChance:20,minChance:10,maxChance:100,step:5,recentLimit:5})
+ 1:Object.freeze({defaultChance:20,minChance:10,maxChance:100,step:5,recentLimit:5}),
+ 2:Object.freeze({defaultChance:20,minChance:10,maxChance:100,step:5,recentLimit:5})
 });
 function normalizeModifierText(text){
  return String(text).normalize('NFKC').toLocaleLowerCase('ru').replace(/ё/g,'е').replace(/[^\p{L}\p{N}]+/gu,' ').trim();
@@ -146,6 +147,7 @@ function modifierSelectionPolicy(match){
   (match.modifierChance-policy.minChance)%policy.step||!Array.isArray(match.modifierRecent)||match.modifierRecent.length>policy.recentLimit||
   match.modifierRecent.some(entry=>!entry||typeof entry.id!=='string'||typeof entry.key!=='string'))
   throw Error('Unsupported QUIP modifier selection policy/state');
+ if(match.modifierSelectionVersion===2&&(match.modifierCatalogVersion!==2||match.taskHistoryVersion!==1))throw Error('Unsupported V2 modifier catalog/history');
  return policy;
 }
 function sanitizeModifierChance(value){
@@ -156,6 +158,7 @@ function sanitizeModifierChance(value){
 function choosePartyModifier(match,request,random=Math.random,registry=QUIP_MODIFIERS){
  const policy=modifierSelectionPolicy(match);
  if(!policy)return {modifier:chooseModifier(request,random),recent:null};
+ if(match.modifierSelectionVersion===2)return chooseV2PartyModifier(match,request,random);
  const recent=match.modifierRecent;
  const roll=()=>{const value=random();if(!Number.isFinite(value)||value<0||value>=1)throw Error('Invalid QUIP modifier random value');return value;};
  if(!modeConfigForGame(match,request.modeId).usesModifiers||
