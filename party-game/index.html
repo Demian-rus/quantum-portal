@@ -10,7 +10,7 @@
   <link rel="manifest" href="./manifest.webmanifest?v=3">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=25">
+  <link rel="stylesheet" href="./style.css?v=26">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
   <script src="./curated-words.js?v=1" defer></script>
@@ -29,7 +29,7 @@
   <script src="./modifiers-v2.js?v=2" defer></script>
   <script src="./content-packs.js?v=13" defer></script>
   <script src="./presets.js?v=4" defer></script>
-  <script src="./app.js?v=35" defer></script>
+  <script src="./app.js?v=36" defer></script>
 </head>
 <body>
 
@@ -80,8 +80,8 @@
         <span class="section-kicker">НОВАЯ ИГРА</span><h1 class="preferences-title" id="game-type-title">КАК ИГРАЕМ?</h1>
         <p class="selection-intro">Выберите словарь для этой партии</p>
         <div class="game-type-choices">
-          <button id="standard-game" class="game-type-choice" type="button"><span class="choice-number" aria-hidden="true">01</span><strong>Стандартная игра</strong><span>Общий словарь · все игровые режимы</span><span class="choice-next" aria-hidden="true">→</span></button>
-          <button id="thematic-game" class="game-type-choice" type="button"><span class="choice-number" aria-hidden="true">02</span><strong>Тематическая игра</strong><span>Задания на одну выбранную тему</span><span class="choice-next" aria-hidden="true">→</span></button>
+          <button id="standard-game" class="game-type-choice" type="button"><span class="choice-number" aria-hidden="true">01<span class="choice-count" id="standard-content-count"></span></span><strong>Стандартная игра</strong><span>Общий словарь · все игровые режимы</span><span class="choice-next" aria-hidden="true">→</span></button>
+          <button id="thematic-game" class="game-type-choice" type="button"><span class="choice-number" aria-hidden="true">02<span class="choice-count" id="thematic-content-count"></span></span><strong>Тематическая игра</strong><span>Задания на одну выбранную тему</span><span class="choice-next" aria-hidden="true">→</span></button>
         </div>
       </div></div>
     </section>

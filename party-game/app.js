@@ -362,7 +362,17 @@ function openPreferences() {
   setSoundIcon();
   setScene('preferences');
 }
-function openGameType(){setScene('game-type');}
+// Counts come from the current versioned packs, never from a hard-coded UI total.
+function contentCountLabel(n){return '('+n.toLocaleString('ru-RU')+' заданий)';}
+function contentPackCount(pack){return new Set(pack.criteria.cardIds).size;}
+function renderGameTypeCounts(){
+ const general=getContentPack(latestGeneralPackSelection());
+ const activeThemes=listThematicPacks(options).filter(entry=>entry.pack.enabled&&entry.pack.criteria.cardIds.length);
+ const thematicIds=new Set(activeThemes.flatMap(entry=>entry.pack.criteria.cardIds));
+ $('standard-content-count').textContent=contentCountLabel(contentPackCount(general));
+ $('thematic-content-count').textContent=contentCountLabel(thematicIds.size);
+}
+function openGameType(){renderGameTypeCounts();setScene('game-type');}
 function rememberPackSettings(){
  const selection=options.contentPack,key=selection.id+'@'+selection.version;
  options.packPreferences={...(options.packPreferences||{}),[key]:{modes:options.modes.slice(),promptTypes:options.promptTypes.slice()}};
@@ -378,7 +388,7 @@ function renderThemes(){
  $('theme-list').innerHTML=entries.map(({pack,available})=>
   '<button type="button" class="theme-choice" data-theme="'+pack.id+'" data-version="'+pack.version+'"'+
   (available?'':' disabled aria-disabled="true"')+'><strong>'+escapeHTML(pack.name)+'</strong><span>'+
-  (available?'Выбрать тему':'Скоро')+'</span></button>').join('');
+  (available?contentPackCount(pack).toLocaleString('ru-RU'):'Скоро')+'</span></button>').join('');
  $('themes-caption').textContent=entries.some(entry=>entry.available)?
   'Выберите тему, затем настройте партию.':'Тематические наборы ещё готовятся. Пока можно сыграть в стандартную игру.';
 }
