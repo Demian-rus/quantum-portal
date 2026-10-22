@@ -814,7 +814,7 @@
   {
     "id": "approx-22237",
     "difficulty": "hard",
-    "question": "Какова магнитная индукция в центре соленоида детектора CMS?",
+    "question": "На какую номинальную магнитную индукцию рассчитан соленоид детектора CMS?",
     "answer": "4",
     "unit": "Тл",
     "categories": [
@@ -1421,7 +1421,7 @@
       "history",
       "geography"
     ],
-    "note": "Одна 17-метровая монолитная колонна; не все колонны вместе.",
+    "note": "Масса одной большой монолитной колонны портика; не всех колонн вместе.",
     "source": "https://cathedral.ru/ru/isaac/architecture",
     "pack": "approx-estimation-v3",
     "meta": {

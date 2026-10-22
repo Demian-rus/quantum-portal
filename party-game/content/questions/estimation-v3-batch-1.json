@@ -1662,7 +1662,7 @@
   {
     "id": "approx-22074",
     "difficulty": "hard",
-    "question": "Какую глубину под верхушками облаков превышает Большое Красное Пятно Юпитера?",
+    "question": "Какова нижняя оценка глубины Большого Красного Пятна Юпитера под верхушками облаков по данным Juno?",
     "answer": "350",
     "unit": "км",
     "categories": [
@@ -1926,14 +1926,14 @@
   {
     "id": "approx-22086",
     "difficulty": "hard",
-    "question": "Какую скорость превышают самые быстрые ветры Нептуна?",
-    "answer": "2000",
-    "unit": "км/ч",
+    "question": "Каково среднее расстояние от Нептуна до Солнца в миллиардах километров?",
+    "answer": "4.5",
+    "unit": "млрд км",
     "categories": [
       "science",
       "space"
     ],
-    "note": "NASA: более 2000 км/ч; ответ — опубликованный порог.",
+    "note": "NASA: среднее орбитальное расстояние 4,5 млрд км; не расстояние от Земли.",
     "source": "https://science.nasa.gov/neptune/neptune-facts/",
     "pack": "approx-estimation-v3",
     "meta": {
@@ -1941,7 +1941,7 @@
       "sourceKey": "neptune",
       "checkedAt": "2026-10-22",
       "batch": 1,
-      "measurementKey": "neptune:wind-lower",
+      "measurementKey": "neptune:distance-mean",
       "topic": "space"
     }
   },

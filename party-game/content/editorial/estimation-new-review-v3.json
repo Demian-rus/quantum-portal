@@ -1,0 +1,2704 @@
+[
+  {
+    "id": "approx-22001",
+    "measurementKey": "giraffe:height-male",
+    "decision": "accept",
+    "sourceKey": "giraffe",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22002",
+    "measurementKey": "giraffe:neck-mass",
+    "decision": "accept",
+    "sourceKey": "giraffe",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22003",
+    "measurementKey": "giraffe:newborn-height",
+    "decision": "accept",
+    "sourceKey": "giraffe",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22004",
+    "measurementKey": "giraffe:foot-diameter",
+    "decision": "accept",
+    "sourceKey": "giraffe",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22005",
+    "measurementKey": "rhino:white-length",
+    "decision": "accept",
+    "sourceKey": "rhino",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22006",
+    "measurementKey": "rhino:black-speed",
+    "decision": "accept",
+    "sourceKey": "rhino",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22007",
+    "measurementKey": "rhino:black-horn",
+    "decision": "accept",
+    "sourceKey": "rhino",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22008",
+    "measurementKey": "tiger:newborn-mass",
+    "decision": "accept",
+    "sourceKey": "tiger",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22009",
+    "measurementKey": "tiger:gestation",
+    "decision": "accept",
+    "sourceKey": "tiger",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22010",
+    "measurementKey": "tiger:tail-length",
+    "decision": "accept",
+    "sourceKey": "tiger",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22011",
+    "measurementKey": "gorilla:daily-food",
+    "decision": "accept",
+    "sourceKey": "gorilla",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22012",
+    "measurementKey": "gorilla:male-height",
+    "decision": "accept",
+    "sourceKey": "gorilla",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22013",
+    "measurementKey": "orangutan:male-height",
+    "decision": "accept",
+    "sourceKey": "orangutan",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22014",
+    "measurementKey": "orangutan:newborn-mass",
+    "decision": "accept",
+    "sourceKey": "orangutan",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22015",
+    "measurementKey": "koala:sleep",
+    "decision": "accept",
+    "sourceKey": "koala",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22016",
+    "measurementKey": "koala:newborn-mass",
+    "decision": "accept",
+    "sourceKey": "koala",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22017",
+    "measurementKey": "koala:body-length",
+    "decision": "accept",
+    "sourceKey": "koala",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22018",
+    "measurementKey": "hippo:shoulder-height",
+    "decision": "accept",
+    "sourceKey": "hippo",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22019",
+    "measurementKey": "hippo:female-mass",
+    "decision": "accept",
+    "sourceKey": "hippo",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22020",
+    "measurementKey": "hippo:body-length",
+    "decision": "accept",
+    "sourceKey": "hippo",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22021",
+    "measurementKey": "lion:roar-distance",
+    "decision": "accept",
+    "sourceKey": "lion",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22022",
+    "measurementKey": "lion:meal-mass",
+    "decision": "accept",
+    "sourceKey": "lion",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22023",
+    "measurementKey": "lion:female-speed",
+    "decision": "accept",
+    "sourceKey": "lion",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22024",
+    "measurementKey": "polar-bear:milk-fat",
+    "decision": "accept",
+    "sourceKey": "polar-bear",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22025",
+    "measurementKey": "polar-bear:newborn-mass",
+    "decision": "accept",
+    "sourceKey": "polar-bear",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22026",
+    "measurementKey": "kangaroo:red-male-mass",
+    "decision": "accept",
+    "sourceKey": "kangaroo",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22027",
+    "measurementKey": "kangaroo:red-speed",
+    "decision": "accept",
+    "sourceKey": "kangaroo",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22028",
+    "measurementKey": "anteater:tongue-length",
+    "decision": "accept",
+    "sourceKey": "anteater",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22029",
+    "measurementKey": "anteater:daily-insects",
+    "decision": "accept",
+    "sourceKey": "anteater",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22030",
+    "measurementKey": "anteater:tongue-frequency",
+    "decision": "accept",
+    "sourceKey": "anteater",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22031",
+    "measurementKey": "anteater:body-temperature",
+    "decision": "accept",
+    "sourceKey": "anteater",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22032",
+    "measurementKey": "capybara:shoulder-height",
+    "decision": "accept",
+    "sourceKey": "capybara",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22033",
+    "measurementKey": "capybara:adult-mass",
+    "decision": "accept",
+    "sourceKey": "capybara",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22034",
+    "measurementKey": "capybara:body-length",
+    "decision": "accept",
+    "sourceKey": "capybara",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22035",
+    "measurementKey": "red-panda:male-mass",
+    "decision": "accept",
+    "sourceKey": "red-panda",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22036",
+    "measurementKey": "red-panda:tail-length",
+    "decision": "accept",
+    "sourceKey": "red-panda",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22037",
+    "measurementKey": "warthog:upper-tusks",
+    "decision": "accept",
+    "sourceKey": "warthog",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22038",
+    "measurementKey": "warthog:male-mass",
+    "decision": "accept",
+    "sourceKey": "warthog",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22039",
+    "measurementKey": "flamingo:greater-height",
+    "decision": "accept",
+    "sourceKey": "flamingo",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22040",
+    "measurementKey": "flamingo:greater-mass",
+    "decision": "accept",
+    "sourceKey": "flamingo",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22041",
+    "measurementKey": "eagle:wingspan",
+    "decision": "accept",
+    "sourceKey": "eagle",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22042",
+    "measurementKey": "eagle:incubation",
+    "decision": "accept",
+    "sourceKey": "eagle",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22043",
+    "measurementKey": "condor:wingspan",
+    "decision": "accept",
+    "sourceKey": "condor",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22044",
+    "measurementKey": "condor:flight-height",
+    "decision": "accept",
+    "sourceKey": "condor",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22045",
+    "measurementKey": "ostrich:eye-diameter",
+    "decision": "accept",
+    "sourceKey": "ostrich",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22046",
+    "measurementKey": "ostrich:male-height",
+    "decision": "accept",
+    "sourceKey": "ostrich",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22047",
+    "measurementKey": "octopus:female-suckers",
+    "decision": "accept",
+    "sourceKey": "octopus",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22048",
+    "measurementKey": "octopus:hatchling-mass",
+    "decision": "accept",
+    "sourceKey": "octopus",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22049",
+    "measurementKey": "octopus:record-mass",
+    "decision": "accept",
+    "sourceKey": "octopus",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22050",
+    "measurementKey": "otter:daily-food-fraction",
+    "decision": "accept",
+    "sourceKey": "otter",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22051",
+    "measurementKey": "otter:male-mass",
+    "decision": "accept",
+    "sourceKey": "otter",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22052",
+    "measurementKey": "heart:adult-mass-upper",
+    "decision": "accept",
+    "sourceKey": "heart",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22053",
+    "measurementKey": "heart:minute-flow",
+    "decision": "accept",
+    "sourceKey": "heart",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22054",
+    "measurementKey": "kidney:nephrons-per-kidney",
+    "decision": "accept",
+    "sourceKey": "kidney",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22055",
+    "measurementKey": "lungs:alveolar-area",
+    "decision": "accept",
+    "sourceKey": "lungs",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22056",
+    "measurementKey": "lungs:daily-breaths",
+    "decision": "accept",
+    "sourceKey": "lungs",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22057",
+    "measurementKey": "skin:area",
+    "decision": "accept",
+    "sourceKey": "skin",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22058",
+    "measurementKey": "skin:mass",
+    "decision": "accept",
+    "sourceKey": "skin",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22059",
+    "measurementKey": "esophagus:length",
+    "decision": "accept",
+    "sourceKey": "esophagus",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22060",
+    "measurementKey": "hair:monthly-growth",
+    "decision": "accept",
+    "sourceKey": "hair",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22061",
+    "measurementKey": "nails:finger-monthly-growth",
+    "decision": "accept",
+    "sourceKey": "nails",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22062",
+    "measurementKey": "nails:toe-monthly-growth",
+    "decision": "accept",
+    "sourceKey": "nails",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22063",
+    "measurementKey": "mercury:day-temperature",
+    "decision": "accept",
+    "sourceKey": "mercury",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22064",
+    "measurementKey": "mercury:night-temperature",
+    "decision": "accept",
+    "sourceKey": "mercury",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22065",
+    "measurementKey": "mercury:orbital-speed",
+    "decision": "accept",
+    "sourceKey": "mercury",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22066",
+    "measurementKey": "mercury:diameter",
+    "decision": "accept",
+    "sourceKey": "mercury",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22067",
+    "measurementKey": "mercury:caloris-diameter",
+    "decision": "accept",
+    "sourceKey": "mercury",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22068",
+    "measurementKey": "venus:surface-temperature",
+    "decision": "accept",
+    "sourceKey": "venus",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22069",
+    "measurementKey": "venus:surface-pressure-ratio",
+    "decision": "accept",
+    "sourceKey": "venus",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22070",
+    "measurementKey": "mars:diameter",
+    "decision": "accept",
+    "sourceKey": "mars",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22071",
+    "measurementKey": "mars:rotation",
+    "decision": "accept",
+    "sourceKey": "mars",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22072",
+    "measurementKey": "mars:sun-distance",
+    "decision": "accept",
+    "sourceKey": "mars",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22073",
+    "measurementKey": "jupiter:rotation",
+    "decision": "accept",
+    "sourceKey": "jupiter",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22074",
+    "measurementKey": "jupiter:red-spot-depth-lower",
+    "decision": "accept",
+    "sourceKey": "jupiter",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": true
+  },
+  {
+    "id": "approx-22075",
+    "measurementKey": "jupiter:equatorial-wind",
+    "decision": "accept",
+    "sourceKey": "jupiter",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22076",
+    "measurementKey": "saturn:equatorial-diameter",
+    "decision": "accept",
+    "sourceKey": "saturn",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22077",
+    "measurementKey": "saturn:main-ring-thickness",
+    "decision": "accept",
+    "sourceKey": "saturn",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22078",
+    "measurementKey": "saturn:cassini-division-width",
+    "decision": "accept",
+    "sourceKey": "saturn",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22079",
+    "measurementKey": "saturn:equatorial-wind",
+    "decision": "accept",
+    "sourceKey": "saturn",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22080",
+    "measurementKey": "uranus:equatorial-diameter",
+    "decision": "accept",
+    "sourceKey": "uranus",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22081",
+    "measurementKey": "uranus:orbital-period",
+    "decision": "accept",
+    "sourceKey": "uranus",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22082",
+    "measurementKey": "uranus:rotation",
+    "decision": "accept",
+    "sourceKey": "uranus",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22083",
+    "measurementKey": "uranus:atmosphere-min-temperature",
+    "decision": "accept",
+    "sourceKey": "uranus",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22084",
+    "measurementKey": "uranus:wind",
+    "decision": "accept",
+    "sourceKey": "uranus",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22085",
+    "measurementKey": "neptune:equatorial-diameter",
+    "decision": "accept",
+    "sourceKey": "neptune",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22086",
+    "measurementKey": "neptune:distance-mean",
+    "decision": "accept",
+    "sourceKey": "neptune",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false,
+    "replacedDuringFinalReview": true,
+    "replacementReason": "Вопрос о превышаемом пороге скорости ветра давал открытое множество числовых ответов. Заменён независимой средней орбитальной дистанцией, подтверждённой той же страницей NASA."
+  },
+  {
+    "id": "approx-22087",
+    "measurementKey": "yosemite:yosemite-total-height",
+    "decision": "accept",
+    "sourceKey": "yosemite",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22088",
+    "measurementKey": "yosemite:bridalveil-height",
+    "decision": "accept",
+    "sourceKey": "yosemite",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22089",
+    "measurementKey": "badwater:below-sea-level",
+    "decision": "accept",
+    "sourceKey": "badwater",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22090",
+    "measurementKey": "badwater:salt-flat-area",
+    "decision": "accept",
+    "sourceKey": "badwater",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22091",
+    "measurementKey": "faithful:plume-height-upper",
+    "decision": "accept",
+    "sourceKey": "faithful",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22092",
+    "measurementKey": "faithful:interval-2024",
+    "decision": "accept",
+    "sourceKey": "faithful",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22093",
+    "measurementKey": "faithful:eruption-duration-upper",
+    "decision": "accept",
+    "sourceKey": "faithful",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22094",
+    "measurementKey": "faithful-study:mean-water-2025",
+    "decision": "accept",
+    "sourceKey": "faithful-study",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22095",
+    "measurementKey": "faithful-study:steamboat-water-2020",
+    "decision": "accept",
+    "sourceKey": "faithful-study",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22096",
+    "measurementKey": "carlsbad:big-room-area",
+    "decision": "accept",
+    "sourceKey": "carlsbad",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22097",
+    "measurementKey": "carlsbad:lechuguilla-depth-2025",
+    "decision": "accept",
+    "sourceKey": "carlsbad",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22098",
+    "measurementKey": "carlsbad:bat-colony-2025",
+    "decision": "accept",
+    "sourceKey": "carlsbad",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22099",
+    "measurementKey": "yosemite:ribbon-height",
+    "decision": "accept",
+    "sourceKey": "yosemite",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22100",
+    "measurementKey": "yosemite:sentinel-height",
+    "decision": "accept",
+    "sourceKey": "yosemite",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22101",
+    "measurementKey": "komatsu:payload",
+    "decision": "accept",
+    "sourceKey": "komatsu",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22102",
+    "measurementKey": "komatsu:fuel-tank",
+    "decision": "accept",
+    "sourceKey": "komatsu",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22103",
+    "measurementKey": "komatsu:turning-circle",
+    "decision": "accept",
+    "sourceKey": "komatsu",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22104",
+    "measurementKey": "komatsu:heaped-body-volume",
+    "decision": "accept",
+    "sourceKey": "komatsu",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22105",
+    "measurementKey": "komatsu:maximum-speed",
+    "decision": "accept",
+    "sourceKey": "komatsu",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22106",
+    "measurementKey": "burj:foundation-mat-thickness",
+    "decision": "accept",
+    "sourceKey": "burj",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22107",
+    "measurementKey": "burj:pile-length",
+    "decision": "accept",
+    "sourceKey": "burj",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22108",
+    "measurementKey": "burj:glass-panel-mass",
+    "decision": "accept",
+    "sourceKey": "burj",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22109",
+    "measurementKey": "burj:glass-panel-count",
+    "decision": "accept",
+    "sourceKey": "burj",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22110",
+    "measurementKey": "burj:service-lift-capacity",
+    "decision": "accept",
+    "sourceKey": "burj",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22111",
+    "measurementKey": "burj:daily-water-design",
+    "decision": "accept",
+    "sourceKey": "burj",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22112",
+    "measurementKey": "concorde:length",
+    "decision": "accept",
+    "sourceKey": "concorde",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22113",
+    "measurementKey": "concorde:wingspan",
+    "decision": "accept",
+    "sourceKey": "concorde",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22114",
+    "measurementKey": "concorde:maximum-takeoff-mass",
+    "decision": "accept",
+    "sourceKey": "concorde",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22115",
+    "measurementKey": "concorde:maximum-speed",
+    "decision": "accept",
+    "sourceKey": "concorde",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22116",
+    "measurementKey": "concorde:operating-ceiling",
+    "decision": "accept",
+    "sourceKey": "concorde",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22117",
+    "measurementKey": "itaipu:main-dam-height",
+    "decision": "accept",
+    "sourceKey": "itaipu",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22118",
+    "measurementKey": "itaipu:reservoir-area",
+    "decision": "accept",
+    "sourceKey": "itaipu",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22119",
+    "measurementKey": "itaipu:spillway-capacity",
+    "decision": "accept",
+    "sourceKey": "itaipu",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22120",
+    "measurementKey": "towerbridge:construction-duration",
+    "decision": "accept",
+    "sourceKey": "towerbridge",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22121",
+    "measurementKey": "towerbridge:crests-height-above-road",
+    "decision": "accept",
+    "sourceKey": "towerbridge",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22122",
+    "measurementKey": "cntower:total-height",
+    "decision": "accept",
+    "sourceKey": "cntower",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22123",
+    "measurementKey": "eye:total-height",
+    "decision": "accept",
+    "sourceKey": "eye",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22124",
+    "measurementKey": "eye:capsule-mass",
+    "decision": "accept",
+    "sourceKey": "eye",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22125",
+    "measurementKey": "eye:spindle-diameter",
+    "decision": "accept",
+    "sourceKey": "eye",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22126",
+    "measurementKey": "eye:total-mass",
+    "decision": "accept",
+    "sourceKey": "eye",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22127",
+    "measurementKey": "chiron:zero-400-zero-time",
+    "decision": "accept",
+    "sourceKey": "chiron",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22128",
+    "measurementKey": "chiron:zero-400-zero-distance",
+    "decision": "accept",
+    "sourceKey": "chiron",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22129",
+    "measurementKey": "chiron:front-brake-disc",
+    "decision": "accept",
+    "sourceKey": "chiron",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22130",
+    "measurementKey": "chiron:veyron-speed-2010",
+    "decision": "accept",
+    "sourceKey": "chiron",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22131",
+    "measurementKey": "chinook:rotor-diameter",
+    "decision": "accept",
+    "sourceKey": "chinook",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22132",
+    "measurementKey": "chinook:fuel-capacity",
+    "decision": "accept",
+    "sourceKey": "chinook",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22133",
+    "measurementKey": "chinook:gross-mass",
+    "decision": "accept",
+    "sourceKey": "chinook",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22134",
+    "measurementKey": "chinook:service-ceiling",
+    "decision": "accept",
+    "sourceKey": "chinook",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22135",
+    "measurementKey": "starry:width",
+    "decision": "accept",
+    "sourceKey": "starry",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22136",
+    "measurementKey": "starry:height",
+    "decision": "accept",
+    "sourceKey": "starry",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22137",
+    "measurementKey": "guernica:width",
+    "decision": "accept",
+    "sourceKey": "guernica",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22138",
+    "measurementKey": "guernica:height",
+    "decision": "accept",
+    "sourceKey": "guernica",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22139",
+    "measurementKey": "steinway:length",
+    "decision": "accept",
+    "sourceKey": "steinway",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22140",
+    "measurementKey": "steinway:width",
+    "decision": "accept",
+    "sourceKey": "steinway",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22141",
+    "measurementKey": "steinway:new-york-mass",
+    "decision": "accept",
+    "sourceKey": "steinway",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22142",
+    "measurementKey": "steinway:longest-speaking-string",
+    "decision": "accept",
+    "sourceKey": "steinway",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22143",
+    "measurementKey": "tennis:court-length",
+    "decision": "accept",
+    "sourceKey": "tennis",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22144",
+    "measurementKey": "tennis:singles-width",
+    "decision": "accept",
+    "sourceKey": "tennis",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22145",
+    "measurementKey": "tennis:net-centre-height",
+    "decision": "accept",
+    "sourceKey": "tennis",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22146",
+    "measurementKey": "tennis:ball-mass-upper",
+    "decision": "accept",
+    "sourceKey": "tennis",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22147",
+    "measurementKey": "tennis:type2-diameter-lower",
+    "decision": "accept",
+    "sourceKey": "tennis",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22148",
+    "measurementKey": "tennis:racket-length-upper",
+    "decision": "accept",
+    "sourceKey": "tennis",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22149",
+    "measurementKey": "tennis:racket-width-upper",
+    "decision": "accept",
+    "sourceKey": "tennis",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22150",
+    "measurementKey": "football-field:goal-width",
+    "decision": "accept",
+    "sourceKey": "football-field",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22151",
+    "measurementKey": "football-field:goal-height",
+    "decision": "accept",
+    "sourceKey": "football-field",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22152",
+    "measurementKey": "football-field:penalty-area-depth",
+    "decision": "accept",
+    "sourceKey": "football-field",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22153",
+    "measurementKey": "football-field:centre-circle-radius",
+    "decision": "accept",
+    "sourceKey": "football-field",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22154",
+    "measurementKey": "football-ball:mass-upper",
+    "decision": "accept",
+    "sourceKey": "football-ball",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22155",
+    "measurementKey": "football-ball:circumference-upper",
+    "decision": "accept",
+    "sourceKey": "football-ball",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22156",
+    "measurementKey": "basketball:court-length",
+    "decision": "accept",
+    "sourceKey": "basketball",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22157",
+    "measurementKey": "basketball:court-width",
+    "decision": "accept",
+    "sourceKey": "basketball",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22158",
+    "measurementKey": "basketball:three-point-radius",
+    "decision": "accept",
+    "sourceKey": "basketball",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22159",
+    "measurementKey": "basketball:centre-circle-radius",
+    "decision": "accept",
+    "sourceKey": "basketball",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22160",
+    "measurementKey": "basketball:free-throw-line-offset",
+    "decision": "accept",
+    "sourceKey": "basketball",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22161",
+    "measurementKey": "basketball:marking-width",
+    "decision": "accept",
+    "sourceKey": "basketball",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22162",
+    "measurementKey": "basketball:no-charge-radius",
+    "decision": "accept",
+    "sourceKey": "basketball",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22163",
+    "measurementKey": "parmesan:milk-per-wheel",
+    "decision": "accept",
+    "sourceKey": "parmesan",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22164",
+    "measurementKey": "cola:caffeine-original-330ml",
+    "decision": "accept",
+    "sourceKey": "cola",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22165",
+    "measurementKey": "nutella:hazelnut-percentage",
+    "decision": "accept",
+    "sourceKey": "nutella",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22166",
+    "measurementKey": "champagne:pressure-upper",
+    "decision": "accept",
+    "sourceKey": "champagne",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22167",
+    "measurementKey": "champagne:grapes-per-bottle",
+    "decision": "accept",
+    "sourceKey": "champagne",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22168",
+    "measurementKey": "champagne:non-vintage-age-minimum",
+    "decision": "accept",
+    "sourceKey": "champagne",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22169",
+    "measurementKey": "water-crops:chocolate-footprint",
+    "decision": "accept",
+    "sourceKey": "water-crops",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22170",
+    "measurementKey": "water-crops:roasted-coffee-footprint",
+    "decision": "accept",
+    "sourceKey": "water-crops",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22171",
+    "measurementKey": "water-crops:potato-footprint",
+    "decision": "accept",
+    "sourceKey": "water-crops",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22172",
+    "measurementKey": "water-crops:wheat-bread-footprint",
+    "decision": "accept",
+    "sourceKey": "water-crops",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22173",
+    "measurementKey": "ipod:original-mass",
+    "decision": "accept",
+    "sourceKey": "ipod",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22174",
+    "measurementKey": "macair:m2-2022-thickness",
+    "decision": "accept",
+    "sourceKey": "macair",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22175",
+    "measurementKey": "macair:m2-2022-mass",
+    "decision": "accept",
+    "sourceKey": "macair",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22176",
+    "measurementKey": "iphone:original-depth",
+    "decision": "accept",
+    "sourceKey": "iphone",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22177",
+    "measurementKey": "iphone:original-mass",
+    "decision": "accept",
+    "sourceKey": "iphone",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22178",
+    "measurementKey": "cd:outer-diameter",
+    "decision": "accept",
+    "sourceKey": "cd",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22179",
+    "measurementKey": "cd:nominal-thickness",
+    "decision": "accept",
+    "sourceKey": "cd",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22180",
+    "measurementKey": "ruble1:diameter",
+    "decision": "accept",
+    "sourceKey": "ruble1",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22181",
+    "measurementKey": "ruble5:steel-mass",
+    "decision": "accept",
+    "sourceKey": "ruble5",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22182",
+    "measurementKey": "ruble10:thickness",
+    "decision": "accept",
+    "sourceKey": "ruble10",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22183",
+    "measurementKey": "ruble10:mass",
+    "decision": "accept",
+    "sourceKey": "ruble10",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22184",
+    "measurementKey": "usquarter:quarter-mass",
+    "decision": "accept",
+    "sourceKey": "usquarter",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22185",
+    "measurementKey": "usquarter:quarter-diameter",
+    "decision": "accept",
+    "sourceKey": "usquarter",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22186",
+    "measurementKey": "wright:first-flight-duration",
+    "decision": "accept",
+    "sourceKey": "wright",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22187",
+    "measurementKey": "wright:first-flight-distance",
+    "decision": "accept",
+    "sourceKey": "wright",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22188",
+    "measurementKey": "wright:flyer-wingspan",
+    "decision": "accept",
+    "sourceKey": "wright",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22189",
+    "measurementKey": "golden-f:tower-height",
+    "decision": "accept",
+    "sourceKey": "golden-f",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22190",
+    "measurementKey": "golden-f:original-total-mass",
+    "decision": "accept",
+    "sourceKey": "golden-f",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22191",
+    "measurementKey": "golden-f:transverse-design-deflection",
+    "decision": "accept",
+    "sourceKey": "golden-f",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22192",
+    "measurementKey": "golden-f:south-foundation-depth",
+    "decision": "accept",
+    "sourceKey": "golden-f",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22193",
+    "measurementKey": "colosseum:outer-length",
+    "decision": "accept",
+    "sourceKey": "colosseum",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22194",
+    "measurementKey": "colosseum:outer-width",
+    "decision": "accept",
+    "sourceKey": "colosseum",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22195",
+    "measurementKey": "colosseum:arena-length",
+    "decision": "accept",
+    "sourceKey": "colosseum",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22196",
+    "measurementKey": "colosseum:arena-width",
+    "decision": "accept",
+    "sourceKey": "colosseum",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22197",
+    "measurementKey": "versailles:hall-length",
+    "decision": "accept",
+    "sourceKey": "versailles",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22198",
+    "measurementKey": "versailles:mirror-count",
+    "decision": "accept",
+    "sourceKey": "versailles",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22199",
+    "measurementKey": "steinway:longest-key-length",
+    "decision": "accept",
+    "sourceKey": "steinway",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22200",
+    "measurementKey": "golden-f:individual-wire-diameter",
+    "decision": "accept",
+    "sourceKey": "golden-f",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22201",
+    "measurementKey": "reef-length:along-coast-length",
+    "decision": "accept",
+    "sourceKey": "reef-length",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22202",
+    "measurementKey": "reef:marine-park-area",
+    "decision": "accept",
+    "sourceKey": "reef",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22203",
+    "measurementKey": "reef:marine-park-width-upper",
+    "decision": "accept",
+    "sourceKey": "reef",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22204",
+    "measurementKey": "reef:inshore-average-depth",
+    "decision": "accept",
+    "sourceKey": "reef",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22205",
+    "measurementKey": "uluru:above-plain-height",
+    "decision": "accept",
+    "sourceKey": "uluru",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22206",
+    "measurementKey": "uluru:base-circumference",
+    "decision": "accept",
+    "sourceKey": "uluru",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22207",
+    "measurementKey": "uluru:above-ground-mass",
+    "decision": "accept",
+    "sourceKey": "uluru",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22208",
+    "measurementKey": "uluru:kata-tjuta-height",
+    "decision": "accept",
+    "sourceKey": "uluru",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22209",
+    "measurementKey": "diplodocus:adult-length-upper",
+    "decision": "accept",
+    "sourceKey": "diplodocus",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22210",
+    "measurementKey": "diplodocus:adult-mass-upper",
+    "decision": "accept",
+    "sourceKey": "diplodocus",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22211",
+    "measurementKey": "stegosaurus:sophie-living-mass",
+    "decision": "accept",
+    "sourceKey": "stegosaurus",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22212",
+    "measurementKey": "weather-f:hailstone-mass-1986",
+    "decision": "accept",
+    "sourceKey": "weather-f",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22213",
+    "measurementKey": "weather-f:unionville-minute-rain-1956",
+    "decision": "accept",
+    "sourceKey": "weather-f",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22214",
+    "measurementKey": "weather-f:holt-hour-rain-1947",
+    "decision": "accept",
+    "sourceKey": "weather-f",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22215",
+    "measurementKey": "weather-f:arica-dry-period",
+    "decision": "accept",
+    "sourceKey": "weather-f",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22216",
+    "measurementKey": "weather-f:tip-eye-pressure-1979",
+    "decision": "accept",
+    "sourceKey": "weather-f",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22217",
+    "measurementKey": "cells:adult-male-cell-count",
+    "decision": "accept",
+    "sourceKey": "cells",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22218",
+    "measurementKey": "cells:daily-replacement",
+    "decision": "accept",
+    "sourceKey": "cells",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22219",
+    "measurementKey": "cells:axon-length",
+    "decision": "accept",
+    "sourceKey": "cells",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22220",
+    "measurementKey": "cells:cell-water-fraction",
+    "decision": "accept",
+    "sourceKey": "cells",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22221",
+    "measurementKey": "cells:body-bacteria-mass",
+    "decision": "accept",
+    "sourceKey": "cells",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22222",
+    "measurementKey": "platelets:lifespan-upper",
+    "decision": "accept",
+    "sourceKey": "platelets",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22223",
+    "measurementKey": "platelets:per-microlitre-upper",
+    "decision": "accept",
+    "sourceKey": "platelets",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22224",
+    "measurementKey": "dna-length:diploid-cell-dna-length",
+    "decision": "accept",
+    "sourceKey": "dna-length",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22225",
+    "measurementKey": "brain-count:adult-neuron-count",
+    "decision": "accept",
+    "sourceKey": "brain-count",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22226",
+    "measurementKey": "heart:daily-beats",
+    "decision": "accept",
+    "sourceKey": "heart",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22227",
+    "measurementKey": "water-earth:all-water-sphere-diameter",
+    "decision": "accept",
+    "sourceKey": "water-earth",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22228",
+    "measurementKey": "water-earth:atmospheric-water-volume",
+    "decision": "accept",
+    "sourceKey": "water-earth",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22229",
+    "measurementKey": "water-earth:river-water-stock",
+    "decision": "accept",
+    "sourceKey": "water-earth",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22230",
+    "measurementKey": "water-earth:freshwater-in-ice",
+    "decision": "accept",
+    "sourceKey": "water-earth",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22231",
+    "measurementKey": "mauna:land-footprint",
+    "decision": "accept",
+    "sourceKey": "mauna",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22232",
+    "measurementKey": "mauna:caldera-length",
+    "decision": "accept",
+    "sourceKey": "mauna",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22233",
+    "measurementKey": "mauna:caldera-width",
+    "decision": "accept",
+    "sourceKey": "mauna",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22234",
+    "measurementKey": "mauna:caldera-west-depth",
+    "decision": "accept",
+    "sourceKey": "mauna",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22235",
+    "measurementKey": "cms:detector-mass",
+    "decision": "accept",
+    "sourceKey": "cms",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22236",
+    "measurementKey": "cms:detector-diameter",
+    "decision": "accept",
+    "sourceKey": "cms",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22237",
+    "measurementKey": "cms:solenoid-field",
+    "decision": "accept",
+    "sourceKey": "cms",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": true
+  },
+  {
+    "id": "approx-22238",
+    "measurementKey": "ge9x:fan-diameter",
+    "decision": "accept",
+    "sourceKey": "ge9x",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22239",
+    "measurementKey": "ge9x:record-thrust-2017",
+    "decision": "accept",
+    "sourceKey": "ge9x",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22240",
+    "measurementKey": "webb:primary-mirror-diameter",
+    "decision": "accept",
+    "sourceKey": "webb",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22241",
+    "measurementKey": "webb:primary-mirror-assembly-mass",
+    "decision": "accept",
+    "sourceKey": "webb",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22242",
+    "measurementKey": "webb:primary-mirror-gold-mass",
+    "decision": "accept",
+    "sourceKey": "webb",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22243",
+    "measurementKey": "webb:sunshield-length",
+    "decision": "accept",
+    "sourceKey": "webb",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22244",
+    "measurementKey": "webb:sunshield-width",
+    "decision": "accept",
+    "sourceKey": "webb",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22245",
+    "measurementKey": "bic:cristal-writing-distance",
+    "decision": "accept",
+    "sourceKey": "bic",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22246",
+    "measurementKey": "bic:maxi-ignitions",
+    "decision": "accept",
+    "sourceKey": "bic",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22247",
+    "measurementKey": "lego-falcon:set-piece-count",
+    "decision": "accept",
+    "sourceKey": "lego-falcon",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22248",
+    "measurementKey": "lego-falcon:assembled-length",
+    "decision": "accept",
+    "sourceKey": "lego-falcon",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22249",
+    "measurementKey": "pizza:airrack-pizza-area-2023",
+    "decision": "accept",
+    "sourceKey": "pizza",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22250",
+    "measurementKey": "pizza:airrack-dough-mass-2023",
+    "decision": "accept",
+    "sourceKey": "pizza",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22251",
+    "measurementKey": "pizza:airrack-sauce-mass-2023",
+    "decision": "accept",
+    "sourceKey": "pizza",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22252",
+    "measurementKey": "pizza:airrack-pepperoni-count-2023",
+    "decision": "accept",
+    "sourceKey": "pizza",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22253",
+    "measurementKey": "food-records:giant-fry-mass-2018",
+    "decision": "accept",
+    "sourceKey": "food-records",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22254",
+    "measurementKey": "food-records:giant-crisps-bag-2013",
+    "decision": "accept",
+    "sourceKey": "food-records",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22255",
+    "measurementKey": "tsarb-f:bell-height",
+    "decision": "accept",
+    "sourceKey": "tsarb-f",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22256",
+    "measurementKey": "tsarc-f:cannon-calibre",
+    "decision": "accept",
+    "sourceKey": "tsarc-f",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22257",
+    "measurementKey": "ivanov:canvas-width",
+    "decision": "accept",
+    "sourceKey": "ivanov",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22258",
+    "measurementKey": "ivanov:canvas-height",
+    "decision": "accept",
+    "sourceKey": "ivanov",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22259",
+    "measurementKey": "ninth-wave:canvas-width",
+    "decision": "accept",
+    "sourceKey": "ninth-wave",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22260",
+    "measurementKey": "ninth-wave:canvas-height",
+    "decision": "accept",
+    "sourceKey": "ninth-wave",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22261",
+    "measurementKey": "isaac:cathedral-height",
+    "decision": "accept",
+    "sourceKey": "isaac",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22262",
+    "measurementKey": "isaac:cathedral-length",
+    "decision": "accept",
+    "sourceKey": "isaac",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22263",
+    "measurementKey": "isaac:cathedral-width",
+    "decision": "accept",
+    "sourceKey": "isaac",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22264",
+    "measurementKey": "isaac:portico-column-mass",
+    "decision": "accept",
+    "sourceKey": "isaac",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": true,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22265",
+    "measurementKey": "isaac:portico-column-height",
+    "decision": "accept",
+    "sourceKey": "isaac",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22266",
+    "measurementKey": "isaac-build:construction-duration",
+    "decision": "accept",
+    "sourceKey": "isaac-build",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22267",
+    "measurementKey": "gagarin:vostok1-duration",
+    "decision": "accept",
+    "sourceKey": "gagarin",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22268",
+    "measurementKey": "gagarin:vostok1-apogee",
+    "decision": "accept",
+    "sourceKey": "gagarin",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22269",
+    "measurementKey": "gagarin:vostok1-orbit-speed",
+    "decision": "accept",
+    "sourceKey": "gagarin",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22270",
+    "measurementKey": "giraffe:male-mass-upper",
+    "decision": "accept",
+    "sourceKey": "giraffe",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22271",
+    "measurementKey": "rhino:sumatran-average-mass",
+    "decision": "accept",
+    "sourceKey": "rhino",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22272",
+    "measurementKey": "tiger:average-lifespan",
+    "decision": "accept",
+    "sourceKey": "tiger",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22273",
+    "measurementKey": "cheetah-f:post-chase-temperature",
+    "decision": "accept",
+    "sourceKey": "cheetah-f",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22274",
+    "measurementKey": "gorilla:newborn-mass-upper",
+    "decision": "accept",
+    "sourceKey": "gorilla",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22275",
+    "measurementKey": "hippo:gestation",
+    "decision": "accept",
+    "sourceKey": "hippo",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22276",
+    "measurementKey": "koala:usual-lifespan-upper",
+    "decision": "accept",
+    "sourceKey": "koala",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22277",
+    "measurementKey": "capybara:wild-lifespan-upper",
+    "decision": "accept",
+    "sourceKey": "capybara",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22278",
+    "measurementKey": "flamingo:incubation-upper",
+    "decision": "accept",
+    "sourceKey": "flamingo",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22279",
+    "measurementKey": "eagle:female-mass-upper",
+    "decision": "accept",
+    "sourceKey": "eagle",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22280",
+    "measurementKey": "condor:male-mass-upper",
+    "decision": "accept",
+    "sourceKey": "condor",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22281",
+    "measurementKey": "warthog:shoulder-height-upper",
+    "decision": "accept",
+    "sourceKey": "warthog",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22282",
+    "measurementKey": "red-panda:head-body-length-upper",
+    "decision": "accept",
+    "sourceKey": "red-panda",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22283",
+    "measurementKey": "lion:male-mass-upper",
+    "decision": "accept",
+    "sourceKey": "lion",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22284",
+    "measurementKey": "ostrich:male-mass-upper",
+    "decision": "accept",
+    "sourceKey": "ostrich",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22285",
+    "measurementKey": "gwr-strawberry:strawberry-feb-2021-mass",
+    "decision": "accept",
+    "sourceKey": "gwr-strawberry",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22286",
+    "measurementKey": "gwr-pumpkin:pumpkin-oct-2023-mass",
+    "decision": "accept",
+    "sourceKey": "gwr-pumpkin",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22287",
+    "measurementKey": "gwr-watermelon:watermelon-2013-mass",
+    "decision": "accept",
+    "sourceKey": "gwr-watermelon",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22288",
+    "measurementKey": "gwr-apple:apple-2005-mass",
+    "decision": "accept",
+    "sourceKey": "gwr-apple",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22289",
+    "measurementKey": "gwr-carrot:carrot-2017-mass",
+    "decision": "accept",
+    "sourceKey": "gwr-carrot",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22290",
+    "measurementKey": "gwr-avocado:avocado-2018-mass",
+    "decision": "accept",
+    "sourceKey": "gwr-avocado",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22291",
+    "measurementKey": "gwr-onion:onion-2023-mass",
+    "decision": "accept",
+    "sourceKey": "gwr-onion",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22292",
+    "measurementKey": "gwr-potato:potato-2011-mass",
+    "decision": "accept",
+    "sourceKey": "gwr-potato",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22293",
+    "measurementKey": "cloud:cumulus-liquid-water-mass",
+    "decision": "accept",
+    "sourceKey": "cloud",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22294",
+    "measurementKey": "niagara:horseshoe-drop",
+    "decision": "accept",
+    "sourceKey": "niagara",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22295",
+    "measurementKey": "niagara:horseshoe-crest-width",
+    "decision": "accept",
+    "sourceKey": "niagara",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22296",
+    "measurementKey": "victoria:curtain-width",
+    "decision": "accept",
+    "sourceKey": "victoria",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22297",
+    "measurementKey": "weather-f:focfoc-day-rain-1966",
+    "decision": "accept",
+    "sourceKey": "weather-f",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22298",
+    "measurementKey": "chelyabinsk:pre-entry-diameter",
+    "decision": "accept",
+    "sourceKey": "chelyabinsk",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22299",
+    "measurementKey": "chelyabinsk:entry-speed",
+    "decision": "accept",
+    "sourceKey": "chelyabinsk",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  },
+  {
+    "id": "approx-22300",
+    "measurementKey": "chelyabinsk:airburst-altitude",
+    "decision": "accept",
+    "sourceKey": "chelyabinsk",
+    "review": "Независимый предмет оценки; проверены источник, единица, границы, округление и связи с другими действующими вопросами.",
+    "noteChangedDuringFinalReview": false,
+    "wordingChangedDuringFinalReview": false
+  }
+]

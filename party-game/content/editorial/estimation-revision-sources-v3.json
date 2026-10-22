@@ -1,0 +1,482 @@
+[
+  {
+    "id": "approx-21001",
+    "replacesQuestionId": "approx-8111",
+    "source": "https://www.japan.travel/national-parks/parks/fuji-hakone-izu/explore/",
+    "checkedAt": "2026-10-22",
+    "reference": "turn366view3",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21002",
+    "replacesQuestionId": "approx-8112",
+    "source": "https://www.lin.irk.ru/intas/morphometry.htm",
+    "checkedAt": "2026-10-22",
+    "reference": "turn365view5",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21003",
+    "replacesQuestionId": "approx-8117",
+    "source": "https://www.suezcanal.gov.eg/English/Pages/FAQ.aspx",
+    "checkedAt": "2026-10-22",
+    "reference": "turn366view4",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21004",
+    "replacesQuestionId": "approx-8118",
+    "source": "https://www.tanzaniaparks.go.tz/kilimanjaro",
+    "checkedAt": "2026-10-22",
+    "reference": "turn365view7",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21005",
+    "replacesQuestionId": "approx-8121",
+    "source": "https://nao.gov.mt/wp-content/uploads/2025/07/InterregJuly2025.pdf",
+    "checkedAt": "2026-10-22",
+    "reference": "turn366view5",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21006",
+    "replacesQuestionId": "approx-8125",
+    "source": "https://pancanal.com/canal-de-panama-celebra-101-anos-de-operacion/",
+    "checkedAt": "2026-10-22",
+    "reference": "turn366view7",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21007",
+    "replacesQuestionId": "approx-8127",
+    "source": "https://www.nps.gov/places/crater-lake.htm",
+    "checkedAt": "2026-10-22",
+    "reference": "turn366view9",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21008",
+    "replacesQuestionId": "approx-20004",
+    "source": "https://www.goldengate.org/bridge/history-research/statistics-data/design-construction-stats/",
+    "checkedAt": "2026-10-22",
+    "reference": "turn336view1",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21009",
+    "replacesQuestionId": "approx-20008",
+    "source": "https://www.esbnyc.com/about/facts-figures",
+    "checkedAt": "2026-10-22",
+    "reference": "turn334search2",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21010",
+    "replacesQuestionId": "approx-20011",
+    "source": "https://www.nps.gov/yell/planyourvisit/parkfacts.htm",
+    "checkedAt": "2026-10-22",
+    "reference": "turn334search3",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21011",
+    "replacesQuestionId": "approx-20031",
+    "source": "https://www.bas.ac.uk/wp-content/uploads/2015/05/Public-information-leaflet_PENGUINS_2017.pdf",
+    "checkedAt": "2026-10-22",
+    "reference": "turn337search36",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21012",
+    "replacesQuestionId": "approx-20032",
+    "source": "https://www.bas.ac.uk/wp-content/uploads/2015/05/Public-information-leaflet_PENGUINS_2017.pdf",
+    "checkedAt": "2026-10-22",
+    "reference": "turn337search36",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21013",
+    "replacesQuestionId": "approx-20039",
+    "source": "https://www.airbus.com/sites/g/files/jlcbta136/files/2021-10/EN-Airbus-A380-Facts-and-Figures_0.pdf",
+    "checkedAt": "2026-10-22",
+    "reference": "turn339view1",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21014",
+    "replacesQuestionId": "approx-20040",
+    "source": "https://www.airbus.com/sites/g/files/jlcbta136/files/2021-10/EN-Airbus-A380-Facts-and-Figures_0.pdf",
+    "checkedAt": "2026-10-22",
+    "reference": "turn339view1",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21015",
+    "replacesQuestionId": "approx-20041",
+    "source": "https://www.airbus.com/sites/g/files/jlcbta136/files/2021-10/EN-Airbus-A380-Facts-and-Figures_0.pdf",
+    "checkedAt": "2026-10-22",
+    "reference": "turn339view1",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21016",
+    "replacesQuestionId": "approx-20042",
+    "source": "https://www.airbus.com/sites/g/files/jlcbta136/files/2021-10/EN-Airbus-A380-Facts-and-Figures_0.pdf",
+    "checkedAt": "2026-10-22",
+    "reference": "turn339view1",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21017",
+    "replacesQuestionId": "approx-20049",
+    "source": "https://egymonuments.gov.eg/monuments/the-great-pyramid/",
+    "checkedAt": "2026-10-22",
+    "reference": "turn343search1",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21018",
+    "replacesQuestionId": "approx-20050",
+    "source": "https://home.nps.gov/seki/learn/nature/sherman.htm",
+    "checkedAt": "2026-10-22",
+    "reference": "turn350view1",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21019",
+    "replacesQuestionId": "approx-20054",
+    "source": "https://www.nps.gov/grca/learn/management/statistics.htm",
+    "checkedAt": "2026-10-22",
+    "reference": "turn349search0",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21020",
+    "replacesQuestionId": "approx-20057",
+    "source": "https://www.bas.ac.uk/about/education-and-schools/antarctic-factsheet/",
+    "checkedAt": "2026-10-22",
+    "reference": "turn349search2",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21021",
+    "replacesQuestionId": "approx-20058",
+    "source": "https://www.bas.ac.uk/about/education-and-schools/antarctic-factsheet/",
+    "checkedAt": "2026-10-22",
+    "reference": "turn349search2",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21022",
+    "replacesQuestionId": "approx-20062",
+    "source": "https://collections.louvre.fr/ark:/53355/cl010062370",
+    "checkedAt": "2026-10-22",
+    "reference": "turn364view0",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21023",
+    "replacesQuestionId": "approx-20067",
+    "source": "https://kremlin-architectural-ensemble.kreml.ru/en-Us/artillery-guns/view/tsar-pushka-moskovskogo-kremlya/",
+    "checkedAt": "2026-10-22",
+    "reference": "turn347search1",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21024",
+    "replacesQuestionId": "approx-20068",
+    "source": "https://my.clevelandclinic.org/health/body/22135-small-intestine",
+    "checkedAt": "2026-10-22",
+    "reference": "turn341search0",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21025",
+    "replacesQuestionId": "approx-20069",
+    "source": "https://my.clevelandclinic.org/health/body/22638-brain",
+    "checkedAt": "2026-10-22",
+    "reference": "turn342search2",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21026",
+    "replacesQuestionId": "approx-20070",
+    "source": "https://my.clevelandclinic.org/health/body/23462-salivary-glands",
+    "checkedAt": "2026-10-22",
+    "reference": "turn341search5",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21027",
+    "replacesQuestionId": "approx-20071",
+    "source": "https://my.clevelandclinic.org/health/body/21691-function-of-red-blood-cells",
+    "checkedAt": "2026-10-22",
+    "reference": "turn342search1",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21028",
+    "replacesQuestionId": "approx-20074",
+    "source": "https://animals.sandiegozoo.org/animals/cheetah",
+    "checkedAt": "2026-10-22",
+    "reference": "turn346search1",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21029",
+    "replacesQuestionId": "approx-20076",
+    "source": "https://animals.sandiegozoo.org/animals/giant-panda",
+    "checkedAt": "2026-10-22",
+    "reference": "turn346search4",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21030",
+    "replacesQuestionId": "approx-20077",
+    "source": "https://animals.sandiegozoo.org/animals/polar-bear",
+    "checkedAt": "2026-10-22",
+    "reference": "turn346search6",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21031",
+    "replacesQuestionId": "approx-20084",
+    "source": "https://penntoday.upenn.edu/news/eniacs-anniversary-nod-its-female-computers",
+    "checkedAt": "2026-10-22",
+    "reference": "turn347search13",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21032",
+    "replacesQuestionId": "approx-20085",
+    "source": "https://penntoday.upenn.edu/news/eniacs-anniversary-nod-its-female-computers",
+    "checkedAt": "2026-10-22",
+    "reference": "turn347search13",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21033",
+    "replacesQuestionId": "approx-20086",
+    "source": "https://www.ibm.com/history/ramac",
+    "checkedAt": "2026-10-22",
+    "reference": "turn351view0",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21034",
+    "replacesQuestionId": "approx-20093",
+    "source": "https://www.kon-tiki.no/en/news/visste-du-om-disse-fire-dristige-havkryssingsreisene-fr-kon-tiki",
+    "checkedAt": "2026-10-22",
+    "reference": "turn348search29",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21035",
+    "replacesQuestionId": "approx-20096",
+    "source": "https://animals.sandiegozoo.org/animals/elephant",
+    "checkedAt": "2026-10-22",
+    "reference": "turn354view1",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21036",
+    "replacesQuestionId": "approx-20099",
+    "source": "https://animals.sandiegozoo.org/animals/elephant",
+    "checkedAt": "2026-10-22",
+    "reference": "turn354view1",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21037",
+    "replacesQuestionId": "approx-20100",
+    "source": "https://animals.sandiegozoo.org/animals/camel",
+    "checkedAt": "2026-10-22",
+    "reference": "turn358view0",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21038",
+    "replacesQuestionId": "approx-20101",
+    "source": "https://animals.sandiegozoo.org/animals/camel",
+    "checkedAt": "2026-10-22",
+    "reference": "turn358view0",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21039",
+    "replacesQuestionId": "approx-20102",
+    "source": "https://animals.sandiegozoo.org/animals/camel",
+    "checkedAt": "2026-10-22",
+    "reference": "turn358view0",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21040",
+    "replacesQuestionId": "approx-20103",
+    "source": "https://animals.sandiegozoo.org/animals/camel",
+    "checkedAt": "2026-10-22",
+    "reference": "turn358view0",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21041",
+    "replacesQuestionId": "approx-20106",
+    "source": "https://animals.sandiegozoo.org/animals/hummingbird",
+    "checkedAt": "2026-10-22",
+    "reference": "turn358view1",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21042",
+    "replacesQuestionId": "approx-20108",
+    "source": "https://animals.sandiegozoo.org/animals/galapagos-giant-tortoise",
+    "checkedAt": "2026-10-22",
+    "reference": "turn358view2",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21043",
+    "replacesQuestionId": "approx-20109",
+    "source": "https://animals.sandiegozoo.org/animals/galapagos-giant-tortoise",
+    "checkedAt": "2026-10-22",
+    "reference": "turn358view2",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21044",
+    "replacesQuestionId": "approx-20116",
+    "source": "https://www.kew.org/plants/victoria-boliviana",
+    "checkedAt": "2026-10-22",
+    "reference": "turn352search1",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21045",
+    "replacesQuestionId": "approx-20118",
+    "source": "https://www.kew.org/plants/titan-arum",
+    "checkedAt": "2026-10-22",
+    "reference": "turn352search6",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21046",
+    "replacesQuestionId": "approx-20120",
+    "source": "https://wmo.int/news/media-centre/wmo-certifies-megaflash-lightning-record-usa",
+    "checkedAt": "2026-10-22",
+    "reference": "turn353search0",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21047",
+    "replacesQuestionId": "approx-20129",
+    "source": "https://www.vasamuseet.se/en/explore/vasa-history/timeline",
+    "checkedAt": "2026-10-22",
+    "reference": "turn359search0",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  },
+  {
+    "id": "approx-21048",
+    "replacesQuestionId": "approx-20145",
+    "source": "https://www.jpl.nasa.gov/news/press_kits/ingenuity/landing/quick_facts/",
+    "checkedAt": "2026-10-22",
+    "reference": "turn362view1",
+    "answerUnchanged": true,
+    "unitUnchanged": true,
+    "review": "Previously verified E source retained; F changes wording/measurement boundary, not numerical answer."
+  }
+]

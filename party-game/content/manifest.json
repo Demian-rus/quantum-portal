@@ -171,6 +171,26 @@
       "path": "questions/estimation-v2.json",
       "immutable": false,
       "review": "TASK009 E: 150 physical estimation questions; primary sources, conditions, dates, rounding and all historical decisions in content/editorial/estimation-*."
+    },
+    {
+      "path": "questions/estimation-revisions-v3.json",
+      "immutable": false,
+      "review": "TASK009 F: recovered editorial material; checked sources, independent measurements, rounding and active/legacy review in editorial/estimation-*-v3.json."
+    },
+    {
+      "path": "questions/estimation-v3-batch-1.json",
+      "immutable": false,
+      "review": "TASK009 F: recovered editorial material; checked sources, independent measurements, rounding and active/legacy review in editorial/estimation-*-v3.json."
+    },
+    {
+      "path": "questions/estimation-v3-batch-2.json",
+      "immutable": false,
+      "review": "TASK009 F: recovered editorial material; checked sources, independent measurements, rounding and active/legacy review in editorial/estimation-*-v3.json."
+    },
+    {
+      "path": "questions/estimation-v3-batch-3.json",
+      "immutable": false,
+      "review": "TASK009 F: recovered editorial material; checked sources, independent measurements, rounding and active/legacy review in editorial/estimation-*-v3.json."
     }
   ],
   "packs": [
@@ -193,6 +213,11 @@
       "path": "packs/estimation-v2.json",
       "immutable": false,
       "review": "TASK009 E: general@5, geography@3, science@3 pin exact active IDs; all earlier pools unchanged."
+    },
+    {
+      "path": "packs/estimation-v3.json",
+      "immutable": false,
+      "review": "TASK009 F: general@6, geography@4, science@4; explicit active IDs, previous versions and nonnumeric tasks unchanged."
     }
   ],
   "legacyCollisions": [

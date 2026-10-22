@@ -46,7 +46,7 @@
     "categories": [
       "geography"
     ],
-    "note": "193,30 км; не длина отдельной новой параллельной секции.",
+    "note": "Справочник администрации на 2026 год: полная протяжённость 193,3 км.",
     "source": "https://www.suezcanal.gov.eg/English/Pages/FAQ.aspx",
     "pack": "approx-estimation-revision-v3",
     "meta": {
@@ -65,7 +65,7 @@
     "categories": [
       "geography"
     ],
-    "note": "Высшая точка — пик Ухуру на Кибо.",
+    "note": "Высота вершины над уровнем моря, по TANAPA.",
     "source": "https://www.tanzaniaparks.go.tz/kilimanjaro",
     "pack": "approx-estimation-revision-v3",
     "meta": {
@@ -84,7 +84,7 @@
     "categories": [
       "geography"
     ],
-    "note": "Вся территория Мальты, не только главный остров.",
+    "note": "Вся территория государства, включая острова; государственный аудит программы Италия—Мальта 2025 года.",
     "source": "https://nao.gov.mt/wp-content/uploads/2025/07/InterregJuly2025.pdf",
     "pack": "approx-estimation-revision-v3",
     "meta": {
@@ -103,7 +103,7 @@
     "categories": [
       "geography"
     ],
-    "note": "Округлённое значение из публикации администрации 2015 года.",
+    "note": "Округлённая протяжённость между Атлантическим и Тихим океанами из справки администрации канала.",
     "source": "https://pancanal.com/canal-de-panama-celebra-101-anos-de-operacion/",
     "pack": "approx-estimation-revision-v3",
     "meta": {
@@ -122,7 +122,7 @@
     "categories": [
       "geography"
     ],
-    "note": "В справке NPS — 1943 фута, или 592 м.",
+    "note": "Максимальная глубина озера, не средняя; данные NPS.",
     "source": "https://www.nps.gov/places/crater-lake.htm",
     "pack": "approx-estimation-revision-v3",
     "meta": {
