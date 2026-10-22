@@ -171,5 +171,5 @@ function packModeAvailability(selection,settings,id){
  if(pack.allowedModes&&!pack.allowedModes.includes(id))return {available:false,reason:id==='sing'?'В теме нет песен':'Нет заданий этого режима'};
  const modes=id==='secret'?[...new Set([...settings.modes,'secret'])]:[id];
  const result=checkContentPack(selection,{...settings,modes});
- return {available:result.available,reason:result.problems[0]||'',hint:id==='secret'?'Если другие базовые способы не включены, Секретка выбирает из подходящих способов сама.':''};
+ return {available:result.available,reason:result.problems[0]||''};
 }

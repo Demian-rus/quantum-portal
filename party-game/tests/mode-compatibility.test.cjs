@@ -9,6 +9,11 @@ test('TASK009 G every current mode has frozen declarative recipient compatibilit
  for(const awardTo of ['setter','guesser'])for(const id of ['talk','mime','draw','sing','yesno','secret','blitz','approx']){h.context.request={id,awardTo};assert.equal(h.eval('modeAwardAvailability(request.id,{modeCompatibilityVersion:1,awardTo:request.awardTo}).available'),id!=='yesno'||awardTo==='guesser');assert.equal(h.eval('packModeAvailability(options.contentPack,{...options,awardTo:request.awardTo},request.id).available'),id!=='yesno'||awardTo==='guesser')}
  assert.ok(h.eval('Object.isFrozen(QUIP_MODE_COMPATIBILITY_POLICIES[1].modes.yesno)'));assert.equal(h.eval('getModeConfig("approx").supportsSharedAward'),true);
 });
+test('Secret active mode shows no verbose helper text in selection tile; blocked modes still explain why',()=>{
+ const h=setup(['secret'],'setter');const secret=plain(h.eval('packModeAvailability(options.contentPack,options,"secret")'));assert.equal(secret.available,true);assert.equal(secret.reason,'');assert.equal(secret.hint,undefined);
+ const blocked=plain(h.eval('packModeAvailability(options.contentPack,options,"yesno")'));assert.equal(blocked.available,false);assert.match(blocked.reason,/отгадывающий/);
+ const template=fs.readFileSync(require.resolve('../content/templates/content-packs.after.js'),'utf8');assert.doesNotMatch(template,/Если другие базовые способы не включены/);
+});
 test('TASK009 G recipient changes and settings selection cannot reactivate an incompatible mode or hide an empty choice',()=>{
  const h=setup(['yesno'],'guesser');const game=h.eval('JSON.stringify(game)');h.eval('selectAwardTo("setter");renderOptions();persist()');assert.deepEqual(plain(h.eval('options.modes')),[]);assert.equal(h.eval('JSON.stringify(game)'),game);assert.equal(h.elements.get('start-game').disabled,true);assert.match(h.elements.get('setup-mode-notice').textContent,/Выберите/);
  assert.equal(h.eval('selectSetupMode("yesno",true)'),false);h.eval('newGame()');assert.equal(h.eval('JSON.stringify(game)'),game);
@@ -61,5 +66,5 @@ test('TASK009 G ordinary rewards/timers and all four manual Approx outcomes stay
  }
 });
 test('TASK009 G new compatibility script and changed scripts are versioned consistently for offline boot',()=>{
- const html=fs.readFileSync(require.resolve('../index.html'),'utf8'),worker=fs.readFileSync(require.resolve('../sw.js'),'utf8');for(const file of ['mode-compatibility.js','modifiers-v2.js','presets.js','content-packs.js','app.js']){const url=html.match(new RegExp(file.replace('.','\\.')+'\\?v=\\d+'))[0];assert.ok(worker.includes(url))}assert.match(worker,/kvip-pwa-v44-/);
+ const html=fs.readFileSync(require.resolve('../index.html'),'utf8'),worker=fs.readFileSync(require.resolve('../sw.js'),'utf8');for(const file of ['mode-compatibility.js','modifiers-v2.js','presets.js','content-packs.js','app.js']){const url=html.match(new RegExp(file.replace('.','\\.')+'\\?v=\\d+'))[0];assert.ok(worker.includes(url))}assert.match(worker,/kvip-pwa-v45-/);
 });
