@@ -1,0 +1,631 @@
+{
+  "seed": 8008,
+  "roundsPerRun": 1200,
+  "totalRounds": 14400,
+  "pools": {
+    "general": {
+      "words": {
+        "easy": 1068,
+        "medium": 958,
+        "hard": 878
+      },
+      "people": {
+        "easy": 129,
+        "medium": 128,
+        "hard": 135
+      },
+      "songs": {
+        "easy": 81,
+        "medium": 87,
+        "hard": 72
+      },
+      "blitz": {
+        "easy": 815,
+        "medium": 815,
+        "hard": 815
+      },
+      "number": {
+        "easy": 50,
+        "medium": 50,
+        "hard": 50
+      }
+    },
+    "geography": {
+      "words": {
+        "easy": 42,
+        "medium": 42,
+        "hard": 41
+      },
+      "people": {
+        "easy": 9,
+        "medium": 8,
+        "hard": 8
+      },
+      "songs": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "blitz": {
+        "easy": 30,
+        "medium": 30,
+        "hard": 30
+      },
+      "number": {
+        "easy": 10,
+        "medium": 10,
+        "hard": 10
+      }
+    },
+    "science": {
+      "words": {
+        "easy": 42,
+        "medium": 42,
+        "hard": 41
+      },
+      "people": {
+        "easy": 9,
+        "medium": 8,
+        "hard": 8
+      },
+      "songs": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "blitz": {
+        "easy": 30,
+        "medium": 30,
+        "hard": 30
+      },
+      "number": {
+        "easy": 10,
+        "medium": 10,
+        "hard": 10
+      }
+    }
+  },
+  "settings": {
+    "checked": 3048,
+    "deadEnds": 0
+  },
+  "runs": [
+    {
+      "id": "general",
+      "chance": 10,
+      "rounds": 1200,
+      "counts": {
+        "secret": 149,
+        "mime": 147,
+        "draw": 142,
+        "yesno": 152,
+        "approx": 161,
+        "talk": 155,
+        "blitz": 157,
+        "sing": 137
+      },
+      "levels": {
+        "easy": 400,
+        "medium": 400,
+        "hard": 400
+      },
+      "optional": 890,
+      "modified": 87,
+      "observedPercent": 9.78,
+      "forced": 149,
+      "forcedModified": 149,
+      "approx": 161,
+      "approxModified": 0,
+      "methods": {
+        "draw": 21,
+        "sing": 26,
+        "yesno": 39,
+        "mime": 30,
+        "talk": 33
+      },
+      "unnecessaryRepeats": 0,
+      "releasedOldest": 0,
+      "cycles": {
+        "approx:hard": 1,
+        "approx:easy": 1
+      },
+      "crossKindRepeats": 92
+    },
+    {
+      "id": "general",
+      "chance": 20,
+      "rounds": 1200,
+      "counts": {
+        "secret": 145,
+        "talk": 139,
+        "blitz": 153,
+        "draw": 155,
+        "mime": 148,
+        "sing": 143,
+        "yesno": 157,
+        "approx": 160
+      },
+      "levels": {
+        "easy": 400,
+        "medium": 400,
+        "hard": 400
+      },
+      "optional": 895,
+      "modified": 205,
+      "observedPercent": 22.91,
+      "forced": 145,
+      "forcedModified": 145,
+      "approx": 160,
+      "approxModified": 0,
+      "methods": {
+        "talk": 24,
+        "sing": 28,
+        "yesno": 40,
+        "draw": 22,
+        "mime": 31
+      },
+      "unnecessaryRepeats": 0,
+      "releasedOldest": 0,
+      "cycles": {
+        "approx:medium": 1,
+        "approx:easy": 1
+      },
+      "crossKindRepeats": 85
+    },
+    {
+      "id": "general",
+      "chance": 50,
+      "rounds": 1200,
+      "counts": {
+        "blitz": 152,
+        "draw": 154,
+        "talk": 144,
+        "yesno": 134,
+        "approx": 153,
+        "mime": 152,
+        "secret": 155,
+        "sing": 156
+      },
+      "levels": {
+        "easy": 400,
+        "medium": 400,
+        "hard": 400
+      },
+      "optional": 892,
+      "modified": 424,
+      "observedPercent": 47.53,
+      "forced": 155,
+      "forcedModified": 155,
+      "approx": 153,
+      "approxModified": 0,
+      "methods": {
+        "draw": 32,
+        "talk": 32,
+        "sing": 26,
+        "mime": 28,
+        "yesno": 37
+      },
+      "unnecessaryRepeats": 0,
+      "releasedOldest": 0,
+      "cycles": {
+        "approx:medium": 1,
+        "approx:easy": 1
+      },
+      "crossKindRepeats": 77
+    },
+    {
+      "id": "general",
+      "chance": 100,
+      "rounds": 1200,
+      "counts": {
+        "approx": 125,
+        "sing": 146,
+        "secret": 153,
+        "talk": 163,
+        "yesno": 157,
+        "draw": 146,
+        "blitz": 158,
+        "mime": 152
+      },
+      "levels": {
+        "easy": 400,
+        "medium": 400,
+        "hard": 400
+      },
+      "optional": 922,
+      "modified": 922,
+      "observedPercent": 100,
+      "forced": 153,
+      "forcedModified": 153,
+      "approx": 125,
+      "approxModified": 0,
+      "methods": {
+        "draw": 31,
+        "mime": 25,
+        "yesno": 33,
+        "sing": 29,
+        "talk": 35
+      },
+      "unnecessaryRepeats": 0,
+      "releasedOldest": 0,
+      "cycles": {},
+      "crossKindRepeats": 78
+    },
+    {
+      "id": "geography",
+      "chance": 10,
+      "rounds": 1200,
+      "counts": {
+        "approx": 150,
+        "mime": 174,
+        "draw": 185,
+        "yesno": 171,
+        "blitz": 171,
+        "secret": 166,
+        "talk": 183
+      },
+      "levels": {
+        "easy": 400,
+        "medium": 400,
+        "hard": 400
+      },
+      "optional": 884,
+      "modified": 97,
+      "observedPercent": 10.97,
+      "forced": 166,
+      "forcedModified": 166,
+      "approx": 150,
+      "approxModified": 0,
+      "methods": {
+        "draw": 41,
+        "talk": 34,
+        "yesno": 41,
+        "mime": 50
+      },
+      "unnecessaryRepeats": 0,
+      "releasedOldest": 0,
+      "cycles": {
+        "easy:blitz:word,phrase": 17,
+        "hard:people:word,phrase": 9,
+        "approx:medium": 4,
+        "hard:words:word,phrase": 5,
+        "medium:people:word,phrase": 8,
+        "easy:people:word,phrase": 7,
+        "easy:words:word,phrase": 5,
+        "approx:easy": 4,
+        "medium:words:word,phrase": 5,
+        "approx:hard": 4
+      },
+      "crossKindRepeats": 312
+    },
+    {
+      "id": "geography",
+      "chance": 20,
+      "rounds": 1200,
+      "counts": {
+        "talk": 178,
+        "draw": 168,
+        "approx": 172,
+        "secret": 168,
+        "blitz": 172,
+        "mime": 166,
+        "yesno": 176
+      },
+      "levels": {
+        "easy": 400,
+        "medium": 400,
+        "hard": 400
+      },
+      "optional": 860,
+      "modified": 167,
+      "observedPercent": 19.42,
+      "forced": 168,
+      "forcedModified": 168,
+      "approx": 172,
+      "approxModified": 0,
+      "methods": {
+        "talk": 42,
+        "draw": 39,
+        "mime": 46,
+        "yesno": 41
+      },
+      "unnecessaryRepeats": 0,
+      "releasedOldest": 0,
+      "cycles": {
+        "easy:blitz:word,phrase": 17,
+        "medium:people:word,phrase": 8,
+        "easy:people:word,phrase": 8,
+        "hard:people:word,phrase": 8,
+        "approx:medium": 6,
+        "hard:words:word,phrase": 5,
+        "easy:words:word,phrase": 4,
+        "medium:words:word,phrase": 4,
+        "approx:hard": 4,
+        "approx:easy": 5
+      },
+      "crossKindRepeats": 277
+    },
+    {
+      "id": "geography",
+      "chance": 50,
+      "rounds": 1200,
+      "counts": {
+        "mime": 179,
+        "blitz": 186,
+        "secret": 167,
+        "approx": 166,
+        "talk": 160,
+        "draw": 171,
+        "yesno": 171
+      },
+      "levels": {
+        "easy": 400,
+        "medium": 400,
+        "hard": 400
+      },
+      "optional": 867,
+      "modified": 452,
+      "observedPercent": 52.13,
+      "forced": 167,
+      "forcedModified": 167,
+      "approx": 166,
+      "approxModified": 0,
+      "methods": {
+        "yesno": 43,
+        "talk": 37,
+        "mime": 39,
+        "draw": 48
+      },
+      "unnecessaryRepeats": 0,
+      "releasedOldest": 0,
+      "cycles": {
+        "easy:blitz:word,phrase": 18,
+        "hard:people:word,phrase": 7,
+        "medium:people:word,phrase": 9,
+        "easy:people:word,phrase": 8,
+        "approx:easy": 5,
+        "approx:medium": 4,
+        "hard:words:word,phrase": 5,
+        "medium:words:word,phrase": 5,
+        "approx:hard": 6,
+        "easy:words:word,phrase": 4
+      },
+      "crossKindRepeats": 275
+    },
+    {
+      "id": "geography",
+      "chance": 100,
+      "rounds": 1200,
+      "counts": {
+        "mime": 187,
+        "secret": 158,
+        "yesno": 169,
+        "blitz": 176,
+        "talk": 180,
+        "approx": 169,
+        "draw": 161
+      },
+      "levels": {
+        "easy": 400,
+        "medium": 400,
+        "hard": 400
+      },
+      "optional": 873,
+      "modified": 873,
+      "observedPercent": 100,
+      "forced": 158,
+      "forcedModified": 158,
+      "approx": 169,
+      "approxModified": 0,
+      "methods": {
+        "yesno": 44,
+        "talk": 29,
+        "draw": 41,
+        "mime": 44
+      },
+      "unnecessaryRepeats": 0,
+      "releasedOldest": 0,
+      "cycles": {
+        "easy:blitz:word,phrase": 17,
+        "hard:people:word,phrase": 8,
+        "medium:people:word,phrase": 8,
+        "approx:hard": 5,
+        "easy:people:word,phrase": 9,
+        "approx:medium": 5,
+        "easy:words:word,phrase": 4,
+        "medium:words:word,phrase": 5,
+        "hard:words:word,phrase": 5,
+        "approx:easy": 5
+      },
+      "crossKindRepeats": 280
+    },
+    {
+      "id": "science",
+      "chance": 10,
+      "rounds": 1200,
+      "counts": {
+        "draw": 171,
+        "secret": 174,
+        "approx": 183,
+        "talk": 167,
+        "yesno": 170,
+        "blitz": 161,
+        "mime": 174
+      },
+      "levels": {
+        "easy": 400,
+        "medium": 400,
+        "hard": 400
+      },
+      "optional": 843,
+      "modified": 84,
+      "observedPercent": 9.96,
+      "forced": 174,
+      "forcedModified": 174,
+      "approx": 183,
+      "approxModified": 0,
+      "methods": {
+        "draw": 40,
+        "mime": 53,
+        "yesno": 42,
+        "talk": 39
+      },
+      "unnecessaryRepeats": 0,
+      "releasedOldest": 0,
+      "cycles": {
+        "easy:blitz:word,phrase": 16,
+        "easy:people:word,phrase": 8,
+        "hard:people:word,phrase": 9,
+        "approx:medium": 6,
+        "medium:words:word,phrase": 5,
+        "approx:hard": 6,
+        "approx:easy": 5,
+        "hard:words:word,phrase": 5,
+        "medium:people:word,phrase": 7,
+        "easy:words:word,phrase": 4
+      },
+      "crossKindRepeats": 290
+    },
+    {
+      "id": "science",
+      "chance": 20,
+      "rounds": 1200,
+      "counts": {
+        "yesno": 162,
+        "approx": 200,
+        "blitz": 168,
+        "mime": 167,
+        "secret": 163,
+        "talk": 167,
+        "draw": 173
+      },
+      "levels": {
+        "easy": 400,
+        "medium": 400,
+        "hard": 400
+      },
+      "optional": 837,
+      "modified": 158,
+      "observedPercent": 18.88,
+      "forced": 163,
+      "forcedModified": 163,
+      "approx": 200,
+      "approxModified": 0,
+      "methods": {
+        "draw": 31,
+        "yesno": 49,
+        "talk": 51,
+        "mime": 32
+      },
+      "unnecessaryRepeats": 0,
+      "releasedOldest": 0,
+      "cycles": {
+        "easy:blitz:word,phrase": 16,
+        "medium:people:word,phrase": 9,
+        "hard:people:word,phrase": 8,
+        "approx:easy": 6,
+        "approx:medium": 6,
+        "easy:people:word,phrase": 7,
+        "hard:words:word,phrase": 4,
+        "approx:hard": 6,
+        "easy:words:word,phrase": 5,
+        "medium:words:word,phrase": 4
+      },
+      "crossKindRepeats": 291
+    },
+    {
+      "id": "science",
+      "chance": 50,
+      "rounds": 1200,
+      "counts": {
+        "yesno": 193,
+        "draw": 177,
+        "secret": 158,
+        "blitz": 170,
+        "mime": 164,
+        "approx": 163,
+        "talk": 175
+      },
+      "levels": {
+        "easy": 400,
+        "medium": 400,
+        "hard": 400
+      },
+      "optional": 879,
+      "modified": 437,
+      "observedPercent": 49.72,
+      "forced": 158,
+      "forcedModified": 158,
+      "approx": 163,
+      "approxModified": 0,
+      "methods": {
+        "talk": 35,
+        "mime": 41,
+        "draw": 41,
+        "yesno": 41
+      },
+      "unnecessaryRepeats": 0,
+      "releasedOldest": 0,
+      "cycles": {
+        "easy:blitz:word,phrase": 16,
+        "easy:people:word,phrase": 9,
+        "medium:people:word,phrase": 8,
+        "approx:medium": 5,
+        "hard:people:word,phrase": 9,
+        "hard:words:word,phrase": 5,
+        "approx:easy": 5,
+        "medium:words:word,phrase": 5,
+        "easy:words:word,phrase": 4,
+        "approx:hard": 5
+      },
+      "crossKindRepeats": 280
+    },
+    {
+      "id": "science",
+      "chance": 100,
+      "rounds": 1200,
+      "counts": {
+        "secret": 176,
+        "mime": 162,
+        "draw": 177,
+        "approx": 172,
+        "blitz": 177,
+        "talk": 179,
+        "yesno": 157
+      },
+      "levels": {
+        "easy": 400,
+        "medium": 400,
+        "hard": 400
+      },
+      "optional": 852,
+      "modified": 852,
+      "observedPercent": 100,
+      "forced": 176,
+      "forcedModified": 176,
+      "approx": 172,
+      "approxModified": 0,
+      "methods": {
+        "yesno": 44,
+        "draw": 40,
+        "mime": 45,
+        "talk": 47
+      },
+      "unnecessaryRepeats": 0,
+      "releasedOldest": 0,
+      "cycles": {
+        "easy:blitz:word,phrase": 17,
+        "easy:people:word,phrase": 8,
+        "approx:hard": 5,
+        "medium:people:word,phrase": 8,
+        "medium:words:word,phrase": 5,
+        "hard:people:word,phrase": 6,
+        "easy:words:word,phrase": 4,
+        "hard:words:word,phrase": 5,
+        "approx:easy": 5,
+        "approx:medium": 5
+      },
+      "crossKindRepeats": 278
+    }
+  ]
+}

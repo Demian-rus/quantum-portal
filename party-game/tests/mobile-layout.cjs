@@ -104,8 +104,8 @@ function fitsViewport(g,device,stage) {
       await page.screenshot({path:'artifacts/quip-mobile-layout/'+device.name+'-game-type.png'});
       await page.locator('#thematic-game').click();
       assert.equal(await page.locator('#scene-themes').isVisible(),true);
-      assert.equal(await page.locator('#theme-list button:disabled').count(),5);
-      assert.equal(await page.locator('#theme-list button:not(:disabled)').count(),1);
+      assert.equal(await page.locator('#theme-list button:disabled').count(),4);
+      assert.equal(await page.locator('#theme-list button:not(:disabled)').count(),2);
       assert.equal(await page.locator('[data-theme="geography"]:enabled').count(),1);
       assert.ok((await page.locator('#themes-caption').textContent()).includes('Выберите тему'));
       const themeLayout=await page.evaluate(()=>({w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight,
