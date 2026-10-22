@@ -144,6 +144,11 @@
       "path": "cards/music-themes-v2.json",
       "immutable": false,
       "review": "TASK009 D2: two independent composition examples; manual word-form, language and difficulty review; music-theme-review.json."
+    },
+    {
+      "path": "cards/animals-v1.json",
+      "immutable": false,
+      "review": "TASK011 Animals: 216 unique authored cards; existing species and animal characters reused by explicit IDs, original historical files unchanged."
     }
   ],
   "questions": [
@@ -218,6 +223,11 @@
       "path": "packs/estimation-v3.json",
       "immutable": false,
       "review": "TASK009 F: general@6, geography@4, science@4; explicit active IDs, previous versions and nonnumeric tasks unchanged."
+    },
+    {
+      "path": "packs/animals-v2.json",
+      "immutable": false,
+      "review": "Animals@1 explicitly pinned IDs: no automatic inference of tags on historical records; general@6 unchanged."
     }
   ],
   "legacyCollisions": [

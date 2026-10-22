@@ -11,6 +11,7 @@ function simulate(id,chance,rounds=1200,seed=8008){
   options.complications=true;options.modifierChance=chance;options.dice=false;options.awardTo='guesser';newGame();
   // TASK008 is a historical diagnostic of the pre-TASK009 per-kind selector.
   game.contentPack=selection;delete game.taskHistoryVersion;delete game.taskHistory;game.modifierSelectionVersion=1;delete game.modifierCatalogVersion;
+  delete game.modePlannerVersion;delete game.modePlannerState;
   const counts={},levels={easy:0,medium:0,hard:0},methods={},cycles={},seenAcrossKinds=new Map();
   let optional=0,modified=0,forced=0,forcedModified=0,approx=0,approxModified=0,unnecessaryRepeats=0,releasedOldest=0,crossKindRepeats=0;
   const originalWord=pullWord,originalQuestion=pullApproxQuestion;
