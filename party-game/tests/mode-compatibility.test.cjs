@@ -84,5 +84,5 @@ test('TASK009 G ordinary rewards/timers and all four manual Approx outcomes stay
  }
 });
 test('TASK009 G new compatibility script and changed scripts are versioned consistently for offline boot',()=>{
- const html=fs.readFileSync(require.resolve('../index.html'),'utf8'),worker=fs.readFileSync(require.resolve('../sw.js'),'utf8');for(const file of ['mode-compatibility.js','modifiers-v2.js','presets.js','content-packs.js','app.js']){const url=html.match(new RegExp(file.replace('.','\\.')+'\\?v=\\d+'))[0];assert.ok(worker.includes(url))}assert.match(worker,/kvip-pwa-v48-/);
+ const html=fs.readFileSync(require.resolve('../index.html'),'utf8'),worker=fs.readFileSync(require.resolve('../sw.js'),'utf8');for(const file of ['mode-compatibility.js','modifiers-v2.js','presets.js','content-packs.js','app.js']){const url=html.match(new RegExp(file.replace('.','\\.')+'\\?v=\\d+'))[0];assert.ok(worker.includes(url))}assert.match(worker,/kvip-pwa-v49-/);
 });
