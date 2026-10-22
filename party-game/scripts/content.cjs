@@ -81,6 +81,7 @@ function validate(data,{locks=true,near=false}={}){
   else if(row.type==='word'&&/\s/.test(row.text)||row.type==='phrase'&&!/\s/.test(row.text))warnings.push({code:'possible-type',id:row.id,message:'Check word/phrase classification manually'});
  }
  for(const row of data.questions){
+  if(row.meta?.estimationVersion===2&&(!row.meta.sourceKey||!/^\d{4}-\d{2}-\d{2}$/.test(row.meta.checkedAt)||!Number.isFinite(Date.parse(row.meta.checkedAt))||!row.source?.startsWith('https://')||!row.unit||!row.note))add('estimation-review',row.id,'Estimation questions need an institutional source, unit, reviewed conditions/rounding and check date');
   if(!/^approx-[0-9]+$/.test(row.id)||typeof row.question!=='string'||!row.question.trim())add('question',row.id,'Missing question or permanent ID');
   if(typeof row.unit!=='string'||typeof row.note!=='string'||!Number.isFinite(numericAnswer(row.answer)))add('answer',row.id,'Missing unit/note or invalid finite numeric answer');
   try{

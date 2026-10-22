@@ -58,6 +58,7 @@ function fitsViewport(g,device,stage) {
     await require('./task-history-browser.cjs')(browser,URL);
     await require('./modifiers-v2-browser.cjs')(browser,URL);
     await require('./dictionary-browser.cjs')(browser,URL);
+    await require('./estimation-browser.cjs')(browser,URL);
     await require('./thematic-game.cjs')(browser,URL);
     await require('./modifier-frequency.cjs')(browser,URL);
     await require('./round-outcomes.cjs')(browser,URL);

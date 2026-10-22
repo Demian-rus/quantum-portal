@@ -15,9 +15,12 @@ function getContentPack(selection,registry=QUIP_CONTENT_PACKS){
 // universe without editing their historical declarations or current rounds.
 const QUIP_PRE_TASK009_SOURCES=Object.freeze(['core','music','people','geography-v2','science-v2','approx-core-v1','approx-general-2026']);
 function latestGeneralPackSelection(registry=QUIP_CONTENT_PACKS){
- const versions=Object.values(registry).filter(pack=>pack.id==='general'&&pack.enabled).map(pack=>pack.version);
- if(!versions.length)throw Error('No enabled general pack');
- return {id:'general',version:Math.max(...versions)};
+ return latestContentPackSelection('general',registry);
+}
+function latestContentPackSelection(id,registry=QUIP_CONTENT_PACKS){
+ const versions=Object.values(registry).filter(pack=>pack.id===id&&pack.enabled).map(pack=>pack.version);
+ if(!versions.length)throw Error('No enabled content pack: '+id);
+ return {id,version:Math.max(...versions)};
 }
 function historicalGeneralRecord(pack,row){return pack.id!=='general'||pack.version>2||QUIP_PRE_TASK009_SOURCES.includes(row.pack);}
 function getPackCardPool(selection,kind,level,promptTypes,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACKS){
@@ -75,7 +78,12 @@ function secretMethodsForPack(selection,settings,registry=QUIP_CONTENT_PACKS){
 function packSetupSettings(selection,settings,registry=QUIP_CONTENT_PACKS){
  const pack=getContentPack(selection,registry),key=pack.id+'@'+pack.version;
  const same=settings.contentPack?.id===pack.id&&settings.contentPack?.version===pack.version;
- const previous=same?settings:settings.packPreferences?.[key]||settings;
+ // A new catalog version inherits the same theme's explicit preferences. An
+ // existing profile for this exact version always wins over an older profile.
+ const earlier=Object.keys(settings.packPreferences||{}).filter(value=>value.startsWith(pack.id+'@')&&Number(value.split('@')[1])<pack.version).sort((a,b)=>Number(b.split('@')[1])-Number(a.split('@')[1]));
+ const previous=same?settings:settings.packPreferences?.[key]||
+  (settings.contentPack?.id===pack.id&&settings.contentPack.version<pack.version?settings:null)||
+  settings.packPreferences?.[earlier[0]]||settings;
  let modes=previous.modes.slice(),promptTypes=previous.promptTypes.slice();
  if(pack.allowedModes){
   modes=modes.filter(id=>pack.allowedModes.includes(id));
