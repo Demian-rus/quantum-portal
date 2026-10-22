@@ -42,7 +42,7 @@ module.exports=async function awardPolicy(browser,url){
    assert.deepEqual(await page.evaluate(()=>options.modes),previous.filter(id=>id!=='yesno'));
    await page.locator('#go-advanced').click();await page.locator('#mode-settings > summary').click();
    assert.equal(await yesno(page).isDisabled(),true);assert.equal(await yesno(page).isChecked(),false);
-   assert.match(await page.locator('#mode-toggles label:has(input[value="yesno"]) .mode-availability').textContent(),/Доступно, когда очки получает отгадывающий/);
+   assert.match(await yesno(page).evaluate(el=>el.closest('label').title),/Доступно, когда очки получает отгадывающий/);
    await yesno(page).evaluate(el=>{el.checked=true;el.dispatchEvent(new Event('change',{bubbles:true}))});
    assert.equal(await yesno(page).isChecked(),false);assert.equal(await page.evaluate(()=>options.modes.includes('yesno')),false);
    await page.locator('#advanced-done').click();await choose(page,'guesser').click();
