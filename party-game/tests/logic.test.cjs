@@ -701,7 +701,7 @@ test('card catalog v1 retains all 3016 historical tasks and unique IDs',()=>{
   assert.ok(Array.isArray(c.categories)&&c.categories.every(x=>/^[a-z][a-z0-9-]*$/.test(x)));
   assert.equal(c.categories.length,new Set(c.categories).size);
   assert.ok(declaredOrigins.has(c.pack),'Undeclared source origin: '+c.pack);
-  if(c.type==='song')assert.ok(c.meta.title&&c.meta.artist&&c.meta.genre);
+  if(c.type==='song')assert.ok(c.meta.themeVersion===2?c.meta.examples.length>=2:c.meta.title&&c.meta.artist&&c.meta.genre);
  }
  assert.equal(h.eval("getCardById('word-000001').text"),'КАРАНДАШ');
  assert.equal(h.eval("getCardById('unknown')"),null);
@@ -719,14 +719,13 @@ test('typed source retains old playable words, songs, people and blitz constrain
    assert.deepEqual(cards,legacyView);
   }
   for(const [kind,type] of [['songs','song'],['people','person']]){
-   const cards=Array.from(h.eval("getCardPool('"+kind+"','"+level+"').map(c=>c.text)"));
+   const cards=Array.from(h.eval("getPackCardPool(game.contentPack,'"+kind+"','"+level+"').map(c=>c.text)"));
    const prompts=Array.from(h.eval("getPromptPool('"+kind+"','"+level+"')"));
    assert.deepEqual(cards,prompts);
   }
  }
  assert.equal(h.eval("getCardPool('blitz','hard').every(c=>c.difficulty==='easy'&&c.text.length<=12)"),true);
- assert.ok(read('index.html').includes('./cards.js?v=6'));
- assert.ok(read('sw.js').includes('./cards.js?v=6'));
+ const cardsUrl=read('index.html').match(/src="(\.\/cards\.js\?v=\d+)"/)[1];assert.ok(read('sw.js').includes(cardsUrl));
 });
 test('text-only saved rounds still restore unchanged after catalog migration',()=>{
  const saved=new Map(),a=harness(saved);
@@ -1364,7 +1363,7 @@ test('game-type navigation uses shared settings and preserves an unfinished matc
  assert.equal((h.elements.get('theme-list').innerHTML.match(/ disabled aria-disabled="true"/g)||[]).length,4);
  assert.ok(h.elements.get('themes-caption').textContent.includes('Выберите тему'));
  h.eval('selectStandardGame()');assert.equal(h.eval('activeScene'),'setup');
- assert.equal(h.eval('options.contentPack.id'),'general');assert.equal(h.eval('options.contentPack.version'),3);
+ assert.equal(h.eval('options.contentPack.id'),'general');assert.equal(h.eval('options.contentPack.version'),h.eval('latestGeneralPackSelection().version'));
  assert.equal(h.eval('setupReturn'),'game-type');
  assert.equal(h.eval('JSON.stringify(game)'),saved);
  h.eval('setScene("home");continueGame()');assert.equal(h.eval('JSON.stringify(game)'),saved);

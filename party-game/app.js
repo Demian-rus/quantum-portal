@@ -660,7 +660,9 @@ function modeInformation() {
     mode,method,secret,
     name:secret?'СЕКРЕТКА: '+method.title:mode.title,
     rule:mode.id==='blitz'&&ruleSetForGame(game).version>=4?
-      'Отгадайте все '+game.current.blitzWords.length+' слова за один таймер. Очки только за полный результат.':method.rule
+      'Отгадайте все '+game.current.blitzWords.length+' слова за один таймер. Очки только за полный результат.':
+      method.id==='sing'&&getContentPack(game.contentPack||{id:'general',version:1}).songPromptPolicyVersion===2?
+      'Напойте любую песню, в названии или тексте которой есть указанное слово. Формы слова допустимы. Отгадывающий называет тему.':method.rule
   };
 }
 function taskMarkup(hidden) {

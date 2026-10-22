@@ -1,0 +1,145 @@
+[
+  {
+    "artist": "Adam Levine",
+    "title": "Lost Stars",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Lost Stars - Song with Lyrics by Adam Levine - Apple Music (https://music.apple.com/us/song/1618509415)",
+      "url": "https://music.apple.com/us/song/1618509415",
+      "ref": "turn250search0"
+    }
+  },
+  {
+    "artist": "Michael Bublé",
+    "title": "Everything",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Everything - Song with Lyrics by Michael Bublé - Apple Music (https://music.apple.com/us/song/1729384777)",
+      "url": "https://music.apple.com/us/song/1729384777",
+      "ref": "turn247search0"
+    }
+  },
+  {
+    "artist": "Bryan Adams",
+    "title": "(Everything I Do) I Do It for You",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎(Everything I Do) I Do It For You - Song with Lyrics by Bryan Adams - Apple Music (https://music.apple.com/us/song/1442962254)",
+      "url": "https://music.apple.com/us/song/1442962254",
+      "ref": "turn245search0"
+    }
+  },
+  {
+    "artist": "Metallica",
+    "title": "Nothing Else Matters",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Nothing Else Matters (Live at Oslo Spektrum, Oslo, Norway - November 23rd, 1996) - Song with Lyrics by Metallica - Apple Music (https://music.apple.com/us/song/1808800106)",
+      "url": "https://music.apple.com/us/song/1808800106",
+      "ref": "turn248search1"
+    }
+  },
+  {
+    "artist": "Sinéad O'Connor",
+    "title": "Nothing Compares 2 U",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Nothing Compares 2 U - Song by Sinéad O'Connor - Apple Music (https://music.apple.com/us/song/1629188999)",
+      "url": "https://music.apple.com/us/song/1629188999",
+      "ref": "turn246search0"
+    }
+  },
+  {
+    "artist": "Queen",
+    "title": "Somebody to Love",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Somebody to Love - Song by Queen - Apple Music (https://music.apple.com/us/song/1470542829)",
+      "url": "https://music.apple.com/us/song/1470542829",
+      "ref": "turn49search0"
+    }
+  },
+  {
+    "artist": "Gotye",
+    "title": "Somebody That I Used to Know",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Somebody That I Used To Know (feat. Kimbra) - Song by Gotye - Apple Music (https://music.apple.com/us/song/1661340020)",
+      "url": "https://music.apple.com/us/song/1661340020",
+      "ref": "turn52search1"
+    }
+  },
+  {
+    "artist": "Chaka Khan",
+    "title": "Ain't Nobody",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Ain't Nobody - Song with Lyrics by Chaka Khan & Rufus - Apple Music (https://music.apple.com/us/song/1744427341)",
+      "url": "https://music.apple.com/us/song/1744427341",
+      "ref": "turn243search0"
+    }
+  },
+  {
+    "artist": "Mitski",
+    "title": "Nobody",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Nobody - Song with Lyrics by Mitski - Apple Music (https://music.apple.com/us/song/1373892799)",
+      "url": "https://music.apple.com/us/song/1373892799",
+      "ref": "turn249search0"
+    }
+  },
+  {
+    "artist": "Everything but the Girl",
+    "title": "Missing",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Missing - Song with Lyrics by Everything But the Girl - Apple Music (https://music.apple.com/us/song/1629189389)",
+      "url": "https://music.apple.com/us/song/1629189389",
+      "ref": "turn253search0"
+    }
+  },
+  {
+    "artist": "John Waite",
+    "title": "Missing You",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Missing You - Song with Lyrics by John Waite - Apple Music (https://music.apple.com/us/song/840162578)",
+      "url": "https://music.apple.com/us/song/840162578",
+      "ref": "turn244search0"
+    }
+  },
+  {
+    "artist": "Michael Jackson",
+    "title": "Dangerous",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Dangerous - Song with Lyrics by Michael Jackson - Apple Music (https://music.apple.com/us/song/1278580093)",
+      "url": "https://music.apple.com/us/song/1278580093",
+      "ref": "turn251search1"
+    }
+  },
+  {
+    "artist": "Roxette",
+    "title": "Dangerous",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Dangerous (Swedish Single Version 1989) - Song with Lyrics by Roxette - Apple Music (https://music.apple.com/us/song/1795206416)",
+      "url": "https://music.apple.com/us/song/1795206416",
+      "ref": "turn252search0"
+    }
+  }
+]

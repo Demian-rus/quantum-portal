@@ -1,0 +1,267 @@
+[
+  {
+    "artist": "Pink Floyd",
+    "title": "Time",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Time - Song with Lyrics by Pink Floyd - Apple Music (https://music.apple.com/us/song/1065973706)",
+      "url": "https://music.apple.com/us/song/1065973706",
+      "ref": "turn50search1"
+    }
+  },
+  {
+    "artist": "Cyndi Lauper",
+    "title": "Time After Time",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Time After Time - Song with Lyrics by Cyndi Lauper - Apple Music (https://music.apple.com/us/song/201575277)",
+      "url": "https://music.apple.com/us/song/201575277",
+      "ref": "turn51search0"
+    }
+  },
+  {
+    "artist": "Bee Gees",
+    "title": "Night Fever",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Night Fever (From \"Saturday Night Fever\" Soundtrack) - Song by Bee Gees - Apple Music (https://music.apple.com/us/song/1422968383)",
+      "url": "https://music.apple.com/us/song/1422968383",
+      "ref": "turn60search0"
+    }
+  },
+  {
+    "artist": "AC/DC",
+    "title": "You Shook Me All Night Long",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎You Shook Me All Night Long - Song by AC/DC - Apple Music (https://music.apple.com/us/song/576003085)",
+      "url": "https://music.apple.com/us/song/576003085",
+      "ref": "turn55search1"
+    }
+  },
+  {
+    "artist": "U2",
+    "title": "Beautiful Day",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Beautiful Day - Song with Lyrics by U2 - Apple Music (https://music.apple.com/us/song/1440655974)",
+      "url": "https://music.apple.com/us/song/1440655974",
+      "ref": "turn68search2"
+    }
+  },
+  {
+    "artist": "Lou Reed",
+    "title": "Perfect Day",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Perfect Day (feat. Antony) - Song with Lyrics by Lou Reed - Apple Music (https://music.apple.com/us/song/1050417376)",
+      "url": "https://music.apple.com/us/song/1050417376",
+      "ref": "turn74search0"
+    }
+  },
+  {
+    "artist": "Fleetwood Mac",
+    "title": "Dreams",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Dreams (Live) - Song with Lyrics by Fleetwood Mac - Apple Music (https://music.apple.com/us/song/14748692)",
+      "url": "https://music.apple.com/us/song/14748692",
+      "ref": "turn67search0"
+    }
+  },
+  {
+    "artist": "Eurythmics",
+    "title": "Sweet Dreams (Are Made of This)",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Sweet Dreams (Are Made of This) - Song with Lyrics by Eurythmics - Apple Music (https://music.apple.com/us/song/313873056)",
+      "url": "https://music.apple.com/us/song/313873056",
+      "ref": "turn53search1"
+    }
+  },
+  {
+    "artist": "Céline Dion",
+    "title": "My Heart Will Go On",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎My Heart Will Go On - Song by Céline Dion - Apple Music (https://music.apple.com/us/song/1745576958)",
+      "url": "https://music.apple.com/us/song/1745576958",
+      "ref": "turn62search0"
+    }
+  },
+  {
+    "artist": "Blondie",
+    "title": "Heart of Glass",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Heart Of Glass (12\" Version) - Song with Lyrics by Blondie - Apple Music (https://music.apple.com/us/song/1564341170)",
+      "url": "https://music.apple.com/us/song/1564341170",
+      "ref": "turn61search0"
+    }
+  },
+  {
+    "artist": "Michael Jackson",
+    "title": "Heal the World",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Heal the World - Song with Lyrics by Michael Jackson - Apple Music (https://music.apple.com/us/song/655263571)",
+      "url": "https://music.apple.com/us/song/655263571",
+      "ref": "turn56search0"
+    }
+  },
+  {
+    "artist": "Louis Armstrong",
+    "title": "What a Wonderful World",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎What A Wonderful World - Song with Lyrics by Louis Armstrong - Apple Music (https://music.apple.com/us/song/1637506396)",
+      "url": "https://music.apple.com/us/song/1637506396",
+      "ref": "turn73search1"
+    }
+  },
+  {
+    "artist": "Bon Jovi",
+    "title": "It's My Life",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎It's My Life - Song with Lyrics by Bon Jovi - Apple Music (https://music.apple.com/us/song/1707404925)",
+      "url": "https://music.apple.com/us/song/1707404925",
+      "ref": "turn66search0"
+    }
+  },
+  {
+    "artist": "Talk Talk",
+    "title": "It's My Life",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎It's My Life - Song with Lyrics by Talk Talk - Apple Music (https://music.apple.com/us/song/696670364)",
+      "url": "https://music.apple.com/us/song/696670364",
+      "ref": "turn64search0"
+    }
+  },
+  {
+    "artist": "Michael Bublé",
+    "title": "Home",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Home (V.F.) - Song with Lyrics by Roxane Bruneau & Michael Bublé - Apple Music (https://music.apple.com/us/song/1869740184)",
+      "url": "https://music.apple.com/us/song/1869740184",
+      "ref": "turn69search0"
+    }
+  },
+  {
+    "artist": "Edward Sharpe & The Magnetic Zeros",
+    "title": "Home",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Home - Song with Lyrics by Edward Sharpe & The Magnetic Zeros - Apple Music (https://music.apple.com/us/song/1759968498)",
+      "url": "https://music.apple.com/us/song/1759968498",
+      "ref": "turn70search0"
+    }
+  },
+  {
+    "artist": "Prince",
+    "title": "Purple Rain",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Purple Rain - Song with Lyrics by Prince & The Revolution - Apple Music (https://music.apple.com/us/song/1545697426)",
+      "url": "https://music.apple.com/us/song/1545697426",
+      "ref": "turn54search7"
+    }
+  },
+  {
+    "artist": "Guns N' Roses",
+    "title": "November Rain",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "url": "https://music.apple.com/us/song/november-rain/1440896193",
+      "ref": "turn254search0",
+      "header": "November Rain - Song with Lyrics by Guns N' Roses (https://music.apple.com/us/song/november-rain/1440896193)"
+    },
+    "review": "Primary catalog verified with a second search engine after coverage gap."
+  },
+  {
+    "artist": "The Beatles",
+    "title": "Here Comes the Sun",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Here Comes the Sun - Song by The Beatles - Apple Music (https://music.apple.com/us/song/1441133289)",
+      "url": "https://music.apple.com/us/song/1441133289",
+      "ref": "turn65search0"
+    }
+  },
+  {
+    "artist": "Soundgarden",
+    "title": "Black Hole Sun",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Black Hole Sun - Song with Lyrics by Soundgarden - Apple Music (https://music.apple.com/us/song/1436558379)",
+      "url": "https://music.apple.com/us/song/1436558379",
+      "ref": "turn63search0"
+    }
+  },
+  {
+    "artist": "Frank Sinatra",
+    "title": "Fly Me to the Moon",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Fly Me To the Moon (Live At The Sands Hotel And Casino/1966) - Song with Lyrics by Frank Sinatra - Apple Music (https://music.apple.com/us/song/1440842942)",
+      "url": "https://music.apple.com/us/song/1440842942",
+      "ref": "turn72search0"
+    }
+  },
+  {
+    "artist": "Creedence Clearwater Revival",
+    "title": "Bad Moon Rising",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Bad Moon Rising - Song with Lyrics by Creedence Clearwater Revival - Apple Music (https://music.apple.com/us/song/1595172502)",
+      "url": "https://music.apple.com/us/song/1595172502",
+      "ref": "turn71search0"
+    }
+  },
+  {
+    "artist": "Madonna",
+    "title": "Lucky Star",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Lucky Star (7\" Edit) - Song with Lyrics by Madonna - Apple Music (https://music.apple.com/us/song/1814776697)",
+      "url": "https://music.apple.com/us/song/1814776697",
+      "ref": "turn59search0"
+    }
+  },
+  {
+    "artist": "Deep Purple",
+    "title": "Highway Star",
+    "checkedAt": "2026-10-22",
+    "status": "verified-catalog-title",
+    "source": {
+      "header": "‎Highway Star - Song by Deep Purple - Apple Music (https://music.apple.com/us/song/1099334871)",
+      "url": "https://music.apple.com/us/song/1099334871",
+      "ref": "turn57search0"
+    }
+  }
+]
