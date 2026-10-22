@@ -19,7 +19,7 @@ function timerMarkup(ms) { return formatTimer(ms); }
 function pointNoun(n) { return n%10===1&&n%100!==11?'ОЧКО':([2,3,4].includes(n%10)&&!(n%100>=12&&n%100<=14)?'ОЧКА':'ОЧКОВ'); }
 const freshOptions = () => {
   const settings=optionsForPartyPreset('classic-duel',3);
-  return {...settings,contentPack:latestGeneralPackSelection(),packPreferences:{},awardTo:'setter',modifierChance:QUIP_MODIFIER_SELECTION_POLICIES[QUIP_MODIFIER_SELECTION_VERSION].defaultChance,modes:settings.modes.filter(id=>id!=='yesno')};
+  return {...settings,contentPack:latestGeneralPackSelection(),packPreferences:{},modifierChance:QUIP_MODIFIER_SELECTION_POLICIES[QUIP_MODIFIER_SELECTION_VERSION].defaultChance};
 };
 let options = freshOptions();
 let soundOn = true;
@@ -112,11 +112,16 @@ function awardTeam() { return game.teams[awardTeamIndex()]; }
 function selectAwardTo(value){
   if(!['setter','guesser'].includes(value)||value===options.awardTo)return;
   options.awardTo=value;
-  if(value==='setter'&&options.modes.includes('yesno')){
-    options.modes=options.modes.filter(id=>id!=='yesno');
-    if(!options.modes.length){options.modes=['talk'];toast('Данетки отключены. Включены «Слова», чтобы остался хотя бы один режим.');}
-    else toast('Данетки отключены. Их можно снова включить в тонкой настройке.');
-  }
+  const before=options.modes.length;
+  options.modes=compatibleAwardModes({...options,modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION});
+  if(options.modes.length!==before)toast(options.modes.length?'Несовместимые режимы отключены.':'Выберите подходящий режим в тонкой настройке.');
+}
+function selectSetupMode(id,enabled){
+  if(!DEFAULT_MODES.includes(id))return false;
+  if(enabled){const status=packModeAvailability(options.contentPack,{...options,modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION},id);if(!status.available){toast(status.reason);return false;}}
+  const modes=enabled?[...new Set([...options.modes,id])]:options.modes.filter(mode=>mode!==id);
+  if(!modes.length){toast('Нужен хотя бы один режим');return false;}
+  options.modes=DEFAULT_MODES.filter(mode=>modes.includes(mode));return true;
 }
 function durationForMode(id,methodId,base) {
  const config=modeConfigForGame(game,id==='secret'?methodId:id);
@@ -336,7 +341,8 @@ function selectTheme(id,version){
  const selection={id,version};
  try{
   const pack=getContentPack(selection);
-  if(pack.id==='general'||!checkContentPack(selection,packSetupSettings(selection,options)).available){toast('Эта тема пока недоступна.');return false;}
+  const setup=packSetupSettings(selection,options);
+  if(pack.id==='general'||!pack.enabled||(setup.modes.length&&!checkContentPack(selection,setup).available)){toast('Эта тема пока недоступна.');return false;}
  }catch{toast('Эта тема пока недоступна.');return false;}
  changeSetupPack(selection,'themes');return true;
 }
@@ -404,7 +410,7 @@ function renderOptions() {
     if(art.getAttribute('src')!==MODE_ASSETS[input.value])art.src=MODE_ASSETS[input.value];
     const status=setupPack?packModeAvailability(options.contentPack,options,input.value):{available:false,reason:'Набор недоступен'};
     input.disabled=!status.available;tile.title=status.reason;
-    tile.querySelector('.mode-availability').textContent=status.reason;
+    tile.querySelector('.mode-availability').textContent=status.reason||status.hint||'';
     const config=getModeConfig(input.value),label=tile.querySelector('b');
     label.textContent='+'+(config.basePoints+(config.id==='secret'?config.modifierBonus:0))+
       (config.blitzWordsCount?' · '+config.blitzWordsCount+'/'+config.blitzWordsCount:'');
@@ -418,6 +424,11 @@ function renderOptions() {
   $('modifier-chance-settings').hidden=!options.complications;
   $('modifier-chance-value').textContent=options.modifierChance+'%';
   $('setup-award-caption').textContent='Один телефон — два соперника. Очки получает '+(options.awardTo==='setter'?'загадывающий':'отгадывающий')+'. В «Примерно» — ручной выбор.';
+  let problems=['Набор недоступен'];
+  if(setupPack)try{problems=checkContentPack(options.contentPack,{...options,modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION}).problems;}catch{}
+  $('start-game').disabled=problems.length>0;
+  $('setup-mode-notice').hidden=!problems.length;
+  $('setup-mode-notice').textContent=problems[0]||'';
 }
 function renderMatch() {
   $('label-team-a').textContent=game.teams[0];
@@ -443,7 +454,7 @@ function renderMatch() {
   $('match-center-label').textContent=game.finishType==='score'?'ЦЕЛЬ '+game.targetScore:'ПО ЧИСЛУ ХОДОВ';
 }
 function pickMode() {
-  const allowed=MODE_LIST.filter(m=>game.modes.includes(m.id));
+  const allowed=MODE_LIST.filter(m=>game.modes.includes(m.id)&&modeAwardAvailability(m.id,game).available);
   if(!allowed.length)throw Error('Не выбрано ни одного режима');
   const recent=game.modeHistory.slice(-Math.min(2,allowed.length-1));
   const candidates=allowed.filter(mode=>!recent.includes(mode.id));
@@ -995,11 +1006,13 @@ function newGame() {
   // itself into a playable selection. Saved games never enter this path.
   try{
     if(getContentPack(contentPack).enabled)contentPack=latestContentPackSelection(contentPack.id);
-    if(!checkContentPack(contentPack,options).available){
-      toast('Набор заданий недоступен для выбранных настроек.');return;
+    const settings={...options,modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION};
+    const availability=checkContentPack(contentPack,settings);
+    if(!availability.available){
+      toast(availability.problems[0]);return;
     }
     if(QUIP_MODIFIER_SELECTION_VERSION===2&&options.modes.includes('secret')){
-      for(const level of options.difficulty==='mixed'?PARTY_CARD_LEVELS:[options.difficulty])v2SecretMethods(contentPack,options,level);
+      for(const level of options.difficulty==='mixed'?PARTY_CARD_LEVELS:[options.difficulty])v2SecretMethods(contentPack,settings,level);
     }
   }catch{toast('Набор заданий недоступен для выбранных настроек.');return;}
   if(storageBlocked&&!recoverCorruptSave()){toast(storageNotice());return;}
@@ -1013,6 +1026,7 @@ function newGame() {
     rounds:options.rounds,targetScore:options.targetScore,finishType:options.finishType,
     riskRounds:options.riskRounds,scoringVersion:2,rulesVersion:QUIP_RULE_VERSION,modeConfigVersion:QUIP_MODE_CONFIG_VERSION,
     awardPolicyVersion:QUIP_AWARD_POLICY_VERSION,awardTo:['setter','guesser'].includes(options.awardTo)?options.awardTo:'setter',
+    modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION,
     modifierCatalogVersion:QUIP_MODIFIER_CATALOG_V2,modifierSelectionVersion:QUIP_MODIFIER_SELECTION_VERSION,modifierChance:sanitizeModifierChance(options.modifierChance),modifierRecent:[],
     plannerVersion:QUIP_PLANNER_VERSION,plannerState:freshRoundPlan(),
     duration:options.duration,difficulty:options.difficulty,
@@ -1125,8 +1139,10 @@ function sanitizeOptions(raw) {
   const blitzCount=getModeConfig('blitz').blitzWordsCount;
   const modes=Array.isArray(raw.modes)?DEFAULT_MODES.filter(id=>raw.modes.includes(id)):base.modes;
   const promptTypes=Array.isArray(raw.promptTypes)?PROMPT_TYPES.filter(id=>raw.promptTypes.includes(id)):base.promptTypes;
-  return {difficulty,duration,rounds,targetScore,finishType,riskRounds,blitzCount,modes,promptTypes,
-    awardTo:['setter','guesser'].includes(raw.awardTo)?raw.awardTo:base.awardTo,
+  const awardTo=['setter','guesser'].includes(raw.awardTo)?raw.awardTo:base.awardTo;
+  return {difficulty,duration,rounds,targetScore,finishType,riskRounds,blitzCount,modes:compatibleAwardModes({modes,awardTo,modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION}),promptTypes,
+    modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION,
+    awardTo,
     modifierChance:sanitizeModifierChance(raw.modifierChance),
     packPreferences:Object.fromEntries(Object.entries(raw.packPreferences||{}).filter(([key,value])=>/^[a-z][a-z0-9-]*@[1-9][0-9]*$/.test(key)&&value&&Array.isArray(value.modes)&&Array.isArray(value.promptTypes)).map(([key,value])=>[key,{modes:DEFAULT_MODES.filter(id=>value.modes.includes(id)),promptTypes:PROMPT_TYPES.filter(id=>value.promptTypes.includes(id))}])) ,
     dice:true,complications:raw.complications!==false,scoring:'duel',
@@ -1138,7 +1154,7 @@ function restoreSession() {
   if(!saved)return;
   try{taskMemory=saved.taskMemory==null?null:validateTaskMemory(saved.taskMemory);}catch{blockSavedData('incompatible');return;}
   soundOn=saved.soundOn!==false;
-  options=sanitizeOptions(saved.options);
+  try{modeCompatibilityPolicy(saved.options);options=sanitizeOptions(saved.options);}catch{blockSavedData('incompatible');return;}
   const candidate=saved.game;
   if(candidate==null)return;
   if(!Array.isArray(candidate.teams)||candidate.teams.length!==2||
@@ -1154,6 +1170,7 @@ function restoreSession() {
       throw Error('Unknown mode config version');
     validateGameTaskHistory(candidate,taskMemory);
     validateAwardPolicy(candidate);
+    modeCompatibilityPolicy(candidate);
     modifierSelectionPolicy(candidate);
     if(candidate.plannerVersion!=null)validatePlannedGame(candidate);
     if(candidate.contentPack)getContentPack(candidate.contentPack);
@@ -1221,6 +1238,10 @@ function setupEvents() {
   for(const [id,key] of [['mode-toggles','modes'],['content-toggles','promptTypes']]) {
     $(id).addEventListener('change',event=>{
       if(!event.target.matches('input[type="checkbox"]'))return;
+      if(key==='modes'){
+        const changed=selectSetupMode(event.target.value,event.target.checked);
+        renderOptions();if(changed)persist();return;
+      }
       const inputs=[...$(id).querySelectorAll('input:checked')];
       if(!inputs.length){
         event.target.checked=true;

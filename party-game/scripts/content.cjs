@@ -99,7 +99,7 @@ function validate(data,{locks=true,near=false}={}){
  for(const group of groups(data.questions,'question'))add('normalized-question-duplicate',group.ids.join(', '),group.text);
  if(!errors.length)try{
   const context=vm.createContext({}),artifacts=render(data);
-  for(const name of ['cards.js','approx-questions.js','mode-config.js','rules.js','content-packs.js'])vm.runInContext(artifacts[name]||fs.readFileSync(path.join(root,name),'utf8'),context);
+  for(const name of ['cards.js','approx-questions.js','mode-config.js','rules.js','mode-compatibility.js','modifiers-v2.js','content-packs.js'])vm.runInContext(artifacts[name]||fs.readFileSync(path.join(root,name),'utf8'),context);
   const problems=vm.runInContext(`Object.values(QUIP_CONTENT_PACKS).filter(p=>p.enabled).flatMap(p=>{
    const selection={id:p.id,version:p.version},settings={rulesVersion:5,awardTo:'guesser',difficulty:'mixed',modes:p.allowedModes||Object.keys(QUIP_MODES_V4).filter(id=>id!=='approx'||p.types.includes('number')),promptTypes:['word','phrase','idiom'].filter(t=>p.types.includes(t))};
    return checkContentPack(selection,settings).problems.map(reason=>({pack:p.id+'@'+p.version,reason}));})`,context);

@@ -40,20 +40,20 @@ module.exports=async function awardPolicy(browser,url){
    await page.locator('#advanced-done').click();const previous=await page.evaluate(()=>options.modes);
    await choose(page,'setter').click();assert.equal(await page.evaluate(()=>options.modes.includes('yesno')),false);
    assert.deepEqual(await page.evaluate(()=>options.modes),previous.filter(id=>id!=='yesno'));
-   await page.locator('#go-advanced').click();await page.locator('#mode-settings > summary').click();await yesno(page).check({force:true});
-   await page.locator('#mode-settings > summary').click();await page.locator('#mode-settings > summary').click();assert.equal(await yesno(page).isChecked(),true);
-   if(device.name==='phone'){
-    await page.locator('#mode-toggles img').evaluateAll(async els=>{await Promise.all(els.map(e=>e.decode()));await new Promise(requestAnimationFrame)});
-    await page.locator('#mode-settings').scrollIntoViewIfNeeded();await shot(page,'phone-yesno-manual');
-   }
-   await page.locator('#advanced-done').click();await choose(page,'setter').click();
-   await page.locator('#go-advanced').click();await page.locator('#mode-settings > summary').click();assert.equal(await yesno(page).isChecked(),true);
-   await page.locator('#advanced-done').click();
-   await page.reload({waitUntil:'load'});await setup(page);assert.equal(await choose(page,'setter').getAttribute('aria-pressed'),'true');
-   await page.locator('#go-advanced').click();await page.locator('#mode-settings > summary').click();assert.equal(await yesno(page).isChecked(),true);
-   await page.locator('#advanced-done').click();
-   await choose(page,'guesser').click();await page.evaluate(()=>{options.modes=['yesno'];persist();renderOptions()});await choose(page,'setter').click();
-   assert.deepEqual(await page.evaluate(()=>options.modes),['talk']);assert.match(await page.locator('#toast').textContent(),/Слова/);
+   await page.locator('#go-advanced').click();await page.locator('#mode-settings > summary').click();
+   assert.equal(await yesno(page).isDisabled(),true);assert.equal(await yesno(page).isChecked(),false);
+   assert.match(await page.locator('#mode-toggles label:has(input[value="yesno"]) .mode-availability').textContent(),/Доступно, когда очки получает отгадывающий/);
+   await yesno(page).evaluate(el=>{el.checked=true;el.dispatchEvent(new Event('change',{bubbles:true}))});
+   assert.equal(await yesno(page).isChecked(),false);assert.equal(await page.evaluate(()=>options.modes.includes('yesno')),false);
+   await page.locator('#advanced-done').click();await choose(page,'guesser').click();
+   await page.locator('#go-advanced').click();await page.locator('#mode-settings > summary').click();assert.equal(await yesno(page).isDisabled(),false);assert.equal(await yesno(page).isChecked(),false);
+   await yesno(page).check();await page.locator('#advanced-done').click();
+   await page.reload({waitUntil:'load'});await setup(page);assert.equal(await choose(page,'guesser').getAttribute('aria-pressed'),'true');
+   await page.locator('#go-advanced').click();await page.locator('#mode-settings > summary').click();assert.equal(await yesno(page).isChecked(),true);await page.locator('#advanced-done').click();
+   await page.evaluate(()=>{options.modes=['yesno'];persist();renderOptions()});await choose(page,'setter').click();
+   assert.deepEqual(await page.evaluate(()=>options.modes),[]);assert.equal(await page.locator('#start-game').isDisabled(),true);assert.match(await page.locator('#setup-mode-notice').textContent(),/Выберите/);
+   await page.reload({waitUntil:'load'});await setup(page);assert.deepEqual(await page.evaluate(()=>options.modes),[]);assert.equal(await page.locator('#start-game').isDisabled(),true);
+   await page.locator('#go-advanced').click();await page.locator('#mode-settings > summary').click();await page.locator('#mode-toggles input[value="talk"]').check();await page.locator('#advanced-done').click();assert.equal(await page.locator('#start-game').isEnabled(),true);
    for(const value of ['setter','guesser']){
     await choose(page,value).click();
     await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.dice=false;options.complications=false;chooseStartingTeam=()=>0});

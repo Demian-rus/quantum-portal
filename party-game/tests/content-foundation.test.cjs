@@ -5,7 +5,7 @@ const root=path.resolve(__dirname,'..'),base=api.readDataset(),copy=()=>structur
 function hasError(data,code){return api.validate(data,{locks:false}).errors.some(e=>e.code===code)}
 test('TASK009 A deterministic generated modules preserve every existing record and pack declaration',()=>{
  const output=api.render(base),context=vm.createContext({});assert.deepEqual(output,api.render(base));
- for(const name of ['cards.js','approx-questions.js','mode-config.js','rules.js','content-packs.js'])vm.runInContext(output[name]||fs.readFileSync(path.join(root,name),'utf8'),context);
+ for(const name of ['cards.js','approx-questions.js','mode-config.js','rules.js','mode-compatibility.js','modifiers-v2.js','content-packs.js'])vm.runInContext(output[name]||fs.readFileSync(path.join(root,name),'utf8'),context);
  for(const[name,text]of Object.entries(output))assert.equal(fs.readFileSync(path.join(root,name),'utf8'),text);
  assert.equal(api.digest(JSON.parse(vm.runInContext('JSON.stringify(PARTY_CARDS.slice(0,3536))',context))),'61aa2d5377c00980a9aa46e01542cd8c8b20aaa3bdbada0afe4ae01cf6935a1b');
  assert.equal(api.digest(JSON.parse(vm.runInContext('JSON.stringify(QUIP_APPROX_QUESTIONS.slice(0,150))',context))),'1350da29f51eddcc39cd4bcad4d0c46794751afeea5936769ff81094029356fa');

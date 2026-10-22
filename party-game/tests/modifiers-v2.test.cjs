@@ -49,9 +49,9 @@ test('TASK009 C Secret always receives an applicable modifier across packs, leve
   }
  }
 });
-test('TASK009 C setter Danetki stays truthful without opponent bonus; Secret-only-compatible fallback is explicit',()=>{
- const h=match('yesno','hard','setter');h.eval('roll()');assert.equal(h.eval('game.current.complication'),'');assert.equal(h.eval('game.current.points'),2);
- h.eval('options.modes=["secret","yesno"];newGame()');assert.ok(h.eval('v2SecretMethods(game.contentPack,game,"hard").every(id=>id!=="yesno")'));
+test('TASK009 C historical setter Danetki and pre-G Secret fallback retain their saved policy',()=>{
+ const h=match('yesno','hard','guesser');h.eval('delete game.modeCompatibilityVersion;game.awardTo="setter";roll()');assert.equal(h.eval('game.current.complication'),'');assert.equal(h.eval('game.current.points'),2);
+ h.eval('game.modes=["secret","yesno"]');assert.ok(h.eval('v2SecretMethods(game.contentPack,game,"hard").every(id=>id!=="yesno")'));
  const guesser=match('yesno','hard','guesser');guesser.eval('roll()');assert.equal(guesser.eval('game.current.complicationId'),'v2-no-biography');
  assert.equal(guesser.eval('modeConfigForGame(game,"yesno").rule.includes("не знаю")'),true);
 });

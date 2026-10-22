@@ -762,6 +762,12 @@ function chooseV2PartyModifier(match,request,random=Math.random,registry=QUIP_MO
  return {modifier,taskHistory:selected.history,recent:modifier?[...recent,{id:modifier.id,key:normalizeModifierText(modifier.text)}].slice(-5):recent};
 }
 function v2SecretMethods(selection,match,difficulty){
+ if(modeCompatibilityPolicy(match)){
+  const methods=secretMethodsForPack(selection,match,QUIP_CONTENT_PACKS,difficulty);
+  if(!methods.length)throw Error('Нет подходящих способов Секретки на выбранной сложности.');
+  return methods;
+ }
+ // Historical pre-G selection below is pinned by the absence of a compatibility version.
  const eligible=method=>getV2ModifierPool(method,difficulty,match).length>0;
  let methods=secretMethodsForPack(selection,match).filter(eligible);
  // Proposal documented in MODIFIERS-V2-AUDIT.md: never give a setter a

@@ -49,5 +49,10 @@ function optionsForPartyPreset(id,version,overrides={},registry=QUIP_PARTY_PRESE
  if(!preset||!preset.enabled)throw Error('Unavailable QUIP party preset/version');
  const settings=JSON.parse(JSON.stringify({...preset.settings,...overrides,preset:{id,version}}));
  validatePresetSettings(settings);
+ modeCompatibilityPolicy(overrides);
+ settings.modeCompatibilityVersion=QUIP_MODE_COMPATIBILITY_VERSION;
+ settings.awardTo=settings.awardTo??'setter';
+ if(!['setter','guesser'].includes(settings.awardTo))throw Error('Invalid preset award recipient');
+ settings.modes=compatibleAwardModes(settings);
  return settings;
 }

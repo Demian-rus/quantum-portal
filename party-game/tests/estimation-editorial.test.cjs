@@ -48,5 +48,5 @@ test('TASK009 F checked rounding and edition/measurement boundaries are retained
 });
 test('TASK009 F metadata validation also covers v3 and offline artifacts reference matching current catalogs',()=>{
  const bad=structuredClone(data);delete bad.questions.find(q=>q.meta?.estimationVersion===3).meta.sourceKey;assert.ok(validate(bad).errors.some(e=>e.code==='estimation-review'));assert.ok(validate(data).ok);
- const html=fs.readFileSync(require.resolve('../index.html'),'utf8'),sw=fs.readFileSync(require.resolve('../sw.js'),'utf8');for(const url of ['approx-questions.js?v=7','content-packs.js?v=11']){assert.ok(html.includes(url));assert.ok(sw.includes(url))}assert.match(sw,/kvip-pwa-v43-/);
+ const html=fs.readFileSync(require.resolve('../index.html'),'utf8'),sw=fs.readFileSync(require.resolve('../sw.js'),'utf8');for(const file of ['approx-questions.js','content-packs.js']){const url=html.match(new RegExp(file.replace('.','\\.')+'\\?v=\\d+'))[0];assert.ok(sw.includes(url))}assert.match(sw,/kvip-pwa-v\d+-/);
 });

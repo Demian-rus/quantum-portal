@@ -4,7 +4,10 @@ function listThematicPacks(settings,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACK
  const latest=new Map();
  for(const pack of Object.values(registry))if(pack.id!=='general'&&(!latest.has(pack.id)||latest.get(pack.id).version<pack.version))
   latest.set(pack.id,pack);
- return [...latest.values()].map(pack=>{const selection={id:pack.id,version:pack.version};return {pack,...checkContentPack(selection,pack.allowedModes?packSetupSettings(selection,settings,registry):settings,cards,registry,questions)};});
+ return [...latest.values()].map(pack=>{const selection={id:pack.id,version:pack.version},setup=pack.allowedModes?packSetupSettings(selection,settings,registry):settings;
+  // Preview an empty setup without silently selecting modes in the actual settings.
+  const preview=setup.modes.length?setup:{...setup,modes:(pack.allowedModes||Object.keys(QUIP_MODES_V4)).filter(id=>modeAwardAvailability(id,setup).available)};
+  return {pack,...checkContentPack(selection,preview,cards,registry,questions)};});
 }
 function getContentPack(selection,registry=QUIP_CONTENT_PACKS){
  const pack=registry[selection?.id+'@'+selection?.version];
@@ -52,10 +55,16 @@ function getPackQuestionPool(selection,level,questions=QUIP_APPROX_QUESTIONS,reg
 function checkContentPack(selection,settings,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACKS,questions=QUIP_APPROX_QUESTIONS){
  const pack=getContentPack(selection,registry),problems=[];
  if(!pack.enabled)problems.push('Набор пока недоступен: '+pack.name);
+ const compatibility=modeCompatibilityPolicy(settings);
+ if(compatibility&&!settings.modes.length)problems.push('Выберите хотя бы один совместимый режим');
+ if(compatibility)for(const id of settings.modes){const status=modeAwardAvailability(id,settings);if(!status.available)problems.push(getModeConfig(id).title+': '+status.reason);}
  const levels=settings.difficulty==='mixed'?PARTY_CARD_LEVELS:[settings.difficulty];
  if(pack.allowedModes)for(const mode of settings.modes)if(!pack.allowedModes.includes(mode))problems.push('Режим «'+getModeConfig(mode).title+'» недоступен в теме «'+pack.name+'».');
- const methods=new Set(settings.modes.flatMap(mode=>mode==='secret'?secretMethodsForPack(selection,settings,registry):[mode]));
- if(settings.modes.includes('secret')&&!secretMethodsForPack(selection,settings,registry).length)problems.push('Нет способов для Секретки.');
+ const methods=new Set(settings.modes.flatMap(mode=>mode==='secret'?(compatibility?[]:secretMethodsForPack(selection,settings,registry)):[mode]));
+ if(settings.modes.includes('secret')){
+  if(compatibility){for(const level of levels)if(!secretMethodsForPack(selection,settings,registry,level,cards).length)problems.push('Нет подходящих способов Секретки на выбранной сложности.');}
+  else if(!secretMethodsForPack(selection,settings,registry).length)problems.push('Нет способов для Секретки.');
+ }
  for(const method of methods){
   const kind=getModeConfig(method).cardType;
   if(!kind)throw Error('Unknown QUIP mode: '+method);
@@ -69,8 +78,22 @@ function checkContentPack(selection,settings,cards=PARTY_CARDS,registry=QUIP_CON
 }
 
 // Only new packs declare restricted methods. Older versions retain their choices.
-function secretMethodsForPack(selection,settings,registry=QUIP_CONTENT_PACKS){
+function secretMethodsForPack(selection,settings,registry=QUIP_CONTENT_PACKS,difficulty=null,cards=PARTY_CARDS){
  const pack=selection?getContentPack(selection,registry):null;
+ const compatibility=modeCompatibilityPolicy(settings);
+ if(compatibility){
+  // Decide the source before filtering: an ineligible explicit choice never expands it.
+  const explicit=settings.modes.filter(id=>getModeConfig(id).secretMethod);
+  const candidates=explicit.length?explicit:compatibility.soloSecretMethods;
+  const levels=difficulty?[difficulty]:settings.difficulty==='mixed'?PARTY_CARD_LEVELS:[settings.difficulty];
+  return candidates.filter(id=>getModeConfig(id).secretMethod&&modeAwardAvailability(id,settings).available&&
+   (!pack?.allowedModes||pack.allowedModes.includes(id))&&(!pack?.secretMethods||pack.secretMethods.includes(id))&&levels.some(level=>{
+    const pool=getPackCardPool(selection,getModeConfig(id).cardType,level,settings.promptTypes,cards,registry);
+    if(new Set(pool.map(card=>card.text)).size<Math.max(1,pack.minCardsPerPool))return false;
+    // A mandatory condition must be possible for every card the existing selector can draw.
+    return getV2ModifierPool(id,level,settings).length>0||pool.every(card=>getV2ModifierPool(id,level,settings,{card}).length>0);
+   }));
+ }
  const basic=Object.values(QUIP_MODES_V4).filter(mode=>mode.secretMethod&&(!pack?.secretMethods||pack.secretMethods.includes(mode.id))).map(mode=>mode.id);
  const enabled=basic.filter(id=>settings.modes.includes(id));
  return enabled.length?enabled:basic;
@@ -87,17 +110,19 @@ function packSetupSettings(selection,settings,registry=QUIP_CONTENT_PACKS){
  let modes=previous.modes.slice(),promptTypes=previous.promptTypes.slice();
  if(pack.allowedModes){
   modes=modes.filter(id=>pack.allowedModes.includes(id));
-  if(!modes.length)modes=pack.allowedModes.filter(id=>id!=='yesno'||settings.awardTo==='guesser');
-  if(!modes.length)modes=pack.allowedModes.slice();
+  if(!modes.length&&!modeCompatibilityPolicy(settings))modes=pack.allowedModes.slice();
   promptTypes=promptTypes.filter(type=>pack.types.includes(type));
   if(!promptTypes.length)promptTypes=['word','phrase','idiom'].filter(type=>pack.types.includes(type));
  }
+ modes=compatibleAwardModes({...settings,modes});
  return {...settings,modes,promptTypes,contentPack:{id:pack.id,version:pack.version}};
 }
 function packModeAvailability(selection,settings,id){
  const pack=getContentPack(selection);
- if(!pack.allowedModes)return {available:true,reason:''};
- if(!pack.allowedModes.includes(id))return {available:false,reason:id==='sing'?'В теме нет песен':'Нет заданий этого режима'};
- const result=checkContentPack(selection,{...settings,modes:[id]});
- return {available:result.available,reason:result.problems[0]||''};
+ const recipient=modeAwardAvailability(id,settings);if(!recipient.available)return recipient;
+ if(!pack.allowedModes&&id!=='secret')return recipient;
+ if(pack.allowedModes&&!pack.allowedModes.includes(id))return {available:false,reason:id==='sing'?'В теме нет песен':'Нет заданий этого режима'};
+ const modes=id==='secret'?[...new Set([...settings.modes,'secret'])]:[id];
+ const result=checkContentPack(selection,{...settings,modes});
+ return {available:result.available,reason:result.problems[0]||'',hint:id==='secret'?'Если другие базовые способы не включены, Секретка выбирает из подходящих способов сама.':''};
 }
