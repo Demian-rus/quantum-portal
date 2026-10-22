@@ -362,7 +362,17 @@ function openPreferences() {
   setSoundIcon();
   setScene('preferences');
 }
-function openGameType(){setScene('game-type');}
+// Counts come from the current versioned packs, never from a hard-coded UI total.
+function contentCountLabel(n){return '('+n.toLocaleString('ru-RU')+' заданий)';}
+function contentPackCount(pack){return new Set(pack.criteria.cardIds).size;}
+function renderGameTypeCounts(){
+ const general=getContentPack(latestGeneralPackSelection());
+ const activeThemes=listThematicPacks(options).filter(entry=>entry.pack.enabled&&entry.pack.criteria.cardIds.length);
+ const thematicIds=new Set(activeThemes.flatMap(entry=>entry.pack.criteria.cardIds));
+ $('standard-content-count').textContent=contentCountLabel(contentPackCount(general));
+ $('thematic-content-count').textContent=contentCountLabel(thematicIds.size);
+}
+function openGameType(){renderGameTypeCounts();setScene('game-type');}
 function rememberPackSettings(){
  const selection=options.contentPack,key=selection.id+'@'+selection.version;
  options.packPreferences={...(options.packPreferences||{}),[key]:{modes:options.modes.slice(),promptTypes:options.promptTypes.slice()}};
@@ -378,7 +388,7 @@ function renderThemes(){
  $('theme-list').innerHTML=entries.map(({pack,available})=>
   '<button type="button" class="theme-choice" data-theme="'+pack.id+'" data-version="'+pack.version+'"'+
   (available?'':' disabled aria-disabled="true"')+'><strong>'+escapeHTML(pack.name)+'</strong><span>'+
-  (available?'Выбрать тему':'Скоро')+'</span></button>').join('');
+  (available?contentPackCount(pack).toLocaleString('ru-RU'):'Скоро')+'</span></button>').join('');
  $('themes-caption').textContent=entries.some(entry=>entry.available)?
   'Выберите тему, затем настройте партию.':'Тематические наборы ещё готовятся. Пока можно сыграть в стандартную игру.';
 }
@@ -498,9 +508,19 @@ function renderMatch() {
   }
   $('match-center-label').textContent=game.finishType==='score'?'ЦЕЛЬ '+game.targetScore:'ПО ЧИСЛУ ХОДОВ';
 }
-function pickMode() {
+function pickMode(level) {
   const allowed=MODE_LIST.filter(m=>game.modes.includes(m.id)&&modeAwardAvailability(m.id,game).available);
   if(!allowed.length)throw Error('Не выбрано ни одного режима');
+  if(game.modePlannerVersion!=null){
+    validateModePlan(game.modePlannerVersion,game.modePlannerState);
+    // Pools were validated at newGame; the saved selection is immutable.
+    const pack=getContentPack(game.contentPack);
+    const modes=allowed.filter(m=>!pack.allowedModes||pack.allowedModes.includes(m.id)).map(m=>m.id);
+    const planned=planMode(game.modePlannerState,{modes,rewards:modeOpportunityRewards(game,modes,level),
+      recipientIndex:awardTeamIndex(),pairStart:game.roundIndex%2===0});
+    game.modePlannerState=planned.state;
+    return getMode(planned.modeId);
+  }
   const recent=game.modeHistory.slice(-Math.min(2,allowed.length-1));
   const candidates=allowed.filter(mode=>!recent.includes(mode.id));
   return randomOne(candidates.length?candidates:allowed);
@@ -572,10 +592,12 @@ const ROUND_INTERACTIONS=Object.freeze({
  estimate:Object.freeze({task:showApprox,judge:showApprox})
 });
 function rollOutcome() {
-  const mode=pickMode(),config=modeConfigForGame(game,mode.id);
+  // Historical saves keep mode-before-difficulty RNG order exactly as before.
+  const plannedLevel=game.modePlannerVersion==null?null:chooseDifficulty();
+  const mode=pickMode(plannedLevel),config=modeConfigForGame(game,mode.id);
   game.modeHistory.push(mode.id);
   let actualMode=mode;
-  const level=chooseDifficulty();
+  const level=plannedLevel??chooseDifficulty();
   if(mode.id==='secret'){
     actualMode=getMode(randomOne(game.modifierSelectionVersion===2?v2SecretMethods(game.contentPack,game,level):secretMethodsForPack(game.contentPack,game)));
   }
@@ -1074,6 +1096,7 @@ function newGame() {
     modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION,
     modifierCatalogVersion:QUIP_MODIFIER_CATALOG_V2,modifierSelectionVersion:QUIP_MODIFIER_SELECTION_VERSION,modifierChance:sanitizeModifierChance(options.modifierChance),modifierRecent:[],
     plannerVersion:QUIP_PLANNER_VERSION,plannerState:freshRoundPlan(),
+    modePlannerVersion:QUIP_MODE_PLANNER_VERSION,modePlannerState:freshModePlan(),
     duration:options.duration,difficulty:options.difficulty,
     contentPack:{...contentPack},preset:options.preset?{...options.preset}:null,
     modes:options.modes.slice(),promptTypes:options.promptTypes.slice(),
@@ -1218,6 +1241,8 @@ function restoreSession() {
     modeCompatibilityPolicy(candidate);
     modifierSelectionPolicy(candidate);
     if(candidate.plannerVersion!=null)validatePlannedGame(candidate);
+    if(candidate.modePlannerVersion!=null||candidate.modePlannerState!=null)
+      validateModePlan(candidate.modePlannerVersion,candidate.modePlannerState);
     if(candidate.contentPack)getContentPack(candidate.contentPack);
   }catch{storageBlocked=true;return;}
   if(candidate.phase==='rolling')candidate.phase=candidate.current?'task':'ready';

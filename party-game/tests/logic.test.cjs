@@ -53,7 +53,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
   vm.runInContext(read('app.js'),context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
-  vm.runInContext(`function startHistoricalFixture(){const awardTo=options.awardTo;options.awardTo='guesser';newGame();options.awardTo=awardTo;if(game){game.awardTo=awardTo;delete game.modeCompatibilityVersion;}}
+  vm.runInContext(`function startHistoricalFixture(){const awardTo=options.awardTo;options.awardTo='guesser';newGame();options.awardTo=awardTo;if(game){game.awardTo=awardTo;delete game.modeCompatibilityVersion;delete game.modePlannerVersion;delete game.modePlannerState;}}
   function legacyGame(version=3){
     options.modes=options.modes.filter(id=>id!=='approx');
     if(options.contentPack?.id==='general')options.contentPack={id:'general',version:1};
@@ -1380,12 +1380,28 @@ test('Approx exhausts each tier before repeats and preserves full-pair match com
 });
 
 
+test('live catalog counters use active pack IDs and not the historical archive',()=>{
+ const h=harness();
+ h.eval('openGameType()');
+ const general=h.elements.get('standard-content-count').textContent.replace(/\s/g,' ');
+ const thematic=h.elements.get('thematic-content-count').textContent.replace(/\s/g,' ');
+ assert.equal(general,'(4 950 заданий)');
+ const expectedIds=h.eval('new Set(listThematicPacks(options).filter(entry=>entry.pack.enabled&&entry.pack.criteria.cardIds.length).flatMap(entry=>entry.pack.criteria.cardIds)).size');
+ assert.equal(thematic.replace(/[^\d]/g,''),String(expectedIds));
+ h.eval('openThemes()');
+ const markup=h.elements.get('theme-list').innerHTML;
+ assert.ok(markup.includes('>256</span>'), 'Geography shows the catalog count');
+ assert.ok(markup.includes('>382</span>'), 'Science shows the catalog count');
+ assert.ok(!markup.includes('Выбрать тему'), 'No verbose labels for enabled themes');
+ assert.ok(markup.includes('Скоро'), 'Future themes remain marked soon');
+ assert.equal(h.eval('options.contentPack.id'),'general','Navigation must not switch packs or modify saved settings');
+});
 test('game-type navigation uses shared settings and preserves an unfinished match',()=>{
  const h=harness();h.eval('soundOn=false;newGame();game.scores=[7,8];backToMenu()');
  const saved=h.eval('JSON.stringify(game)');
  h.eval('openGameType()');assert.equal(h.eval('activeScene'),'game-type');
  h.eval('openThemes()');assert.equal(h.eval('activeScene'),'themes');
- assert.equal((h.elements.get('theme-list').innerHTML.match(/ disabled aria-disabled="true"/g)||[]).length,4);
+ assert.equal((h.elements.get('theme-list').innerHTML.match(/ disabled aria-disabled="true"/g)||[]).length,3);
  assert.ok(h.elements.get('themes-caption').textContent.includes('Выберите тему'));
  h.eval('selectStandardGame()');assert.equal(h.eval('activeScene'),'setup');
  assert.equal(h.eval('options.contentPack.id'),'general');assert.equal(h.eval('options.contentPack.version'),h.eval('latestGeneralPackSelection().version'));

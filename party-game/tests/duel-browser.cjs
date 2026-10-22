@@ -64,12 +64,12 @@ const URL='http://127.0.0.1:8765/party-game/';
   await page.evaluate(()=>{options.difficulty='mixed';options.modes=['secret'];soundOn=false;});
   await page.locator('#start-game').click();
   await page.locator('[data-action="roll"]').click();
-  const selected=await page.evaluate(()=>({card:game.current,used:game.used,plan:game.plannerState}));
+  const selected=await page.evaluate(()=>({card:game.current,used:game.used,plan:game.plannerState,modePlan:game.modePlannerState}));
   assert.equal(await page.evaluate(()=>game.phase),'rolling');
   await page.reload({waitUntil:'load'});
   await page.locator('#continue-game').click();
   assert.equal(await page.evaluate(()=>game.phase),'task');
-  assert.deepEqual(await page.evaluate(()=>({card:game.current,used:game.used,plan:game.plannerState})),selected,
+  assert.deepEqual(await page.evaluate(()=>({card:game.current,used:game.used,plan:game.plannerState,modePlan:game.modePlannerState})),selected,
     'Carousel restore must preserve card, modifier, rewards and planner without another draw');
   await page.evaluate(()=>{game.phase='judge';judge(false)});
   await page.reload({waitUntil:'load'});
@@ -77,12 +77,12 @@ const URL='http://127.0.0.1:8765/party-game/';
   await page.locator('[data-action="roll"]').click();
   await page.locator('.is-task').waitFor({timeout:5500});
   assert.equal(await page.evaluate(()=>game.current.difficulty),selected.card.difficulty,'Reply tier changed after reload');
-  const reply=await page.evaluate(()=>({card:game.current,plan:game.plannerState,scores:game.scores,round:game.roundIndex}));
+  const reply=await page.evaluate(()=>({card:game.current,plan:game.plannerState,modePlan:game.modePlannerState,scores:game.scores,round:game.roundIndex}));
   await page.evaluate(async()=>{await navigator.serviceWorker.ready});
   await context.setOffline(true);
   await page.reload({waitUntil:'load'});
   await page.locator('#continue-game').click();
-  assert.deepEqual(await page.evaluate(()=>({card:game.current,plan:game.plannerState,scores:game.scores,round:game.roundIndex})),reply,
+  assert.deepEqual(await page.evaluate(()=>({card:game.current,plan:game.plannerState,modePlan:game.modePlannerState,scores:game.scores,round:game.roundIndex})),reply,
     'Offline installed-PWA restore lost the selected reply');
   assert.deepEqual(errors,[]);
   console.log('paired-mix offline reload PASS');
