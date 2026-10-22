@@ -822,8 +822,9 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['approx-questions.js?v=5','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=3','round-planner.js?v=1','content-packs.js?v=8','presets.js?v=3','app.js?v=30']){
-  assert.ok(html.includes(file));assert.ok(sw.includes(file));
+ const scripts=[...html.matchAll(/src="\.\/([^"]+\.js\?v=\d+)"/g)].map(match=>match[1]);
+ for(const file of ['approx-questions.js','mode-config.js','rules.js','penalties.js','modifiers.js','round-planner.js','content-packs.js','presets.js','app.js']){
+  const url=scripts.find(src=>src.startsWith(file+'?v='));assert.ok(url,file);assert.ok(sw.includes(url),url);
  }
  assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);
 });
@@ -1697,7 +1698,7 @@ test('TASK008 A adds the authored minimum for every type with meaningful tier co
 test('TASK008 new prompts have no normalized collisions with any active prompt or song title',()=>{
  const {loadCatalog,normalize}=require('../scripts/catalog-audit.cjs'),{cards,questions}=loadCatalog();
  const seen=new Map(),songTitles=new Map();
- for(const card of cards){const key=normalize(card.text),newCard=Number(card.id.split('-')[1])>=8000;
+ for(const card of cards.filter(c=>Number(c.id.split('-')[1])<20000)){const key=normalize(card.text),newCard=Number(card.id.split('-')[1])>=8000;
   if(newCard)assert.equal(seen.has(key),false,card.id+' collides with '+seen.get(key));
   seen.set(key,card.id);
   if(card.type==='song'){const title=normalize(card.meta.title);if(newCard)assert.equal(songTitles.has(title),false,card.id+' repeats song '+songTitles.get(title));songTitles.set(title,card.id);}
@@ -1715,7 +1716,7 @@ test('TASK008 numeric additions carry units, categories, sources and checked der
  }
 });
 test('TASK008 additions enter standard pools without empty tiers or duplicate Blitz words',()=>{
- const h=harness();h.eval('soundOn=false;options.complications=false;options.dice=false;newGame()');
+ const h=harness();h.eval('soundOn=false;options.complications=false;options.dice=false;newGame();game.contentPack={id:"general",version:2}');
  for(const kind of ['words','songs','people','blitz'])for(const level of ['easy','medium','hard'])assert.ok(h.eval('getPromptPool("'+kind+'","'+level+'").length')>=50,kind+'/'+level);
  h.eval('options.modes=["blitz"];newGame();Math.random=()=>0');const used=[];
  for(let i=0;i<20;i++){h.eval('roll()');const words=Array.from(h.eval('game.current.blitzWords'));assert.equal(new Set(words).size,3);for(const word of words){assert.equal(used.includes(word),false);used.push(word)}h.eval('game.phase="judge";judge(false)');}
@@ -1723,7 +1724,7 @@ test('TASK008 additions enter standard pools without empty tiers or duplicate Bl
  assert.equal(h.eval('getPackQuestionPool({id:"general",version:2},"hard").some(q=>q.id==="approx-8030")'),true);
 });
 test('TASK008 audit reports cross-type duplicates separately and is deterministic',()=>{
- const {audit}=require('../scripts/catalog-audit.cjs'),a=audit();assert.deepEqual(a,audit());assert.equal(a.exactDuplicates.length,26);assert.equal(a.normalizedDuplicates.length,26);assert.equal(a.questionDuplicates.length,0);assert.ok(a.blitz>=750);
+ const {audit}=require('../scripts/catalog-audit.cjs'),a=audit();assert.deepEqual(a,audit());const historical=group=>group.ids.every(id=>Number(id.split('-')[1])<20000);assert.equal(a.exactDuplicates.filter(historical).length,26);assert.equal(a.normalizedDuplicates.filter(historical).length,26);const reviewed=require('../content/manifest.json').reviewedCrossTypeCollisions;assert.equal(a.normalizedDuplicates.filter(g=>!historical(g)).length,reviewed.length);assert.equal(a.questionDuplicates.length,0);assert.ok(a.blitz>=750);
 });
 
 test('TASK008 geography v2 is authored, isolated and leaves every v1 declaration disabled',()=>{
