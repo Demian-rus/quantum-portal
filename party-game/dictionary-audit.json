@@ -1,0 +1,82 @@
+{
+  "source": "content/cards/general-expansion-v1.json",
+  "sha256": "44c013b8f16fd3cb42cef67919ac257444f4d17545f16e00cee86cb53703a33f",
+  "added": 968,
+  "byType": {
+    "word": 637,
+    "phrase": 277,
+    "idiom": 54
+  },
+  "byDifficulty": {
+    "easy": 246,
+    "medium": 547,
+    "hard": 175
+  },
+  "byCategory": {
+    "everyday": 310,
+    "food": 183,
+    "animals": 59,
+    "nature": 67,
+    "transport": 53,
+    "professions": 36,
+    "sport": 88,
+    "technology": 21,
+    "technology+music": 7,
+    "arts": 23,
+    "culture": 47,
+    "language": 54,
+    "history": 10,
+    "science": 10
+  },
+  "typeDifficulty": {
+    "word": {
+      "easy": 138,
+      "medium": 386,
+      "hard": 113
+    },
+    "phrase": {
+      "easy": 100,
+      "medium": 153,
+      "hard": 24
+    },
+    "idiom": {
+      "easy": 8,
+      "medium": 8,
+      "hard": 38
+    }
+  },
+  "concreteObjects": 407,
+  "newBlitzWords": 137,
+  "newExactCollisions": [],
+  "newNearCandidates": [],
+  "historicalCollisionGroups": 26,
+  "generalV3Pools": {
+    "words": {
+      "easy": 1314,
+      "medium": 1505,
+      "hard": 1053
+    },
+    "blitz": {
+      "easy": 952,
+      "medium": 952,
+      "hard": 952
+    },
+    "songs": {
+      "easy": 81,
+      "medium": 87,
+      "hard": 72
+    },
+    "people": {
+      "easy": 129,
+      "medium": 128,
+      "hard": 135
+    }
+  },
+  "editorialReview": [
+    "content/editorial/dictionary-word-review.json",
+    "content/editorial/dictionary-phrase-review.json",
+    "content/editorial/dictionary-exact-rejections.json",
+    "content/editorial/dictionary-spelling-review.json"
+  ],
+  "limitations": "Near-match detection is a review aid, not a semantic proof. Tier/category/concreteness decisions were reviewed manually; no automatic thematic activation."
+}

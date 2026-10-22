@@ -55,6 +55,8 @@ function validate(data,{locks=true,near=false}={}){
  if(locks)for(const sourcePath of Object.keys(data.lock.sources))if(!data.sources.some(source=>source.path===sourcePath))add('historical-source',sourcePath,'Immutable source omitted from manifest');
  for(const source of data.sources){
   if(!source.review)warnings.push({code:'category-review',source:source.path,message:'Editorial provenance/category review is missing'});
+  const historicalOrigins=new Set(data.sources.filter(row=>row.immutable).flatMap(row=>row.rows.map(r=>r.pack).filter(Boolean)));
+  if(!source.immutable&&source.kind!=='packs'&&source.rows.some(row=>historicalOrigins.has(row.pack)))add('historical-origin',source.path,'New content needs a new source pack to preserve historical pool membership');
   const locked=data.lock.sources[source.path];
   if(locks&&source.immutable&&(!locked||locked.count!==source.rows.length||locked.sha256!==digest(source.rows)))add('historical-source',source.path,'Immutable source changed; add a new source and selection policy instead');
  }

@@ -19,7 +19,7 @@ function timerMarkup(ms) { return formatTimer(ms); }
 function pointNoun(n) { return n%10===1&&n%100!==11?'ОЧКО':([2,3,4].includes(n%10)&&!(n%100>=12&&n%100<=14)?'ОЧКА':'ОЧКОВ'); }
 const freshOptions = () => {
   const settings=optionsForPartyPreset('classic-duel',3);
-  return {...settings,packPreferences:{},awardTo:'setter',modifierChance:QUIP_MODIFIER_SELECTION_POLICIES[QUIP_MODIFIER_SELECTION_VERSION].defaultChance,modes:settings.modes.filter(id=>id!=='yesno')};
+  return {...settings,contentPack:latestGeneralPackSelection(),packPreferences:{},awardTo:'setter',modifierChance:QUIP_MODIFIER_SELECTION_POLICIES[QUIP_MODIFIER_SELECTION_VERSION].defaultChance,modes:settings.modes.filter(id=>id!=='yesno')};
 };
 let options = freshOptions();
 let soundOn = true;
@@ -321,7 +321,7 @@ function changeSetupPack(selection,from){
  rememberPackSettings();options={...options,...next,packPreferences:options.packPreferences};
  persist();openSetup(from);
 }
-function selectStandardGame(){changeSetupPack({id:'general',version:2},'game-type');}
+function selectStandardGame(){changeSetupPack(latestGeneralPackSelection(),'game-type');}
 function renderThemes(){
  const entries=listThematicPacks(options);
  $('theme-list').innerHTML=entries.map(({pack,available})=>
@@ -465,7 +465,7 @@ const PARTY_VOCABULARY=Object.freeze(Object.fromEntries(
 ));
 function getPromptPool(kind,level){
   const cards=game?.contentPack?getPackCardPool(game.contentPack,kind,level,game.promptTypes):
-    getCardPool(kind,level,game?.promptTypes);
+    getPackCardPool({id:'general',version:1},kind,level,game?.promptTypes);
   return [...new Set(cards.map(card=>card.text))];
 }
 function archiveCurrentTaskHistory(){
@@ -988,8 +988,9 @@ function newGame() {
   if(!options.modes.length){toast('Выберите хотя бы один игровой режим');return;}
   if(!options.promptTypes.length && options.modes.some(id=>['talk','mime','draw','blitz','secret'].includes(id))){toast('Выберите тип заданий');return;}
   let contentPack=options.contentPack||{id:'general',version:2};
-  // Upgrade only new general parties needing numeric content, never an active saved match.
-  if(contentPack.id==='general'&&contentPack.version===1&&options.modes.includes('approx'))contentPack={id:'general',version:2};
+  // Only a newly started general party adopts the latest catalog; saved games
+  // keep their exact pack selection and already selected round.
+  if(contentPack.id==='general')contentPack=latestGeneralPackSelection();
   try{
     if(!checkContentPack(contentPack,options).available){
       toast('Набор заданий недоступен для выбранных настроек.');return;

@@ -56,7 +56,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
     options.modes=options.modes.filter(id=>id!=='approx');
     if(options.contentPack?.id==='general')options.contentPack={id:'general',version:1};
     newGame();if(game&&game.phase==='ready'&&game.roundIndex===0){
-      game.rulesVersion=version;delete game.taskHistoryVersion;delete game.taskHistory;delete game.modeConfigVersion;delete game.awardTo;delete game.awardPolicyVersion;delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;game.blitzCount=5;game.modes=game.modes.filter(id=>id!=='approx');persist();
+      game.rulesVersion=version;game.contentPack={id:'general',version:1};delete game.taskHistoryVersion;delete game.taskHistory;delete game.modeConfigVersion;delete game.awardTo;delete game.awardPolicyVersion;delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;game.blitzCount=5;game.modes=game.modes.filter(id=>id!=='approx');persist();
     }
   }`,context);
   vm.runInContext("function v4Game(){newGame();game.rulesVersion=4;delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;persist()}",context);
@@ -724,8 +724,8 @@ test('typed source retains old playable words, songs, people and blitz constrain
   }
  }
  assert.equal(h.eval("getCardPool('blitz','hard').every(c=>c.difficulty==='easy'&&c.text.length<=12)"),true);
- assert.ok(read('index.html').includes('./cards.js?v=5'));
- assert.ok(read('sw.js').includes('./cards.js?v=5'));
+ assert.ok(read('index.html').includes('./cards.js?v=6'));
+ assert.ok(read('sw.js').includes('./cards.js?v=6'));
 });
 test('text-only saved rounds still restore unchanged after catalog migration',()=>{
  const saved=new Map(),a=harness(saved);
@@ -822,7 +822,7 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['approx-questions.js?v=5','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=3','round-planner.js?v=1','content-packs.js?v=7','presets.js?v=3','app.js?v=29']){
+ for(const file of ['approx-questions.js?v=5','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=3','round-planner.js?v=1','content-packs.js?v=8','presets.js?v=3','app.js?v=30']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
  assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);
@@ -1362,7 +1362,7 @@ test('game-type navigation uses shared settings and preserves an unfinished matc
  assert.equal((h.elements.get('theme-list').innerHTML.match(/ disabled aria-disabled="true"/g)||[]).length,4);
  assert.ok(h.elements.get('themes-caption').textContent.includes('Выберите тему'));
  h.eval('selectStandardGame()');assert.equal(h.eval('activeScene'),'setup');
- assert.equal(h.eval('options.contentPack.id'),'general');assert.equal(h.eval('options.contentPack.version'),2);
+ assert.equal(h.eval('options.contentPack.id'),'general');assert.equal(h.eval('options.contentPack.version'),3);
  assert.equal(h.eval('setupReturn'),'game-type');
  assert.equal(h.eval('JSON.stringify(game)'),saved);
  h.eval('setScene("home");continueGame()');assert.equal(h.eval('JSON.stringify(game)'),saved);
@@ -1377,7 +1377,7 @@ test('all six historical topic versions remain disabled and cannot start or sile
   assert.equal(h.eval('JSON.stringify(options)'),optionsBefore);
   h.eval('options.contentPack={id:"'+pack.id+'",version:'+pack.version+'};newGame()');
   assert.equal(h.eval('JSON.stringify(game)'),gameBefore);
-  h.eval('options.contentPack={id:"general",version:2}');
+  h.eval('options.contentPack=freshOptions().contentPack');
  }
  assert.equal(h.eval('selectTheme("missing",1)'),false);
  assert.equal(h.eval('selectTheme("general",2)'),false);
