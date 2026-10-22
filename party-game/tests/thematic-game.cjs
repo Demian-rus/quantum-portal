@@ -26,7 +26,7 @@ module.exports=async function thematicUI(browser,url){
    if(device.name==='phone')await screenshot(page,topic,'phone-setup');
    await page.locator('[data-setting="awardTo"] button[data-value="guesser"]').click();await page.locator('#go-advanced').click();await page.locator('#mode-settings > summary').click();
    assert.equal(await page.locator('#mode-toggles input[value="sing"]').isDisabled(),true);
-   assert.match(await page.locator('#mode-toggles input[value="sing"] + span .mode-availability').textContent(),/нет песен/);
+   assert.match(await page.locator('#mode-toggles input[value="sing"]').evaluate(el=>el.closest('label').title),/нет песен/);
    assert.equal(await page.locator('#content-toggles input[value="idiom"]').isDisabled(),true);
    await page.locator('#mode-toggles input[value="yesno"]').check();await align(page,'#mode-settings');
    if(device.name==='phone')await screenshot(page,topic,'phone-modes');
