@@ -68,6 +68,7 @@ function validate(data,{locks=true,near=false}={}){
   if(row.meta!=null&&(typeof row.meta!=='object'||Array.isArray(row.meta)))add('metadata',row.id,'Metadata must be an object');
  }
  for(const row of data.cards){
+  if(row.meta?.equivalenceKey!=null&&(typeof row.meta.equivalenceKey!=='string'||!normalize(row.meta.equivalenceKey)||row.meta.equivalenceKey.length>120))add('equivalence',row.id,'Editorial equivalence key must be a nonempty short string');
   if(!['word','phrase','idiom','song','person'].includes(row.type)||!new RegExp('^'+row.type+'-[0-9]{6}$').test(row.id))add('type',row.id,'Invalid type or typed permanent ID');
   if(typeof row.text!=='string'||!row.text.trim())add('text',row.id,'Missing playable text');
   else if(row.type==='word'&&/\s/.test(row.text)||row.type==='phrase'&&!/\s/.test(row.text))warnings.push({code:'possible-type',id:row.id,message:'Check word/phrase classification manually'});

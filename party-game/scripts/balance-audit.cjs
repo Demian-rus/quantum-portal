@@ -9,6 +9,8 @@ function simulate(id,chance,rounds=1200,seed=8008){
   options.contentPack=selection;options.modes=pack.allowedModes?pack.allowedModes.slice():MODE_LIST.map(m=>m.id);
   options.promptTypes=id==='general'?['word','phrase','idiom']:['word','phrase'];options.difficulty='mixed';
   options.complications=true;options.modifierChance=chance;options.dice=false;options.awardTo='guesser';newGame();
+  // TASK008 is a historical diagnostic of the pre-TASK009 per-kind selector.
+  delete game.taskHistoryVersion;delete game.taskHistory;
   const counts={},levels={easy:0,medium:0,hard:0},methods={},cycles={},seenAcrossKinds=new Map();
   let optional=0,modified=0,forced=0,forcedModified=0,approx=0,approxModified=0,unnecessaryRepeats=0,releasedOldest=0,crossKindRepeats=0;
   const originalWord=pullWord,originalQuestion=pullApproxQuestion;

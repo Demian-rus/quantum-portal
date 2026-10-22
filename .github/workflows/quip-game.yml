@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: '22'
       - run: node party-game/scripts/content.cjs check
-      - run: node --test party-game/tests/logic.test.cjs party-game/tests/content-foundation.test.cjs
+      - run: node --test party-game/tests/logic.test.cjs party-game/tests/content-foundation.test.cjs party-game/tests/task-history.test.cjs
   browser:
     runs-on: ubuntu-latest
     steps:

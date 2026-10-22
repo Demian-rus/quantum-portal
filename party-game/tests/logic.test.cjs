@@ -44,6 +44,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
   vm.runInContext(read('penalties.js'),context);
   vm.runInContext(read('modifiers.js'),context);
   vm.runInContext(read('round-planner.js'),context);
+  vm.runInContext(read('task-history.js'),context);
   const packSource=fixturePack?read('content-packs.js').replace('const QUIP_CONTENT_PACKS=defineContentPacks([','const QUIP_CONTENT_PACKS=defineContentPacks(['+JSON.stringify(fixturePack)+','):read('content-packs.js');
   vm.runInContext(packSource,context);
   vm.runInContext(read('presets.js'),context);
@@ -54,10 +55,10 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
     options.modes=options.modes.filter(id=>id!=='approx');
     if(options.contentPack?.id==='general')options.contentPack={id:'general',version:1};
     newGame();if(game&&game.phase==='ready'&&game.roundIndex===0){
-      game.rulesVersion=version;delete game.modeConfigVersion;delete game.awardTo;delete game.awardPolicyVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;game.blitzCount=5;game.modes=game.modes.filter(id=>id!=='approx');persist();
+      game.rulesVersion=version;delete game.taskHistoryVersion;delete game.taskHistory;delete game.modeConfigVersion;delete game.awardTo;delete game.awardPolicyVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;game.blitzCount=5;game.modes=game.modes.filter(id=>id!=='approx');persist();
     }
   }`,context);
-  vm.runInContext("function v4Game(){newGame();game.rulesVersion=4;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;persist()}",context);
+  vm.runInContext("function v4Game(){newGame();game.rulesVersion=4;delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;persist()}",context);
   // Scoring fixtures choose a fixed starting player; dedicated tests exercise both draws.
   if(!randomizeStarter)vm.runInContext('chooseStartingTeam=()=>0',context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
@@ -820,7 +821,7 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['approx-questions.js?v=5','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=2','round-planner.js?v=1','content-packs.js?v=7','presets.js?v=3','app.js?v=27']){
+ for(const file of ['approx-questions.js?v=5','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=2','round-planner.js?v=1','content-packs.js?v=7','presets.js?v=3','app.js?v=28']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
  assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);

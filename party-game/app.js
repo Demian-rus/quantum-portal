@@ -24,6 +24,7 @@ const freshOptions = () => {
 let options = freshOptions();
 let soundOn = true;
 let game = null;
+let taskMemory=null;
 let storageBlocked=false;
 let storageProblem=null;
 let loadedSaveRaw=null;
@@ -85,7 +86,7 @@ function recoverCorruptSave(){
     const backup=JSON.stringify({version:1,createdAt:Date.now(),raw:loadedSaveRaw});
     localStorage.setItem(RECOVERY_KEY,backup);
     if(localStorage.getItem(RECOVERY_KEY)!==backup||localStorage.getItem(STORAGE_KEY)!==loadedSaveRaw)throw Error('Backup unavailable or save changed');
-    const reset=JSON.stringify({version:1,options,soundOn,game:null});
+    const reset=JSON.stringify({version:1,options,soundOn,game:null,...(taskMemory?{taskMemory}:{})});
     localStorage.setItem(STORAGE_KEY,reset);
     if(localStorage.getItem(STORAGE_KEY)!==reset)throw Error('Recovery not persisted');
     storageBlocked=false;storageProblem=null;loadedSaveRaw=reset;return true;
@@ -93,7 +94,7 @@ function recoverCorruptSave(){
 }
 function persist() {
   if(storageBlocked)return;
-  try { localStorage.setItem(STORAGE_KEY,JSON.stringify({version:1,options,soundOn,game})); }
+  try { localStorage.setItem(STORAGE_KEY,JSON.stringify({version:1,options,soundOn,game,...(taskMemory?{taskMemory}:{})})); }
   catch { /* Private browsing might block storage; a session still works. */ }
 }
 function sanitizeTeam(name,fallback) {
@@ -467,7 +468,27 @@ function getPromptPool(kind,level){
     getCardPool(kind,level,game?.promptTypes);
   return [...new Set(cards.map(card=>card.text))];
 }
+function archiveCurrentTaskHistory(){
+ if(game?.taskHistoryVersion===QUIP_TASK_HISTORY_VERSION&&taskMemory)taskMemory=archiveTaskHistory(taskMemory,game.taskHistory);
+}
+function chooseRememberedTask(pool,excluded=[]){
+ const excludedText=new Set(excluded.map(normalizeTaskText));
+ const excludedKeys=[...excludedText].map(key=>'prompt:text:'+key);
+ for(const row of pool)if(excludedText.has(normalizeTaskText(row.question??row.text)))excludedKeys.push(...taskRecordKeys(row));
+ const selected=selectHistoryRecord(pool,game.taskHistory,taskMemory,{excludedKeys});
+ game.taskHistory=selected.history;return selected.record;
+}
+function rememberLegacyWordUse(kind,level,word){
+ const key=(kind==='blitz'?'easy':level)+':'+kind+':'+(game.promptTypes||[]).join(',');
+ const pool=getPromptPool(kind,level),used=game.used[key]||[];
+ const next=pool.every(text=>used.includes(text))?[]:used.slice();
+ if(!next.includes(word))next.push(word);game.used[key]=next;
+}
 function pullWord(kind, level=chooseDifficulty(),excluded=[]) {
+  if(game.taskHistoryVersion!=null){
+    const pool=game.contentPack?getPackCardPool(game.contentPack,kind,level,game.promptTypes):getCardPool(kind,level,game.promptTypes);
+    const selected=chooseRememberedTask(pool,excluded);rememberLegacyWordUse(kind,level,selected.text);return selected.text;
+  }
   const pool=getPromptPool(kind,level).filter(word=>!excluded.includes(word));
   if(!pool?.length)throw Error('Нет слов для выбранных настроек');
   // Blitz uses the same easy-word pool at every difficulty: avoid repeats across levels.
@@ -481,6 +502,7 @@ function pullWord(kind, level=chooseDifficulty(),excluded=[]) {
 }
 function pullApproxQuestion(level){
  const pool=getPackQuestionPool(game.contentPack,level);
+ if(game.taskHistoryVersion!=null){const question=chooseRememberedTask(pool);const key='approx:'+level,used=game.used[key]||[];game.used[key]=(pool.every(row=>used.includes(row.id))?[]:used).concat(question.id);return {...question,categories:question.categories.slice()};}
  if(!pool.length)throw Error('Нет числовых вопросов для выбранных настроек');
  const key='approx:'+level;
  let used=game.used[key]||[],free=pool.filter(question=>!used.includes(question.id));
@@ -880,6 +902,7 @@ function completeRound(success){
   game.roundIndex++;
   // Confirmation is the final action for a round; no extra Next button.
   game.phase=matchComplete()?'results':'ready';
+  if(game.phase==='results')archiveCurrentTaskHistory();
   game.current=null;
   stopTicking();persist();sfx(success?'win':'fail');render();
 }
@@ -968,10 +991,13 @@ function newGame() {
     }
   }catch{toast('Набор заданий недоступен для выбранных настроек.');return;}
   if(storageBlocked&&!recoverCorruptSave()){toast(storageNotice());return;}
+  archiveCurrentTaskHistory();
+  const startedHistory=startTaskHistory(taskMemory||freshTaskMemory());taskMemory=startedHistory.memory;
   const teamA=sanitizeTeam($('team-a').value,'Молнии');
   const teamB=sanitizeTeam($('team-b').value,'Кометы');
   game={
     teams:[teamA,teamB],scores:[0,0],roundIndex:0,startingTeamIndex:chooseStartingTeam(),
+    taskHistoryVersion:QUIP_TASK_HISTORY_VERSION,taskHistory:startedHistory.history,
     rounds:options.rounds,targetScore:options.targetScore,finishType:options.finishType,
     riskRounds:options.riskRounds,scoringVersion:2,rulesVersion:QUIP_RULE_VERSION,modeConfigVersion:QUIP_MODE_CONFIG_VERSION,
     awardPolicyVersion:QUIP_AWARD_POLICY_VERSION,awardTo:['setter','guesser'].includes(options.awardTo)?options.awardTo:'setter',
@@ -1046,7 +1072,7 @@ function resumeTimer() {
 function backToMenu() {
   stopTicking();
   if(game?.phase==='rolling')game.phase=game.current?'task':'ready';
-  if(game?.phase==='results')game=null;
+  if(game?.phase==='results'){archiveCurrentTaskHistory();game=null;}
   persist();
   setScene('home');
   renderOptions();
@@ -1071,7 +1097,7 @@ function handleAction(action) {
     case 'base':return judge(true,false);
     case 'no':return judge(false);
     case 'next':if(game?.phase==='between'){game.phase='ready';game.current=null;persist();render();}return;
-    case 'again':if(game?.phase==='results'){game=null;newGame();}return;
+    case 'again':if(game?.phase==='results'){archiveCurrentTaskHistory();game=null;newGame();}return;
     case 'menu':return backToMenu();
   }
 }
@@ -1098,6 +1124,7 @@ function sanitizeOptions(raw) {
 function restoreSession() {
   const saved=readSaved();
   if(!saved)return;
+  try{taskMemory=saved.taskMemory==null?null:validateTaskMemory(saved.taskMemory);}catch{blockSavedData('incompatible');return;}
   soundOn=saved.soundOn!==false;
   options=sanitizeOptions(saved.options);
   const candidate=saved.game;
@@ -1113,6 +1140,7 @@ function restoreSession() {
       throw Error('Unsupported QUIP rulesVersion');
     if(candidate.modeConfigVersion!=null&&!QUIP_MODE_CONFIGS[candidate.modeConfigVersion])
       throw Error('Unknown mode config version');
+    validateGameTaskHistory(candidate,taskMemory);
     validateAwardPolicy(candidate);
     modifierSelectionPolicy(candidate);
     if(candidate.plannerVersion!=null)validatePlannedGame(candidate);
