@@ -144,7 +144,8 @@ const URL='http://127.0.0.1:8765/party-game/';
     const manifest=await page.evaluate(async()=>{
       const response=await fetch('./manifest.webmanifest');return response.json();
     });
-    assert.equal(manifest.display,'standalone','Should install with no browser toolbar');
+    assert.equal(manifest.display,'fullscreen','Installed KVIP should request immersive fullscreen, without Android status bar');
+    assert.deepEqual(manifest.display_override,['fullscreen','standalone']);
     assert.equal(manifest.icons.length,4);
     assert.deepEqual(manifest.icons.map(({sizes,purpose})=>({sizes,purpose})),[
       {sizes:'192x192',purpose:'any'},{sizes:'512x512',purpose:'any'},

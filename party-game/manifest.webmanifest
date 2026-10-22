@@ -4,10 +4,10 @@
   "description": "Командная игра с каруселью режимов, таймером и заданиями.",
   "start_url": "./",
   "scope": "./",
-  "display": "standalone",
+  "display": "fullscreen",
   "display_override": [
-    "standalone",
-    "minimal-ui"
+    "fullscreen",
+    "standalone"
   ],
   "background_color": "#130c2d",
   "theme_color": "#140b28",
