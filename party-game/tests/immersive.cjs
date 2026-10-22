@@ -145,7 +145,11 @@ const URL='http://127.0.0.1:8765/party-game/';
       const response=await fetch('./manifest.webmanifest');return response.json();
     });
     assert.equal(manifest.display,'standalone','Should install with no browser toolbar');
-    assert.equal(manifest.icons.length,2);
+    assert.equal(manifest.icons.length,4);
+    assert.deepEqual(manifest.icons.map(({sizes,purpose})=>({sizes,purpose})),[
+      {sizes:'192x192',purpose:'any'},{sizes:'512x512',purpose:'any'},
+      {sizes:'192x192',purpose:'maskable'},{sizes:'512x512',purpose:'maskable'}
+    ]);
     assert.equal(await page.locator('link[rel="manifest"]').count(),1);
     await page.close();
   }finally{await browser.close();}
