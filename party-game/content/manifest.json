@@ -134,6 +134,11 @@
       "path": "cards/science-v2.json",
       "immutable": true,
       "review": "Наука проверена редакционно в TASK 008 C."
+    },
+    {
+      "path": "cards/general-expansion-v1.json",
+      "immutable": false,
+      "review": "Ручной отбор TASK009 D1: категории, конкретность, сложность; список редакционных исключений в editorial/dictionary-*-review.json. Только самостоятельные карточки, не автоматические комбинации."
     }
   ],
   "questions": [
@@ -163,6 +168,11 @@
       "path": "packs/historical.json",
       "immutable": true,
       "review": "Неизменяемые декларации всех существующих версий."
+    },
+    {
+      "path": "packs/general-v3.json",
+      "immutable": false,
+      "review": "Новая версия общего каталога для TASK009 D1; старые декларации неизменны."
     }
   ],
   "legacyCollisions": [

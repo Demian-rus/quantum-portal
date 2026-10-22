@@ -1,0 +1,31 @@
+[
+  {
+    "id": "general",
+    "version": 3,
+    "name": "Общий словарь",
+    "enabled": true,
+    "categories": [],
+    "types": [
+      "word",
+      "phrase",
+      "idiom",
+      "song",
+      "person",
+      "number"
+    ],
+    "criteria": {
+      "cardIds": [],
+      "sourcePacks": [
+        "core",
+        "music",
+        "people",
+        "geography-v2",
+        "science-v2",
+        "approx-core-v1",
+        "approx-general-2026",
+        "general-expansion-v1"
+      ]
+    },
+    "minCardsPerPool": 1
+  }
+]

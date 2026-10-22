@@ -11,6 +11,15 @@ function getContentPack(selection,registry=QUIP_CONTENT_PACKS){
  if(!pack)throw Error('Unknown QUIP content pack/version');
  return pack;
 }
+// General 1/2 were unbounded before TASK009. This adapter freezes their source
+// universe without editing their historical declarations or current rounds.
+const QUIP_PRE_TASK009_SOURCES=Object.freeze(['core','music','people','geography-v2','science-v2','approx-core-v1','approx-general-2026']);
+function latestGeneralPackSelection(registry=QUIP_CONTENT_PACKS){
+ const versions=Object.values(registry).filter(pack=>pack.id==='general'&&pack.enabled).map(pack=>pack.version);
+ if(!versions.length)throw Error('No enabled general pack');
+ return {id:'general',version:Math.max(...versions)};
+}
+function historicalGeneralRecord(pack,row){return pack.id!=='general'||pack.version>2||QUIP_PRE_TASK009_SOURCES.includes(row.pack);}
 function getPackCardPool(selection,kind,level,promptTypes,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACKS){
  const pack=getContentPack(selection,registry);
  if(!PARTY_CARD_LEVELS.includes(level))throw Error('Unknown card difficulty');
@@ -19,7 +28,7 @@ function getPackCardPool(selection,kind,level,promptTypes,cards=PARTY_CARDS,regi
   (kind==='words'&&types.some(t=>!['word','phrase','idiom'].includes(t))))throw Error('Incompatible card types');
  const tier=kind==='blitz'?'easy':level,seen=new Set();
  return cards.filter(card=>{
-  if(seen.has(card.id)||card.difficulty!==tier||!types.includes(card.type)||!pack.types.includes(card.type)||
+  if(!historicalGeneralRecord(pack,card)||seen.has(card.id)||card.difficulty!==tier||!types.includes(card.type)||!pack.types.includes(card.type)||
    (kind==='blitz'&&card.text.length>12)||
    (pack.categories.length&&!pack.categories.some(tag=>card.categories.includes(tag)))||
    (pack.criteria.cardIds.length&&!pack.criteria.cardIds.includes(card.id))||
@@ -31,7 +40,7 @@ function getPackQuestionPool(selection,level,questions=QUIP_APPROX_QUESTIONS,reg
  const pack=getContentPack(selection,registry);
  if(!PARTY_CARD_LEVELS.includes(level))throw Error('Unknown question difficulty');
  if(!pack.types.includes('number'))return [];
- return questions.filter(question=>question.difficulty===level&&
+ return questions.filter(question=>historicalGeneralRecord(pack,question)&&question.difficulty===level&&
   (!pack.categories.length||pack.categories.some(tag=>question.categories.includes(tag)))&&
   (!pack.criteria.cardIds.length||pack.criteria.cardIds.includes(question.id))&&
   (!pack.criteria.sourcePacks.length||pack.criteria.sourcePacks.includes(question.pack)));
