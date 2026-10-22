@@ -701,7 +701,7 @@ test('card catalog v1 retains all 3016 historical tasks and unique IDs',()=>{
   assert.ok(Array.isArray(c.categories)&&c.categories.every(x=>/^[a-z][a-z0-9-]*$/.test(x)));
   assert.equal(c.categories.length,new Set(c.categories).size);
   assert.ok(declaredOrigins.has(c.pack),'Undeclared source origin: '+c.pack);
-  if(c.type==='song')assert.ok(c.meta.title&&c.meta.artist&&c.meta.genre);
+  if(c.type==='song')assert.ok(c.meta.themeVersion===2?c.meta.examples.length>=2:c.meta.title&&c.meta.artist&&c.meta.genre);
  }
  assert.equal(h.eval("getCardById('word-000001').text"),'КАРАНДАШ');
  assert.equal(h.eval("getCardById('unknown')"),null);
@@ -719,14 +719,13 @@ test('typed source retains old playable words, songs, people and blitz constrain
    assert.deepEqual(cards,legacyView);
   }
   for(const [kind,type] of [['songs','song'],['people','person']]){
-   const cards=Array.from(h.eval("getCardPool('"+kind+"','"+level+"').map(c=>c.text)"));
+   const cards=Array.from(h.eval("getPackCardPool(game.contentPack,'"+kind+"','"+level+"').map(c=>c.text)"));
    const prompts=Array.from(h.eval("getPromptPool('"+kind+"','"+level+"')"));
    assert.deepEqual(cards,prompts);
   }
  }
  assert.equal(h.eval("getCardPool('blitz','hard').every(c=>c.difficulty==='easy'&&c.text.length<=12)"),true);
- assert.ok(read('index.html').includes('./cards.js?v=6'));
- assert.ok(read('sw.js').includes('./cards.js?v=6'));
+ const cardsUrl=read('index.html').match(/src="(\.\/cards\.js\?v=\d+)"/)[1];assert.ok(read('sw.js').includes(cardsUrl));
 });
 test('text-only saved rounds still restore unchanged after catalog migration',()=>{
  const saved=new Map(),a=harness(saved);
@@ -823,8 +822,9 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['approx-questions.js?v=5','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=3','round-planner.js?v=1','content-packs.js?v=8','presets.js?v=3','app.js?v=30']){
-  assert.ok(html.includes(file));assert.ok(sw.includes(file));
+ const scripts=[...html.matchAll(/src="\.\/([^"]+\.js\?v=\d+)"/g)].map(match=>match[1]);
+ for(const file of ['approx-questions.js','mode-config.js','rules.js','penalties.js','modifiers.js','round-planner.js','content-packs.js','presets.js','app.js']){
+  const url=scripts.find(src=>src.startsWith(file+'?v='));assert.ok(url,file);assert.ok(sw.includes(url),url);
  }
  assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);
 });
@@ -1364,7 +1364,7 @@ test('game-type navigation uses shared settings and preserves an unfinished matc
  assert.equal((h.elements.get('theme-list').innerHTML.match(/ disabled aria-disabled="true"/g)||[]).length,4);
  assert.ok(h.elements.get('themes-caption').textContent.includes('Выберите тему'));
  h.eval('selectStandardGame()');assert.equal(h.eval('activeScene'),'setup');
- assert.equal(h.eval('options.contentPack.id'),'general');assert.equal(h.eval('options.contentPack.version'),3);
+ assert.equal(h.eval('options.contentPack.id'),'general');assert.equal(h.eval('options.contentPack.version'),h.eval('latestGeneralPackSelection().version'));
  assert.equal(h.eval('setupReturn'),'game-type');
  assert.equal(h.eval('JSON.stringify(game)'),saved);
  h.eval('setScene("home");continueGame()');assert.equal(h.eval('JSON.stringify(game)'),saved);
@@ -1698,7 +1698,7 @@ test('TASK008 A adds the authored minimum for every type with meaningful tier co
 test('TASK008 new prompts have no normalized collisions with any active prompt or song title',()=>{
  const {loadCatalog,normalize}=require('../scripts/catalog-audit.cjs'),{cards,questions}=loadCatalog();
  const seen=new Map(),songTitles=new Map();
- for(const card of cards){const key=normalize(card.text),newCard=Number(card.id.split('-')[1])>=8000;
+ for(const card of cards.filter(c=>Number(c.id.split('-')[1])<20000)){const key=normalize(card.text),newCard=Number(card.id.split('-')[1])>=8000;
   if(newCard)assert.equal(seen.has(key),false,card.id+' collides with '+seen.get(key));
   seen.set(key,card.id);
   if(card.type==='song'){const title=normalize(card.meta.title);if(newCard)assert.equal(songTitles.has(title),false,card.id+' repeats song '+songTitles.get(title));songTitles.set(title,card.id);}
@@ -1716,7 +1716,7 @@ test('TASK008 numeric additions carry units, categories, sources and checked der
  }
 });
 test('TASK008 additions enter standard pools without empty tiers or duplicate Blitz words',()=>{
- const h=harness();h.eval('soundOn=false;options.complications=false;options.dice=false;newGame()');
+ const h=harness();h.eval('soundOn=false;options.complications=false;options.dice=false;newGame();game.contentPack={id:"general",version:2}');
  for(const kind of ['words','songs','people','blitz'])for(const level of ['easy','medium','hard'])assert.ok(h.eval('getPromptPool("'+kind+'","'+level+'").length')>=50,kind+'/'+level);
  h.eval('options.modes=["blitz"];newGame();Math.random=()=>0');const used=[];
  for(let i=0;i<20;i++){h.eval('roll()');const words=Array.from(h.eval('game.current.blitzWords'));assert.equal(new Set(words).size,3);for(const word of words){assert.equal(used.includes(word),false);used.push(word)}h.eval('game.phase="judge";judge(false)');}
@@ -1724,7 +1724,7 @@ test('TASK008 additions enter standard pools without empty tiers or duplicate Bl
  assert.equal(h.eval('getPackQuestionPool({id:"general",version:2},"hard").some(q=>q.id==="approx-8030")'),true);
 });
 test('TASK008 audit reports cross-type duplicates separately and is deterministic',()=>{
- const {audit}=require('../scripts/catalog-audit.cjs'),a=audit();assert.deepEqual(a,audit());assert.equal(a.exactDuplicates.length,26);assert.equal(a.normalizedDuplicates.length,26);assert.equal(a.questionDuplicates.length,0);assert.ok(a.blitz>=750);
+ const {audit}=require('../scripts/catalog-audit.cjs'),a=audit();assert.deepEqual(a,audit());const historical=group=>group.ids.every(id=>Number(id.split('-')[1])<20000);assert.equal(a.exactDuplicates.filter(historical).length,26);assert.equal(a.normalizedDuplicates.filter(historical).length,26);const reviewed=require('../content/manifest.json').reviewedCrossTypeCollisions;assert.equal(a.normalizedDuplicates.filter(g=>!historical(g)).length,reviewed.length);assert.equal(a.questionDuplicates.length,0);assert.ok(a.blitz>=750);
 });
 
 test('TASK008 geography v2 is authored, isolated and leaves every v1 declaration disabled',()=>{

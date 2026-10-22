@@ -16,10 +16,10 @@ test('TASK009 D1 historical general and thematic pools are byte-equivalent with 
  for(const level of ['easy','medium','hard']){h.context.level=level;assert.deepEqual(plain(h.eval('getPackQuestionPool({id:"general",version:2},level)')),plain(h.eval('getPackQuestionPool({id:"general",version:2},level,oldQuestions)')))}
 });
 test('TASK009 D1 only new general parties adopt latest content; an old active round and its next pool stay pinned',()=>{
- const store=new Map(),h=createSimulation(1,store);h.eval('options.modes=["talk"];options.dice=false;options.complications=false;newGame()');assert.equal(h.eval('game.contentPack.version'),3);
+ const store=new Map(),h=createSimulation(1,store);h.eval('options.modes=["talk"];options.dice=false;options.complications=false;newGame()');assert.equal(h.eval('game.contentPack.version'),h.eval('latestGeneralPackSelection().version'));
  h.eval('game.contentPack={id:"general",version:2};roll();game.dice=true;persist()');const snapshot=h.eval('JSON.stringify(game)'),again=createSimulation(2,store);assert.equal(again.eval('JSON.stringify(game)'),snapshot);
  assert.equal(again.eval('getPackCardPool(game.contentPack,"words","easy",["word"]).some(r=>r.pack==="general-expansion-v1")'),false);
- again.eval('newGame()');assert.equal(again.eval('game.contentPack.version'),3);assert.ok(again.eval('getPackCardPool(game.contentPack,"words","easy",["word"]).some(r=>r.pack==="general-expansion-v1")'));
+ again.eval('newGame()');assert.equal(again.eval('game.contentPack.version'),again.eval('latestGeneralPackSelection().version'));assert.ok(again.eval('getPackCardPool(game.contentPack,"words","easy",["word"]).some(r=>r.pack==="general-expansion-v1")'));
 });
 test('TASK009 D1 cannot silently reuse a historical source or activate future themes',()=>{
  const d=readDataset(),source=d.sources.find(s=>s.path==='cards/general-expansion-v1.json');source.rows[0].pack='core';assert.ok(validate(d).errors.some(e=>e.code==='historical-origin'));

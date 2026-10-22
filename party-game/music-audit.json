@@ -1,0 +1,18 @@
+{
+  "newThemes": 197,
+  "activeThemes": 224,
+  "retainedHistoricalIds": 27,
+  "historicalOnly": 213,
+  "byLanguage": {
+    "ru": 118,
+    "en": 106
+  },
+  "newByDifficulty": {
+    "hard": 70,
+    "medium": 116,
+    "easy": 11
+  },
+  "crossTypeGroups": 23,
+  "reviewedOldSongs": 240,
+  "rejectedUnverifiedWordBoundary": []
+}

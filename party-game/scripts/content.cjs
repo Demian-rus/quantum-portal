@@ -70,6 +70,10 @@ function validate(data,{locks=true,near=false}={}){
   if(row.meta!=null&&(typeof row.meta!=='object'||Array.isArray(row.meta)))add('metadata',row.id,'Metadata must be an object');
  }
  for(const row of data.cards){
+  if(row.meta?.themeVersion===2){
+   const examples=row.meta.examples;
+   if(row.type!=='song'||!['ru','en'].includes(row.meta.language)||row.text.trim().split(/\s+/).length>2||!Array.isArray(examples)||examples.length<2||new Set(examples.map(e=>normalize(e.artist+' '+e.title))).size<2||examples.some(e=>!e.artist||!e.title||!/^https:\/\//.test(e.source)||!e.wordForm||!['title','lyrics'].includes(e.evidenceKind)))add('music-theme',row.id,'A universal theme needs two reviewed independent compositions and word evidence');
+  }
   if(row.meta?.concreteObject!=null&&typeof row.meta.concreteObject!=='boolean')add('concrete-object',row.id,'Concrete-object eligibility must be a reviewed boolean');
   if(row.meta?.equivalenceKey!=null&&(typeof row.meta.equivalenceKey!=='string'||!normalize(row.meta.equivalenceKey)||row.meta.equivalenceKey.length>120))add('equivalence',row.id,'Editorial equivalence key must be a nonempty short string');
   if(!['word','phrase','idiom','song','person'].includes(row.type)||!new RegExp('^'+row.type+'-[0-9]{6}$').test(row.id))add('type',row.id,'Invalid type or typed permanent ID');
@@ -88,7 +92,9 @@ function validate(data,{locks=true,near=false}={}){
  }
  const collisions=groups(data.cards,'text');
  for(const group of collisions){const old=data.manifest.legacyCollisions.find(g=>g.text===group.text&&g.ids.slice().sort().join('|')===group.ids.slice().sort().join('|'));
-  if(!old)add('normalized-duplicate',group.ids.join(', '),group.text);else warnings.push({code:'historical-collision',ids:group.ids,message:group.text});}
+  const reviewed=(data.manifest.reviewedCrossTypeCollisions||[]).find(g=>g.text===group.text&&g.reason&&g.ids.slice().sort().join('|')===group.ids.slice().sort().join('|'));
+  const types=group.ids.map(id=>data.cards.find(r=>r.id===id).type);
+  if(!old&&!(reviewed&&new Set(types).size===types.length))add('normalized-duplicate',group.ids.join(', '),group.text);else warnings.push({code:old?'historical-collision':'reviewed-cross-type',ids:group.ids,message:group.text});}
  for(const group of groups(data.questions,'question'))add('normalized-question-duplicate',group.ids.join(', '),group.text);
  if(!errors.length)try{
   const context=vm.createContext({}),artifacts=render(data);

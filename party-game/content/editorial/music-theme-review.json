@@ -1,0 +1,5826 @@
+[
+  {
+    "id": "song-020001",
+    "text": "АЛЬБОМ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Давай за",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=1&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "альбоме",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Земфира",
+        "title": "Искала",
+        "source": "https://ru.muzland.ru/songs.html?auth=45&song=7&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "альбомах",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020002",
+    "text": "БЕРЕГ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Там, за туманами",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=12&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "берег",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Мама, мы все сошли с ума",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=18&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "берегу",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020003",
+    "text": "БОЛЬ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Григорий Лепс",
+        "title": "Рюмка водки на столе",
+        "source": "https://ru.muzland.ru/songs.html?auth=205&song=2&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "болью",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Агата Кристи",
+        "title": "Как на войне",
+        "source": "https://ru.muzland.ru/songs.html?auth=142&song=4&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "боль",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020004",
+    "text": "БРАТ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Макс Корж",
+        "title": "Мотылёк",
+        "source": "https://ru.muzland.ru/songs.html?auth=573&song=12&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "брат",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "ДДТ",
+        "title": "Просвистела",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=2",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "брат",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020005",
+    "text": "ВЕРА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "ДДТ",
+        "title": "Родина",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=76&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "веры",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Машина времени",
+        "title": "За тех, кто в море",
+        "source": "https://ru.muzland.ru/songs.html?auth=7&song=9&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "вера",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000018",
+    "text": "ВЕСНА",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Браво",
+        "title": "Этот город",
+        "source": "https://ru.muzland.ru/songs.html?auth=70&song=6&tone=no",
+        "genre": "рок-н-ролл",
+        "checkedAt": "2026-10-22",
+        "wordForm": "весна",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Любэ",
+        "title": "Ребята с нашего двора",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=7&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "весне",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000041",
+    "text": "ВЕТЕР",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Позови меня с собой",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=1&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "ветер",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "ДДТ",
+        "title": "Что такое осень",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=21&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "ветер",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020006",
+    "text": "ВЕЧЕР",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Ласковый май",
+        "title": "Белые розы",
+        "source": "https://ru.muzland.ru/songs.html?auth=1105&song=1&tone=no",
+        "genre": "поп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "вечером",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Машина времени",
+        "title": "Марионетки",
+        "source": "https://ru.muzland.ru/songs.html?auth=7&song=13&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "вечер",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020007",
+    "text": "ВИНО",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Пачка сигарет",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=12&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "вина",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Ёлка",
+        "title": "Прованс",
+        "source": "https://ru.muzland.ru/songs.html?auth=425&song=1&tone=no",
+        "genre": "поп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "вино",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020008",
+    "text": "ВОДА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Сплин",
+        "title": "Моё сердце",
+        "source": "https://ru.muzland.ru/songs.html?auth=9&song=1&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "воде",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Жуки",
+        "title": "Батарейка",
+        "source": "https://ru.muzland.ru/songs.html?auth=74&song=1&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "вода",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020009",
+    "text": "ВОЙНА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Звезда по имени Солнце",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=8&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "война",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Любэ",
+        "title": "Давай за",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=1&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "война",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020010",
+    "text": "ВОЛК",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Машина времени",
+        "title": "Марионетки",
+        "source": "https://ru.muzland.ru/songs.html?auth=7&song=13&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "волк",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Саундтреки",
+        "title": "Песня про зайцев",
+        "source": "https://ru.muzland.ru/songs.html?auth=20&song=8&tone=no",
+        "genre": "кино",
+        "checkedAt": "2026-10-22",
+        "wordForm": "волка",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020011",
+    "text": "ВОЛНА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Там, за туманами",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=12&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "волны",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Машина времени",
+        "title": "За тех, кто в море",
+        "source": "https://ru.muzland.ru/songs.html?auth=7&song=9&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "волна",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020012",
+    "text": "ВРЕМЯ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Спокойная ночь",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=28&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "время",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Любэ",
+        "title": "Давай за",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=1&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "время",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020013",
+    "text": "ВСТРЕЧА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Миллион алых роз",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=11&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "встреча",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Звери",
+        "title": "До скорой встречи",
+        "source": "https://ru.muzland.ru/songs.html?auth=73&song=11&tone=no",
+        "genre": "поп-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "встречи",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020014",
+    "text": "ВЫСОТА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Сплин",
+        "title": "Моё сердце",
+        "source": "https://ru.muzland.ru/songs.html?auth=9&song=1&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "высоте",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Чиж и Компания",
+        "title": "Фантом",
+        "source": "https://ru.muzland.ru/songs.html?auth=3&song=22&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "высоту",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020015",
+    "text": "ВЬЮГА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Ласковый май",
+        "title": "Белые розы",
+        "source": "https://ru.muzland.ru/songs.html?auth=1105&song=1&tone=no",
+        "genre": "поп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "вьюг",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "ДДТ",
+        "title": "Просвистела",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=2",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "вьюга",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020016",
+    "text": "ГИТАРА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Браво",
+        "title": "Вася",
+        "source": "https://ru.muzland.ru/songs.html?auth=70&song=3&tone=no",
+        "genre": "рок-н-ролл",
+        "checkedAt": "2026-10-22",
+        "wordForm": "гитаре",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Баста",
+        "title": "Выпускной",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=7&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "гитара",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000009",
+    "text": "ГЛАЗА",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Ласковый май",
+        "title": "Белые розы",
+        "source": "https://ru.muzland.ru/songs.html?auth=1105&song=1&tone=no",
+        "genre": "поп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "глазах",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "ДДТ",
+        "title": "Родина",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=76&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "глазах",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020017",
+    "text": "ГОЛОС",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Баста",
+        "title": "Сансара",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=9&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "голосами",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кипелов",
+        "title": "Я свободен",
+        "source": "https://ru.muzland.ru/songs.html?auth=132&song=1",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "голос",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020018",
+    "text": "ГОРОД",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Спокойная ночь",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=28&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "город",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Позови меня с собой",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=1&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "город",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020019",
+    "text": "ГРУСТЬ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Юрий Антонов",
+        "title": "Крыша дома твоего",
+        "source": "https://ru.muzland.ru/ukulele.html?auth=180&song=7",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "грусть",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Булат Окуджава",
+        "title": "Пожелание друзьям",
+        "source": "https://ru.muzland.ru/songs.html?auth=89&song=3&tone=no",
+        "genre": "авторская",
+        "checkedAt": "2026-10-22",
+        "wordForm": "грусть",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020020",
+    "text": "ДВЕРЬ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Ласковый май",
+        "title": "Белые розы",
+        "source": "https://ru.muzland.ru/songs.html?auth=1105&song=1&tone=no",
+        "genre": "поп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "двери",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Видели ночь",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=6",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "дверь",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020021",
+    "text": "ДВОР",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Ребята с нашего двора",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=7&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "двор",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Ласковый май",
+        "title": "Белые розы",
+        "source": "https://ru.muzland.ru/songs.html?auth=1105&song=1&tone=no",
+        "genre": "поп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "дворов",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020022",
+    "text": "ДЕВОЧКА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Баста",
+        "title": "Верю в тебя",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=12&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "девочка",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Алюминиевые огурцы",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=21&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "девочки",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020023",
+    "text": "ДЕНЬ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Спокойная ночь",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=28&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "дней",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Куда уходит детство",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=10&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "день",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020024",
+    "text": "ДЕТИ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Баста",
+        "title": "Сансара",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=9&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "дети",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Любэ",
+        "title": "Там, за туманами",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=12&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "детей",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000029",
+    "text": "ДЕТСТВО",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Куда уходит детство",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=10&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "детство",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Баста",
+        "title": "Верю в тебя",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=12&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "детство",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020025",
+    "text": "ДОБРО",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кипелов",
+        "title": "Я свободен",
+        "source": "https://ru.muzland.ru/songs.html?auth=132&song=1",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "добра",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Макс Корж",
+        "title": "Мотылёк",
+        "source": "https://ru.muzland.ru/songs.html?auth=573&song=12&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "добра",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000007",
+    "text": "ДОЖДЬ",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Кипелов",
+        "title": "Я свободен",
+        "source": "https://ru.muzland.ru/songs.html?auth=132&song=1",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "дождь",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Мама, мы все сошли с ума",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=18&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "дождь",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020026",
+    "text": "ДОМ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Печаль",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=14&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "дом",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Миллион алых роз",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=11&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "дом",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020027",
+    "text": "ДОРОГА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Куда уходит детство",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=10&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "дороги",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Любэ",
+        "title": "Берёзы",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=31",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "дороге",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020028",
+    "text": "ДРУГ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Ребята с нашего двора",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=7&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "друзей",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "ДДТ",
+        "title": "Ветер",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=24",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "друг",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020029",
+    "text": "ДУША",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Миллион алых роз",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=11&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "душа",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Любэ",
+        "title": "Берёзы",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=31",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "душу",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020030",
+    "text": "ЖИЗНЬ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Баста",
+        "title": "Сансара",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=9&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "жизнь",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Миллион алых роз",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=11&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "жизни",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020031",
+    "text": "ЗАКАТ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Олег Газманов",
+        "title": "Офицеры",
+        "source": "https://ru.muzland.ru/songs.html?auth=147&song=4",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "закатах",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Макс Корж",
+        "title": "Мотылёк",
+        "source": "https://ru.muzland.ru/songs.html?auth=573&song=12&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "закат",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020032",
+    "text": "ЗАРЯ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Конь",
+        "source": "https://lyricstranslate.com/ar/Lyube-Kon-KON-lyrics.html",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "зарю",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Муслим Магомаев",
+        "title": "Лучший город Земли",
+        "source": "https://ru.muzland.ru/songs.html?auth=440&song=2",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "зари",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000043",
+    "text": "ЗВЕЗДА",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Конь",
+        "source": "https://lyricstranslate.com/ar/Lyube-Kon-KON-lyrics.html",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "звёзд",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Группа крови",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=11&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "звезда",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020033",
+    "text": "ЗЕМЛЯ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Браво",
+        "title": "Этот город",
+        "source": "https://ru.muzland.ru/songs.html?auth=70&song=6&tone=no",
+        "genre": "рок-н-ролл",
+        "checkedAt": "2026-10-22",
+        "wordForm": "Земле",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Звезда по имени Солнце",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=8&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "земле",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000038",
+    "text": "ЗИМА",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Куда уходит детство",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=10&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "зимой",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Ласковый май",
+        "title": "Белые розы",
+        "source": "https://ru.muzland.ru/songs.html?auth=1105&song=1&tone=no",
+        "genre": "поп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "зимой",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020034",
+    "text": "ЗЛО",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кипелов",
+        "title": "Я свободен",
+        "source": "https://ru.muzland.ru/songs.html?auth=132&song=1",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "зла",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Баста",
+        "title": "Верю в тебя",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=12&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "зла",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020035",
+    "text": "ИГРА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кипелов",
+        "title": "Я свободен",
+        "source": "https://ru.muzland.ru/songs.html?auth=132&song=1",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "игра",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Алюминиевые огурцы",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=21&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "игра",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020036",
+    "text": "КИНО",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Куда уходит детство",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=10&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "кино",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Браво",
+        "title": "Вася",
+        "source": "https://ru.muzland.ru/songs.html?auth=70&song=3&tone=no",
+        "genre": "рок-н-ролл",
+        "checkedAt": "2026-10-22",
+        "wordForm": "кино",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020037",
+    "text": "КЛЮЧ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Сплин",
+        "title": "Выхода нет",
+        "source": "https://ru.muzland.ru/songs.html?auth=9&song=6&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "ключ",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Мама, мы все сошли с ума",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=18&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "ключи",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020038",
+    "text": "КОРАБЛЬ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "ДДТ",
+        "title": "Что такое осень",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=21&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "корабли",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Земфира",
+        "title": "Ариведерчи",
+        "source": "https://ru.muzland.ru/songs.html?auth=45&song=20&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "корабли",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020039",
+    "text": "КОФЕ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Браво",
+        "title": "Вася",
+        "source": "https://ru.muzland.ru/songs.html?auth=70&song=3&tone=no",
+        "genre": "рок-н-ролл",
+        "checkedAt": "2026-10-22",
+        "wordForm": "кофе",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Сплин",
+        "title": "Моё сердце",
+        "source": "https://ru.muzland.ru/songs.html?auth=9&song=1&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "кофе",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020040",
+    "text": "КРОВЬ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Печаль",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=14&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "крови",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Олег Газманов",
+        "title": "Офицеры",
+        "source": "https://ru.muzland.ru/songs.html?auth=147&song=4",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "кровей",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000020",
+    "text": "КРЫЛЬЯ",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Баста",
+        "title": "Верю в тебя",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=12&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "крылья",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Волшебник-недоучка",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=15&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "крылья",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020041",
+    "text": "КРЫША",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Спокойная ночь",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=28&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "крыши",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "ДДТ",
+        "title": "Ветер",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=24",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "крышей",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020042",
+    "text": "ЛЁД",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Звезда по имени Солнце",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=8&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "лёд",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Ласковый май",
+        "title": "Белые розы",
+        "source": "https://ru.muzland.ru/songs.html?auth=1105&song=1&tone=no",
+        "genre": "поп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "лед",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020043",
+    "text": "ЛЕС",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Клара Румянова",
+        "title": "Улыбка",
+        "source": "https://ru.muzland.ru/songs.html?auth=18&song=14",
+        "genre": "детская",
+        "checkedAt": "2026-10-22",
+        "wordForm": "лес",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Саундтреки",
+        "title": "Песня про зайцев",
+        "source": "https://ru.muzland.ru/songs.html?auth=20&song=8&tone=no",
+        "genre": "кино",
+        "checkedAt": "2026-10-22",
+        "wordForm": "лесу",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000039",
+    "text": "ЛЕТО",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Куда уходит детство",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=10&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "летом",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Сплин",
+        "title": "Моё сердце",
+        "source": "https://ru.muzland.ru/songs.html?auth=9&song=1&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "лета",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020044",
+    "text": "ЛУНА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Печаль",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=14&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "луна",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Браво",
+        "title": "Этот город",
+        "source": "https://ru.muzland.ru/songs.html?auth=70&song=6&tone=no",
+        "genre": "рок-н-ролл",
+        "checkedAt": "2026-10-22",
+        "wordForm": "луна",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000001",
+    "text": "ЛЮБОВЬ",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Баста",
+        "title": "Сансара",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=9&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "любовь",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Любэ",
+        "title": "Давай за",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=1&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "любовь",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020045",
+    "text": "ЛЮДИ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Аквариум",
+        "title": "Поезд в огне",
+        "source": "https://ru.muzland.ru/songs.html?auth=65&song=6",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "люди",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Машина времени",
+        "title": "Марионетки",
+        "source": "https://ru.muzland.ru/songs.html?auth=7&song=13&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "людей",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000013",
+    "text": "МАМА",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Чайф",
+        "title": "Оранжевое настроение",
+        "source": "https://ru.muzland.ru/songs.html?auth=75&song=7&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "мама",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Восьмиклассница",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=2&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "мама",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020046",
+    "text": "МЕЧТА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Позови меня с собой",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=1&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "мечты",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Ёлка",
+        "title": "Прованс",
+        "source": "https://ru.muzland.ru/songs.html?auth=425&song=1&tone=no",
+        "genre": "поп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "мечты",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020047",
+    "text": "МИГ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Мама, мы все сошли с ума",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=18&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "миг",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Машина времени",
+        "title": "Однажды мир прогнётся под нас",
+        "source": "https://ru.muzland.ru/songs.html?auth=7&song=14&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "миг",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020048",
+    "text": "МИНУТА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Звери",
+        "title": "До скорой встречи",
+        "source": "https://ru.muzland.ru/songs.html?auth=73&song=11&tone=no",
+        "genre": "поп-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "минута",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Жуки",
+        "title": "Батарейка",
+        "source": "https://ru.muzland.ru/songs.html?auth=74&song=1&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "минуты",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020049",
+    "text": "МИР",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Баста",
+        "title": "Сансара",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=9&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "мир",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Пачка сигарет",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=12&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "миру",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000012",
+    "text": "МОРЕ",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Миллион алых роз",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=11&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "море",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Любэ",
+        "title": "Там, за туманами",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=12&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "море",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020050",
+    "text": "МОСКВА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Браво",
+        "title": "Вася",
+        "source": "https://ru.muzland.ru/songs.html?auth=70&song=3&tone=no",
+        "genre": "рок-н-ролл",
+        "checkedAt": "2026-10-22",
+        "wordForm": "москвы",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Муслим Магомаев",
+        "title": "Лучший город Земли",
+        "source": "https://ru.muzland.ru/songs.html?auth=440&song=2",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "москва",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020051",
+    "text": "МОСТ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Ребята с нашего двора",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=7&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "мост",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Григорий Лепс",
+        "title": "Рюмка водки на столе",
+        "source": "https://ru.muzland.ru/songs.html?auth=205&song=2&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "моста",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020052",
+    "text": "МУЖЧИНА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Машина времени",
+        "title": "Поворот",
+        "source": "https://ru.muzland.ru/songs.html?auth=7&song=11&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "мужчины",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Браво",
+        "title": "Вася",
+        "source": "https://ru.muzland.ru/songs.html?auth=70&song=3&tone=no",
+        "genre": "рок-н-ролл",
+        "checkedAt": "2026-10-22",
+        "wordForm": "мужчину",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000027",
+    "text": "МУЗЫКА",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Пачка сигарет",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=12&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "музыки",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Земфира",
+        "title": "Хочешь",
+        "source": "https://ru.muzland.ru/songs.html?auth=45&song=4&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "музык",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000047",
+    "text": "НАДЕЖДА",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Машина времени",
+        "title": "За тех, кто в море",
+        "source": "https://ru.muzland.ru/songs.html?auth=7&song=9&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "надежда",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Алюминиевые огурцы",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=21&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "надежде",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000123",
+    "text": "НЕБО",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Баста",
+        "title": "Сансара",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=9&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "небо",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Любэ",
+        "title": "Давай за",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=1&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "небо",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020053",
+    "text": "НОГА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "ДДТ",
+        "title": "Что такое осень",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=21&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "ногами",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Группа крови",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=11&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "ног",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020054",
+    "text": "НОЧЬ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Спокойная ночь",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=28&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "ночь",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Любэ",
+        "title": "Конь",
+        "source": "https://lyricstranslate.com/ar/Lyube-Kon-KON-lyrics.html",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "ночью",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000008",
+    "text": "ОБЛАКА",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Спокойная ночь",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=28&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "облака",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Браво",
+        "title": "Этот город",
+        "source": "https://ru.muzland.ru/songs.html?auth=70&song=6&tone=no",
+        "genre": "рок-н-ролл",
+        "checkedAt": "2026-10-22",
+        "wordForm": "облака",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020055",
+    "text": "ОКНО",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Печаль",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=14&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "окна",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Миллион алых роз",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=11&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "окна",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000017",
+    "text": "ОСЕНЬ",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "ДДТ",
+        "title": "Что такое осень",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=21&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "осень",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Александр Розенбаум",
+        "title": "Вальс-бостон",
+        "source": "https://ru.muzland.ru/songs.html?auth=10&song=25",
+        "genre": "авторская",
+        "checkedAt": "2026-10-22",
+        "wordForm": "осень",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020056",
+    "text": "ОТВЕТ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Берёзы",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=31",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "ответа",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "ДДТ",
+        "title": "Что такое осень",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=21&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "ответа",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020057",
+    "text": "ОТЕЦ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Ребята с нашего двора",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=7&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "отцом",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "ДДТ",
+        "title": "Родина",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=76&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "отец",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020058",
+    "text": "ПАПА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Баста",
+        "title": "Верю в тебя",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=12&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "папа",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Баста",
+        "title": "Выпускной",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=7&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "папа",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020059",
+    "text": "ПАРУС",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Машина времени",
+        "title": "За тех, кто в море",
+        "source": "https://ru.muzland.ru/songs.html?auth=7&song=9&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "парус",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Григорий Лепс",
+        "title": "Рюмка водки на столе",
+        "source": "https://ru.muzland.ru/songs.html?auth=205&song=2&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "парусам",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000073",
+    "text": "ПЕРЕМЕН",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Машина времени",
+        "title": "Поворот",
+        "source": "https://ru.muzland.ru/songs.html?auth=7&song=11&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "перемены",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Саундтреки",
+        "title": "Ветер перемен",
+        "source": "https://ru.muzland.ru/songs.html?auth=20&song=80&tone=no",
+        "genre": "кино",
+        "checkedAt": "2026-10-22",
+        "wordForm": "перемен",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020060",
+    "text": "ПЕСНЯ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Там, за туманами",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=12&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "песню",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Земфира",
+        "title": "Хочешь",
+        "source": "https://ru.muzland.ru/songs.html?auth=45&song=4&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "песни",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020061",
+    "text": "ПЕЧАЛЬ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Печаль",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=14&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "печаль",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "ДДТ",
+        "title": "Что такое осень",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=21&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "печаль",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020062",
+    "text": "ПИВО",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Ребята с нашего двора",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=7&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "пиво",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Макс Корж",
+        "title": "Мотылёк",
+        "source": "https://ru.muzland.ru/songs.html?auth=573&song=12&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "пиво",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000098",
+    "text": "ПОВОРОТ",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Машина времени",
+        "title": "Поворот",
+        "source": "https://ru.muzland.ru/songs.html?auth=7&song=11&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "поворот",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Чиж и Компания",
+        "title": "Фантом",
+        "source": "https://ru.muzland.ru/songs.html?auth=3&song=22&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "поворот",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000032",
+    "text": "ПОЕЗД",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Аквариум",
+        "title": "Поезд в огне",
+        "source": "https://ru.muzland.ru/songs.html?auth=65&song=6",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "поезд",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Сплин",
+        "title": "Выхода нет",
+        "source": "https://ru.muzland.ru/songs.html?auth=9&song=6&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "поезда",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020063",
+    "text": "ПОЛЕ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Конь",
+        "source": "https://lyricstranslate.com/ar/Lyube-Kon-KON-lyrics.html",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "поле",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Алюминиевые огурцы",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=21&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "поле",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020064",
+    "text": "ПТИЦА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Браво",
+        "title": "Этот город",
+        "source": "https://ru.muzland.ru/songs.html?auth=70&song=6&tone=no",
+        "genre": "рок-н-ролл",
+        "checkedAt": "2026-10-22",
+        "wordForm": "птицы",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "ДДТ",
+        "title": "Что такое осень",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=21&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "птицы",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020065",
+    "text": "ПУТЬ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Спокойная ночь",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=28&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "путь",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Позови меня с собой",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=1&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "путь",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020066",
+    "text": "РАДОСТЬ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Машина времени",
+        "title": "За тех, кто в море",
+        "source": "https://ru.muzland.ru/songs.html?auth=7&song=9&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "радости",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Юрий Антонов",
+        "title": "Крыша дома твоего",
+        "source": "https://ru.muzland.ru/ukulele.html?auth=180&song=7",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "радости",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020067",
+    "text": "РАССВЕТ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Конь",
+        "source": "https://lyricstranslate.com/ar/Lyube-Kon-KON-lyrics.html",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "рассвет",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Сплин",
+        "title": "Выхода нет",
+        "source": "https://ru.muzland.ru/songs.html?auth=9&song=6&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "рассвет",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020068",
+    "text": "РЕКА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Браво",
+        "title": "Этот город",
+        "source": "https://ru.muzland.ru/songs.html?auth=70&song=6&tone=no",
+        "genre": "рок-н-ролл",
+        "checkedAt": "2026-10-22",
+        "wordForm": "реки",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Муслим Магомаев",
+        "title": "Лучший город Земли",
+        "source": "https://ru.muzland.ru/songs.html?auth=440&song=2",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "рекой",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000094",
+    "text": "РОДИНА",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "ДДТ",
+        "title": "Что такое осень",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=21&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "родиной",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "ДДТ",
+        "title": "Родина",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=76&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "родина",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020069",
+    "text": "РОССИЯ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Конь",
+        "source": "https://lyricstranslate.com/ar/Lyube-Kon-KON-lyrics.html",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "Россия",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Олег Газманов",
+        "title": "Офицеры",
+        "source": "https://ru.muzland.ru/songs.html?auth=147&song=4",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "россию",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020070",
+    "text": "РУКИ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Баста",
+        "title": "Сансара",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=9&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "руки",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Любэ",
+        "title": "Берёзы",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=31",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "рукой",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000045",
+    "text": "САМОЛЁТ",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Пачка сигарет",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=12&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "самолет",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Ёлка",
+        "title": "Прованс",
+        "source": "https://ru.muzland.ru/songs.html?auth=425&song=1&tone=no",
+        "genre": "поп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "самолете",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020071",
+    "text": "СВЕТ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Печаль",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=14&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "свет",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Любэ",
+        "title": "Конь",
+        "source": "https://lyricstranslate.com/ar/Lyube-Kon-KON-lyrics.html",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "свет",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020072",
+    "text": "СВЕЧА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Машина времени",
+        "title": "Марионетки",
+        "source": "https://ru.muzland.ru/songs.html?auth=7&song=13&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "свечи",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Алюминиевые огурцы",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=21&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "свеч",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000042",
+    "text": "СЕРДЦЕ",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Берёзы",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=31",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "сердце",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Валерий Меладзе",
+        "title": "Красиво",
+        "source": "https://ru.muzland.ru/songs.html?auth=194&song=14&tone=no",
+        "genre": "поп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "сердце",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020073",
+    "text": "СИЛА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Позови меня с собой",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=1&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "силу",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Макс Корж",
+        "title": "Мотылёк",
+        "source": "https://ru.muzland.ru/songs.html?auth=573&song=12&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "силой",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020074",
+    "text": "СЛЁЗЫ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Земфира",
+        "title": "Искала",
+        "source": "https://ru.muzland.ru/songs.html?auth=45&song=7&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "слезы",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Андрей Миронов",
+        "title": "Остров невезения",
+        "source": "https://ru.muzland.ru/songs.html?auth=20&song=16&tone=no",
+        "genre": "кино",
+        "checkedAt": "2026-10-22",
+        "wordForm": "слез",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020075",
+    "text": "СЛЕД",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Пачка сигарет",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=12&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "следы",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Детские песни",
+        "title": "Прекрасное далёко",
+        "source": "https://ru.muzland.ru/songs.html?auth=18&song=40&tone=no",
+        "genre": "детская",
+        "checkedAt": "2026-10-22",
+        "wordForm": "следа",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020076",
+    "text": "СЛОВО",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Звезда по имени Солнце",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=8&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "слово",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Машина времени",
+        "title": "Поворот",
+        "source": "https://ru.muzland.ru/songs.html?auth=7&song=11&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "слово",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000016",
+    "text": "СНЕГ",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Звезда по имени Солнце",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=8&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "снег",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Ласковый май",
+        "title": "Белые розы",
+        "source": "https://ru.muzland.ru/songs.html?auth=1105&song=1&tone=no",
+        "genre": "поп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "снег",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000002",
+    "text": "СОЛНЦЕ",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Позови меня с собой",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=1&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "солнце",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Земфира",
+        "title": "Хочешь",
+        "source": "https://ru.muzland.ru/songs.html?auth=45&song=4&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "солнце",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020077",
+    "text": "СОН",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Спокойная ночь",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=28&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "сон",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Земфира",
+        "title": "Искала",
+        "source": "https://ru.muzland.ru/songs.html?auth=45&song=7&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "сне",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020078",
+    "text": "СТЕНА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Браво",
+        "title": "Этот город",
+        "source": "https://ru.muzland.ru/songs.html?auth=70&song=6&tone=no",
+        "genre": "рок-н-ролл",
+        "checkedAt": "2026-10-22",
+        "wordForm": "стене",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "ДДТ",
+        "title": "Ветер",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=24",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "стене",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020079",
+    "text": "СУДЬБА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Звезда по имени Солнце",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=8&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "судьбою",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кипелов",
+        "title": "Я свободен",
+        "source": "https://ru.muzland.ru/songs.html?auth=132&song=1",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "судьбы",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020080",
+    "text": "СЧАСТЬЕ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Трофим",
+        "title": "Снегири",
+        "source": "https://ru.muzland.ru/songs.html?auth=67&song=3&tone=no",
+        "genre": "авторская",
+        "checkedAt": "2026-10-22",
+        "wordForm": "счастья",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Юрий Антонов",
+        "title": "Крыша дома твоего",
+        "source": "https://ru.muzland.ru/ukulele.html?auth=180&song=7",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "счастья",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020081",
+    "text": "ТАКСИ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Видели ночь",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=6",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "такси",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Звери",
+        "title": "До скорой встречи",
+        "source": "https://ru.muzland.ru/songs.html?auth=73&song=11&tone=no",
+        "genre": "поп-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "такси",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020082",
+    "text": "ТЕНЬ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Алла Пугачёва",
+        "title": "Позови меня с собой",
+        "source": "https://ru.muzland.ru/songs.html?auth=53&song=1&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "тени",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Пачка сигарет",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=12&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "тень",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020083",
+    "text": "ТИШИНА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кипелов",
+        "title": "Я свободен",
+        "source": "https://ru.muzland.ru/songs.html?auth=132&song=1",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "тишина",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Клара Румянова",
+        "title": "Улыбка",
+        "source": "https://ru.muzland.ru/songs.html?auth=18&song=14",
+        "genre": "детская",
+        "checkedAt": "2026-10-22",
+        "wordForm": "тишиной",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000093",
+    "text": "ТУМАН",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Любэ",
+        "title": "Там, за туманами",
+        "source": "https://ru.muzland.ru/songs.html?auth=54&song=12&tone=no",
+        "genre": "фолк-рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "туманами",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Саундтреки",
+        "title": "Песня про зайцев",
+        "source": "https://ru.muzland.ru/songs.html?auth=20&song=8&tone=no",
+        "genre": "кино",
+        "checkedAt": "2026-10-22",
+        "wordForm": "тумане",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020084",
+    "text": "УЛИЦА",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Группа крови",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=11&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "улицы",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Григорий Лепс",
+        "title": "Рюмка водки на столе",
+        "source": "https://ru.muzland.ru/songs.html?auth=205&song=2&tone=no",
+        "genre": "эстрада",
+        "checkedAt": "2026-10-22",
+        "wordForm": "улицам",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-000070",
+    "text": "УЛЫБКА",
+    "language": "ru",
+    "decision": "retain-id",
+    "examples": [
+      {
+        "artist": "Машина времени",
+        "title": "Марионетки",
+        "source": "https://ru.muzland.ru/songs.html?auth=7&song=13&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "улыбки",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Чайф",
+        "title": "Оранжевое настроение",
+        "source": "https://ru.muzland.ru/songs.html?auth=75&song=7&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "улыбка",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020085",
+    "text": "УТРО",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Видели ночь",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=6",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "утра",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Чайф",
+        "title": "Оранжевое настроение",
+        "source": "https://ru.muzland.ru/songs.html?auth=75&song=7&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "утра",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020086",
+    "text": "ФОНАРЬ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Кино",
+        "title": "Печаль",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=14&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "фонари",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Восьмиклассница",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=2&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "фонари",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020087",
+    "text": "ХЛЕБ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "ДДТ",
+        "title": "Родина",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=76&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "хлеба",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Кино",
+        "title": "Мама, мы все сошли с ума",
+        "source": "https://ru.muzland.ru/songs.html?auth=116&song=18&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "хлеб",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020088",
+    "text": "ЧАС",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Баста",
+        "title": "Верю в тебя",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=12&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "часах",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Земфира",
+        "title": "Ариведерчи",
+        "source": "https://ru.muzland.ru/songs.html?auth=45&song=20&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "часа",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020089",
+    "text": "ЧУДО",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Браво",
+        "title": "Этот город",
+        "source": "https://ru.muzland.ru/songs.html?auth=70&song=6&tone=no",
+        "genre": "рок-н-ролл",
+        "checkedAt": "2026-10-22",
+        "wordForm": "чудеса",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Александр Розенбаум",
+        "title": "Вальс-бостон",
+        "source": "https://ru.muzland.ru/songs.html?auth=10&song=25",
+        "genre": "авторская",
+        "checkedAt": "2026-10-22",
+        "wordForm": "чудо",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020090",
+    "text": "ШАГ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "ДДТ",
+        "title": "Родина",
+        "source": "https://ru.muzland.ru/songs.html?auth=108&song=76&tone=no",
+        "genre": "рок",
+        "checkedAt": "2026-10-22",
+        "wordForm": "шаг",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Баста",
+        "title": "Выпускной",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=7&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "шаг",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020091",
+    "text": "ЮНОСТЬ",
+    "language": "ru",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Баста",
+        "title": "Верю в тебя",
+        "source": "https://ru.muzland.ru/songs.html?auth=635&song=12&tone=no",
+        "genre": "рэп",
+        "checkedAt": "2026-10-22",
+        "wordForm": "юность",
+        "evidenceKind": "lyrics"
+      },
+      {
+        "artist": "Александр Розенбаум",
+        "title": "Вальс-бостон",
+        "source": "https://ru.muzland.ru/songs.html?auth=10&song=25",
+        "genre": "авторская",
+        "checkedAt": "2026-10-22",
+        "wordForm": "юность",
+        "evidenceKind": "lyrics"
+      }
+    ]
+  },
+  {
+    "id": "song-020092",
+    "text": "TIME",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Pink Floyd",
+        "title": "Time",
+        "source": "https://music.apple.com/us/song/1065973706",
+        "checkedAt": "2026-10-22",
+        "wordForm": "time",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Cyndi Lauper",
+        "title": "Time After Time",
+        "source": "https://music.apple.com/us/song/201575277",
+        "checkedAt": "2026-10-22",
+        "wordForm": "time",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020093",
+    "text": "NIGHT",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Bee Gees",
+        "title": "Night Fever",
+        "source": "https://music.apple.com/us/song/1422968383",
+        "checkedAt": "2026-10-22",
+        "wordForm": "night",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "AC/DC",
+        "title": "You Shook Me All Night Long",
+        "source": "https://music.apple.com/us/song/576003085",
+        "checkedAt": "2026-10-22",
+        "wordForm": "night",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020094",
+    "text": "DAY",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "U2",
+        "title": "Beautiful Day",
+        "source": "https://music.apple.com/us/song/1440655974",
+        "checkedAt": "2026-10-22",
+        "wordForm": "day",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Lou Reed",
+        "title": "Perfect Day",
+        "source": "https://music.apple.com/us/song/1050417376",
+        "checkedAt": "2026-10-22",
+        "wordForm": "day",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020095",
+    "text": "DREAMS",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Fleetwood Mac",
+        "title": "Dreams",
+        "source": "https://music.apple.com/us/song/14748692",
+        "checkedAt": "2026-10-22",
+        "wordForm": "dreams",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Eurythmics",
+        "title": "Sweet Dreams (Are Made of This)",
+        "source": "https://music.apple.com/us/song/313873056",
+        "checkedAt": "2026-10-22",
+        "wordForm": "dreams",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020096",
+    "text": "HEART",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Céline Dion",
+        "title": "My Heart Will Go On",
+        "source": "https://music.apple.com/us/song/1745576958",
+        "checkedAt": "2026-10-22",
+        "wordForm": "heart",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Blondie",
+        "title": "Heart of Glass",
+        "source": "https://music.apple.com/us/song/1564341170",
+        "checkedAt": "2026-10-22",
+        "wordForm": "heart",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020097",
+    "text": "WORLD",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Michael Jackson",
+        "title": "Heal the World",
+        "source": "https://music.apple.com/us/song/655263571",
+        "checkedAt": "2026-10-22",
+        "wordForm": "world",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Louis Armstrong",
+        "title": "What a Wonderful World",
+        "source": "https://music.apple.com/us/song/1637506396",
+        "checkedAt": "2026-10-22",
+        "wordForm": "world",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020098",
+    "text": "LIFE",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Bon Jovi",
+        "title": "It's My Life",
+        "source": "https://music.apple.com/us/song/1707404925",
+        "checkedAt": "2026-10-22",
+        "wordForm": "life",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Talk Talk",
+        "title": "It's My Life",
+        "source": "https://music.apple.com/us/song/696670364",
+        "checkedAt": "2026-10-22",
+        "wordForm": "life",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020099",
+    "text": "HOME",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Michael Bublé",
+        "title": "Home",
+        "source": "https://music.apple.com/us/song/1869740184",
+        "checkedAt": "2026-10-22",
+        "wordForm": "home",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Edward Sharpe & The Magnetic Zeros",
+        "title": "Home",
+        "source": "https://music.apple.com/us/song/1759968498",
+        "checkedAt": "2026-10-22",
+        "wordForm": "home",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020100",
+    "text": "RAIN",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Prince",
+        "title": "Purple Rain",
+        "source": "https://music.apple.com/us/song/1545697426",
+        "checkedAt": "2026-10-22",
+        "wordForm": "rain",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Guns N' Roses",
+        "title": "November Rain",
+        "source": "https://music.apple.com/us/song/november-rain/1440896193",
+        "checkedAt": "2026-10-22",
+        "wordForm": "rain",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020101",
+    "text": "SUN",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "The Beatles",
+        "title": "Here Comes the Sun",
+        "source": "https://music.apple.com/us/song/1441133289",
+        "checkedAt": "2026-10-22",
+        "wordForm": "sun",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Soundgarden",
+        "title": "Black Hole Sun",
+        "source": "https://music.apple.com/us/song/1436558379",
+        "checkedAt": "2026-10-22",
+        "wordForm": "sun",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020102",
+    "text": "MOON",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Frank Sinatra",
+        "title": "Fly Me to the Moon",
+        "source": "https://music.apple.com/us/song/1440842942",
+        "checkedAt": "2026-10-22",
+        "wordForm": "moon",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Creedence Clearwater Revival",
+        "title": "Bad Moon Rising",
+        "source": "https://music.apple.com/us/song/1595172502",
+        "checkedAt": "2026-10-22",
+        "wordForm": "moon",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020103",
+    "text": "STAR",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Madonna",
+        "title": "Lucky Star",
+        "source": "https://music.apple.com/us/song/1814776697",
+        "checkedAt": "2026-10-22",
+        "wordForm": "star",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Deep Purple",
+        "title": "Highway Star",
+        "source": "https://music.apple.com/us/song/1099334871",
+        "checkedAt": "2026-10-22",
+        "wordForm": "star",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020104",
+    "text": "SUMMER",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Bryan Adams",
+        "title": "Summer of '69",
+        "source": "https://music.apple.com/us/song/1711255068",
+        "checkedAt": "2026-10-22",
+        "wordForm": "summer",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Calvin Harris",
+        "title": "Summer",
+        "source": "https://music.apple.com/us/song/1743033324",
+        "checkedAt": "2026-10-22",
+        "wordForm": "summer",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020105",
+    "text": "CHILD",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Deep Purple",
+        "title": "Child in Time",
+        "source": "https://music.apple.com/us/song/1569187796",
+        "checkedAt": "2026-10-22",
+        "wordForm": "child",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Guns N' Roses",
+        "title": "Sweet Child O' Mine",
+        "source": "https://music.apple.com/us/song/1533360835",
+        "checkedAt": "2026-10-22",
+        "wordForm": "child",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020106",
+    "text": "WOMAN",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Roy Orbison",
+        "title": "Oh, Pretty Woman",
+        "source": "https://music.apple.com/us/song/1695928414",
+        "checkedAt": "2026-10-22",
+        "wordForm": "woman",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "John Lennon",
+        "title": "Woman",
+        "source": "https://music.apple.com/us/song/721280867",
+        "checkedAt": "2026-10-22",
+        "wordForm": "woman",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020107",
+    "text": "MAN",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Billy Joel",
+        "title": "Piano Man",
+        "source": "https://music.apple.com/us/song/1630240144",
+        "checkedAt": "2026-10-22",
+        "wordForm": "man",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Elton John",
+        "title": "Rocket Man",
+        "source": "https://music.apple.com/us/song/1484999703",
+        "checkedAt": "2026-10-22",
+        "wordForm": "man",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020108",
+    "text": "GIRL",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Madonna",
+        "title": "Material Girl",
+        "source": "https://music.apple.com/us/song/1726903585",
+        "checkedAt": "2026-10-22",
+        "wordForm": "girl",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Stan Getz & João Gilberto",
+        "title": "The Girl from Ipanema",
+        "source": "https://music.apple.com/us/song/1443085301",
+        "checkedAt": "2026-10-22",
+        "wordForm": "girl",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020109",
+    "text": "BOY",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Beyoncé",
+        "title": "If I Were a Boy",
+        "source": "https://music.apple.com/us/song/399851018",
+        "checkedAt": "2026-10-22",
+        "wordForm": "boy",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Bronski Beat",
+        "title": "Smalltown Boy",
+        "source": "https://music.apple.com/us/song/1452205330",
+        "checkedAt": "2026-10-22",
+        "wordForm": "boy",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020110",
+    "text": "BABY",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Justin Bieber",
+        "title": "Baby",
+        "source": "https://music.apple.com/us/song/1578012029",
+        "checkedAt": "2026-10-22",
+        "wordForm": "baby",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Britney Spears",
+        "title": "...Baby One More Time",
+        "source": "https://music.apple.com/us/song/1447372299",
+        "checkedAt": "2026-10-22",
+        "wordForm": "baby",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020111",
+    "text": "MOTHER",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Pink Floyd",
+        "title": "Mother",
+        "source": "https://music.apple.com/us/song/1065976152",
+        "checkedAt": "2026-10-22",
+        "wordForm": "mother",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Danzig",
+        "title": "Mother",
+        "source": "https://music.apple.com/us/song/1440880961",
+        "checkedAt": "2026-10-22",
+        "wordForm": "mother",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020112",
+    "text": "FATHER",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Cat Stevens",
+        "title": "Father and Son",
+        "source": "https://music.apple.com/us/song/1440630245?l=en-US",
+        "checkedAt": "2026-10-22",
+        "wordForm": "father",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "George Michael",
+        "title": "Father Figure",
+        "source": "https://music.apple.com/us/song/1276742443",
+        "checkedAt": "2026-10-22",
+        "wordForm": "father",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020113",
+    "text": "FRIEND",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Queen",
+        "title": "You're My Best Friend",
+        "source": "https://music.apple.com/us/album/shin-joou-sama-monogatari-mustapha-i-was-born-to-love/6807338547?i=6807338549",
+        "checkedAt": "2026-10-22",
+        "wordForm": "friend",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "The Rolling Stones",
+        "title": "Waiting on a Friend",
+        "source": "https://music.apple.com/us/song/1454027298",
+        "checkedAt": "2026-10-22",
+        "wordForm": "friend",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020114",
+    "text": "ANGEL",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Aerosmith",
+        "title": "Angel",
+        "source": "https://music.apple.com/us/song/1440913834",
+        "checkedAt": "2026-10-22",
+        "wordForm": "angel",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Shaggy",
+        "title": "Angel",
+        "source": "https://music.apple.com/us/song/1039447758",
+        "checkedAt": "2026-10-22",
+        "wordForm": "angel",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020115",
+    "text": "HEAVEN",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Bryan Adams",
+        "title": "Heaven",
+        "source": "https://music.apple.com/us/song/1454088111",
+        "checkedAt": "2026-10-22",
+        "wordForm": "heaven",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Belinda Carlisle",
+        "title": "Heaven Is a Place on Earth",
+        "source": "https://music.apple.com/us/song/1442964005",
+        "checkedAt": "2026-10-22",
+        "wordForm": "heaven",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020116",
+    "text": "HELL",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "AC/DC",
+        "title": "Highway to Hell",
+        "source": "https://music.apple.com/us/song/574044008",
+        "checkedAt": "2026-10-22",
+        "wordForm": "hell",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Chris Rea",
+        "title": "The Road to Hell",
+        "source": "https://music.apple.com/us/song/79018297",
+        "checkedAt": "2026-10-22",
+        "wordForm": "hell",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020117",
+    "text": "FIRE",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "The Doors",
+        "title": "Light My Fire",
+        "source": "https://music.apple.com/us/song/1778235979",
+        "checkedAt": "2026-10-22",
+        "wordForm": "fire",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Adele",
+        "title": "Set Fire to the Rain",
+        "source": "https://music.apple.com/us/song/1544491988",
+        "checkedAt": "2026-10-22",
+        "wordForm": "fire",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020118",
+    "text": "WATER",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Deep Purple",
+        "title": "Smoke on the Water",
+        "source": "https://music.apple.com/us/song/70257941",
+        "checkedAt": "2026-10-22",
+        "wordForm": "water",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Dire Straits",
+        "title": "Water of Love",
+        "source": "https://music.apple.com/us/song/1724864285",
+        "checkedAt": "2026-10-22",
+        "wordForm": "water",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020119",
+    "text": "WIND",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Bob Dylan",
+        "title": "Blowin' in the Wind",
+        "source": "https://music.apple.com/us/song/190758932",
+        "checkedAt": "2026-10-22",
+        "wordForm": "wind",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Elton John",
+        "title": "Candle in the Wind",
+        "source": "https://music.apple.com/us/song/1652668816",
+        "checkedAt": "2026-10-22",
+        "wordForm": "wind",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020120",
+    "text": "SNOW",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Red Hot Chili Peppers",
+        "title": "Snow (Hey Oh)",
+        "source": "https://music.apple.com/us/song/1868372672",
+        "checkedAt": "2026-10-22",
+        "wordForm": "snow",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Dean Martin",
+        "title": "Let It Snow! Let It Snow! Let It Snow!",
+        "source": "https://music.apple.com/us/song/1440829893",
+        "checkedAt": "2026-10-22",
+        "wordForm": "snow",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020121",
+    "text": "BLUE",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Eiffel 65",
+        "title": "Blue (Da Ba Dee)",
+        "source": "https://music.apple.com/us/song/1781076917",
+        "checkedAt": "2026-10-22",
+        "wordForm": "blue",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Elvis Presley",
+        "title": "Blue Suede Shoes",
+        "source": "https://music.apple.com/us/song/217633914",
+        "checkedAt": "2026-10-22",
+        "wordForm": "blue",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020122",
+    "text": "RED",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Chris de Burgh",
+        "title": "The Lady in Red",
+        "source": "https://music.apple.com/us/song/1443802776",
+        "checkedAt": "2026-10-22",
+        "wordForm": "red",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "UB40",
+        "title": "Red Red Wine",
+        "source": "https://music.apple.com/us/song/1639593503",
+        "checkedAt": "2026-10-22",
+        "wordForm": "red",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020123",
+    "text": "BLACK",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Pearl Jam",
+        "title": "Black",
+        "source": "https://music.apple.com/us/song/425465351",
+        "checkedAt": "2026-10-22",
+        "wordForm": "black",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Amy Winehouse",
+        "title": "Back to Black",
+        "source": "https://music.apple.com/us/song/1440856228",
+        "checkedAt": "2026-10-22",
+        "wordForm": "black",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020124",
+    "text": "WHITE",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Billy Idol",
+        "title": "White Wedding",
+        "source": "https://music.apple.com/us/song/715718683",
+        "checkedAt": "2026-10-22",
+        "wordForm": "white",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Jefferson Airplane",
+        "title": "White Rabbit",
+        "source": "https://music.apple.com/us/song/1626539889",
+        "checkedAt": "2026-10-22",
+        "wordForm": "white",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020125",
+    "text": "GREEN",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Tom Jones",
+        "title": "Green, Green Grass of Home",
+        "source": "https://music.apple.com/us/song/1409945249",
+        "checkedAt": "2026-10-22",
+        "wordForm": "green",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Creedence Clearwater Revival",
+        "title": "Green River",
+        "source": "https://music.apple.com/us/song/1440956141",
+        "checkedAt": "2026-10-22",
+        "wordForm": "green",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020126",
+    "text": "YELLOW",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Coldplay",
+        "title": "Yellow",
+        "source": "https://music.apple.com/us/song/695721392?l=en-US",
+        "checkedAt": "2026-10-22",
+        "wordForm": "yellow",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "The Beatles",
+        "title": "Yellow Submarine",
+        "source": "https://music.apple.com/us/song/1441164526",
+        "checkedAt": "2026-10-22",
+        "wordForm": "yellow",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020127",
+    "text": "GOLD",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Spandau Ballet",
+        "title": "Gold",
+        "source": "https://music.apple.com/us/song/1445672385",
+        "checkedAt": "2026-10-22",
+        "wordForm": "gold",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Sting",
+        "title": "Fields of Gold",
+        "source": "https://music.apple.com/us/song/1443816939",
+        "checkedAt": "2026-10-22",
+        "wordForm": "gold",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020128",
+    "text": "SILVER",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Fleetwood Mac",
+        "title": "Silver Springs",
+        "source": "https://music.apple.com/us/song/1792535578",
+        "checkedAt": "2026-10-22",
+        "wordForm": "silver",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Bing Crosby",
+        "title": "Silver Bells",
+        "source": "https://music.apple.com/us/song/1434777599",
+        "checkedAt": "2026-10-22",
+        "wordForm": "silver",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020129",
+    "text": "PURPLE",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Jimi Hendrix",
+        "title": "Purple Haze",
+        "source": "https://music.apple.com/us/song/680248051",
+        "checkedAt": "2026-10-22",
+        "wordForm": "purple",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Prince",
+        "title": "Purple Rain",
+        "source": "https://music.apple.com/us/song/1545697426",
+        "checkedAt": "2026-10-22",
+        "wordForm": "purple",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020130",
+    "text": "GOOD",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "James Brown",
+        "title": "I Got You (I Feel Good)",
+        "source": "https://music.apple.com/us/song/1463251666",
+        "checkedAt": "2026-10-22",
+        "wordForm": "good",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "The Beach Boys",
+        "title": "Good Vibrations",
+        "source": "https://music.apple.com/us/song/725819811",
+        "checkedAt": "2026-10-22",
+        "wordForm": "good",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020131",
+    "text": "BAD",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Michael Jackson",
+        "title": "Bad",
+        "source": "https://music.apple.com/us/song/159294345",
+        "checkedAt": "2026-10-22",
+        "wordForm": "bad",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Billie Eilish",
+        "title": "bad guy",
+        "source": "https://music.apple.com/us/song/1581689160",
+        "checkedAt": "2026-10-22",
+        "wordForm": "bad",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020132",
+    "text": "HAPPY",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Pharrell Williams",
+        "title": "Happy",
+        "source": "https://music.apple.com/us/song/652255046",
+        "checkedAt": "2026-10-22",
+        "wordForm": "happy",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Bobby McFerrin",
+        "title": "Don't Worry, Be Happy",
+        "source": "https://music.apple.com/us/song/1840456317",
+        "checkedAt": "2026-10-22",
+        "wordForm": "happy",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020133",
+    "text": "CRAZY",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Gnarls Barkley",
+        "title": "Crazy",
+        "source": "https://music.apple.com/us/song/1741403966",
+        "checkedAt": "2026-10-22",
+        "wordForm": "crazy",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Aerosmith",
+        "title": "Crazy",
+        "source": "https://music.apple.com/us/song/1635858752",
+        "checkedAt": "2026-10-22",
+        "wordForm": "crazy",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020134",
+    "text": "WILD",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Duran Duran",
+        "title": "The Wild Boys",
+        "source": "https://music.apple.com/us/song/696762978",
+        "checkedAt": "2026-10-22",
+        "wordForm": "wild",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Lou Reed",
+        "title": "Walk on the Wild Side",
+        "source": "https://music.apple.com/us/song/1496346458",
+        "checkedAt": "2026-10-22",
+        "wordForm": "wild",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020135",
+    "text": "SWEET",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Guns N' Roses",
+        "title": "Sweet Child O' Mine",
+        "source": "https://music.apple.com/us/song/1533360835",
+        "checkedAt": "2026-10-22",
+        "wordForm": "sweet",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Lynyrd Skynyrd",
+        "title": "Sweet Home Alabama",
+        "source": "https://music.apple.com/us/song/1702759375",
+        "checkedAt": "2026-10-22",
+        "wordForm": "sweet",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020136",
+    "text": "YOUNG",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Rod Stewart",
+        "title": "Forever Young",
+        "source": "https://music.apple.com/us/song/1822548519",
+        "checkedAt": "2026-10-22",
+        "wordForm": "young",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "fun.",
+        "title": "We Are Young",
+        "source": "https://music.apple.com/us/song/1849403888",
+        "checkedAt": "2026-10-22",
+        "wordForm": "young",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020137",
+    "text": "ALONE",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Heart",
+        "title": "Alone",
+        "source": "https://music.apple.com/us/song/724077447",
+        "checkedAt": "2026-10-22",
+        "wordForm": "alone",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Michael Jackson",
+        "title": "You Are Not Alone",
+        "source": "https://music.apple.com/us/song/655266726",
+        "checkedAt": "2026-10-22",
+        "wordForm": "alone",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020138",
+    "text": "TOGETHER",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "The Beatles",
+        "title": "Come Together",
+        "source": "https://music.apple.com/us/song/1440834242",
+        "checkedAt": "2026-10-22",
+        "wordForm": "together",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Rick Astley",
+        "title": "Together Forever",
+        "source": "https://music.apple.com/us/song/1733693031",
+        "checkedAt": "2026-10-22",
+        "wordForm": "together",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020139",
+    "text": "FOREVER",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Queen",
+        "title": "Who Wants to Live Forever",
+        "source": "https://music.apple.com/us/song/1440783598",
+        "checkedAt": "2026-10-22",
+        "wordForm": "forever",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Alphaville",
+        "title": "Forever Young",
+        "source": "https://music.apple.com/us/song/1856846999",
+        "checkedAt": "2026-10-22",
+        "wordForm": "forever",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020140",
+    "text": "ALWAYS",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Bon Jovi",
+        "title": "Always",
+        "source": "https://music.apple.com/us/song/1701104974",
+        "checkedAt": "2026-10-22",
+        "wordForm": "always",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Whitney Houston",
+        "title": "I Will Always Love You",
+        "source": "https://music.apple.com/us/song/1691606646",
+        "checkedAt": "2026-10-22",
+        "wordForm": "always",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020141",
+    "text": "AGAIN",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Wiz Khalifa & Charlie Puth",
+        "title": "See You Again",
+        "source": "https://music.apple.com/us/song/992178825",
+        "checkedAt": "2026-10-22",
+        "wordForm": "again",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Britney Spears",
+        "title": "Oops!... I Did It Again",
+        "source": "https://music.apple.com/us/song/267954487?l=en-US",
+        "checkedAt": "2026-10-22",
+        "wordForm": "again",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020142",
+    "text": "TONIGHT",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Eric Clapton",
+        "title": "Wonderful Tonight",
+        "source": "https://music.apple.com/us/song/1452842033",
+        "checkedAt": "2026-10-22",
+        "wordForm": "tonight",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Phil Collins",
+        "title": "In the Air Tonight",
+        "source": "https://music.apple.com/us/song/1456275289",
+        "checkedAt": "2026-10-22",
+        "wordForm": "tonight",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020143",
+    "text": "YESTERDAY",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "The Beatles",
+        "title": "Yesterday",
+        "source": "https://music.apple.com/us/album/yesterday-the-beatles-feat-peter-erskine-ike-sturm/6799046020?i=6799046762",
+        "checkedAt": "2026-10-22",
+        "wordForm": "yesterday",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Carpenters",
+        "title": "Yesterday Once More",
+        "source": "https://music.apple.com/us/song/1434887442",
+        "checkedAt": "2026-10-22",
+        "wordForm": "yesterday",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020144",
+    "text": "TOMORROW",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Andrea McArdle",
+        "title": "Tomorrow",
+        "source": "https://music.apple.com/us/album/tomorrow-cabinet-reprise/1598149316?i=1598150693",
+        "checkedAt": "2026-10-22",
+        "wordForm": "tomorrow",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Silverchair",
+        "title": "Tomorrow",
+        "source": "https://music.apple.com/us/song/1308574644",
+        "checkedAt": "2026-10-22",
+        "wordForm": "tomorrow",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020145",
+    "text": "HELLO",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Adele",
+        "title": "Hello",
+        "source": "https://music.apple.com/us/song/1544494392",
+        "checkedAt": "2026-10-22",
+        "wordForm": "hello",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Lionel Richie",
+        "title": "Hello",
+        "source": "https://music.apple.com/us/song/1445751982",
+        "checkedAt": "2026-10-22",
+        "wordForm": "hello",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020146",
+    "text": "GOODBYE",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Spice Girls",
+        "title": "Goodbye",
+        "source": "https://music.apple.com/us/song/1812493915",
+        "checkedAt": "2026-10-22",
+        "wordForm": "goodbye",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Elton John",
+        "title": "Goodbye Yellow Brick Road",
+        "source": "https://music.apple.com/us/song/1692703698",
+        "checkedAt": "2026-10-22",
+        "wordForm": "goodbye",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020147",
+    "text": "SORRY",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Madonna",
+        "title": "Sorry",
+        "source": "https://music.apple.com/us/song/1666084865",
+        "checkedAt": "2026-10-22",
+        "wordForm": "sorry",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Justin Bieber",
+        "title": "Sorry",
+        "source": "https://music.apple.com/us/song/1049603177",
+        "checkedAt": "2026-10-22",
+        "wordForm": "sorry",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020148",
+    "text": "STAY",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Rihanna & Mikky Ekko",
+        "title": "Stay",
+        "source": "https://music.apple.com/us/song/1443232529",
+        "checkedAt": "2026-10-22",
+        "wordForm": "stay",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "The Kid LAROI & Justin Bieber",
+        "title": "Stay",
+        "source": "https://music.apple.com/us/song/1579787410?l=en-US",
+        "checkedAt": "2026-10-22",
+        "wordForm": "stay",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020149",
+    "text": "DANCE",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Lady Gaga",
+        "title": "Just Dance",
+        "source": "https://music.apple.com/us/song/1445006767",
+        "checkedAt": "2026-10-22",
+        "wordForm": "dance",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "David Bowie",
+        "title": "Let's Dance",
+        "source": "https://music.apple.com/us/song/697240990",
+        "checkedAt": "2026-10-22",
+        "wordForm": "dance",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020150",
+    "text": "ROCK",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Queen",
+        "title": "We Will Rock You",
+        "source": "https://music.apple.com/us/song/1422650907?l=en-US",
+        "checkedAt": "2026-10-22",
+        "wordForm": "rock",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Scorpions",
+        "title": "Rock You Like a Hurricane",
+        "source": "https://music.apple.com/us/song/1611247459",
+        "checkedAt": "2026-10-22",
+        "wordForm": "rock",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020151",
+    "text": "WORK",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Rihanna",
+        "title": "Work",
+        "source": "https://music.apple.com/us/song/1443231169",
+        "checkedAt": "2026-10-22",
+        "wordForm": "work",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Fifth Harmony",
+        "title": "Work from Home",
+        "source": "https://music.apple.com/us/song/1186909533",
+        "checkedAt": "2026-10-22",
+        "wordForm": "work",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020152",
+    "text": "RUN",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Snow Patrol",
+        "title": "Run",
+        "source": "https://music.apple.com/us/song/1440792587",
+        "checkedAt": "2026-10-22",
+        "wordForm": "run",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Pink Floyd",
+        "title": "Run Like Hell",
+        "source": "https://music.apple.com/us/song/1065976173",
+        "checkedAt": "2026-10-22",
+        "wordForm": "run",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020153",
+    "text": "WALK",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Dire Straits",
+        "title": "Walk of Life",
+        "source": "https://music.apple.com/us/song/1607129162",
+        "checkedAt": "2026-10-22",
+        "wordForm": "walk",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Pantera",
+        "title": "Walk",
+        "source": "https://music.apple.com/us/song/1235660760",
+        "checkedAt": "2026-10-22",
+        "wordForm": "walk",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020154",
+    "text": "FLY",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Lenny Kravitz",
+        "title": "Fly Away",
+        "source": "https://music.apple.com/us/song/723419885",
+        "checkedAt": "2026-10-22",
+        "wordForm": "fly",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Frank Sinatra",
+        "title": "Fly Me to the Moon",
+        "source": "https://music.apple.com/us/song/1440842942",
+        "checkedAt": "2026-10-22",
+        "wordForm": "fly",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020155",
+    "text": "CRY",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Justin Timberlake",
+        "title": "Cry Me a River",
+        "source": "https://music.apple.com/us/song/1005686829",
+        "checkedAt": "2026-10-22",
+        "wordForm": "cry",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Prince",
+        "title": "When Doves Cry",
+        "source": "https://music.apple.com/us/song/1545705405",
+        "checkedAt": "2026-10-22",
+        "wordForm": "cry",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020156",
+    "text": "SMILE",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Lily Allen",
+        "title": "Smile",
+        "source": "https://music.apple.com/us/song/1801425692",
+        "checkedAt": "2026-10-22",
+        "wordForm": "smile",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Nat King Cole",
+        "title": "Smile",
+        "source": "https://music.apple.com/us/song/1554158409",
+        "checkedAt": "2026-10-22",
+        "wordForm": "smile",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020157",
+    "text": "KISS",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Prince",
+        "title": "Kiss",
+        "source": "https://music.apple.com/us/song/1531148872",
+        "checkedAt": "2026-10-22",
+        "wordForm": "kiss",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Seal",
+        "title": "Kiss from a Rose",
+        "source": "https://music.apple.com/us/song/30475379",
+        "checkedAt": "2026-10-22",
+        "wordForm": "kiss",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020158",
+    "text": "TOUCH",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Genesis",
+        "title": "Invisible Touch",
+        "source": "https://music.apple.com/us/song/263064931",
+        "checkedAt": "2026-10-22",
+        "wordForm": "touch",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Bruce Springsteen",
+        "title": "Human Touch",
+        "source": "https://music.apple.com/us/song/1045058816",
+        "checkedAt": "2026-10-22",
+        "wordForm": "touch",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020159",
+    "text": "HOLD",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Toto",
+        "title": "Hold the Line",
+        "source": "https://music.apple.com/us/song/1626388461",
+        "checkedAt": "2026-10-22",
+        "wordForm": "hold",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Wilson Phillips",
+        "title": "Hold On",
+        "source": "https://music.apple.com/us/song/723895262",
+        "checkedAt": "2026-10-22",
+        "wordForm": "hold",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020160",
+    "text": "FEEL",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Robbie Williams",
+        "title": "Feel",
+        "source": "https://music.apple.com/us/album/feel-robbie-williams-epic-version/1862368379?i=1862368380",
+        "checkedAt": "2026-10-22",
+        "wordForm": "feel",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Gorillaz",
+        "title": "Feel Good Inc.",
+        "source": "https://music.apple.com/us/song/1661127882",
+        "checkedAt": "2026-10-22",
+        "wordForm": "feel",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020161",
+    "text": "BELIEVE",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Cher",
+        "title": "Believe",
+        "source": "https://music.apple.com/us/song/1815453089",
+        "checkedAt": "2026-10-22",
+        "wordForm": "believe",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Lenny Kravitz",
+        "title": "Believe",
+        "source": "https://music.apple.com/us/song/712353826",
+        "checkedAt": "2026-10-22",
+        "wordForm": "believe",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020162",
+    "text": "WISH",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Pink Floyd",
+        "title": "Wish You Were Here",
+        "source": "https://music.apple.com/us/song/1065973980",
+        "checkedAt": "2026-10-22",
+        "wordForm": "wish",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Stevie Wonder",
+        "title": "I Wish",
+        "source": "https://music.apple.com/us/song/1464881894",
+        "checkedAt": "2026-10-22",
+        "wordForm": "wish",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020163",
+    "text": "MONEY",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Pink Floyd",
+        "title": "Money",
+        "source": "https://music.apple.com/us/song/1065973708",
+        "checkedAt": "2026-10-22",
+        "wordForm": "money",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "ABBA",
+        "title": "Money, Money, Money",
+        "source": "https://music.apple.com/us/song/1440853070",
+        "checkedAt": "2026-10-22",
+        "wordForm": "money",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020164",
+    "text": "FAME",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "David Bowie",
+        "title": "Fame",
+        "source": "https://music.apple.com/us/song/696591949",
+        "checkedAt": "2026-10-22",
+        "wordForm": "fame",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Irene Cara",
+        "title": "Fame",
+        "source": "https://music.apple.com/us/song/1454593961",
+        "checkedAt": "2026-10-22",
+        "wordForm": "fame",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020165",
+    "text": "POWER",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Snap!",
+        "title": "The Power",
+        "source": "https://music.apple.com/us/song/1437337382",
+        "checkedAt": "2026-10-22",
+        "wordForm": "power",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Huey Lewis & The News",
+        "title": "The Power of Love",
+        "source": "https://music.apple.com/us/song/1549764481",
+        "checkedAt": "2026-10-22",
+        "wordForm": "power",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020166",
+    "text": "ROAD",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Ray Charles",
+        "title": "Hit the Road Jack",
+        "source": "https://music.apple.com/us/song/1770587285",
+        "checkedAt": "2026-10-22",
+        "wordForm": "road",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Chris Rea",
+        "title": "The Road to Hell",
+        "source": "https://music.apple.com/us/song/79018297",
+        "checkedAt": "2026-10-22",
+        "wordForm": "road",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020167",
+    "text": "STREET",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Gerry Rafferty",
+        "title": "Baker Street",
+        "source": "https://music.apple.com/us/song/1716721000",
+        "checkedAt": "2026-10-22",
+        "wordForm": "street",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Martha Reeves & The Vandellas",
+        "title": "Dancing in the Street",
+        "source": "https://music.apple.com/us/song/1442852441",
+        "checkedAt": "2026-10-22",
+        "wordForm": "street",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020168",
+    "text": "CITY",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Guns N' Roses",
+        "title": "Paradise City",
+        "source": "https://music.apple.com/us/song/1231856385",
+        "checkedAt": "2026-10-22",
+        "wordForm": "city",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "ABBA",
+        "title": "Summer Night City",
+        "source": "https://music.apple.com/us/song/1440803012",
+        "checkedAt": "2026-10-22",
+        "wordForm": "city",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020169",
+    "text": "RIVER",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Bruce Springsteen",
+        "title": "The River",
+        "source": "https://music.apple.com/us/song/186065422",
+        "checkedAt": "2026-10-22",
+        "wordForm": "river",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Billy Joel",
+        "title": "The River of Dreams",
+        "source": "https://music.apple.com/us/song/158816717",
+        "checkedAt": "2026-10-22",
+        "wordForm": "river",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020170",
+    "text": "OCEAN",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Led Zeppelin",
+        "title": "The Ocean",
+        "source": "https://music.apple.com/us/song/580707924",
+        "checkedAt": "2026-10-22",
+        "wordForm": "ocean",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Billie Eilish",
+        "title": "Ocean Eyes",
+        "source": "https://music.apple.com/us/song/1707257409",
+        "checkedAt": "2026-10-22",
+        "wordForm": "ocean",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020171",
+    "text": "ROSE",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Bette Midler",
+        "title": "The Rose",
+        "source": "https://music.apple.com/us/song/740212490",
+        "checkedAt": "2026-10-22",
+        "wordForm": "rose",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Seal",
+        "title": "Kiss from a Rose",
+        "source": "https://music.apple.com/us/song/30475379",
+        "checkedAt": "2026-10-22",
+        "wordForm": "rose",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020172",
+    "text": "FLOWER",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Moby",
+        "title": "Flower",
+        "source": "https://music.apple.com/us/song/281242696",
+        "checkedAt": "2026-10-22",
+        "wordForm": "flower",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Radiohead",
+        "title": "Lotus Flower",
+        "source": "https://music.apple.com/us/song/1109715147",
+        "checkedAt": "2026-10-22",
+        "wordForm": "flower",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020173",
+    "text": "TRAIN",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Ozzy Osbourne",
+        "title": "Crazy Train",
+        "source": "https://music.apple.com/us/song/192492691",
+        "checkedAt": "2026-10-22",
+        "wordForm": "train",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Cat Stevens",
+        "title": "Peace Train",
+        "source": "https://music.apple.com/us/song/1586793888",
+        "checkedAt": "2026-10-22",
+        "wordForm": "train",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020174",
+    "text": "RADIO",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Queen",
+        "title": "Radio Ga Ga",
+        "source": "https://music.apple.com/us/album/shin-joou-sama-monogatari-mustapha-i-was-born-to-love/6807338547?i=6807338549",
+        "checkedAt": "2026-10-22",
+        "wordForm": "radio",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "The Buggles",
+        "title": "Video Killed the Radio Star",
+        "source": "https://music.apple.com/us/song/1444090128",
+        "checkedAt": "2026-10-22",
+        "wordForm": "radio",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020175",
+    "text": "SILENCE",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Simon & Garfunkel",
+        "title": "The Sound of Silence",
+        "source": "https://music.apple.com/us/song/703069391",
+        "checkedAt": "2026-10-22",
+        "wordForm": "silence",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Depeche Mode",
+        "title": "Enjoy the Silence",
+        "source": "https://music.apple.com/us/song/1332108503",
+        "checkedAt": "2026-10-22",
+        "wordForm": "silence",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020176",
+    "text": "MUSIC",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Madonna",
+        "title": "Music",
+        "source": "https://music.apple.com/us/song/6789328202",
+        "checkedAt": "2026-10-22",
+        "wordForm": "music",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Wild Cherry",
+        "title": "Play That Funky Music",
+        "source": "https://music.apple.com/us/song/6782020411",
+        "checkedAt": "2026-10-22",
+        "wordForm": "music",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020177",
+    "text": "SONG",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Elton John",
+        "title": "Your Song",
+        "source": "https://music.apple.com/us/song/1440773954",
+        "checkedAt": "2026-10-22",
+        "wordForm": "song",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Led Zeppelin",
+        "title": "Immigrant Song",
+        "source": "https://music.apple.com/us/song/1436728301",
+        "checkedAt": "2026-10-22",
+        "wordForm": "song",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020178",
+    "text": "PEACE",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "John Lennon",
+        "title": "Give Peace a Chance",
+        "source": "https://music.apple.com/us/song/294224366",
+        "checkedAt": "2026-10-22",
+        "wordForm": "peace",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Cat Stevens",
+        "title": "Peace Train",
+        "source": "https://music.apple.com/us/song/1586793888",
+        "checkedAt": "2026-10-22",
+        "wordForm": "peace",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020179",
+    "text": "WAR",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Edwin Starr",
+        "title": "War",
+        "source": "https://music.apple.com/us/song/1445362992",
+        "checkedAt": "2026-10-22",
+        "wordForm": "war",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Black Sabbath",
+        "title": "War Pigs",
+        "source": "https://music.apple.com/us/song/192492508",
+        "checkedAt": "2026-10-22",
+        "wordForm": "war",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020180",
+    "text": "KING",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Elvis Presley",
+        "title": "King Creole",
+        "source": "https://music.apple.com/us/song/261067069",
+        "checkedAt": "2026-10-22",
+        "wordForm": "king",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Roger Miller",
+        "title": "King of the Road",
+        "source": "https://music.apple.com/us/song/1434907699",
+        "checkedAt": "2026-10-22",
+        "wordForm": "king",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020181",
+    "text": "QUEEN",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "ABBA",
+        "title": "Dancing Queen",
+        "source": "https://music.apple.com/us/song/1689815277",
+        "checkedAt": "2026-10-22",
+        "wordForm": "queen",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Sex Pistols",
+        "title": "God Save the Queen",
+        "source": "https://music.apple.com/us/song/1764178974",
+        "checkedAt": "2026-10-22",
+        "wordForm": "queen",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020182",
+    "text": "HERO",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Mariah Carey",
+        "title": "Hero",
+        "source": "https://music.apple.com/us/song/1777296171",
+        "checkedAt": "2026-10-22",
+        "wordForm": "hero",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Enrique Iglesias",
+        "title": "Hero",
+        "source": "https://music.apple.com/us/song/1440799744",
+        "checkedAt": "2026-10-22",
+        "wordForm": "hero",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020183",
+    "text": "MAGIC",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Queen",
+        "title": "A Kind of Magic",
+        "source": "https://music.apple.com/us/song/1440651286",
+        "checkedAt": "2026-10-22",
+        "wordForm": "magic",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "The Police",
+        "title": "Every Little Thing She Does Is Magic",
+        "source": "https://music.apple.com/us/song/1440883284",
+        "checkedAt": "2026-10-22",
+        "wordForm": "magic",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020184",
+    "text": "LUCKY",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Daft Punk",
+        "title": "Get Lucky",
+        "source": "https://music.apple.com/us/song/1565619658",
+        "checkedAt": "2026-10-22",
+        "wordForm": "lucky",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Britney Spears",
+        "title": "Lucky",
+        "source": "https://music.apple.com/us/song/1813908865",
+        "checkedAt": "2026-10-22",
+        "wordForm": "lucky",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020185",
+    "text": "EASY",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Commodores",
+        "title": "Easy",
+        "source": "https://music.apple.com/us/song/1562771431",
+        "checkedAt": "2026-10-22",
+        "wordForm": "easy",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Eagles",
+        "title": "Take It Easy",
+        "source": "https://music.apple.com/us/song/635791802",
+        "checkedAt": "2026-10-22",
+        "wordForm": "easy",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020186",
+    "text": "HOT",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Donna Summer",
+        "title": "Hot Stuff",
+        "source": "https://music.apple.com/us/song/1423304872",
+        "checkedAt": "2026-10-22",
+        "wordForm": "hot",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Katy Perry",
+        "title": "Hot N Cold",
+        "source": "https://music.apple.com/us/song/1598203156",
+        "checkedAt": "2026-10-22",
+        "wordForm": "hot",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020187",
+    "text": "COLD",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Foreigner",
+        "title": "Cold as Ice",
+        "source": "https://music.apple.com/us/song/1233644864",
+        "checkedAt": "2026-10-22",
+        "wordForm": "cold",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Katy Perry",
+        "title": "Hot N Cold",
+        "source": "https://music.apple.com/us/song/1598203156",
+        "checkedAt": "2026-10-22",
+        "wordForm": "cold",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020188",
+    "text": "SLOW",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Kylie Minogue",
+        "title": "Slow",
+        "source": "https://music.apple.com/us/song/1839276467",
+        "checkedAt": "2026-10-22",
+        "wordForm": "slow",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "The Pointer Sisters",
+        "title": "Slow Hand",
+        "source": "https://music.apple.com/us/song/268528216",
+        "checkedAt": "2026-10-22",
+        "wordForm": "slow",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020189",
+    "text": "LITTLE",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "The Beatles",
+        "title": "With a Little Help from My Friends",
+        "source": "https://music.apple.com/us/song/1441133267",
+        "checkedAt": "2026-10-22",
+        "wordForm": "little",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Queen",
+        "title": "Crazy Little Thing Called Love",
+        "source": "https://music.apple.com/us/song/1756139999",
+        "checkedAt": "2026-10-22",
+        "wordForm": "little",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020190",
+    "text": "BROKEN",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Green Day",
+        "title": "Boulevard of Broken Dreams",
+        "source": "https://music.apple.com/us/song/1835620443",
+        "checkedAt": "2026-10-22",
+        "wordForm": "broken",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Mr. Mister",
+        "title": "Broken Wings",
+        "source": "https://music.apple.com/us/song/broken-wings/302053638",
+        "checkedAt": "2026-10-22",
+        "wordForm": "broken",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020191",
+    "text": "LOST",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Coldplay",
+        "title": "Lost!",
+        "source": "https://music.apple.com/us/song/1122773676",
+        "checkedAt": "2026-10-22",
+        "wordForm": "lost",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Adam Levine",
+        "title": "Lost Stars",
+        "source": "https://music.apple.com/us/song/1618509415",
+        "checkedAt": "2026-10-22",
+        "wordForm": "lost",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020192",
+    "text": "EVERYTHING",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Michael Bublé",
+        "title": "Everything",
+        "source": "https://music.apple.com/us/song/1729384777",
+        "checkedAt": "2026-10-22",
+        "wordForm": "everything",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Bryan Adams",
+        "title": "(Everything I Do) I Do It for You",
+        "source": "https://music.apple.com/us/song/1442962254",
+        "checkedAt": "2026-10-22",
+        "wordForm": "everything",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020193",
+    "text": "NOTHING",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Metallica",
+        "title": "Nothing Else Matters",
+        "source": "https://music.apple.com/us/song/1808800106",
+        "checkedAt": "2026-10-22",
+        "wordForm": "nothing",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Sinéad O'Connor",
+        "title": "Nothing Compares 2 U",
+        "source": "https://music.apple.com/us/song/1629188999",
+        "checkedAt": "2026-10-22",
+        "wordForm": "nothing",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020194",
+    "text": "SOMEBODY",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Queen",
+        "title": "Somebody to Love",
+        "source": "https://music.apple.com/us/song/1470542829",
+        "checkedAt": "2026-10-22",
+        "wordForm": "somebody",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Gotye",
+        "title": "Somebody That I Used to Know",
+        "source": "https://music.apple.com/us/song/1661340020",
+        "checkedAt": "2026-10-22",
+        "wordForm": "somebody",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020195",
+    "text": "NOBODY",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Chaka Khan",
+        "title": "Ain't Nobody",
+        "source": "https://music.apple.com/us/song/1744427341",
+        "checkedAt": "2026-10-22",
+        "wordForm": "nobody",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Mitski",
+        "title": "Nobody",
+        "source": "https://music.apple.com/us/song/1373892799",
+        "checkedAt": "2026-10-22",
+        "wordForm": "nobody",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020196",
+    "text": "MISSING",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Everything but the Girl",
+        "title": "Missing",
+        "source": "https://music.apple.com/us/song/1629189389",
+        "checkedAt": "2026-10-22",
+        "wordForm": "missing",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "John Waite",
+        "title": "Missing You",
+        "source": "https://music.apple.com/us/song/840162578",
+        "checkedAt": "2026-10-22",
+        "wordForm": "missing",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  },
+  {
+    "id": "song-020197",
+    "text": "DANGEROUS",
+    "language": "en",
+    "decision": "new-theme",
+    "examples": [
+      {
+        "artist": "Michael Jackson",
+        "title": "Dangerous",
+        "source": "https://music.apple.com/us/song/1278580093",
+        "checkedAt": "2026-10-22",
+        "wordForm": "dangerous",
+        "evidenceKind": "title",
+        "genre": "international"
+      },
+      {
+        "artist": "Roxette",
+        "title": "Dangerous",
+        "source": "https://music.apple.com/us/song/1795206416",
+        "checkedAt": "2026-10-22",
+        "wordForm": "dangerous",
+        "evidenceKind": "title",
+        "genre": "international"
+      }
+    ]
+  }
+]
