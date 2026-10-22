@@ -1,0 +1,2797 @@
+[
+  {
+    "id": "song-000001",
+    "text": "ЛЮБОВЬ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Любовь спасёт мир",
+      "artist": "Вера Брежнева",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000002",
+    "text": "СОЛНЦЕ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Солнце Монако",
+      "artist": "Люся Чеботина",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000003",
+    "text": "КУКУШКА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Кукушка",
+      "artist": "Кино",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000004",
+    "text": "ГРУППА КРОВИ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Группа крови",
+      "artist": "Кино",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000005",
+    "text": "БЕЛЫЕ РОЗЫ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Белые розы",
+      "artist": "Ласковый май",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000006",
+    "text": "СЕДАЯ НОЧЬ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Седая ночь",
+      "artist": "Юрий Шатунов",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000007",
+    "text": "ДОЖДЬ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Дождь",
+      "artist": "ДДТ",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000008",
+    "text": "ОБЛАКА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Облака",
+      "artist": "Андрей Губин",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000009",
+    "text": "ГЛАЗА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Твои глаза",
+      "artist": "LOBODA",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000010",
+    "text": "КОМЕТА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Комета",
+      "artist": "JONY",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000011",
+    "text": "МАЛИНКИ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Малинки",
+      "artist": "Дискотека Авария",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000012",
+    "text": "МОРЕ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Море",
+      "artist": "Юрий Антонов",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000013",
+    "text": "МАМА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Мама",
+      "artist": "Баста",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000014",
+    "text": "КОНЬ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Конь",
+      "artist": "Любэ",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000015",
+    "text": "ТАНЦЫ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Танцы на стеклах",
+      "artist": "Максим Фадеев",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000016",
+    "text": "СНЕГ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Снег",
+      "artist": "Филипп Киркоров",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000017",
+    "text": "ОСЕНЬ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Что такое осень",
+      "artist": "ДДТ",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000018",
+    "text": "ВЕСНА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Весна",
+      "artist": "Дельфин",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000019",
+    "text": "БАТАРЕЙКА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Батарейка",
+      "artist": "Жуки",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000020",
+    "text": "КРЫЛЬЯ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Крылья",
+      "artist": "Наутилус Помпилиус",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000021",
+    "text": "РАЙОНЫ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Районы-кварталы",
+      "artist": "Звери",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000022",
+    "text": "КОМБАТ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Комбат",
+      "artist": "Любэ",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000023",
+    "text": "ПОЛОВИНКА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Половинка",
+      "artist": "Танцы Минус",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000024",
+    "text": "НЕЖНОСТЬ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Нежность",
+      "artist": "МакSим",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000025",
+    "text": "ВЕЧЕРИНКА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Вечеринка",
+      "artist": "Скриптонит",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000026",
+    "text": "ЗАЙКА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Зайка моя",
+      "artist": "Филипп Киркоров",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000027",
+    "text": "МУЗЫКА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Музыка нас связала",
+      "artist": "Мираж",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000028",
+    "text": "ТЮЛЬПАНЫ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Жёлтые тюльпаны",
+      "artist": "Наташа Королёва",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000029",
+    "text": "ДЕТСТВО",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Детство",
+      "artist": "Руки Вверх!",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000030",
+    "text": "СОЛДАТ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Солдат",
+      "artist": "5'nizza",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000031",
+    "text": "САНСАРА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Сансара",
+      "artist": "Баста",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000032",
+    "text": "ПОЕЗД",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Поезд в огне",
+      "artist": "Аквариум",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000033",
+    "text": "ВЛАДИВОСТОК",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Владивосток 2000",
+      "artist": "Мумий Тролль",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000034",
+    "text": "МЕТЕЛЬ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Метель",
+      "artist": "ДДТ",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000035",
+    "text": "ПАЧКА СИГАРЕТ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Пачка сигарет",
+      "artist": "Кино",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000036",
+    "text": "ВЫПУСКНОЙ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Выпускной",
+      "artist": "Баста",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000037",
+    "text": "КОЛЫБЕЛЬНАЯ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Колыбельная",
+      "artist": "Сплин",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000038",
+    "text": "ЗИМА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Зима",
+      "artist": "Дельфин",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000039",
+    "text": "ЛЕТО",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Лето",
+      "artist": "Кино",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000040",
+    "text": "ЛЕСНИК",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Лесник",
+      "artist": "Король и Шут",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000041",
+    "text": "ВЕТЕР",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Ветер",
+      "artist": "ДДТ",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000042",
+    "text": "СЕРДЦЕ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Моё сердце",
+      "artist": "Сплин",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000043",
+    "text": "ЗВЕЗДА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Звезда по имени Солнце",
+      "artist": "Кино",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000044",
+    "text": "СТУДЕНТ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Студент",
+      "artist": "Руки Вверх!",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000045",
+    "text": "САМОЛЁТ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Самолёт",
+      "artist": "Жуки",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000046",
+    "text": "ТВОИ ГЛАЗА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Твои глаза",
+      "artist": "LOBODA",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000047",
+    "text": "НАДЕЖДА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Надежда",
+      "artist": "Анна Герман",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000048",
+    "text": "АЙСБЕРГ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Айсберг",
+      "artist": "Алла Пугачёва",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000049",
+    "text": "МИЛЛИОН РОЗ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Миллион алых роз",
+      "artist": "Алла Пугачёва",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000050",
+    "text": "КОСМОС",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Космос",
+      "artist": "Скриптонит",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000051",
+    "text": "МОЛИТВА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Молитва",
+      "artist": "Би-2",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000052",
+    "text": "АЛЁШКА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Алёшка",
+      "artist": "Руки Вверх!",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000053",
+    "text": "18 МНЕ УЖЕ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "18 мне уже",
+      "artist": "Руки Вверх!",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000054",
+    "text": "ОН ТЕБЯ ЦЕЛУЕТ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Он тебя целует",
+      "artist": "Руки Вверх!",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000055",
+    "text": "МАЛЕНЬКАЯ СТРАНА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Маленькая страна",
+      "artist": "Наташа Королёва",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000056",
+    "text": "БУХГАЛТЕР",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Бухгалтер",
+      "artist": "Комбинация",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000057",
+    "text": "АМЕРИКЭН БОЙ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "American Boy",
+      "artist": "Комбинация",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000058",
+    "text": "РОЗОВЫЕ РОЗЫ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Розовые розы",
+      "artist": "Весёлые ребята",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000059",
+    "text": "ПОЗОВИ МЕНЯ С СОБОЙ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Позови меня с собой",
+      "artist": "Алла Пугачёва",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000060",
+    "text": "АЭРОПОРТЫ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Аэропорты",
+      "artist": "Леонид Агутин и Владимир Пресняков",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000061",
+    "text": "МОЙ СОН",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Мой сон",
+      "artist": "Татьяна Буланова",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000062",
+    "text": "КРАСИВО",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Красиво",
+      "artist": "Валерий Меладзе",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000063",
+    "text": "САМБА БЕЛОГО МОТЫЛЬКА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Самба белого мотылька",
+      "artist": "Валерий Меладзе",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000064",
+    "text": "ВЕТЕР С МОРЯ ДУЛ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Ветер с моря дул",
+      "artist": "Натали",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000065",
+    "text": "МОЙ МАРМЕЛАДНЫЙ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Мой мармеладный",
+      "artist": "Катя Лель",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000066",
+    "text": "МАЛИНОВАЯ ЛАДА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Малиновая Лада",
+      "artist": "GAYAZOV$ BROTHER$",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000067",
+    "text": "ЧЁРНЫЙ БУМЕР",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Чёрный бумер",
+      "artist": "Серёга",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000068",
+    "text": "ЛАДА СЕДАН",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Лада Седан",
+      "artist": "Рекорд Оркестр",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000069",
+    "text": "АНТОШКА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Антошка",
+      "artist": "Владимир Шаинский",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000070",
+    "text": "УЛЫБКА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "От улыбки",
+      "artist": "Владимир Шаинский",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000071",
+    "text": "КРОКОДИЛ ГЕНА",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Песенка крокодила Гены",
+      "artist": "Владимир Шаинский",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000072",
+    "text": "МАЛЕНЬКОЙ ЁЛОЧКЕ",
+    "type": "song",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Маленькой ёлочке холодно зимой",
+      "artist": "Лев Бекман",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000073",
+    "text": "ПЕРЕМЕН",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Хочу перемен",
+      "artist": "Кино",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000074",
+    "text": "ВОСЬМИКЛАССНИЦА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Восьмиклассница",
+      "artist": "Кино",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000075",
+    "text": "СПОКОЙНАЯ НОЧЬ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Спокойная ночь",
+      "artist": "Кино",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000076",
+    "text": "ОПИУМ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Опиум для никого",
+      "artist": "Агата Кристи",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000077",
+    "text": "МОРЯК",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Моряк",
+      "artist": "Агата Кристи",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000078",
+    "text": "СКАЗОЧНАЯ ТАЙГА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Сказочная тайга",
+      "artist": "Агата Кристи",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000079",
+    "text": "КОВЁР-ВЕРТОЛЁТ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Ковёр-вертолёт",
+      "artist": "Агата Кристи",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000080",
+    "text": "ПОЛКОВНИК",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Полковнику никто не пишет",
+      "artist": "Би-2",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000081",
+    "text": "ВАРВАРА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Варвара",
+      "artist": "Би-2",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000082",
+    "text": "СЕРЕБРО",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Серебро",
+      "artist": "Би-2",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000083",
+    "text": "ВЫХОДА НЕТ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Выхода нет",
+      "artist": "Сплин",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000084",
+    "text": "ОРБИТ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Орбит без сахара",
+      "artist": "Сплин",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000085",
+    "text": "РОМАНС",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Романс",
+      "artist": "Сплин",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000086",
+    "text": "ФЕЛЛИНИ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Феллини",
+      "artist": "Сплин",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000087",
+    "text": "КУКЛА КОЛДУНА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Кукла колдуна",
+      "artist": "Король и Шут",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000088",
+    "text": "ПРОКЛЯТЫЙ ДОМ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Проклятый старый дом",
+      "artist": "Король и Шут",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000089",
+    "text": "ПРЫГНУ СО СКАЛЫ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Прыгну со скалы",
+      "artist": "Король и Шут",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000090",
+    "text": "ДУРАК И МОЛНИЯ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Дурак и молния",
+      "artist": "Король и Шут",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000091",
+    "text": "ДЕМБЕЛЬ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Демобилизация",
+      "artist": "Сектор Газа",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000092",
+    "text": "ЛИРИКА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Лирика",
+      "artist": "Сектор Газа",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000093",
+    "text": "ТУМАН",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Туман",
+      "artist": "Сектор Газа",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000094",
+    "text": "РОДИНА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Родина",
+      "artist": "ДДТ",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000095",
+    "text": "СВОБОДА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Я свободен",
+      "artist": "Кипелов",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000096",
+    "text": "Я ХОЧУ БЫТЬ С ТОБОЙ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Я хочу быть с тобой",
+      "artist": "Наутилус Помпилиус",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000097",
+    "text": "СКОВАННЫЕ ЦЕПЬЮ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Скованные одной цепью",
+      "artist": "Наутилус Помпилиус",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000098",
+    "text": "ПОВОРОТ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Поворот",
+      "artist": "Машина времени",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000099",
+    "text": "КОСТЁР",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Костёр",
+      "artist": "Машина времени",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000100",
+    "text": "БЕРЁЗЫ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Берёзы",
+      "artist": "Любэ",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000101",
+    "text": "КРОШКА МОЯ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Крошка моя",
+      "artist": "Руки Вверх!",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000102",
+    "text": "ЧУЖИЕ ГУБЫ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Чужие губы",
+      "artist": "Руки Вверх!",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000103",
+    "text": "НАС НЕ ДОГОНЯТ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Нас не догонят",
+      "artist": "t.A.T.u.",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000104",
+    "text": "ПОЛЧАСА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Полчаса",
+      "artist": "t.A.T.u.",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000105",
+    "text": "ТРУДНЫЙ ВОЗРАСТ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Трудный возраст",
+      "artist": "МакSим",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000106",
+    "text": "ОТПУСКАЮ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Отпускаю",
+      "artist": "МакSим",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000107",
+    "text": "МОЙ РАЙ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Мой рай",
+      "artist": "МакSим",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000108",
+    "text": "АРЛЕКИНО",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Арлекино",
+      "artist": "Алла Пугачёва",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000109",
+    "text": "ТОПОЛИНЫЙ ПУХ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Тополиный пух",
+      "artist": "Иванушки International",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000110",
+    "text": "ТУЧИ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Тучи",
+      "artist": "Иванушки International",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000111",
+    "text": "КОЛЕЧКО",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Колечко",
+      "artist": "Иванушки International",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000112",
+    "text": "ФЕНИКС",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Феникс",
+      "artist": "ANNA ASTI",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000113",
+    "text": "ЦАРИЦА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Царица",
+      "artist": "ANNA ASTI",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000114",
+    "text": "ПО БАРАМ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "По барам",
+      "artist": "ANNA ASTI",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000115",
+    "text": "КАПКАН",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Капкан",
+      "artist": "Мот",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000116",
+    "text": "ПОЛОЖЕНИЕ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Положение",
+      "artist": "Скриптонит",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000117",
+    "text": "МОЯ ИГРА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Моя игра",
+      "artist": "Баста",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000118",
+    "text": "МЕДЛЯЧОК",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Выпускной (Медлячок)",
+      "artist": "Баста",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000119",
+    "text": "ВОКРУГ ШУМ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Вокруг шум",
+      "artist": "Каста",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000120",
+    "text": "ЖИТЬ В КАЙФ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Жить в кайф",
+      "artist": "Макс Корж",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000121",
+    "text": "МОТЫЛЁК",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Мотылёк",
+      "artist": "Макс Корж",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000122",
+    "text": "МОКРЫЕ КРОССЫ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Мокрые кроссы",
+      "artist": "Тима Белорусских",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000123",
+    "text": "НЕБО",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Небо",
+      "artist": "Ёлка",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000124",
+    "text": "БЕСКОНЕЧНОСТЬ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Бесконечность",
+      "artist": "Земфира",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000125",
+    "text": "ГОРОД ПОД ПОДОШВОЙ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Город под подошвой",
+      "artist": "Oxxxymiron",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000126",
+    "text": "ЛАМБАДА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Ламбада",
+      "artist": "T-Fest и Скриптонит",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000127",
+    "text": "КАДИЛЛАК",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Cadillac",
+      "artist": "Morgenshtern и Элджей",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000128",
+    "text": "ТАНЦУЙ САМА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Танцуй сама",
+      "artist": "Скриптонит",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000129",
+    "text": "ЦЕПИ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Цепи",
+      "artist": "Скриптонит",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000130",
+    "text": "ВЫДЫХАЙ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Выдыхай",
+      "artist": "Noize MC",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000131",
+    "text": "НЕВАЛЯШКА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Неваляшка",
+      "artist": "Oxxxymiron",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000132",
+    "text": "МОНЕТКА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Монетка",
+      "artist": "ЛСП",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000133",
+    "text": "ТЕЛО",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Тело",
+      "artist": "ЛСП",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000134",
+    "text": "КОКТЕЙЛЬ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Коктейль",
+      "artist": "ЛСП",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000135",
+    "text": "НОМЕРА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Номера",
+      "artist": "ЛСП",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000136",
+    "text": "ПАНЕЛЬКА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Панелька",
+      "artist": "Хаски",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000137",
+    "text": "ПУЛЯ-ДУРА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Пуля-дура",
+      "artist": "Хаски",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000138",
+    "text": "НА ПОРЯДОК ВЫШЕ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "На порядок выше",
+      "artist": "Каста",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000139",
+    "text": "ЗА ДЕНЬГИ ДА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "За деньги да",
+      "artist": "INSTASAMKA",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000140",
+    "text": "МАЛО ПОЛОВИН",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Мало половин",
+      "artist": "Ольга Бузова",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000141",
+    "text": "ГРУСТНЫЙ ДЭНС",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Грустный дэнс",
+      "artist": "Artik & Asti и Артём Качер",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000142",
+    "text": "ИСТЕРИЧКА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Истеричка",
+      "artist": "ANNA ASTI",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000143",
+    "text": "НОЧЬЮ НА КУХНЕ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Ночью на кухне",
+      "artist": "ANNA ASTI",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000144",
+    "text": "БЬЁТ БИТ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Бьёт бит",
+      "artist": "IOWA",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000145",
+    "text": "УЛЫБАЙСЯ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Улыбайся",
+      "artist": "IOWA",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000146",
+    "text": "МАРШРУТКА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Маршрутка",
+      "artist": "IOWA",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000147",
+    "text": "ЗЕЛЁНЫЕ ВОЛНЫ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Зелёные волны",
+      "artist": "Zivert",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000148",
+    "text": "НЕ ПЕРЕБИВАЙ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Не перебивай",
+      "artist": "Нюша",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000149",
+    "text": "ЦУНАМИ",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Цунами",
+      "artist": "Нюша",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000150",
+    "text": "ВЫБИРАТЬ ЧУДО",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Выбирать чудо",
+      "artist": "Нюша",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000151",
+    "text": "ЧЁРНЫЕ ГЛАЗА",
+    "type": "song",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Чёрные глаза",
+      "artist": "Айдамир Мугу",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000152",
+    "text": "ЛИНИЯ ЖИЗНИ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Линия жизни",
+      "artist": "Сплин",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000153",
+    "text": "ТАНЕЦ ЗЛОБНОГО ГЕНИЯ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Танец злобного гения",
+      "artist": "Король и Шут",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000154",
+    "text": "МЁРТВЫЙ АНАРХИСТ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Мёртвый анархист",
+      "artist": "Король и Шут",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000155",
+    "text": "СЕВЕРНЫЙ ФЛОТ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Северный флот",
+      "artist": "Король и Шут",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000156",
+    "text": "ВСПОМИНАНИЯ О БЫЛОЙ ЛЮБВИ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Воспоминания о былой любви",
+      "artist": "Король и Шут",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000157",
+    "text": "ОХОТНИК",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Охотник",
+      "artist": "Король и Шут",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000158",
+    "text": "ЧЁРНАЯ ЛУНА",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Чёрная луна",
+      "artist": "Агата Кристи",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000159",
+    "text": "КАК НА ВОЙНЕ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Как на войне",
+      "artist": "Агата Кристи",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000160",
+    "text": "ЛАЙКИ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Лайки",
+      "artist": "Би-2",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000161",
+    "text": "КОМПРОМИСС",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Компромисс",
+      "artist": "Би-2",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000162",
+    "text": "ТЫ НЕ ВЕРЬ СЛЕЗАМ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Ты не верь слезам",
+      "artist": "Шура",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000163",
+    "text": "ОДНАЖДЫ МИР ПРОГНЁТСЯ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Однажды мир прогнётся под нас",
+      "artist": "Машина времени",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000164",
+    "text": "ОЙ-ЙО",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Никто не услышит (Ой-йо)",
+      "artist": "Чайф",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000165",
+    "text": "ОРАНЖЕВОЕ НАСТРОЕНИЕ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Оранжевое настроение",
+      "artist": "Чайф",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000166",
+    "text": "ВСЁ ИДЁТ ПО ПЛАНУ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Всё идёт по плану",
+      "artist": "Гражданская оборона",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000167",
+    "text": "РОМАШКИ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Ромашки",
+      "artist": "Земфира",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000168",
+    "text": "ИСКАЛА",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Искала",
+      "artist": "Земфира",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000169",
+    "text": "ХОЧЕШЬ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Хочешь?",
+      "artist": "Земфира",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000170",
+    "text": "ДЕВУШКА ПО ГОРОДУ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Девушка по городу",
+      "artist": "Вячеслав Бутусов",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000171",
+    "text": "ВЛАДИВОСТОК 2000",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Владивосток 2000",
+      "artist": "Мумий Тролль",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000172",
+    "text": "ДЕЛЬФИНЫ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Дельфины",
+      "artist": "Мумий Тролль",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000173",
+    "text": "УТЕКАЙ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Утекай",
+      "artist": "Мумий Тролль",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000174",
+    "text": "МОРСКАЯ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Морская",
+      "artist": "Мумий Тролль",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000175",
+    "text": "ДО СКОРОЙ ВСТРЕЧИ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "До скорой встречи",
+      "artist": "Звери",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000176",
+    "text": "НАПИТКИ ПОКРЕПЧЕ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Напитки покрепче",
+      "artist": "Звери",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000177",
+    "text": "ДОЖДИ-ПИСТОЛЕТЫ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Дожди-пистолеты",
+      "artist": "Звери",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000178",
+    "text": "ПЕРЕПЛЕТЕНО",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Переплетено",
+      "artist": "Oxxxymiron",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000179",
+    "text": "ГДЕ НАС НЕТ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Где нас нет",
+      "artist": "Oxxxymiron",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000180",
+    "text": "ПЕСНЯ БЕЗ СЛОВ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Песня без слов",
+      "artist": "Кино",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000181",
+    "text": "ЛЕГЕНДА",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Легенда",
+      "artist": "Кино",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000182",
+    "text": "ЗАКРОЙ ЗА МНОЙ ДВЕРЬ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Закрой за мной дверь, я ухожу",
+      "artist": "Кино",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000183",
+    "text": "МАЛЫЙ ПОВЗРОСЛЕЛ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Малый повзрослел",
+      "artist": "Макс Корж",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000184",
+    "text": "ЭНДОРФИН",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Эндорфин",
+      "artist": "Макс Корж",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000185",
+    "text": "ХАРУ МАМБУРУ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Хару Мамбуру",
+      "artist": "Ногу свело!",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000186",
+    "text": "ЗВЕЗДА ПО ИМЕНИ СОЛНЦЕ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Звезда по имени Солнце",
+      "artist": "Кино",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000187",
+    "text": "МАЛИНКА",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Малинка",
+      "artist": "Жуки",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000188",
+    "text": "БИЛЛИ ДЖИН",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Billie Jean",
+      "artist": "Michael Jackson",
+      "genre": "зарубежное"
+    }
+  },
+  {
+    "id": "song-000189",
+    "text": "ПОКЕРФЕЙС",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Poker Face",
+      "artist": "Lady Gaga",
+      "genre": "зарубежное"
+    }
+  },
+  {
+    "id": "song-000190",
+    "text": "ВЧЕРА",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Yesterday",
+      "artist": "The Beatles",
+      "genre": "зарубежное"
+    }
+  },
+  {
+    "id": "song-000191",
+    "text": "БУДЬ СОБОЙ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Come as You Are",
+      "artist": "Nirvana",
+      "genre": "зарубежное"
+    }
+  },
+  {
+    "id": "song-000192",
+    "text": "ПОТЕРЯЙ СЕБЯ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Lose Yourself",
+      "artist": "Eminem",
+      "genre": "зарубежное"
+    }
+  },
+  {
+    "id": "song-000193",
+    "text": "ЖЁЛТЫЙ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Yellow",
+      "artist": "Coldplay",
+      "genre": "зарубежное"
+    }
+  },
+  {
+    "id": "song-000194",
+    "text": "ОНЕМЕНИЕ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Numb",
+      "artist": "Linkin Park",
+      "genre": "зарубежное"
+    }
+  },
+  {
+    "id": "song-000195",
+    "text": "РАДИОАКТИВНЫЙ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Radioactive",
+      "artist": "Imagine Dragons",
+      "genre": "зарубежное"
+    }
+  },
+  {
+    "id": "song-000196",
+    "text": "ЗДРАВСТВУЙ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Hello",
+      "artist": "Adele",
+      "genre": "зарубежное"
+    }
+  },
+  {
+    "id": "song-000197",
+    "text": "АЙ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Ай",
+      "artist": "Хаски",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000198",
+    "text": "ВСЕЛЕННАЯ БЕСКОНЕЧНА",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Вселенная бесконечна",
+      "artist": "Noize MC",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000199",
+    "text": "ПОЖАР",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Пожар",
+      "artist": "Noize MC",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000200",
+    "text": "ИУДА",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Иуда",
+      "artist": "Хаски",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000201",
+    "text": "КОСАНДРА",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Kosandra",
+      "artist": "Miyagi",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000202",
+    "text": "ЯМАКАСИ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Yamakasi",
+      "artist": "Miyagi & Andy Panda",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000203",
+    "text": "КАПИТАН",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Captain",
+      "artist": "Miyagi & Andy Panda",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000204",
+    "text": "МИНОР",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Minor",
+      "artist": "Miyagi & Andy Panda",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000205",
+    "text": "АЙ ГОТ ЛАВ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "I Got Love",
+      "artist": "Miyagi & Эндшпиль",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000206",
+    "text": "ДЕТЕКТОР ЛЖИ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Детектор лжи",
+      "artist": "Oxxxymiron",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000207",
+    "text": "ВОСТОЧНЫЙ МОРДОР",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Восточный Мордор",
+      "artist": "Oxxxymiron",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000208",
+    "text": "ПРОЩАЙ, ДЕТКА",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Прощай, детка",
+      "artist": "ЛСП",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000209",
+    "text": "ЛАБИРИНТ ОТРАЖЕНИЙ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Лабиринт отражений",
+      "artist": "ЛСП",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000210",
+    "text": "ЧИСТЫЙ КАЙФ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Чистый кайф",
+      "artist": "Баста",
+      "genre": "рэп"
+    }
+  },
+  {
+    "id": "song-000211",
+    "text": "НЕБОМОРЕОБЛАКА",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Небомореоблака",
+      "artist": "Земфира",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000212",
+    "text": "АРИВЕДЕРЧИ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Ариведерчи",
+      "artist": "Земфира",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000213",
+    "text": "ПРОГУЛКА",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Прогулка",
+      "artist": "Земфира",
+      "genre": "рок"
+    }
+  },
+  {
+    "id": "song-000214",
+    "text": "СИНИЙ ЦВЕТ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Цвет настроения синий",
+      "artist": "Филипп Киркоров",
+      "genre": "поп"
+    }
+  },
+  {
+    "id": "song-000215",
+    "text": "БЕВЕРЛИ ХИЛЛЗ",
+    "type": "song",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "music",
+    "meta": {
+      "title": "Beverly Hills",
+      "artist": "Zivert",
+      "genre": "поп"
+    }
+  }
+]

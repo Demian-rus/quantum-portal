@@ -1,9 +1,10 @@
 'use strict';
+const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs');
 const topics=[{id:'geography',version:2,source:'geography-v2',name:'География',prefix:'task008b'},{id:'science',version:2,source:'science-v2',name:'Наука',prefix:'task008c'}];
 const devices=[{name:'narrow',width:320,height:568},{name:'phone',width:390,height:844},{name:'desktop',width:1440,height:900}];
 async function settleAnimations(page){await page.locator('.scene:not([hidden])').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))))}
-async function screenshot(page,topic,name){await settleAnimations(page);await page.screenshot({path:'artifacts/quip-mobile-layout/'+topic.prefix+'-'+name+'.png'})}
+async function screenshot(page,topic,name){await settleAnimations(page);await capture(page,{path:'artifacts/quip-mobile-layout/'+topic.prefix+'-'+name+'.png'})}
 async function align(page,selector){await page.locator(selector).evaluate(el=>{const scroll=document.getElementById('advanced-scroll');scroll.scrollTop+=el.getBoundingClientRect().top-scroll.getBoundingClientRect().top-8})}
 async function chooseTopic(page,topic){await page.locator('#new-game-menu').click();await page.locator('#thematic-game').click();await page.locator('[data-theme="'+topic.id+'"]').click()}
 async function assertRoundSource(page,source){assert.equal(await page.evaluate(source=>{

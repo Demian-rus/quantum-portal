@@ -1,4 +1,5 @@
 'use strict';
+const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const {chromium}=require('playwright-core');
@@ -37,7 +38,7 @@ const URL='http://127.0.0.1:8765/party-game/';
      const b=el.getBoundingClientRect();return {top:b.top,bottom:b.bottom,height:innerHeight,width:b.width,window:innerWidth};
    });
    assert.ok(bounds.top>=0&&bounds.bottom<=height+2,'Risk card outside viewport: '+JSON.stringify(bounds));
-   await page.screenshot({path:'artifacts/quip-duel/'+name+'-risk-card.png'});
+   await capture(page,{path:'artifacts/quip-duel/'+name+'-risk-card.png'});
    await page.locator('[data-action="toggle-word"]').click();
    await page.locator('[data-action="start-timer"]').click();
    assert.equal(await page.locator('.risk-notice').count(),1);
@@ -146,7 +147,7 @@ const URL='http://127.0.0.1:8765/party-game/';
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
     if(choice==='a'){
      await page.locator('#scene-game').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
-     await page.screenshot({path:'artifacts/quip-duel/approx-'+width+'x'+height+'.png'});
+     await capture(page,{path:'artifacts/quip-duel/approx-'+width+'x'+height+'.png'});
     }
     await page.locator('[data-action="award-'+choice+'"]').click();
    }

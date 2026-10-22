@@ -1,4 +1,5 @@
 'use strict';
+const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const devices=[{name:'narrow',width:320,height:568},{name:'small',width:360,height:640},
@@ -87,8 +88,8 @@ module.exports=async function rulesGuide(browser,url){
      if(ids[i]==='approx'){assert.match(copy,/Таймера нет/);assert.match(copy,/Риска и усложнений нет/);for(const text of ['первая команда +1','вторая +1','обе +1','никому'])assert.ok(copy.includes(text));}
     }else assert.equal(await page.locator('.rules-art').count(),0);
     if(device.name==='phone'&&[0,7,8].includes(i)||device.name==='desktop'&&i===7)
-     await page.screenshot({path:`artifacts/quip-mobile-layout/task006-${device.name}-${ids[i]}.png`});
-    if(device.height<=390&&i===0)await page.screenshot({path:`artifacts/quip-mobile-layout/task006-${device.name}-general.png`});
+     await capture(page,{path:`artifacts/quip-mobile-layout/task006-${device.name}-${ids[i]}.png`});
+    if(device.height<=390&&i===0)await capture(page,{path:`artifacts/quip-mobile-layout/task006-${device.name}-general.png`});
     if(i<ids.length-1)await page.locator('#rules-next').click();
    }
    assert.equal(new Set(images).size,8);assert.equal(await page.locator('#rules-next').isDisabled(),true);

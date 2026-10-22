@@ -1,4 +1,5 @@
 'use strict';
+const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const devices=[{name:'narrow',width:320,height:568},{name:'phone',width:390,height:844},
@@ -41,7 +42,7 @@ async function controls(page,phase,modified){
 }
 async function shot(page,name){
  await page.locator('#play-content img').evaluateAll(async els=>{await Promise.all(els.map(e=>e.decode()));await new Promise(requestAnimationFrame);await new Promise(requestAnimationFrame)});
- await page.screenshot({path:'artifacts/quip-mobile-layout/task007b-'+name+'.png'});
+ await capture(page,{path:'artifacts/quip-mobile-layout/task007b-'+name+'.png'});
 }
 const expire=page=>page.evaluate(()=>{game.current.deadline=Date.now()-1;tick()});
 module.exports=async function outcomes(browser,url){

@@ -1,4 +1,5 @@
 'use strict';
+const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const devices=[{name:'narrow',width:320,height:568},{name:'phone',width:390,height:844},
@@ -21,7 +22,7 @@ async function shot(page,name){
  await page.waitForFunction(()=>!document.getElementById("toast").classList.contains("show"));
  await page.locator("#toast").evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{}))));
  await page.locator('#scene-setup,#scene-advanced').evaluateAll(async els=>{for(const el of els)await Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{})))});
- await page.screenshot({path:'artifacts/quip-mobile-layout/task007a-'+name+'.png'});
+ await capture(page,{path:'artifacts/quip-mobile-layout/task007a-'+name+'.png'});
 }
 module.exports=async function awardPolicy(browser,url){
  fs.mkdirSync('artifacts/quip-mobile-layout',{recursive:true});

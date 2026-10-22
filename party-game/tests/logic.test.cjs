@@ -25,7 +25,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
   };
   const context=vm.createContext({
     document,window:{confirm:()=>true},navigator:{vibrate(){}},
-    localStorage:{getItem:key=>existing.get(key)||null,setItem:(key,val)=>existing.set(key,val)},
+    localStorage:{getItem:key=>existing.has(key)?existing.get(key):null,setItem:(key,val)=>existing.set(key,val)},
     setInterval:()=>7,clearInterval(){},
     setTimeout:fn=>{pending.push(fn);return pending.length},
     clearTimeout(){},
@@ -722,8 +722,8 @@ test('typed source retains old playable words, songs, people and blitz constrain
   }
  }
  assert.equal(h.eval("getCardPool('blitz','hard').every(c=>c.difficulty==='easy'&&c.text.length<=12)"),true);
- assert.ok(read('index.html').includes('./cards.js?v=4'));
- assert.ok(read('sw.js').includes('./cards.js?v=4'));
+ assert.ok(read('index.html').includes('./cards.js?v=5'));
+ assert.ok(read('sw.js').includes('./cards.js?v=5'));
 });
 test('text-only saved rounds still restore unchanged after catalog migration',()=>{
  const saved=new Map(),a=harness(saved);
@@ -820,7 +820,7 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['approx-questions.js?v=4','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=2','round-planner.js?v=1','content-packs.js?v=6','presets.js?v=3','app.js?v=26']){
+ for(const file of ['approx-questions.js?v=5','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=2','round-planner.js?v=1','content-packs.js?v=7','presets.js?v=3','app.js?v=27']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
  assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);

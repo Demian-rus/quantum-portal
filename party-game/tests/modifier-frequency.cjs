@@ -1,4 +1,5 @@
 'use strict';
+const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const devices=[{name:'narrow',width:320,height:568},{name:'phone',width:390,height:844},{name:'desktop',width:1440,height:900}];
@@ -10,7 +11,7 @@ async function align(page){
 }
 async function shot(page,name){
  await align(page);await page.locator('#scene-advanced').evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{}))));
- await page.screenshot({path:'artifacts/quip-mobile-layout/task007c-'+name+'.png'});
+ await capture(page,{path:'artifacts/quip-mobile-layout/task007c-'+name+'.png'});
 }
 async function offlineUpgrade(browser,url){
  const path=require('node:path'),{execFileSync}=require('node:child_process');

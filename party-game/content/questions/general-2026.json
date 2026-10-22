@@ -1,0 +1,399 @@
+[
+  {
+    "id": "approx-8001",
+    "question": "Сколько карт в стандартной полной колоде без джокеров?",
+    "answer": "52",
+    "unit": "карты",
+    "difficulty": "easy",
+    "categories": [
+      "culture"
+    ],
+    "note": "Речь о 52-карточной колоде, а не о колоде для преферанса.",
+    "source": "https://bicyclecards.com/how-to-play/bingo",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8002",
+    "question": "Сколько игроков одной футбольной команды находится на поле при полном составе, включая вратаря?",
+    "answer": "11",
+    "unit": "игроков",
+    "difficulty": "easy",
+    "categories": [
+      "culture"
+    ],
+    "note": "По Правилам игры IFAB 2026/27; без удалений и временного ухода с поля.",
+    "source": "https://www.theifab.com/laws/latest/the-players/",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8003",
+    "question": "Сколько игроков одной команды одновременно на площадке в обычном баскетболе при полном составе?",
+    "answer": "5",
+    "unit": "игроков",
+    "difficulty": "easy",
+    "categories": [
+      "culture"
+    ],
+    "note": "Баскетбол 5×5, по правилам FIBA 2026; не формат 3×3.",
+    "source": "https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2026-v1-1.pdf",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8004",
+    "question": "Сколько клеток на обычном поле для крестиков-ноликов размером 3 на 3?",
+    "answer": "9",
+    "unit": "клеток",
+    "difficulty": "easy",
+    "categories": [
+      "general"
+    ],
+    "note": "3 ряда по 3 клетки.",
+    "source": "formula:3*3",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8005",
+    "question": "Сколько яиц в трёх полных десятках?",
+    "answer": "30",
+    "unit": "яиц",
+    "difficulty": "easy",
+    "categories": [
+      "general"
+    ],
+    "note": "",
+    "source": "formula:3*10",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8006",
+    "question": "Сколько крыльев у взрослой стрекозы?",
+    "answer": "4",
+    "unit": "крыла",
+    "difficulty": "easy",
+    "categories": [
+      "nature",
+      "animals"
+    ],
+    "note": "Две пары крыльев.",
+    "source": "https://www.nhm.ac.uk/discover/dragonflies-the-ultimate-hunters.html",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8007",
+    "question": "Какой по счёту от Солнца является Земля?",
+    "answer": "3",
+    "unit": "планета",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "",
+    "source": "https://science.nasa.gov/earth/facts/",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8008",
+    "question": "Сколько нулей в десятичной записи числа один миллион?",
+    "answer": "6",
+    "unit": "нулей",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "1 000 000.",
+    "source": "formula:6",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8009",
+    "question": "Сколько букв в современном русском алфавите, включая ё?",
+    "answer": "33",
+    "unit": "буквы",
+    "difficulty": "easy",
+    "categories": [
+      "culture"
+    ],
+    "note": "Ё считается отдельной буквой.",
+    "source": "https://gramota.ru/biblioteka/slovari/slovar-9/russkiy-alfavit-172",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8010",
+    "question": "Сколько миллиметров в одном сантиметре?",
+    "answer": "10",
+    "unit": "мм",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "Сантиметр — 10⁻² м, миллиметр — 10⁻³ м.",
+    "source": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8011",
+    "question": "В каком году торжественно открыли Статую Свободы в Нью-Йорке?",
+    "answer": "1886",
+    "unit": "год",
+    "difficulty": "medium",
+    "categories": [
+      "history",
+      "geography"
+    ],
+    "note": "28 октября 1886 года.",
+    "source": "https://www.nps.gov/stli/",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8012",
+    "question": "В каком году в Афинах прошли первые Олимпийские игры современности?",
+    "answer": "1896",
+    "unit": "год",
+    "difficulty": "medium",
+    "categories": [
+      "history",
+      "culture"
+    ],
+    "note": "",
+    "source": "https://www.olympics.com/en/olympic-games/athens-1896",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8013",
+    "question": "Сколько белых пешек стоит на доске в начальной позиции обычных шахмат?",
+    "answer": "8",
+    "unit": "пешек",
+    "difficulty": "medium",
+    "categories": [
+      "culture"
+    ],
+    "note": "У каждого цвета по восемь пешек.",
+    "source": "https://handbook.fide.com/chapter/e012023",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8014",
+    "question": "Сколько фигур и пешек обоих цветов вместе в начальной позиции обычных шахмат?",
+    "answer": "32",
+    "unit": "штуки",
+    "difficulty": "medium",
+    "categories": [
+      "culture"
+    ],
+    "note": "По 16 у каждой стороны; пешки включены в подсчёт.",
+    "source": "https://handbook.fide.com/chapter/e012023",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8015",
+    "question": "Сколько квадратных метров в одном гектаре?",
+    "answer": "10000",
+    "unit": "м²",
+    "difficulty": "medium",
+    "categories": [
+      "geography",
+      "science"
+    ],
+    "note": "Квадрат со стороной 100 метров.",
+    "source": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8016",
+    "question": "Сколько минут в полутора сутках?",
+    "answer": "2160",
+    "unit": "минут",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "note": "",
+    "source": "formula:1.5*24*60",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8017",
+    "question": "На сколько кусков разделят четыре пирога, если каждый нарезать на шесть равных частей?",
+    "answer": "24",
+    "unit": "куска",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "note": "",
+    "source": "formula:4*6",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8018",
+    "question": "В каком году состоялось торжественное открытие Суэцкого канала для судоходства?",
+    "answer": "1869",
+    "unit": "год",
+    "difficulty": "medium",
+    "categories": [
+      "history",
+      "geography"
+    ],
+    "note": "17 ноября 1869 года; не более позднее расширение канала.",
+    "source": "https://www.suezcanal.gov.eg/English/About/SuezCanal/Pages/CanalHistory.aspx",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8019",
+    "question": "Сколько минут длится основное время обычного футбольного матча без перерыва и добавленного времени?",
+    "answer": "90",
+    "unit": "минут",
+    "difficulty": "medium",
+    "categories": [
+      "culture"
+    ],
+    "note": "Два тайма по 45 минут; по IFAB 2026/27, без сокращения регламентом.",
+    "source": "https://www.theifab.com/laws/latest/the-duration-of-the-match/",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8020",
+    "question": "Сколько граммов сахара в пакете массой 2,5 килограмма?",
+    "answer": "2500",
+    "unit": "г",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "note": "",
+    "source": "formula:2.5*1000",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8021",
+    "question": "Скольким метрам точно равна международная морская миля?",
+    "answer": "1852",
+    "unit": "м",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "note": "Международное определение; не сухопутная миля.",
+    "source": "https://www.noaa.gov/maritime-zones-and-boundaries",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8022",
+    "question": "Сколько секунд в 365 сутках, если каждые сутки считать ровно по 24 часа?",
+    "answer": "31536000",
+    "unit": "секунд",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "Модельный невисокосный год без добавочных секунд.",
+    "source": "formula:365*24*60*60",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8023",
+    "question": "Сколько костяшек в полном обычном наборе домино «дубль-шесть»?",
+    "answer": "28",
+    "unit": "костяшек",
+    "difficulty": "hard",
+    "categories": [
+      "culture"
+    ],
+    "note": "Все неупорядоченные пары значений от 0 до 6, включая дубли.",
+    "source": "formula:7*8/2",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8024",
+    "question": "Чему равна диагональ прямоугольного экрана со сторонами 30 и 40 сантиметров?",
+    "answer": "50",
+    "unit": "см",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "По теореме Пифагора.",
+    "source": "formula:Math.sqrt(30**2+40**2)",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8025",
+    "question": "Сколько миллилитров сиропа в 750 мл напитка, если сироп занимает одну пятую объёма?",
+    "answer": "150",
+    "unit": "мл",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "note": "Объёмы считаются аддитивными; условие задачи.",
+    "source": "formula:750/5",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8026",
+    "question": "В каком году Эйфелева башня впервые открылась для посетителей?",
+    "answer": "1889",
+    "unit": "год",
+    "difficulty": "hard",
+    "categories": [
+      "history",
+      "geography"
+    ],
+    "note": "Открытие для публики — 15 мая 1889 года.",
+    "source": "https://www.toureiffel.paris/en/news/events/eiffel-tower-turns-120",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8027",
+    "question": "Сколько суток прошло с начала невисокосного года к концу 30 апреля включительно?",
+    "answer": "120",
+    "unit": "суток",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "note": "",
+    "source": "formula:31+28+31+30",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8028",
+    "question": "Сколько тонн составляет ровно миллион килограммов?",
+    "answer": "1000",
+    "unit": "тонн",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "Одна тонна равна 1000 кг.",
+    "source": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8029",
+    "question": "На сколько градусов поворачивается минутная стрелка исправных часов за 17 минут?",
+    "answer": "102",
+    "unit": "°",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "note": "",
+    "source": "formula:360*17/60",
+    "pack": "approx-general-2026"
+  },
+  {
+    "id": "approx-8030",
+    "question": "Какова высота Статуи Свободы от земли до кончика факела вместе с постаментом, округлённая до целого метра?",
+    "answer": "93",
+    "unit": "м",
+    "difficulty": "hard",
+    "categories": [
+      "geography",
+      "culture"
+    ],
+    "note": "В таблице NPS указано 92,99 м; сама статуя без постамента ниже.",
+    "source": "https://www.nps.gov/stli/learn/historyculture/statue-statistics.htm",
+    "pack": "approx-general-2026"
+  }
+]

@@ -1,0 +1,2538 @@
+[
+  {
+    "id": "person-000001",
+    "text": "ЧЕБУРАШКА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000002",
+    "text": "КРОКОДИЛ ГЕНА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000003",
+    "text": "ШРЕК",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000004",
+    "text": "ОСЁЛ ИЗ ШРЕКА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000005",
+    "text": "КОТ В САПОГАХ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000006",
+    "text": "ГАРРИ ПОТТЕР",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000007",
+    "text": "ГЕРМИОНА ГРЕЙНДЖЕР",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000008",
+    "text": "РОН УИЗЛИ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000009",
+    "text": "ВОЛАН-ДЕ-МОРТ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000010",
+    "text": "ЧЕЛОВЕК-ПАУК",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000011",
+    "text": "БЭТМЕН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000012",
+    "text": "СУПЕРМЕН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000013",
+    "text": "ХАЛК",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000014",
+    "text": "ЖЕЛЕЗНЫЙ ЧЕЛОВЕК",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000015",
+    "text": "ДАРТ ВЕЙДЕР",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000016",
+    "text": "ЙОДА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000017",
+    "text": "МИККИ МАУС",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000018",
+    "text": "МИННИ МАУС",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000019",
+    "text": "ГУБКА БОБ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000020",
+    "text": "ПАТРИК СТАР",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000021",
+    "text": "ТОМ И ДЖЕРРИ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000022",
+    "text": "ВИННИ-ПУХ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000023",
+    "text": "ПЯТАЧОК",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000024",
+    "text": "ОСЛИК ИА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000025",
+    "text": "КАРЛСОН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000026",
+    "text": "БУРАТИНО",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000027",
+    "text": "МАЛЬВИНА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000028",
+    "text": "ПЬЕРО",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000029",
+    "text": "КАРАБАС-БАРАБАС",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000030",
+    "text": "БАБА-ЯГА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000031",
+    "text": "КОЩЕЙ БЕССМЕРТНЫЙ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000032",
+    "text": "ДЕД МОРОЗ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000033",
+    "text": "СНЕГУРОЧКА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000034",
+    "text": "ЗОЛУШКА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000035",
+    "text": "БЕЛОСНЕЖКА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000036",
+    "text": "РАПУНЦЕЛЬ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000037",
+    "text": "ЭЛЬЗА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000038",
+    "text": "РУСАЛОЧКА АРИЭЛЬ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000039",
+    "text": "СИМБА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000040",
+    "text": "ТИМОН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000041",
+    "text": "ПУМБА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000042",
+    "text": "МАУГЛИ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000043",
+    "text": "БАГИРА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000044",
+    "text": "БАЛУ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000045",
+    "text": "БАРБИ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000046",
+    "text": "КЕН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000047",
+    "text": "МАРИО",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000048",
+    "text": "ЛУИДЖИ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000049",
+    "text": "СОНИК",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000050",
+    "text": "ПИКАЧУ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000051",
+    "text": "СВИНКА ПЕППА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000052",
+    "text": "МАША И МЕДВЕДЬ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000053",
+    "text": "КРОШ ИЗ СМЕШАРИКОВ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000054",
+    "text": "ЛУНТИК",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000055",
+    "text": "НЕЗНАЙКА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000056",
+    "text": "АЙБОЛИТ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000057",
+    "text": "КОЛОБОК",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000058",
+    "text": "РОБИН ГУД",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000059",
+    "text": "ШЕРЛОК ХОЛМС",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000060",
+    "text": "ДЖЕК ВОРОБЕЙ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000061",
+    "text": "ТЕРМИНАТОР",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000062",
+    "text": "ДЖЕЙМС БОНД",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000063",
+    "text": "ИНДИАНА ДЖОНС",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000064",
+    "text": "ЮРИЙ ГАГАРИН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000065",
+    "text": "АЛЕКСАНДР ПУШКИН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000066",
+    "text": "АЛЬБЕРТ ЭЙНШТЕЙН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000067",
+    "text": "ЛЕОНАРДО ДА ВИНЧИ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000068",
+    "text": "НАПОЛЕОН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000069",
+    "text": "КЛЕОПАТРА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000070",
+    "text": "ЧАРЛИ ЧАПЛИН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000071",
+    "text": "МАЙКЛ ДЖЕКСОН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000072",
+    "text": "ФРЕДДИ МЕРКЬЮРИ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000073",
+    "text": "АЛЛА ПУГАЧЁВА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000074",
+    "text": "ФИЛИПП КИРКОРОВ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000075",
+    "text": "НИКОЛАЙ БАСКОВ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000076",
+    "text": "ГРИГОРИЙ ЛЕПС",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000077",
+    "text": "ПОЛИНА ГАГАРИНА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000078",
+    "text": "ДИМА БИЛАН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000079",
+    "text": "ЕГОР КРИД",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000080",
+    "text": "БАСТА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000081",
+    "text": "ТИМАТИ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000082",
+    "text": "СЕРГЕЙ ШНУРОВ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000083",
+    "text": "ВИКТОР ЦОЙ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000084",
+    "text": "ЗЕМФИРА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000085",
+    "text": "ЮРИЙ ШАТУНОВ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000086",
+    "text": "ТЕЙЛОР СВИФТ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000087",
+    "text": "БИЛЛИ АЙЛИШ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000088",
+    "text": "ЛЕДИ ГАГА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000089",
+    "text": "РИАННА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000090",
+    "text": "БРИТНИ СПИРС",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000091",
+    "text": "МАДОННА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000092",
+    "text": "ДЖАСТИН БИБЕР",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000093",
+    "text": "АРИАНА ГРАНДЕ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000094",
+    "text": "КРИШТИАНУ РОНАЛДУ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000095",
+    "text": "ЛИОНЕЛЬ МЕССИ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000096",
+    "text": "ДЭВИД БЕКХЭМ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000097",
+    "text": "МАЙК ТАЙСОН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000098",
+    "text": "МУХАММЕД АЛИ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000099",
+    "text": "УСЭЙН БОЛТ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000100",
+    "text": "ИЛОН МАСК",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000101",
+    "text": "СТИВ ДЖОБС",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000102",
+    "text": "БИЛЛ ГЕЙТС",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000103",
+    "text": "ХАН СОЛО",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000104",
+    "text": "ЛЮК СКАЙУОКЕР",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000105",
+    "text": "ПРИНЦЕССА ЛЕЯ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000106",
+    "text": "ОБИ-ВАН КЕНОБИ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000107",
+    "text": "ГРУТ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000108",
+    "text": "ЧЁРНАЯ ВДОВА",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000109",
+    "text": "КАПИТАН АМЕРИКА",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000110",
+    "text": "ДОКТОР СТРЭНДЖ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000111",
+    "text": "ЛОКИ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000112",
+    "text": "ТОР",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000113",
+    "text": "ДЖОКЕР",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000114",
+    "text": "ХАРЛИ КВИНН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000115",
+    "text": "ДЭДПУЛ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000116",
+    "text": "РОСОМАХА",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000117",
+    "text": "ПРОФЕССОР ИКС",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000118",
+    "text": "МАГНЕТО",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000119",
+    "text": "ГЭНДАЛЬФ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000120",
+    "text": "ФРОДО БЭГГИНС",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000121",
+    "text": "ЛЕГОЛАС",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000122",
+    "text": "ГОЛЛУМ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000123",
+    "text": "ГЕРАЛЬТ ИЗ РИВИИ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000124",
+    "text": "ЦИРИ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000125",
+    "text": "ЙЕННИФЭР",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000126",
+    "text": "УЭНСДЕЙ АДДАМС",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000127",
+    "text": "МОРТИША АДДАМС",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000128",
+    "text": "ДРАКУЛА",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000129",
+    "text": "ФРАНКЕНШТЕЙН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000130",
+    "text": "ГОДЗИЛЛА",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000131",
+    "text": "КИНГ-КОНГ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000132",
+    "text": "КАПИТАН НЕМО",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000133",
+    "text": "ДОКТОР ВАТСОН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000134",
+    "text": "ПИТЕР ПЭН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000135",
+    "text": "АЛИСА ИЗ СТРАНЫ ЧУДЕС",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000136",
+    "text": "ЧЕШИРСКИЙ КОТ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000137",
+    "text": "БЕЗУМНЫЙ ШЛЯПНИК",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000138",
+    "text": "МЭРИ ПОППИНС",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000139",
+    "text": "ГРИНЧ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000140",
+    "text": "СКРУДЖ МАКДАК",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000141",
+    "text": "ДОНАЛЬД ДАК",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000142",
+    "text": "ГОМЕР СИМПСОН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000143",
+    "text": "БАРТ СИМПСОН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000144",
+    "text": "ЭРИК КАРТМАН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000145",
+    "text": "РИК САНЧЕС",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000146",
+    "text": "МОРТИ СМИТ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000147",
+    "text": "НАРУТО УЗУМАКИ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000148",
+    "text": "САСКЕ УЧИХА",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000149",
+    "text": "САЙТАМА",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000150",
+    "text": "ПЕППИ ДЛИННЫЙЧУЛОК",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000151",
+    "text": "МАЛЕНЬКИЙ ПРИНЦ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000152",
+    "text": "ОСТАП БЕНДЕР",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000153",
+    "text": "ЧИЧИКОВ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000154",
+    "text": "РАСКОЛЬНИКОВ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000155",
+    "text": "НАТАША РОСТОВА",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000156",
+    "text": "РОМЕО",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000157",
+    "text": "ДЖУЛЬЕТТА",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000158",
+    "text": "ГАМЛЕТ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000159",
+    "text": "КОТ МАТРОСКИН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000160",
+    "text": "ПОЧТАЛЬОН ПЕЧКИН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000161",
+    "text": "ЧЕЛОВЕК-НЕВИДИМКА",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000162",
+    "text": "ВИНСЕНТ ВАН ГОГ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000163",
+    "text": "САЛЬВАДОР ДАЛИ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000164",
+    "text": "ФРИДА КАЛО",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000165",
+    "text": "ИСААК НЬЮТОН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000166",
+    "text": "ДМИТРИЙ МЕНДЕЛЕЕВ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000167",
+    "text": "НИКОЛА ТЕСЛА",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000168",
+    "text": "ЧАРЛЬЗ ДАРВИН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000169",
+    "text": "МАРИЯ КЮРИ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000170",
+    "text": "СТИВЕН ХОКИНГ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000171",
+    "text": "МИХАИЛ ЛОМОНОСОВ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000172",
+    "text": "ПЁТР ПЕРВЫЙ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000173",
+    "text": "ЕКАТЕРИНА ВТОРАЯ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000174",
+    "text": "АЛЕКСАНДР МАКЕДОНСКИЙ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000175",
+    "text": "МАРКО ПОЛО",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000176",
+    "text": "ХРИСТОФОР КОЛУМБ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000177",
+    "text": "ВОЛЬФГАНГ АМАДЕЙ МОЦАРТ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000178",
+    "text": "ЛЮДВИГ ВАН БЕТХОВЕН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000179",
+    "text": "ПЁТР ЧАЙКОВСКИЙ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000180",
+    "text": "СЕРГЕЙ ЕСЕНИН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000181",
+    "text": "ВЛАДИМИР МАЯКОВСКИЙ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000182",
+    "text": "ЛЕВ ТОЛСТОЙ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000183",
+    "text": "ФЁДОР ДОСТОЕВСКИЙ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000184",
+    "text": "АНТОН ЧЕХОВ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000185",
+    "text": "УИЛЬЯМ ШЕКСПИР",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000186",
+    "text": "ДЖОРДЖ ЛУКАС",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000187",
+    "text": "СТИВЕН СПИЛБЕРГ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000188",
+    "text": "КВЕНТИН ТАРАНТИНО",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000189",
+    "text": "КРИСТОФЕР НОЛАН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000190",
+    "text": "РОБЕРТ ДАУНИ-МЛАДШИЙ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000191",
+    "text": "ДЖОННИ ДЕПП",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000192",
+    "text": "ЛЕОНАРДО ДИ КАПРИО",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000193",
+    "text": "КИАНУ РИВЗ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000194",
+    "text": "ДЖЕКИ ЧАН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000195",
+    "text": "АРНОЛЬД ШВАРЦЕНЕГГЕР",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000196",
+    "text": "СИЛЬВЕСТР СТАЛЛОНЕ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000197",
+    "text": "ДУЭЙН ДЖОНСОН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000198",
+    "text": "МАКОЛЕЙ КАЛКИН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000199",
+    "text": "МОРГЕНШТЕРН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000200",
+    "text": "МАКС КОРЖ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000201",
+    "text": "ОКСИМИРОН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000202",
+    "text": "СКРИПТОНИТ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000203",
+    "text": "НЮША",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000204",
+    "text": "МАКSИМ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000205",
+    "text": "АНИ ЛОРАК",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000206",
+    "text": "АННА АСТИ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000207",
+    "text": "СЕВЕРУС СНЕГГ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000208",
+    "text": "БЕЛЛАТРИСА ЛЕСТРЕЙНДЖ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000209",
+    "text": "ДРАКО МАЛФОЙ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000210",
+    "text": "СИРИУС БЛЭК",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000211",
+    "text": "РИМУС ЛЮПИН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000212",
+    "text": "МИНЕРВА МАКГОНАГАЛЛ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000213",
+    "text": "АЛЬБУС ДАМБЛДОР",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000214",
+    "text": "ДОББИ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000215",
+    "text": "НЬЮТ САЛАМАНДЕР",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000216",
+    "text": "САРУМАН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000217",
+    "text": "БОРОМИР",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000218",
+    "text": "ФАРАМИР",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000219",
+    "text": "АРАГОРН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000220",
+    "text": "АРВЕН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000221",
+    "text": "ГАЛАДРИЭЛЬ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000222",
+    "text": "ЭОМЕР",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000223",
+    "text": "ТЕОДЕН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000224",
+    "text": "САУРОН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000225",
+    "text": "АСОКА ТАНО",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000226",
+    "text": "ПАДМЕ АМИДАЛА",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000227",
+    "text": "КАЙЛО РЕН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000228",
+    "text": "БОБА ФЕТТ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000229",
+    "text": "МАНДАЛОРЕЦ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000230",
+    "text": "ТАНОС",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000231",
+    "text": "ВИЖН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000232",
+    "text": "АЛАЯ ВЕДЬМА",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000233",
+    "text": "НИК ФЬЮРИ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000234",
+    "text": "ШУРИ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000235",
+    "text": "ЗЕЛЁНЫЙ ГОБЛИН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000236",
+    "text": "ДОКТОР ОСЬМИНОГ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000237",
+    "text": "МИСТЕР БИН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000238",
+    "text": "ЭММЕТТ БРАУН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000239",
+    "text": "МАРТИ МАКФЛАЙ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000240",
+    "text": "УОЛТЕР УАЙТ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000241",
+    "text": "ДЖЕССИ ПИНКМАН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000242",
+    "text": "СОЛ ГУДМАН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000243",
+    "text": "ТАЙЛЕР ДЁРДЕН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000244",
+    "text": "ФОРРЕСТ ГАМП",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000245",
+    "text": "РЕТТ БАТЛЕР",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000246",
+    "text": "СКАРЛЕТТ О'ХАРА",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000247",
+    "text": "ГАННИБАЛ ЛЕКТЕР",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000248",
+    "text": "ПРОФЕССОР МОРИАРТИ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000249",
+    "text": "ЭРКЮЛЬ ПУАРО",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000250",
+    "text": "МИСС МАРПЛ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000251",
+    "text": "БРИДЖИТ ДЖОНС",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000252",
+    "text": "ДОРИАН ГРЕЙ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000253",
+    "text": "ЖАН ВАЛЬЖАН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000254",
+    "text": "ЭДМОН ДАНТЕС",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000255",
+    "text": "ДОН КИХОТ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000256",
+    "text": "САНЧО ПАНСА",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000257",
+    "text": "КАПИТАН АХАВ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000258",
+    "text": "ДЖЕЙ ГЭТСБИ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000259",
+    "text": "УИНСТОН СМИТ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000260",
+    "text": "ГРЕГОР ЗАМЗА",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000261",
+    "text": "МАСТЕР ИЗ РОМАНА БУЛГАКОВА",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000262",
+    "text": "МАРГАРИТА ИЗ РОМАНА БУЛГАКОВА",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000263",
+    "text": "БЕГЕМОТ ИЗ РОМАНА БУЛГАКОВА",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000264",
+    "text": "ВОЛАНД",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000265",
+    "text": "КОРОВЬЕВ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000266",
+    "text": "АЗАЗЕЛЛО",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000267",
+    "text": "ПЬЕР БЕЗУХОВ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000268",
+    "text": "АНДРЕЙ БОЛКОНСКИЙ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000269",
+    "text": "ЕВГЕНИЙ ОНЕГИН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000270",
+    "text": "ТАТЬЯНА ЛАРИНА",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000271",
+    "text": "ГРИГОРИЙ ПЕЧОРИН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000272",
+    "text": "ОБЛОМОВ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000273",
+    "text": "МАНИЛОВ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000274",
+    "text": "ПЛЮШКИН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000275",
+    "text": "КАПИТАН ВРУНГЕЛЬ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000276",
+    "text": "БАРОН МЮНХГАУЗЕН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000277",
+    "text": "ЛАРА КРОФТ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000278",
+    "text": "НЭЙТАН ДРЕЙК",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000279",
+    "text": "КРАТОС",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000280",
+    "text": "АТРЕЙ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000281",
+    "text": "МАСТЕР ЧИФ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000282",
+    "text": "ГОРДОН ФРИМЕН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000283",
+    "text": "ГЛЭДОС",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000284",
+    "text": "ЭЛЛИ ИЗ THE LAST OF US",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000285",
+    "text": "ДЖОЭЛ ИЗ THE LAST OF US",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000286",
+    "text": "АРТУР МОРГАН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000287",
+    "text": "ДЖОН МАРСТОН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000288",
+    "text": "СИ-ДЖЕЙ ИЗ GTA",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000289",
+    "text": "ТРЕВОР ФИЛИПС",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000290",
+    "text": "АЛОЙ ИЗ HORIZON",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000291",
+    "text": "АЛАН ТЬЮРИНГ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000292",
+    "text": "АДА ЛАВЛЕЙС",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000293",
+    "text": "РИЧАРД ФЕЙНМАН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000294",
+    "text": "НИЛЬС БОР",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000295",
+    "text": "РОЗАЛИНД ФРАНКЛИН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000296",
+    "text": "АРТУР КОНАН ДОЙЛ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000297",
+    "text": "ДЖОРДЖ ОРУЭЛЛ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000298",
+    "text": "ФРАНЦ КАФКА",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000299",
+    "text": "ФРИДРИХ НИЦШЕ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000300",
+    "text": "СОКРАТ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000301",
+    "text": "ПЛАТОН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000302",
+    "text": "ИММАНУИЛ КАНТ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000303",
+    "text": "ЗИГМУНД ФРЕЙД",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000304",
+    "text": "КАРЛ ЮНГ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000305",
+    "text": "НИКОЛАЙ КОПЕРНИК",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000306",
+    "text": "ГАЛИЛЕО ГАЛИЛЕЙ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000307",
+    "text": "ИОГАНН КЕПЛЕР",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000308",
+    "text": "ЖАННА ДАРК",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000309",
+    "text": "МАРИЯ АНТУАНЕТТА",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000310",
+    "text": "АНДРЕЙ ТАРКОВСКИЙ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000311",
+    "text": "СЕРГЕЙ ЭЙЗЕНШТЕЙН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000312",
+    "text": "ЭНДИ УОРХОЛ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000313",
+    "text": "РЕНЕ МАГРИТТ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000314",
+    "text": "КАЗИМИР МАЛЕВИЧ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000315",
+    "text": "ВАСИЛИЙ КАНДИНСКИЙ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000316",
+    "text": "КЛОД МОНЕ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  },
+  {
+    "id": "person-000317",
+    "text": "ПОЛЬ ГОГЕН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "people"
+  }
+]

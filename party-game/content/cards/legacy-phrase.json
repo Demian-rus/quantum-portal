@@ -1,0 +1,3970 @@
+[
+  {
+    "id": "phrase-000001",
+    "text": "КРАСНЫЙ РЮКЗАК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000002",
+    "text": "ЖЁЛТЫЙ ДЖИП",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000003",
+    "text": "ПЕЧЁНАЯ КАРТОШКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000004",
+    "text": "КРУГЛЫЙ АРБУЗ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000005",
+    "text": "МЯГКАЯ ПОДУШКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000006",
+    "text": "ОТКРЫТАЯ ДВЕРЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000007",
+    "text": "ХОЛОДНЫЙ ДУШ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000008",
+    "text": "НОВЫЙ ГОД",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000009",
+    "text": "ДЕТСКИЙ УТРЕННИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000010",
+    "text": "ШКОЛЬНАЯ СТОЛОВАЯ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000011",
+    "text": "НОЧНОЙ КОСТЁР",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000012",
+    "text": "УТРЕННЯЯ ПРОБЕЖКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000013",
+    "text": "КОРОЛЕВСКАЯ КОРОНА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000014",
+    "text": "СЛОМАННЫЙ ВЕЛОСИПЕД",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000015",
+    "text": "ПЕРВЫЙ СНЕГ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000016",
+    "text": "ТОРТ СО СВЕЧКАМИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000017",
+    "text": "ПАРОВОЗ НА ВОКЗАЛЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000018",
+    "text": "МОРСКОЙ ПРИБОЙ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000019",
+    "text": "НЕУДОБНЫЕ БОТИНКИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000020",
+    "text": "НЕОЖИДАННЫЙ ПОДАРОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000021",
+    "text": "ПУШИСТЫЙ СВИТЕР",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000022",
+    "text": "НОВАЯ ПРИЧЁСКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000023",
+    "text": "ДЕТСКИЙ СМЕХ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000024",
+    "text": "ТЁПЛЫЙ ПЛЕД",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000025",
+    "text": "ГОРЯЧИЙ БУТЕРБРОД",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000026",
+    "text": "ЗЕЛЁНЫЙ ЧАЙ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000027",
+    "text": "ПОЛНАЯ ЛУНА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000028",
+    "text": "ГОРЯЧИЙ ПЕСОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000029",
+    "text": "СИЛЬНЫЙ ВЕТЕР",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000030",
+    "text": "ШУМНЫЙ ПРАЗДНИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000031",
+    "text": "ПОТЕРЯННЫЙ БИЛЕТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000032",
+    "text": "БОЛЬШАЯ ОЧЕРЕДЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000033",
+    "text": "СОЛНЕЧНЫЙ ЗАЙЧИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000034",
+    "text": "ТЁМНЫЕ ОЧКИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000035",
+    "text": "КАРМАННЫЕ ЧАСЫ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000036",
+    "text": "СПОРТИВНЫЙ КОСТЮМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000037",
+    "text": "ПОСЛЕДНИЙ ЗВОНОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000038",
+    "text": "ПЕРВЫЙ КЛАСС",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000039",
+    "text": "ЛЕТНИЕ КАНИКУЛЫ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000040",
+    "text": "ПРАЗДНИЧНЫЙ САЛЮТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000041",
+    "text": "ГОРЯЧИЙ ЧАЙ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000042",
+    "text": "ПЕРВЫЙ ПОЦЕЛУЙ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000043",
+    "text": "ТЁПЛОЕ ОДЕЯЛО",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000044",
+    "text": "ПОТЕРЯННЫЙ ТЕЛЕФОН",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000045",
+    "text": "ПОЕЗД В НОЧЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000046",
+    "text": "ВОЛШЕБНАЯ ПАЛОЧКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000047",
+    "text": "ЗОЛОТАЯ РЫБКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000048",
+    "text": "СИЛЬНЫЙ ДОЖДЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000049",
+    "text": "ПУШИСТЫЙ КОТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000050",
+    "text": "КРАСНЫЙ ШАРИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000051",
+    "text": "БОЛЬШАЯ ПИЦЦА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000052",
+    "text": "СВЕЖИЙ ХЛЕБ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000053",
+    "text": "ЗИМНИЙ ЛЕС",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000054",
+    "text": "ЗВЁЗДНОЕ НЕБО",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000055",
+    "text": "ДЕТСКИЙ САД",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000056",
+    "text": "ПОЛЁТ НА ЛУНУ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000057",
+    "text": "СЕМЕЙНОЕ ФОТО",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000058",
+    "text": "КОРОЛЕВСКИЙ ЗАМОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000059",
+    "text": "ВОЛШЕБНЫЙ ЛЕС",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000060",
+    "text": "СМЕШНОЙ КЛОУН",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000061",
+    "text": "СТАРЫЙ ЧЕМОДАН",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000062",
+    "text": "СЕКРЕТНОЕ ПИСЬМО",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000063",
+    "text": "ПЛЯЖНЫЙ ЗОНТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000064",
+    "text": "КОСМИЧЕСКИЙ КОРАБЛЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000065",
+    "text": "ШКОЛЬНЫЙ ЗВОНОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000066",
+    "text": "БЕЛЫЙ МЕДВЕДЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000067",
+    "text": "ВЕЛИКАЯ ПОБЕДА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000068",
+    "text": "МУЗЫКАЛЬНАЯ ШКАТУЛКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000069",
+    "text": "КОТЁНОК В КОРОБКЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000070",
+    "text": "НОЧНАЯ ПРОГУЛКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000071",
+    "text": "ГРОМКИЙ СМЕХ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000072",
+    "text": "СЛАДКАЯ ВАТА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000073",
+    "text": "СТИРАЛЬНАЯ МАШИНА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000074",
+    "text": "ЗУБНАЯ ЩЁТКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000075",
+    "text": "ДЕНЬ РОЖДЕНИЯ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000076",
+    "text": "УТРЕННИЙ КОФЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000077",
+    "text": "ЛЕТНИЙ ЛИВЕНЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000078",
+    "text": "ТИХИЙ ВЕЧЕР",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000079",
+    "text": "НОЧНОЙ КОШМАР",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000080",
+    "text": "ТЁПЛЫЙ ШАРФ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000081",
+    "text": "НОВЫЕ КРОССОВКИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000082",
+    "text": "ЗАБЫТЫЙ ЗОНТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000083",
+    "text": "ПУСТОЙ КОШЕЛЁК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000084",
+    "text": "КИСЛЫЙ ЛИМОН",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000085",
+    "text": "СЛАДКИЙ ПИРОГ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000086",
+    "text": "ГОРЯЧИЙ ШОКОЛАД",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000087",
+    "text": "ХРУСТЯЩИЙ ХЛЕБ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000088",
+    "text": "ЛЕДЯНОЙ ЛИМОНАД",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000089",
+    "text": "КРУГЛЫЙ СТОЛ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000090",
+    "text": "МЯГКОЕ КРЕСЛО",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000091",
+    "text": "КРАСИВАЯ ОТКРЫТКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000092",
+    "text": "ШУМНЫЙ ПОПУГАЙ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000093",
+    "text": "СПЯЩИЙ ЩЕНОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000094",
+    "text": "МАЛЕНЬКИЙ ЁЖ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000095",
+    "text": "ДИКИЙ КАБАН",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000096",
+    "text": "ВЕСЁЛЫЙ ПРАЗДНИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000097",
+    "text": "ШКОЛЬНЫЙ РЮКЗАК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000098",
+    "text": "ДОМАШНЕЕ ЗАДАНИЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000099",
+    "text": "ПОЛНЫЙ АВТОБУС",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000100",
+    "text": "ДЛИННАЯ ОЧЕРЕДЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000101",
+    "text": "КРАСНЫЙ СВЕТОФОР",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000102",
+    "text": "ПУСТАЯ УЛИЦА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000103",
+    "text": "ВЫСОКИЙ ЗАБОР",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000104",
+    "text": "ГЛУБОКИЙ КОЛОДЕЦ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000105",
+    "text": "СТАРЫЙ МОСТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000106",
+    "text": "ЛЕСНАЯ ТРОПИНКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000107",
+    "text": "ЛУННАЯ ДОРОЖКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000108",
+    "text": "ПЕСЧАНЫЙ ЗАМОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000109",
+    "text": "МОКРЫЕ НОСКИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000110",
+    "text": "СЛОМАННЫЙ ЗОНТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000111",
+    "text": "ВЕСЕННЯЯ КАПЕЛЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000112",
+    "text": "ОСЕННИЕ ЛИСТЬЯ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000113",
+    "text": "ЗИМНЯЯ РЫБАЛКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000114",
+    "text": "ЛЕТНЯЯ ГРОЗА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000115",
+    "text": "ГРОМКИЙ БУДИЛЬНИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000116",
+    "text": "КОШКА НА ПОДОКОННИКЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000117",
+    "text": "СОБАКА В ОЧКАХ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000118",
+    "text": "ЖИРАФ В ШАРФЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000119",
+    "text": "ПАНДА НА КАЧЕЛЯХ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000120",
+    "text": "ХОМЯК В КАРМАНЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000121",
+    "text": "ПИНГВИН НА ПЛЯЖЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000122",
+    "text": "ЛИСА В САПОГАХ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000123",
+    "text": "БЕЛКА С ОРЕХОМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000124",
+    "text": "СОВА С КНИГОЙ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000125",
+    "text": "МЕДВЕДЬ С МЁДОМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000126",
+    "text": "УТКА В ПРУДУ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000127",
+    "text": "ЧЕРЕПАХА В ШЛЯПЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000128",
+    "text": "ОБЕЗЬЯНА С БАНАНОМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000129",
+    "text": "КЕНГУРУ С РЮКЗАКОМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000130",
+    "text": "КОРОВА НА ЛУГУ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000131",
+    "text": "КРОЛИК В ШЛЯПЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000132",
+    "text": "ТИГР В КЛЕТКЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000133",
+    "text": "КРОКОДИЛ В ВАННЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000134",
+    "text": "ЁЖИК ПОД ДЕРЕВОМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000135",
+    "text": "ПЕТУХ НА ЗАБОРЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000136",
+    "text": "КОТ НА КРЫШЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000137",
+    "text": "ПОПУГАЙ НА ПЛЕЧЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000138",
+    "text": "СЛОН В ПОСУДНОЙ ЛАВКЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000139",
+    "text": "МЫШЬ ПОД ПОЛОМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000140",
+    "text": "ЛЯГУШКА НА ЛИСТЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000141",
+    "text": "ГУСЬ НА ДОРОГЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000142",
+    "text": "ЗАЙЧИК В КАПУСТЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000143",
+    "text": "ПЁС У БУДКИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000144",
+    "text": "КОЗА В ОГОРОДЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000145",
+    "text": "ЛОШАДЬ В СТОЙЛЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000146",
+    "text": "БАРАН У ВОРОТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000147",
+    "text": "РЫБКА В АКВАРИУМЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000148",
+    "text": "РАКУШКА НА БЕРЕГУ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000149",
+    "text": "БАБОЧКА НА ЦВЕТКЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000150",
+    "text": "УЛИТКА НА ЛИСТЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000151",
+    "text": "ПЧЕЛА В УЛЬЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000152",
+    "text": "МУРАВЕЙ С КРОШКОЙ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000153",
+    "text": "ДЯТЕЛ НА ДЕРЕВЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000154",
+    "text": "АИСТ НА КРЫШЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000155",
+    "text": "ВОРОНА НА ВЕТКЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000156",
+    "text": "ЗАБЫТЫЙ ПАРОЛЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000157",
+    "text": "МАЛЕНЬКАЯ ПОБЕДА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000158",
+    "text": "СЛОЖНАЯ ДИЛЕММА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000159",
+    "text": "КОСМИЧЕСКИЙ МУСОР",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000160",
+    "text": "ПОДВОДНАЯ ЭКСПЕДИЦИЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000161",
+    "text": "АВАРИЙНАЯ ПОСАДКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000162",
+    "text": "ЗАКРЫТЫЙ ПОКАЗ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000163",
+    "text": "НЕУДОБНАЯ ПАУЗА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000164",
+    "text": "ЛОЖНОЕ ВПЕЧАТЛЕНИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000165",
+    "text": "СЛОЖНЫЙ РАЗГОВОР",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000166",
+    "text": "КАРЬЕРНЫЙ РОСТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000167",
+    "text": "НОЧНАЯ ПЕРЕСАДКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000168",
+    "text": "ВИРТУАЛЬНЫЙ ПОМОЩНИК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000169",
+    "text": "ФЕЙКОВАЯ НОВОСТЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000170",
+    "text": "ПРОБНЫЙ ПЕРИОД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000171",
+    "text": "УДАЛЁННЫЙ ДОСТУП",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000172",
+    "text": "КОМАНДНАЯ РАБОТА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000173",
+    "text": "СЛУЧАЙНОЕ ЗНАКОМСТВО",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000174",
+    "text": "ГРУППОВОЕ ФОТО",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000175",
+    "text": "ВТОРАЯ ПОПЫТКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000176",
+    "text": "ДУРАЦКАЯ ШУТКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000177",
+    "text": "НЕПРИЯТНЫЙ РАЗГОВОР",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000178",
+    "text": "ВНЕЗАПНАЯ ПАНИКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000179",
+    "text": "ЭМОЦИОНАЛЬНАЯ ПОДДЕРЖКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000180",
+    "text": "ПАРАЛЛЕЛЬНАЯ ПАРКОВКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000181",
+    "text": "СТРАХ ВЫСОТЫ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000182",
+    "text": "ПРИНУДИТЕЛЬНАЯ ПОСАДКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000183",
+    "text": "ТАЙНАЯ ПЕРЕПИСКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000184",
+    "text": "НЕЛЕПАЯ СИТУАЦИЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000185",
+    "text": "НЕПРЕДВИДЕННЫЕ РАСХОДЫ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000186",
+    "text": "НЕОБЫЧНЫЙ ПОДАРОК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000187",
+    "text": "СЛУЧАЙНАЯ ОГОВОРКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000188",
+    "text": "БЕСПОЛЕЗНЫЙ СОВЕТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000189",
+    "text": "ПРОПАВШИЙ ЧЕМОДАН",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000190",
+    "text": "ФАЛЬШИВЫЙ АВТОГРАФ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000191",
+    "text": "ПОВТОРНЫЙ ЭКЗАМЕН",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000192",
+    "text": "НЕОБРАТИМЫЙ ПРОЦЕСС",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000193",
+    "text": "ЗАКРЫТАЯ ТЕРРИТОРИЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000194",
+    "text": "РЕЗКОЕ ТОРМОЖЕНИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000195",
+    "text": "ОПАСНЫЙ ПЕРЕКРЁСТОК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000196",
+    "text": "ЗАПАСНОЙ ПАРАШЮТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000197",
+    "text": "ПУТЕШЕСТВИЕ ВО ВРЕМЕНИ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000198",
+    "text": "НОЧНОЙ ОХРАННИК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000199",
+    "text": "НЕУДАЧНОЕ СВИДАНИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000200",
+    "text": "ЛИШНИЙ БИЛЕТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000201",
+    "text": "ЧУЖОЙ ЧЕМОДАН",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000202",
+    "text": "ТАЙНОЕ ОБЩЕСТВО",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000203",
+    "text": "СЕМЕЙНАЯ ТРАДИЦИЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000204",
+    "text": "ОПАСНЫЙ ПОВОРОТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000205",
+    "text": "БЕЗУМНАЯ ИДЕЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000206",
+    "text": "ПАРАЛЛЕЛЬНАЯ РЕАЛЬНОСТЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000207",
+    "text": "КОСМИЧЕСКИЙ ТУРИСТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000208",
+    "text": "ПОСЛЕДНИЙ ВАГОН",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000209",
+    "text": "СЛУЧАЙНЫЙ ПОПУТЧИК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000210",
+    "text": "ДВОЙНОЙ АГЕНТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000211",
+    "text": "БЕСКОНЕЧНЫЙ ЛАБИРИНТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000212",
+    "text": "ПОТЕРЯННОЕ ПОКОЛЕНИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000213",
+    "text": "МОЛЧАЛИВЫЙ СВИДЕТЕЛЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000214",
+    "text": "ТАЙНЫЙ ПОКЛОННИК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000215",
+    "text": "НЕВИДИМАЯ НИТЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000216",
+    "text": "НОВАЯ ПЛАНЕТА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000217",
+    "text": "ПОЛНОЧНЫЙ РАЗГОВОР",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000218",
+    "text": "ФАЛЬШИВАЯ УЛЫБКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000219",
+    "text": "ЗАКРЫТАЯ ВЕЧЕРИНКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000220",
+    "text": "БУМАЖНЫЙ САМОЛЁТИК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000221",
+    "text": "ШУМНЫЙ СОСЕД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000222",
+    "text": "ВЕЧНОЕ ОЖИДАНИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000223",
+    "text": "ЧУВСТВО ЮМОРА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000224",
+    "text": "НЕУДОБНЫЙ ВОПРОС",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000225",
+    "text": "ЛИЧНОЕ ПРОСТРАНСТВО",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000226",
+    "text": "ПРАВИЛО ТРЁХ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000227",
+    "text": "ВТОРОЙ ШАНС",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000228",
+    "text": "БОЛЬШОЙ ПАЛЕЦ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000229",
+    "text": "ПЯТОЕ КОЛЕСО",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000230",
+    "text": "ТРЕТИЙ ЛИШНИЙ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000231",
+    "text": "ЖЕЛЕЗНЫЕ НЕРВЫ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000232",
+    "text": "БЕЛАЯ ВОРОНА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000233",
+    "text": "ЗОЛОТЫЕ РУКИ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000234",
+    "text": "СЛОМАННЫЙ ТЕЛЕФОН",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000235",
+    "text": "ПОДВОДНАЯ ЛОДКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000236",
+    "text": "КОТ В МЕШКЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000237",
+    "text": "СЕВЕРНОЕ СИЯНИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000238",
+    "text": "ВИРТУАЛЬНАЯ РЕАЛЬНОСТЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000239",
+    "text": "МОРСКОЙ КОНЁК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000240",
+    "text": "ВОЗДУШНЫЙ ШАР",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000241",
+    "text": "ПОДЪЁМНЫЙ КРАН",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000242",
+    "text": "СЕМЕЙНЫЙ УЖИН",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000243",
+    "text": "СЛУЧАЙНАЯ ВСТРЕЧА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000244",
+    "text": "НОЧНОЙ ПОЕЗД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000245",
+    "text": "ПОТЕРЯННЫЙ КЛЮЧ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000246",
+    "text": "СРОЧНЫЙ ЗВОНОК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000247",
+    "text": "СЕКРЕТНЫЙ АГЕНТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000248",
+    "text": "РУЧНАЯ КЛАДЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000249",
+    "text": "ПОСАДОЧНЫЙ ТАЛОН",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000250",
+    "text": "ВЗЛЁТНАЯ ПОЛОСА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000251",
+    "text": "ПОЛИВОМОЕЧНАЯ МАШИНА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000252",
+    "text": "СУДЕБНЫЙ ПРИСТАВ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000253",
+    "text": "КАРНАВАЛЬНОЕ ШЕСТВИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000254",
+    "text": "НЕОЖИДАННЫЙ ГОСТЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000255",
+    "text": "ТАЙНАЯ КОМНАТА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000256",
+    "text": "ПУТАНЫЕ СЛЕДЫ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000257",
+    "text": "СЕКРЕТНЫЙ КОД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000258",
+    "text": "ПОТЕРЯННАЯ КАРТА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000259",
+    "text": "ТАИНСТВЕННЫЙ НЕЗНАКОМЕЦ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000260",
+    "text": "НЕЛЕПАЯ ОШИБКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000261",
+    "text": "ВНЕЗАПНАЯ ПРОВЕРКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000262",
+    "text": "ПРЕРВАННЫЙ РАЗГОВОР",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000263",
+    "text": "ЗАБЫТАЯ ВСТРЕЧА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000264",
+    "text": "ПОДДЕЛЬНЫЙ БИЛЕТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000265",
+    "text": "СОМНИТЕЛЬНАЯ СДЕЛКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000266",
+    "text": "НЕОЖИДАННАЯ НАХОДКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000267",
+    "text": "ВЫГОДНОЕ ПРЕДЛОЖЕНИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000268",
+    "text": "НАПРЯЖЁННОЕ ОЖИДАНИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000269",
+    "text": "ДОЛГОЖДАННОЕ ПИСЬМО",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000270",
+    "text": "СТАРЫЙ ЗНАКОМЫЙ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000271",
+    "text": "ПРИЗРАЧНЫЙ ШАНС",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000272",
+    "text": "ЗАПУТАННАЯ ИСТОРИЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000273",
+    "text": "ПОБЕГ ИЗ ЗАМКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000274",
+    "text": "ПОСЛЕДНИЙ ТАНЕЦ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000275",
+    "text": "СЛУЧАЙНЫЙ ПАРОЛЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000276",
+    "text": "ПЛАН ПОБЕГА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000277",
+    "text": "ПУСТОЙ ПЬЕДЕСТАЛ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000278",
+    "text": "СТЕКЛЯННЫЙ ЛАБИРИНТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000279",
+    "text": "НЕВИДИМЫЙ ВРАГ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000280",
+    "text": "СМЕШНОЕ СОВПАДЕНИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000281",
+    "text": "ГЛАВНАЯ РОЛЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000282",
+    "text": "ДВОЙНАЯ ЖИЗНЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000283",
+    "text": "СТРАШНАЯ ТАЙНА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000284",
+    "text": "ПОДЗЕМНЫЙ ХОД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000285",
+    "text": "ПАРОЛЬ ОТ СЕЙФА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000286",
+    "text": "СПОРТИВНЫЙ АЗАРТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000287",
+    "text": "ВТОРОЕ ДЫХАНИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000288",
+    "text": "РЕЗКАЯ ОСТАНОВКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000289",
+    "text": "ОТЛОЖЕННЫЙ ВЫЛЕТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000290",
+    "text": "ЧАС ПИК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000291",
+    "text": "НОЧНОЕ ДЕЖУРСТВО",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000292",
+    "text": "ПРЯМОЙ ЭФИР",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000293",
+    "text": "ЗАСТРЯВШИЙ ЛИФТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000294",
+    "text": "ЗАБЫТЫЙ ЧЕМОДАН",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000295",
+    "text": "ФАЛЬШИВЫЙ ПАСПОРТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000296",
+    "text": "ЗАПОЗДАВШИЙ ПОЕЗД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000297",
+    "text": "НЕПРАВИЛЬНЫЙ АДРЕС",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000298",
+    "text": "ТАИНСТВЕННЫЙ ЗВОНОК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000299",
+    "text": "ДВОЙНОЕ ДНО",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000300",
+    "text": "НЕЗВАНЫЙ ГОСТЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000301",
+    "text": "ТРЕВОЖНЫЙ ЧЕМОДАНЧИК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000302",
+    "text": "ПРОПАВШИЙ КОНВЕРТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000303",
+    "text": "ТАЙНОЕ УБЕЖИЩЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000304",
+    "text": "ПОДЗЕМНАЯ СТАНЦИЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000305",
+    "text": "ЗАБРОШЕННЫЙ ЗАВОД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000306",
+    "text": "ПОТЕРЯННЫЙ ДНЕВНИК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000307",
+    "text": "ПОДДЕЛЬНАЯ ПОДПИСЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000308",
+    "text": "СЕКРЕТНЫЙ ПРОХОД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000309",
+    "text": "ПОХИЩЕННАЯ КАРТИНА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000310",
+    "text": "НЕОЖИДАННЫЙ НАСЛЕДНИК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000311",
+    "text": "ЗАГАДОЧНАЯ ПОСЫЛКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000312",
+    "text": "ПОДВОДНЫЙ ТОННЕЛЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000313",
+    "text": "МАСКИРОВКА НА МЕСТНОСТИ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000314",
+    "text": "ВЫХОДНОЙ БЕЗ ТЕЛЕФОНА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000315",
+    "text": "ПОСЛЕДНИЙ ВОПРОС",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000316",
+    "text": "НЕВЕРОЯТНОЕ СОВПАДЕНИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000317",
+    "text": "СПАСАТЕЛЬНАЯ ОПЕРАЦИЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000318",
+    "text": "НОЧНОЙ ПЕРЕПОЛОХ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000319",
+    "text": "ПРОПУСК НА КОНЦЕРТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000320",
+    "text": "СЛОМАННЫЙ МИКРОФОН",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000321",
+    "text": "СЛУЧАЙНОЕ ИНТЕРВЬЮ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000322",
+    "text": "ПРОВАЛЬНОЕ ВЫСТУПЛЕНИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000323",
+    "text": "ПРОИГРАННОЕ ПАРИ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000324",
+    "text": "КОМАНДНЫЙ ДУХ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000325",
+    "text": "ПОЛОСА ПРЕПЯТСТВИЙ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000326",
+    "text": "РЕКОРДНАЯ СКОРОСТЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000327",
+    "text": "ПРОПАВШИЙ ЭКСКУРСОВОД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000328",
+    "text": "ПУТЕШЕСТВИЕ НАЛЕГКЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000329",
+    "text": "ЗАПАСНОЙ ВЫХОД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000330",
+    "text": "ПЕРВАЯ ПОМОЩЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000331",
+    "text": "ЛОЖНАЯ ТРЕВОГА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000332",
+    "text": "ПОДМЕНА ПОНЯТИЙ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000333",
+    "text": "СИСТЕМАТИЧЕСКАЯ ОШИБКА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000334",
+    "text": "КВАНТОВАЯ ЗАПУТАННОСТЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000335",
+    "text": "ЭФФЕКТ САМООБМАНА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000336",
+    "text": "ИСКАЖЕНИЕ ВОСПРИЯТИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000337",
+    "text": "ПАРАДОКС НАБЛЮДАТЕЛЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000338",
+    "text": "ФУНДАМЕНТАЛЬНАЯ ОШИБКА АТРИБУЦИИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000339",
+    "text": "ДВОЙНАЯ МОРАЛЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000340",
+    "text": "ТРАНСЦЕНДЕНТНЫЙ ОПЫТ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000341",
+    "text": "ПОСТОЯННАЯ ПЕРЕМЕННАЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000342",
+    "text": "ТОНКАЯ ГРАНЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000343",
+    "text": "ОТСРОЧЕННОЕ ВОЗНАГРАЖДЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000344",
+    "text": "СКРЫТАЯ ПРИЧИНА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000345",
+    "text": "СЛУЧАЙНЫЙ ФАКТОР",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000346",
+    "text": "СОЦИАЛЬНЫЙ КОНСТРУКТ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000347",
+    "text": "КУЛЬТУРНЫЙ РЕЛЯТИВИЗМ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000348",
+    "text": "ПРОВАЛЬНАЯ АРГУМЕНТАЦИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000349",
+    "text": "ПРЕЗУМПЦИЯ НЕВИНОВНОСТИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000350",
+    "text": "АБСТРАКТНОЕ МЫШЛЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000351",
+    "text": "КРИТИЧЕСКОЕ МЫШЛЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000352",
+    "text": "ЛОЖНАЯ ПРИЧИННОСТЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000353",
+    "text": "НЕОБЫЧНАЯ АЛЛЮЗИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000354",
+    "text": "ВЫУЧЕННАЯ БЕСПОМОЩНОСТЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000355",
+    "text": "ВНУТРЕННИЙ КОНФЛИКТ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000356",
+    "text": "НЕЯВНОЕ ПРЕДПОЛОЖЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000357",
+    "text": "СИЛА ПРИВЫЧКИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000358",
+    "text": "КОГНИТИВНАЯ НАГРУЗКА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000359",
+    "text": "ЭФФЕКТ ПРИСУТСТВИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000360",
+    "text": "САМООСУЩЕСТВЛЯЮЩЕЕСЯ ПРОРОЧЕСТВО",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000361",
+    "text": "ОШИБКА ВЫЖИВШЕГО",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000362",
+    "text": "ВНУТРЕННИЙ КРИТИК",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000363",
+    "text": "АЛЬТЕРНАТИВНАЯ РЕАЛЬНОСТЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000364",
+    "text": "КРИЗИС ИДЕНТИЧНОСТИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000365",
+    "text": "ПАРАДОКС ВЫБОРА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000366",
+    "text": "НЕОПРЕДЕЛЁННЫЙ РЕЗУЛЬТАТ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000367",
+    "text": "ЗАМКНУТЫЙ ЦИКЛ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000368",
+    "text": "НЕЛИНЕЙНАЯ ЗАВИСИМОСТЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000369",
+    "text": "ДИНАМИЧЕСКОЕ РАВНОВЕСИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000370",
+    "text": "СМЕНА ПАРАДИГМЫ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000371",
+    "text": "ТЕХНИЧЕСКИЙ ДОЛГ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000372",
+    "text": "ЭФФЕКТ ЛОЖНОЙ ПАМЯТИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000373",
+    "text": "КУЛЬТ ЛИЧНОСТИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000374",
+    "text": "ГЛОБАЛЬНЫЙ КРИЗИС",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000375",
+    "text": "ТЕОРИЯ ВЕРОЯТНОСТЕЙ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000376",
+    "text": "АЛЬТЕРНАТИВНАЯ ИСТОРИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000377",
+    "text": "ПУБЛИЧНОЕ ПРИЗНАНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000378",
+    "text": "МОРАЛЬНЫЙ ВЫБОР",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000379",
+    "text": "ЛОЖНОЕ ОБВИНЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000380",
+    "text": "ДВОЙНЫЕ СТАНДАРТЫ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000381",
+    "text": "ЭМОЦИОНАЛЬНЫЕ КАЧЕЛИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000382",
+    "text": "ПОЛИТИЧЕСКИЙ КОМПРОМИСС",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000383",
+    "text": "БЕЗУСЛОВНЫЙ РЕФЛЕКС",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000384",
+    "text": "СОЦИАЛЬНЫЙ ЭКСПЕРИМЕНТ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000385",
+    "text": "КОЛЛЕКТИВНОЕ БЕССОЗНАТЕЛЬНОЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000386",
+    "text": "ИСКУССТВО ПЕРЕГОВОРОВ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000387",
+    "text": "МНИМОЕ ПРЕВОСХОДСТВО",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000388",
+    "text": "ОБРАТНЫЙ ОТСЧЁТ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000389",
+    "text": "НЕОЖИДАННОЕ СОВПАДЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000390",
+    "text": "СЛОЖНЫЙ МОРАЛЬНЫЙ ВЫБОР",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000391",
+    "text": "СТРАХ НЕИЗВЕСТНОСТИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000392",
+    "text": "ФИЛОСОФСКИЙ КАМЕНЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000393",
+    "text": "КРАСОТА НЕСОВЕРШЕНСТВА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000394",
+    "text": "ПУТЕШЕСТВИЕ БЕЗ ЦЕЛИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000395",
+    "text": "ЗАГАДОЧНОЕ ИСЧЕЗНОВЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000396",
+    "text": "НЕУМЕСТНАЯ ИРОНИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000397",
+    "text": "ВЕЧНАЯ ДИЛЕММА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000398",
+    "text": "КВАНТОВЫЙ СКАЧОК",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000399",
+    "text": "ЭФФЕКТ ДЕЖАВЮ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000400",
+    "text": "КОГНИТИВНЫЙ ДИССОНАНС",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000401",
+    "text": "ТЕОРИЯ ЗАГОВОРА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000402",
+    "text": "КРИЗИС ЖАНРА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000403",
+    "text": "ЭФФЕКТ БАБОЧКИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000404",
+    "text": "ИРОНИЯ СУДЬБЫ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000405",
+    "text": "ЧЁРНАЯ ДЫРА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000406",
+    "text": "ТЁМНАЯ МАТЕРИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000407",
+    "text": "ПАРАЛЛЕЛЬНАЯ ВСЕЛЕННАЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000408",
+    "text": "ПЕТЛЯ ВРЕМЕНИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000409",
+    "text": "ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000410",
+    "text": "МАШИНА ВРЕМЕНИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000411",
+    "text": "КРАСНАЯ СЕЛЬДЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000412",
+    "text": "ПИРРОВА ПОБЕДА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000413",
+    "text": "АХИЛЛЕСОВА ПЯТА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000414",
+    "text": "СИЗИФОВ ТРУД",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000415",
+    "text": "ТРОЯНСКИЙ КОНЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000416",
+    "text": "ДАМОКЛОВ МЕЧ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000417",
+    "text": "ЯЩИК ПАНДОРЫ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000418",
+    "text": "ГОРДИЕВ УЗЕЛ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000419",
+    "text": "ПАЛКА О ДВУХ КОНЦАХ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000420",
+    "text": "ГЛАС ВОПИЮЩЕГО",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000421",
+    "text": "ИЛЛЮЗИЯ ВЫБОРА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000422",
+    "text": "ДВОЙНОЕ ОСЛЕПЛЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000423",
+    "text": "ТРОФИЧЕСКАЯ ЦЕПЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000424",
+    "text": "ИНВАЗИВНЫЙ ВИД",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000425",
+    "text": "КОГНИТИВНАЯ ЛОВУШКА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000426",
+    "text": "ЭТИЧЕСКАЯ ДИЛЕММА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000427",
+    "text": "МОРАЛЬНАЯ ОТВЕТСТВЕННОСТЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000428",
+    "text": "ПРЕДВЗЯТОЕ СУЖДЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000429",
+    "text": "НЕОСОЗНАННЫЙ МОТИВ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000430",
+    "text": "ОБРАТНАЯ СВЯЗЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000431",
+    "text": "ПАРАЛЛЕЛЬНАЯ ИСТОРИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000432",
+    "text": "СОЦИАЛЬНАЯ ИЕРАРХИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000433",
+    "text": "КУЛЬТУРНЫЙ КОД",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000434",
+    "text": "РАЗРЫВ ПОКОЛЕНИЙ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000435",
+    "text": "КОЛЛЕКТИВНАЯ ПАМЯТЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000436",
+    "text": "ЭМОЦИОНАЛЬНЫЙ ИНТЕЛЛЕКТ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000437",
+    "text": "ПРЕДСКАЗУЕМАЯ СЛУЧАЙНОСТЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000438",
+    "text": "ОБЩЕСТВЕННОЕ МНЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000439",
+    "text": "САМОИСПОЛНЯЮЩЕЕСЯ ПРОРОЧЕСТВО",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000440",
+    "text": "ТЕОРИЯ ИГР",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000441",
+    "text": "КРИЗИС ДОВЕРИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000442",
+    "text": "ЛОГИЧЕСКАЯ ОШИБКА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000443",
+    "text": "ЭФФЕКТ НАБЛЮДАТЕЛЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000444",
+    "text": "СМЕЩЕНИЕ ВОСПРИЯТИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000445",
+    "text": "РЕАКЦИЯ ТОЛПЫ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000446",
+    "text": "ПРАВО НА ОШИБКУ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000447",
+    "text": "ПАМЯТЬ ПОКОЛЕНИЙ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000448",
+    "text": "ЭКОНОМИЧЕСКОЕ НЕРАВЕНСТВО",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000449",
+    "text": "КОММУНИКАТИВНЫЙ БАРЬЕР",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000450",
+    "text": "ИНФОРМАЦИОННЫЙ ШУМ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000451",
+    "text": "ЛИНГВИСТИЧЕСКИЙ ПАРАДОКС",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000452",
+    "text": "ФИЛОСОФСКИЙ ВОПРОС",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000453",
+    "text": "СЛОЖНАЯ АРГУМЕНТАЦИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000454",
+    "text": "АБСУРДНАЯ СИТУАЦИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000455",
+    "text": "ПРИНЦИП НЕОПРЕДЕЛЁННОСТИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000456",
+    "text": "МНИМАЯ УГРОЗА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000457",
+    "text": "ИЛЛЮЗИЯ КОНТРОЛЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000458",
+    "text": "ОБЩЕСТВЕННЫЙ ДОГОВОР",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000459",
+    "text": "КУЛЬТУРНЫЙ КОНТЕКСТ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000460",
+    "text": "ПАРАДОКС СВОБОДНОЙ ВОЛИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000461",
+    "text": "ЭФФЕКТ ВЫЖИВШЕГО",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000462",
+    "text": "СЕЛЕКТИВНОЕ ВОСПРИЯТИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000463",
+    "text": "КОГНИТИВНОЕ ИСКАЖЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000464",
+    "text": "КУЛЬТУРНАЯ АССИМИЛЯЦИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000465",
+    "text": "СОЦИАЛЬНАЯ МОБИЛЬНОСТЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000466",
+    "text": "ПОВЕДЕНЧЕСКАЯ ЭКОНОМИКА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000467",
+    "text": "ЗАКОНОМЕРНОЕ ИСКЛЮЧЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000468",
+    "text": "ТЕОРЕТИЧЕСКИЙ ПРЕДЕЛ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000469",
+    "text": "ЛОЖНАЯ АНАЛОГИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000470",
+    "text": "ПРЕДВАРИТЕЛЬНОЕ СОГЛАСИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000471",
+    "text": "НЕВЫРАЖЕННОЕ ОЖИДАНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000472",
+    "text": "КОЛЛЕКТИВНОЕ ДЕЙСТВИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000473",
+    "text": "СМЕЩЕНИЕ ВЫБОРКИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000474",
+    "text": "НУЛЕВАЯ ГИПОТЕЗА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000475",
+    "text": "ПОДТВЕРЖДАЮЩЕЕ ИСКАЖЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000476",
+    "text": "НЕОДНОЗНАЧНАЯ ИНТЕРПРЕТАЦИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000477",
+    "text": "ОТРИЦАТЕЛЬНАЯ ОБРАТНАЯ СВЯЗЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000478",
+    "text": "САМООРГАНИЗУЮЩАЯСЯ СИСТЕМА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000479",
+    "text": "УСТОЙЧИВОЕ РАЗВИТИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000480",
+    "text": "ГЛОБАЛЬНОЕ ПОТЕПЛЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000481",
+    "text": "КРИТИЧЕСКАЯ ТОЧКА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000482",
+    "text": "ПОРОЧНЫЙ КРУГ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000483",
+    "text": "ПОДМЕНА ТЕЗИСА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000484",
+    "text": "ПРОИЗВОЛЬНОЕ ДОПУЩЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000485",
+    "text": "НАРУШЕНИЕ СИММЕТРИИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000486",
+    "text": "ПРИНЦИП ДОПОЛНИТЕЛЬНОСТИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000487",
+    "text": "ПАРАДОКС БУТЫЛОЧНОГО ГОРЛЫШКА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000488",
+    "text": "ТЕОРИЯ ОБРАТНОЙ СВЯЗИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000489",
+    "text": "ГОРИЗОНТ ПЛАНИРОВАНИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000490",
+    "text": "ИНФОРМАЦИОННЫЙ ПУЗЫРЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000491",
+    "text": "ФАНТОМНАЯ БОЛЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000492",
+    "text": "ЭФФЕКТ ДЕФИЦИТА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000493",
+    "text": "РАЗЛИЧИЕ КОНТЕКСТОВ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000494",
+    "text": "ДВОЙНАЯ ИНТЕРПРЕТАЦИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000495",
+    "text": "СОЦИАЛЬНЫЙ КОНТРАКТ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  },
+  {
+    "id": "phrase-000496",
+    "text": "ФАКТОР НЕОПРЕДЕЛЁННОСТИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "core"
+  }
+]

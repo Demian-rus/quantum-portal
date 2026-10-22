@@ -1,0 +1,392 @@
+[
+  {
+    "id": "approx-8201",
+    "question": "Сколько основных видов азотистых оснований образует генетический алфавит ДНК?",
+    "answer": "4",
+    "unit": "вида",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "Аденин, тимин, гуанин и цитозин; редкие модифицированные основания не считаются.",
+    "source": "https://www.genome.gov/about-genomics/fact-sheets/A-Brief-Guide-to-Genomics",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8202",
+    "question": "Сколько шейных позвонков обычно у жирафа?",
+    "answer": "7",
+    "unit": "позвонков",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "Длинная шея состоит из семи сильно вытянутых шейных позвонков.",
+    "source": "https://www.nhm.ac.uk/discover/how-is-a-mouse-like-a-giraffe.html",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8203",
+    "question": "Сколько полюсов имеет обычный цельный стержневой магнит?",
+    "answer": "2",
+    "unit": "полюса",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "Северный и южный; речь об обычном дипольном магните.",
+    "source": "definition:magnetic-dipole",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8204",
+    "question": "Сколько цветовых каналов в модели RGB, если не считать прозрачность?",
+    "answer": "3",
+    "unit": "канала",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "Red, Green, Blue — красный, зелёный, синий.",
+    "source": "definition:RGB",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8205",
+    "question": "Сколько бит содержит один байт в современных файловых форматах?",
+    "answer": "8",
+    "unit": "бит",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "Условие исключает исторические машины с иным размером байта.",
+    "source": "definition:octet",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8206",
+    "question": "Сколько ватт составляет один киловатт?",
+    "answer": "1000",
+    "unit": "Вт",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "Приставка «кило» означает множитель 10³.",
+    "source": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8207",
+    "question": "Деталь длиной 1 мм на рисунке увеличена в 10 раз. Какова её длина на рисунке?",
+    "answer": "10",
+    "unit": "мм",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "Линейное увеличение, без изменения пропорций.",
+    "source": "formula:1*10",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8208",
+    "question": "Сколько бактерий получится из одной после трёх делений, если при каждом делении каждая бактерия делится надвое?",
+    "answer": "8",
+    "unit": "бактерий",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "Идеальная модель: все клетки делятся синхронно, ни одна не погибает.",
+    "source": "formula:2**3",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8209",
+    "question": "Сколько протонов содержит ядро обычного атома гелия?",
+    "answer": "2",
+    "unit": "протона",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "Число протонов равно атомному номеру He.",
+    "source": "https://iupac.org/what-we-do/periodic-table-of-elements/",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8210",
+    "question": "Сколько основных отделов тела выделяют у взрослого насекомого?",
+    "answer": "3",
+    "unit": "отдела",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "Голова, грудь, брюшко; речь о взрослом насекомом, не о личинке.",
+    "source": "https://naturalhistory.si.edu/education/teaching-resources/life-science/what-insect",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8211",
+    "question": "Сколько земных суток длится год на Марсе, округлённо по NASA?",
+    "answer": "687",
+    "unit": "суток",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "Период обращения вокруг Солнца; не марсианские солнечные сутки — солы.",
+    "source": "https://science.nasa.gov/mars/facts/",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8212",
+    "question": "Сколько земных лет длится один оборот Юпитера вокруг Солнца, округлённо до целого?",
+    "answer": "12",
+    "unit": "лет",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "NASA приводит около 12 земных лет, или 4333 земных суток.",
+    "source": "https://science.nasa.gov/jupiter/jupiter-facts/",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8213",
+    "question": "В каком году космический телескоп «Хаббл» запустили на борту шаттла Discovery?",
+    "answer": "1990",
+    "unit": "год",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "24 апреля 1990 года; не год первого обслуживания.",
+    "source": "https://www.nasa.gov/history/hubble/",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8214",
+    "question": "В каком году марсоход Perseverance совершил посадку в кратере Езеро?",
+    "answer": "2021",
+    "unit": "год",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "18 февраля 2021 года.",
+    "source": "https://science.nasa.gov/blogs/perseverance-mars-rover/2021/02/18/blog-nasas-perseverance-has-landed/",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8215",
+    "question": "В каком году Александр Флеминг заметил антибактериальное действие плесени, приведшее к открытию пенициллина?",
+    "answer": "1928",
+    "unit": "год",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "Не год Нобелевской премии, которую он получил в 1945 году.",
+    "source": "https://www.nobelprize.org/prizes/medicine/1945/fleming/facts/",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8216",
+    "question": "Какова площадь круга радиусом 10 см, округлённая до целого квадратного сантиметра?",
+    "answer": "314",
+    "unit": "см²",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "πr²; используется π, без промежуточного округления.",
+    "source": "formula:Math.round(Math.PI*10**2)",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8217",
+    "question": "Каков объём сплошного кубика со стороной 4 см?",
+    "answer": "64",
+    "unit": "см³",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "4 × 4 × 4.",
+    "source": "formula:4**3",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8218",
+    "question": "Какова массовая доля соли в процентах в растворе из 20 г соли и 180 г воды?",
+    "answer": "10",
+    "unit": "%",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "Вся соль растворилась, испарения нет; масса раствора — 200 г.",
+    "source": "formula:20/(20+180)*100",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8219",
+    "question": "Во сколько раз маленькая шестерёнка с 12 зубьями вращается быстрее сцепленной с ней шестерёнки с 36 зубьями?",
+    "answer": "3",
+    "unit": "раза",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "Прямое зацепление без проскальзывания; сравниваются модули угловых скоростей.",
+    "source": "formula:36/12",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8220",
+    "question": "Каково общее увеличение микроскопа с окуляром 10× и объективом 40×?",
+    "answer": "400",
+    "unit": "раз",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "Увеличения окуляра и объектива перемножаются.",
+    "source": "formula:10*40",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8221",
+    "question": "В каком году Иван Павлов получил Нобелевскую премию по физиологии или медицине?",
+    "answer": "1904",
+    "unit": "год",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "За исследования физиологии пищеварения.",
+    "source": "https://www.nobelprize.org/prizes/medicine/1904/summary/",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8222",
+    "question": "В каком году Мария Кюри получила Нобелевскую премию именно по химии?",
+    "answer": "1911",
+    "unit": "год",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "Её более ранняя премия 1903 года была по физике.",
+    "source": "https://www.nobelprize.org/prizes/chemistry/facts-on-the-nobel-prize-in-chemistry/",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8223",
+    "question": "В каком году Тим Бернерс-Ли в CERN предложил систему, ставшую Всемирной паутиной — World Wide Web?",
+    "answer": "1989",
+    "unit": "год",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "Речь о WWW, а не о появлении интернета.",
+    "source": "https://home.cern/science/computing/the-birth-of-the-web",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8224",
+    "question": "В каком году реактор Chicago Pile-1 впервые осуществил управляемую самоподдерживающуюся ядерную цепную реакцию?",
+    "answer": "1942",
+    "unit": "год",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "2 декабря 1942 года, группа Энрико Ферми.",
+    "source": "https://www.energy.gov/ne/articles/10-intriguing-facts-about-worlds-first-nuclear-chain-reaction",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8225",
+    "question": "Какой период полураспада углерода-14 в годах приводит справка CIAAW об углероде?",
+    "answer": "5730",
+    "unit": "лет",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "Приближённый физический период; не условный период Либби 5568 лет, используемый в традиционной радиоуглеродной шкале.",
+    "source": "https://www.ciaaw.org/carbon.htm",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8226",
+    "question": "Скольким паскалям точно равна одна стандартная физическая атмосфера?",
+    "answer": "101325",
+    "unit": "Па",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "Единица давления atm, не техническая атмосфера и не фактическое давление погоды.",
+    "source": "https://www.nist.gov/pml/special-publication-330/sp-330-appendix-1",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8227",
+    "question": "За сколько секунд свет в вакууме проходит ровно одну астрономическую единицу, округлённо до целой секунды?",
+    "answer": "499",
+    "unit": "секунд",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "1 а.е. = 149 597 870 700 м; c = 299 792 458 м/с. Это расстояние по определению, а не меняющееся текущее расстояние Земля—Солнце.",
+    "source": "https://ssd.jpl.nasa.gov/glossary/au.html",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8228",
+    "question": "Какова частота колебаний в герцах, если маятник совершил 5 полных колебаний за 10 секунд?",
+    "answer": "0.5",
+    "unit": "Гц",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "Частота — число полных колебаний в секунду; амплитуда не учитывается.",
+    "source": "formula:5/10",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8229",
+    "question": "Каков объём цилиндра радиусом 5 см и высотой 10 см, округлённый до целого кубического сантиметра?",
+    "answer": "785",
+    "unit": "см³",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "πr²h; без промежуточного округления.",
+    "source": "formula:Math.round(Math.PI*5**2*10)",
+    "pack": "science-v2"
+  },
+  {
+    "id": "approx-8230",
+    "question": "Сколько пикселей содержит один кадр разрешением 1920 на 1080, без учёта цветовых каналов?",
+    "answer": "2073600",
+    "unit": "пикселей",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "Ширина умножается на высоту; субпиксели отдельно не считаются.",
+    "source": "formula:1920*1080",
+    "pack": "science-v2"
+  }
+]
