@@ -138,6 +138,38 @@ const URL='http://127.0.0.1:8765/party-game/';
       console.log(device.name,JSON.stringify({home,setup,ready,state}));
       await page.close();
     }
+    // Simulate the installed PWA's short Android bar reveal: the view shrinks
+    // but its fullscreen canvas and scrollable setup must not reflow.
+    const stablePage=await browser.newPage({viewport:{width:390,height:844}});
+    await stablePage.addInitScript(()=>{
+      const original=window.matchMedia.bind(window);
+      window.matchMedia=query=>query==='(display-mode: fullscreen)'?{matches:true}:original(query);
+    });
+    await stablePage.goto(URL,{waitUntil:'load'});
+    await stablePage.locator('#new-game-menu').click();
+    await stablePage.locator('#standard-game').click();
+    const geometry=()=>stablePage.evaluate(()=>{
+      const shell=document.querySelector('.site-shell');
+      const scroller=document.getElementById('setup-scroll');
+      const panel=document.getElementById('setup-panel');
+      return {height:shell.getBoundingClientRect().height,
+        scrollerHeight:scroller.getBoundingClientRect().height,
+        scrollerTop:scroller.getBoundingClientRect().top,
+        panelTop:panel.getBoundingClientRect().top,
+        panelWidth:panel.getBoundingClientRect().width,
+        bgHeight:parseFloat(getComputedStyle(document.body,'::before').height),
+        locked:getComputedStyle(document.documentElement).getPropertyValue('--kvip-locked-height').trim()};
+    });
+    const full=await geometry();
+    assert.equal(full.locked,'844px','Emulated fullscreen baseline missing');
+    await stablePage.setViewportSize({width:390,height:770});
+    const bars=await geometry();
+    for(const key of ['height','scrollerHeight','scrollerTop','panelTop','panelWidth','bgHeight'])
+      assert.ok(Math.abs(full[key]-bars[key])<1,'Fullscreen system bars shifted '+key+': '+JSON.stringify({full,bars}));
+    await stablePage.setViewportSize({width:844,height:390});
+    const rotated=await geometry();
+    assert.ok(Math.abs(rotated.height-390)<2,'Rotation should rebase the canvas');
+    await stablePage.close();
     const page=await browser.newPage({viewport:{width:390,height:844}});
     await page.goto(URL,{waitUntil:'load'});
       await page.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
