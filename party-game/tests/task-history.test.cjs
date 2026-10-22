@@ -33,7 +33,7 @@ test('TASK009 B interrupted party, replacement and every Blitz card are remember
  again.eval('game.dice=true;persist()');const third=createSimulation(3,stored);third.eval('options.dice=false;options.modes=["talk"];newGame();roll()');assert.equal([first,replaced,...words].includes(third.eval('game.current.word')),false);
 });
 test('TASK009 B old snapshots keep their prior selector and unknown history versions preserve original bytes',()=>{
- const original=new Map(),old=createSimulation(2,original);old.eval('options.dice=false;options.modes=["talk"];newGame();roll();delete game.taskHistoryVersion;delete game.taskHistory;taskMemory=null;game.dice=true;persist()');const snapshot=old.eval('JSON.stringify(game)'),loaded=createSimulation(3,original);assert.equal(loaded.eval('JSON.stringify(game)'),snapshot);assert.equal(loaded.eval('game.taskHistoryVersion'),undefined);
+ const original=new Map(),old=createSimulation(2,original);old.eval('options.dice=false;options.modes=["talk"];newGame();roll();delete game.taskHistoryVersion;delete game.taskHistory;game.modifierSelectionVersion=1;delete game.modifierCatalogVersion;taskMemory=null;game.dice=true;persist()');const snapshot=old.eval('JSON.stringify(game)'),loaded=createSimulation(3,original);assert.equal(loaded.eval('JSON.stringify(game)'),snapshot);assert.equal(loaded.eval('game.taskHistoryVersion'),undefined);
  for(const mutation of ['game.taskHistoryVersion=99','taskMemory.version=99','game.taskHistory.seen=[null]']){
   const store=new Map(),a=createSimulation(1,store);a.eval('newGame();'+mutation+';persist()');const raw=store.get('iskra-party:v1'),b=createSimulation(1,store);assert.equal(b.eval('storageBlocked'),true);b.eval('persist();newGame()');assert.equal(store.get('iskra-party:v1'),raw);
  }

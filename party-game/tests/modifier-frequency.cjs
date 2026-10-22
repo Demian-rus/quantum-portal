@@ -88,7 +88,7 @@ module.exports=async function frequencyUI(browser,url){
    await frequency(page,100);await page.locator('#advanced-done').click();
    await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.dice=false;chooseStartingTeam=()=>0;Math.random=()=>.9999});
    await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();
-   assert.equal(await page.evaluate(()=>game.modifierChance),100);assert.equal(await page.evaluate(()=>game.modifierSelectionVersion),1);assert.ok(await page.evaluate(()=>game.current.complication));
+   assert.equal(await page.evaluate(()=>game.modifierChance),100);assert.equal(await page.evaluate(()=>game.modifierSelectionVersion),2);assert.ok(await page.evaluate(()=>game.current.complication));
    await page.evaluate(()=>{game.dice=true;options.dice=true;persist()});
    const snapshot=await page.evaluate(()=>({game:JSON.stringify(game),round:JSON.stringify(game.current),recent:JSON.stringify(game.modifierRecent)}));
    await page.locator('#exit-game').click();await openSetup(page);await advanced(page);await frequency(page,20);await checkbox.uncheck();await page.locator('#advanced-done').click();
