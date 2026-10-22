@@ -1,6 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs');
-const topics=[{id:'geography',version:2,source:'geography-v2',name:'География',prefix:'task008b'}];
+const topics=[{id:'geography',version:2,source:'geography-v2',name:'География',prefix:'task008b'},{id:'science',version:2,source:'science-v2',name:'Наука',prefix:'task008c'}];
 const devices=[{name:'narrow',width:320,height:568},{name:'phone',width:390,height:844},{name:'desktop',width:1440,height:900}];
 async function settleAnimations(page){await page.locator('.scene:not([hidden])').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))))}
 async function screenshot(page,topic,name){await settleAnimations(page);await page.screenshot({path:'artifacts/quip-mobile-layout/'+topic.prefix+'-'+name+'.png'})}
@@ -59,6 +59,18 @@ module.exports=async function thematicUI(browser,url){
    await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();assert.equal(await page.evaluate(()=>JSON.stringify(game)),snapshot);
    await page.locator('#exit-game').click();await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();assert.equal(await page.evaluate(()=>JSON.stringify({modes:options.modes,promptTypes:options.promptTypes})),standard);await page.locator('#go-advanced').click();assert.equal(await page.locator('#mode-toggles input[value="sing"]').isDisabled(),false);assert.equal(await page.locator('#content-toggles input[value="idiom"]').isDisabled(),false);
    await page.locator('#advanced-done').click();await page.evaluate(()=>{options.modes=['talk'];options.dice=false;Math.random=()=>0;chooseStartingTeam=()=>0});await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();assert.equal(await page.evaluate(()=>game.contentPack.id),'general');assert.equal(await page.evaluate(()=>game.current.word),'КАРАНДАШ');
+   if(device.name==='phone'){
+    const other=topics.find(t=>t.id!==topic.id);await page.evaluate(()=>{game.dice=true;persist()});const activeSnapshot=await page.evaluate(()=>JSON.stringify(game));
+    await page.locator('#exit-game').click();await chooseTopic(page,other);
+    assert.equal(await page.locator('#setup-pack-caption').textContent(),other.name);
+    await page.evaluate(()=>{options.modes=['draw','approx'];options.promptTypes=['phrase'];persist()});
+    await page.reload({waitUntil:'load'});await chooseTopic(page,topic);
+    assert.deepEqual(await page.evaluate(()=>({modes:options.modes,types:options.promptTypes})),{modes:['talk'],types:['word']});
+    await page.reload({waitUntil:'load'});await chooseTopic(page,other);
+    assert.deepEqual(await page.evaluate(()=>({modes:options.modes,types:options.promptTypes})),{modes:['draw','approx'],types:['phrase']});
+    await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
+    assert.equal(await page.evaluate(()=>JSON.stringify(game)),activeSnapshot);
+   }
    assert.deepEqual(errors,[]);console.log('TASK008 themed UI PASS',topic.id,device.name,'navigation / all modes / awards / reload / offline / standard preferences');
   }finally{await context.close()}
  }

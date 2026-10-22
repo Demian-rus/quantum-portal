@@ -722,8 +722,8 @@ test('typed source retains old playable words, songs, people and blitz constrain
   }
  }
  assert.equal(h.eval("getCardPool('blitz','hard').every(c=>c.difficulty==='easy'&&c.text.length<=12)"),true);
- assert.ok(read('index.html').includes('./cards.js?v=3'));
- assert.ok(read('sw.js').includes('./cards.js?v=3'));
+ assert.ok(read('index.html').includes('./cards.js?v=4'));
+ assert.ok(read('sw.js').includes('./cards.js?v=4'));
 });
 test('text-only saved rounds still restore unchanged after catalog migration',()=>{
  const saved=new Map(),a=harness(saved);
@@ -820,7 +820,7 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  assert.equal(h.eval('STORAGE_KEY'),'iskra-party:v1');
  assert.equal(JSON.parse(h.storage.get('iskra-party:v1')).version,1);
  const html=read('index.html'),sw=read('sw.js');
- for(const file of ['approx-questions.js?v=3','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=2','round-planner.js?v=1','content-packs.js?v=5','presets.js?v=3','app.js?v=26']){
+ for(const file of ['approx-questions.js?v=4','mode-config.js?v=2','rules.js?v=4','penalties.js?v=3','modifiers.js?v=2','round-planner.js?v=1','content-packs.js?v=6','presets.js?v=3','app.js?v=26']){
   assert.ok(html.includes(file));assert.ok(sw.includes(file));
  }
  assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);
@@ -1357,7 +1357,7 @@ test('game-type navigation uses shared settings and preserves an unfinished matc
  const saved=h.eval('JSON.stringify(game)');
  h.eval('openGameType()');assert.equal(h.eval('activeScene'),'game-type');
  h.eval('openThemes()');assert.equal(h.eval('activeScene'),'themes');
- assert.equal((h.elements.get('theme-list').innerHTML.match(/ disabled aria-disabled="true"/g)||[]).length,5);
+ assert.equal((h.elements.get('theme-list').innerHTML.match(/ disabled aria-disabled="true"/g)||[]).length,4);
  assert.ok(h.elements.get('themes-caption').textContent.includes('Выберите тему'));
  h.eval('selectStandardGame()');assert.equal(h.eval('activeScene'),'setup');
  assert.equal(h.eval('options.contentPack.id'),'general');assert.equal(h.eval('options.contentPack.version'),2);
@@ -1774,4 +1774,32 @@ test('TASK008 geography awards, shared answers and save snapshots remain indepen
   reload.eval('game.phase="judge";judge(true,false)');assert.equal(reload.eval('game.scores['+(awardTo==='setter'?0:1)+']'),1);
   reload.eval('selectTheme("geography",2);options.modes=["approx"];options.dice=false;newGame();roll()');assert.equal(reload.eval('game.current.question.pack'),'geography-v2');reload.eval('revealApprox();awardApprox("both")');assert.deepEqual(Array.from(reload.eval('game.scores')),[1,1]);
  }
+});
+
+test('TASK008 science v2 adds 150 distinct prompts and 30 sourced questions with playable tiers',()=>{
+ const {loadCatalog}=require('../scripts/catalog-audit.cjs'),{cards,questions}=loadCatalog(),rows=cards.filter(c=>c.pack==='science-v2'),numbers=questions.filter(q=>q.pack==='science-v2');
+ assert.equal(rows.length,150);assert.equal(numbers.length,30);
+ for(const [type,count] of Object.entries({word:90,phrase:35,person:25}))assert.equal(rows.filter(c=>c.type===type).length,count);
+ for(const level of ['easy','medium','hard']){assert.equal(rows.filter(c=>c.type==='word'&&c.difficulty===level).length,30);assert.ok(rows.filter(c=>c.type==='person'&&c.difficulty===level).length>=8);assert.equal(numbers.filter(q=>q.difficulty===level).length,10)}
+ assert.ok([...rows,...numbers].every(c=>c.categories.includes('science')));
+ const h=harness();assert.equal(h.eval('QUIP_CONTENT_PACKS["science@1"].enabled'),false);assert.equal(h.eval('QUIP_CONTENT_PACKS["science@2"].enabled'),true);
+ assert.equal(h.eval('getPackCardPool({id:"science",version:2},"songs","easy").length'),0);
+ for(const kind of ['words','people','blitz'])for(const level of ['easy','medium','hard'])assert.equal(h.eval('getPackCardPool({id:"science",version:2},"'+kind+'","'+level+'",["word","phrase"]).every(c=>c.pack==="science-v2")'),true);
+});
+test('TASK008 standard, geography and science keep independent preferences across reload and protect a running round',()=>{
+ const h=harness();h.eval('options.modes=["sing"];options.promptTypes=["idiom"];selectTheme("geography",2);options.modes=["draw","approx"];options.promptTypes=["phrase"];selectTheme("science",2);options.modes=["secret","yesno"];options.promptTypes=["word"];options.dice=false;newGame();roll();game.dice=true;persist();const scienceSnapshot=JSON.stringify(game);selectTheme("geography",2)');
+ assert.deepEqual(Array.from(h.eval('options.modes')),['draw','approx']);assert.deepEqual(Array.from(h.eval('options.promptTypes')),['phrase']);assert.equal(h.eval('JSON.stringify(game)'),h.eval('scienceSnapshot'));
+ const reload=harness(h.storage);assert.equal(reload.eval('JSON.stringify(game)'),h.eval('scienceSnapshot'));reload.eval('selectStandardGame()');assert.deepEqual(Array.from(reload.eval('options.modes')),['sing']);assert.deepEqual(Array.from(reload.eval('options.promptTypes')),['idiom']);
+ reload.eval('selectTheme("science",2)');assert.deepEqual(Array.from(reload.eval('options.modes')),['yesno','secret']);assert.deepEqual(Array.from(reload.eval('options.promptTypes')),['word']);
+});
+test('TASK008 both thematic registries have no dead-end mode, type or difficulty settings',()=>{
+ const {checkSettings}=require('../scripts/balance-audit.cjs');assert.deepEqual(checkSettings(),{checked:3048,deadEnds:0});
+ const h=harness();h.eval('selectTheme("science",2);options.modes=["secret"];options.difficulty="mixed";options.dice=false;newGame()');
+ const results=h.eval(`(()=>{const methods=new Set(),seen=[];for(let i=0;i<120;i++){const c=rollOutcome();methods.add(c.methodId);if(!c.complication||c.methodId==='sing')return false;
+ const pool=getPackCardPool(game.contentPack,getMode(c.methodId).kind,c.difficulty,game.promptTypes);if(!pool.some(row=>row.text===c.word)||!pool.every(row=>row.pack==='science-v2'))return false;seen.push(c.difficulty);game.roundIndex++}return {methods:[...methods].sort(),counts:['easy','medium','hard'].map(l=>seen.filter(x=>x===l).length)}})()`);
+ assert.deepEqual(Array.from(results.methods),['draw','mime','talk','yesno']);assert.deepEqual(Array.from(results.counts),[40,40,40]);
+});
+test('TASK008 balance diagnostic is reproducible and distinguishes optional, forced and absent modifiers',()=>{
+ const {simulate}=require('../scripts/balance-audit.cjs');const first=simulate('science',20,120,8008);assert.deepEqual(first,simulate('science',20,120,8008));assert.equal(first.unnecessaryRepeats,0);assert.equal(first.forcedModified,first.forced);assert.equal(first.approxModified,0);assert.deepEqual(first.levels,{easy:40,medium:40,hard:40});
+ const always=simulate('geography',100,120,8009);assert.equal(always.optional,always.modified);
 });

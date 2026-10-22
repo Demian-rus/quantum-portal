@@ -36,7 +36,10 @@ const QUIP_CONTENT_PACKS=defineContentPacks([
   criteria:{cardIds:[],sourcePacks:[]},minCardsPerPool:1},
  ...[['geography','География'],['biology','Биология'],['animals','Животные'],['history','История'],
   ['science','Наука'],['culture','Культура']].map(([id,name])=>({id,version:1,name,enabled:false,
-   categories:[id],types:['word','phrase','idiom'],criteria:{cardIds:[],sourcePacks:[]},minCardsPerPool:1}))
+   categories:[id],types:['word','phrase','idiom'],criteria:{cardIds:[],sourcePacks:[]},minCardsPerPool:1})),
+ {id:'science',version:2,name:'Наука',enabled:true,categories:['science'],types:['word','phrase','person','number'],
+  criteria:{cardIds:[],sourcePacks:['science-v2']},minCardsPerPool:5,
+  allowedModes:['talk','mime','draw','yesno','secret','blitz','approx'],secretMethods:['talk','mime','draw','yesno']}
 ]);
 function listThematicPacks(settings,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACKS,questions=QUIP_APPROX_QUESTIONS){
  const latest=new Map();
