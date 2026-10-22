@@ -167,6 +167,8 @@ const URL='http://127.0.0.1:8765/party-game/';
     for(const key of ['height','scrollerHeight','scrollerTop','panelTop','panelWidth','bgHeight'])
       assert.ok(Math.abs(full[key]-bars[key])<1,'Fullscreen system bars shifted '+key+': '+JSON.stringify({full,bars}));
     await stablePage.setViewportSize({width:844,height:390});
+    // Chromium dispatches resize asynchronously after changing viewport dimensions.
+    await stablePage.waitForFunction(()=>getComputedStyle(document.documentElement).getPropertyValue('--kvip-locked-height').trim()==='390px',null,{timeout:5000});
     const rotated=await geometry();
     assert.ok(Math.abs(rotated.height-390)<2,'Rotation should rebase the canvas');
     await stablePage.close();
