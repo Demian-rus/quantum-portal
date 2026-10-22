@@ -14,6 +14,14 @@ test('Secret active mode shows no verbose helper text in selection tile; blocked
  const blocked=plain(h.eval('packModeAvailability(options.contentPack,options,"yesno")'));assert.equal(blocked.available,false);assert.match(blocked.reason,/отгадывающий/);
  const template=fs.readFileSync(require.resolve('../content/templates/content-packs.after.js'),'utf8');assert.doesNotMatch(template,/Если другие базовые способы не включены/);
 });
+test('Android Back navigation uses an in-app guard without changing saved-game data',()=>{
+ const app=fs.readFileSync(require.resolve('../app.js'),'utf8');
+ assert.match(app,/function installBrowserBackNavigation\(\)/);
+ assert.match(app,/addEventListener\('popstate',onBrowserBack\)/);
+ assert.match(app,/case 'game':case 'results':backToMenu\(\)/);
+ const h=setup(['talk'],'setter');const before=h.eval('JSON.stringify(game)');
+ h.eval('installBrowserBackNavigation()');assert.equal(h.eval('JSON.stringify(game)'),before);
+});
 test('Mode selection cards contain no explanatory paragraphs, including disabled Danetki and Secret',()=>{
  const html=fs.readFileSync(require.resolve('../index.html'),'utf8');
  const app=fs.readFileSync(require.resolve('../app.js'),'utf8');
@@ -76,5 +84,5 @@ test('TASK009 G ordinary rewards/timers and all four manual Approx outcomes stay
  }
 });
 test('TASK009 G new compatibility script and changed scripts are versioned consistently for offline boot',()=>{
- const html=fs.readFileSync(require.resolve('../index.html'),'utf8'),worker=fs.readFileSync(require.resolve('../sw.js'),'utf8');for(const file of ['mode-compatibility.js','modifiers-v2.js','presets.js','content-packs.js','app.js']){const url=html.match(new RegExp(file.replace('.','\\.')+'\\?v=\\d+'))[0];assert.ok(worker.includes(url))}assert.match(worker,/kvip-pwa-v46-/);
+ const html=fs.readFileSync(require.resolve('../index.html'),'utf8'),worker=fs.readFileSync(require.resolve('../sw.js'),'utf8');for(const file of ['mode-compatibility.js','modifiers-v2.js','presets.js','content-packs.js','app.js']){const url=html.match(new RegExp(file.replace('.','\\.')+'\\?v=\\d+'))[0];assert.ok(worker.includes(url))}assert.match(worker,/kvip-pwa-v47-/);
 });

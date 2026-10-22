@@ -22,6 +22,29 @@ const {chromium} = require('playwright-core');
       const errors=[];
       page.on('pageerror',e=>errors.push(e.message));
       await page.goto('http://127.0.0.1:8765/party-game/',{waitUntil:'load'});
+      // Same-document history should turn Android Back into in-app navigation.
+      if(profile.name==='phone'){
+        assert.equal(await page.evaluate(()=>history.state?.__kvipBackGuard),true);
+        await page.locator('#new-game-menu').click();
+        await page.locator('#standard-game').click();
+        await page.locator('#go-advanced').click();
+        await page.goBack();
+        await page.waitForFunction(()=>document.body.dataset.screen==='setup');
+        await page.goBack();
+        await page.waitForFunction(()=>document.body.dataset.screen==='game-type');
+        await page.goBack();
+        await page.waitForFunction(()=>document.body.dataset.screen==='home');
+        await page.goBack();
+        await page.waitForFunction(()=>document.body.dataset.screen==='home'&&history.state?.__kvipBackGuard===true);
+        assert.equal(new URL(page.url()).pathname,'/party-game/');
+        await page.locator('#settings-menu').click();
+        await page.locator('#preferences-rules').click();
+        assert.equal(await page.locator('#rules-backdrop').isVisible(),true);
+        await page.goBack();
+        await page.waitForFunction(()=>document.querySelector('#rules-backdrop').hidden===true);
+        assert.equal(await page.locator('#scene-preferences').isVisible(),true);
+        await page.locator('#preferences-back').click();
+      }
       // New assets must actually decode in Chromium; approx art is preloaded but not selectable yet.
       const modeIcons=await page.evaluate(async()=>Promise.all(Object.entries(MODE_ASSETS).map(async ([mode,url])=>{
         const img=new Image();img.src=url;
@@ -69,6 +92,14 @@ const {chromium} = require('playwright-core');
       assert.equal(await page.locator('#scene-preferences').isVisible(),false);
       await page.locator('#start-game').click();
       assert.equal(await page.locator('#scene-game').isVisible(),true);
+      if(profile.name==='phone'){
+        const saved=await page.evaluate(()=>JSON.stringify(game));
+        await page.goBack();
+        await page.waitForFunction(()=>document.body.dataset.screen==='home');
+        assert.equal(await page.locator('#continue-game').isEnabled(),true);
+        await page.locator('#continue-game').click();
+        assert.equal(await page.evaluate(()=>JSON.stringify(game)),saved,'Android Back must not erase the active game');
+      }
       await page.waitForSelector('[data-action="roll"]');
       assert.equal(await page.locator('#label-team-a').textContent(),'Крутые коты');
       assert.equal(await page.locator('#round-total').textContent(),'8');

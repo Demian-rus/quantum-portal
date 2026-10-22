@@ -312,6 +312,52 @@ function setScene(which) {
   document.body.dataset.screen=which;
   updateContinue();
 }
+// A single browser-history guard converts Android Back into app navigation.
+// No per-round history entries: exiting a round must never replay old answers.
+const KVIP_BACK_GUARD='__kvipBackGuard';
+let backGuardArmed=false;
+let lastHomeBackAt=0;
+function armBrowserBackGuard(){
+  if(!window.history?.pushState||!window.location?.href)return;
+  try{
+    window.history.pushState({[KVIP_BACK_GUARD]:true},'',window.location.href);
+    backGuardArmed=true;
+  }catch{backGuardArmed=false;}
+}
+function backWithinKvip(){
+  if(!$('rules-backdrop').hidden){closeRules();return;}
+  switch(activeScene){
+    case 'advanced':closeAdvanced();return;
+    case 'setup':setupReturn==='themes'?openThemes():openGameType();return;
+    case 'themes':openGameType();return;
+    case 'game-type':case 'preferences':case 'other-games':setScene('home');return;
+    case 'game':case 'results':backToMenu();return;
+  }
+}
+function onBrowserBack(){
+  if(!backGuardArmed)return;
+  backGuardArmed=false;
+  if(activeScene==='home'&&$('rules-backdrop').hidden){
+    const now=Date.now();
+    if(lastHomeBackAt&&now-lastHomeBackAt<2000){
+      lastHomeBackAt=0;
+      // Explicit second Back at home may exit to the calling browser/app.
+      window.history?.back?.();
+      return;
+    }
+    lastHomeBackAt=now;
+    toast('Нажмите «Назад» ещё раз, чтобы выйти');
+  }else{
+    lastHomeBackAt=0;
+    backWithinKvip();
+  }
+  armBrowserBackGuard();
+}
+function installBrowserBackNavigation(){
+  if(!window.addEventListener||!window.history?.pushState)return;
+  window.addEventListener('popstate',onBrowserBack);
+  armBrowserBackGuard();
+}
 function openPreferences() {
   setSoundIcon();
   setScene('preferences');
@@ -1314,6 +1360,7 @@ function boot() {
   renderOptions();
   // Even when a match is saved, start at the main menu to offer Continue.
   setScene('home');
+  installBrowserBackNavigation();
   if(storageBlocked)toast(storageNotice());
   if('serviceWorker' in navigator && location.protocol.startsWith('http'))
     navigator.serviceWorker.register('./sw.js').catch(()=>{});
