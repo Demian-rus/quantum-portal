@@ -225,7 +225,7 @@
       "review": "TASK009 F: general@6, geography@4, science@4; explicit active IDs, previous versions and nonnumeric tasks unchanged."
     },
     {
-      "path": "packs/animals-v1.json",
+      "path": "packs/animals-v2.json",
       "immutable": false,
       "review": "Animals@1 explicitly pinned IDs: no automatic inference of tags on historical records; general@6 unchanged."
     }
