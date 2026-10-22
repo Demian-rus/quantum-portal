@@ -166,6 +166,11 @@
       "path": "questions/science-v2.json",
       "immutable": true,
       "review": "Снимок TASK 008: источники сохранены; пригодность для оценки величины будет пересмотрена отдельной политикой."
+    },
+    {
+      "path": "questions/estimation-v2.json",
+      "immutable": false,
+      "review": "TASK009 E: 150 physical estimation questions; primary sources, conditions, dates, rounding and all historical decisions in content/editorial/estimation-*."
     }
   ],
   "packs": [
@@ -183,6 +188,11 @@
       "path": "packs/general-v4.json",
       "immutable": false,
       "review": "TASK009 D2: explicit active IDs preserve general@1–3 and thematic@2."
+    },
+    {
+      "path": "packs/estimation-v2.json",
+      "immutable": false,
+      "review": "TASK009 E: general@5, geography@3, science@3 pin exact active IDs; all earlier pools unchanged."
     }
   ],
   "legacyCollisions": [

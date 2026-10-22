@@ -990,10 +990,11 @@ function newGame() {
   if(!options.modes.length){toast('Выберите хотя бы один игровой режим');return;}
   if(!options.promptTypes.length && options.modes.some(id=>['talk','mime','draw','blitz','secret'].includes(id))){toast('Выберите тип заданий');return;}
   let contentPack=options.contentPack||{id:'general',version:2};
-  // Only a newly started general party adopts the latest catalog; saved games
-  // keep their exact pack selection and already selected round.
-  if(contentPack.id==='general')contentPack=latestGeneralPackSelection();
+  // Only a newly started party adopts the latest enabled revision. Validate
+  // the requested revision first: a disabled/unknown old theme cannot upgrade
+  // itself into a playable selection. Saved games never enter this path.
   try{
+    if(getContentPack(contentPack).enabled)contentPack=latestContentPackSelection(contentPack.id);
     if(!checkContentPack(contentPack,options).available){
       toast('Набор заданий недоступен для выбранных настроек.');return;
     }

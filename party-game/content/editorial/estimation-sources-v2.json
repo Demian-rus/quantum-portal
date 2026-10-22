@@ -1,0 +1,446 @@
+{
+  "golden": {
+    "url": "https://www.goldengate.org/bridge/history-research/statistics-data/design-construction-stats/",
+    "reference": "turn336view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "empire": {
+    "url": "https://www.esbnyc.com/about/facts-figures",
+    "reference": "turn334search2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "yellowstone": {
+    "url": "https://www.nps.gov/yell/planyourvisit/parkfacts.htm",
+    "reference": "turn334search3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "eiffel": {
+    "url": "https://www.toureiffel.paris/en/the-monument/history",
+    "reference": "turn335search0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "liberty": {
+    "url": "https://home.nps.gov/stli/learn/historyculture/statue-statistics.htm",
+    "reference": "turn335search1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "liberty-steps": {
+    "url": "https://home.nps.gov/stli/learn/statue-of-liberty-facts.htm",
+    "reference": "turn335search3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "hoover": {
+    "url": "https://www.usbr.gov/lc/hooverdam/faqs/damfaqs.html",
+    "reference": "turn336view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "sydney": {
+    "url": "https://www.sydneyoperahouse.com/our-story/the-spherical-solution",
+    "reference": "turn337search0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "giraffe": {
+    "url": "https://animals.sandiegozoo.org/animals/giraffe",
+    "reference": "turn336search0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "ostrich": {
+    "url": "https://animals.sandiegozoo.org/animals/ostrich",
+    "reference": "turn337search1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "penguins": {
+    "url": "https://www.bas.ac.uk/wp-content/uploads/2015/05/Public-information-leaflet_PENGUINS_2017.pdf",
+    "reference": "turn337search36",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "whale": {
+    "url": "https://www.nhm.ac.uk/bluewhale/ocean/record-breaker/",
+    "reference": "turn339search2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "iss": {
+    "url": "https://www.nasa.gov/international-space-station/space-station-facts-and-figures/",
+    "reference": "turn339view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "moon": {
+    "url": "https://science.nasa.gov/moon/facts/",
+    "reference": "turn338search3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "a380": {
+    "url": "https://www.airbus.com/sites/g/files/jlcbta136/files/2021-10/EN-Airbus-A380-Facts-and-Figures_0.pdf",
+    "reference": "turn339view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "boeing": {
+    "url": "https://www.boeing.com/content/dam/boeing/v2/company/startupboeing/historical/747-8I_-_passenger.pdf",
+    "reference": "turn339search0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "hubble": {
+    "url": "https://science.nasa.gov/mission/hubble/overview/about-hubble/",
+    "reference": "turn340search0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "sun": {
+    "url": "https://science.nasa.gov/sun/facts/",
+    "reference": "turn340search2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "giza": {
+    "url": "https://egymonuments.gov.eg/monuments/the-great-pyramid/",
+    "reference": "turn343search1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "sherman": {
+    "url": "https://home.nps.gov/seki/learn/nature/sherman.htm",
+    "reference": "turn350view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "canyon": {
+    "url": "https://www.nps.gov/grca/learn/management/statistics.htm",
+    "reference": "turn349search0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "antarctic": {
+    "url": "https://www.bas.ac.uk/about/education-and-schools/antarctic-factsheet/",
+    "reference": "turn349search2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "ocean": {
+    "url": "https://oceanservice.noaa.gov/facts/oceandepth.html",
+    "reference": "turn350view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "david": {
+    "url": "https://www.galleriaaccademiafirenze.it/opere/david/",
+    "reference": "turn344search0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "monalisa": {
+    "url": "https://collections.louvre.fr/ark:/53355/cl010062370",
+    "reference": "turn364view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "tsar-bell": {
+    "url": "https://kreml.ru/en/museums/arxitekturnyi-ansambl-moskovskogo-kremlia/pamiatniki-liteinogo-iskusstva/car-kolokol",
+    "reference": "turn350view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "tsar-cannon": {
+    "url": "https://kremlin-architectural-ensemble.kreml.ru/en-Us/artillery-guns/view/tsar-pushka-moskovskogo-kremlya/",
+    "reference": "turn347search1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "intestine": {
+    "url": "https://my.clevelandclinic.org/health/body/22135-small-intestine",
+    "reference": "turn341search0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "brain": {
+    "url": "https://my.clevelandclinic.org/health/body/22638-brain",
+    "reference": "turn342search2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "saliva": {
+    "url": "https://my.clevelandclinic.org/health/body/23462-salivary-glands",
+    "reference": "turn341search5",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "rbc": {
+    "url": "https://my.clevelandclinic.org/health/body/21691-function-of-red-blood-cells",
+    "reference": "turn342search1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "squid": {
+    "url": "https://www.nhm.ac.uk/discover/giant-and-colossal-squid-revealing-secrets-largest-invertebrates.html",
+    "reference": "turn346search2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "cheetah": {
+    "url": "https://animals.sandiegozoo.org/animals/cheetah",
+    "reference": "turn346search1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "panda": {
+    "url": "https://animals.sandiegozoo.org/animals/giant-panda",
+    "reference": "turn346search4",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "polar": {
+    "url": "https://animals.sandiegozoo.org/animals/polar-bear",
+    "reference": "turn346search6",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "wimbledon-grass": {
+    "url": "https://www.wimbledon.com/en_GB/about/grass_courts",
+    "reference": "turn344search18",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "wimbledon-long": {
+    "url": "https://www.wimbledon.com/en_GB/about/history",
+    "reference": "turn344search16",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "wimbledon-balls": {
+    "url": "https://www.wimbledon.com/pdf/2018_Wimbledon_Compendium.pdf",
+    "reference": "turn344search40",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "shot": {
+    "url": "https://worldathletics.org/disciplines/throws/shot-put",
+    "reference": "turn345search0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "paris-pool": {
+    "url": "https://library.olympics.com/default/digitalCollection/DigitalCollectionAttachmentDownloadHandler.ashx?documentId=619389&parentDocumentId=619388&skipCopyright=true&skipWatermark=true",
+    "reference": "turn345search43",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "eniac": {
+    "url": "https://penntoday.upenn.edu/news/eniacs-anniversary-nod-its-female-computers",
+    "reference": "turn347search13",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "ramac": {
+    "url": "https://www.ibm.com/history/ramac",
+    "reference": "turn351view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "sputnik": {
+    "url": "https://www.nasa.gov/history/dawn-of-the-space-age/",
+    "reference": "turn347search0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "lhc": {
+    "url": "https://home.cern/science/accelerators/large-hadron-collider/",
+    "reference": "turn348search1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "atlas": {
+    "url": "https://atlas.cern/it/node/91",
+    "reference": "turn348search0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "kontiki": {
+    "url": "https://www.kon-tiki.no/en/news/visste-du-om-disse-fire-dristige-havkryssingsreisene-fr-kon-tiki",
+    "reference": "turn348search29",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "panama-locks": {
+    "url": "https://pancanal.com/en/discover-the-expanded-canal/",
+    "reference": "turn350search7",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "elephant": {
+    "url": "https://animals.sandiegozoo.org/animals/elephant",
+    "reference": "turn354view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "camel": {
+    "url": "https://animals.sandiegozoo.org/animals/camel",
+    "reference": "turn358view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "hummingbird": {
+    "url": "https://animals.sandiegozoo.org/animals/hummingbird",
+    "reference": "turn358view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "tortoise": {
+    "url": "https://animals.sandiegozoo.org/animals/galapagos-giant-tortoise",
+    "reference": "turn358view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "komodo": {
+    "url": "https://animals.sandiegozoo.org/animals/komodo-dragon",
+    "reference": "turn358view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "coconut": {
+    "url": "https://www.kew.org/read-and-watch/double-coconut-largest-seed-in-the-world",
+    "reference": "turn354view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "waterlily": {
+    "url": "https://www.kew.org/plants/victoria-boliviana",
+    "reference": "turn352search1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "waterlily-test": {
+    "url": "https://www.kew.org/about-us/press-media/waterlily-weigh-off-2026",
+    "reference": "turn352search2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "titan": {
+    "url": "https://www.kew.org/plants/titan-arum",
+    "reference": "turn352search6",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "bamboo": {
+    "url": "https://www.guinnessworldrecords.com/world-records/fastest-growing-plant",
+    "reference": "turn353search2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "lightning-length": {
+    "url": "https://wmo.int/news/media-centre/wmo-certifies-megaflash-lightning-record-usa",
+    "reference": "turn353search0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "weather-records": {
+    "url": "https://wmo.int/sites/default/files/2025-07/Table_Records_25Jul2025.pdf",
+    "reference": "turn363view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "jump-long": {
+    "url": "https://worldathletics.org/heritage/news/mike-powell-long-jump-world-record-tokyo-1991-carl-lewis",
+    "reference": "turn356search1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "jump-high": {
+    "url": "https://worldathletics.org/disciplines/jumps/high-jump",
+    "reference": "turn356search3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "jump-triple": {
+    "url": "https://worldathletics.org/competitions/world-athletics-championships/5th-iaaf-world-championships-in-athletics-6997728/results/men/triple-jump/final/result",
+    "reference": "turn355search1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "bogatyrs": {
+    "url": "https://small_museums_near.tretyakovgallery.ru/vasnetsov_bogatyri",
+    "reference": "turn352search5",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "vasa": {
+    "url": "https://www.vasamuseet.se/en/explore/vasa-history/timeline",
+    "reference": "turn359search0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "vasa-salvage": {
+    "url": "https://beta.vasamuseet.se/andra-sprak/tyska-deutsch",
+    "reference": "turn359search1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "bigben": {
+    "url": "https://www.parliament.uk/about/living-heritage/building/palace/big-ben/facts-figures/",
+    "reference": "turn362view4",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "greatclock": {
+    "url": "https://www.parliament.uk/about/living-heritage/building/palace/big-ben/facts-figures/great-clock-facts/",
+    "reference": "turn362view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "haliade": {
+    "url": "https://www.gevernova.com/wind-power/sites/default/files/External%20RE%28SOURCE%29%20Book_PDF.pdf",
+    "reference": "turn360search50",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "beluga": {
+    "url": "https://www.airbus.com/en/newsroom/press-releases/2019-11-belugaxl-receives-easa-type-certification",
+    "reference": "turn360search3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "perseverance": {
+    "url": "https://www.jpl.nasa.gov/news/press_kits/mars_2020/launch/mission/spacecraft/perseverance_rover/",
+    "reference": "turn362view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "ingenuity": {
+    "url": "https://www.jpl.nasa.gov/news/press_kits/ingenuity/landing/quick_facts/",
+    "reference": "turn362view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "saturn": {
+    "url": "https://www.nasa.gov/learning-resources/for-kids-and-students/what-was-the-saturn-v-grades-5-8/",
+    "reference": "turn363view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "apollo-samples": {
+    "url": "https://science.nasa.gov/resource/apollo-11-landing-site-from-dawn-to-dusk/",
+    "reference": "turn361search0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  },
+  "moon-diameter": {
+    "url": "https://science.nasa.gov/wp-content/uploads/2024/01/62217main-moon-lithograph.pdf",
+    "reference": "turn338search49",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional"
+  }
+}

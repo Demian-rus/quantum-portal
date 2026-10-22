@@ -1,0 +1,1352 @@
+[
+  {
+    "id": "approx-0001",
+    "question": "Сколько месяцев в календарном году?",
+    "answer": "12",
+    "decision": "historical-only",
+    "category": "calendar",
+    "reason": "Общеизвестная календарная единица или её длительность; не подходит режиму оценки.",
+    "source": "definition:calendar"
+  },
+  {
+    "id": "approx-0002",
+    "question": "Сколько минут в одном часе?",
+    "answer": "60",
+    "decision": "historical-only",
+    "category": "calendar",
+    "reason": "Общеизвестная календарная единица или её длительность; не подходит режиму оценки.",
+    "source": "definition:time"
+  },
+  {
+    "id": "approx-0003",
+    "question": "Сколько секунд в одной минуте?",
+    "answer": "60",
+    "decision": "historical-only",
+    "category": "calendar",
+    "reason": "Общеизвестная календарная единица или её длительность; не подходит режиму оценки.",
+    "source": "definition:time"
+  },
+  {
+    "id": "approx-0004",
+    "question": "Сколько дней в неделе?",
+    "answer": "7",
+    "decision": "historical-only",
+    "category": "calendar",
+    "reason": "Общеизвестная календарная единица или её длительность; не подходит режиму оценки.",
+    "source": "definition:calendar"
+  },
+  {
+    "id": "approx-0005",
+    "question": "Сколько дней в високосном году григорианского календаря?",
+    "answer": "366",
+    "decision": "historical-only",
+    "category": "calendar",
+    "reason": "Общеизвестная календарная единица или её длительность; не подходит режиму оценки.",
+    "source": "definition:calendar"
+  },
+  {
+    "id": "approx-0006",
+    "question": "Сколько градусов в прямом угле?",
+    "answer": "90",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "definition:geometry"
+  },
+  {
+    "id": "approx-0007",
+    "question": "Сколько граней у куба?",
+    "answer": "6",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "definition:geometry"
+  },
+  {
+    "id": "approx-0008",
+    "question": "Сколько сторон у треугольника?",
+    "answer": "3",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "definition:geometry"
+  },
+  {
+    "id": "approx-0009",
+    "question": "Сколько ног у взрослого насекомого?",
+    "answer": "6",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://naturalhistory.si.edu/education/teaching-resources/life-science/what-insect"
+  },
+  {
+    "id": "approx-0010",
+    "question": "Сколько ног у паука?",
+    "answer": "8",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://naturalhistory.si.edu/education/teaching-resources/life-science/what-insect"
+  },
+  {
+    "id": "approx-0011",
+    "question": "Сколько сердец у осьминога?",
+    "answer": "3",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives"
+  },
+  {
+    "id": "approx-0012",
+    "question": "Сколько камер в сердце человека?",
+    "answer": "4",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.nhlbi.nih.gov/health/heart/anatomy"
+  },
+  {
+    "id": "approx-0013",
+    "question": "Сколько костей обычно указывают в стандартном скелете взрослого человека?",
+    "answer": "206",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://training.seer.cancer.gov/anatomy/skeletal/divisions/"
+  },
+  {
+    "id": "approx-0014",
+    "question": "Сколько планет в Солнечной системе по классификации с 2006 года?",
+    "answer": "8",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://science.nasa.gov/solar-system/planets/"
+  },
+  {
+    "id": "approx-0015",
+    "question": "Сколько всего атомов в одной молекуле воды H₂O?",
+    "answer": "3",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "formula:2+1"
+  },
+  {
+    "id": "approx-0016",
+    "question": "При какой температуре кипит чистая вода при нормальном атмосферном давлении, если округлить до целого °C?",
+    "answer": "100",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "definition:water-at-1-atm"
+  },
+  {
+    "id": "approx-0017",
+    "question": "При какой температуре замерзает чистая вода при нормальном давлении, если округлить до целого °C?",
+    "answer": "0",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "definition:water-at-1-atm"
+  },
+  {
+    "id": "approx-0018",
+    "question": "Сколько полутонов в октаве при равномерной двенадцатиступенной темперации?",
+    "answer": "12",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "definition:12-tone-temperament"
+  },
+  {
+    "id": "approx-0019",
+    "question": "Сколько струн у стандартной классической гитары?",
+    "answer": "6",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.yamaha.com/en/musical_instrument_guide/acoustic_guitar/trivia/trivia006.html"
+  },
+  {
+    "id": "approx-0020",
+    "question": "Сколько клеток на стандартной шахматной доске?",
+    "answer": "64",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://handbook.fide.com/chapter/e012023"
+  },
+  {
+    "id": "approx-0021",
+    "question": "Сколько секунд в 24 часах?",
+    "answer": "86400",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:24*60*60"
+  },
+  {
+    "id": "approx-0022",
+    "question": "Сколько кубических сантиметров в одном литре?",
+    "answer": "1000",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:10**3"
+  },
+  {
+    "id": "approx-0023",
+    "question": "Сколько рёбер у куба?",
+    "answer": "12",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "definition:geometry"
+  },
+  {
+    "id": "approx-0024",
+    "question": "Сколько диагоналей у выпуклого шестиугольника?",
+    "answer": "9",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:6*(6-3)/2"
+  },
+  {
+    "id": "approx-0025",
+    "question": "Чему равна сумма внутренних углов выпуклого пятиугольника?",
+    "answer": "540",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:(5-2)*180"
+  },
+  {
+    "id": "approx-0026",
+    "question": "Сколько клавиш у стандартного современного фортепиано?",
+    "answer": "88",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.yamaha.com/en/musical_instrument_guide/piano/trivia/trivia007.html"
+  },
+  {
+    "id": "approx-0027",
+    "question": "Сколько белых клавиш на стандартной клавиатуре фортепиано из 88 клавиш?",
+    "answer": "52",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.yamaha.com/en/musical_instrument_guide/piano/trivia/trivia007.html"
+  },
+  {
+    "id": "approx-0028",
+    "question": "Сколько струн у стандартной скрипки?",
+    "answer": "4",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.yamaha.com/en/musical_instrument_guide/acoustic_guitar/trivia/trivia006.html"
+  },
+  {
+    "id": "approx-0029",
+    "question": "Сколько колец на олимпийском символе?",
+    "answer": "5",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.olympics.com/ioc/olympic-rings"
+  },
+  {
+    "id": "approx-0030",
+    "question": "Сколько метров составляет официальная марафонская дистанция?",
+    "answer": "42195",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://worldathletics.org/disciplines/race-walks/marathon"
+  },
+  {
+    "id": "approx-0031",
+    "question": "Сколько химических элементов было официально названо к концу 2016 года?",
+    "answer": "118",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://iupac.org/what-we-do/periodic-table-of-elements/"
+  },
+  {
+    "id": "approx-0032",
+    "question": "Сколько протонов в ядре атома углерода?",
+    "answer": "6",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://iupac.org/what-we-do/periodic-table-of-elements/"
+  },
+  {
+    "id": "approx-0033",
+    "question": "Сколько протонов в ядре атома кислорода?",
+    "answer": "8",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://iupac.org/what-we-do/periodic-table-of-elements/"
+  },
+  {
+    "id": "approx-0034",
+    "question": "Сколько хромосом в обычном диплоидном наборе ядерной клетки человека?",
+    "answer": "46",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.genome.gov/genetics-glossary/Chromosome"
+  },
+  {
+    "id": "approx-0035",
+    "question": "Сколько зубов в полном постоянном наборе человека, включая все зубы мудрости?",
+    "answer": "32",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.ncbi.nlm.nih.gov/books/NBK553376/"
+  },
+  {
+    "id": "approx-0036",
+    "question": "Сколько пар рёбер обычно в скелете человека?",
+    "answer": "12",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://training.seer.cancer.gov/anatomy/skeletal/divisions/"
+  },
+  {
+    "id": "approx-0037",
+    "question": "В каком году состоялся полёт Юрия Гагарина в космос?",
+    "answer": "1961",
+    "decision": "historical-only",
+    "category": "date-recall",
+    "reason": "Нужно вспомнить год события; вместо дат в новом пуле используются размеры, массы, расстояния и длительности реальных процессов.",
+    "source": "https://www.nasa.gov/image-article/an-historic-day-human-spaceflight/"
+  },
+  {
+    "id": "approx-0038",
+    "question": "В каком году люди впервые высадились на Луну?",
+    "answer": "1969",
+    "decision": "historical-only",
+    "category": "date-recall",
+    "reason": "Нужно вспомнить год события; вместо дат в новом пуле используются размеры, массы, расстояния и длительности реальных процессов.",
+    "source": "https://science.nasa.gov/moon/moon-walkers/"
+  },
+  {
+    "id": "approx-0039",
+    "question": "В каком году был запущен первый искусственный спутник Земли «Спутник-1»?",
+    "answer": "1957",
+    "decision": "historical-only",
+    "category": "date-recall",
+    "reason": "Нужно вспомнить год события; вместо дат в новом пуле используются размеры, массы, расстояния и длительности реальных процессов.",
+    "source": "https://www.nasa.gov/history/dawn-of-the-space-age/"
+  },
+  {
+    "id": "approx-0040",
+    "question": "Сколько периодов в таблице химических элементов, завершённой элементом 118?",
+    "answer": "7",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://iupac.org/what-we-do/periodic-table-of-elements/"
+  },
+  {
+    "id": "approx-0041",
+    "question": "Какова точная скорость света в вакууме в метрах в секунду?",
+    "answer": "299792458",
+    "decision": "historical-only",
+    "category": "memorized-constant",
+    "reason": "Точная константа или изолированная справочная величина без достаточного бытового масштаба; проверяет запоминание точного числа.",
+    "source": "https://www.bipm.org/en/measurement-units/si-defining-constants"
+  },
+  {
+    "id": "approx-0042",
+    "question": "Сколько различных двоичных последовательностей длиной 10 бит существует?",
+    "answer": "1024",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:2**10"
+  },
+  {
+    "id": "approx-0043",
+    "question": "Чему равен абсолютный ноль температуры в градусах Цельсия?",
+    "answer": "−273,15",
+    "decision": "historical-only",
+    "category": "memorized-constant",
+    "reason": "Точная константа или изолированная справочная величина без достаточного бытового масштаба; проверяет запоминание точного числа.",
+    "source": "https://www.bipm.org/en/measurement-units/si-base-units"
+  },
+  {
+    "id": "approx-0044",
+    "question": "Сколько периодов излучения перехода атома цезия-133 определяют секунду в СИ?",
+    "answer": "9192631770",
+    "decision": "historical-only",
+    "category": "memorized-constant",
+    "reason": "Точная константа или изолированная справочная величина без достаточного бытового масштаба; проверяет запоминание точного числа.",
+    "source": "https://www.bipm.org/en/measurement-units/si-defining-constants"
+  },
+  {
+    "id": "approx-0045",
+    "question": "Чему равна постоянная Авогадро в обратных молях?",
+    "answer": "6,02214076 × 10²³",
+    "decision": "historical-only",
+    "category": "memorized-constant",
+    "reason": "Точная константа или изолированная справочная величина без достаточного бытового масштаба; проверяет запоминание точного числа.",
+    "source": "https://www.bipm.org/en/measurement-units/si-defining-constants"
+  },
+  {
+    "id": "approx-0046",
+    "question": "Сколько земных суток длится оборот Меркурия вокруг Солнца, округлённо до целого?",
+    "answer": "88",
+    "decision": "retain",
+    "category": "real-estimate",
+    "reason": "Реальная физическая или географическая величина с понятным масштабом; ответ и первоисточник повторно подтверждены для E.",
+    "source": "https://science.nasa.gov/mercury/facts/"
+  },
+  {
+    "id": "approx-0047",
+    "question": "Сколько земных суток длится оборот Венеры вокруг Солнца, округлённо до целого?",
+    "answer": "225",
+    "decision": "retain",
+    "category": "real-estimate",
+    "reason": "Реальная физическая или географическая величина с понятным масштабом; ответ и первоисточник повторно подтверждены для E.",
+    "source": "https://science.nasa.gov/venus/venus-facts/"
+  },
+  {
+    "id": "approx-0048",
+    "question": "Сколько земных лет длится оборот Нептуна вокруг Солнца, округлённо до целого?",
+    "answer": "165",
+    "decision": "retain",
+    "category": "real-estimate",
+    "reason": "Реальная физическая или географическая величина с понятным масштабом; ответ и первоисточник повторно подтверждены для E.",
+    "source": "https://science.nasa.gov/neptune/neptune-facts/"
+  },
+  {
+    "id": "approx-0049",
+    "question": "Сколько астронавтов ходили по поверхности Луны в рамках программы «Аполлон»?",
+    "answer": "12",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://science.nasa.gov/moon/moon-walkers/"
+  },
+  {
+    "id": "approx-0050",
+    "question": "Сколько костей в стандартном осевом скелете взрослого человека?",
+    "answer": "80",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://training.seer.cancer.gov/anatomy/skeletal/divisions/"
+  },
+  {
+    "id": "approx-0051",
+    "question": "Сколько костей в стандартном добавочном скелете взрослого человека?",
+    "answer": "126",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://training.seer.cancer.gov/anatomy/skeletal/divisions/"
+  },
+  {
+    "id": "approx-0052",
+    "question": "Сколько граней у правильного додекаэдра?",
+    "answer": "12",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "definition:geometry"
+  },
+  {
+    "id": "approx-0053",
+    "question": "Сколько вершин у правильного икосаэдра?",
+    "answer": "12",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "definition:geometry"
+  },
+  {
+    "id": "approx-0054",
+    "question": "Сколько диагоналей у выпуклого восьмиугольника?",
+    "answer": "20",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:8*(8-3)/2"
+  },
+  {
+    "id": "approx-0055",
+    "question": "Сколькими способами можно расставить пять разных книг в один ряд?",
+    "answer": "120",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:5*4*3*2*1"
+  },
+  {
+    "id": "approx-0056",
+    "question": "Сколько различных значений можно закодировать восемью битами?",
+    "answer": "256",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:2**8"
+  },
+  {
+    "id": "approx-0057",
+    "question": "Сколько клавиш было у первого фортепиано Бартоломео Кристофори согласно истории инструмента Yamaha?",
+    "answer": "54",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.yamaha.com/en/musical_instrument_guide/piano/trivia/trivia007.html"
+  },
+  {
+    "id": "approx-0058",
+    "question": "Сколько секунд в двух часах и 35 минутах?",
+    "answer": "9300",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:2*3600+35*60"
+  },
+  {
+    "id": "approx-0059",
+    "question": "Сколькими способами можно выбрать двух человек из десяти, если порядок не важен?",
+    "answer": "45",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:10*9/2"
+  },
+  {
+    "id": "approx-0060",
+    "question": "Чему равна сумма внутренних углов выпуклого десятиугольника?",
+    "answer": "1440",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:(10-2)*180"
+  },
+  {
+    "id": "approx-8001",
+    "question": "Сколько карт в стандартной полной колоде без джокеров?",
+    "answer": "52",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://bicyclecards.com/how-to-play/bingo"
+  },
+  {
+    "id": "approx-8002",
+    "question": "Сколько игроков одной футбольной команды находится на поле при полном составе, включая вратаря?",
+    "answer": "11",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.theifab.com/laws/latest/the-players/"
+  },
+  {
+    "id": "approx-8003",
+    "question": "Сколько игроков одной команды одновременно на площадке в обычном баскетболе при полном составе?",
+    "answer": "5",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2026-v1-1.pdf"
+  },
+  {
+    "id": "approx-8004",
+    "question": "Сколько клеток на обычном поле для крестиков-ноликов размером 3 на 3?",
+    "answer": "9",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:3*3"
+  },
+  {
+    "id": "approx-8005",
+    "question": "Сколько яиц в трёх полных десятках?",
+    "answer": "30",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:3*10"
+  },
+  {
+    "id": "approx-8006",
+    "question": "Сколько крыльев у взрослой стрекозы?",
+    "answer": "4",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.nhm.ac.uk/discover/dragonflies-the-ultimate-hunters.html"
+  },
+  {
+    "id": "approx-8007",
+    "question": "Какой по счёту от Солнца является Земля?",
+    "answer": "3",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://science.nasa.gov/earth/facts/"
+  },
+  {
+    "id": "approx-8008",
+    "question": "Сколько нулей в десятичной записи числа один миллион?",
+    "answer": "6",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:6"
+  },
+  {
+    "id": "approx-8009",
+    "question": "Сколько букв в современном русском алфавите, включая ё?",
+    "answer": "33",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://gramota.ru/biblioteka/slovari/slovar-9/russkiy-alfavit-172"
+  },
+  {
+    "id": "approx-8010",
+    "question": "Сколько миллиметров в одном сантиметре?",
+    "answer": "10",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf"
+  },
+  {
+    "id": "approx-8011",
+    "question": "В каком году торжественно открыли Статую Свободы в Нью-Йорке?",
+    "answer": "1886",
+    "decision": "historical-only",
+    "category": "date-recall",
+    "reason": "Нужно вспомнить год события; вместо дат в новом пуле используются размеры, массы, расстояния и длительности реальных процессов.",
+    "source": "https://www.nps.gov/stli/"
+  },
+  {
+    "id": "approx-8012",
+    "question": "В каком году в Афинах прошли первые Олимпийские игры современности?",
+    "answer": "1896",
+    "decision": "historical-only",
+    "category": "date-recall",
+    "reason": "Нужно вспомнить год события; вместо дат в новом пуле используются размеры, массы, расстояния и длительности реальных процессов.",
+    "source": "https://www.olympics.com/en/olympic-games/athens-1896"
+  },
+  {
+    "id": "approx-8013",
+    "question": "Сколько белых пешек стоит на доске в начальной позиции обычных шахмат?",
+    "answer": "8",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://handbook.fide.com/chapter/e012023"
+  },
+  {
+    "id": "approx-8014",
+    "question": "Сколько фигур и пешек обоих цветов вместе в начальной позиции обычных шахмат?",
+    "answer": "32",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://handbook.fide.com/chapter/e012023"
+  },
+  {
+    "id": "approx-8015",
+    "question": "Сколько квадратных метров в одном гектаре?",
+    "answer": "10000",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf"
+  },
+  {
+    "id": "approx-8016",
+    "question": "Сколько минут в полутора сутках?",
+    "answer": "2160",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:1.5*24*60"
+  },
+  {
+    "id": "approx-8017",
+    "question": "На сколько кусков разделят четыре пирога, если каждый нарезать на шесть равных частей?",
+    "answer": "24",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:4*6"
+  },
+  {
+    "id": "approx-8018",
+    "question": "В каком году состоялось торжественное открытие Суэцкого канала для судоходства?",
+    "answer": "1869",
+    "decision": "historical-only",
+    "category": "date-recall",
+    "reason": "Нужно вспомнить год события; вместо дат в новом пуле используются размеры, массы, расстояния и длительности реальных процессов.",
+    "source": "https://www.suezcanal.gov.eg/English/About/SuezCanal/Pages/CanalHistory.aspx"
+  },
+  {
+    "id": "approx-8019",
+    "question": "Сколько минут длится основное время обычного футбольного матча без перерыва и добавленного времени?",
+    "answer": "90",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.theifab.com/laws/latest/the-duration-of-the-match/"
+  },
+  {
+    "id": "approx-8020",
+    "question": "Сколько граммов сахара в пакете массой 2,5 килограмма?",
+    "answer": "2500",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:2.5*1000"
+  },
+  {
+    "id": "approx-8021",
+    "question": "Скольким метрам точно равна международная морская миля?",
+    "answer": "1852",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "https://www.noaa.gov/maritime-zones-and-boundaries"
+  },
+  {
+    "id": "approx-8022",
+    "question": "Сколько секунд в 365 сутках, если каждые сутки считать ровно по 24 часа?",
+    "answer": "31536000",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:365*24*60*60"
+  },
+  {
+    "id": "approx-8023",
+    "question": "Сколько костяшек в полном обычном наборе домино «дубль-шесть»?",
+    "answer": "28",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "formula:7*8/2"
+  },
+  {
+    "id": "approx-8024",
+    "question": "Чему равна диагональ прямоугольного экрана со сторонами 30 и 40 сантиметров?",
+    "answer": "50",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:Math.sqrt(30**2+40**2)"
+  },
+  {
+    "id": "approx-8025",
+    "question": "Сколько миллилитров сиропа в 750 мл напитка, если сироп занимает одну пятую объёма?",
+    "answer": "150",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:750/5"
+  },
+  {
+    "id": "approx-8026",
+    "question": "В каком году Эйфелева башня впервые открылась для посетителей?",
+    "answer": "1889",
+    "decision": "historical-only",
+    "category": "date-recall",
+    "reason": "Нужно вспомнить год события; вместо дат в новом пуле используются размеры, массы, расстояния и длительности реальных процессов.",
+    "source": "https://www.toureiffel.paris/en/news/events/eiffel-tower-turns-120"
+  },
+  {
+    "id": "approx-8027",
+    "question": "Сколько суток прошло с начала невисокосного года к концу 30 апреля включительно?",
+    "answer": "120",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:31+28+31+30"
+  },
+  {
+    "id": "approx-8028",
+    "question": "Сколько тонн составляет ровно миллион килограммов?",
+    "answer": "1000",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf"
+  },
+  {
+    "id": "approx-8029",
+    "question": "На сколько градусов поворачивается минутная стрелка исправных часов за 17 минут?",
+    "answer": "102",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:360*17/60"
+  },
+  {
+    "id": "approx-8030",
+    "question": "Какова высота Статуи Свободы от земли до кончика факела вместе с постаментом, округлённая до целого метра?",
+    "answer": "93",
+    "decision": "retain",
+    "category": "real-estimate",
+    "reason": "Реальная физическая или географическая величина с понятным масштабом; ответ и первоисточник повторно подтверждены для E.",
+    "source": "https://www.nps.gov/stli/learn/historyculture/statue-statistics.htm"
+  },
+  {
+    "id": "approx-8101",
+    "question": "Сколько штатов входит в США, не считая федерального округа Колумбия, по состоянию на 2026 год?",
+    "answer": "50",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://data.census.gov/profile/United_States?g=010XX00US"
+  },
+  {
+    "id": "approx-8102",
+    "question": "Сколько провинций в Канаде, если не считать территории, по составу федерации на 2026 год?",
+    "answer": "10",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.canada.ca/en/intergovernmental-affairs/services/provinces-territories.html"
+  },
+  {
+    "id": "approx-8103",
+    "question": "Сколько штатов в Австралийском Союзе, не считая территорий, по состоянию на 2026 год?",
+    "answer": "6",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://peo.gov.au/assets/Public/2023_Australian_Constitution.pdf"
+  },
+  {
+    "id": "approx-8104",
+    "question": "На сколько именованных океанов NOAA обычно делит единый Мировой океан?",
+    "answer": "5",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://oceanservice.noaa.gov/podcast/making-waves-podcast-archive.html"
+  },
+  {
+    "id": "approx-8105",
+    "question": "Сколько штатов показано на политической карте Бразилии IBGE 2022 года, кроме Федерального округа?",
+    "answer": "26",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://agenciadenoticias.ibge.gov.br/en/agencia-news/2184-news-agency/news/35015-ibge-launches-new-edition-of-political-map-of-brazil"
+  },
+  {
+    "id": "approx-8106",
+    "question": "На сколько полушарий экватор делит поверхность Земли?",
+    "answer": "2",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "definition:equator"
+  },
+  {
+    "id": "approx-8107",
+    "question": "Сколько основных сторон горизонта обозначают словами север, юг, запад и восток?",
+    "answer": "4",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "formula:4"
+  },
+  {
+    "id": "approx-8108",
+    "question": "Какова северная широта географического Северного полюса в градусах?",
+    "answer": "90",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "definition:latitude"
+  },
+  {
+    "id": "approx-8109",
+    "question": "Скольким километрам на местности соответствует один сантиметр карты масштаба 1:100 000?",
+    "answer": "1",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:100000/100000"
+  },
+  {
+    "id": "approx-8110",
+    "question": "Сколько основных островов обычно выделяют у Новой Зеландии, не считая многочисленных малых?",
+    "answer": "2",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.linz.govt.nz/our-work/new-zealand-geographic-board/place-name-stories/te-ika-maui-north-island-and-te-waipounamu-south-island"
+  },
+  {
+    "id": "approx-8111",
+    "question": "Какова высота горы Фудзи над уровнем моря в метрах по данным Японской национальной туристической организации?",
+    "answer": "3776",
+    "decision": "retain",
+    "category": "real-estimate",
+    "reason": "Реальная физическая или географическая величина с понятным масштабом; ответ и первоисточник повторно подтверждены для E.",
+    "source": "https://www.japan.travel/national-parks/parks/fuji-hakone-izu/explore/"
+  },
+  {
+    "id": "approx-8112",
+    "question": "Какова максимальная глубина Байкала в метрах по батиметрической карте проекта INTAS 2002 года?",
+    "answer": "1642",
+    "decision": "retain",
+    "category": "real-estimate",
+    "reason": "Реальная физическая или географическая величина с понятным масштабом; ответ и первоисточник повторно подтверждены для E.",
+    "source": "https://www.lin.irk.ru/intas/morphometry.htm"
+  },
+  {
+    "id": "approx-8113",
+    "question": "Сколько провинций в ЮАР по официальному справочнику 2022/23 года?",
+    "answer": "9",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.gcis.gov.za/sites/default/files/docs/resourcecentre/OfficialGuideToSouthAfrica2022-23Feb24.pdf"
+  },
+  {
+    "id": "approx-8114",
+    "question": "Сколько регионов стало в европейской части Франции после реформы 1 января 2016 года?",
+    "answer": "13",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.insee.fr/fr/statistiques/1906658"
+  },
+  {
+    "id": "approx-8115",
+    "question": "Сколько золотых звёзд изображено на флаге Европейского союза?",
+    "answer": "12",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://european-union.europa.eu/principles-countries-history/symbols/european-flag_en"
+  },
+  {
+    "id": "approx-8116",
+    "question": "Какова длина земного экватора в километрах, округлённая до целого, по справке National Geographic?",
+    "answer": "40075",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://education.nationalgeographic.org/resource/equator/"
+  },
+  {
+    "id": "approx-8117",
+    "question": "Какую длину Суэцкого канала в километрах указывает его администрация в справочнике на 2026 год?",
+    "answer": "193,3",
+    "decision": "retain",
+    "category": "real-estimate",
+    "reason": "Реальная физическая или географическая величина с понятным масштабом; ответ и первоисточник повторно подтверждены для E.",
+    "source": "https://www.suezcanal.gov.eg/English/Pages/FAQ.aspx"
+  },
+  {
+    "id": "approx-8118",
+    "question": "Какова высота Килиманджаро над уровнем моря в метрах по данным национального парка TANAPA?",
+    "answer": "5895",
+    "decision": "retain",
+    "category": "real-estimate",
+    "reason": "Реальная физическая или географическая величина с понятным масштабом; ответ и первоисточник повторно подтверждены для E.",
+    "source": "https://www.tanzaniaparks.go.tz/kilimanjaro"
+  },
+  {
+    "id": "approx-8119",
+    "question": "Сколько регионов Италии проходит туристический маршрут Sentiero Italia CAI по официальному порталу Italia.it?",
+    "answer": "20",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.italia.it/fr/italie/que-faire/a-pied--dans-les-montagnes-italiennes--le-long-du-sentier-italia-cai"
+  },
+  {
+    "id": "approx-8120",
+    "question": "Сколько территорий, отдельно от десяти провинций, входит в Канаду по составу федерации на 2026 год?",
+    "answer": "3",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.canada.ca/en/intergovernmental-affairs/services/provinces-territories.html"
+  },
+  {
+    "id": "approx-8121",
+    "question": "Какую площадь территории Мальты в квадратных километрах указывает государственный аудит программы Италия—Мальта 2025 года?",
+    "answer": "316",
+    "decision": "retain",
+    "category": "real-estimate",
+    "reason": "Реальная физическая или географическая величина с понятным масштабом; ответ и первоисточник повторно подтверждены для E.",
+    "source": "https://nao.gov.mt/wp-content/uploads/2025/07/InterregJuly2025.pdf"
+  },
+  {
+    "id": "approx-8122",
+    "question": "В каком году Панамский канал официально открылся для мирового судоходства?",
+    "answer": "1914",
+    "decision": "historical-only",
+    "category": "date-recall",
+    "reason": "Нужно вспомнить год события; вместо дат в новом пуле используются размеры, массы, расстояния и длительности реальных процессов.",
+    "source": "https://pancanal.com/canal-de-panama-es-conectividad/"
+  },
+  {
+    "id": "approx-8123",
+    "question": "В каком году экспедиция Руаля Амундсена первой достигла географического Южного полюса?",
+    "answer": "1911",
+    "decision": "historical-only",
+    "category": "date-recall",
+    "reason": "Нужно вспомнить год события; вместо дат в новом пуле используются размеры, массы, расстояния и длительности реальных процессов.",
+    "source": "https://sorpolen2011.npolar.no/en/pictures/amundsen-1911/index.html"
+  },
+  {
+    "id": "approx-8124",
+    "question": "Сколько островов Японии насчитала GSI в опубликованном 28 февраля 2023 года исследовании?",
+    "answer": "14125",
+    "decision": "historical-only-pending-source",
+    "category": "source-follow-up",
+    "reason": "Страница GSI доступна, но в извлечённом тексте не удалось повторно подтвердить число; исходник сохранён для следующей проверки PDF/схемы.",
+    "source": "https://www.gsi.go.jp/kihonjohochousa/pressrelease20230228.html"
+  },
+  {
+    "id": "approx-8125",
+    "question": "Какую протяжённость Панамского канала в километрах между океанами приводит администрация канала, округлённо?",
+    "answer": "80",
+    "decision": "retain",
+    "category": "real-estimate",
+    "reason": "Реальная физическая или географическая величина с понятным масштабом; ответ и первоисточник повторно подтверждены для E.",
+    "source": "https://pancanal.com/canal-de-panama-celebra-101-anos-de-operacion/"
+  },
+  {
+    "id": "approx-8126",
+    "question": "Какова полная высота водопада Анхель в метрах по материалу NHK в архиве ЮНЕСКО?",
+    "answer": "979",
+    "decision": "historical-only-pending-source",
+    "category": "source-follow-up",
+    "reason": "Исходный URL ведёт на видеоматериал NHK/UNESCO; численное значение в доступном тексте не подтверждено.",
+    "source": "https://whc.unesco.org/en/documents/6425"
+  },
+  {
+    "id": "approx-8127",
+    "question": "Какую глубину озера Крейтер в метрах указывает Национальная парковая служба США?",
+    "answer": "592",
+    "decision": "retain",
+    "category": "real-estimate",
+    "reason": "Реальная физическая или географическая величина с понятным масштабом; ответ и первоисточник повторно подтверждены для E.",
+    "source": "https://www.nps.gov/places/crater-lake.htm"
+  },
+  {
+    "id": "approx-8128",
+    "question": "Какова наибольшая глубина озера Тахо в метрах по отчёту USGS 2012-5229?",
+    "answer": "501",
+    "decision": "historical-only-pending-source",
+    "category": "source-follow-up",
+    "reason": "Исходный PDF USGS не удалось получить при проверке E; до повторного подтверждения исключён только из нового пула.",
+    "source": "https://pubs.usgs.gov/sir/2012/5229/sir2012-5229.pdf"
+  },
+  {
+    "id": "approx-8129",
+    "question": "Какова длина одного тоннеля под Ла-Маншем в километрах, округлённая до целого в справке оператора Getlink?",
+    "answer": "50",
+    "decision": "historical-only-pending-source",
+    "category": "source-follow-up",
+    "reason": "Исходный URL оператора перенаправляет в пресс-центр и больше не подтверждает длину; нужна новая документальная ссылка.",
+    "source": "https://www.getlinkgroup.com/en/our-group/eurotunnel/channel-tunnel/"
+  },
+  {
+    "id": "approx-8130",
+    "question": "Сколько гектаров занимает территория площадью 12 квадратных километров?",
+    "answer": "1200",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:12*100"
+  },
+  {
+    "id": "approx-8201",
+    "question": "Сколько основных видов азотистых оснований образует генетический алфавит ДНК?",
+    "answer": "4",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.genome.gov/about-genomics/fact-sheets/A-Brief-Guide-to-Genomics"
+  },
+  {
+    "id": "approx-8202",
+    "question": "Сколько шейных позвонков обычно у жирафа?",
+    "answer": "7",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://www.nhm.ac.uk/discover/how-is-a-mouse-like-a-giraffe.html"
+  },
+  {
+    "id": "approx-8203",
+    "question": "Сколько полюсов имеет обычный цельный стержневой магнит?",
+    "answer": "2",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "definition:magnetic-dipole"
+  },
+  {
+    "id": "approx-8204",
+    "question": "Сколько цветовых каналов в модели RGB, если не считать прозрачность?",
+    "answer": "3",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "definition:RGB"
+  },
+  {
+    "id": "approx-8205",
+    "question": "Сколько бит содержит один байт в современных файловых форматах?",
+    "answer": "8",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "definition:octet"
+  },
+  {
+    "id": "approx-8206",
+    "question": "Сколько ватт составляет один киловатт?",
+    "answer": "1000",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf"
+  },
+  {
+    "id": "approx-8207",
+    "question": "Деталь длиной 1 мм на рисунке увеличена в 10 раз. Какова её длина на рисунке?",
+    "answer": "10",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:1*10"
+  },
+  {
+    "id": "approx-8208",
+    "question": "Сколько бактерий получится из одной после трёх делений, если при каждом делении каждая бактерия делится надвое?",
+    "answer": "8",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:2**3"
+  },
+  {
+    "id": "approx-8209",
+    "question": "Сколько протонов содержит ядро обычного атома гелия?",
+    "answer": "2",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://iupac.org/what-we-do/periodic-table-of-elements/"
+  },
+  {
+    "id": "approx-8210",
+    "question": "Сколько основных отделов тела выделяют у взрослого насекомого?",
+    "answer": "3",
+    "decision": "historical-only",
+    "category": "enumerated-fact",
+    "reason": "Закрытый счёт общеизвестных объектов или учебный факт; ответ требует знания перечня, а не интересной оценки неизвестной величины.",
+    "source": "https://naturalhistory.si.edu/education/teaching-resources/life-science/what-insect"
+  },
+  {
+    "id": "approx-8211",
+    "question": "Сколько земных суток длится год на Марсе, округлённо по NASA?",
+    "answer": "687",
+    "decision": "retain",
+    "category": "real-estimate",
+    "reason": "Реальная физическая или географическая величина с понятным масштабом; ответ и первоисточник повторно подтверждены для E.",
+    "source": "https://science.nasa.gov/mars/facts/"
+  },
+  {
+    "id": "approx-8212",
+    "question": "Сколько земных лет длится один оборот Юпитера вокруг Солнца, округлённо до целого?",
+    "answer": "12",
+    "decision": "retain",
+    "category": "real-estimate",
+    "reason": "Реальная физическая или географическая величина с понятным масштабом; ответ и первоисточник повторно подтверждены для E.",
+    "source": "https://science.nasa.gov/jupiter/jupiter-facts/"
+  },
+  {
+    "id": "approx-8213",
+    "question": "В каком году космический телескоп «Хаббл» запустили на борту шаттла Discovery?",
+    "answer": "1990",
+    "decision": "historical-only",
+    "category": "date-recall",
+    "reason": "Нужно вспомнить год события; вместо дат в новом пуле используются размеры, массы, расстояния и длительности реальных процессов.",
+    "source": "https://www.nasa.gov/history/hubble/"
+  },
+  {
+    "id": "approx-8214",
+    "question": "В каком году марсоход Perseverance совершил посадку в кратере Езеро?",
+    "answer": "2021",
+    "decision": "historical-only",
+    "category": "date-recall",
+    "reason": "Нужно вспомнить год события; вместо дат в новом пуле используются размеры, массы, расстояния и длительности реальных процессов.",
+    "source": "https://science.nasa.gov/blogs/perseverance-mars-rover/2021/02/18/blog-nasas-perseverance-has-landed/"
+  },
+  {
+    "id": "approx-8215",
+    "question": "В каком году Александр Флеминг заметил антибактериальное действие плесени, приведшее к открытию пенициллина?",
+    "answer": "1928",
+    "decision": "historical-only",
+    "category": "date-recall",
+    "reason": "Нужно вспомнить год события; вместо дат в новом пуле используются размеры, массы, расстояния и длительности реальных процессов.",
+    "source": "https://www.nobelprize.org/prizes/medicine/1945/fleming/facts/"
+  },
+  {
+    "id": "approx-8216",
+    "question": "Какова площадь круга радиусом 10 см, округлённая до целого квадратного сантиметра?",
+    "answer": "314",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:Math.round(Math.PI*10**2)"
+  },
+  {
+    "id": "approx-8217",
+    "question": "Каков объём сплошного кубика со стороной 4 см?",
+    "answer": "64",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:4**3"
+  },
+  {
+    "id": "approx-8218",
+    "question": "Какова массовая доля соли в процентах в растворе из 20 г соли и 180 г воды?",
+    "answer": "10",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:20/(20+180)*100"
+  },
+  {
+    "id": "approx-8219",
+    "question": "Во сколько раз маленькая шестерёнка с 12 зубьями вращается быстрее сцепленной с ней шестерёнки с 36 зубьями?",
+    "answer": "3",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:36/12"
+  },
+  {
+    "id": "approx-8220",
+    "question": "Каково общее увеличение микроскопа с окуляром 10× и объективом 40×?",
+    "answer": "400",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:10*40"
+  },
+  {
+    "id": "approx-8221",
+    "question": "В каком году Иван Павлов получил Нобелевскую премию по физиологии или медицине?",
+    "answer": "1904",
+    "decision": "historical-only",
+    "category": "date-recall",
+    "reason": "Нужно вспомнить год события; вместо дат в новом пуле используются размеры, массы, расстояния и длительности реальных процессов.",
+    "source": "https://www.nobelprize.org/prizes/medicine/1904/summary/"
+  },
+  {
+    "id": "approx-8222",
+    "question": "В каком году Мария Кюри получила Нобелевскую премию именно по химии?",
+    "answer": "1911",
+    "decision": "historical-only",
+    "category": "date-recall",
+    "reason": "Нужно вспомнить год события; вместо дат в новом пуле используются размеры, массы, расстояния и длительности реальных процессов.",
+    "source": "https://www.nobelprize.org/prizes/chemistry/facts-on-the-nobel-prize-in-chemistry/"
+  },
+  {
+    "id": "approx-8223",
+    "question": "В каком году Тим Бернерс-Ли в CERN предложил систему, ставшую Всемирной паутиной — World Wide Web?",
+    "answer": "1989",
+    "decision": "historical-only",
+    "category": "date-recall",
+    "reason": "Нужно вспомнить год события; вместо дат в новом пуле используются размеры, массы, расстояния и длительности реальных процессов.",
+    "source": "https://home.cern/science/computing/the-birth-of-the-web"
+  },
+  {
+    "id": "approx-8224",
+    "question": "В каком году реактор Chicago Pile-1 впервые осуществил управляемую самоподдерживающуюся ядерную цепную реакцию?",
+    "answer": "1942",
+    "decision": "historical-only",
+    "category": "date-recall",
+    "reason": "Нужно вспомнить год события; вместо дат в новом пуле используются размеры, массы, расстояния и длительности реальных процессов.",
+    "source": "https://www.energy.gov/ne/articles/10-intriguing-facts-about-worlds-first-nuclear-chain-reaction"
+  },
+  {
+    "id": "approx-8225",
+    "question": "Какой период полураспада углерода-14 в годах приводит справка CIAAW об углероде?",
+    "answer": "5730",
+    "decision": "historical-only",
+    "category": "memorized-constant",
+    "reason": "Точная константа или изолированная справочная величина без достаточного бытового масштаба; проверяет запоминание точного числа.",
+    "source": "https://www.ciaaw.org/carbon.htm"
+  },
+  {
+    "id": "approx-8226",
+    "question": "Скольким паскалям точно равна одна стандартная физическая атмосфера?",
+    "answer": "101325",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "https://www.nist.gov/pml/special-publication-330/sp-330-appendix-1"
+  },
+  {
+    "id": "approx-8227",
+    "question": "За сколько секунд свет в вакууме проходит ровно одну астрономическую единицу, округлённо до целой секунды?",
+    "answer": "499",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "https://ssd.jpl.nasa.gov/glossary/au.html"
+  },
+  {
+    "id": "approx-8228",
+    "question": "Какова частота колебаний в герцах, если маятник совершил 5 полных колебаний за 10 секунд?",
+    "answer": "0.5",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:5/10"
+  },
+  {
+    "id": "approx-8229",
+    "question": "Каков объём цилиндра радиусом 5 см и высотой 10 см, округлённый до целого кубического сантиметра?",
+    "answer": "785",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:Math.round(Math.PI*5**2*10)"
+  },
+  {
+    "id": "approx-8230",
+    "question": "Сколько пикселей содержит один кадр разрешением 1920 на 1080, без учёта цветовых каналов?",
+    "answer": "2073600",
+    "decision": "historical-only",
+    "category": "direct-calculation",
+    "reason": "Прямое вычисление, счёт вариантов или перевод единиц по условию; неизвестную величину оценивать не нужно.",
+    "source": "formula:1920*1080"
+  }
+]

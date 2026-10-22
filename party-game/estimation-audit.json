@@ -1,0 +1,48 @@
+{
+  "newQuestions": 150,
+  "retainedHistorical": 13,
+  "historicalOnly": 137,
+  "pendingSourceFollowup": [
+    "approx-8124",
+    "approx-8126",
+    "approx-8128",
+    "approx-8129"
+  ],
+  "activeGeneralQuestions": 163,
+  "oldQuestionDecisions": {
+    "calendar": 5,
+    "enumerated-fact": 66,
+    "direct-calculation": 41,
+    "date-recall": 16,
+    "memorized-constant": 5,
+    "real-estimate": 13,
+    "source-follow-up": 4
+  },
+  "newDifficulty": {
+    "easy": 47,
+    "medium": 62,
+    "hard": 41
+  },
+  "newCategories": {
+    "geography": 28,
+    "technology": 63,
+    "history": 34,
+    "nature": 47,
+    "culture": 19,
+    "animals": 34,
+    "biology": 19,
+    "science": 78,
+    "space": 19,
+    "transport": 17,
+    "arts": 4,
+    "sport": 9
+  },
+  "primarySources": 74,
+  "maximumQuestionLength": 139,
+  "historicalIdsUnchanged": 150,
+  "packVersions": [
+    "general@5",
+    "geography@3",
+    "science@3"
+  ]
+}

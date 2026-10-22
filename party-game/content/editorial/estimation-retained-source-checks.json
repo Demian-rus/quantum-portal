@@ -1,0 +1,106 @@
+[
+  {
+    "id": "approx-0046",
+    "source": "https://science.nasa.gov/mercury/facts/",
+    "answer": "88",
+    "reference": "turn366view0",
+    "checkedAt": "2026-10-22",
+    "decision": "confirmed-existing-value"
+  },
+  {
+    "id": "approx-0047",
+    "source": "https://science.nasa.gov/venus/venus-facts/",
+    "answer": "225",
+    "reference": "turn366view1",
+    "checkedAt": "2026-10-22",
+    "decision": "confirmed-existing-value"
+  },
+  {
+    "id": "approx-0048",
+    "source": "https://science.nasa.gov/neptune/neptune-facts/",
+    "answer": "165",
+    "reference": "turn366view2",
+    "checkedAt": "2026-10-22",
+    "decision": "confirmed-existing-value"
+  },
+  {
+    "id": "approx-8030",
+    "source": "https://www.nps.gov/stli/learn/historyculture/statue-statistics.htm",
+    "answer": "93",
+    "reference": "turn365view3",
+    "checkedAt": "2026-10-22",
+    "decision": "confirmed-existing-value"
+  },
+  {
+    "id": "approx-8111",
+    "source": "https://www.japan.travel/national-parks/parks/fuji-hakone-izu/explore/",
+    "answer": "3776",
+    "reference": "turn366view3",
+    "checkedAt": "2026-10-22",
+    "decision": "confirmed-existing-value"
+  },
+  {
+    "id": "approx-8112",
+    "source": "https://www.lin.irk.ru/intas/morphometry.htm",
+    "answer": "1642",
+    "reference": "turn365view5",
+    "checkedAt": "2026-10-22",
+    "decision": "confirmed-existing-value"
+  },
+  {
+    "id": "approx-8117",
+    "source": "https://www.suezcanal.gov.eg/English/Pages/FAQ.aspx",
+    "answer": "193,3",
+    "reference": "turn366view4",
+    "checkedAt": "2026-10-22",
+    "decision": "confirmed-existing-value"
+  },
+  {
+    "id": "approx-8118",
+    "source": "https://www.tanzaniaparks.go.tz/kilimanjaro",
+    "answer": "5895",
+    "reference": "turn365view7",
+    "checkedAt": "2026-10-22",
+    "decision": "confirmed-existing-value"
+  },
+  {
+    "id": "approx-8121",
+    "source": "https://nao.gov.mt/wp-content/uploads/2025/07/InterregJuly2025.pdf",
+    "answer": "316",
+    "reference": "turn366view5",
+    "checkedAt": "2026-10-22",
+    "decision": "confirmed-existing-value"
+  },
+  {
+    "id": "approx-8125",
+    "source": "https://pancanal.com/canal-de-panama-celebra-101-anos-de-operacion/",
+    "answer": "80",
+    "reference": "turn366view7",
+    "checkedAt": "2026-10-22",
+    "decision": "confirmed-existing-value"
+  },
+  {
+    "id": "approx-8127",
+    "source": "https://www.nps.gov/places/crater-lake.htm",
+    "answer": "592",
+    "reference": "turn366view9",
+    "checkedAt": "2026-10-22",
+    "decision": "confirmed-existing-value"
+  },
+  {
+    "id": "approx-8211",
+    "source": "https://science.nasa.gov/mars/facts/",
+    "answer": "687",
+    "reference": "turn366view10",
+    "checkedAt": "2026-10-22",
+    "decision": "confirmed-existing-value"
+  },
+  {
+    "id": "approx-8212",
+    "source": "https://science.nasa.gov/jupiter/jupiter-facts/",
+    "answer": "12",
+    "reference": "turn366view11",
+    "checkedAt": "2026-10-22",
+    "decision": "confirmed-existing-value"
+  }
+]
