@@ -1,4 +1,5 @@
 'use strict';
+const {capture}=require('./screenshots.cjs');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const {chromium} = require('playwright-core');
@@ -36,7 +37,7 @@ async function configureOnly(page,id) {
       await page.locator('#custom-rounds').evaluate(el=>{el.value='4';el.dispatchEvent(new Event('input',{bubbles:true}))});
       await page.locator('#base-duration').evaluate(el=>{el.value='60';el.dispatchEvent(new Event('input',{bubbles:true}))});
       assert.equal(await page.locator('#base-duration').inputValue(),'60');
-      await page.screenshot({path:'artifacts/quip-v2/'+device.name+'-settings.png',fullPage:true});
+      await capture(page,{path:'artifacts/quip-v2/'+device.name+'-settings.png',fullPage:true});
       await page.locator('#advanced-done').click();
       await page.locator('#start-game').click();
       assert.equal(await page.locator('#round-total').textContent(),'4');
@@ -54,7 +55,7 @@ async function configureOnly(page,id) {
       const icon=page.locator('.mode-symbol img.mode-art');
       assert.equal(await icon.getAttribute('src'),'./assets/modes/yesno.webp?v=3','Danetki must display the mystery-person icon');
       assert.ok(await icon.evaluate(el=>el.complete&&el.naturalWidth>=256),'Generated artwork not loaded');
-      await page.screenshot({path:'artifacts/quip-v2/'+device.name+'-yesno.png',fullPage:true});
+      await capture(page,{path:'artifacts/quip-v2/'+device.name+'-yesno.png',fullPage:true});
       await page.locator('[data-action="toggle-word"]').click();
       assert.equal(await page.locator('[data-action="start-timer"]').count(),0,'Hard game must auto-start');
       assert.equal(await page.locator('[data-action="pause"]').count(),0,'Hard game must not offer pause');
@@ -66,7 +67,7 @@ async function configureOnly(page,id) {
       }));
       assert.equal(timer.children,0,'Timer must be a single uninterrupted string');
       assert.match(timer.text,/^1:(2[0-9]|30)$/,'Per-mode timer is not used: '+timer.text);
-      await page.screenshot({path:'artifacts/quip-v2/'+device.name+'-timer.png',fullPage:true});
+      await capture(page,{path:'artifacts/quip-v2/'+device.name+'-timer.png',fullPage:true});
       await page.evaluate(()=>{game.current.deadline=Date.now()-10;tick()});
       await page.locator('[data-action="yes"]').click();
       assert.equal(await page.locator('#score-b').textContent(),String(state.points));
@@ -103,7 +104,7 @@ async function configureOnly(page,id) {
     const stats=await blitz.evaluate(()=>({correct:game.current.blitzCorrect,
       remaining:game.current.blitzQueue.length,count:game.current.blitzWords.length}));
     assert.deepEqual(stats,{correct:3,remaining:0,count:3});
-    await blitz.screenshot({path:'artifacts/quip-v2/phone-blitz-result.png',fullPage:true});
+    await capture(blitz,{path:'artifacts/quip-v2/phone-blitz-result.png',fullPage:true});
     await blitz.locator('[data-action="yes"]').click();
     assert.equal(await blitz.locator('#score-b').textContent(),'2');
     assert.deepEqual(errs,[],'Blitz JS errors');

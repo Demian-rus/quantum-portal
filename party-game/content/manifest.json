@@ -1,0 +1,352 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "id": "transport",
+      "name": "Транспорт"
+    },
+    {
+      "id": "arts",
+      "name": "Искусство"
+    },
+    {
+      "id": "language",
+      "name": "Язык"
+    },
+    {
+      "id": "marine",
+      "name": "Море"
+    },
+    {
+      "id": "general",
+      "name": "Общее"
+    },
+    {
+      "id": "geography",
+      "name": "География"
+    },
+    {
+      "id": "science",
+      "name": "Наука"
+    },
+    {
+      "id": "biology",
+      "name": "Биология"
+    },
+    {
+      "id": "animals",
+      "name": "Животные"
+    },
+    {
+      "id": "history",
+      "name": "История"
+    },
+    {
+      "id": "culture",
+      "name": "Культура"
+    },
+    {
+      "id": "nature",
+      "name": "Природа"
+    },
+    {
+      "id": "cinema",
+      "name": "Кино"
+    },
+    {
+      "id": "music",
+      "name": "Музыка"
+    },
+    {
+      "id": "literature",
+      "name": "Литература"
+    },
+    {
+      "id": "sport",
+      "name": "Спорт"
+    },
+    {
+      "id": "technology",
+      "name": "Технологии"
+    },
+    {
+      "id": "space",
+      "name": "Космос"
+    },
+    {
+      "id": "mythology",
+      "name": "Мифология"
+    },
+    {
+      "id": "food",
+      "name": "Еда"
+    },
+    {
+      "id": "videogames",
+      "name": "Видеоигры"
+    },
+    {
+      "id": "professions",
+      "name": "Профессии"
+    },
+    {
+      "id": "everyday",
+      "name": "Повседневная жизнь"
+    }
+  ],
+  "cards": [
+    {
+      "path": "cards/legacy-word.json",
+      "immutable": true,
+      "review": "Исторические категории не размечались автоматически."
+    },
+    {
+      "path": "cards/legacy-phrase.json",
+      "immutable": true,
+      "review": "Исторические категории не размечались автоматически."
+    },
+    {
+      "path": "cards/legacy-idiom.json",
+      "immutable": true,
+      "review": "Исторические категории не размечались автоматически."
+    },
+    {
+      "path": "cards/legacy-song.json",
+      "immutable": true,
+      "review": "Исторические категории не размечались автоматически."
+    },
+    {
+      "path": "cards/legacy-person.json",
+      "immutable": true,
+      "review": "Исторические категории не размечались автоматически."
+    },
+    {
+      "path": "cards/general-2026.json",
+      "immutable": true,
+      "review": "Авторское пополнение TASK 008 A; общая редакционная база."
+    },
+    {
+      "path": "cards/geography-v2.json",
+      "immutable": true,
+      "review": "География проверена редакционно в TASK 008 B."
+    },
+    {
+      "path": "cards/science-v2.json",
+      "immutable": true,
+      "review": "Наука проверена редакционно в TASK 008 C."
+    }
+  ],
+  "questions": [
+    {
+      "path": "questions/legacy-v1.json",
+      "immutable": true,
+      "review": "Снимок TASK 008: источники сохранены; пригодность для оценки величины будет пересмотрена отдельной политикой."
+    },
+    {
+      "path": "questions/general-2026.json",
+      "immutable": true,
+      "review": "Снимок TASK 008: источники сохранены; пригодность для оценки величины будет пересмотрена отдельной политикой."
+    },
+    {
+      "path": "questions/geography-v2.json",
+      "immutable": true,
+      "review": "Снимок TASK 008: источники сохранены; пригодность для оценки величины будет пересмотрена отдельной политикой."
+    },
+    {
+      "path": "questions/science-v2.json",
+      "immutable": true,
+      "review": "Снимок TASK 008: источники сохранены; пригодность для оценки величины будет пересмотрена отдельной политикой."
+    }
+  ],
+  "packs": [
+    {
+      "path": "packs/historical.json",
+      "immutable": true,
+      "review": "Неизменяемые декларации всех существующих версий."
+    }
+  ],
+  "legacyCollisions": [
+    {
+      "text": "мотылек",
+      "ids": [
+        "word-000055",
+        "song-000121"
+      ]
+    },
+    {
+      "text": "поворот",
+      "ids": [
+        "word-000193",
+        "song-000098"
+      ]
+    },
+    {
+      "text": "самолет",
+      "ids": [
+        "word-000286",
+        "song-000045"
+      ]
+    },
+    {
+      "text": "поезд",
+      "ids": [
+        "word-000288",
+        "song-000032"
+      ]
+    },
+    {
+      "text": "улыбка",
+      "ids": [
+        "word-000317",
+        "song-000070"
+      ]
+    },
+    {
+      "text": "прогулка",
+      "ids": [
+        "word-000321",
+        "song-000213"
+      ]
+    },
+    {
+      "text": "вечеринка",
+      "ids": [
+        "word-000335",
+        "song-000025"
+      ]
+    },
+    {
+      "text": "неваляшка",
+      "ids": [
+        "word-000705",
+        "song-000131"
+      ]
+    },
+    {
+      "text": "компромисс",
+      "ids": [
+        "word-000899",
+        "song-000161"
+      ]
+    },
+    {
+      "text": "цунами",
+      "ids": [
+        "word-000953",
+        "song-000149"
+      ]
+    },
+    {
+      "text": "туман",
+      "ids": [
+        "word-000958",
+        "song-000093"
+      ]
+    },
+    {
+      "text": "айсберг",
+      "ids": [
+        "word-000980",
+        "song-000048"
+      ]
+    },
+    {
+      "text": "комета",
+      "ids": [
+        "word-001166",
+        "song-000010"
+      ]
+    },
+    {
+      "text": "подмена тезиса",
+      "ids": [
+        "word-001403",
+        "phrase-000483"
+      ]
+    },
+    {
+      "text": "когнитивный диссонанс",
+      "ids": [
+        "word-001405",
+        "phrase-000400"
+      ]
+    },
+    {
+      "text": "теория игр",
+      "ids": [
+        "word-001410",
+        "phrase-000440"
+      ]
+    },
+    {
+      "text": "бесконечность",
+      "ids": [
+        "word-001525",
+        "song-000124"
+      ]
+    },
+    {
+      "text": "золотые руки",
+      "ids": [
+        "phrase-000233",
+        "idiom-000026"
+      ]
+    },
+    {
+      "text": "кот в мешке",
+      "ids": [
+        "phrase-000236",
+        "idiom-000025"
+      ]
+    },
+    {
+      "text": "двойное дно",
+      "ids": [
+        "phrase-000299",
+        "idiom-000050"
+      ]
+    },
+    {
+      "text": "пиррова победа",
+      "ids": [
+        "phrase-000412",
+        "idiom-000101"
+      ]
+    },
+    {
+      "text": "сизифов труд",
+      "ids": [
+        "phrase-000414",
+        "idiom-000102"
+      ]
+    },
+    {
+      "text": "троянский конь",
+      "ids": [
+        "phrase-000415",
+        "idiom-000105"
+      ]
+    },
+    {
+      "text": "дамоклов меч",
+      "ids": [
+        "phrase-000416",
+        "idiom-000103"
+      ]
+    },
+    {
+      "text": "гордиев узел",
+      "ids": [
+        "phrase-000418",
+        "idiom-000100"
+      ]
+    },
+    {
+      "text": "крокодил гена",
+      "ids": [
+        "song-000071",
+        "person-000002"
+      ]
+    }
+  ]
+}

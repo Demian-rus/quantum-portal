@@ -1,0 +1,1502 @@
+[
+  {
+    "text": "РОССИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009001"
+  },
+  {
+    "text": "КИТАЙ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009002"
+  },
+  {
+    "text": "ЯПОНИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009003"
+  },
+  {
+    "text": "ИНДИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009004"
+  },
+  {
+    "text": "ЕГИПЕТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009005"
+  },
+  {
+    "text": "ТУРЦИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009006"
+  },
+  {
+    "text": "ИТАЛИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009007"
+  },
+  {
+    "text": "ФРАНЦИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009008"
+  },
+  {
+    "text": "ИСПАНИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009009"
+  },
+  {
+    "text": "ГРЕЦИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009010"
+  },
+  {
+    "text": "КУБА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009011"
+  },
+  {
+    "text": "БРАЗИЛИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009012"
+  },
+  {
+    "text": "КАНАДА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009013"
+  },
+  {
+    "text": "МЕКСИКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009014"
+  },
+  {
+    "text": "АВСТРАЛИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009015"
+  },
+  {
+    "text": "МОСКВА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009016"
+  },
+  {
+    "text": "ПАРИЖ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009017"
+  },
+  {
+    "text": "РИМ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009018"
+  },
+  {
+    "text": "ЛОНДОН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009019"
+  },
+  {
+    "text": "БЕРЛИН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009020"
+  },
+  {
+    "text": "ПЕКИН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009021"
+  },
+  {
+    "text": "ТОКИО",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009022"
+  },
+  {
+    "text": "ПРАГА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009023"
+  },
+  {
+    "text": "КАИР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009024"
+  },
+  {
+    "text": "ВЕНЕЦИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009025"
+  },
+  {
+    "text": "БАЛИ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009026"
+  },
+  {
+    "text": "СОЧИ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009027"
+  },
+  {
+    "text": "БАЙКАЛ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009028"
+  },
+  {
+    "text": "ВОЛГА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009029"
+  },
+  {
+    "text": "САХАРА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009030"
+  },
+  {
+    "text": "ПОРТУГАЛИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009031"
+  },
+  {
+    "text": "НОРВЕГИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009032"
+  },
+  {
+    "text": "ФИНЛЯНДИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009033"
+  },
+  {
+    "text": "ШВЕЦИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009034"
+  },
+  {
+    "text": "ШВЕЙЦАРИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009035"
+  },
+  {
+    "text": "АВСТРИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009036"
+  },
+  {
+    "text": "ИРЛАНДИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009037"
+  },
+  {
+    "text": "ИСЛАНДИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009038"
+  },
+  {
+    "text": "МОНГОЛИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009039"
+  },
+  {
+    "text": "ВЬЕТНАМ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009040"
+  },
+  {
+    "text": "ТАИЛАНД",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009041"
+  },
+  {
+    "text": "МАЛАЙЗИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009042"
+  },
+  {
+    "text": "ИНДОНЕЗИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009043"
+  },
+  {
+    "text": "АРГЕНТИНА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009044"
+  },
+  {
+    "text": "ЧИЛИ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009045"
+  },
+  {
+    "text": "ПЕРУ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009046"
+  },
+  {
+    "text": "КЕНИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009047"
+  },
+  {
+    "text": "ТАНЗАНИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009048"
+  },
+  {
+    "text": "МАРОККО",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009049"
+  },
+  {
+    "text": "НЕПАЛ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009050"
+  },
+  {
+    "text": "ЭВЕРЕСТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009051"
+  },
+  {
+    "text": "ФУДЗИЯМА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009052"
+  },
+  {
+    "text": "КИЛИМАНДЖАРО",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009053"
+  },
+  {
+    "text": "ГРЕНЛАНДИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009054"
+  },
+  {
+    "text": "МАДАГАСКАР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009055"
+  },
+  {
+    "text": "СИЦИЛИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009056"
+  },
+  {
+    "text": "АМАЗОНКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009057"
+  },
+  {
+    "text": "МИССИСИПИ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009058"
+  },
+  {
+    "text": "МАЛЬДИВЫ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009059"
+  },
+  {
+    "text": "ГИМАЛАИ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009060"
+  },
+  {
+    "text": "ПАТАГОНИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009061"
+  },
+  {
+    "text": "ЛАПЛАНДИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009062"
+  },
+  {
+    "text": "МЕСОПОТАМИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009063"
+  },
+  {
+    "text": "ПОЛИНЕЗИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009064"
+  },
+  {
+    "text": "МИКРОНЕЗИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009065"
+  },
+  {
+    "text": "МЕЛАНЕЗИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009066"
+  },
+  {
+    "text": "ДАЛМАЦИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009067"
+  },
+  {
+    "text": "СКАНДИНАВИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009068"
+  },
+  {
+    "text": "АНДАЛУСИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009069"
+  },
+  {
+    "text": "КАТАЛОНИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009070"
+  },
+  {
+    "text": "ПАМПАСЫ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009071"
+  },
+  {
+    "text": "КАППАДОКИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009072"
+  },
+  {
+    "text": "САМАРКАНД",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009073"
+  },
+  {
+    "text": "ЛАГУНА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009074"
+  },
+  {
+    "text": "БУХАРА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009075"
+  },
+  {
+    "text": "ДУБРОВНИК",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009076"
+  },
+  {
+    "text": "ЛИМАН",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009077"
+  },
+  {
+    "text": "МОРЕНА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009078"
+  },
+  {
+    "text": "ТИМБУКТУ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009079"
+  },
+  {
+    "text": "ЛЁСС",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009080"
+  },
+  {
+    "text": "ЛХАСА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009081"
+  },
+  {
+    "text": "КАЛЬДЕРА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009082"
+  },
+  {
+    "text": "СТРАТОСФЕРА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009083"
+  },
+  {
+    "text": "ТРОПОСФЕРА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009084"
+  },
+  {
+    "text": "АНТИЦИКЛОН",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009085"
+  },
+  {
+    "text": "БРИЗ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009086"
+  },
+  {
+    "text": "ПАССАТ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009087"
+  },
+  {
+    "text": "КАТМАНДУ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009088"
+  },
+  {
+    "text": "ЭРОЗИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009089"
+  },
+  {
+    "text": "МЕАНДР",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "word-009090"
+  },
+  {
+    "text": "ТИХИЙ ОКЕАН",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009001"
+  },
+  {
+    "text": "АТЛАНТИЧЕСКИЙ ОКЕАН",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009002"
+  },
+  {
+    "text": "ИНДИЙСКИЙ ОКЕАН",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009003"
+  },
+  {
+    "text": "СЕВЕРНЫЙ ПОЛЮС",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009004"
+  },
+  {
+    "text": "ЮЖНЫЙ ПОЛЮС",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009005"
+  },
+  {
+    "text": "ПЕСЧАНЫЙ ПЛЯЖ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009006"
+  },
+  {
+    "text": "ГОРНАЯ РЕКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009007"
+  },
+  {
+    "text": "МОРСКОЙ БЕРЕГ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009008"
+  },
+  {
+    "text": "КАРТА МИРА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009009"
+  },
+  {
+    "text": "ВОСХОД СОЛНЦА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009010"
+  },
+  {
+    "text": "ПЕСЧАНАЯ БУРЯ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009011"
+  },
+  {
+    "text": "ПРОГУЛКА ПО НАБЕРЕЖНОЙ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009012"
+  },
+  {
+    "text": "ВЕЛИКАЯ КИТАЙСКАЯ СТЕНА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009013"
+  },
+  {
+    "text": "БОЛЬШОЙ БАРЬЕРНЫЙ РИФ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009014"
+  },
+  {
+    "text": "НИАГАРСКИЙ ВОДОПАД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009015"
+  },
+  {
+    "text": "АМАЗОНСКИЕ ДЖУНГЛИ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009016"
+  },
+  {
+    "text": "ПУСТЫНЯ ГОБИ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009017"
+  },
+  {
+    "text": "ОСТРОВ ПАСХИ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009018"
+  },
+  {
+    "text": "БЕРИНГОВ ПРОЛИВ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009019"
+  },
+  {
+    "text": "ГИБРАЛТАРСКИЙ ПРОЛИВ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009020"
+  },
+  {
+    "text": "МЫС ДОБРОЙ НАДЕЖДЫ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009021"
+  },
+  {
+    "text": "ВЕЛИКИЕ ОЗЁРА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009022"
+  },
+  {
+    "text": "СУЭЦКИЙ КАНАЛ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009023"
+  },
+  {
+    "text": "ПАНАМСКИЙ КАНАЛ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009024"
+  },
+  {
+    "text": "ЛИНИЯ ПЕРЕМЕНЫ ДАТ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009025"
+  },
+  {
+    "text": "НУЛЕВОЙ МЕРИДИАН",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009026"
+  },
+  {
+    "text": "МАТЕРИКОВЫЙ ЛЁД",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009027"
+  },
+  {
+    "text": "ГЕОГРАФИЧЕСКАЯ ШИРОТА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009028"
+  },
+  {
+    "text": "ГЕОГРАФИЧЕСКАЯ ДОЛГОТА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009029"
+  },
+  {
+    "text": "КРУГОВОРОТ ВОДЫ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009030"
+  },
+  {
+    "text": "ГОРНАЯ СИСТЕМА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009031"
+  },
+  {
+    "text": "СРЕДИЗЕМНОМОРСКИЙ КЛИМАТ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009032"
+  },
+  {
+    "text": "ТЁПЛОЕ ТЕЧЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009033"
+  },
+  {
+    "text": "ПОЛЯРНЫЙ КРУГ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009034"
+  },
+  {
+    "text": "ДЕЛЬТА НИЛА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "phrase-009035"
+  },
+  {
+    "text": "ФЁДОР КОНЮХОВ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009001"
+  },
+  {
+    "text": "ИВАН КРУЗЕНШТЕРН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009002"
+  },
+  {
+    "text": "ФЕРНАН МАГЕЛЛАН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009003"
+  },
+  {
+    "text": "ДЖЕЙМС КУК",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009004"
+  },
+  {
+    "text": "ВАСКО ДА ГАМА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009005"
+  },
+  {
+    "text": "АФАНАСИЙ НИКИТИН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009006"
+  },
+  {
+    "text": "НИКОЛАЙ ПРЖЕВАЛЬСКИЙ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009007"
+  },
+  {
+    "text": "НИКОЛАЙ МИКЛУХО-МАКЛАЙ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009008"
+  },
+  {
+    "text": "ЖАК-ИВ КУСТО",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009009"
+  },
+  {
+    "text": "ВИТУС БЕРИНГ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009010"
+  },
+  {
+    "text": "СЕМЁН ДЕЖНЁВ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009011"
+  },
+  {
+    "text": "ФАДДЕЙ БЕЛЛИНСГАУЗЕН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009012"
+  },
+  {
+    "text": "МИХАИЛ ЛАЗАРЕВ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009013"
+  },
+  {
+    "text": "РУАЛЬ АМУНДСЕН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009014"
+  },
+  {
+    "text": "РОБЕРТ СКОТТ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009015"
+  },
+  {
+    "text": "ФРИТЬОФ НАНСЕН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009016"
+  },
+  {
+    "text": "ТУР ХЕЙЕРДАЛ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009017"
+  },
+  {
+    "text": "ЧЖЭН ХЭ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009018"
+  },
+  {
+    "text": "ИБН БАТТУТА",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009019"
+  },
+  {
+    "text": "ДАВИД ЛИВИНГСТОН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009020"
+  },
+  {
+    "text": "ГЕНРИ СТЭНЛИ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009021"
+  },
+  {
+    "text": "АЛЕКСАНДР ГУМБОЛЬДТ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009022"
+  },
+  {
+    "text": "ГЕРАРД МЕРКАТОР",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009023"
+  },
+  {
+    "text": "ПЁТР СЕМЁНОВ-ТЯН-ШАНСКИЙ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009024"
+  },
+  {
+    "text": "ЭРНЕСТ ШЕКЛТОН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-v2",
+    "id": "person-009025"
+  }
+]

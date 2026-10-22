@@ -1,0 +1,790 @@
+[
+  {
+    "id": "approx-0001",
+    "question": "Сколько месяцев в календарном году?",
+    "answer": "12",
+    "unit": "",
+    "difficulty": "easy",
+    "categories": [
+      "general"
+    ],
+    "note": "",
+    "source": "definition:calendar",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0002",
+    "question": "Сколько минут в одном часе?",
+    "answer": "60",
+    "unit": "минут",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "",
+    "source": "definition:time",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0003",
+    "question": "Сколько секунд в одной минуте?",
+    "answer": "60",
+    "unit": "секунд",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "",
+    "source": "definition:time",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0004",
+    "question": "Сколько дней в неделе?",
+    "answer": "7",
+    "unit": "дней",
+    "difficulty": "easy",
+    "categories": [
+      "general"
+    ],
+    "note": "",
+    "source": "definition:calendar",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0005",
+    "question": "Сколько дней в високосном году григорианского календаря?",
+    "answer": "366",
+    "unit": "дней",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "",
+    "source": "definition:calendar",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0006",
+    "question": "Сколько градусов в прямом угле?",
+    "answer": "90",
+    "unit": "°",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "",
+    "source": "definition:geometry",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0007",
+    "question": "Сколько граней у куба?",
+    "answer": "6",
+    "unit": "",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "",
+    "source": "definition:geometry",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0008",
+    "question": "Сколько сторон у треугольника?",
+    "answer": "3",
+    "unit": "",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "",
+    "source": "definition:geometry",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0009",
+    "question": "Сколько ног у взрослого насекомого?",
+    "answer": "6",
+    "unit": "",
+    "difficulty": "easy",
+    "categories": [
+      "biology",
+      "animals"
+    ],
+    "note": "",
+    "source": "https://naturalhistory.si.edu/education/teaching-resources/life-science/what-insect",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0010",
+    "question": "Сколько ног у паука?",
+    "answer": "8",
+    "unit": "",
+    "difficulty": "easy",
+    "categories": [
+      "biology",
+      "animals"
+    ],
+    "note": "",
+    "source": "https://naturalhistory.si.edu/education/teaching-resources/life-science/what-insect",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0011",
+    "question": "Сколько сердец у осьминога?",
+    "answer": "3",
+    "unit": "",
+    "difficulty": "easy",
+    "categories": [
+      "biology",
+      "animals"
+    ],
+    "note": "",
+    "source": "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0012",
+    "question": "Сколько камер в сердце человека?",
+    "answer": "4",
+    "unit": "",
+    "difficulty": "easy",
+    "categories": [
+      "biology"
+    ],
+    "note": "",
+    "source": "https://www.nhlbi.nih.gov/health/heart/anatomy",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0013",
+    "question": "Сколько костей обычно указывают в стандартном скелете взрослого человека?",
+    "answer": "206",
+    "unit": "",
+    "difficulty": "easy",
+    "categories": [
+      "biology"
+    ],
+    "note": "Индивидуальные анатомические варианты возможны.",
+    "source": "https://training.seer.cancer.gov/anatomy/skeletal/divisions/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0014",
+    "question": "Сколько планет в Солнечной системе по классификации с 2006 года?",
+    "answer": "8",
+    "unit": "",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "Плутон относится к карликовым планетам.",
+    "source": "https://science.nasa.gov/solar-system/planets/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0015",
+    "question": "Сколько всего атомов в одной молекуле воды H₂O?",
+    "answer": "3",
+    "unit": "",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "",
+    "source": "formula:2+1",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0016",
+    "question": "При какой температуре кипит чистая вода при нормальном атмосферном давлении, если округлить до целого °C?",
+    "answer": "100",
+    "unit": "°C",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "Нормальное давление — 101 325 Па.",
+    "source": "definition:water-at-1-atm",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0017",
+    "question": "При какой температуре замерзает чистая вода при нормальном давлении, если округлить до целого °C?",
+    "answer": "0",
+    "unit": "°C",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "note": "",
+    "source": "definition:water-at-1-atm",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0018",
+    "question": "Сколько полутонов в октаве при равномерной двенадцатиступенной темперации?",
+    "answer": "12",
+    "unit": "",
+    "difficulty": "easy",
+    "categories": [
+      "culture"
+    ],
+    "note": "Речь о стандартном западном музыкальном строе.",
+    "source": "definition:12-tone-temperament",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0019",
+    "question": "Сколько струн у стандартной классической гитары?",
+    "answer": "6",
+    "unit": "",
+    "difficulty": "easy",
+    "categories": [
+      "culture"
+    ],
+    "note": "",
+    "source": "https://www.yamaha.com/en/musical_instrument_guide/acoustic_guitar/trivia/trivia006.html",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0020",
+    "question": "Сколько клеток на стандартной шахматной доске?",
+    "answer": "64",
+    "unit": "",
+    "difficulty": "easy",
+    "categories": [
+      "culture"
+    ],
+    "note": "8 × 8.",
+    "source": "https://handbook.fide.com/chapter/e012023",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0021",
+    "question": "Сколько секунд в 24 часах?",
+    "answer": "86400",
+    "unit": "секунд",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "24 × 60 × 60.",
+    "source": "formula:24*60*60",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0022",
+    "question": "Сколько кубических сантиметров в одном литре?",
+    "answer": "1000",
+    "unit": "см³",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "Литр равен одному кубическому дециметру.",
+    "source": "formula:10**3",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0023",
+    "question": "Сколько рёбер у куба?",
+    "answer": "12",
+    "unit": "",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "",
+    "source": "definition:geometry",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0024",
+    "question": "Сколько диагоналей у выпуклого шестиугольника?",
+    "answer": "9",
+    "unit": "",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "n(n − 3) / 2 при n = 6.",
+    "source": "formula:6*(6-3)/2",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0025",
+    "question": "Чему равна сумма внутренних углов выпуклого пятиугольника?",
+    "answer": "540",
+    "unit": "°",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "(n − 2) × 180° при n = 5.",
+    "source": "formula:(5-2)*180",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0026",
+    "question": "Сколько клавиш у стандартного современного фортепиано?",
+    "answer": "88",
+    "unit": "",
+    "difficulty": "medium",
+    "categories": [
+      "culture"
+    ],
+    "note": "",
+    "source": "https://www.yamaha.com/en/musical_instrument_guide/piano/trivia/trivia007.html",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0027",
+    "question": "Сколько белых клавиш на стандартной клавиатуре фортепиано из 88 клавиш?",
+    "answer": "52",
+    "unit": "",
+    "difficulty": "medium",
+    "categories": [
+      "culture"
+    ],
+    "note": "Семь полных октав и крайние ля, си, до: 7 × 7 + 3.",
+    "source": "https://www.yamaha.com/en/musical_instrument_guide/piano/trivia/trivia007.html",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0028",
+    "question": "Сколько струн у стандартной скрипки?",
+    "answer": "4",
+    "unit": "",
+    "difficulty": "medium",
+    "categories": [
+      "culture"
+    ],
+    "note": "",
+    "source": "https://www.yamaha.com/en/musical_instrument_guide/acoustic_guitar/trivia/trivia006.html",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0029",
+    "question": "Сколько колец на олимпийском символе?",
+    "answer": "5",
+    "unit": "",
+    "difficulty": "medium",
+    "categories": [
+      "culture"
+    ],
+    "note": "",
+    "source": "https://www.olympics.com/ioc/olympic-rings",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0030",
+    "question": "Сколько метров составляет официальная марафонская дистанция?",
+    "answer": "42195",
+    "unit": "метров",
+    "difficulty": "medium",
+    "categories": [
+      "culture"
+    ],
+    "note": "42 км 195 м.",
+    "source": "https://worldathletics.org/disciplines/race-walks/marathon",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0031",
+    "question": "Сколько химических элементов было официально названо к концу 2016 года?",
+    "answer": "118",
+    "unit": "",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "В 2016 году утверждены названия элементов 113, 115, 117 и 118.",
+    "source": "https://iupac.org/what-we-do/periodic-table-of-elements/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0032",
+    "question": "Сколько протонов в ядре атома углерода?",
+    "answer": "6",
+    "unit": "",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "Это атомный номер углерода.",
+    "source": "https://iupac.org/what-we-do/periodic-table-of-elements/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0033",
+    "question": "Сколько протонов в ядре атома кислорода?",
+    "answer": "8",
+    "unit": "",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "Это атомный номер кислорода.",
+    "source": "https://iupac.org/what-we-do/periodic-table-of-elements/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0034",
+    "question": "Сколько хромосом в обычном диплоидном наборе ядерной клетки человека?",
+    "answer": "46",
+    "unit": "",
+    "difficulty": "medium",
+    "categories": [
+      "biology"
+    ],
+    "note": "23 пары; не речь о половых клетках.",
+    "source": "https://www.genome.gov/genetics-glossary/Chromosome",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0035",
+    "question": "Сколько зубов в полном постоянном наборе человека, включая все зубы мудрости?",
+    "answer": "32",
+    "unit": "",
+    "difficulty": "medium",
+    "categories": [
+      "biology"
+    ],
+    "note": "Полный набор, а не фактическое число зубов у любого взрослого.",
+    "source": "https://www.ncbi.nlm.nih.gov/books/NBK553376/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0036",
+    "question": "Сколько пар рёбер обычно в скелете человека?",
+    "answer": "12",
+    "unit": "пар",
+    "difficulty": "medium",
+    "categories": [
+      "biology"
+    ],
+    "note": "Стандартный анатомический вариант.",
+    "source": "https://training.seer.cancer.gov/anatomy/skeletal/divisions/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0037",
+    "question": "В каком году состоялся полёт Юрия Гагарина в космос?",
+    "answer": "1961",
+    "unit": "год",
+    "difficulty": "medium",
+    "categories": [
+      "history",
+      "science"
+    ],
+    "note": "12 апреля.",
+    "source": "https://www.nasa.gov/image-article/an-historic-day-human-spaceflight/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0038",
+    "question": "В каком году люди впервые высадились на Луну?",
+    "answer": "1969",
+    "unit": "год",
+    "difficulty": "medium",
+    "categories": [
+      "history",
+      "science"
+    ],
+    "note": "«Аполлон-11», 20 июля.",
+    "source": "https://science.nasa.gov/moon/moon-walkers/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0039",
+    "question": "В каком году был запущен первый искусственный спутник Земли «Спутник-1»?",
+    "answer": "1957",
+    "unit": "год",
+    "difficulty": "medium",
+    "categories": [
+      "history",
+      "science"
+    ],
+    "note": "4 октября.",
+    "source": "https://www.nasa.gov/history/dawn-of-the-space-age/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0040",
+    "question": "Сколько периодов в таблице химических элементов, завершённой элементом 118?",
+    "answer": "7",
+    "unit": "",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "note": "",
+    "source": "https://iupac.org/what-we-do/periodic-table-of-elements/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0041",
+    "question": "Какова точная скорость света в вакууме в метрах в секунду?",
+    "answer": "299792458",
+    "unit": "м/с",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "Точное определяющее значение в СИ.",
+    "source": "https://www.bipm.org/en/measurement-units/si-defining-constants",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0042",
+    "question": "Сколько различных двоичных последовательностей длиной 10 бит существует?",
+    "answer": "1024",
+    "unit": "",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "2¹⁰.",
+    "source": "formula:2**10",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0043",
+    "question": "Чему равен абсолютный ноль температуры в градусах Цельсия?",
+    "answer": "−273,15",
+    "unit": "°C",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "0 К.",
+    "source": "https://www.bipm.org/en/measurement-units/si-base-units",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0044",
+    "question": "Сколько периодов излучения перехода атома цезия-133 определяют секунду в СИ?",
+    "answer": "9192631770",
+    "unit": "",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "Частота невозмущённого сверхтонкого перехода основного состояния.",
+    "source": "https://www.bipm.org/en/measurement-units/si-defining-constants",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0045",
+    "question": "Чему равна постоянная Авогадро в обратных молях?",
+    "answer": "6,02214076 × 10²³",
+    "unit": "моль⁻¹",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "Точное определяющее значение в СИ.",
+    "source": "https://www.bipm.org/en/measurement-units/si-defining-constants",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0046",
+    "question": "Сколько земных суток длится оборот Меркурия вокруг Солнца, округлённо до целого?",
+    "answer": "88",
+    "unit": "суток",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "",
+    "source": "https://science.nasa.gov/mercury/facts/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0047",
+    "question": "Сколько земных суток длится оборот Венеры вокруг Солнца, округлённо до целого?",
+    "answer": "225",
+    "unit": "суток",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "Речь о годе, а не о вращении вокруг оси.",
+    "source": "https://science.nasa.gov/venus/venus-facts/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0048",
+    "question": "Сколько земных лет длится оборот Нептуна вокруг Солнца, округлённо до целого?",
+    "answer": "165",
+    "unit": "лет",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "",
+    "source": "https://science.nasa.gov/neptune/neptune-facts/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0049",
+    "question": "Сколько астронавтов ходили по поверхности Луны в рамках программы «Аполлон»?",
+    "answer": "12",
+    "unit": "",
+    "difficulty": "hard",
+    "categories": [
+      "history",
+      "science"
+    ],
+    "note": "Шесть высадок в 1969–1972 годах.",
+    "source": "https://science.nasa.gov/moon/moon-walkers/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0050",
+    "question": "Сколько костей в стандартном осевом скелете взрослого человека?",
+    "answer": "80",
+    "unit": "",
+    "difficulty": "hard",
+    "categories": [
+      "biology"
+    ],
+    "note": "Череп, позвоночный столб и грудная клетка в анатомическом перечне.",
+    "source": "https://training.seer.cancer.gov/anatomy/skeletal/divisions/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0051",
+    "question": "Сколько костей в стандартном добавочном скелете взрослого человека?",
+    "answer": "126",
+    "unit": "",
+    "difficulty": "hard",
+    "categories": [
+      "biology"
+    ],
+    "note": "Конечности и их пояса.",
+    "source": "https://training.seer.cancer.gov/anatomy/skeletal/divisions/",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0052",
+    "question": "Сколько граней у правильного додекаэдра?",
+    "answer": "12",
+    "unit": "",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "",
+    "source": "definition:geometry",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0053",
+    "question": "Сколько вершин у правильного икосаэдра?",
+    "answer": "12",
+    "unit": "",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "",
+    "source": "definition:geometry",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0054",
+    "question": "Сколько диагоналей у выпуклого восьмиугольника?",
+    "answer": "20",
+    "unit": "",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "n(n − 3) / 2 при n = 8.",
+    "source": "formula:8*(8-3)/2",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0055",
+    "question": "Сколькими способами можно расставить пять разных книг в один ряд?",
+    "answer": "120",
+    "unit": "",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "5! = 5 × 4 × 3 × 2 × 1.",
+    "source": "formula:5*4*3*2*1",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0056",
+    "question": "Сколько различных значений можно закодировать восемью битами?",
+    "answer": "256",
+    "unit": "",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "2⁸.",
+    "source": "formula:2**8",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0057",
+    "question": "Сколько клавиш было у первого фортепиано Бартоломео Кристофори согласно истории инструмента Yamaha?",
+    "answer": "54",
+    "unit": "",
+    "difficulty": "hard",
+    "categories": [
+      "culture",
+      "history"
+    ],
+    "note": "Ранний инструмент имел меньший диапазон, чем современный.",
+    "source": "https://www.yamaha.com/en/musical_instrument_guide/piano/trivia/trivia007.html",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0058",
+    "question": "Сколько секунд в двух часах и 35 минутах?",
+    "answer": "9300",
+    "unit": "секунд",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "2 × 3600 + 35 × 60.",
+    "source": "formula:2*3600+35*60",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0059",
+    "question": "Сколькими способами можно выбрать двух человек из десяти, если порядок не важен?",
+    "answer": "45",
+    "unit": "",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "10 × 9 / 2.",
+    "source": "formula:10*9/2",
+    "pack": "approx-core-v1"
+  },
+  {
+    "id": "approx-0060",
+    "question": "Чему равна сумма внутренних углов выпуклого десятиугольника?",
+    "answer": "1440",
+    "unit": "°",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "note": "(n − 2) × 180° при n = 10.",
+    "source": "formula:(10-2)*180",
+    "pack": "approx-core-v1"
+  }
+]

@@ -1,0 +1,57 @@
+{
+  "revision": "6c9f428b9b117a2d71a2c748e4b4df1d87980949",
+  "sources": {
+    "cards/legacy-word.json": {
+      "count": 1846,
+      "sha256": "dbdaa3ea02584c9d48c62a1f94c4e8c27dacbdf89aa06196e9260bb2dbaeec0c"
+    },
+    "cards/legacy-phrase.json": {
+      "count": 496,
+      "sha256": "83b48697240593f37a3b96b5e4c219d2ba2a2481960e6c1456efe49148a8ea2a"
+    },
+    "cards/legacy-idiom.json": {
+      "count": 142,
+      "sha256": "a06a05ea998e9709bbcbf7c478864f72ad68178b25aeac9819343d2ca65f93dc"
+    },
+    "cards/legacy-song.json": {
+      "count": 215,
+      "sha256": "f0de177588cbe7848987e961a38d389fdc17c7829b8a27f9ce6f85244fe58ed9"
+    },
+    "cards/legacy-person.json": {
+      "count": 317,
+      "sha256": "f50d07c0b826aa5136eb09cb57f64be47a5e52ed632a0376f8e204cfa372b8a7"
+    },
+    "cards/general-2026.json": {
+      "count": 220,
+      "sha256": "6e5dbb971eb980ece7f1f2041b185f61b690f7a32b64e1825b78c19b0b0d4e7c"
+    },
+    "cards/geography-v2.json": {
+      "count": 150,
+      "sha256": "a13f31a5208eaa5c3c5745dd3c73816d47aa9f3da4928e0501630f78b2e61df5"
+    },
+    "cards/science-v2.json": {
+      "count": 150,
+      "sha256": "7c005a15725a59638f1e6d238f575364a16f4a7450c9cbc3c7b3000426d757a3"
+    },
+    "questions/legacy-v1.json": {
+      "count": 60,
+      "sha256": "e8a835f803b54f1694ba08f43faca16b3ec4e82a3cd5727e0408f067275fdb5e"
+    },
+    "questions/general-2026.json": {
+      "count": 30,
+      "sha256": "9877be0fcf458197a55ba4a153d87286c44199aa7207479331c5b90855976b0d"
+    },
+    "questions/geography-v2.json": {
+      "count": 30,
+      "sha256": "3aae198736d469950c6e4b53ba1b6c226378221fe36b7a0a9c27f9256aeea052"
+    },
+    "questions/science-v2.json": {
+      "count": 30,
+      "sha256": "44813b51f653917f4cddcb38df01c0046384490b081219fbcebe02b4b85f5d4a"
+    },
+    "packs/historical.json": {
+      "count": 10,
+      "sha256": "94e4a270642f4bd8a027f4fcd17db9270632b4a4dcddb4d19ceff9ef9f6b3093"
+    }
+  }
+}

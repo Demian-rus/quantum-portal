@@ -25,6 +25,9 @@ let options = freshOptions();
 let soundOn = true;
 let game = null;
 let storageBlocked=false;
+let storageProblem=null;
+let loadedSaveRaw=null;
+const RECOVERY_KEY='iskra-party:recovery:v1';
 let rafId = 0;
 let intervalId = null;
 let rollFrameHandle = null;
@@ -55,12 +58,38 @@ function displayTeamName(value){
   }
   return escapeHTML(value);
 }
+function storageNotice(){
+  if(storageProblem==='corrupt')return 'Сохранение повреждено и защищено. Для безопасного сброса начните новую партию.';
+  if(storageProblem==='unavailable')return 'Не удалось прочитать сохранение. Запись заблокирована.';
+  return 'Сохранение несовместимо с этой версией игры. Данные сохранены.';
+}
+function blockSavedData(reason){storageBlocked=true;storageProblem=reason;return null;}
 function readSaved() {
-  try {
-    const obj=JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if(obj&&obj.version!==1){storageBlocked=true;return null;}
-    return obj?.version===1 ? obj : null;
-  } catch { return null; }
+  try { loadedSaveRaw=localStorage.getItem(STORAGE_KEY); }
+  catch { return blockSavedData('unavailable'); }
+  if(loadedSaveRaw===null)return null;
+  let obj;
+  try { obj=JSON.parse(loadedSaveRaw); }
+  catch { return blockSavedData('corrupt'); }
+  if(!obj||typeof obj!=='object'||Array.isArray(obj))return blockSavedData('corrupt');
+  if(obj.version!==1)return blockSavedData('incompatible');
+  return obj;
+}
+// Explicit recovery only for corrupt data, never for an unknown future version.
+// A verified bounded backup is written before the original key can be replaced.
+function recoverCorruptSave(){
+  if(storageProblem!=='corrupt'||typeof loadedSaveRaw!=='string')return false;
+  if(!window.confirm('Сохранение повреждено. Сохранить резервную копию на этом устройстве и начать заново? Предыдущая резервная копия, если есть, будет заменена.'))return false;
+  try{
+    if(localStorage.getItem(STORAGE_KEY)!==loadedSaveRaw)throw Error('Save changed');
+    const backup=JSON.stringify({version:1,createdAt:Date.now(),raw:loadedSaveRaw});
+    localStorage.setItem(RECOVERY_KEY,backup);
+    if(localStorage.getItem(RECOVERY_KEY)!==backup||localStorage.getItem(STORAGE_KEY)!==loadedSaveRaw)throw Error('Backup unavailable or save changed');
+    const reset=JSON.stringify({version:1,options,soundOn,game:null});
+    localStorage.setItem(STORAGE_KEY,reset);
+    if(localStorage.getItem(STORAGE_KEY)!==reset)throw Error('Recovery not persisted');
+    storageBlocked=false;storageProblem=null;loadedSaveRaw=reset;return true;
+  }catch{toast('Сброс не выполнен. Исходные данные защищены; попробуйте перезагрузить страницу.');return false;}
 }
 function persist() {
   if(storageBlocked)return;
@@ -926,7 +955,7 @@ function render() {
   else stopTicking();
 }
 function newGame() {
-  if(storageBlocked){toast('Сохранение несовместимо с этой версией игры. Данные сохранены.');return;}
+  if(storageBlocked&&storageProblem!=='corrupt'){toast(storageNotice());return;}
   // START is the explicit action; don't repeat it with a native confirmation.
   if(!options.modes.length){toast('Выберите хотя бы один игровой режим');return;}
   if(!options.promptTypes.length && options.modes.some(id=>['talk','mime','draw','blitz','secret'].includes(id))){toast('Выберите тип заданий');return;}
@@ -938,6 +967,7 @@ function newGame() {
       toast('Набор заданий недоступен для выбранных настроек.');return;
     }
   }catch{toast('Набор заданий недоступен для выбранных настроек.');return;}
+  if(storageBlocked&&!recoverCorruptSave()){toast(storageNotice());return;}
   const teamA=sanitizeTeam($('team-a').value,'Молнии');
   const teamB=sanitizeTeam($('team-b').value,'Кометы');
   game={
@@ -1071,8 +1101,9 @@ function restoreSession() {
   soundOn=saved.soundOn!==false;
   options=sanitizeOptions(saved.options);
   const candidate=saved.game;
-  if(!candidate||!Array.isArray(candidate.teams)||candidate.teams.length!==2||
-      !Array.isArray(candidate.scores)||!Number.isInteger(candidate.roundIndex))return;
+  if(candidate==null)return;
+  if(!Array.isArray(candidate.teams)||candidate.teams.length!==2||
+      !Array.isArray(candidate.scores)||!Number.isInteger(candidate.roundIndex)){blockSavedData('corrupt');return;}
   try{
     if(candidate.startingTeamIndex!=null&&![0,1].includes(candidate.startingTeamIndex))
       throw Error('Invalid starting player');
@@ -1223,7 +1254,7 @@ function boot() {
   renderOptions();
   // Even when a match is saved, start at the main menu to offer Continue.
   setScene('home');
-  if(storageBlocked)toast('Сохранение несовместимо с этой версией игры. Данные сохранены.');
+  if(storageBlocked)toast(storageNotice());
   if('serviceWorker' in navigator && location.protocol.startsWith('http'))
     navigator.serviceWorker.register('./sw.js').catch(()=>{});
 }

@@ -1,4 +1,5 @@
 'use strict';
+const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const {chromium}=require('playwright-core');
@@ -53,6 +54,7 @@ function fitsViewport(g,device,stage) {
     headless:true,args:['--no-sandbox']
   });
   try{
+    await require('./storage-protection.cjs')(browser,URL);
     await require('./thematic-game.cjs')(browser,URL);
     await require('./modifier-frequency.cjs')(browser,URL);
     await require('./round-outcomes.cjs')(browser,URL);
@@ -91,7 +93,7 @@ function fitsViewport(g,device,stage) {
       assert.ok(Math.abs(gallery.left-(device.width-gallery.right))<=2,'Gallery is not centered');
       assert.ok(gallery.page<=device.width+2,'Gallery causes horizontal overflow');
       assert.equal(await page.locator('#other-games-grid a, #other-games-grid button').count(),0);
-      await page.screenshot({path:'artifacts/quip-mobile-layout/'+device.name+'-other-games.png'});
+      await capture(page,{path:'artifacts/quip-mobile-layout/'+device.name+'-other-games.png'});
       await page.locator('#other-games-back').click();
       await page.locator('#scene-home').waitFor({state:'visible'});
       await page.locator('#new-game-menu').click();
@@ -101,7 +103,7 @@ function fitsViewport(g,device,stage) {
         assert.ok(box&&box.width>=44&&box.height>=44,'Game-type touch target too small');
       }
       await page.locator('#scene-game-type').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
-      await page.screenshot({path:'artifacts/quip-mobile-layout/'+device.name+'-game-type.png'});
+      await capture(page,{path:'artifacts/quip-mobile-layout/'+device.name+'-game-type.png'});
       await page.locator('#thematic-game').click();
       assert.equal(await page.locator('#scene-themes').isVisible(),true);
       assert.equal(await page.locator('#theme-list button:disabled').count(),4);
@@ -113,7 +115,7 @@ function fitsViewport(g,device,stage) {
       assert.ok(themeLayout.w<=device.width+2&&themeLayout.h<=device.height+2,JSON.stringify(themeLayout));
       assert.ok(themeLayout.cards.every(r=>r.left>=0&&r.right<=device.width+1),'Theme card outside viewport');
       await page.locator('#scene-themes').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
-      await page.screenshot({path:'artifacts/quip-mobile-layout/'+device.name+'-themes.png'});
+      await capture(page,{path:'artifacts/quip-mobile-layout/'+device.name+'-themes.png'});
       await page.locator('#themes-back').click();
       await page.locator('#game-type-back').click();
       assert.equal(await page.locator('#scene-home').isVisible(),true);
@@ -131,7 +133,7 @@ function fitsViewport(g,device,stage) {
         assert.equal(setup.bgTitle,'none','Unwanted ghost title appears above setup on wide screens');
         assert.ok(setup.cols.split(' ').length>=2,
           'Wide settings fail to use multiple columns: '+JSON.stringify(setup));
-        await page.screenshot({path:'artifacts/quip-mobile-layout/'+device.name+'-setup.png'});
+        await capture(page,{path:'artifacts/quip-mobile-layout/'+device.name+'-setup.png'});
       }
       await page.locator('#team-a').fill('ПЕРВЫЙСУПЕРДЛИННЫЙИГРОК');
       await page.locator('#team-b').fill('ВТОРОЙСУПЕРДЛИННЫЙИГРОК');
@@ -173,7 +175,7 @@ function fitsViewport(g,device,stage) {
       assert.ok(name.right<=score.left+2,'long team name overlaps score: '+JSON.stringify(ready));
       assert.ok(readyButton.bottom<=device.height-2,'ready CTA clips at bottom: '+JSON.stringify(ready));
       assert.ok(readyButton.top>header.bottom,'ready CTA overlaps header: '+JSON.stringify(ready));
-      await page.screenshot({path:'artifacts/quip-mobile-layout/'+device.name+'-ready.png'});
+      await capture(page,{path:'artifacts/quip-mobile-layout/'+device.name+'-ready.png'});
 
       await page.locator('[data-action="roll"]').click();
       await page.waitForSelector('.reel-window',{state:'visible'});
@@ -189,7 +191,7 @@ function fitsViewport(g,device,stage) {
       assert.ok(reel.width<=at(carousel,'.play-inner').width+2,
         'Carousel wider than card: '+JSON.stringify(carousel));
       assert.ok(reelTrack.width>reel.width*3,'Carousel animation lost repeating track');
-      await page.screenshot({path:'artifacts/quip-mobile-layout/'+device.name+'-carousel.png'});
+      await capture(page,{path:'artifacts/quip-mobile-layout/'+device.name+'-carousel.png'});
 
       await page.locator('.is-task .task-open [data-action="toggle-word"]').waitFor({timeout:6500});
       const task=await take(page);
@@ -199,7 +201,7 @@ function fitsViewport(g,device,stage) {
         'Ready/task bottom buttons differ: '+JSON.stringify({device,readyButton,openButton}));
       assert.ok(Math.abs(openButton.top-readyButton.top)<=3,
         'Ready/task button tops differ: '+JSON.stringify({device,readyButton,openButton}));
-      await page.screenshot({path:'artifacts/quip-mobile-layout/'+device.name+'-task.png'});
+      await capture(page,{path:'artifacts/quip-mobile-layout/'+device.name+'-task.png'});
 
       // Stress very long cards before testing the timer: the content must never
       // cover the action block or force a document scroll.

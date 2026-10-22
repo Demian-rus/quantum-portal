@@ -1,0 +1,229 @@
+[
+  {
+    "id": "geography",
+    "version": 2,
+    "name": "География",
+    "enabled": true,
+    "categories": [
+      "geography"
+    ],
+    "types": [
+      "word",
+      "phrase",
+      "person",
+      "number"
+    ],
+    "criteria": {
+      "cardIds": [],
+      "sourcePacks": [
+        "geography-v2"
+      ]
+    },
+    "minCardsPerPool": 5,
+    "allowedModes": [
+      "talk",
+      "mime",
+      "draw",
+      "yesno",
+      "secret",
+      "blitz",
+      "approx"
+    ],
+    "secretMethods": [
+      "talk",
+      "mime",
+      "draw",
+      "yesno"
+    ]
+  },
+  {
+    "id": "general",
+    "version": 2,
+    "name": "Общий словарь",
+    "enabled": true,
+    "categories": [],
+    "types": [
+      "word",
+      "phrase",
+      "idiom",
+      "song",
+      "person",
+      "number"
+    ],
+    "criteria": {
+      "cardIds": [],
+      "sourcePacks": []
+    },
+    "minCardsPerPool": 1
+  },
+  {
+    "id": "general",
+    "version": 1,
+    "name": "Общий словарь",
+    "enabled": true,
+    "categories": [],
+    "types": [
+      "word",
+      "phrase",
+      "idiom",
+      "song",
+      "person"
+    ],
+    "criteria": {
+      "cardIds": [],
+      "sourcePacks": []
+    },
+    "minCardsPerPool": 1
+  },
+  {
+    "id": "geography",
+    "version": 1,
+    "name": "География",
+    "enabled": false,
+    "categories": [
+      "geography"
+    ],
+    "types": [
+      "word",
+      "phrase",
+      "idiom"
+    ],
+    "criteria": {
+      "cardIds": [],
+      "sourcePacks": []
+    },
+    "minCardsPerPool": 1
+  },
+  {
+    "id": "biology",
+    "version": 1,
+    "name": "Биология",
+    "enabled": false,
+    "categories": [
+      "biology"
+    ],
+    "types": [
+      "word",
+      "phrase",
+      "idiom"
+    ],
+    "criteria": {
+      "cardIds": [],
+      "sourcePacks": []
+    },
+    "minCardsPerPool": 1
+  },
+  {
+    "id": "animals",
+    "version": 1,
+    "name": "Животные",
+    "enabled": false,
+    "categories": [
+      "animals"
+    ],
+    "types": [
+      "word",
+      "phrase",
+      "idiom"
+    ],
+    "criteria": {
+      "cardIds": [],
+      "sourcePacks": []
+    },
+    "minCardsPerPool": 1
+  },
+  {
+    "id": "history",
+    "version": 1,
+    "name": "История",
+    "enabled": false,
+    "categories": [
+      "history"
+    ],
+    "types": [
+      "word",
+      "phrase",
+      "idiom"
+    ],
+    "criteria": {
+      "cardIds": [],
+      "sourcePacks": []
+    },
+    "minCardsPerPool": 1
+  },
+  {
+    "id": "science",
+    "version": 1,
+    "name": "Наука",
+    "enabled": false,
+    "categories": [
+      "science"
+    ],
+    "types": [
+      "word",
+      "phrase",
+      "idiom"
+    ],
+    "criteria": {
+      "cardIds": [],
+      "sourcePacks": []
+    },
+    "minCardsPerPool": 1
+  },
+  {
+    "id": "culture",
+    "version": 1,
+    "name": "Культура",
+    "enabled": false,
+    "categories": [
+      "culture"
+    ],
+    "types": [
+      "word",
+      "phrase",
+      "idiom"
+    ],
+    "criteria": {
+      "cardIds": [],
+      "sourcePacks": []
+    },
+    "minCardsPerPool": 1
+  },
+  {
+    "id": "science",
+    "version": 2,
+    "name": "Наука",
+    "enabled": true,
+    "categories": [
+      "science"
+    ],
+    "types": [
+      "word",
+      "phrase",
+      "person",
+      "number"
+    ],
+    "criteria": {
+      "cardIds": [],
+      "sourcePacks": [
+        "science-v2"
+      ]
+    },
+    "minCardsPerPool": 5,
+    "allowedModes": [
+      "talk",
+      "mime",
+      "draw",
+      "yesno",
+      "secret",
+      "blitz",
+      "approx"
+    ],
+    "secretMethods": [
+      "talk",
+      "mime",
+      "draw",
+      "yesno"
+    ]
+  }
+]

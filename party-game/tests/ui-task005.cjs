@@ -1,4 +1,5 @@
 'use strict';
+const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const devices=[{name:'narrow',width:320,height:568},{name:'phone',width:390,height:844},
@@ -77,7 +78,7 @@ async function settingsUI(browser,url,device){
   await page.locator('#mode-settings > summary').click();await page.locator('#mode-settings > summary').click();
   assert.equal(await page.evaluate(()=>localStorage.getItem(STORAGE_KEY)),saved,'Folding must not alter stored settings');
   await page.locator('#mode-settings > summary').click();await scrollFold(page,'mode-settings');await checkGrid(page);await fitPage(page);
-  if(device.name==='phone')await page.screenshot({path:'artifacts/quip-mobile-layout/task005-phone-modes-all.png'});
+  if(device.name==='phone')await capture(page,{path:'artifacts/quip-mobile-layout/task005-phone-modes-all.png'});
   const visuals=()=>tile(page,'talk').evaluate(el=>{const s=getComputedStyle(el.querySelector('.mode-tile')),i=getComputedStyle(el.querySelector('img'));
    return {border:s.borderColor,shadow:s.boxShadow,opacity:i.opacity,filter:i.filter};});
   const selected=await visuals();
@@ -112,7 +113,7 @@ async function settingsUI(browser,url,device){
   assert.equal(await page.locator('#mode-selection-count').textContent(),'4 ИЗ 8');assert.equal(await page.locator('#content-selection-count').textContent(),'2 ИЗ 3');
   for(const id of ['mode-settings','content-settings'])assert.equal(await page.locator('#'+id).evaluate(el=>el.open),false);
   await page.locator('#mode-settings > summary').click();await scrollFold(page,'mode-settings');await checkGrid(page);
-  if(device.name==='phone'){await settle(page,'scene-advanced');await page.screenshot({path:'artifacts/quip-mobile-layout/task005-phone-modes-mixed.png'});}
+  if(device.name==='phone'){await settle(page,'scene-advanced');await capture(page,{path:'artifacts/quip-mobile-layout/task005-phone-modes-mixed.png'});}
   await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
   await context.setOffline(true);await page.reload({waitUntil:'load'});await openSetup(page);await page.locator('#go-advanced').click();
   assert.deepEqual(await page.evaluate(()=>({modes:options.modes,types:options.promptTypes,duration:options.duration,target:options.targetScore})),expected);
@@ -163,7 +164,7 @@ async function approxUI(browser,url,device){
     const snapshot=await page.evaluate(()=>game.current);
     await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
     assert.deepEqual(await page.evaluate(()=>game.current),snapshot);
-    if(device.name==='phone'){await settle(page,'scene-game');await page.screenshot({path:'artifacts/quip-mobile-layout/task005-phone-approx-question.png'});}
+    if(device.name==='phone'){await settle(page,'scene-game');await capture(page,{path:'artifacts/quip-mobile-layout/task005-phone-approx-question.png'});}
    }
    await page.locator('[data-action="reveal-approx"]').click();await approxGeometry(page,device,true);
    if(index===1){
@@ -171,7 +172,7 @@ async function approxUI(browser,url,device){
     await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
     await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
     assert.deepEqual(await page.evaluate(()=>game.current),snapshot);await approxGeometry(page,device,true);
-    if(device.name==='phone'){await settle(page,'scene-game');await page.screenshot({path:'artifacts/quip-mobile-layout/task005-phone-approx-answer.png'});}
+    if(device.name==='phone'){await settle(page,'scene-game');await capture(page,{path:'artifacts/quip-mobile-layout/task005-phone-approx-answer.png'});}
    }
    await page.locator('[data-action="award-none"]').click();
   }
