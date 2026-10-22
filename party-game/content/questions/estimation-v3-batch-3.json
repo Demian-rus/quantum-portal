@@ -1,0 +1,2252 @@
+[
+  {
+    "id": "approx-22201",
+    "difficulty": "easy",
+    "question": "На сколько километров тянется Большой Барьерный риф вдоль Австралии?",
+    "answer": "2300",
+    "unit": "км",
+    "categories": [
+      "geography",
+      "nature",
+      "marine"
+    ],
+    "note": "Округлённая протяжённость NOAA; не площадь.",
+    "source": "https://oceanservice.noaa.gov/facts/gbrlargeststructure.html",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "reef-length",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "reef-length:along-coast-length",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22202",
+    "difficulty": "hard",
+    "question": "Какова площадь морского парка Большого Барьерного рифа?",
+    "answer": "344400",
+    "unit": "км²",
+    "categories": [
+      "geography",
+      "nature",
+      "marine"
+    ],
+    "note": "Marine Park; не немного большая зона Всемирного наследия.",
+    "source": "https://www.gbrmpa.gov.au/learn/fascinating-facts-about-great-barrier-reef",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "reef",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "reef:marine-park-area",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22203",
+    "difficulty": "medium",
+    "question": "До какой ширины доходит морской парк Большого Барьерного рифа?",
+    "answer": "250",
+    "unit": "км",
+    "categories": [
+      "geography",
+      "nature",
+      "marine"
+    ],
+    "note": "Верхняя граница диапазона 60–250 км.",
+    "source": "https://www.gbrmpa.gov.au/learn/fascinating-facts-about-great-barrier-reef",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "reef",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "reef:marine-park-width-upper",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22204",
+    "difficulty": "medium",
+    "question": "Какова средняя глубина прибрежных вод морского парка Большого Барьерного рифа?",
+    "answer": "35",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "nature",
+      "marine"
+    ],
+    "note": "Inshore waters; не глубоководные внешние склоны.",
+    "source": "https://www.gbrmpa.gov.au/learn/fascinating-facts-about-great-barrier-reef",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "reef",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "reef:inshore-average-depth",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22205",
+    "difficulty": "easy",
+    "question": "На сколько метров скала Улуру возвышается над окружающей равниной?",
+    "answer": "348",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "Высота над равниной, не над уровнем моря.",
+    "source": "https://uluru.gov.au/discover/highlights/amazing-facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "uluru",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "uluru:above-plain-height",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22206",
+    "difficulty": "medium",
+    "question": "Какова длина окружности скалы Улуру у основания?",
+    "answer": "9.4",
+    "unit": "км",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "Окружность основания; не дистанция отдельного туристического маршрута.",
+    "source": "https://uluru.gov.au/discover/highlights/amazing-facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "uluru",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "uluru:base-circumference",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22207",
+    "difficulty": "hard",
+    "question": "Сколько миллиардов тонн весит надземная часть Улуру по оценке Parks Australia, до десятых?",
+    "answer": "1.4",
+    "unit": "млрд т",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "Оценка 1425000000 т; до десятых миллиарда. Подземная часть исключена.",
+    "source": "https://uluru.gov.au/discover/highlights/amazing-facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "uluru",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "uluru:above-ground-mass",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22208",
+    "difficulty": "medium",
+    "question": "На сколько метров самая высокая вершина скал Ката-Тьюта возвышается над равниной?",
+    "answer": "546",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "Высота над окружающей равниной, не над морем.",
+    "source": "https://uluru.gov.au/discover/highlights/amazing-facts/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "uluru",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "uluru:kata-tjuta-height",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22209",
+    "difficulty": "easy",
+    "question": "До какой длины вырастал диплодок Diplodocus carnegii?",
+    "answer": "26",
+    "unit": "м",
+    "categories": [
+      "science",
+      "animals",
+      "nature"
+    ],
+    "note": "Музей естественной истории: диапазон 24–26 м; верхняя граница.",
+    "source": "https://www.nhm.ac.uk/discover/quick-questions/how-big-was-diplodocus-carnegii.html",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "diplodocus",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "diplodocus:adult-length-upper",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22210",
+    "difficulty": "medium",
+    "question": "До какой массы мог вырастать диплодок Diplodocus carnegii по оценке лондонского музея?",
+    "answer": "15",
+    "unit": "т",
+    "categories": [
+      "science",
+      "animals",
+      "nature"
+    ],
+    "note": "Оценка массы живого животного — до примерно 15 т; не масса слепка скелета.",
+    "source": "https://www.nhm.ac.uk/discover/quick-questions/how-big-was-diplodocus-carnegii.html",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "diplodocus",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "diplodocus:adult-mass-upper",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22211",
+    "difficulty": "medium",
+    "question": "Сколько весил при жизни стегозавр Софи, чей скелет изучили в лондонском Музее естественной истории?",
+    "answer": "1600",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "nature"
+    ],
+    "note": "Оценка конкретной молодой взрослой особи по 3D-модели; не максимальная масса вида.",
+    "source": "https://www.nhm.ac.uk/discover/revealing-stegosaurus-secrets.html",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "stegosaurus",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "stegosaurus:sophie-living-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22212",
+    "difficulty": "hard",
+    "question": "Сколько весила рекордно тяжёлая градина, выпавшая в Бангладеш в 1986 году?",
+    "answer": "1.02",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "note": "Рекорд ВМО: Гопалгандж, 14 апреля 1986 года.",
+    "source": "https://wmo.int/sites/default/files/2025-07/Table_Records_25Jul2025.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "weather-f",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "weather-f:hailstone-mass-1986",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22213",
+    "difficulty": "hard",
+    "question": "Какой слой дождя выпал всего за минуту в Юнионвилле в США в 1956 году?",
+    "answer": "31.2",
+    "unit": "мм",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "note": "Рекорд ВМО за одну минуту; не пересчёт часовой интенсивности.",
+    "source": "https://wmo.int/sites/default/files/2025-07/Table_Records_25Jul2025.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "weather-f",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "weather-f:unionville-minute-rain-1956",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22214",
+    "difficulty": "medium",
+    "question": "Какой слой дождя выпал за час в городе Холт в США в 1947 году?",
+    "answer": "305",
+    "unit": "мм",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "note": "Рекорд ВМО за 60 минут; другое место и событие, чем минутный рекорд.",
+    "source": "https://wmo.int/sites/default/files/2025-07/Table_Records_25Jul2025.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "weather-f",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "weather-f:holt-hour-rain-1947",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22215",
+    "difficulty": "hard",
+    "question": "Сколько месяцев длился рекордный период без дождя в Арике в начале XX века по таблице ВМО?",
+    "answer": "172",
+    "unit": "месяца",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "note": "Таблица ВМО: октябрь 1903 — январь 1918, 172 месяца; в вопросе даты не раскрыты.",
+    "source": "https://wmo.int/sites/default/files/2025-07/Table_Records_25Jul2025.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "weather-f",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "weather-f:arica-dry-period",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22216",
+    "difficulty": "hard",
+    "question": "До скольких гектопаскалей упало давление в глазу тайфуна Тип в октябре 1979 года?",
+    "answer": "870",
+    "unit": "гПа",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "note": "Рекордное минимальное давление на уровне моря, не перепад давления.",
+    "source": "https://wmo.int/sites/default/files/2025-07/Table_Records_25Jul2025.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "weather-f",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "weather-f:tip-eye-pressure-1979",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22217",
+    "difficulty": "hard",
+    "question": "Сколько триллионов собственных клеток примерно в теле взрослого мужчины?",
+    "answer": "36",
+    "unit": "трлн клеток",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "NIH 2024: ориентир 36 трлн для взрослого мужчины; клетки бактерий не учитываются.",
+    "source": "https://www.nigms.nih.gov/biobeat/2024/09/cells-by-the-numbers-2",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "cells",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "cells:adult-male-cell-count",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22218",
+    "difficulty": "hard",
+    "question": "Сколько миллиардов клеток в человеческом теле примерно отмирает и заменяется за день?",
+    "answer": "330",
+    "unit": "млрд клеток",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "Оценка NIH; почти все — клетки крови и кишечного эпителия. Не означает обновление всех органов за один срок.",
+    "source": "https://www.nigms.nih.gov/biobeat/2024/09/cells-by-the-numbers-2",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "cells",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "cells:daily-replacement",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22219",
+    "difficulty": "medium",
+    "question": "До какой длины может дотягиваться длинный отросток одной нервной клетки человека?",
+    "answer": "1",
+    "unit": "м",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "NIH: аксон может достигать примерно 1000 мм; не диаметр клетки.",
+    "source": "https://www.nigms.nih.gov/biobeat/2024/09/cells-by-the-numbers-2",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "cells",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "cells:axon-length",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22220",
+    "difficulty": "medium",
+    "question": "Какую долю массы обычной клетки примерно составляет вода?",
+    "answer": "70",
+    "unit": "%",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "Общий учебный ориентир NIH, не одинаковый состав каждого типа клеток.",
+    "source": "https://www.nigms.nih.gov/biobeat/2024/09/cells-by-the-numbers-2",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "cells",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "cells:cell-water-fraction",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22221",
+    "difficulty": "hard",
+    "question": "Сколько примерно граммов весят все бактериальные клетки, живущие в теле человека?",
+    "answer": "200",
+    "unit": "г",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "NIH: около 7 унций = 198,45 г; округлено до сотен. Только бактериальные клетки, не всё содержимое кишечника.",
+    "source": "https://www.nigms.nih.gov/biobeat/2024/09/cells-by-the-numbers-2",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "cells",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "cells:body-bacteria-mass",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22222",
+    "difficulty": "medium",
+    "question": "До скольких дней обычно живёт тромбоцит человека?",
+    "answer": "10",
+    "unit": "суток",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "Верхняя граница обычного срока 7–10 дней; не эритроцит.",
+    "source": "https://my.clevelandclinic.org/health/body/22879-platelets",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "platelets",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "platelets:lifespan-upper",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22223",
+    "difficulty": "hard",
+    "question": "Сколько тромбоцитов может содержаться в одном микролитре здоровой крови на верхней границе обычного диапазона?",
+    "answer": "450000",
+    "unit": "тромбоцитов",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "Cleveland Clinic: 150–450 тысяч/мкл; верхняя граница справочного диапазона.",
+    "source": "https://my.clevelandclinic.org/health/body/22879-platelets",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "platelets",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "platelets:per-microlitre-upper",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22224",
+    "difficulty": "medium",
+    "question": "Если расправить всю ДНК из одной обычной клетки человека с ядром, сколько метров получится, округлённо до целого?",
+    "answer": "2",
+    "unit": "м",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "NHGRI: около шести футов, 1,83 м; до целого метра. Диплоидная клетка, не эритроцит.",
+    "source": "https://www.genome.gov/genetics-glossary/Nucleosome",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "dna-length",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "dna-length:diploid-cell-dna-length",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22225",
+    "difficulty": "hard",
+    "question": "Сколько миллиардов нейронов примерно содержит мозг взрослого человека?",
+    "answer": "86",
+    "unit": "млрд нейронов",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "Azevedo 2009, обсуждение автора метода: среднее 86,1 ± 8,1 млрд в исследованных мужских мозгах; оценка, не число у каждого человека.",
+    "source": "https://www.frontiersin.org/journals/human-neuroscience/articles/10.3389/neuro.09.031.2009/full",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "brain-count",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "brain-count:adult-neuron-count",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22226",
+    "difficulty": "medium",
+    "question": "Сколько примерно ударов делает сердце человека за сутки?",
+    "answer": "100000",
+    "unit": "ударов",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "note": "Справочный ориентир Cleveland Clinic; зависит от пульса и нагрузки.",
+    "source": "https://health.clevelandclinic.org/fun-facts-about-your-heart",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "heart",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "heart:daily-beats",
+      "topic": "human"
+    }
+  },
+  {
+    "id": "approx-22227",
+    "difficulty": "medium",
+    "question": "Если собрать всю воду Земли в один шар, каков будет его диаметр по оценке USGS?",
+    "answer": "1385",
+    "unit": "км",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "note": "Вся вода на Земле, под землёй и в атмосфере; модель USGS, а не только пресная.",
+    "source": "https://www.usgs.gov/water-science-school/science/how-much-water-there-earth",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "water-earth",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "water-earth:all-water-sphere-diameter",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22228",
+    "difficulty": "hard",
+    "question": "Сколько кубических километров воды примерно содержится в земной атмосфере в каждый момент?",
+    "answer": "12900",
+    "unit": "км³",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "note": "Преимущественно водяной пар; оценка USGS, не суточные осадки.",
+    "source": "https://www.usgs.gov/water-science-school/science/how-much-water-there-earth",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "water-earth",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "water-earth:atmospheric-water-volume",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22229",
+    "difficulty": "hard",
+    "question": "Сколько кубических километров воды примерно находится одновременно во всех реках Земли?",
+    "answer": "2120",
+    "unit": "км³",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "note": "Объём запаса воды в руслах по таблице USGS; не годовой сток.",
+    "source": "https://www.usgs.gov/water-science-school/science/how-much-water-there-earth",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "water-earth",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "water-earth:river-water-stock",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22230",
+    "difficulty": "medium",
+    "question": "Какая доля всей пресной воды Земли заключена в ледниках, ледяных шапках и постоянном снеге?",
+    "answer": "68.7",
+    "unit": "%",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "note": "Таблица USGS по Shiklomanov 1993; доля от пресной воды, не от всей воды планеты.",
+    "source": "https://www.usgs.gov/water-science-school/science/how-much-water-there-earth",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "water-earth",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "water-earth:freshwater-in-ice",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22231",
+    "difficulty": "medium",
+    "question": "Какую площадь острова Гавайи занимает надводная часть вулкана Мауна-Лоа?",
+    "answer": "5100",
+    "unit": "км²",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "note": "Около 5100 км²; подводная часть не включена.",
+    "source": "https://www.usgs.gov/volcanoes/mauna-loa/science/geology-and-history-mauna-loa",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "mauna",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "mauna:land-footprint",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22232",
+    "difficulty": "easy",
+    "question": "Какова длина вершинной кальдеры Мауна-Лоа вместе с прилегающими провалами?",
+    "answer": "5",
+    "unit": "км",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "note": "USGS: кальдера Мокуавеовео, большая ось около 5 км.",
+    "source": "https://www.usgs.gov/volcanoes/mauna-loa/science/geology-and-history-mauna-loa",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "mauna",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "mauna:caldera-length",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22233",
+    "difficulty": "medium",
+    "question": "Какова ширина вершинной кальдеры Мауна-Лоа вместе с прилегающими провалами?",
+    "answer": "3.2",
+    "unit": "км",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "note": "Малая ось кальдеры по карте USGS; не вся ширина вулкана.",
+    "source": "https://www.usgs.gov/volcanoes/mauna-loa/science/geology-and-history-mauna-loa",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "mauna",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "mauna:caldera-width",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22234",
+    "difficulty": "medium",
+    "question": "На сколько метров дно кальдеры Мауна-Лоа лежит ниже вершины на её западном краю?",
+    "answer": "180",
+    "unit": "м",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "note": "Разность высот из подписи к снимку USGS; другие края кальдеры имеют иные отметки.",
+    "source": "https://www.usgs.gov/volcanoes/mauna-loa/science/geology-and-history-mauna-loa",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "mauna",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "mauna:caldera-west-depth",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22235",
+    "difficulty": "medium",
+    "question": "Сколько тонн весит детектор CMS на Большом адронном коллайдере?",
+    "answer": "14000",
+    "unit": "т",
+    "categories": [
+      "science",
+      "technology"
+    ],
+    "note": "Полная масса детектора, не только магнит и железное ярмо.",
+    "source": "https://home.cern/science/experiments/cms/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "cms",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "cms:detector-mass",
+      "topic": "technology"
+    }
+  },
+  {
+    "id": "approx-22236",
+    "difficulty": "easy",
+    "question": "Каков диаметр огромного цилиндрического детектора CMS в CERN?",
+    "answer": "15",
+    "unit": "м",
+    "categories": [
+      "science",
+      "technology"
+    ],
+    "note": "Поперечный размер детектора; не диаметр ускорительного кольца.",
+    "source": "https://home.cern/science/experiments/cms/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "cms",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "cms:detector-diameter",
+      "topic": "technology"
+    }
+  },
+  {
+    "id": "approx-22237",
+    "difficulty": "hard",
+    "question": "На какую номинальную магнитную индукцию рассчитан соленоид детектора CMS?",
+    "answer": "4",
+    "unit": "Тл",
+    "categories": [
+      "science",
+      "technology"
+    ],
+    "note": "Номинальное поле соленоида, указанное CERN; единица — тесла.",
+    "source": "https://home.cern/science/experiments/cms/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "cms",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "cms:solenoid-field",
+      "topic": "technology"
+    }
+  },
+  {
+    "id": "approx-22238",
+    "difficulty": "easy",
+    "question": "Каков диаметр переднего вентилятора авиадвигателя GE9X, округлённо до десятых метра?",
+    "answer": "3.4",
+    "unit": "м",
+    "categories": [
+      "technology",
+      "transport"
+    ],
+    "note": "134 дюйма = 3,4036 м; до десятых.",
+    "source": "https://www.geaerospace.com/news/press-releases/commercial-engines/ge9x-breaks-guinness-world-recordstm-title-thrust",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "ge9x",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "ge9x:fan-diameter",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22239",
+    "difficulty": "hard",
+    "question": "Сколько тонн-силы тяги выдал GE9X на рекордном испытании в ноябре 2017 года, округлённо до целого?",
+    "answer": "61",
+    "unit": "тс",
+    "categories": [
+      "technology",
+      "transport"
+    ],
+    "note": "134300 фунтов-силы × 0,45359237 / 1000 = 60,918 тс. Это сила, не масса двигателя.",
+    "source": "https://www.geaerospace.com/news/press-releases/commercial-engines/ge9x-breaks-guinness-world-recordstm-title-thrust",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "ge9x",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "ge9x:record-thrust-2017",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22240",
+    "difficulty": "easy",
+    "question": "Каков диаметр главного зеркала телескопа «Джеймс Уэбб»?",
+    "answer": "6.5",
+    "unit": "м",
+    "categories": [
+      "science",
+      "space",
+      "technology"
+    ],
+    "note": "Наибольший поперечный размер составного зеркала, примерно 6,5 м.",
+    "source": "https://science.nasa.gov/mission/webb/fact-sheet/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "webb",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "webb:primary-mirror-diameter",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22241",
+    "difficulty": "medium",
+    "question": "Сколько весит главное зеркало «Джеймса Уэбба» вместе с его сборками?",
+    "answer": "705",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "space",
+      "technology"
+    ],
+    "note": "NASA: масса primary mirror 705 кг; не масса одного бериллиевого сегмента.",
+    "source": "https://science.nasa.gov/mission/webb/fact-sheet/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "webb",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "webb:primary-mirror-assembly-mass",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22242",
+    "difficulty": "hard",
+    "question": "Сколько граммов золота примерно потребовалось для покрытия главного зеркала «Джеймса Уэбба», до целого?",
+    "answer": "48",
+    "unit": "г",
+    "categories": [
+      "science",
+      "space",
+      "technology"
+    ],
+    "note": "Расчёт NASA: 48,25 г покрытия; округлено до целого. Не весь металл зеркала.",
+    "source": "https://science.nasa.gov/mission/webb/fact-sheet/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "webb",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "webb:primary-mirror-gold-mass",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22243",
+    "difficulty": "easy",
+    "question": "Какова длина полностью раскрытого солнцезащитного экрана «Джеймса Уэбба», до десятых метра?",
+    "answer": "21.2",
+    "unit": "м",
+    "categories": [
+      "science",
+      "space",
+      "technology"
+    ],
+    "note": "21,197 м; длинная сторона экрана.",
+    "source": "https://science.nasa.gov/mission/webb/fact-sheet/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "webb",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "webb:sunshield-length",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22244",
+    "difficulty": "medium",
+    "question": "Какова ширина полностью раскрытого солнцезащитного экрана «Джеймса Уэбба», до десятых метра?",
+    "answer": "14.2",
+    "unit": "м",
+    "categories": [
+      "science",
+      "space",
+      "technology"
+    ],
+    "note": "14,162 м; короткая сторона экрана.",
+    "source": "https://science.nasa.gov/mission/webb/fact-sheet/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "webb",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "webb:sunshield-width",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22245",
+    "difficulty": "easy",
+    "question": "На сколько километров письма рассчитана шариковая ручка BIC Cristal на верхней границе заявления производителя?",
+    "answer": "3",
+    "unit": "км",
+    "categories": [
+      "everyday",
+      "technology"
+    ],
+    "note": "BIC: до 3 км письма; фактический ресурс зависит от условий.",
+    "source": "https://corporate.bic.com/fr-fr/groupe/nos-produits",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "bic",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "bic:cristal-writing-distance",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22246",
+    "difficulty": "medium",
+    "question": "На сколько зажиганий рассчитана зажигалка BIC Maxi на верхней границе заявления производителя?",
+    "answer": "3000",
+    "unit": "зажиганий",
+    "categories": [
+      "everyday",
+      "technology"
+    ],
+    "note": "До 3000 срабатываний; не часы непрерывного горения.",
+    "source": "https://corporate.bic.com/fr-fr/groupe/nos-produits",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "bic",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "bic:maxi-ignitions",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22247",
+    "difficulty": "medium",
+    "question": "Сколько деталей в большой модели «Тысячелетнего сокола» LEGO Star Wars с номером 75192?",
+    "answer": "7541",
+    "unit": "деталь",
+    "categories": [
+      "everyday",
+      "culture",
+      "cinema"
+    ],
+    "note": "Конкретный набор 75192, не другие издания корабля.",
+    "source": "https://www.lego.com/en-us/product/millennium-falcon-75192",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "lego-falcon",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "lego-falcon:set-piece-count",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22248",
+    "difficulty": "easy",
+    "question": "Какова длина собранного «Тысячелетнего сокола» LEGO Star Wars из большого набора 75192?",
+    "answer": "84",
+    "unit": "см",
+    "categories": [
+      "everyday",
+      "culture",
+      "cinema"
+    ],
+    "note": "Длина модели по спецификации LEGO; не корабля в фильме.",
+    "source": "https://www.lego.com/en-us/product/millennium-falcon-75192",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "lego-falcon",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "lego-falcon:assembled-length",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22249",
+    "difficulty": "medium",
+    "question": "Какую площадь занимала гигантская пицца Airrack и Pizza Hut, приготовленная в Лос-Анджелесе в 2023 году?",
+    "answer": "1296",
+    "unit": "м²",
+    "categories": [
+      "food"
+    ],
+    "note": "Guinness: округлённая площадь из статьи 2024 года; исторический рекорд 2023 года.",
+    "source": "https://www.guinnessworldrecords.com/news/2024/2/how-many-pizza-world-records-can-youtuber-airrack-break-764590",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "pizza",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "pizza:airrack-pizza-area-2023",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22250",
+    "difficulty": "hard",
+    "question": "Сколько тонн теста использовали для гигантской пиццы Airrack в Лос-Анджелесе в 2023 году, до десятых?",
+    "answer": "6.2",
+    "unit": "т",
+    "categories": [
+      "food"
+    ],
+    "note": "6192,8 кг теста; до десятых тонны. Не полная масса готовой пиццы.",
+    "source": "https://www.guinnessworldrecords.com/news/2024/2/how-many-pizza-world-records-can-youtuber-airrack-break-764590",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "pizza",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "pizza:airrack-dough-mass-2023",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22251",
+    "difficulty": "hard",
+    "question": "Сколько тонн томатного соуса пошло на гигантскую пиццу Airrack в Лос-Анджелесе в 2023 году, до десятых?",
+    "answer": "2.2",
+    "unit": "т",
+    "categories": [
+      "food"
+    ],
+    "note": "2244,3 кг соуса; до десятых тонны.",
+    "source": "https://www.guinnessworldrecords.com/news/2024/2/how-many-pizza-world-records-can-youtuber-airrack-break-764590",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "pizza",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "pizza:airrack-sauce-mass-2023",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22252",
+    "difficulty": "hard",
+    "question": "Сколько тысяч кусочков пепперони примерно положили на гигантскую пиццу Airrack в 2023 году?",
+    "answer": "630",
+    "unit": "тыс. кусочков",
+    "categories": [
+      "food"
+    ],
+    "note": "Около 630496 кусочков; округлено до тысяч.",
+    "source": "https://www.guinnessworldrecords.com/news/2024/2/how-many-pizza-world-records-can-youtuber-airrack-break-764590",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "pizza",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "pizza:airrack-pepperoni-count-2023",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22253",
+    "difficulty": "medium",
+    "question": "Сколько весил рекордный гигантский кусочек картофеля фри, сделанный в Индии в 2018 году?",
+    "answer": "11",
+    "unit": "кг",
+    "categories": [
+      "food"
+    ],
+    "note": "Guinness: Chandresh Bayad; отдельный гигантский French fry.",
+    "source": "https://www.guinnessworldrecords.com/news/2023/10/guinness-world-records-adjudicator-answers-your-most-asked-questions-760042",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "food-records",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "food-records:giant-fry-mass-2018",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22254",
+    "difficulty": "hard",
+    "question": "Сколько весила рекордная огромная пачка чипсов Corkers Crisps, сделанная в Британии в 2013 году?",
+    "answer": "1141",
+    "unit": "кг",
+    "categories": [
+      "food"
+    ],
+    "note": "Guinness: масса рекордной пачки; не масса обычной розничной упаковки.",
+    "source": "https://www.guinnessworldrecords.com/news/2023/10/guinness-world-records-adjudicator-answers-your-most-asked-questions-760042",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "food-records",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "food-records:giant-crisps-bag-2013",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22255",
+    "difficulty": "easy",
+    "question": "Какова высота Царь-колокола в Московском Кремле?",
+    "answer": "6.14",
+    "unit": "м",
+    "categories": [
+      "culture",
+      "history"
+    ],
+    "note": "Полная высота колокола по музейной карточке, не диаметр.",
+    "source": "https://kreml.ru/en/museums/arxitekturnyi-ansambl-moskovskogo-kremlia/pamiatniki-liteinogo-iskusstva/car-kolokol",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tsarb-f",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "tsarb-f:bell-height",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22256",
+    "difficulty": "medium",
+    "question": "Каков калибр Царь-пушки в Московском Кремле?",
+    "answer": "890",
+    "unit": "мм",
+    "categories": [
+      "culture",
+      "history",
+      "technology"
+    ],
+    "note": "Диаметр канала ствола; не наружный диаметр.",
+    "source": "https://kreml.ru/ru/museums/arxitekturnyi-ansambl-moskovskogo-kremlia/pamiatniki-liteinogo-iskusstva/car-puska",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tsarc-f",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "tsarc-f:cannon-calibre",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22257",
+    "difficulty": "easy",
+    "question": "Какова ширина оригинала картины Иванова «Явление Христа народу» без рамы?",
+    "answer": "7.5",
+    "unit": "м",
+    "categories": [
+      "culture",
+      "arts"
+    ],
+    "note": "Горизонтальная сторона холста 750 см.",
+    "source": "https://rumyancev.pushkinmuseum.art/data/catalogue/canvas/rossiya/gtg_ivanov_yavlenie.php",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "ivanov",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "ivanov:canvas-width",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22258",
+    "difficulty": "medium",
+    "question": "Какова высота оригинала картины Иванова «Явление Христа народу» без рамы?",
+    "answer": "5.4",
+    "unit": "м",
+    "categories": [
+      "culture",
+      "arts"
+    ],
+    "note": "Вертикальная сторона холста 540 см.",
+    "source": "https://rumyancev.pushkinmuseum.art/data/catalogue/canvas/rossiya/gtg_ivanov_yavlenie.php",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "ivanov",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "ivanov:canvas-height",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22259",
+    "difficulty": "easy",
+    "question": "Какова ширина оригинала картины Айвазовского «Девятый вал» без рамы?",
+    "answer": "332",
+    "unit": "см",
+    "categories": [
+      "culture",
+      "arts"
+    ],
+    "note": "Русский музей: горизонтальная сторона холста 332 см.",
+    "source": "https://rusmuseumvrm.ru/data/collections/painting/18_19/zh_2202/?lang=ru",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "ninth-wave",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "ninth-wave:canvas-width",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22260",
+    "difficulty": "medium",
+    "question": "Какова высота оригинала картины Айвазовского «Девятый вал» без рамы?",
+    "answer": "221",
+    "unit": "см",
+    "categories": [
+      "culture",
+      "arts"
+    ],
+    "note": "Вертикальная сторона холста; не ширина.",
+    "source": "https://rusmuseumvrm.ru/data/collections/painting/18_19/zh_2202/?lang=ru",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "ninth-wave",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "ninth-wave:canvas-height",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22261",
+    "difficulty": "easy",
+    "question": "Какова полная высота Исаакиевского собора в Петербурге?",
+    "answer": "101.5",
+    "unit": "м",
+    "categories": [
+      "culture",
+      "history",
+      "geography"
+    ],
+    "note": "Высота от земли до верхней точки.",
+    "source": "https://cathedral.ru/ru/isaac/architecture",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "isaac",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "isaac:cathedral-height",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22262",
+    "difficulty": "medium",
+    "question": "Какова длина Исаакиевского собора в Петербурге?",
+    "answer": "111.2",
+    "unit": "м",
+    "categories": [
+      "culture",
+      "history",
+      "geography"
+    ],
+    "note": "Наружный продольный размер по музею.",
+    "source": "https://cathedral.ru/ru/isaac/architecture",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "isaac",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "isaac:cathedral-length",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22263",
+    "difficulty": "medium",
+    "question": "Какова ширина Исаакиевского собора в Петербурге?",
+    "answer": "97.6",
+    "unit": "м",
+    "categories": [
+      "culture",
+      "history",
+      "geography"
+    ],
+    "note": "Наружный поперечный размер по музею.",
+    "source": "https://cathedral.ru/ru/isaac/architecture",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "isaac",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "isaac:cathedral-width",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22264",
+    "difficulty": "hard",
+    "question": "Сколько весит одна большая гранитная колонна портиков Исаакиевского собора?",
+    "answer": "114",
+    "unit": "т",
+    "categories": [
+      "culture",
+      "history",
+      "geography"
+    ],
+    "note": "Масса одной большой монолитной колонны портика; не всех колонн вместе.",
+    "source": "https://cathedral.ru/ru/isaac/architecture",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "isaac",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "isaac:portico-column-mass",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22265",
+    "difficulty": "medium",
+    "question": "Какова высота одной большой гранитной колонны портиков Исаакиевского собора?",
+    "answer": "17",
+    "unit": "м",
+    "categories": [
+      "culture",
+      "history",
+      "geography"
+    ],
+    "note": "Высота монолитной колонны из музейного описания.",
+    "source": "https://cathedral.ru/ru/isaac/architecture",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "isaac",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "isaac:portico-column-height",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22266",
+    "difficulty": "easy",
+    "question": "Сколько лет строили нынешний Исаакиевский собор по проекту Монферрана?",
+    "answer": "40",
+    "unit": "лет",
+    "categories": [
+      "culture",
+      "history",
+      "geography"
+    ],
+    "note": "1818–1858; даты в вопросе не сообщаются. Не предыдущая церковь Ринальди.",
+    "source": "https://www.cathedral.ru/ru/isaac/building",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "isaac-build",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "isaac-build:construction-duration",
+      "topic": "history"
+    }
+  },
+  {
+    "id": "approx-22267",
+    "difficulty": "easy",
+    "question": "Сколько минут длился первый полёт Юрия Гагарина в космос?",
+    "answer": "108",
+    "unit": "минут",
+    "categories": [
+      "history",
+      "science",
+      "space"
+    ],
+    "note": "Весь полёт «Востока-1», а не только пребывание на орбите.",
+    "source": "https://starchild.gsfc.nasa.gov/docs/StarChild/whos_who_level2/gagarin.html",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gagarin",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "gagarin:vostok1-duration",
+      "topic": "history"
+    }
+  },
+  {
+    "id": "approx-22268",
+    "difficulty": "medium",
+    "question": "На какую максимальную высоту над Землёй поднялся «Восток-1» с Гагариным по справке NASA?",
+    "answer": "327",
+    "unit": "км",
+    "categories": [
+      "history",
+      "science",
+      "space"
+    ],
+    "note": "Приблизительный апогей из учебной справки NASA StarChild.",
+    "source": "https://starchild.gsfc.nasa.gov/docs/StarChild/whos_who_level2/gagarin.html",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gagarin",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "gagarin:vostok1-apogee",
+      "topic": "history"
+    }
+  },
+  {
+    "id": "approx-22269",
+    "difficulty": "hard",
+    "question": "С какой скоростью примерно летел «Восток-1» вокруг Земли во время полёта Гагарина?",
+    "answer": "27400",
+    "unit": "км/ч",
+    "categories": [
+      "history",
+      "science",
+      "space"
+    ],
+    "note": "Орбитальная скорость из NASA StarChild; не скорость посадки.",
+    "source": "https://starchild.gsfc.nasa.gov/docs/StarChild/whos_who_level2/gagarin.html",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gagarin",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "gagarin:vostok1-orbit-speed",
+      "topic": "history"
+    }
+  },
+  {
+    "id": "approx-22270",
+    "difficulty": "medium",
+    "question": "До какой массы обычно дорастают взрослые самцы жирафа?",
+    "answer": "1360",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница обычного размерного диапазона самцов в справочнике зоопарка.",
+    "source": "https://animals.sandiegozoo.org/animals/giraffe",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "giraffe",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "giraffe:male-mass-upper",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22271",
+    "difficulty": "easy",
+    "question": "Сколько примерно весит взрослый суматранский носорог?",
+    "answer": "800",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Средняя масса суматранского носорога; не более крупного белого.",
+    "source": "https://animals.sandiegozoo.org/animals/rhinoceros",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "rhino",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "rhino:sumatran-average-mass",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22272",
+    "difficulty": "easy",
+    "question": "Сколько лет составляет средняя продолжительность жизни тигра по справочнику зоопарка Сан-Диего?",
+    "answer": "16",
+    "unit": "лет",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Около 16 лет в таблице; не рекорд долголетия.",
+    "source": "https://animals.sandiegozoo.org/animals/tiger",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tiger",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "tiger:average-lifespan",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22273",
+    "difficulty": "easy",
+    "question": "До какой температуры может нагреваться тело гепарда после стремительной погони?",
+    "answer": "41",
+    "unit": "°C",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхний ориентир 105 °F, примерно 41 °C; не обычная температура покоя.",
+    "source": "https://animals.sandiegozoo.org/animals/cheetah",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "cheetah-f",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "cheetah-f:post-chase-temperature",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22274",
+    "difficulty": "medium",
+    "question": "До какой массы доходит новорождённый детёныш гориллы в обычном диапазоне?",
+    "answer": "2.3",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница 1,8–2,3 кг.",
+    "source": "https://animals.sandiegozoo.org/animals/gorilla",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gorilla",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "gorilla:newborn-mass-upper",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22275",
+    "difficulty": "medium",
+    "question": "Сколько месяцев примерно длится беременность бегемота?",
+    "answer": "8",
+    "unit": "месяцев",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Ориентир зоопарка — восемь месяцев.",
+    "source": "https://animals.sandiegozoo.org/animals/hippo",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "hippo",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "hippo:gestation",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22276",
+    "difficulty": "easy",
+    "question": "До какого возраста обычно доживают коалы по справочному диапазону зоопарка Сан-Диего?",
+    "answer": "15",
+    "unit": "лет",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница обычного диапазона 10–15 лет; не рекорд.",
+    "source": "https://animals.sandiegozoo.org/animals/koala",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "koala",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "koala:usual-lifespan-upper",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22277",
+    "difficulty": "easy",
+    "question": "До какого возраста доживают капибары в природе по справочнику зоопарка Сан-Диего?",
+    "answer": "10",
+    "unit": "лет",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "До 10 лет в природе; в зоопарках могут жить дольше.",
+    "source": "https://animals.sandiegozoo.org/animals/capybara",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "capybara",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "capybara:wild-lifespan-upper",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22278",
+    "difficulty": "medium",
+    "question": "До скольких суток длится высиживание яйца фламинго в обычном диапазоне?",
+    "answer": "31",
+    "unit": "суток",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница 27–31 день.",
+    "source": "https://animals.sandiegozoo.org/animals/flamingo",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "flamingo",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "flamingo:incubation-upper",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22279",
+    "difficulty": "easy",
+    "question": "До какой массы вырастает взрослая самка белоголового орлана?",
+    "answer": "6.8",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница диапазона самок 4,5–6,8 кг; самцы легче.",
+    "source": "https://animals.sandiegozoo.org/animals/bald-eagle",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "eagle",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "eagle:female-mass-upper",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22280",
+    "difficulty": "medium",
+    "question": "До какой массы вырастает взрослый самец андского кондора?",
+    "answer": "15",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница размерной таблицы для самцов.",
+    "source": "https://animals.sandiegozoo.org/animals/andean-condor",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "condor",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "condor:male-mass-upper",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22281",
+    "difficulty": "easy",
+    "question": "До какой высоты в плечах вырастает бородавочник?",
+    "answer": "85",
+    "unit": "см",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница 55–85 см.",
+    "source": "https://animals.sandiegozoo.org/animals/warthog",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "warthog",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "warthog:shoulder-height-upper",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22282",
+    "difficulty": "easy",
+    "question": "До какой длины вырастает тело малой панды без хвоста?",
+    "answer": "64",
+    "unit": "см",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Голова и тело 51–64 см; хвост не включён.",
+    "source": "https://animals.sandiegozoo.org/animals/red-panda",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "red-panda",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "red-panda:head-body-length-upper",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22283",
+    "difficulty": "easy",
+    "question": "До какой массы вырастает крупный взрослый самец льва в обычном диапазоне?",
+    "answer": "260",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница диапазона самцов 150–260 кг; не исключительный рекорд.",
+    "source": "https://animals.sandiegozoo.org/animals/lion",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "lion",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "lion:male-mass-upper",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22284",
+    "difficulty": "easy",
+    "question": "До какой массы обычно вырастают самцы страуса по таблице зоопарка Сан-Диего?",
+    "answer": "130",
+    "unit": "кг",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "note": "Верхняя граница обычного диапазона 100–130 кг.",
+    "source": "https://animals.sandiegozoo.org/animals/ostrich",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "ostrich",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "ostrich:male-mass-upper",
+      "topic": "animals"
+    }
+  },
+  {
+    "id": "approx-22285",
+    "difficulty": "medium",
+    "question": "Сколько весила рекордная клубника, взвешенная в Израиле в феврале 2021 года?",
+    "answer": "289",
+    "unit": "г",
+    "categories": [
+      "food",
+      "nature"
+    ],
+    "note": "Ариэль Чахи, 12 февраля 2021. В марте он вырастил более тяжёлую ягоду, поэтому месяц важен.",
+    "source": "https://www.guinnessworldrecords.com/news/2022/2/worlds-heaviest-strawberry-grown-in-israel-breaks-record-692512",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gwr-strawberry",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "gwr-strawberry:strawberry-feb-2021-mass",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22286",
+    "difficulty": "medium",
+    "question": "Сколько весила тыква Трэвиса Гингера на калифорнийском взвешивании в октябре 2023 года, до целого килограмма?",
+    "answer": "1247",
+    "unit": "кг",
+    "categories": [
+      "food",
+      "nature"
+    ],
+    "note": "1246,9 кг; исторический результат 9 октября 2023, не утверждение о сегодняшнем рекорде.",
+    "source": "https://www.guinnessworldrecords.com/news/2023/10/good-gourd-american-pumpkin-as-heavy-as-two-cows-squashes-all-past-rivals-759626",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gwr-pumpkin",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "gwr-pumpkin:pumpkin-oct-2023-mass",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22287",
+    "difficulty": "easy",
+    "question": "Сколько весил гигантский арбуз Криса Кента, представленный на конкурсе в США в 2013 году?",
+    "answer": "159",
+    "unit": "кг",
+    "categories": [
+      "food",
+      "nature"
+    ],
+    "note": "Результат взвешивания 4 октября 2013 года, Guinness World Records.",
+    "source": "https://www.guinnessworldrecords.com/world-records/heaviest-watermelon",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gwr-watermelon",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "gwr-watermelon:watermelon-2013-mass",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22288",
+    "difficulty": "medium",
+    "question": "Сколько граммов весило рекордное яблоко, выращенное в японском Хиросаки в 2005 году?",
+    "answer": "1849",
+    "unit": "г",
+    "categories": [
+      "food",
+      "nature"
+    ],
+    "note": "1,849 кг = 1849 г; яблоко Тисато Ивасаки, 24 октября 2005.",
+    "source": "https://www.guinnessworldrecords.com/world-records/heaviest-apple",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gwr-apple",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "gwr-apple:apple-2005-mass",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22289",
+    "difficulty": "easy",
+    "question": "Сколько весила гигантская морковь Кристофера Куэлли из Миннесоты, взвешенная в 2017 году?",
+    "answer": "10.17",
+    "unit": "кг",
+    "categories": [
+      "food",
+      "nature"
+    ],
+    "note": "Подтверждено Guinness 9 сентября 2017; масса одного корнеплода.",
+    "source": "https://www.guinnessworldrecords.com/world-records/heaviest-carrot",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gwr-carrot",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "gwr-carrot:carrot-2017-mass",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22290",
+    "difficulty": "medium",
+    "question": "Сколько весил рекордный авокадо семьи Покини с Гавайев, взвешенный в 2018 году?",
+    "answer": "2.55",
+    "unit": "кг",
+    "categories": [
+      "food",
+      "nature"
+    ],
+    "note": "14 декабря 2018; масса одного плода, не урожая дерева.",
+    "source": "https://www.guinnessworldrecords.com/world-records/heaviest-avocado",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gwr-avocado",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "gwr-avocado:avocado-2018-mass",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22291",
+    "difficulty": "easy",
+    "question": "Сколько весила гигантская луковица Гарета Гриффина на выставке в Харрогейте в 2023 году?",
+    "answer": "8.97",
+    "unit": "кг",
+    "categories": [
+      "food",
+      "nature"
+    ],
+    "note": "15 сентября 2023; масса одной луковицы.",
+    "source": "https://www.guinnessworldrecords.com/news/2023/9/heaviest-onion-that-weighs-more-than-a-bowling-ball-unveiled-with-other-super-veg-759062",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gwr-onion",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "gwr-onion:onion-2023-mass",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22292",
+    "difficulty": "easy",
+    "question": "Сколько весила рекордная картофелина Питера Глейзбрука, взвешенная в Британии в 2011 году?",
+    "answer": "4.98",
+    "unit": "кг",
+    "categories": [
+      "food",
+      "nature"
+    ],
+    "note": "4 сентября 2011; настоящий картофель, не ошибочно принятый за него другой клубень.",
+    "source": "https://www.guinnessworldrecords.com/world-records/73913-heaviest-potato",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gwr-potato",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "gwr-potato:potato-2011-mass",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22293",
+    "difficulty": "medium",
+    "question": "Сколько тонн жидкой воды примерно содержат капли кучевого облака объёмом один кубический километр?",
+    "answer": "500",
+    "unit": "т",
+    "categories": [
+      "science",
+      "nature"
+    ],
+    "note": "Модель USGS: 0,5 г капель/м³, итого 500000 кг. Не масса воздуха; плотность в условии не раскрыта.",
+    "source": "https://www.usgs.gov/water-science-school/science/how-much-does-a-cloud-weigh",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "cloud",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "cloud:cumulus-liquid-water-mass",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22294",
+    "difficulty": "easy",
+    "question": "Какова средняя высота падения воды канадского Ниагарского водопада Подкова?",
+    "answer": "57",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "До Нижней Ниагары; не высота американской части над каменной осыпью.",
+    "source": "https://www.niagaraparks.com/visit-niagara-parks/plan-your-visit/niagara-falls-geology-facts-figures/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "niagara",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "niagara:horseshoe-drop",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22295",
+    "difficulty": "medium",
+    "question": "Какова ширина линии обрыва канадского Ниагарского водопада Подкова?",
+    "answer": "670",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "Длина crest line по Niagara Parks; не суммарная ширина всех трёх водопадов.",
+    "source": "https://www.niagaraparks.com/visit-niagara-parks/plan-your-visit/niagara-falls-geology-facts-figures/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "niagara",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "niagara:horseshoe-crest-width",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22296",
+    "difficulty": "medium",
+    "question": "Какова общая ширина водопада Виктория на реке Замбези?",
+    "answer": "1708",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "note": "Ширина водяного занавеса по ЮНЕСКО.",
+    "source": "https://whc.unesco.org/en/list/509",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "victoria",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "victoria:curtain-width",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22297",
+    "difficulty": "hard",
+    "question": "Какой слой дождя выпал за сутки в Фок-Фоке на Реюньоне в январе 1966 года, до десятых метра?",
+    "answer": "1.8",
+    "unit": "м",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "note": "ВМО: 1,825 м за 7–8 января 1966 года; округлено до десятых. Не годовая сумма.",
+    "source": "https://wmo.int/sites/default/files/2025-07/Table_Records_25Jul2025.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "weather-f",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "weather-f:focfoc-day-rain-1966",
+      "topic": "nature"
+    }
+  },
+  {
+    "id": "approx-22298",
+    "difficulty": "easy",
+    "question": "Каков был диаметр челябинского метеороида перед входом в атмосферу, округлённо до десятков метров?",
+    "answer": "20",
+    "unit": "м",
+    "categories": [
+      "science",
+      "space",
+      "nature"
+    ],
+    "note": "NASA: оценка около 18 м в публикации 2013 года; ранний диапазон JPL 17–20 м. До десятков получается 20 м.",
+    "source": "https://science.nasa.gov/earth/earth-observatory/tracking-the-chelyabinsk-meteor-plume-81844/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "chelyabinsk",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "chelyabinsk:pre-entry-diameter",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22299",
+    "difficulty": "medium",
+    "question": "С какой скоростью челябинский метеороид вошёл в атмосферу в 2013 году, до целого километра в секунду?",
+    "answer": "19",
+    "unit": "км/с",
+    "categories": [
+      "science",
+      "space",
+      "nature"
+    ],
+    "note": "NASA Earth Observatory: 18,6 км/с; округлено до целого.",
+    "source": "https://science.nasa.gov/earth/earth-observatory/tracking-the-chelyabinsk-meteor-plume-81844/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "chelyabinsk",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "chelyabinsk:entry-speed",
+      "topic": "space"
+    }
+  },
+  {
+    "id": "approx-22300",
+    "difficulty": "medium",
+    "question": "На какой высоте над землёй разрушился челябинский метеороид в 2013 году, до целого километра?",
+    "answer": "23",
+    "unit": "км",
+    "categories": [
+      "science",
+      "space",
+      "nature"
+    ],
+    "note": "NASA Earth Observatory: около 23,3 км; округлено до целого.",
+    "source": "https://science.nasa.gov/earth/earth-observatory/tracking-the-chelyabinsk-meteor-plume-81844/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "chelyabinsk",
+      "checkedAt": "2026-10-22",
+      "batch": 3,
+      "measurementKey": "chelyabinsk:airburst-altitude",
+      "topic": "space"
+    }
+  }
+]

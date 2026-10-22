@@ -1,0 +1,19 @@
+{
+  "baseSha": "1dae397559c97c89f84688a0b64f3c8c552dd401",
+  "cards": {
+    "count": 4701,
+    "sha256": "4da5beaac5f65d66181ff4edcbad947b064442a779878cb57b7890384effbd0e"
+  },
+  "questions": {
+    "count": 300,
+    "sha256": "c421072a21227d0c9d6eef3824d209cf6a1d14025d529eff8a141573b9397b64"
+  },
+  "packs": {
+    "count": 15,
+    "sha256": "fb1916447cdc3db746e286f7eae645caab7dae0094ff4042600afab66af75f80"
+  },
+  "activeE": {
+    "count": 163,
+    "sha256": "69781c5a8a8b36eb52a0e3a430ec79d76e68e65f531b54dad2985167e43f6223"
+  }
+}

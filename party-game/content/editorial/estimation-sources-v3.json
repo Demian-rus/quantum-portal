@@ -1,0 +1,1255 @@
+{
+  "giraffe": {
+    "url": "https://animals.sandiegozoo.org/animals/giraffe",
+    "reference": "turn368view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "rhino": {
+    "url": "https://animals.sandiegozoo.org/animals/rhinoceros",
+    "reference": "turn368view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "tiger": {
+    "url": "https://animals.sandiegozoo.org/animals/tiger",
+    "reference": "turn368view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "gorilla": {
+    "url": "https://animals.sandiegozoo.org/animals/gorilla",
+    "reference": "turn367view5",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "orangutan": {
+    "url": "https://animals.sandiegozoo.org/animals/orangutan",
+    "reference": "turn368view4",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "koala": {
+    "url": "https://animals.sandiegozoo.org/animals/koala",
+    "reference": "turn368view5",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "hippo": {
+    "url": "https://animals.sandiegozoo.org/animals/hippo",
+    "reference": "turn368view6",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "lion": {
+    "url": "https://animals.sandiegozoo.org/animals/lion",
+    "reference": "turn368view7",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "polar-bear": {
+    "url": "https://animals.sandiegozoo.org/animals/polar-bear",
+    "reference": "turn369view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "kangaroo": {
+    "url": "https://animals.sandiegozoo.org/animals/kangaroo-and-wallaby",
+    "reference": "turn369view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "anteater": {
+    "url": "https://animals.sandiegozoo.org/animals/giant-anteater",
+    "reference": "turn371view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "capybara": {
+    "url": "https://animals.sandiegozoo.org/animals/capybara",
+    "reference": "turn369view5",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "red-panda": {
+    "url": "https://animals.sandiegozoo.org/animals/red-panda",
+    "reference": "turn369view6",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "warthog": {
+    "url": "https://animals.sandiegozoo.org/animals/warthog",
+    "reference": "turn369view7",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "flamingo": {
+    "url": "https://animals.sandiegozoo.org/animals/flamingo",
+    "reference": "turn370view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "eagle": {
+    "url": "https://animals.sandiegozoo.org/animals/bald-eagle",
+    "reference": "turn370view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "condor": {
+    "url": "https://animals.sandiegozoo.org/animals/andean-condor",
+    "reference": "turn370view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "ostrich": {
+    "url": "https://animals.sandiegozoo.org/animals/ostrich",
+    "reference": "turn370view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "octopus": {
+    "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/giant-pacific-octopus",
+    "reference": "turn372view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "marine"
+    ],
+    "topic": "animals"
+  },
+  "otter": {
+    "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/sea-otter",
+    "reference": "turn372view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "marine"
+    ],
+    "topic": "animals"
+  },
+  "heart": {
+    "url": "https://health.clevelandclinic.org/fun-facts-about-your-heart",
+    "reference": "turn374view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "topic": "human"
+  },
+  "kidney": {
+    "url": "https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work",
+    "reference": "turn373view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "topic": "human"
+  },
+  "lungs": {
+    "url": "https://medicalmuseum.health.mil/index.cfm/visit/exhibits/past/visiblyhuman/page_03",
+    "reference": "turn373view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "topic": "human"
+  },
+  "skin": {
+    "url": "https://www.acs.org/education/celebrating-chemistry-editions/2023-ncw/good-health-begins-with-your-skin.html",
+    "reference": "turn374view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "topic": "human"
+  },
+  "esophagus": {
+    "url": "https://training.seer.cancer.gov/ugi/anatomy/esophagus.html",
+    "reference": "turn377view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "topic": "human"
+  },
+  "hair": {
+    "url": "https://www.unsw.edu.au/newsroom/news/2025/01/why-do-some-peoples-hair-and-nails-grow-quicker-than-mine",
+    "reference": "turn377view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "biology",
+      "everyday"
+    ],
+    "topic": "human"
+  },
+  "nails": {
+    "url": "https://my.clevelandclinic.org/health/body/nail-anatomy",
+    "reference": "turn376view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "biology",
+      "everyday"
+    ],
+    "topic": "human"
+  },
+  "mercury": {
+    "url": "https://science.nasa.gov/mercury/facts/",
+    "reference": "turn380view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "topic": "space"
+  },
+  "venus": {
+    "url": "https://science.nasa.gov/venus/venus-facts/",
+    "reference": "turn379view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "topic": "space"
+  },
+  "mars": {
+    "url": "https://science.nasa.gov/mars/facts/",
+    "reference": "turn379view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "topic": "space"
+  },
+  "jupiter": {
+    "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
+    "reference": "turn380view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "topic": "space"
+  },
+  "saturn": {
+    "url": "https://science.nasa.gov/saturn/facts/",
+    "reference": "turn380view4",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "topic": "space"
+  },
+  "uranus": {
+    "url": "https://science.nasa.gov/uranus/facts/",
+    "reference": "turn380view5",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "topic": "space"
+  },
+  "neptune": {
+    "url": "https://science.nasa.gov/neptune/neptune-facts/",
+    "reference": "turn444view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "space"
+    ],
+    "topic": "space"
+  },
+  "yosemite": {
+    "url": "https://www.nps.gov/yose/planyourvisit/waterfalls.htm",
+    "reference": "turn382view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "topic": "nature"
+  },
+  "badwater": {
+    "url": "https://www.nps.gov/places/badwater-basin.htm",
+    "reference": "turn381view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "topic": "nature"
+  },
+  "faithful": {
+    "url": "https://www.nps.gov/places/old-faithful-geyser.htm",
+    "reference": "turn381view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "topic": "nature"
+  },
+  "faithful-study": {
+    "url": "https://www.usgs.gov/observatories/yvo/news/how-much-water-erupts-old-faithful-geyser",
+    "reference": "turn382view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "topic": "nature"
+  },
+  "carlsbad": {
+    "url": "https://www.nps.gov/cave/learn/news/interesting-facts-about-carlsbad-caverns.htm",
+    "reference": "turn382view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "topic": "nature"
+  },
+  "komatsu": {
+    "url": "https://www.komatsu.com/en-us/products/equipment/trucks/electric-drive-mining-trucks/980e-5",
+    "reference": "turn385view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "topic": "transport"
+  },
+  "burj": {
+    "url": "https://www.burjkhalifa.ae/the-tower/structures/",
+    "reference": "turn385view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "technology",
+      "geography"
+    ],
+    "topic": "architecture"
+  },
+  "concorde": {
+    "url": "https://www.museumofflight.org/exhibits-and-events/aircraft/concorde",
+    "reference": "turn387view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "transport",
+      "technology",
+      "history"
+    ],
+    "topic": "transport"
+  },
+  "itaipu": {
+    "url": "https://turismoitaipu.com.br/en/the-itaipu-plant/curiosities/",
+    "reference": "turn387view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "geography",
+      "technology"
+    ],
+    "topic": "architecture"
+  },
+  "towerbridge": {
+    "url": "https://www.towerbridge.org.uk/stories/top-facts-of-tower-bridge",
+    "reference": "turn387view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "geography",
+      "history",
+      "technology"
+    ],
+    "topic": "architecture"
+  },
+  "cntower": {
+    "url": "https://www.clcl-sicl.ca/newsroom/canada-lands-company-unveils-21-million-cn-tower-lower-observation-level-renovation-0",
+    "reference": "turn441view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "geography",
+      "technology"
+    ],
+    "topic": "architecture"
+  },
+  "eye": {
+    "url": "https://www.londoneye.com/media/gkun1lnj/resource-3-the-london-classroom-the-london-eye-in-numbers.pdf",
+    "reference": "turn390view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "technology",
+      "geography"
+    ],
+    "topic": "architecture"
+  },
+  "chiron": {
+    "url": "https://newsroom.bugatti.com/api/en/press-releases/pdf/0-400-0-km-h-in-42-seconds-bugatti-chiron-sets-world-record",
+    "reference": "turn389view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "topic": "transport"
+  },
+  "chinook": {
+    "url": "https://www.boeing.com/defense/military-rotorcraft/h-47-chinook",
+    "reference": "turn389view4",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "topic": "transport"
+  },
+  "starry": {
+    "url": "https://www.moma.org/collection/works/79802",
+    "reference": "turn392view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "culture",
+      "arts"
+    ],
+    "topic": "culture"
+  },
+  "guernica": {
+    "url": "https://museoreinasofia.es/en/collections/artwork/guernica-0/",
+    "reference": "turn392view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "culture",
+      "arts"
+    ],
+    "topic": "culture"
+  },
+  "steinway": {
+    "url": "https://www.steinway.com/pianos/steinway/grand/model-d",
+    "reference": "turn392view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "culture",
+      "music",
+      "technology"
+    ],
+    "topic": "culture"
+  },
+  "tennis": {
+    "url": "https://www.itftennis.com/media/7221/2026-rules-of-tennis-english.pdf",
+    "reference": "turn398view4",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "sport"
+    ],
+    "topic": "sport"
+  },
+  "football-field": {
+    "url": "https://www.theifab.com/laws/latest/the-field-of-play/",
+    "reference": "turn395view4",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "sport"
+    ],
+    "topic": "sport"
+  },
+  "football-ball": {
+    "url": "https://www.theifab.com/laws/latest/the-ball/",
+    "reference": "turn395view5",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "sport"
+    ],
+    "topic": "sport"
+  },
+  "basketball": {
+    "url": "https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2026-v1-1.pdf",
+    "reference": "turn401view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "sport"
+    ],
+    "topic": "sport"
+  },
+  "parmesan": {
+    "url": "https://www.parmigianoreggiano.com/product-guide-glossary",
+    "reference": "turn402view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "food"
+    ],
+    "topic": "food"
+  },
+  "cola": {
+    "url": "https://www.coca-cola.com/gb/en/about-us/faq/what-is-caffeine",
+    "reference": "turn402view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "topic": "food"
+  },
+  "nutella": {
+    "url": "https://www.nutella.com/us/en/inside-nutella/faqs",
+    "reference": "turn403view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "food"
+    ],
+    "topic": "food"
+  },
+  "champagne": {
+    "url": "https://www.champagne.fr/en/champagne-frequently-asked-questions?nid=609",
+    "reference": "turn404view5",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "food"
+    ],
+    "topic": "food"
+  },
+  "water-crops": {
+    "url": "https://www.waterfootprint.org/resources/Report47-WaterFootprintCrops-Vol1.pdf",
+    "reference": "turn404view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "nature",
+      "food"
+    ],
+    "topic": "food"
+  },
+  "ipod": {
+    "url": "https://www.apple.com/au/newsroom/2022/05/the-music-lives-on/",
+    "reference": "turn408view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "technology",
+      "music",
+      "everyday"
+    ],
+    "topic": "everyday"
+  },
+  "macair": {
+    "url": "https://www.apple.com/newsroom/2022/06/apple-unveils-all-new-macbook-air-supercharged-by-the-new-m2-chip/",
+    "reference": "turn409view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "technology",
+      "everyday"
+    ],
+    "topic": "everyday"
+  },
+  "iphone": {
+    "url": "https://support.apple.com/en-us/112445",
+    "reference": "turn411view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "technology",
+      "everyday"
+    ],
+    "topic": "everyday"
+  },
+  "cd": {
+    "url": "https://www.ecma-international.org/wp-content/uploads/ECMA-130_2nd_edition_june_1996.pdf",
+    "reference": "turn411view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "technology",
+      "everyday"
+    ],
+    "topic": "everyday"
+  },
+  "ruble1": {
+    "url": "https://www.cbr.ru/cash_circulation/coins/1rub/",
+    "reference": "turn409view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "everyday"
+    ],
+    "topic": "everyday"
+  },
+  "ruble5": {
+    "url": "https://www.cbr.ru/cash_circulation/coins/5rub/",
+    "reference": "turn411view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "everyday"
+    ],
+    "topic": "everyday"
+  },
+  "ruble10": {
+    "url": "https://www.cbr.ru/cash_circulation/coins/10rub/",
+    "reference": "turn410view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "everyday"
+    ],
+    "topic": "everyday"
+  },
+  "usquarter": {
+    "url": "https://www.usmint.gov/learn/coins-and-medals/circulating-coins/coin-specifications",
+    "reference": "turn410view4",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "everyday"
+    ],
+    "topic": "everyday"
+  },
+  "wright": {
+    "url": "https://www.nps.gov/articles/wrightflyer.htm",
+    "reference": "turn409view6",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "history",
+      "transport",
+      "technology"
+    ],
+    "topic": "history"
+  },
+  "golden-f": {
+    "url": "https://www.goldengate.org/bridge/history-research/statistics-data/design-construction-stats/",
+    "reference": "turn406view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "geography",
+      "technology"
+    ],
+    "topic": "architecture"
+  },
+  "colosseum": {
+    "url": "https://www.turismoroma.it/en/places/flavian-amphitheatre-colosseum",
+    "reference": "turn409view5",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "history",
+      "geography",
+      "culture"
+    ],
+    "topic": "history"
+  },
+  "versailles": {
+    "url": "https://en.chateauversailles.fr/marvels-palace",
+    "reference": "turn432view5",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "culture",
+      "history"
+    ],
+    "topic": "culture"
+  },
+  "reef-length": {
+    "url": "https://oceanservice.noaa.gov/facts/gbrlargeststructure.html",
+    "reference": "turn414view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "geography",
+      "nature",
+      "marine"
+    ],
+    "topic": "nature"
+  },
+  "reef": {
+    "url": "https://www.gbrmpa.gov.au/learn/fascinating-facts-about-great-barrier-reef",
+    "reference": "turn413view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "geography",
+      "nature",
+      "marine"
+    ],
+    "topic": "nature"
+  },
+  "uluru": {
+    "url": "https://uluru.gov.au/discover/highlights/amazing-facts/",
+    "reference": "turn414view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "topic": "nature"
+  },
+  "diplodocus": {
+    "url": "https://www.nhm.ac.uk/discover/quick-questions/how-big-was-diplodocus-carnegii.html",
+    "reference": "turn415view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "nature"
+    ],
+    "topic": "animals"
+  },
+  "stegosaurus": {
+    "url": "https://www.nhm.ac.uk/discover/revealing-stegosaurus-secrets.html",
+    "reference": "turn417view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "nature"
+    ],
+    "topic": "animals"
+  },
+  "weather-f": {
+    "url": "https://wmo.int/sites/default/files/2025-07/Table_Records_25Jul2025.pdf",
+    "reference": "turn415view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "topic": "nature"
+  },
+  "cells": {
+    "url": "https://www.nigms.nih.gov/biobeat/2024/09/cells-by-the-numbers-2",
+    "reference": "turn420view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "topic": "human"
+  },
+  "platelets": {
+    "url": "https://my.clevelandclinic.org/health/body/22879-platelets",
+    "reference": "turn419view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "topic": "human"
+  },
+  "dna-length": {
+    "url": "https://www.genome.gov/genetics-glossary/Nucleosome",
+    "reference": "turn419view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "topic": "human"
+  },
+  "brain-count": {
+    "url": "https://www.frontiersin.org/journals/human-neuroscience/articles/10.3389/neuro.09.031.2009/full",
+    "reference": "turn421view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "biology"
+    ],
+    "topic": "human"
+  },
+  "water-earth": {
+    "url": "https://www.usgs.gov/water-science-school/science/how-much-water-there-earth",
+    "reference": "turn421view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "topic": "nature"
+  },
+  "mauna": {
+    "url": "https://www.usgs.gov/volcanoes/mauna-loa/science/geology-and-history-mauna-loa",
+    "reference": "turn421view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "geography",
+      "nature"
+    ],
+    "topic": "nature"
+  },
+  "cms": {
+    "url": "https://home.cern/science/experiments/cms/",
+    "reference": "turn424view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "technology"
+    ],
+    "topic": "technology"
+  },
+  "ge9x": {
+    "url": "https://www.geaerospace.com/news/press-releases/commercial-engines/ge9x-breaks-guinness-world-recordstm-title-thrust",
+    "reference": "turn426view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "technology",
+      "transport"
+    ],
+    "topic": "transport"
+  },
+  "webb": {
+    "url": "https://science.nasa.gov/mission/webb/fact-sheet/",
+    "reference": "turn426view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "space",
+      "technology"
+    ],
+    "topic": "space"
+  },
+  "bic": {
+    "url": "https://corporate.bic.com/fr-fr/groupe/nos-produits",
+    "reference": "turn425view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "everyday",
+      "technology"
+    ],
+    "topic": "everyday"
+  },
+  "lego-falcon": {
+    "url": "https://www.lego.com/en-us/product/millennium-falcon-75192",
+    "reference": "turn424view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "everyday",
+      "culture",
+      "cinema"
+    ],
+    "topic": "everyday"
+  },
+  "pizza": {
+    "url": "https://www.guinnessworldrecords.com/news/2024/2/how-many-pizza-world-records-can-youtuber-airrack-break-764590",
+    "reference": "turn425view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "food"
+    ],
+    "topic": "food"
+  },
+  "food-records": {
+    "url": "https://www.guinnessworldrecords.com/news/2023/10/guinness-world-records-adjudicator-answers-your-most-asked-questions-760042",
+    "reference": "turn425view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "food"
+    ],
+    "topic": "food"
+  },
+  "tsarb-f": {
+    "url": "https://kreml.ru/en/museums/arxitekturnyi-ansambl-moskovskogo-kremlia/pamiatniki-liteinogo-iskusstva/car-kolokol",
+    "reference": "turn427view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "culture",
+      "history"
+    ],
+    "topic": "culture"
+  },
+  "tsarc-f": {
+    "url": "https://kreml.ru/ru/museums/arxitekturnyi-ansambl-moskovskogo-kremlia/pamiatniki-liteinogo-iskusstva/car-puska",
+    "reference": "turn428view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "culture",
+      "history",
+      "technology"
+    ],
+    "topic": "culture"
+  },
+  "ivanov": {
+    "url": "https://rumyancev.pushkinmuseum.art/data/catalogue/canvas/rossiya/gtg_ivanov_yavlenie.php",
+    "reference": "turn431view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "culture",
+      "arts"
+    ],
+    "topic": "culture"
+  },
+  "ninth-wave": {
+    "url": "https://rusmuseumvrm.ru/data/collections/painting/18_19/zh_2202/?lang=ru",
+    "reference": "turn428view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "culture",
+      "arts"
+    ],
+    "topic": "culture"
+  },
+  "isaac": {
+    "url": "https://cathedral.ru/ru/isaac/architecture",
+    "reference": "turn432view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "culture",
+      "history",
+      "geography"
+    ],
+    "topic": "architecture"
+  },
+  "isaac-build": {
+    "url": "https://www.cathedral.ru/ru/isaac/building",
+    "reference": "turn432view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "culture",
+      "history",
+      "geography"
+    ],
+    "topic": "history"
+  },
+  "gagarin": {
+    "url": "https://starchild.gsfc.nasa.gov/docs/StarChild/whos_who_level2/gagarin.html",
+    "reference": "turn432view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "history",
+      "science",
+      "space"
+    ],
+    "topic": "history"
+  },
+  "cheetah-f": {
+    "url": "https://animals.sandiegozoo.org/animals/cheetah",
+    "reference": "turn371view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "animals",
+      "biology"
+    ],
+    "topic": "animals"
+  },
+  "gwr-strawberry": {
+    "url": "https://www.guinnessworldrecords.com/news/2022/2/worlds-heaviest-strawberry-grown-in-israel-breaks-record-692512",
+    "reference": "turn434view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "food",
+      "nature"
+    ],
+    "topic": "food"
+  },
+  "gwr-pumpkin": {
+    "url": "https://www.guinnessworldrecords.com/news/2023/10/good-gourd-american-pumpkin-as-heavy-as-two-cows-squashes-all-past-rivals-759626",
+    "reference": "turn434view3",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "food",
+      "nature"
+    ],
+    "topic": "food"
+  },
+  "gwr-watermelon": {
+    "url": "https://www.guinnessworldrecords.com/world-records/heaviest-watermelon",
+    "reference": "turn434view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "food",
+      "nature"
+    ],
+    "topic": "food"
+  },
+  "gwr-apple": {
+    "url": "https://www.guinnessworldrecords.com/world-records/heaviest-apple",
+    "reference": "turn434view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "food",
+      "nature"
+    ],
+    "topic": "food"
+  },
+  "gwr-carrot": {
+    "url": "https://www.guinnessworldrecords.com/world-records/heaviest-carrot",
+    "reference": "turn435view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "food",
+      "nature"
+    ],
+    "topic": "food"
+  },
+  "gwr-avocado": {
+    "url": "https://www.guinnessworldrecords.com/world-records/heaviest-avocado",
+    "reference": "turn435view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "food",
+      "nature"
+    ],
+    "topic": "food"
+  },
+  "gwr-onion": {
+    "url": "https://www.guinnessworldrecords.com/news/2023/9/heaviest-onion-that-weighs-more-than-a-bowling-ball-unveiled-with-other-super-veg-759062",
+    "reference": "turn436view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "food",
+      "nature"
+    ],
+    "topic": "food"
+  },
+  "gwr-potato": {
+    "url": "https://www.guinnessworldrecords.com/world-records/73913-heaviest-potato",
+    "reference": "turn436view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "food",
+      "nature"
+    ],
+    "topic": "food"
+  },
+  "cloud": {
+    "url": "https://www.usgs.gov/water-science-school/science/how-much-does-a-cloud-weigh",
+    "reference": "turn436view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "nature"
+    ],
+    "topic": "nature"
+  },
+  "niagara": {
+    "url": "https://www.niagaraparks.com/visit-niagara-parks/plan-your-visit/niagara-falls-geology-facts-figures/",
+    "reference": "turn437view1",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "topic": "nature"
+  },
+  "victoria": {
+    "url": "https://whc.unesco.org/en/list/509",
+    "reference": "turn437view2",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "topic": "nature"
+  },
+  "chelyabinsk": {
+    "url": "https://science.nasa.gov/earth/earth-observatory/tracking-the-chelyabinsk-meteor-plume-81844/",
+    "reference": "turn438view0",
+    "checkedAt": "2026-10-22",
+    "kind": "primary-institutional",
+    "categories": [
+      "science",
+      "space",
+      "nature"
+    ],
+    "topic": "space"
+  }
+}

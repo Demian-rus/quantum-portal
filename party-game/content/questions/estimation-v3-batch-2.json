@@ -1,0 +1,2195 @@
+[
+  {
+    "id": "approx-22101",
+    "difficulty": "easy",
+    "question": "Сколько тонн породы за раз перевозит карьерный самосвал Komatsu 980E-5?",
+    "answer": "363",
+    "unit": "т",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "Номинальная полезная нагрузка, не полная масса машины.",
+    "source": "https://www.komatsu.com/en-us/products/equipment/trucks/electric-drive-mining-trucks/980e-5",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "komatsu",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "komatsu:payload",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22102",
+    "difficulty": "hard",
+    "question": "Сколько литров вмещает основной топливный бак карьерного Komatsu 980E-5?",
+    "answer": "5300",
+    "unit": "л",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "В спецификации capacities fuel tank — 5300 л; не отдельный вариант Tier IV 4543 л.",
+    "source": "https://www.komatsu.com/en-us/products/equipment/trucks/electric-drive-mining-trucks/980e-5",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "komatsu",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "komatsu:fuel-tank",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22103",
+    "difficulty": "medium",
+    "question": "Каков диаметр разворота гигантского самосвала Komatsu 980E-5?",
+    "answer": "32",
+    "unit": "м",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "Turning circle из спецификации; не радиус.",
+    "source": "https://www.komatsu.com/en-us/products/equipment/trucks/electric-drive-mining-trucks/980e-5",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "komatsu",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "komatsu:turning-circle",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22104",
+    "difficulty": "hard",
+    "question": "Каков объём кузова Komatsu 980E-5 при загрузке с шапкой по стандарту SAE 2:1?",
+    "answer": "250",
+    "unit": "м³",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "Heaped 2:1, не объём ровно до бортов.",
+    "source": "https://www.komatsu.com/en-us/products/equipment/trucks/electric-drive-mining-trucks/980e-5",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "komatsu",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "komatsu:heaped-body-volume",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22105",
+    "difficulty": "medium",
+    "question": "С какой максимальной скоростью может ехать карьерный самосвал Komatsu 980E-5?",
+    "answer": "64.5",
+    "unit": "км/ч",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "Максимум производителя; не рекомендуемая скорость на карьере.",
+    "source": "https://www.komatsu.com/en-us/products/equipment/trucks/electric-drive-mining-trucks/980e-5",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "komatsu",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "komatsu:maximum-speed",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22106",
+    "difficulty": "easy",
+    "question": "Какова толщина железобетонной фундаментной плиты Бурдж-Халифы?",
+    "answer": "3.7",
+    "unit": "м",
+    "categories": [
+      "technology",
+      "geography"
+    ],
+    "note": "Плита над сваями, не глубина всего фундамента.",
+    "source": "https://www.burjkhalifa.ae/the-tower/structures/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "burj",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "burj:foundation-mat-thickness",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22107",
+    "difficulty": "medium",
+    "question": "Какова длина одной фундаментной сваи Бурдж-Халифы?",
+    "answer": "43",
+    "unit": "м",
+    "categories": [
+      "technology",
+      "geography"
+    ],
+    "note": "Железобетонная свая; не общая глубина заложения.",
+    "source": "https://www.burjkhalifa.ae/the-tower/structures/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "burj",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "burj:pile-length",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22108",
+    "difficulty": "hard",
+    "question": "Сколько весит одна стеклянная фасадная панель Бурдж-Халифы?",
+    "answer": "362",
+    "unit": "кг",
+    "categories": [
+      "technology",
+      "geography"
+    ],
+    "note": "Ориентир владельца для панели фасада.",
+    "source": "https://www.burjkhalifa.ae/the-tower/structures/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "burj",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "burj:glass-panel-mass",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22109",
+    "difficulty": "medium",
+    "question": "Сколько примерно стеклянных панелей использовано на фасаде Бурдж-Халифы?",
+    "answer": "26000",
+    "unit": "панелей",
+    "categories": [
+      "technology",
+      "geography"
+    ],
+    "note": "Владелец: близко к 26 тысячам; не площадь остекления.",
+    "source": "https://www.burjkhalifa.ae/the-tower/structures/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "burj",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "burj:glass-panel-count",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22110",
+    "difficulty": "hard",
+    "question": "Сколько килограммов может поднять служебный лифт Бурдж-Халифы?",
+    "answer": "5500",
+    "unit": "кг",
+    "categories": [
+      "technology",
+      "geography"
+    ],
+    "note": "Грузоподъёмность service elevator; не пассажирского лифта.",
+    "source": "https://www.burjkhalifa.ae/the-tower/structures/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "burj",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "burj:service-lift-capacity",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22111",
+    "difficulty": "hard",
+    "question": "Сколько литров воды в среднем за день подаёт водопроводная система Бурдж-Халифы по справке владельца?",
+    "answer": "946000",
+    "unit": "л",
+    "categories": [
+      "technology",
+      "geography"
+    ],
+    "note": "Оценка из технического описания владельца, проверенного в октябре 2026; не текущий счётчик расхода.",
+    "source": "https://www.burjkhalifa.ae/the-tower/structures/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "burj",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "burj:daily-water-design",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22112",
+    "difficulty": "easy",
+    "question": "Какова длина пассажирского «Конкорда», округлённо до целого метра?",
+    "answer": "62",
+    "unit": "м",
+    "categories": [
+      "transport",
+      "technology",
+      "history"
+    ],
+    "note": "Музей полёта: 204 фута = 62,179 м; округлено до целого.",
+    "source": "https://www.museumofflight.org/exhibits-and-events/aircraft/concorde",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "concorde",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "concorde:length",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22113",
+    "difficulty": "medium",
+    "question": "Каков размах крыльев «Конкорда», округлённо до десятых метра?",
+    "answer": "25.6",
+    "unit": "м",
+    "categories": [
+      "transport",
+      "technology",
+      "history"
+    ],
+    "note": "83,83 фута × 0,3048 = 25,552 м.",
+    "source": "https://www.museumofflight.org/exhibits-and-events/aircraft/concorde",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "concorde",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "concorde:wingspan",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22114",
+    "difficulty": "medium",
+    "question": "Какова максимальная взлётная масса «Конкорда», округлённо до целой тонны?",
+    "answer": "185",
+    "unit": "т",
+    "categories": [
+      "transport",
+      "technology",
+      "history"
+    ],
+    "note": "408 тысяч фунтов = 185,066 т; не масса пустого самолёта.",
+    "source": "https://www.museumofflight.org/exhibits-and-events/aircraft/concorde",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "concorde",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "concorde:maximum-takeoff-mass",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22115",
+    "difficulty": "easy",
+    "question": "До какой скорости мог разогнаться пассажирский «Конкорд», округлённо до десятков км/ч?",
+    "answer": "2180",
+    "unit": "км/ч",
+    "categories": [
+      "transport",
+      "technology",
+      "history"
+    ],
+    "note": "1354 мили/ч × 1,609344 = 2179,05 км/ч; до десятков.",
+    "source": "https://www.museumofflight.org/exhibits-and-events/aircraft/concorde",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "concorde",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "concorde:maximum-speed",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22116",
+    "difficulty": "hard",
+    "question": "На какую максимальную высоту поднимался «Конкорд» в обычной эксплуатации, округлённо до десятков метров?",
+    "answer": "18290",
+    "unit": "м",
+    "categories": [
+      "transport",
+      "technology",
+      "history"
+    ],
+    "note": "Музей: до 60 тысяч футов, метрический ориентир 18290 м.",
+    "source": "https://www.museumofflight.org/exhibits-and-events/aircraft/concorde",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "concorde",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "concorde:operating-ceiling",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22117",
+    "difficulty": "easy",
+    "question": "Какова высота главной плотины ГЭС Итайпу?",
+    "answer": "196",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "technology"
+    ],
+    "note": "Официальный туристический оператор Итайпу; не отметка высоты над морем.",
+    "source": "https://turismoitaipu.com.br/en/the-itaipu-plant/curiosities/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "itaipu",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "itaipu:main-dam-height",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22118",
+    "difficulty": "hard",
+    "question": "Какова площадь водохранилища Итайпу по справке официального туристического комплекса?",
+    "answer": "1350",
+    "unit": "км²",
+    "categories": [
+      "geography",
+      "technology"
+    ],
+    "note": "Ориентир оператора; площадь зависит от уровня воды.",
+    "source": "https://turismoitaipu.com.br/en/the-itaipu-plant/curiosities/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "itaipu",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "itaipu:reservoir-area",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22119",
+    "difficulty": "hard",
+    "question": "Сколько кубометров воды в секунду способен пропустить водосброс Итайпу?",
+    "answer": "62200",
+    "unit": "м³/с",
+    "categories": [
+      "geography",
+      "technology"
+    ],
+    "note": "Максимальная пропускная способность; не обычный расход турбин.",
+    "source": "https://turismoitaipu.com.br/en/the-itaipu-plant/curiosities/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "itaipu",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "itaipu:spillway-capacity",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22120",
+    "difficulty": "easy",
+    "question": "Сколько лет строили Тауэрский мост в Лондоне?",
+    "answer": "8",
+    "unit": "лет",
+    "categories": [
+      "geography",
+      "history",
+      "technology"
+    ],
+    "note": "Официальная история моста; даты начала и окончания в вопросах нового пула не сообщаются.",
+    "source": "https://www.towerbridge.org.uk/stories/top-facts-of-tower-bridge",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "towerbridge",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "towerbridge:construction-duration",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22121",
+    "difficulty": "medium",
+    "question": "На сколько метров над дорогой поднимаются позолоченные гербы на башнях Тауэрского моста?",
+    "answer": "63",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "history",
+      "technology"
+    ],
+    "note": "Почти 63 м над проезжей частью; не высота башни от воды.",
+    "source": "https://www.towerbridge.org.uk/stories/top-facts-of-tower-bridge",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "towerbridge",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "towerbridge:crests-height-above-road",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22122",
+    "difficulty": "easy",
+    "question": "Какова полная высота Си-Эн Тауэр в Торонто вместе с антенной, до десятых метра?",
+    "answer": "553.3",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "technology"
+    ],
+    "note": "553,33 м; округлено до десятых.",
+    "source": "https://www.clcl-sicl.ca/newsroom/canada-lands-company-unveils-21-million-cn-tower-lower-observation-level-renovation-0",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "cntower",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "cntower:total-height",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22123",
+    "difficulty": "easy",
+    "question": "Какова полная высота колеса обозрения «Лондонский глаз»?",
+    "answer": "135",
+    "unit": "м",
+    "categories": [
+      "technology",
+      "geography"
+    ],
+    "note": "Полная высота над землёй; не диаметр обода.",
+    "source": "https://www.londoneye.com/media/gkun1lnj/resource-3-the-london-classroom-the-london-eye-in-numbers.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "eye",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "eye:total-height",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22124",
+    "difficulty": "medium",
+    "question": "Сколько весит одна пассажирская капсула «Лондонского глаза»?",
+    "answer": "10",
+    "unit": "т",
+    "categories": [
+      "technology",
+      "geography"
+    ],
+    "note": "Масса капсулы без пассажиров из учебного листа оператора.",
+    "source": "https://www.londoneye.com/media/gkun1lnj/resource-3-the-london-classroom-the-london-eye-in-numbers.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "eye",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "eye:capsule-mass",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22125",
+    "difficulty": "hard",
+    "question": "Каков диаметр центрального вала «Лондонского глаза»?",
+    "answer": "4.9",
+    "unit": "м",
+    "categories": [
+      "technology",
+      "geography"
+    ],
+    "note": "Spindle, центральный вал; не обод колеса.",
+    "source": "https://www.londoneye.com/media/gkun1lnj/resource-3-the-london-classroom-the-london-eye-in-numbers.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "eye",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "eye:spindle-diameter",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22126",
+    "difficulty": "hard",
+    "question": "Сколько весит вся конструкция «Лондонского глаза» по учебному справочнику оператора?",
+    "answer": "2100",
+    "unit": "т",
+    "categories": [
+      "technology",
+      "geography"
+    ],
+    "note": "Общая масса London Eye из таблицы ответов; не масса одной капсулы.",
+    "source": "https://www.londoneye.com/media/gkun1lnj/resource-3-the-london-classroom-the-london-eye-in-numbers.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "eye",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "eye:total-mass",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22127",
+    "difficulty": "medium",
+    "question": "За сколько секунд Bugatti Chiron в рекордном заезде 2017 года разогнался до 400 км/ч и снова остановился, до целого?",
+    "answer": "42",
+    "unit": "с",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "41,96 с за полный манёвр 0–400–0; округлено до целого.",
+    "source": "https://newsroom.bugatti.com/api/en/press-releases/pdf/0-400-0-km-h-in-42-seconds-bugatti-chiron-sets-world-record",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "chiron",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "chiron:zero-400-zero-time",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22128",
+    "difficulty": "hard",
+    "question": "Какое расстояние Bugatti Chiron проехал в манёвре 0–400–0 км/ч в рекордном заезде 2017 года?",
+    "answer": "3112",
+    "unit": "м",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "Полное расстояние разгона и торможения; не только разгон.",
+    "source": "https://newsroom.bugatti.com/api/en/press-releases/pdf/0-400-0-km-h-in-42-seconds-bugatti-chiron-sets-world-record",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "chiron",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "chiron:zero-400-zero-distance",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22129",
+    "difficulty": "medium",
+    "question": "Каков диаметр передних тормозных дисков Bugatti Chiron в описании заезда 2017 года?",
+    "answer": "420",
+    "unit": "мм",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "Передние карбон-керамические диски; задние другого размера.",
+    "source": "https://newsroom.bugatti.com/api/en/press-releases/pdf/0-400-0-km-h-in-42-seconds-bugatti-chiron-sets-world-record",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "chiron",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "chiron:front-brake-disc",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22130",
+    "difficulty": "hard",
+    "question": "Какую скорость показал Bugatti Veyron Super Sport в рекордном заезде 2010 года, до десятых км/ч?",
+    "answer": "431.1",
+    "unit": "км/ч",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "431,072 км/ч; округлено до десятых. Исторический результат, не текущий рекорд.",
+    "source": "https://newsroom.bugatti.com/api/en/press-releases/pdf/0-400-0-km-h-in-42-seconds-bugatti-chiron-sets-world-record",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "chiron",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "chiron:veyron-speed-2010",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22131",
+    "difficulty": "easy",
+    "question": "Каков диаметр одного несущего винта вертолёта Chinook CH-47F Block II?",
+    "answer": "18.3",
+    "unit": "м",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "Диаметр каждого ротора; не общая длина вертолёта с винтами.",
+    "source": "https://www.boeing.com/defense/military-rotorcraft/h-47-chinook",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "chinook",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "chinook:rotor-diameter",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22132",
+    "difficulty": "medium",
+    "question": "Сколько литров топлива вмещают баки Chinook CH-47F Block II?",
+    "answer": "4088",
+    "unit": "л",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "Общая fuel capacity в спецификации Boeing.",
+    "source": "https://www.boeing.com/defense/military-rotorcraft/h-47-chinook",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "chinook",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "chinook:fuel-capacity",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22133",
+    "difficulty": "medium",
+    "question": "Какова максимальная полная масса Chinook CH-47F Block II, до десятых тонны?",
+    "answer": "24.5",
+    "unit": "т",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "24494 кг, округлено до десятых тонны; не масса пустого вертолёта.",
+    "source": "https://www.boeing.com/defense/military-rotorcraft/h-47-chinook",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "chinook",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "chinook:gross-mass",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22134",
+    "difficulty": "hard",
+    "question": "На какой высоте находится практический потолок Chinook CH-47F Block II?",
+    "answer": "6096",
+    "unit": "м",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "note": "Service ceiling 20000 футов = 6096 м.",
+    "source": "https://www.boeing.com/defense/military-rotorcraft/h-47-chinook",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "chinook",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "chinook:service-ceiling",
+      "topic": "transport"
+    }
+  },
+  {
+    "id": "approx-22135",
+    "difficulty": "easy",
+    "question": "Какова ширина оригинала «Звёздной ночи» Ван Гога без рамы?",
+    "answer": "92.1",
+    "unit": "см",
+    "categories": [
+      "culture",
+      "arts"
+    ],
+    "note": "MoMA: горизонтальная сторона холста 92,1 см.",
+    "source": "https://www.moma.org/collection/works/79802",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "starry",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "starry:width",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22136",
+    "difficulty": "medium",
+    "question": "Какова высота оригинала «Звёздной ночи» Ван Гога без рамы?",
+    "answer": "73.7",
+    "unit": "см",
+    "categories": [
+      "culture",
+      "arts"
+    ],
+    "note": "Вертикальная сторона холста; не ширина.",
+    "source": "https://www.moma.org/collection/works/79802",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "starry",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "starry:height",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22137",
+    "difficulty": "easy",
+    "question": "Какова ширина оригинала «Герники» Пикассо без рамы, до десятых метра?",
+    "answer": "7.8",
+    "unit": "м",
+    "categories": [
+      "culture",
+      "arts"
+    ],
+    "note": "Музей: 776,6 см = 7,766 м; до десятых.",
+    "source": "https://museoreinasofia.es/en/collections/artwork/guernica-0/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "guernica",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "guernica:width",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22138",
+    "difficulty": "medium",
+    "question": "Какова высота оригинала «Герники» Пикассо без рамы, до десятых метра?",
+    "answer": "3.5",
+    "unit": "м",
+    "categories": [
+      "culture",
+      "arts"
+    ],
+    "note": "349,3 см = 3,493 м; до десятых.",
+    "source": "https://museoreinasofia.es/en/collections/artwork/guernica-0/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "guernica",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "guernica:height",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22139",
+    "difficulty": "easy",
+    "question": "Какова длина большого концертного рояля Steinway D?",
+    "answer": "274",
+    "unit": "см",
+    "categories": [
+      "culture",
+      "music",
+      "technology"
+    ],
+    "note": "Длина корпуса в спецификации производителя.",
+    "source": "https://www.steinway.com/pianos/steinway/grand/model-d",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "steinway",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "steinway:length",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22140",
+    "difficulty": "medium",
+    "question": "Какова ширина концертного рояля Steinway D?",
+    "answer": "156",
+    "unit": "см",
+    "categories": [
+      "culture",
+      "music",
+      "technology"
+    ],
+    "note": "Ширина из спецификации Steinway; не клавиатуры.",
+    "source": "https://www.steinway.com/pianos/steinway/grand/model-d",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "steinway",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "steinway:width",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22141",
+    "difficulty": "hard",
+    "question": "Сколько весит концертный рояль Steinway D нью-йоркского производства?",
+    "answer": "483",
+    "unit": "кг",
+    "categories": [
+      "culture",
+      "music",
+      "technology"
+    ],
+    "note": "Американская спецификация — 1064 фунта, или 483 кг; гамбургский вариант отличается.",
+    "source": "https://www.steinway.com/pianos/steinway/grand/model-d",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "steinway",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "steinway:new-york-mass",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22142",
+    "difficulty": "medium",
+    "question": "Какова длина самой длинной звучащей струны концертного Steinway D?",
+    "answer": "201",
+    "unit": "см",
+    "categories": [
+      "culture",
+      "music",
+      "technology"
+    ],
+    "note": "От аграфа до мостика, не полный кусок проволоки.",
+    "source": "https://www.steinway.com/pianos/steinway/grand/model-d",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "steinway",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "steinway:longest-speaking-string",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22143",
+    "difficulty": "easy",
+    "question": "Какова длина стандартного теннисного корта?",
+    "answer": "23.77",
+    "unit": "м",
+    "categories": [
+      "sport"
+    ],
+    "note": "ITF 2026, правило 1; от задней линии до задней линии.",
+    "source": "https://www.itftennis.com/media/7221/2026-rules-of-tennis-english.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tennis",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "tennis:court-length",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22144",
+    "difficulty": "medium",
+    "question": "Какова ширина теннисного корта для одиночной игры?",
+    "answer": "8.23",
+    "unit": "м",
+    "categories": [
+      "sport"
+    ],
+    "note": "Ширина singles court, без коридоров для парной игры.",
+    "source": "https://www.itftennis.com/media/7221/2026-rules-of-tennis-english.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tennis",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "tennis:singles-width",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22145",
+    "difficulty": "medium",
+    "question": "На какой высоте от земли находится верх теннисной сетки в центре корта?",
+    "answer": "91.4",
+    "unit": "см",
+    "categories": [
+      "sport"
+    ],
+    "note": "ITF: 0,914 м, то есть 91,4 см; у стоек сетка выше.",
+    "source": "https://www.itftennis.com/media/7221/2026-rules-of-tennis-english.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tennis",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "tennis:net-centre-height",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22146",
+    "difficulty": "medium",
+    "question": "Какова максимально допустимая масса обычного взрослого теннисного мяча?",
+    "answer": "59.4",
+    "unit": "г",
+    "categories": [
+      "sport"
+    ],
+    "note": "ITF 2026, приложение I: 56–59,4 г; верхняя граница.",
+    "source": "https://www.itftennis.com/media/7221/2026-rules-of-tennis-english.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tennis",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "tennis:ball-mass-upper",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22147",
+    "difficulty": "hard",
+    "question": "Каков минимально допустимый диаметр обычного теннисного мяча типа 2?",
+    "answer": "6.54",
+    "unit": "см",
+    "categories": [
+      "sport"
+    ],
+    "note": "Тип 2 Medium: 6,54–6,86 см; не увеличенный мяч типа 3.",
+    "source": "https://www.itftennis.com/media/7221/2026-rules-of-tennis-english.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tennis",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "tennis:type2-diameter-lower",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22148",
+    "difficulty": "easy",
+    "question": "Какова максимально допустимая полная длина теннисной ракетки?",
+    "answer": "73.7",
+    "unit": "см",
+    "categories": [
+      "sport"
+    ],
+    "note": "ITF 2026, приложение II; ручка включена.",
+    "source": "https://www.itftennis.com/media/7221/2026-rules-of-tennis-english.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tennis",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "tennis:racket-length-upper",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22149",
+    "difficulty": "hard",
+    "question": "Какова максимально допустимая общая ширина теннисной ракетки?",
+    "answer": "31.7",
+    "unit": "см",
+    "categories": [
+      "sport"
+    ],
+    "note": "Рама включена; это не ширина струнной поверхности.",
+    "source": "https://www.itftennis.com/media/7221/2026-rules-of-tennis-english.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tennis",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "tennis:racket-width-upper",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22150",
+    "difficulty": "easy",
+    "question": "Какова ширина ворот в большом футболе между внутренними краями стоек?",
+    "answer": "7.32",
+    "unit": "м",
+    "categories": [
+      "sport"
+    ],
+    "note": "IFAB, правило 1; не наружный размер с толщиной стоек.",
+    "source": "https://www.theifab.com/laws/latest/the-field-of-play/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "football-field",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "football-field:goal-width",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22151",
+    "difficulty": "easy",
+    "question": "На какой высоте в большом футболе находится нижний край перекладины ворот?",
+    "answer": "2.44",
+    "unit": "м",
+    "categories": [
+      "sport"
+    ],
+    "note": "От поверхности поля до нижнего края перекладины.",
+    "source": "https://www.theifab.com/laws/latest/the-field-of-play/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "football-field",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "football-field:goal-height",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22152",
+    "difficulty": "medium",
+    "question": "На сколько метров штрафная площадь в большом футболе выступает в поле от линии ворот?",
+    "answer": "16.5",
+    "unit": "м",
+    "categories": [
+      "sport"
+    ],
+    "note": "Глубина штрафной площади; не её ширина.",
+    "source": "https://www.theifab.com/laws/latest/the-field-of-play/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "football-field",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "football-field:penalty-area-depth",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22153",
+    "difficulty": "medium",
+    "question": "Каков радиус центрального круга футбольного поля?",
+    "answer": "9.15",
+    "unit": "м",
+    "categories": [
+      "sport"
+    ],
+    "note": "От центра поля до внешнего края круговой линии.",
+    "source": "https://www.theifab.com/laws/latest/the-field-of-play/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "football-field",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "football-field:centre-circle-radius",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22154",
+    "difficulty": "medium",
+    "question": "Какова максимально допустимая масса мяча в большом футболе в начале матча?",
+    "answer": "450",
+    "unit": "г",
+    "categories": [
+      "sport"
+    ],
+    "note": "IFAB: диапазон 410–450 г; верхняя граница.",
+    "source": "https://www.theifab.com/laws/latest/the-ball/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "football-ball",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "football-ball:mass-upper",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22155",
+    "difficulty": "easy",
+    "question": "Какова максимально допустимая длина окружности мяча в большом футболе?",
+    "answer": "70",
+    "unit": "см",
+    "categories": [
+      "sport"
+    ],
+    "note": "IFAB: 68–70 см; окружность, не диаметр.",
+    "source": "https://www.theifab.com/laws/latest/the-ball/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "football-ball",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "football-ball:circumference-upper",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22156",
+    "difficulty": "easy",
+    "question": "Какова длина стандартной баскетбольной площадки FIBA?",
+    "answer": "28",
+    "unit": "м",
+    "categories": [
+      "sport"
+    ],
+    "note": "FIBA 2026: по внутренним краям ограничивающих линий.",
+    "source": "https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2026-v1-1.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "basketball",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "basketball:court-length",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22157",
+    "difficulty": "easy",
+    "question": "Какова ширина стандартной баскетбольной площадки FIBA?",
+    "answer": "15",
+    "unit": "м",
+    "categories": [
+      "sport"
+    ],
+    "note": "Игровая площадка без зоны безопасности.",
+    "source": "https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2026-v1-1.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "basketball",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "basketball:court-width",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22158",
+    "difficulty": "medium",
+    "question": "Каков радиус дуги трёхочковой линии на баскетбольной площадке FIBA?",
+    "answer": "6.75",
+    "unit": "м",
+    "categories": [
+      "sport"
+    ],
+    "note": "Радиус дуги от проекции центра кольца; в углах линия прямая.",
+    "source": "https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2026-v1-1.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "basketball",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "basketball:three-point-radius",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22159",
+    "difficulty": "medium",
+    "question": "Каков радиус центрального круга на баскетбольной площадке FIBA?",
+    "answer": "1.8",
+    "unit": "м",
+    "categories": [
+      "sport"
+    ],
+    "note": "До внешнего края линии, FIBA 2026.",
+    "source": "https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2026-v1-1.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "basketball",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "basketball:centre-circle-radius",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22160",
+    "difficulty": "hard",
+    "question": "На каком расстоянии от лицевой линии проходит дальний край линии штрафного броска FIBA?",
+    "answer": "5.8",
+    "unit": "м",
+    "categories": [
+      "sport"
+    ],
+    "note": "От внутреннего края лицевой линии до дальнего края линии штрафного; не от щита.",
+    "source": "https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2026-v1-1.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "basketball",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "basketball:free-throw-line-offset",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22161",
+    "difficulty": "medium",
+    "question": "Какова ширина линий разметки баскетбольной площадки FIBA?",
+    "answer": "5",
+    "unit": "см",
+    "categories": [
+      "sport"
+    ],
+    "note": "Одинаковая ширина линий разметки, FIBA 2026.",
+    "source": "https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2026-v1-1.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "basketball",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "basketball:marking-width",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22162",
+    "difficulty": "hard",
+    "question": "Каков радиус полукруга, внутри которого не фиксируют столкновение при проходе к кольцу, по FIBA?",
+    "answer": "1.3",
+    "unit": "м",
+    "categories": [
+      "sport"
+    ],
+    "note": "No-charge semicircle; от проекции центра кольца до внешнего края линии.",
+    "source": "https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2026-v1-1.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "basketball",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "basketball:no-charge-radius",
+      "topic": "sport"
+    }
+  },
+  {
+    "id": "approx-22163",
+    "difficulty": "medium",
+    "question": "Сколько литров молока примерно требуется для одной головки пармиджано-реджано?",
+    "answer": "550",
+    "unit": "л",
+    "categories": [
+      "food"
+    ],
+    "note": "Консорциум: на одну головку примерно 550 л; не объём самого сыра.",
+    "source": "https://www.parmigianoreggiano.com/product-guide-glossary",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "parmesan",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "parmesan:milk-per-wheel",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22164",
+    "difficulty": "medium",
+    "question": "Сколько миллиграммов кофеина содержит банка Coca-Cola Original объёмом 330 мл в британской рецептуре?",
+    "answer": "34",
+    "unit": "мг",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "note": "Производитель, британская рецептура, проверка в октябре 2026; не Diet Coke.",
+    "source": "https://www.coca-cola.com/gb/en/about-us/faq/what-is-caffeine",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "cola",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "cola:caffeine-original-330ml",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22165",
+    "difficulty": "easy",
+    "question": "Сколько процентов фундука в классической пасте Nutella?",
+    "answer": "13",
+    "unit": "%",
+    "categories": [
+      "food"
+    ],
+    "note": "Официальная рецептура Ferrero, проверена в октябре 2026; доля по массе.",
+    "source": "https://www.nutella.com/us/en/inside-nutella/faqs",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "nutella",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "nutella:hazelnut-percentage",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22166",
+    "difficulty": "medium",
+    "question": "До скольких бар доходит обычное давление внутри бутылки шампанского по справке Comité Champagne?",
+    "answer": "6",
+    "unit": "бар",
+    "categories": [
+      "food"
+    ],
+    "note": "Верхняя граница обычного диапазона 5–6 бар; не предел прочности бутылки.",
+    "source": "https://www.champagne.fr/en/champagne-frequently-asked-questions?nid=609",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "champagne",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "champagne:pressure-upper",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22167",
+    "difficulty": "easy",
+    "question": "Сколько винограда примерно нужно на стандартную бутылку шампанского объёмом 750 мл?",
+    "answer": "1.2",
+    "unit": "кг",
+    "categories": [
+      "food"
+    ],
+    "note": "Ориентир Comité Champagne для производства одной бутылки.",
+    "source": "https://www.champagne.fr/en/champagne-frequently-asked-questions?nid=609",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "champagne",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "champagne:grapes-per-bottle",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22168",
+    "difficulty": "medium",
+    "question": "Сколько месяцев минимум выдерживают невинтажное шампанское в погребе после розлива?",
+    "answer": "15",
+    "unit": "месяцев",
+    "categories": [
+      "food"
+    ],
+    "note": "Минимум для non-vintage; на практике выдержка часто дольше.",
+    "source": "https://www.champagne.fr/en/champagne-frequently-asked-questions?nid=609",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "champagne",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "champagne:non-vintage-age-minimum",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22169",
+    "difficulty": "hard",
+    "question": "Сколько литров составляет средний мировой водный след килограмма шоколада в оценке WFN за 1996–2005 годы?",
+    "answer": "17200",
+    "unit": "л",
+    "categories": [
+      "science",
+      "nature",
+      "food"
+    ],
+    "note": "Таблица 4: 17196 м³/т = 17196 л/кг, округлено до сотен. Включает дождевую, поливную воду и серый компонент.",
+    "source": "https://www.waterfootprint.org/resources/Report47-WaterFootprintCrops-Vol1.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "water-crops",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "water-crops:chocolate-footprint",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22170",
+    "difficulty": "hard",
+    "question": "Сколько литров составляет средний мировой водный след килограмма обжаренного кофе в оценке WFN за 1996–2005 годы?",
+    "answer": "18900",
+    "unit": "л",
+    "categories": [
+      "science",
+      "nature",
+      "food"
+    ],
+    "note": "Таблица 4: 18925 м³/т, то есть л/кг; округлено до сотен. Это не только вода на фабрике.",
+    "source": "https://www.waterfootprint.org/resources/Report47-WaterFootprintCrops-Vol1.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "water-crops",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "water-crops:roasted-coffee-footprint",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22171",
+    "difficulty": "medium",
+    "question": "Сколько литров составляет средний мировой водный след килограмма картофеля в оценке WFN за 1996–2005 годы?",
+    "answer": "290",
+    "unit": "л",
+    "categories": [
+      "science",
+      "nature",
+      "food"
+    ],
+    "note": "Таблица 4: 287 л/кг; до десятков. Полный водный след, включая дождевую воду.",
+    "source": "https://www.waterfootprint.org/resources/Report47-WaterFootprintCrops-Vol1.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "water-crops",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "water-crops:potato-footprint",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22172",
+    "difficulty": "medium",
+    "question": "Сколько литров составляет средний мировой водный след килограмма пшеничного хлеба в оценке WFN за 1996–2005 годы?",
+    "answer": "1600",
+    "unit": "л",
+    "categories": [
+      "science",
+      "nature",
+      "food"
+    ],
+    "note": "Таблица 4: 1608 л/кг; до сотен. Полный водный след сырья и производства.",
+    "source": "https://www.waterfootprint.org/resources/Report47-WaterFootprintCrops-Vol1.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "water-crops",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "water-crops:wheat-bread-footprint",
+      "topic": "food"
+    }
+  },
+  {
+    "id": "approx-22173",
+    "difficulty": "medium",
+    "question": "Сколько весил самый первый iPod, выпущенный в 2001 году?",
+    "answer": "184",
+    "unit": "г",
+    "categories": [
+      "technology",
+      "music",
+      "everyday"
+    ],
+    "note": "Масса из ретроспективы Apple 2022 года; не более поздний iPod mini.",
+    "source": "https://www.apple.com/au/newsroom/2022/05/the-music-lives-on/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "ipod",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "ipod:original-mass",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22174",
+    "difficulty": "easy",
+    "question": "Какова толщина закрытого MacBook Air с чипом M2, представленного в 2022 году?",
+    "answer": "11.3",
+    "unit": "мм",
+    "categories": [
+      "technology",
+      "everyday"
+    ],
+    "note": "13,6-дюймовая модель 2022 года; толщина корпуса.",
+    "source": "https://www.apple.com/newsroom/2022/06/apple-unveils-all-new-macbook-air-supercharged-by-the-new-m2-chip/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "macair",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "macair:m2-2022-thickness",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22175",
+    "difficulty": "medium",
+    "question": "Сколько весит MacBook Air M2 образца 2022 года, округлённо до десятых килограмма?",
+    "answer": "1.2",
+    "unit": "кг",
+    "categories": [
+      "technology",
+      "everyday"
+    ],
+    "note": "В анонсе 2,7 фунта; примерно 1,2 кг до десятых.",
+    "source": "https://www.apple.com/newsroom/2022/06/apple-unveils-all-new-macbook-air-supercharged-by-the-new-m2-chip/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "macair",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "macair:m2-2022-mass",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22176",
+    "difficulty": "easy",
+    "question": "Какова толщина самого первого iPhone 2007 года?",
+    "answer": "11.6",
+    "unit": "мм",
+    "categories": [
+      "technology",
+      "everyday"
+    ],
+    "note": "Первое поколение; по технической карточке Apple.",
+    "source": "https://support.apple.com/en-us/112445",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "iphone",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "iphone:original-depth",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22177",
+    "difficulty": "medium",
+    "question": "Сколько весил самый первый iPhone 2007 года?",
+    "answer": "135",
+    "unit": "г",
+    "categories": [
+      "technology",
+      "everyday"
+    ],
+    "note": "Масса устройства, не коробки и комплекта.",
+    "source": "https://support.apple.com/en-us/112445",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "iphone",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "iphone:original-mass",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22178",
+    "difficulty": "easy",
+    "question": "Каков диаметр обычного полноразмерного компакт-диска CD?",
+    "answer": "120",
+    "unit": "мм",
+    "categories": [
+      "technology",
+      "everyday"
+    ],
+    "note": "ECMA-130: номинальный наружный диаметр 120 мм; не мини-CD.",
+    "source": "https://www.ecma-international.org/wp-content/uploads/ECMA-130_2nd_edition_june_1996.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "cd",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "cd:outer-diameter",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22179",
+    "difficulty": "medium",
+    "question": "Какова номинальная толщина информационной части обычного CD?",
+    "answer": "1.2",
+    "unit": "мм",
+    "categories": [
+      "technology",
+      "everyday"
+    ],
+    "note": "ECMA-130: h12 = 1,2 мм, допуск +0,3/−0,1 мм; не толщина только отражающей плёнки.",
+    "source": "https://www.ecma-international.org/wp-content/uploads/ECMA-130_2nd_edition_june_1996.pdf",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "cd",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "cd:nominal-thickness",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22180",
+    "difficulty": "easy",
+    "question": "Каков диаметр обычной монеты в один российский рубль?",
+    "answer": "20.5",
+    "unit": "мм",
+    "categories": [
+      "everyday"
+    ],
+    "note": "Банк России: размер сохраняется у перечисленных разновидностей 1997–2016 годов.",
+    "source": "https://www.cbr.ru/cash_circulation/coins/1rub/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "ruble1",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "ruble1:diameter",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22181",
+    "difficulty": "medium",
+    "question": "Сколько весит обычная стальная монета в пять российских рублей, выпускаемая с 2009 года?",
+    "answer": "6",
+    "unit": "г",
+    "categories": [
+      "everyday"
+    ],
+    "note": "Не старая медная разновидность массой 6,45 г.",
+    "source": "https://www.cbr.ru/cash_circulation/coins/5rub/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "ruble5",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "ruble5:steel-mass",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22182",
+    "difficulty": "hard",
+    "question": "Какова толщина обычной жёлтой стальной монеты в десять российских рублей?",
+    "answer": "2.2",
+    "unit": "мм",
+    "categories": [
+      "everyday"
+    ],
+    "note": "Одноцветная стальная монета, не двухцветная памятная.",
+    "source": "https://www.cbr.ru/cash_circulation/coins/10rub/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "ruble10",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "ruble10:thickness",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22183",
+    "difficulty": "medium",
+    "question": "Сколько весит обычная жёлтая стальная монета в десять российских рублей?",
+    "answer": "5.63",
+    "unit": "г",
+    "categories": [
+      "everyday"
+    ],
+    "note": "Стальная монета с латунным покрытием; номинальная масса без допуска.",
+    "source": "https://www.cbr.ru/cash_circulation/coins/10rub/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "ruble10",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "ruble10:mass",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22184",
+    "difficulty": "medium",
+    "question": "Сколько весит обычная медно-никелевая монета США в четверть доллара?",
+    "answer": "5.67",
+    "unit": "г",
+    "categories": [
+      "everyday"
+    ],
+    "note": "U.S. Mint: 5,67 г; не серебряный коллекционный выпуск.",
+    "source": "https://www.usmint.gov/learn/coins-and-medals/circulating-coins/coin-specifications",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "usquarter",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "usquarter:quarter-mass",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22185",
+    "difficulty": "hard",
+    "question": "Каков диаметр обычной медно-никелевой монеты США в четверть доллара?",
+    "answer": "24.26",
+    "unit": "мм",
+    "categories": [
+      "everyday"
+    ],
+    "note": "Диаметр, не окружность, по спецификации U.S. Mint.",
+    "source": "https://www.usmint.gov/learn/coins-and-medals/circulating-coins/coin-specifications",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "usquarter",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "usquarter:quarter-diameter",
+      "topic": "everyday"
+    }
+  },
+  {
+    "id": "approx-22186",
+    "difficulty": "easy",
+    "question": "Сколько секунд длился первый успешный управляемый полёт братьев Райт на самолёте с двигателем?",
+    "answer": "12",
+    "unit": "с",
+    "categories": [
+      "history",
+      "transport",
+      "technology"
+    ],
+    "note": "Первый полёт 17 декабря 1903 года, не четвёртый в тот же день.",
+    "source": "https://www.nps.gov/articles/wrightflyer.htm",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "wright",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "wright:first-flight-duration",
+      "topic": "history"
+    }
+  },
+  {
+    "id": "approx-22187",
+    "difficulty": "medium",
+    "question": "Какое расстояние пролетел самолёт братьев Райт в самом первом успешном полёте, до десятых метра?",
+    "answer": "36.6",
+    "unit": "м",
+    "categories": [
+      "history",
+      "transport",
+      "technology"
+    ],
+    "note": "120 футов × 0,3048 = 36,576 м; до десятых.",
+    "source": "https://www.nps.gov/articles/wrightflyer.htm",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "wright",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "wright:first-flight-distance",
+      "topic": "history"
+    }
+  },
+  {
+    "id": "approx-22188",
+    "difficulty": "medium",
+    "question": "Каков размах крыльев первого самолёта Wright Flyer 1903 года, до десятых метра?",
+    "answer": "12.3",
+    "unit": "м",
+    "categories": [
+      "history",
+      "transport",
+      "technology"
+    ],
+    "note": "40 футов 4 дюйма = 12,2936 м; округлено.",
+    "source": "https://www.nps.gov/articles/wrightflyer.htm",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "wright",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "wright:flyer-wingspan",
+      "topic": "history"
+    }
+  },
+  {
+    "id": "approx-22189",
+    "difficulty": "easy",
+    "question": "Какова высота башни моста Золотые Ворота над водой?",
+    "answer": "227",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "technology"
+    ],
+    "note": "Высота до вершины башни от воды, не от проезжей части.",
+    "source": "https://www.goldengate.org/bridge/history-research/statistics-data/design-construction-stats/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "golden-f",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "golden-f:tower-height",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22190",
+    "difficulty": "hard",
+    "question": "Сколько тонн весили мост Золотые Ворота, его анкеры и подъезды вместе при открытии в 1937 году?",
+    "answer": "811500",
+    "unit": "т",
+    "categories": [
+      "geography",
+      "technology"
+    ],
+    "note": "Оператор: 811500000 кг; метрические тонны, не американские short tons.",
+    "source": "https://www.goldengate.org/bridge/history-research/statistics-data/design-construction-stats/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "golden-f",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "golden-f:original-total-mass",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22191",
+    "difficulty": "hard",
+    "question": "На сколько метров вбок может отклоняться середина моста Золотые Ворота при расчётной ветровой нагрузке?",
+    "answer": "8.4",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "technology"
+    ],
+    "note": "Максимальное расчётное поперечное отклонение; не обычное раскачивание каждый день.",
+    "source": "https://www.goldengate.org/bridge/history-research/statistics-data/design-construction-stats/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "golden-f",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "golden-f:transverse-design-deflection",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22192",
+    "difficulty": "medium",
+    "question": "На какую глубину ниже среднего уровня малой воды уходит фундамент южной башни Золотых Ворот?",
+    "answer": "34",
+    "unit": "м",
+    "categories": [
+      "geography",
+      "technology"
+    ],
+    "note": "110 футов, округлённый метрический ориентир оператора.",
+    "source": "https://www.goldengate.org/bridge/history-research/statistics-data/design-construction-stats/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "golden-f",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "golden-f:south-foundation-depth",
+      "topic": "architecture"
+    }
+  },
+  {
+    "id": "approx-22193",
+    "difficulty": "easy",
+    "question": "Какова наибольшая наружная длина Колизея в Риме?",
+    "answer": "189",
+    "unit": "м",
+    "categories": [
+      "history",
+      "geography",
+      "culture"
+    ],
+    "note": "Большая ось наружного овала, не размер арены.",
+    "source": "https://www.turismoroma.it/en/places/flavian-amphitheatre-colosseum",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "colosseum",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "colosseum:outer-length",
+      "topic": "history"
+    }
+  },
+  {
+    "id": "approx-22194",
+    "difficulty": "medium",
+    "question": "Какова наружная ширина Колизея в Риме?",
+    "answer": "156",
+    "unit": "м",
+    "categories": [
+      "history",
+      "geography",
+      "culture"
+    ],
+    "note": "Малая ось наружного овала.",
+    "source": "https://www.turismoroma.it/en/places/flavian-amphitheatre-colosseum",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "colosseum",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "colosseum:outer-width",
+      "topic": "history"
+    }
+  },
+  {
+    "id": "approx-22195",
+    "difficulty": "medium",
+    "question": "Какова длина самой арены внутри римского Колизея?",
+    "answer": "76",
+    "unit": "м",
+    "categories": [
+      "history",
+      "geography",
+      "culture"
+    ],
+    "note": "Деревянная арена, покрытая песком; не весь амфитеатр.",
+    "source": "https://www.turismoroma.it/en/places/flavian-amphitheatre-colosseum",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "colosseum",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "colosseum:arena-length",
+      "topic": "history"
+    }
+  },
+  {
+    "id": "approx-22196",
+    "difficulty": "hard",
+    "question": "Какова ширина самой арены внутри римского Колизея?",
+    "answer": "46",
+    "unit": "м",
+    "categories": [
+      "history",
+      "geography",
+      "culture"
+    ],
+    "note": "Размер арены по официальному туристическому порталу Рима.",
+    "source": "https://www.turismoroma.it/en/places/flavian-amphitheatre-colosseum",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "colosseum",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "colosseum:arena-width",
+      "topic": "history"
+    }
+  },
+  {
+    "id": "approx-22197",
+    "difficulty": "easy",
+    "question": "Какова длина Зеркальной галереи Версальского дворца?",
+    "answer": "73",
+    "unit": "м",
+    "categories": [
+      "culture",
+      "history"
+    ],
+    "note": "Вся галерея между салонами Войны и Мира.",
+    "source": "https://en.chateauversailles.fr/marvels-palace",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "versailles",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "versailles:hall-length",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22198",
+    "difficulty": "medium",
+    "question": "Сколько отдельных зеркал украшают Зеркальную галерею Версаля?",
+    "answer": "357",
+    "unit": "зеркал",
+    "categories": [
+      "culture",
+      "history"
+    ],
+    "note": "Отдельные зеркальные элементы, не число арок или окон.",
+    "source": "https://en.chateauversailles.fr/marvels-palace",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "versailles",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "versailles:mirror-count",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22199",
+    "difficulty": "hard",
+    "question": "Какова полная длина самой длинной клавиши концертного рояля Steinway D?",
+    "answer": "62.2",
+    "unit": "см",
+    "categories": [
+      "culture",
+      "music",
+      "technology"
+    ],
+    "note": "Включает скрытую часть рычага клавиши, не только поверхность под пальцем.",
+    "source": "https://www.steinway.com/pianos/steinway/grand/model-d",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "steinway",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "steinway:longest-key-length",
+      "topic": "culture"
+    }
+  },
+  {
+    "id": "approx-22200",
+    "difficulty": "medium",
+    "question": "Каков диаметр отдельной стальной проволоки в главных тросах Золотых Ворот, до десятых миллиметра?",
+    "answer": "4.9",
+    "unit": "мм",
+    "categories": [
+      "geography",
+      "technology"
+    ],
+    "note": "0,192 дюйма × 25,4 = 4,8768 мм; до десятых. Не диаметр всего троса.",
+    "source": "https://www.goldengate.org/bridge/history-research/statistics-data/design-construction-stats/",
+    "pack": "approx-estimation-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "golden-f",
+      "checkedAt": "2026-10-22",
+      "batch": 2,
+      "measurementKey": "golden-f:individual-wire-diameter",
+      "topic": "architecture"
+    }
+  }
+]
