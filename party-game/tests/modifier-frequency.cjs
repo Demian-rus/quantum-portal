@@ -103,7 +103,10 @@ async function songLanguageUpgrade(browser,url){
   await page.waitForFunction(async({oldCache,newCache})=>await caches.has(newCache)&&!await caches.has(oldCache),{oldCache,newCache});
   assert.equal(await page.evaluate(()=>localStorage.getItem(STORAGE_KEY)),snapshot.raw);
   await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
-  assert.equal(await page.evaluate(()=>JSON.stringify([game,options,taskMemory])),snapshot.state);
+  const restored=await page.evaluate(()=>({game:JSON.stringify(game),options,taskMemory:JSON.stringify(taskMemory)}));
+  const before=JSON.parse(snapshot.state),{modeSettings,...previousOptions}=restored.options;
+  assert.equal(restored.game,JSON.stringify(before[0]));assert.equal(restored.taskMemory,JSON.stringify(before[2]));
+  assert.deepEqual(previousOptions,before[1]);assert.deepEqual(modeSettings,{sing:{songLanguages:['ru']}});
   assert.equal(await page.evaluate(()=>localStorage.getItem(STORAGE_KEY)),snapshot.raw);
   const next=await page.evaluate(()=>{
    game.phase='judge';judge(false);game.dice=false;Math.random=()=>.999999;roll();

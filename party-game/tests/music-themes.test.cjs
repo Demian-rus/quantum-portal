@@ -16,6 +16,10 @@ test('TASK012 C mode preferences normalize to an independent nonempty language s
  assert.deepEqual(plain(h.eval('normalized')),{sing:{songLanguages:['en']}});
  assert.equal(h.eval('optionsForPartyPreset("classic-duel",3).difficulty'),'easy');
  assert.equal(h.eval('optionsForPartyPreset("hardcore",3).difficulty'),'hard');
+ h.eval('options.modeSettings={sing:{songLanguages:["en"]}};changeSetupPack(latestContentPackSelection("geography"),"themes")');
+ assert.deepEqual(plain(h.eval('options.modeSettings')),{sing:{songLanguages:['en']}});
+ h.eval('selectStandardGame()');
+ assert.deepEqual(plain(h.eval('options.modeSettings')),{sing:{songLanguages:['en']}});
 });
 test('TASK012 C selected ru en and both preferences become immutable party snapshots and real pools',()=>{
  const ledger=new Map(require('../content/editorial/music-theme-review.json').map(row=>[row.id,row.language]));

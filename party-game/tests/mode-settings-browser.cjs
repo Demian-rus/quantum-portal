@@ -22,6 +22,7 @@ async function ui(browser,url,device){
   await page.goto(url,{waitUntil:'load'});await setup(page);
   await page.evaluate(()=>{soundOn=false;Object.assign(options,{modes:['sing'],difficulty:'hard',dice:false,complications:false,riskRounds:false});renderOptions()});
   await page.locator('#go-advanced').click();await page.locator('#mode-settings summary').click();
+  await page.locator('#scene-advanced').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(animation=>animation.finished.catch(()=>{}))));
   await page.locator('#mode-toggles img').evaluateAll(images=>Promise.all(images.map(image=>image.decode())));
   const rects=()=>page.locator('#mode-toggles').evaluate(grid=>[...grid.querySelectorAll('.mode-choice')].map(tile=>{
    const rect=selector=>{const r=tile.querySelector(selector).getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height}};
@@ -38,6 +39,18 @@ async function ui(browser,url,device){
    assert.ok(row.gear.x>=row.tile.x&&row.gear.x+row.gear.w<=row.tile.x+row.tile.w+1);
    for(const text of [row.name,row.reward])assert.ok(row.icon.x+row.icon.w<=text.x||row.icon.x>=text.x+text.w||row.icon.y+row.icon.h<=text.y||row.icon.y>=text.y+text.h,'Gear icon overlaps text: '+JSON.stringify(row));
   }
+  if(device.name==='desktop'){
+   await page.evaluate(()=>document.body.style.zoom='1.25');
+   const zoomed=await rects();
+   await page.locator('.mode-gear').evaluateAll(buttons=>buttons.forEach(button=>button.hidden=true));
+   const zoomedHidden=await rects();
+   await page.locator('.mode-gear').evaluateAll(buttons=>buttons.forEach(button=>button.hidden=false));
+   for(let index=0;index<8;index++){
+    const row=zoomed[index];assert.deepEqual(row.name,zoomedHidden[index].name);assert.deepEqual(row.reward,zoomedHidden[index].reward);
+    for(const text of [row.name,row.reward])assert.ok(row.icon.x+row.icon.w<=text.x||row.icon.x>=text.x+text.w||row.icon.y+row.icon.h<=text.y||row.icon.y>=text.y+text.h,'Gear overlaps at 125% CSS zoom');
+   }
+   await page.evaluate(()=>document.body.style.zoom='');
+  }
   if(device.name==='phone'||device.name==='narrow')await page.screenshot({path:'artifacts/quip-mobile-layout/task012c-'+device.name+'-gears.png'});
   const modes=await page.evaluate(()=>JSON.stringify(options.modes));
   for(const id of ['talk','mime','draw','yesno','secret','blitz','approx']){
@@ -46,6 +59,9 @@ async function ui(browser,url,device){
    await page.locator('#close-mode-options').click();
    assert.equal(await page.evaluate(()=>JSON.stringify(options.modes)),modes,'Gear toggled a mode');
   }
+  const talk=page.locator('#mode-toggles label:has(input[value="talk"])');
+  await talk.click();assert.equal(await page.locator('#mode-toggles input[value="talk"]').isChecked(),true);
+  await talk.click();assert.equal(await page.locator('#mode-toggles input[value="talk"]').isChecked(),false);
   const gear=page.locator('[data-mode-settings="sing"]');
   if(device.width<500)await gear.tap();else await gear.click();
   assert.equal(await page.locator('[data-song-language="ru"]').getAttribute('aria-pressed'),'true');
@@ -67,6 +83,15 @@ async function ui(browser,url,device){
   await page.locator('.choices[data-setting="difficulty"] [data-value="easy"]').click();
   assert.equal(await page.locator('#start-game').isDisabled(),true);assert.match(await page.locator('#setup-mode-notice').textContent(),/источники или сложность/);
   await page.locator('.choices[data-setting="difficulty"] [data-value="hard"]').click();assert.equal(await page.locator('#start-game').isEnabled(),true);
+  // Preferences belong to the mode, and survive visiting a theme without songs.
+  await page.locator('#setup-back').click();await page.locator('#thematic-game').click();await page.locator('[data-theme="geography"]:enabled').click();await openMode(page);
+  assert.equal(await page.locator('#mode-source-availability').isVisible(),true);
+  assert.equal(await page.locator('#mode-toggles input[value="sing"]').isDisabled(),true);
+  assert.deepEqual(await page.evaluate(()=>options.modeSettings.sing.songLanguages),['en']);
+  await page.locator('#mode-options-done').click();await page.locator('#advanced-done').click();await page.locator('#setup-back').click();await page.locator('#themes-standard').click();
+  assert.deepEqual(await page.evaluate(()=>options.modeSettings.sing.songLanguages),['en']);
+  // Return to the same single-mode fixture after the theme's mode preferences.
+  await page.evaluate(()=>{options.modes=['sing'];options.difficulty='hard';renderOptions()});
   await page.reload({waitUntil:'load'});await setup(page);await openMode(page);
   assert.equal(await page.locator('[data-song-language="en"]').getAttribute('aria-pressed'),'true');
   assert.equal(await page.locator('[data-song-language="ru"]').getAttribute('aria-pressed'),'false');
