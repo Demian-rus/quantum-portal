@@ -104,16 +104,13 @@ function modeInformation() {
   };
 }
 function taskMarkup(hidden) {
-  const {method}=modeInformation();
   const word=displayPrompt(game.current.word);
-  const what=method.id==='sing'?'ТЕМА ДЛЯ ПЕСНИ':'ВАШЕ ЗАДАНИЕ';
   const wordLength=game.current.word.length;
   const lengthStyle=wordLength>45?' challenge-word--very-long':wordLength>23?' challenge-word--long':'';
   return '<div class="challenge-card '+(hidden?'is-hidden':'')+'">'+
-    '<span class="challenge-overline">'+what+'</span>'+
     '<div class="challenge-word '+(hidden?'challenge-word--hidden':lengthStyle)+'">'+
     (hidden?'НАЖМИ, ЧТОБЫ ОТКРЫТЬ':word)+'</div>'+
-    (hidden?'':'<span class="challenge-details">ЗАПОМНИ И НАЧИНАЙ!</span>')+'</div>';
+    '</div>';
 }
 function showApprox(){
  const c=game.current,q=c.question,revealed=game.phase==='judge';
@@ -147,6 +144,6 @@ function resultControls(duringPlay=false){
  return '<div class="three-answer-actions verdict-actions'+(duringPlay?'':' judgement-grid')+'">'+
   option('x',duringPlay?'wrong-now':'no','НЕ УГАДАЛИ','danger')+
   (modified?option('check-minus',duringPlay?'base-now':'base','БЕЗ УСЛОЖНЕНИЯ','partial'):
-   duringPlay?'<div class="verdict-visibility">'+iconButton(game.current.visible?'eye-off':'eye','toggle-word',game.current.visible?'Скрыть слово':'Показать слово')+'</div>':'<span aria-hidden="true"></span>')+
+   '<span aria-hidden="true"></span>')+
   option('check',duringPlay?'correct-now':'yes',modified?'ВЫПОЛНИЛИ':'УГАДАЛИ','success')+'</div>';
 }

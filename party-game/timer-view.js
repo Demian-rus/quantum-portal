@@ -5,11 +5,10 @@ function showTimer() {
   $('play-content').className='play-inner is-play stable-round';
   $('play-step').textContent=game.scoringVersion===2?'ОТГАДЫВАЕТ '+guessingTeam():'ВРЕМЯ ПОШЛО';
   const c=game.current,remaining=c.paused?c.remainingMs:c.deadline-Date.now();
-  const shown=Math.max(0,remaining),blitz=c.modeId==='blitz',modified=allowsModifierResult();
+  const shown=Math.max(0,remaining),blitz=c.modeId==='blitz';
   $('play-content').innerHTML=
     '<div class="round-top round-top--timer">'+
       '<span class="game-eyebrow">'+escapeHTML(modeInformation().name)+' · '+c.seconds+' СЕКУНД</span>'+
-      (modified?'<div class="timer-cluster">':'')+
       '<div class="timer-ring'+(shown<=10000?' warning':'')+'" aria-label="Таймер">'+
         '<svg viewBox="0 0 200 200" class="ring-svg" aria-hidden="true">'+
           '<circle class="ring-bg" cx="100" cy="100" r="88" />'+
@@ -17,13 +16,13 @@ function showTimer() {
         '</svg>'+
         '<div id="active-timer" class="play-timer'+(shown<=10000?' warning':'')+'" role="timer" aria-label="Оставшееся время">'+timerMarkup(shown)+'</div>'+
       '</div>'+
-      (modified?iconButton(c.visible?'eye-off':'eye','toggle-word',c.visible?'Скрыть слово':'Показать слово')+'</div>':'')+
       (allowPause()?'<div class="timer-pause">'+iconButton(c.paused?'play':'pause',c.paused?'resume':'pause',c.paused?'Продолжить':'Пауза')+'</div>':'')+
       (blitz?blitzStatus():'')+
       (c.risk?'<p class="risk-notice">⚡ РИСК: ПРОВАЛ −'+ruleSetForGame(game).risk.loss+' ОЧКА</p>':'')+
     '</div>'+
     '<div class="round-fixed-card">'+taskMarkup(blitz?false:!c.visible)+'</div>'+
     '<div class="round-bottom round-bottom--play">'+
+      (!blitz?'<div class="round-visibility">'+iconButton(c.visible?'eye-off':'eye','toggle-word',c.visible?'Скрыть слово':'Показать слово')+'</div>':'')+
       (blitz?'<div class="three-answer-actions blitz-actions">'+
         '<div class="blitz-control">'+iconButton('x','blitz-skip','Пропустить слово','danger prominent')+
           '<span>ПРОПУСТИТЬ</span></div>'+

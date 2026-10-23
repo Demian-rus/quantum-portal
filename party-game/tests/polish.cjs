@@ -78,9 +78,9 @@ async function isInViewport(page){
    const wordFit=await page.evaluate(()=>{
      const card=document.querySelector('.is-task .challenge-card');
      const word=card.querySelector('.challenge-word');
-     const details=card.querySelector('.challenge-details');
-     const rect=card.getBoundingClientRect(),text=word.getBoundingClientRect(),footer=details.getBoundingClientRect();
-     return {cardHeight:rect.height,cardBottom:rect.bottom,textBottom:text.bottom,detailsBottom:footer.bottom,
+     const rect=card.getBoundingClientRect(),text=word.getBoundingClientRect();
+     return {cardHeight:rect.height,cardBottom:rect.bottom,textBottom:text.bottom,
+       wrappers:card.querySelectorAll('.challenge-overline,.challenge-details').length,
        overflow:getComputedStyle(word).overflowY,
        selection:getComputedStyle(word).userSelect,
        scoreSelection:getComputedStyle(document.getElementById('score-a')).userSelect};
@@ -90,8 +90,8 @@ async function isInViewport(page){
    assert.equal(wordFit.overflow,'visible','Unexpected word scrollbar');
    assert.equal(wordFit.selection,'none','Task text can be selected on Android');
    assert.equal(wordFit.scoreSelection,'none','Scores can be selected on Android');
-   assert.ok(wordFit.detailsBottom<wordFit.cardBottom-4 &&
-     wordFit.textBottom<wordFit.detailsBottom,
+   assert.equal(wordFit.wrappers,0,'Task card should contain the prompt only');
+   assert.ok(wordFit.textBottom<wordFit.cardBottom-4,
      'Prompt is cut off by the card border: '+JSON.stringify(wordFit));
    for(const act of ['toggle-word','start-timer','replace-word']){
      assert.equal(await page.locator('.is-task .round-action[data-action="'+act+'"]').count(),1,act+' missing');
@@ -121,7 +121,7 @@ async function isInViewport(page){
    assert.equal(await page.locator('.is-play [data-action="pause"]').count(),1);
    const geometry=await page.evaluate(()=>{
      const card=document.querySelector('.is-play .challenge-card').getBoundingClientRect();
-     const actions=[...document.querySelectorAll('.three-answer-actions .round-action')].map(e=>{
+     const actions=[...document.querySelectorAll('.round-bottom--play .round-action')].map(e=>{
        const b=e.getBoundingClientRect();
        return {action:e.dataset.action,centerX:(b.left+b.right)/2,top:b.top,width:b.width,color:getComputedStyle(e).color};
      });
@@ -131,13 +131,13 @@ async function isInViewport(page){
    assert.ok(Math.abs(task.cardTop-geometry.cardTop)<=2,
      'Card jumped after timer start: '+JSON.stringify({task,geometry}));
    assert.ok(geometry.timerBottom<geometry.cardTop-3,'Timer should be above fixed card');
-   assert.deepEqual(geometry.actions.map(x=>x.action),['wrong-now','toggle-word','correct-now']);
-   assert.ok(geometry.actions[0].centerX<geometry.actions[1].centerX &&
-     geometry.actions[1].centerX<geometry.actions[2].centerX,'Answer controls not ordered');
-   assert.ok(Math.abs(geometry.actions[1].centerX-geometry.viewport/2)<=4,'Hide button not centered');
-   assert.ok(geometry.actions[0].width>geometry.actions[1].width &&
-     geometry.actions[2].width>geometry.actions[1].width,'Side decisions must be larger');
-   assert.equal(geometry.actions[0].color,'rgb(255, 255, 255)');
+   assert.deepEqual(geometry.actions.map(x=>x.action),['toggle-word','wrong-now','correct-now']);
+   assert.ok(geometry.actions[1].centerX<geometry.actions[0].centerX &&
+     geometry.actions[0].centerX<geometry.actions[2].centerX,'Answer controls not ordered');
+   assert.ok(Math.abs(geometry.actions[0].centerX-geometry.viewport/2)<=4,'Hide button not centered');
+   assert.ok(geometry.actions[1].width>geometry.actions[0].width &&
+     geometry.actions[2].width>geometry.actions[0].width,'Side decisions must be larger');
+   assert.equal(geometry.actions[1].color,'rgb(255, 255, 255)');
    assert.equal(geometry.actions[2].color,'rgb(255, 255, 255)');
    await capture(page,{path:'artifacts/quip-polish/'+device.name+'-timer-controls.png'});
    const first=await isInViewport(page);
