@@ -20,7 +20,7 @@ module.exports=async function thematicUI(browser,url){
    await page.goto(url,{waitUntil:'load'});const standard=await page.evaluate(()=>JSON.stringify({modes:options.modes,promptTypes:options.promptTypes}));
    await page.locator('#new-game-menu').click();await page.locator('#thematic-game').click();
    assert.equal(await page.locator('[data-theme="'+topic.id+'"]').isEnabled(),true);
-   for(const id of ['biology','animals','history','culture'])assert.equal(await page.locator('[data-theme="'+id+'"]').isDisabled(),true);
+   for(const id of ['biology','history','culture'])assert.equal(await page.locator('[data-theme="'+id+'"]').isDisabled(),true);
    if(device.name==='phone')await screenshot(page,topic,'phone-picker');
    await page.locator('[data-theme="'+topic.id+'"]').click();assert.equal(await page.locator('#setup-pack-caption').textContent(),topic.name);
    if(device.name==='phone')await screenshot(page,topic,'phone-setup');

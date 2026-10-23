@@ -111,9 +111,10 @@ function fitsViewport(g,device,stage) {
       await capture(page,{path:'artifacts/quip-mobile-layout/'+device.name+'-game-type.png'});
       await page.locator('#thematic-game').click();
       assert.equal(await page.locator('#scene-themes').isVisible(),true);
-      assert.equal(await page.locator('#theme-list button:disabled').count(),4);
-      assert.equal(await page.locator('#theme-list button:not(:disabled)').count(),2);
+      assert.equal(await page.locator('#theme-list button:disabled').count(),3);
+      assert.equal(await page.locator('#theme-list button:not(:disabled)').count(),3);
       assert.equal(await page.locator('[data-theme="geography"]:enabled').count(),1);
+      assert.equal(await page.locator('[data-theme="animals"]:enabled').count(),1);
       assert.ok((await page.locator('#themes-caption').textContent()).includes('Выберите тему'));
       const themeLayout=await page.evaluate(()=>({w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight,
         cards:[...document.querySelectorAll('.theme-choice')].map(el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right}})}));

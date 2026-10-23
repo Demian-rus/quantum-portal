@@ -23,7 +23,7 @@ test('TASK009 D1 only new general parties adopt latest content; an old active ro
 });
 test('TASK009 D1 cannot silently reuse a historical source or activate future themes',()=>{
  const d=readDataset(),source=d.sources.find(s=>s.path==='cards/general-expansion-v1.json');source.rows[0].pack='core';assert.ok(validate(d).errors.some(e=>e.code==='historical-origin'));
- const h=createSimulation(3);assert.deepEqual(plain(h.eval('listThematicPacks(options).filter(r=>r.available).map(r=>r.pack.id).sort()')),['geography','science']);
+ const h=createSimulation(3);assert.deepEqual(plain(h.eval('listThematicPacks(options).filter(r=>r.available).map(r=>r.pack.id).sort()')),['animals','geography','science']);
  assert.equal(h.eval('Object.values(QUIP_CONTENT_PACKS).filter(p=>p.id!=="general"&&!p.enabled).length'),6);
 });
 test('TASK009 D1 editorial exclusions and distribution report reproduce exactly',()=>{
