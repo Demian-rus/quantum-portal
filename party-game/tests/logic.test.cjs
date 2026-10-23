@@ -510,6 +510,28 @@ test('reel sequence repeats around the chosen mode without modifying game mode o
  assert.equal(h.eval('game.current.modeId'),chosen,'Wheel changed the outcome');
 });
 
+test('installed fullscreen viewport stays fixed during transient Android system bars',()=>{
+ const src=read('immersive-viewport.js');
+ const vmContext=(fullscreen)=>{
+  const values=new Map(),events=new Map();
+  const root={style:{setProperty:(key,value)=>values.set(key,value)}};
+  const w={innerWidth:390,innerHeight:844,screen:{orientation:{type:'portrait-primary'}},matchMedia:()=>({matches:fullscreen}),addEventListener:(name,fn)=>events.set(name,fn),visualViewport:{addEventListener(){}}};
+  vm.runInNewContext(src,{window:w,document:{documentElement:root},Math});
+  return {w,values,events};
+ };
+ const installed=vmContext(true);
+ assert.equal(installed.values.get('--kvip-locked-height'),'844px');
+ assert.equal(installed.values.get('--kvip-locked-vh'),'8.44px');
+ installed.w.innerHeight=764;installed.events.get('resize')();
+ assert.equal(installed.values.get('--kvip-locked-height'),'844px','Temporary system bars must not shrink canvas');
+ installed.w.innerHeight=855;installed.events.get('resize')();
+ assert.equal(installed.values.get('--kvip-locked-height'),'855px','Larger fullscreen area must be supported');
+ installed.w.innerWidth=844;installed.w.innerHeight=390;installed.w.screen.orientation.type='landscape-primary';installed.events.get('orientationchange')();
+ assert.equal(installed.values.get('--kvip-locked-height'),'390px','Rotation must rebase the layout');
+ const tab=vmContext(false);assert.equal(tab.values.size,0,'Non-fullscreen browser view keeps dynamic sizing');
+ const css=read('style.css');assert.match(css,/var\(--kvip-locked-vh, 1dvh\)/);
+ assert.match(css,/height:var\(--kvip-locked-height,100dvh\)/);
+});
 test('КВИП branding is consistent across the browser and installed PWA',()=>{
  const html=read('index.html');
  const css=read('style.css');
