@@ -51,6 +51,12 @@ function restoreSession() {
       validateModePlan(candidate.modePlannerVersion,candidate.modePlannerState);
     if(candidate.contentPack)getContentPack(candidate.contentPack);
   }catch{storageBlocked=true;return;}
+  if(candidate.phase==='between'){
+    const last=Array.isArray(candidate.history)?candidate.history[candidate.history.length-1]:null;
+    if(!last||typeof last.correct!=='boolean'||!Number.isFinite(last.awarded)){
+      blockSavedData('corrupt');return;
+    }
+  }
   if(candidate.phase==='rolling')candidate.phase=candidate.current?'task':'ready';
   if(candidate.phase==='countdown' && (candidate.current?.autoStartAt||0)<=Date.now()){
     candidate.phase='play';
