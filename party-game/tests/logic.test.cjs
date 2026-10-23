@@ -64,6 +64,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('round-presentation.js'),context);
    vm.runInContext(read('round-actions.js'),context);
    vm.runInContext(read('storage-controller.js'),context);
+   vm.runInContext(read('session-restoration.js'),context);
    vm.runInContext(read('app.js'),context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
@@ -350,6 +351,36 @@ test('storage failures preserve the write barrier and verify backup before any r
  unwritable.context.localStorage.setItem=()=>{throw Error('quota exceeded')};
  assert.doesNotThrow(()=>unwritable.eval('persist()'));
  assert.equal(unwritable.eval('JSON.stringify([game,options,taskMemory,storageBlocked,storageProblem,loadedSaveRaw])'),before);
+});
+test('restoring expired countdowns uses the saved start and preserves RAW at both clock boundaries',()=>{
+ const NativeDate=Date,random=Math.random;let now=1792756800000;
+ global.Date=class extends NativeDate{static now(){return now}};
+ try{
+  for(const version of [1,2,3,4,5])for(const mode of ['talk','blitz'])for(const level of ['medium','hard']){
+   now=1792756800000;
+   const stored=new Map(),first=harness(stored);
+   first.eval(`soundOn=false;options.modes=['${mode}'];options.difficulty='${level}';options.dice=false;`+
+    (version===5?'newGame()':version===4?'v4Game()':'legacyGame('+version+')')+';'+
+    (version===1?'delete game.scoringVersion;':'')+'roll();toggleWord();game.dice=true;options.dice=true;persist()');
+   const raw=stored.get('iskra-party:v1'),saved=JSON.parse(raw),start=saved.game.current.autoStartAt;
+   const deadline=start+saved.game.current.seconds*1000;
+   assert.equal(saved.game.phase,'countdown');
+   for(const time of [start-1,start,start+1,deadline-1,deadline,deadline+1]){
+    now=time;let writes=0;
+    const copy=new Map(stored);copy.set=()=>{writes++;throw Error('Restore must not write')};
+    Math.random=()=>{throw Error('Restore must not consume RNG')};
+    let restored;try{restored=harness(copy)}finally{Math.random=random}
+    const expected=JSON.parse(JSON.stringify(saved.game));
+    if(time>=start){expected.phase='play';expected.current.autoStartAt=null;expected.current.deadline=deadline}
+    if(time>=deadline){expected.phase='judge';expected.current.deadline=null;expected.current.finishedReason='timeout'}
+    const label=`V${version} ${mode} ${level} at ${time-start}`;
+    assert.equal(restored.eval('JSON.stringify(game)'),JSON.stringify(expected),label);
+    assert.equal(copy.get('iskra-party:v1'),raw,label+' RAW');assert.equal(writes,0,label+' writes');
+    assert.equal(restored.eval('storageBlocked'),false,label+' protection');
+    assert.equal(restored.eval('intervalId'),null,label+' interval');assert.equal(restored.pending.length,0,label+' timeout');
+   }
+  }
+ }finally{global.Date=NativeDate;Math.random=random}
 });
 test('vocabulary is varied, unique within packs and contains at least 400 prompts',()=>{
   const h=harness();
