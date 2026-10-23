@@ -15,10 +15,11 @@ test('Secret active mode shows no verbose helper text in selection tile; blocked
  const template=fs.readFileSync(require.resolve('../content/templates/content-packs.after.js'),'utf8');assert.doesNotMatch(template,/Если другие базовые способы не включены/);
 });
 test('Android Back navigation uses an in-app guard without changing saved-game data',()=>{
- const app=fs.readFileSync(require.resolve('../app.js'),'utf8');
- assert.match(app,/function installBrowserBackNavigation\(\)/);
- assert.match(app,/addEventListener\('popstate',onBrowserBack\)/);
- assert.match(app,/case 'game':case 'results':backToMenu\(\)/);
+ // Navigation was extracted from app.js; keep the exact guard assertions.
+ const navigation=fs.readFileSync(require.resolve('../menu-navigation.js'),'utf8');
+ assert.match(navigation,/function installBrowserBackNavigation\(\)/);
+ assert.match(navigation,/addEventListener\('popstate',onBrowserBack\)/);
+ assert.match(navigation,/case 'game':case 'results':backToMenu\(\)/);
  const h=setup(['talk'],'setter');const before=h.eval('JSON.stringify(game)');
  h.eval('installBrowserBackNavigation()');assert.equal(h.eval('JSON.stringify(game)'),before);
 });
