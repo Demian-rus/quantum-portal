@@ -78,7 +78,7 @@ async function upgradingPWA(){
    page.on('pageerror',e=>errors.push(e.message));
    await page.goto(url,{waitUntil:'load'});
    await page.waitForFunction(()=>navigator.serviceWorker.controller!==null,{timeout:30000});
-   assert.equal(await page.evaluate(()=>typeof rulesGuidePage),'undefined','Baseline unexpectedly loaded extracted rules');
+   assert.equal(await page.locator('script[src*="rules-guide.js"]').count(),0,'Baseline unexpectedly referenced extracted module');
    assert.ok((await page.evaluate(()=>caches.keys())).includes(OLD_CACHE),'Baseline worker cache not installed');
 
    await page.evaluate(()=>{
@@ -115,14 +115,15 @@ async function upgradingPWA(){
     const keys=await caches.keys();
     return keys.includes('kvip-pwa-v57-20261023-audio')&&!keys.includes('kvip-pwa-v52-20261022-stable-viewport');
    },{timeout:30000});
-   const cached=await page.evaluate(async()=>{
+   const expectedScripts=[...fs.readFileSync(path.join(deployed,'index.html'),'utf8')
+    .matchAll(/<script src="(\.\/[^\"]+\.js\?v=\d+)" defer><\/script>/g)].map(match=>match[1]);
+   assert.ok(expectedScripts.length>=20,'Expected full new release script list');
+   const cached=await page.evaluate(async urls=>{
     const cache=await caches.open('kvip-pwa-v57-20261023-audio');
-    const urls=[...document.querySelectorAll('script[src]')].map(el=>el.getAttribute('src'));
-    return {count:urls.length,missing:(await Promise.all(urls.map(async url=>
-     ({url,has:!!(await cache.match(url))})))).filter(x=>!x.has).map(x=>x.url)};
-   });
-   // At this point the old document remains open, so its script list is old.
-   assert.deepEqual(cached.missing,[],'New worker must cache all old active script URLs which still exist');
+    return (await Promise.all(urls.map(async url=>
+     ({url,has:!!(await cache.match(url))})))).filter(x=>!x.has).map(x=>x.url);
+   },expectedScripts);
+   assert.deepEqual(cached,[],'New worker must cache every new release script before offline reload');
 
    await page.reload({waitUntil:'load'});
    await page.waitForFunction(()=>document.body.dataset.screen==='home');
