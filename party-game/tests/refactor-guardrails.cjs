@@ -119,7 +119,12 @@ async function settingsReload(page){
  await fold(page,'content-settings');await selection(page,'content-toggles',['word','phrase']);
  await page.locator('#advanced-done').click();
  await page.locator('#award-policy-choices [data-value="setter"]').click();
- const setter=await snapshot(page);assert.deepEqual(setter.options.modes,['talk','secret']);
+ const setter=await snapshot(page);
+ const expected={difficulty:'hard',duration:75,targetScore:35,promptTypes:['word','phrase'],
+  complications:false,modifierChance:65,riskRounds:false,awardTo:'setter',modes:['talk','secret']};
+ for(const [field,value]of Object.entries(expected))
+  assert.deepEqual(setter.options[field],value,'UI must store the requested '+field);
+ assert.equal(setter.options.contentPack.id,'general');
  assert.equal(setter.game,null);
  await page.reload({waitUntil:'load'});await scene(page,'home');
  const restored=await snapshot(page);
@@ -139,6 +144,8 @@ async function settingsReload(page){
  assert.equal(await danetki.isDisabled(),false);assert.equal(await danetki.isChecked(),false,'Changing recipient must not silently reselect Danetki');
  await selection(page,'mode-toggles',['talk','yesno','secret']);await page.locator('#advanced-done').click();
  const guesser=await snapshot(page);
+ for(const [field,value]of Object.entries({...expected,awardTo:'guesser',modes:['talk','yesno','secret']}))
+  assert.deepEqual(guesser.options[field],value,'Explicit recipient/mode change must store '+field);
  await page.reload({waitUntil:'load'});await scene(page,'home');
  const again=await snapshot(page);
  assert.deepEqual(again.options,guesser.options);assert.equal(again.raw,guesser.raw);assert.deepEqual(again.probe.writes,[]);
