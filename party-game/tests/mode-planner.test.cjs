@@ -129,3 +129,32 @@ test('TASK010 old saves keep the exact historical mode RNG and current card; unk
   assert.equal(loaded.eval('storageBlocked'),true);loaded.eval('persist();newGame()');assert.equal(broken.get('iskra-party:v1'),bad);
  }
 });
+
+test('TASK011 F1 modern and historical round decisions keep exact mode/difficulty call order',()=>{
+ for(const policy of ['current','historical']){
+  const saved=new Map(),h=start(20261023,{modes:['talk'],difficulty:'mixed',
+   complications:false,riskRounds:false,dice:false},saved);
+  if(policy==='historical')
+   h.eval('delete game.modePlannerVersion;delete game.modePlannerState;delete game.plannerVersion;delete game.plannerState');
+  const result=plain(h.eval('(()=>{'+
+   'const calls=[],originalMode=pickMode,originalLevel=chooseDifficulty;'+
+   'pickMode=function(level){calls.push(["mode",level??null]);return originalMode(level)};'+
+   'chooseDifficulty=function(){calls.push(["difficulty"]);return originalLevel()};'+
+   'try{roll();return {calls,phase:game.phase,difficulty:game.current.difficulty}}'+
+   'finally{pickMode=originalMode;chooseDifficulty=originalLevel}'+
+   '})()'));
+  assert.equal(result.phase,'task');
+  assert.deepEqual(result.calls.map(entry=>entry[0]),
+   policy==='current'?['difficulty','mode']:['mode','difficulty'],
+   policy+' consumed selection decisions out of historical order');
+  assert.equal(result.calls.find(entry=>entry[0]==='mode')[1],
+   policy==='current'?result.difficulty:null,
+   'Changing mode/level argument would alter seeded selection');
+  const gameBefore=h.eval('JSON.stringify(game)'),memoryBefore=h.eval('JSON.stringify(taskMemory)');
+  const rawBefore=saved.get('iskra-party:v1');
+  h.eval('Math.random=()=>{throw Error("Unexpected second RNG draw after selection")};render();continueGame();roll()');
+  assert.equal(h.eval('JSON.stringify(game)'),gameBefore,'selected card or planner changed after render/retry');
+  assert.equal(h.eval('JSON.stringify(taskMemory)'),memoryBefore,'task memory changed after render/retry');
+  assert.equal(saved.get('iskra-party:v1'),rawBefore,'saved bytes changed after render/retry');
+ }
+});
