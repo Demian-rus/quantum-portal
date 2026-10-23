@@ -1,3 +1,4 @@
+// CI-only combined v60 upgrade probe, no production code changes.
 'use strict';
 // Release-to-release PWA check. No production mocks: two file sets are served
 // at one origin, with a genuine service-worker upgrade and existing localStorage.
