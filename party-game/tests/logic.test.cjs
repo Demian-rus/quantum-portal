@@ -68,7 +68,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('app.js'),context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
-  vm.runInContext(`function startHistoricalFixture(){const awardTo=options.awardTo;options.awardTo='guesser';newGame();options.awardTo=awardTo;if(game){game.awardTo=awardTo;delete game.modeCompatibilityVersion;delete game.modePlannerVersion;delete game.modePlannerState;}}
+  vm.runInContext(`function startHistoricalFixture(){const awardTo=options.awardTo;options.awardTo='guesser';newGame();options.awardTo=awardTo;if(game){game.awardTo=awardTo;delete game.modeCompatibilityVersion;delete game.modePlannerVersion;delete game.modePlannerState;delete game.songLanguagePolicyVersion;delete game.songLanguages;}}
   function legacyGame(version=3){
     options.modes=options.modes.filter(id=>id!=='approx');
     if(options.contentPack?.id==='general')options.contentPack={id:'general',version:1};
@@ -2133,7 +2133,7 @@ test('TASK008 numeric additions carry units, categories, sources and checked der
  }
 });
 test('TASK008 additions enter standard pools without empty tiers or duplicate Blitz words',()=>{
- const h=harness();h.eval('soundOn=false;options.complications=false;options.dice=false;newGame();game.contentPack={id:"general",version:2}');
+ const h=harness();h.eval('soundOn=false;options.complications=false;options.dice=false;newGame();game.contentPack={id:"general",version:2};delete game.songLanguagePolicyVersion;delete game.songLanguages');
  for(const kind of ['words','songs','people','blitz'])for(const level of ['easy','medium','hard'])assert.ok(h.eval('getPromptPool("'+kind+'","'+level+'").length')>=50,kind+'/'+level);
  h.eval('options.modes=["blitz"];newGame();Math.random=()=>0');const used=[];
  for(let i=0;i<20;i++){h.eval('roll()');const words=Array.from(h.eval('game.current.blitzWords'));assert.equal(new Set(words).size,3);for(const word of words){assert.equal(used.includes(word),false);used.push(word)}h.eval('game.phase="judge";judge(false)');}

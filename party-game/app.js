@@ -139,13 +139,14 @@ function newGame() {
   // START is the explicit action; don't repeat it with a native confirmation.
   if(!options.modes.length){toast('Выберите хотя бы один игровой режим');return;}
   if(!options.promptTypes.length && options.modes.some(id=>['talk','mime','draw','blitz','secret'].includes(id))){toast('Выберите тип заданий');return;}
+  const songPolicy=options.modes.includes('sing')?{songLanguagePolicyVersion:QUIP_SONG_LANGUAGE_POLICY_VERSION,songLanguages:['ru']}:{};
   let contentPack=options.contentPack||{id:'general',version:2};
   // Only a newly started party adopts the latest enabled revision. Validate
   // the requested revision first: a disabled/unknown old theme cannot upgrade
   // itself into a playable selection. Saved games never enter this path.
   try{
     if(getContentPack(contentPack).enabled)contentPack=latestContentPackSelection(contentPack.id);
-    const settings={...options,modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION};
+    const settings={...options,...songPolicy,modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION};
     const availability=checkContentPack(contentPack,settings);
     if(!availability.available){
       toast(availability.problems[0]);return;
@@ -161,6 +162,7 @@ function newGame() {
   const teamB=sanitizeTeam($('team-b').value,'Кометы');
   game={
     teams:[teamA,teamB],scores:[0,0],roundIndex:0,startingTeamIndex:chooseStartingTeam(),
+    ...songPolicy,
     taskHistoryVersion:QUIP_TASK_HISTORY_VERSION,taskHistory:startedHistory.history,
     rounds:options.rounds,targetScore:options.targetScore,finishType:options.finishType,
     riskRounds:options.riskRounds,scoringVersion:2,rulesVersion:QUIP_RULE_VERSION,modeConfigVersion:QUIP_MODE_CONFIG_VERSION,

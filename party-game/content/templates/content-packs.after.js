@@ -1,5 +1,22 @@
 
 ]);
+// Generated from the editorial ledger, including reviewed legacy songs without metadata.
+const QUIP_SONG_LANGUAGES=Object.freeze(/* reviewed-song-languages */{});
+const QUIP_SONG_LANGUAGE_POLICY_VERSION=1;
+function songLanguagePolicy(match){
+ if(match?.songLanguagePolicyVersion==null){
+  if(match?.songLanguages!=null)throw Error('Missing QUIP song language policy');
+  return null;
+ }
+ if(match.songLanguagePolicyVersion!==QUIP_SONG_LANGUAGE_POLICY_VERSION||!Array.isArray(match.songLanguages)||!match.songLanguages.length||
+  new Set(match.songLanguages).size!==match.songLanguages.length||match.songLanguages.some(language=>!['ru','en'].includes(language)))
+  throw Error('Unsupported QUIP song language policy');
+ return match.songLanguages;
+}
+function filterSongLanguagePool(pool,match){
+ const languages=songLanguagePolicy(match);
+ return languages?pool.filter(card=>languages.includes(QUIP_SONG_LANGUAGES[card.id])):pool;
+}
 function listThematicPacks(settings,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACKS,questions=QUIP_APPROX_QUESTIONS){
  const latest=new Map();
  for(const pack of Object.values(registry))if(pack.id!=='general'&&(!latest.has(pack.id)||latest.get(pack.id).version<pack.version))
@@ -69,7 +86,8 @@ function checkContentPack(selection,settings,cards=PARTY_CARDS,registry=QUIP_CON
   const kind=getModeConfig(method).cardType;
   if(!kind)throw Error('Unknown QUIP mode: '+method);
   for(const level of levels){
-   const pool=kind==='number'?getPackQuestionPool(selection,level,questions,registry):getPackCardPool(selection,kind,level,settings.promptTypes,cards,registry);
+   let pool=kind==='number'?getPackQuestionPool(selection,level,questions,registry):getPackCardPool(selection,kind,level,settings.promptTypes,cards,registry);
+   if(method==='sing')pool=filterSongLanguagePool(pool,settings);
    const count=new Set(pool.map(card=>card.text||card.question)).size,required=Math.max(pack.minCardsPerPool,kind==='blitz'?(settings.rulesVersion&&settings.rulesVersion<4?5:getModeConfig('blitz').blitzWordsCount):1);
    if(count<required)problems.push(method+'/'+level+': '+count+' из '+required+' заданий');
   }
