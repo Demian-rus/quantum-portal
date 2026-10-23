@@ -50,7 +50,8 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
   const packSource=fixturePack?read('content-packs.js').replace('const QUIP_CONTENT_PACKS=defineContentPacks([','const QUIP_CONTENT_PACKS=defineContentPacks(['+JSON.stringify(fixturePack)+','):read('content-packs.js');
   vm.runInContext(packSource,context);
   vm.runInContext(read('presets.js'),context);
-  vm.runInContext(read('app.js'),context);
+  vm.runInContext(read('rules-guide.js'),context);
+   vm.runInContext(read('app.js'),context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
   vm.runInContext(`function startHistoricalFixture(){const awardTo=options.awardTo;options.awardTo='guesser';newGame();options.awardTo=awardTo;if(game){game.awardTo=awardTo;delete game.modeCompatibilityVersion;delete game.modePlannerVersion;delete game.modePlannerState;}}
