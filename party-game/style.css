@@ -1611,6 +1611,7 @@ body[data-screen="game-type"]::before,body[data-screen="themes"]::before{backgro
 .game-type-choice strong{font-family:var(--font-title);font-size:clamp(19px,3vw,27px);line-height:1.25}
 .game-type-choice>span:not(.choice-number):not(.choice-next){font-size:13px;line-height:1.5;color:#cedcf8;max-width:80%}
 .choice-number{font:800 13px var(--font-body);color:var(--lime);letter-spacing:.12em}
+.choice-count{display:inline-block;margin-left:12px;color:#a4edff;letter-spacing:0;font:700 11px var(--font-body);white-space:nowrap}
 .choice-next{position:absolute;right:22px;bottom:20px;color:#8ff5ff;font-size:28px}
 .game-type-choice:hover,.game-type-choice:focus-visible{border-color:#a5f6ff;box-shadow:0 0 18px #55dfff30}
 .theme-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:24px}
