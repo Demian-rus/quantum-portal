@@ -12,8 +12,9 @@ async function settled(page){
 async function fixture(page,mode,modified=false){
  await page.evaluate(({mode,modified})=>{
   soundOn=false;chooseStartingTeam=()=>0;Math.random=()=>0;
-  Object.assign(options,{modes:[mode],dice:false,difficulty:'easy',complications:modified,riskRounds:false});
+  Object.assign(options,{modes:[mode],dice:false,difficulty:'easy',complications:modified,riskRounds:false,awardTo:'guesser'});
   newGame();roll();
+  if(game.phase!=='task'||game.current.modeId!==mode)throw Error('Layout fixture did not start '+mode+': '+game.phase+'/'+game.current?.modeId);
   if(mode==='secret'){
    game.current.methodId='draw';
    game.current.complication='Не рисуй горизонтальные и вертикальные линии.';
@@ -86,6 +87,9 @@ module.exports=async function roundLayout(browser,url){
    }
    assert.deepEqual(errors,[]);
    console.log('round-layout PASS',device.name,JSON.stringify({modes:modes.length,icon:{w:iconBox.w,h:iconBox.h},eye:plain.eye,verdicts:[plain.wrong,plain.correct]}));
+  }catch(error){
+   console.error('round-layout failure',device.name,await page.evaluate(()=>({phase:game?.phase,mode:game?.current?.modeId,startingTeam:game?.startingTeamIndex})));
+   await page.screenshot({path:'artifacts/quip-mobile-layout/task013a-'+device.name+'-failure.png'});throw error;
   }finally{await context.close()}
  }
 };
