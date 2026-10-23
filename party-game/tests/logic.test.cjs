@@ -58,6 +58,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('round-views.js'),context);
    vm.runInContext(read('match-views.js'),context);
    vm.runInContext(read('timer-view.js'),context);
+   vm.runInContext(read('round-selection.js'),context);
    vm.runInContext(read('app.js'),context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
