@@ -56,6 +56,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('setup-controls.js'),context);
    vm.runInContext(read('audio.js'),context);
    vm.runInContext(read('round-views.js'),context);
+   vm.runInContext(read('match-views.js'),context);
    vm.runInContext(read('app.js'),context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
@@ -93,6 +94,29 @@ test('round views keep V1-V5 snapshots without RNG, writes or reward recalculati
   check('showTask');assert.match(h.elements.get('play-content').innerHTML,/ЗА ВЕРНЫЙ ОТВЕТ: \+37/);
   h.eval('game.phase="judge";persist()');check('showJudge');
   assert.match(h.elements.get('play-content').innerHTML,version===5?/Основа \+31 · усложнение \+6/:/Награда: \+37/);
+ }
+});
+test('match views preserve V1-V5 and shared-award state without RNG or storage writes',()=>{
+ for(const version of [1,2,3,4,5,'approx']){
+  const h=harness(),approx=version==='approx';
+  h.eval('soundOn=false;options.modes=["'+(approx?'approx':'talk')+'"];options.dice=false;'+
+   'options.complications=false;options.riskRounds=false;Math.random=()=>0;'+
+   (approx||version===5?'newGame()':version===4?'v4Game()':'legacyGame('+version+')')+';'+
+   (version===1?'delete game.scoringVersion;':'')+'roll();persist()');
+  const check=source=>{
+   const before=h.eval('JSON.stringify([game,options,taskMemory])'),raw=h.storage.get('iskra-party:v1');
+   h.eval('var matchViewOriginals=[Math.random,persist,rewardForRound,localStorage.setItem];'+
+    'Math.random=persist=rewardForRound=localStorage.setItem=()=>{throw Error("Side effect in match view")};'+
+    'try{'+source+'}finally{[Math.random,persist,rewardForRound,localStorage.setItem]=matchViewOriginals}');
+   assert.equal(h.eval('JSON.stringify([game,options,taskMemory])'),before,source+' '+version);
+   assert.equal(h.storage.get('iskra-party:v1'),raw,source+' persisted '+version);
+  };
+  check('renderMatch();');
+  if(approx)for(const id of ['a','b'])assert.equal(h.elements.get('role-'+id).textContent,'НАЗЫВАЕТ ЧИСЛО');
+  h.eval(approx?'revealApprox();awardApprox("both")':'game.phase="judge";judge(true)');
+  check('renderMatch();showBetween();game.history.map(historyMarkup);showResults();');
+  assert.equal(h.eval('document.body.dataset.screen'),'results');
+  if(approx)assert.match(h.elements.get('results-content').innerHTML,/Обе команды.*\+1 \/ \+1/);
  }
 });
 test('vocabulary is varied, unique within packs and contains at least 400 prompts',()=>{
