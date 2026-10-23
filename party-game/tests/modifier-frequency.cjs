@@ -61,6 +61,64 @@ async function offlineUpgrade(browser,url){
   console.log('task007c offline worker update PASS',legacyCommit,oldCache,'→',currentCache,'pre-C party preserved');
  }finally{write(current);await context.close();}
 }
+async function songLanguageUpgrade(browser,url){
+ const path=require('node:path'),{execFileSync}=require('node:child_process');
+ const root=path.resolve(__dirname,'../..'),baseline='fb350403a485ca85e2711bd6500e39fc5a0d046f';
+ const git=args=>execFileSync('git',args,{cwd:root,timeout:30000,maxBuffer:4*1024*1024,stdio:['ignore','pipe','pipe']});
+ try{git(['cat-file','-e',baseline+'^{commit}'])}catch{git(['fetch','--depth=1','origin',baseline])}
+ const files=['sw.js','index.html','app.js','content-packs.js','round-selection.js','session-restoration.js'];
+ const current=new Map(files.map(name=>[name,fs.readFileSync(path.join(root,'party-game',name))]));
+ const previous=new Map(files.map(name=>[name,git(['show',baseline+':party-game/'+name])]));
+ const cache=source=>source.toString().match(/const CACHE='([^']+)'/)[1];
+ const oldCache=cache(previous.get('sw.js')),newCache=cache(current.get('sw.js'));
+ const ledger=require('../content/editorial/music-theme-review.json');
+ const english=ledger.filter(row=>row.language==='en').map(row=>row.id),russian=ledger.filter(row=>row.language==='ru').map(row=>row.id);
+ const write=sources=>{for(const [name,source]of sources)fs.writeFileSync(path.join(root,'party-game',name),source)};
+ const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage(),errors=[];
+ page.on('pageerror',error=>errors.push(error.message));
+ try{
+  write(previous);
+  for(const name of files)fs.utimesSync(path.join(root,'party-game',name),new Date('2026-01-01'),new Date('2026-01-01'));
+  await page.goto(url,{waitUntil:'load'});await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
+  assert.equal(await page.evaluate(key=>caches.has(key),oldCache),true);
+  const snapshot=await page.evaluate(english=>{
+   soundOn=false;Object.assign(options,{modes:['sing'],difficulty:'hard',dice:false,complications:false,riskRounds:false});
+   const pool=getPackCardPool(latestGeneralPackSelection(),'songs','hard'),index=pool.findIndex(row=>english.includes(row.id));
+   Math.random=()=> (index+.5)/pool.length;newGame();roll();game.dice=true;options.dice=true;persist();
+   const card=pool.find(row=>row.text===game.current.word);
+   return {card:card.id,raw:localStorage.getItem(STORAGE_KEY),state:JSON.stringify([game,options,taskMemory])};
+  },english);
+  assert.ok(english.includes(snapshot.card));assert.equal(await page.evaluate(()=>game.songLanguagePolicyVersion),undefined);
+  // Compare two restored sessions, preserving v68's existing in-memory defaults/order.
+  await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
+  assert.equal(await page.evaluate(()=>localStorage.getItem(STORAGE_KEY)),snapshot.raw);
+  snapshot.state=await page.evaluate(()=>JSON.stringify([game,options,taskMemory]));
+  write(current);
+  await page.evaluate(async()=>{
+   const changed=new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));
+   await navigator.serviceWorker.register('./sw.js?qa-song-language-upgrade',{scope:'./',updateViaCache:'none'});
+   if(!navigator.serviceWorker.controller?.scriptURL.includes('qa-song-language-upgrade'))
+    await Promise.race([changed,new Promise((_,reject)=>setTimeout(()=>reject(Error('Song worker update timed out')),15000))]);
+  });
+  await page.waitForFunction(async({oldCache,newCache})=>await caches.has(newCache)&&!await caches.has(oldCache),{oldCache,newCache});
+  assert.equal(await page.evaluate(()=>localStorage.getItem(STORAGE_KEY)),snapshot.raw);
+  await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
+  assert.equal(await page.evaluate(()=>JSON.stringify([game,options,taskMemory])),snapshot.state);
+  assert.equal(await page.evaluate(()=>localStorage.getItem(STORAGE_KEY)),snapshot.raw);
+  const next=await page.evaluate(()=>{
+   game.phase='judge';judge(false);game.dice=false;Math.random=()=>.999999;roll();
+   return getPackCardPool(game.contentPack,'songs',game.current.difficulty).find(row=>row.text===game.current.word).id;
+  });
+  assert.ok(english.includes(next),'Historical continuation must retain its full song source');
+  const fresh=await page.evaluate(()=>{
+   newGame();game.dice=false;roll();
+   return {policy:game.songLanguagePolicyVersion,languages:game.songLanguages,id:getPackCardPool(game.contentPack,'songs',game.current.difficulty).find(row=>row.text===game.current.word).id};
+  });
+  assert.equal(fresh.policy,1);assert.deepEqual(fresh.languages,['ru']);assert.ok(russian.includes(fresh.id));
+  assert.deepEqual(errors,[]);
+  console.log('TASK012 B offline song update PASS',oldCache,'→',newCache,'foreign card',snapshot.card,'preserved; historical en and new ru selection PASS');
+ }finally{write(current);await context.close()}
+}
 module.exports=async function frequencyUI(browser,url){
  fs.mkdirSync('artifacts/quip-mobile-layout',{recursive:true});
  for(const device of devices){
@@ -107,4 +165,5 @@ module.exports=async function frequencyUI(browser,url){
   }finally{await context.close();}
  }
  await offlineUpgrade(browser,url);
+ await songLanguageUpgrade(browser,url);
 };

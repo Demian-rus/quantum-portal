@@ -41,16 +41,28 @@ function nearCandidates(rows,field){
  }
  return [...pairs.values()];
 }
+function reviewedSongLanguages(data){
+ const rows=JSON.parse(fs.readFileSync(contentPath('editorial/music-theme-review.json'),'utf8'));
+ const cards=new Map(data.cards.map(row=>[row.id,row])),languages={};
+ for(const row of rows){
+  const card=cards.get(row.id);
+  if(!card||card.type!=='song'||card.text!==row.text||!['ru','en'].includes(row.language)||Object.hasOwn(languages,row.id)||
+   (card.meta?.language!=null&&card.meta.language!==row.language))throw Error('Invalid reviewed song language: '+row.id);
+  languages[row.id]=row.language;
+ }
+ return languages;
+}
 function render(data){
  const template=(name,side)=>fs.readFileSync(contentPath('templates/'+name+'.'+side+'.js'),'utf8');
  const lines=rows=>rows.map(row=>'  '+JSON.stringify(row)).join(',\n');
  const tuples=data.questions.map(q=>[q.id.slice(7),q.difficulty,q.question,q.answer,q.unit,q.categories.join(','),q.note,q.source,q.pack]);
  return {'cards.js':template('cards','before')+'\n'+lines(data.cards)+template('cards','after'),
   'approx-questions.js':template('approx-questions','before')+'\n'+lines(tuples)+template('approx-questions','after'),
-  'content-packs.js':template('content-packs','before')+'\n'+lines(data.packs)+template('content-packs','after')};
+  'content-packs.js':template('content-packs','before')+'\n'+lines(data.packs)+template('content-packs','after').replace('/* reviewed-song-languages */{}',JSON.stringify(reviewedSongLanguages(data)))};
 }
 function validate(data,{locks=true,near=false}={}){
  const errors=[],warnings=[],add=(code,id,message)=>errors.push({code,id,message}),ids=new Set(),tags=new Set();
+ try{reviewedSongLanguages(data)}catch(error){add('song-language','catalog',error.message)}
  for(const category of data.manifest.categories){if(!/^[a-z][a-z0-9-]*$/.test(category.id)||!category.name||tags.has(category.id))add('category',category.id,'Invalid or duplicate category');tags.add(category.id)}
  if(locks)for(const sourcePath of Object.keys(data.lock.sources))if(!data.sources.some(source=>source.path===sourcePath))add('historical-source',sourcePath,'Immutable source omitted from manifest');
  for(const source of data.sources){
