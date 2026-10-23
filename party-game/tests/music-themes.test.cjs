@@ -2,6 +2,73 @@
 const test=require('node:test'),assert=require('node:assert/strict');
 const {readDataset,validate,normalize}=require('../scripts/content.cjs'),{createSimulation}=require('../scripts/game-simulation.cjs'),H=require('../task-history.js');
 const plain=x=>JSON.parse(JSON.stringify(x));
+test('TASK012 C mode preferences normalize to an independent nonempty language selection',()=>{
+ const h=createSimulation(21);
+ assert.deepEqual(plain(h.eval('options.modeSettings')),{sing:{songLanguages:['ru']}});
+ for(const [requested,expected]of [[null,['ru']],[{},['ru']],[{sing:null},['ru']],
+  [{sing:{songLanguages:[]}},['ru']],[{sing:{songLanguages:'en'}},['ru']],
+  [{sing:{songLanguages:['fr']}},['ru']],[{sing:{songLanguages:['en','en']}},['en']],
+  [{sing:{songLanguages:['en','ru','invalid']}},['ru','en']]]){
+  h.context.requested=requested;
+  assert.deepEqual(plain(h.eval('sanitizeOptions({modeSettings:requested}).modeSettings')),{sing:{songLanguages:expected}});
+ }
+ h.eval('var preference={sing:{songLanguages:["en"]}};var normalized=sanitizeModeSettings(preference);preference.sing.songLanguages.push("ru")');
+ assert.deepEqual(plain(h.eval('normalized')),{sing:{songLanguages:['en']}});
+ assert.equal(h.eval('optionsForPartyPreset("classic-duel",3).difficulty'),'easy');
+ assert.equal(h.eval('optionsForPartyPreset("hardcore",3).difficulty'),'hard');
+});
+test('TASK012 C selected ru en and both preferences become immutable party snapshots and real pools',()=>{
+ const ledger=new Map(require('../content/editorial/music-theme-review.json').map(row=>[row.id,row.language]));
+ for(const languages of [['ru'],['en'],['ru','en']]){
+  const h=createSimulation(22);h.context.languages=languages;
+  h.eval('Object.assign(options,{modes:["sing"],difficulty:"hard",dice:false,complications:false,modeSettings:{sing:{songLanguages:languages.slice()}}});newGame();roll()');
+  assert.deepEqual(plain(h.eval('game.songLanguages')),languages);
+  assert.equal(h.eval('game.songLanguagePolicyVersion'),1);
+  const pool=plain(h.eval('getPackCardPool(game.contentPack,"songs","hard")')),seen=new Set();
+  for(let i=0;i<pool.length+3;i++){
+   const word=h.eval('pullWord("songs","hard")'),card=pool.find(row=>row.text===word);
+   assert.ok(languages.includes(ledger.get(card.id)));seen.add(card.id);
+  }
+  assert.deepEqual(seen,new Set(pool.filter(card=>languages.includes(ledger.get(card.id))).map(card=>card.id)));
+  h.eval('options.modeSettings.sing.songLanguages.splice(0,options.modeSettings.sing.songLanguages.length,"ru");persist()');
+  assert.deepEqual(plain(h.eval('game.songLanguages')),languages);
+ }
+});
+test('TASK012 C the last selected source cannot be removed or persisted as empty',()=>{
+ const h=createSimulation(23),before=h.eval('JSON.stringify(options.modeSettings)');
+ assert.equal(h.eval('selectSongLanguage("ru")'),false);
+ assert.equal(h.eval('JSON.stringify(options.modeSettings)'),before);
+ assert.match(h.elements.get('mode-source-status').textContent,/хотя бы один/);
+ assert.equal(h.eval('selectSongLanguage("en")'),true);
+ assert.deepEqual(plain(h.eval('options.modeSettings.sing.songLanguages')),['ru','en']);
+ assert.equal(h.eval('selectSongLanguage("ru")'),true);
+ assert.deepEqual(plain(h.eval('options.modeSettings.sing.songLanguages')),['en']);
+ assert.equal(h.eval('selectSongLanguage("en")'),false);
+ assert.equal(h.eval('selectSongLanguage("fr")'),false);
+});
+test('TASK012 C foreign-only Easy is blocked before START without touching the active party or RNG',()=>{
+ const h=createSimulation(24);h.eval('options.modes=["talk"];newGame()');
+ const before=h.eval('JSON.stringify([game,taskMemory])'),raw=h.storage.get('iskra-party:v1');
+ h.eval('Object.assign(options,{modes:["sing"],difficulty:"easy",modeSettings:{sing:{songLanguages:["en"]}}});renderOptions();Math.random=()=>{throw Error("Unavailable START consumed RNG")};newGame()');
+ assert.equal(h.elements.get('start-game').disabled,true);
+ assert.match(h.elements.get('setup-mode-notice').textContent,/источники или сложность/);
+ assert.equal(h.eval('JSON.stringify([game,taskMemory])'),before);assert.equal(h.storage.get('iskra-party:v1'),raw);
+ h.eval('options.difficulty="hard";renderOptions()');assert.equal(h.elements.get('start-game').disabled,false);
+});
+test('TASK012 C old and active language snapshots restore independently of future menu preferences without RAW writes',()=>{
+ for(const version of [1,2,3,4,5])for(const policy of [null,['ru'],['en'],['ru','en']]){
+  const h=createSimulation(25);h.context.policy=policy;h.context.version=version;
+  h.eval('Object.assign(options,{modes:["sing"],difficulty:"hard",dice:false,complications:false,modeSettings:{sing:{songLanguages:policy||["ru"]}}});newGame();game.rulesVersion=version;'+
+   'if(!policy){delete game.songLanguagePolicyVersion;delete game.songLanguages};roll();game.dice=true;options.dice=true;delete options.modeSettings;persist()');
+  const raw=h.storage.get('iskra-party:v1'),before=h.eval('JSON.stringify([game,taskMemory])');let writes=0;
+  const stored=new Map([['iskra-party:v1',raw]]),set=stored.set;stored.set=function(...args){writes++;return Reflect.apply(set,this,args)};
+  const next=createSimulation(26,stored);next.eval('continueGame();render()');
+  assert.equal(next.eval('JSON.stringify([game,taskMemory])'),before);assert.equal(stored.get('iskra-party:v1'),raw);assert.equal(writes,0);
+  assert.deepEqual(plain(next.eval('options.modeSettings')),{sing:{songLanguages:['ru']}});
+  next.eval('selectSongLanguage("en");persist()');
+  assert.equal(next.eval('JSON.stringify([game,taskMemory])'),before);
+ }
+});
 test('TASK012 B new sing rounds select only reviewed Russian songs at every difficulty',()=>{
  const languages=new Map(require('../content/editorial/music-theme-review.json').map(row=>[row.id,row.language]));
  for(const level of ['easy','medium','hard','mixed']){

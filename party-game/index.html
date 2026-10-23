@@ -10,7 +10,7 @@
   <link rel="manifest" href="./manifest.webmanifest?v=3">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=27">
+  <link rel="stylesheet" href="./style.css?v=28">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
   <script src="./curated-words.js?v=1" defer></script>
@@ -31,9 +31,9 @@
   <script src="./presets.js?v=4" defer></script>
   <script src="./immersive-viewport.js?v=1" defer></script>
   <script src="./rules-guide.js?v=1" defer></script>
-  <script src="./menu-navigation.js?v=1" defer></script>
-  <script src="./setup-view.js?v=1" defer></script>
-  <script src="./setup-controls.js?v=1" defer></script>
+  <script src="./menu-navigation.js?v=2" defer></script>
+  <script src="./setup-view.js?v=2" defer></script>
+  <script src="./setup-controls.js?v=2" defer></script>
   <script src="./audio.js?v=1" defer></script>
   <script src="./round-views.js?v=1" defer></script>
   <script src="./match-views.js?v=1" defer></script>
@@ -44,8 +44,8 @@
   <script src="./round-presentation.js?v=1" defer></script>
   <script src="./round-actions.js?v=1" defer></script>
   <script src="./storage-controller.js?v=1" defer></script>
-  <script src="./session-restoration.js?v=3" defer></script>
-  <script src="./app.js?v=53" defer></script>
+  <script src="./session-restoration.js?v=4" defer></script>
+  <script src="./app.js?v=54" defer></script>
 </head>
 <body>
 
@@ -149,14 +149,14 @@
               <summary><span class="settings-fold-label">АКТИВНЫЕ РЕЖИМЫ <span class="settings-fold-count">· <span id="mode-selection-count"></span></span></span><svg class="settings-fold-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
               <div class="settings-fold-body">
                 <div class="toggle-grid mode-grid" id="mode-toggles">
-                  <label><input type="checkbox" value="talk" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Слова</strong><b></b></span></span></label>
-                  <label><input type="checkbox" value="mime" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Жесты</strong><b></b></span></span></label>
-                  <label><input type="checkbox" value="draw" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Нарисуй</strong><b></b></span></span></label>
-                  <label><input type="checkbox" value="sing" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Напой</strong><b></b></span></span></label>
-                  <label><input type="checkbox" value="yesno" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Данетки</strong><b></b></span></span></label>
-                  <label><input type="checkbox" value="secret" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Секретка</strong><b></b></span></span></label>
-                  <label><input type="checkbox" value="blitz" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Блиц</strong><b></b></span></span></label>
-                  <label><input type="checkbox" value="approx" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Примерно</strong><b></b></span></span></label>
+                  <div class="mode-choice"><label><input type="checkbox" value="talk" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Слова</strong><b></b></span></span></label><button type="button" class="mode-gear" data-mode-settings="talk" aria-label="Настройки режима «Слова»" aria-haspopup="dialog" aria-controls="mode-options-backdrop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="m9 3-.6 2.2-1.2.7L5 5.3 2.8 9l1.6 1.6v1.5L2.8 14l2.2 3.7 2.2-.6 1.2.7L9 20h4.4l.6-2.2 1.2-.7 2.2.6 2.2-3.7-1.6-1.9v-1.5L19.6 9l-2.2-3.7-2.2.6-1.2-.7L13.4 3Z" transform="translate(.8 .5)"/><circle cx="12" cy="12" r="3.2"/></svg></button></div>
+                  <div class="mode-choice"><label><input type="checkbox" value="mime" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Жесты</strong><b></b></span></span></label><button type="button" class="mode-gear" data-mode-settings="mime" aria-label="Настройки режима «Жесты»" aria-haspopup="dialog" aria-controls="mode-options-backdrop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="m9 3-.6 2.2-1.2.7L5 5.3 2.8 9l1.6 1.6v1.5L2.8 14l2.2 3.7 2.2-.6 1.2.7L9 20h4.4l.6-2.2 1.2-.7 2.2.6 2.2-3.7-1.6-1.9v-1.5L19.6 9l-2.2-3.7-2.2.6-1.2-.7L13.4 3Z" transform="translate(.8 .5)"/><circle cx="12" cy="12" r="3.2"/></svg></button></div>
+                  <div class="mode-choice"><label><input type="checkbox" value="draw" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Нарисуй</strong><b></b></span></span></label><button type="button" class="mode-gear" data-mode-settings="draw" aria-label="Настройки режима «Нарисуй»" aria-haspopup="dialog" aria-controls="mode-options-backdrop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="m9 3-.6 2.2-1.2.7L5 5.3 2.8 9l1.6 1.6v1.5L2.8 14l2.2 3.7 2.2-.6 1.2.7L9 20h4.4l.6-2.2 1.2-.7 2.2.6 2.2-3.7-1.6-1.9v-1.5L19.6 9l-2.2-3.7-2.2.6-1.2-.7L13.4 3Z" transform="translate(.8 .5)"/><circle cx="12" cy="12" r="3.2"/></svg></button></div>
+                  <div class="mode-choice"><label><input type="checkbox" value="sing" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Напой</strong><b></b></span></span></label><button type="button" class="mode-gear" data-mode-settings="sing" aria-label="Настройки режима «Напой»" aria-haspopup="dialog" aria-controls="mode-options-backdrop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="m9 3-.6 2.2-1.2.7L5 5.3 2.8 9l1.6 1.6v1.5L2.8 14l2.2 3.7 2.2-.6 1.2.7L9 20h4.4l.6-2.2 1.2-.7 2.2.6 2.2-3.7-1.6-1.9v-1.5L19.6 9l-2.2-3.7-2.2.6-1.2-.7L13.4 3Z" transform="translate(.8 .5)"/><circle cx="12" cy="12" r="3.2"/></svg></button></div>
+                  <div class="mode-choice"><label><input type="checkbox" value="yesno" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Данетки</strong><b></b></span></span></label><button type="button" class="mode-gear" data-mode-settings="yesno" aria-label="Настройки режима «Данетки»" aria-haspopup="dialog" aria-controls="mode-options-backdrop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="m9 3-.6 2.2-1.2.7L5 5.3 2.8 9l1.6 1.6v1.5L2.8 14l2.2 3.7 2.2-.6 1.2.7L9 20h4.4l.6-2.2 1.2-.7 2.2.6 2.2-3.7-1.6-1.9v-1.5L19.6 9l-2.2-3.7-2.2.6-1.2-.7L13.4 3Z" transform="translate(.8 .5)"/><circle cx="12" cy="12" r="3.2"/></svg></button></div>
+                  <div class="mode-choice"><label><input type="checkbox" value="secret" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Секретка</strong><b></b></span></span></label><button type="button" class="mode-gear" data-mode-settings="secret" aria-label="Настройки режима «Секретка»" aria-haspopup="dialog" aria-controls="mode-options-backdrop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="m9 3-.6 2.2-1.2.7L5 5.3 2.8 9l1.6 1.6v1.5L2.8 14l2.2 3.7 2.2-.6 1.2.7L9 20h4.4l.6-2.2 1.2-.7 2.2.6 2.2-3.7-1.6-1.9v-1.5L19.6 9l-2.2-3.7-2.2.6-1.2-.7L13.4 3Z" transform="translate(.8 .5)"/><circle cx="12" cy="12" r="3.2"/></svg></button></div>
+                  <div class="mode-choice"><label><input type="checkbox" value="blitz" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Блиц</strong><b></b></span></span></label><button type="button" class="mode-gear" data-mode-settings="blitz" aria-label="Настройки режима «Блиц»" aria-haspopup="dialog" aria-controls="mode-options-backdrop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="m9 3-.6 2.2-1.2.7L5 5.3 2.8 9l1.6 1.6v1.5L2.8 14l2.2 3.7 2.2-.6 1.2.7L9 20h4.4l.6-2.2 1.2-.7 2.2.6 2.2-3.7-1.6-1.9v-1.5L19.6 9l-2.2-3.7-2.2.6-1.2-.7L13.4 3Z" transform="translate(.8 .5)"/><circle cx="12" cy="12" r="3.2"/></svg></button></div>
+                  <div class="mode-choice"><label><input type="checkbox" value="approx" checked><span class="mode-tile"><img class="mode-tile-art" alt="" decoding="sync" draggable="false"><span class="mode-tile-copy"><strong>Примерно</strong><b></b></span></span></label><button type="button" class="mode-gear" data-mode-settings="approx" aria-label="Настройки режима «Примерно»" aria-haspopup="dialog" aria-controls="mode-options-backdrop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="m9 3-.6 2.2-1.2.7L5 5.3 2.8 9l1.6 1.6v1.5L2.8 14l2.2 3.7 2.2-.6 1.2.7L9 20h4.4l.6-2.2 1.2-.7 2.2.6 2.2-3.7-1.6-1.9v-1.5L19.6 9l-2.2-3.7-2.2.6-1.2-.7L13.4 3Z" transform="translate(.8 .5)"/><circle cx="12" cy="12" r="3.2"/></svg></button></div>
                 </div>
               </div>
             </details>
@@ -198,6 +198,27 @@
       <div class="results-card" id="results-content"></div>
     </section>
   </main>
+</div>
+<div class="dialog-backdrop" id="mode-options-backdrop" hidden>
+  <section class="dialog mode-options-dialog" id="mode-options-dialog" role="dialog" aria-modal="true" aria-labelledby="mode-options-title">
+    <header class="mode-options-header">
+      <img id="mode-options-art" alt="" width="52" height="52" draggable="false">
+      <div><span class="section-kicker">НАСТРОЙКИ РЕЖИМА</span><h2 id="mode-options-title"></h2></div>
+      <button type="button" class="dialog-close" id="close-mode-options" aria-label="Закрыть настройки режима">×</button>
+    </header>
+    <div id="mode-song-sources" hidden>
+      <p class="mode-options-copy">Выберите один или оба источника слов.</p>
+      <div class="song-source-options" role="group" aria-label="Источники слов для Напой">
+        <button type="button" class="song-source" data-song-language="ru" aria-pressed="true"><span>Русские слова</span><span class="source-check" aria-hidden="true">✓</span></button>
+        <button type="button" class="song-source" data-song-language="en" aria-pressed="false"><span>Иностранные слова</span><span class="source-check" aria-hidden="true">✓</span></button>
+      </div>
+      <p id="mode-source-status" class="mode-source-status" role="status" aria-live="polite"></p>
+      <p id="mode-source-availability" class="mode-source-warning" hidden></p>
+      <p class="mode-options-note">Применится к новой партии. Начатая партия сохранит свои настройки.</p>
+    </div>
+    <p id="mode-options-placeholder" class="mode-options-copy">Настройки режима скоро появятся.</p>
+    <button type="button" id="mode-options-done" class="button button-primary">ГОТОВО</button>
+  </section>
 </div>
 <div class="dialog-backdrop" id="rules-backdrop" hidden>
   <div class="dialog rules-dialog" role="dialog" aria-modal="true" aria-labelledby="rules-title">

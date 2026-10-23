@@ -19,7 +19,7 @@ function timerMarkup(ms) { return formatTimer(ms); }
 function pointNoun(n) { return n%10===1&&n%100!==11?'ОЧКО':([2,3,4].includes(n%10)&&!(n%100>=12&&n%100<=14)?'ОЧКА':'ОЧКОВ'); }
 const freshOptions = () => {
   const settings=optionsForPartyPreset('classic-duel',3);
-  return {...settings,contentPack:latestGeneralPackSelection(),packPreferences:{},modifierChance:QUIP_MODIFIER_SELECTION_POLICIES[QUIP_MODIFIER_SELECTION_VERSION].defaultChance};
+  return {...settings,modeSettings:sanitizeModeSettings(),contentPack:latestGeneralPackSelection(),packPreferences:{},modifierChance:QUIP_MODIFIER_SELECTION_POLICIES[QUIP_MODIFIER_SELECTION_VERSION].defaultChance};
 };
 let options = freshOptions();
 let soundOn = true;
@@ -139,7 +139,7 @@ function newGame() {
   // START is the explicit action; don't repeat it with a native confirmation.
   if(!options.modes.length){toast('Выберите хотя бы один игровой режим');return;}
   if(!options.promptTypes.length && options.modes.some(id=>['talk','mime','draw','blitz','secret'].includes(id))){toast('Выберите тип заданий');return;}
-  const songPolicy=options.modes.includes('sing')?{songLanguagePolicyVersion:QUIP_SONG_LANGUAGE_POLICY_VERSION,songLanguages:['ru']}:{};
+  const songPolicy=setupSongPolicy(options);
   let contentPack=options.contentPack||{id:'general',version:2};
   // Only a newly started party adopts the latest enabled revision. Validate
   // the requested revision first: a disabled/unknown old theme cannot upgrade

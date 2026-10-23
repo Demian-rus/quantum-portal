@@ -17,6 +17,7 @@ function sanitizeOptions(raw) {
   return {difficulty,duration,rounds,targetScore,finishType,riskRounds,blitzCount,modes:compatibleAwardModes({modes,awardTo,modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION}),promptTypes,
     modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION,
     awardTo,
+    modeSettings:sanitizeModeSettings(raw.modeSettings),
     modifierChance:sanitizeModifierChance(raw.modifierChance),
     packPreferences:Object.fromEntries(Object.entries(raw.packPreferences||{}).filter(([key,value])=>/^[a-z][a-z0-9-]*@[1-9][0-9]*$/.test(key)&&value&&Array.isArray(value.modes)&&Array.isArray(value.promptTypes)).map(([key,value])=>[key,{modes:DEFAULT_MODES.filter(id=>value.modes.includes(id)),promptTypes:PROMPT_TYPES.filter(id=>value.promptTypes.includes(id))}])) ,
     dice:true,complications:raw.complications!==false,scoring:'duel',

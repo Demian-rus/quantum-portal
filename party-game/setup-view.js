@@ -1,4 +1,23 @@
 'use strict';
+function renderModeSettings(){
+  const id=$('mode-options-backdrop').dataset.mode;
+  if(!DEFAULT_MODES.includes(id))return;
+  $('mode-options-title').textContent=getMode(id).title;
+  $('mode-options-art').src=MODE_ASSETS[id];
+  $('mode-song-sources').hidden=id!=='sing';
+  $('mode-options-placeholder').hidden=id==='sing';
+  if(id!=='sing')return;
+  const languages=sanitizeModeSettings(options.modeSettings).sing.songLanguages;
+  document.querySelectorAll('[data-song-language]').forEach(button=>{
+    const selected=languages.includes(button.dataset.songLanguage);
+    button.setAttribute('aria-pressed',String(selected));button.classList.toggle('is-selected',selected);
+  });
+  const settings={...options,modes:['sing']};
+  let available=false;
+  try{available=checkContentPack(options.contentPack,{...settings,...setupSongPolicy(settings)}).available;}catch{}
+  $('mode-source-availability').hidden=available;
+  $('mode-source-availability').textContent=available?'':'Для этих источников на выбранной сложности нет доступных заданий. Измените источники, сложность или набор перед началом партии.';
+}
 // DOM-only rendering of new-game and advanced settings; original behavior preserved.
 function renderOptions() {
   let setupPack=null;
@@ -51,8 +70,8 @@ function renderOptions() {
   $('modifier-chance-value').textContent=options.modifierChance+'%';
   $('setup-award-caption').textContent='Один телефон — два соперника. Очки получает '+(options.awardTo==='setter'?'загадывающий':'отгадывающий')+'. В «Примерно» — ручной выбор.';
   let problems=['Набор недоступен'];
-  if(setupPack)try{problems=checkContentPack(options.contentPack,{...options,modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION}).problems;}catch{}
+  if(setupPack)try{problems=checkContentPack(options.contentPack,{...options,...setupSongPolicy(options),modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION}).problems;}catch{}
   $('start-game').disabled=problems.length>0;
   $('setup-mode-notice').hidden=!problems.length;
-  $('setup-mode-notice').textContent=problems[0]||'';
+  $('setup-mode-notice').textContent=problems[0]?.startsWith('sing/')?'Для «Напой» нет заданий с выбранными источниками на этой сложности. Измените источники или сложность в тонкой настройке.':problems[0]||'';
 }

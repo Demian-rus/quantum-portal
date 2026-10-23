@@ -66,7 +66,7 @@ async function songLanguageUpgrade(browser,url){
  const root=path.resolve(__dirname,'../..'),baseline='fb350403a485ca85e2711bd6500e39fc5a0d046f';
  const git=args=>execFileSync('git',args,{cwd:root,timeout:30000,maxBuffer:4*1024*1024,stdio:['ignore','pipe','pipe']});
  try{git(['cat-file','-e',baseline+'^{commit}'])}catch{git(['fetch','--depth=1','origin',baseline])}
- const files=['sw.js','index.html','app.js','content-packs.js','round-selection.js','session-restoration.js'];
+ const files=['sw.js','index.html','app.js','content-packs.js','round-selection.js','session-restoration.js','menu-navigation.js','setup-view.js','setup-controls.js','style.css'];
  const current=new Map(files.map(name=>[name,fs.readFileSync(path.join(root,'party-game',name))]));
  const previous=new Map(files.map(name=>[name,git(['show',baseline+':party-game/'+name])]));
  const cache=source=>source.toString().match(/const CACHE='([^']+)'/)[1];
