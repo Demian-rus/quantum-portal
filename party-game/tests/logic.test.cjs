@@ -382,6 +382,70 @@ test('restoring expired countdowns uses the saved start and preserves RAW at bot
   }
  }finally{global.Date=NativeDate;Math.random=random}
 });
+test('Continue protects malformed between saves and preserves completed V1-V5 rounds',()=>{
+ const key='iskra-party:v1',backupKey='iskra-party:recovery:v1';
+ const load=saved=>{
+  const raw=' '+JSON.stringify(saved)+'\n',storage=new Map([[key,raw],[backupKey,'previous backup']]),writes=[];
+  storage.set=(...args)=>{writes.push(args);return Map.prototype.set.apply(storage,args)};
+  let draws=0;const original=Math.random,random=()=>{draws++;return 0};let h;
+  Math.random=random;try{h=harness(storage)}finally{Math.random=original}
+  h.context.Math.random=random;
+  return {h,raw,storage,writes,draws:()=>draws};
+ };
+ const malformed=[[],null,undefined,{},'history',7,true,[null],[false],['entry'],[[]],[{}],
+  [{awarded:1}],[{correct:true}],[{correct:false}],[{correct:'false',awarded:1}],
+  [{correct:true,awarded:'1'}],[{correct:true,awarded:null}]];
+ for(const version of [1,2,3,4,5])for(const success of [false,true]){
+  const seed=harness();
+  seed.eval('soundOn=false;options.modes=["talk"];options.dice=false;options.complications=false;'+
+   (version===5?'newGame()':version===4?'v4Game()':'legacyGame('+version+')')+';'+
+   (version===1?'delete game.scoringVersion;':'')+'roll();game.phase="judge";judge('+success+');'+
+   'game.phase="between";game.dice=true;options.dice=true;persist()');
+  const saved=JSON.parse(seed.storage.get(key));
+  if(version===1){
+   const {team,mode,word,awarded,correct}=saved.game.history[0];
+   saved.game.history=[{team,mode,word,awarded,correct}];
+   delete saved.game.rulesVersion;delete saved.game.startingTeamIndex;
+  }
+  if(!success)for(const [i,history]of malformed.entries()){
+   const broken=JSON.parse(JSON.stringify(saved));broken.game.history=history;
+   const {h,raw,storage,writes,draws}=load(broken),label='V'+version+' malformed '+i;
+   assert.doesNotThrow(()=>h.eval('continueGame();render();persist();backToMenu()'),label);
+   assert.equal(h.eval('game'),null,label);assert.equal(h.eval('storageBlocked'),true,label);
+   assert.equal(h.eval('storageProblem'),'corrupt',label);assert.equal(h.eval('loadedSaveRaw'),raw,label);
+   assert.equal(h.elements.get('continue-game').disabled,true,label);
+   assert.match(h.elements.get('toast').textContent,/повреждено и защищено/,label);
+   assert.equal(storage.get(key),raw,label);assert.equal(storage.get(backupKey),'previous backup',label);
+   assert.deepEqual(writes,[],label);assert.equal(draws(),0,label);
+   if(i===0){
+    h.context.window.confirm=()=>false;
+    assert.equal(h.eval('recoverCorruptSave()'),false);assert.deepEqual(writes,[]);
+    assert.equal(storage.get(key),raw);assert.equal(h.eval('storageBlocked'),true);
+    h.context.window.confirm=()=>true;
+    assert.equal(h.eval('recoverCorruptSave()'),true);
+    assert.deepEqual(writes.map(([k])=>k),[backupKey,key]);
+    assert.equal(JSON.parse(storage.get(backupKey)).raw,raw);
+    assert.equal(JSON.parse(storage.get(backupKey)).version,1);
+    assert.ok(Number.isFinite(JSON.parse(storage.get(backupKey)).createdAt));
+    assert.equal(JSON.parse(storage.get(key)).game,null);
+    assert.equal(h.eval('storageBlocked'),false);assert.equal(draws(),0);
+   }
+  }
+  const {h,raw,storage,writes,draws}=load(saved),before=h.eval('JSON.stringify(game)');
+  assert.equal(h.eval('storageBlocked'),false,'Valid V'+version);
+  assert.doesNotThrow(()=>h.eval('continueGame();render()'));
+  assert.equal(h.eval('JSON.stringify(game)'),before);assert.equal(storage.get(key),raw);
+  assert.deepEqual(writes,[]);assert.equal(draws(),0);
+  assert.match(h.elements.get('play-content').innerHTML,/data-action="next"/);
+  assert.ok(h.elements.get('play-content').innerHTML.includes(h.eval('currentTeam()')));
+  assert.match(h.elements.get('play-content').innerHTML,success?/ЕСТЬ!/:/В СЛЕДУЮЩИЙ/);
+  h.eval('handleAction("next")');
+  assert.equal(h.eval('game.phase'),'ready');assert.equal(h.eval('game.roundIndex'),saved.game.roundIndex);
+  assert.equal(h.eval('JSON.stringify(game.scores)'),JSON.stringify(saved.game.scores));
+  assert.equal(h.eval('JSON.stringify(game.history)'),JSON.stringify(saved.game.history));
+  assert.deepEqual(writes.map(([k])=>k),[key]);assert.equal(draws(),0);
+ }
+});
 test('vocabulary is varied, unique within packs and contains at least 400 prompts',()=>{
   const h=harness();
   let total=0;
