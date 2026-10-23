@@ -60,6 +60,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('timer-view.js'),context);
    vm.runInContext(read('round-selection.js'),context);
    vm.runInContext(read('round-settlement.js'),context);
+   vm.runInContext(read('timer-controller.js'),context);
    vm.runInContext(read('app.js'),context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
@@ -179,6 +180,38 @@ test('round settlement archives before saving and preserves timer, sound and ren
   h.eval('effects.length=0;'+action);
   assert.deepEqual(Array.from(h.eval('effects')),[]);
   assert.equal(h.storage.get('iskra-party:v1'),raw);
+ }
+});
+test('late countdown callbacks preserve the planned deadline, one interval and one timeout',()=>{
+ for(const level of ['medium','hard']){
+  const h=harness(),active=new Map(),sounds=[];let clock=1792756800000,nextId=0,timeoutWrites=0;
+  h.context.Date=class extends Date{static now(){return clock}};
+  h.context.setInterval=(fn,delay)=>{assert.equal(delay,100);active.set(++nextId,fn);return nextId};
+  h.context.clearInterval=id=>active.delete(id);
+  h.eval(`soundOn=false;options.modes=['talk'];options.dice=false;options.difficulty='${level}';newGame();roll();toggleWord()`);
+  const planned=h.eval('game.current.autoStartAt'),seconds=h.eval('game.current.seconds');
+  const sound=h.context.sfx,write=h.context.localStorage.setItem;
+  h.context.sfx=function(kind){sounds.push(kind);return Reflect.apply(sound,this,arguments)};
+  h.context.localStorage.setItem=function(key,value){
+   if(key==='iskra-party:v1'&&JSON.parse(value).game?.phase==='judge')timeoutWrites++;
+   return Reflect.apply(write,this,arguments);
+  };
+  h.eval("soundOn=true;Math.random=()=>{throw Error('Timer consumed RNG')}");
+  const fire=()=>{assert.equal(active.size,1);Array.from(active.values())[0]()};
+  clock=planned+3000;fire();
+  const deadline=planned+seconds*1000;
+  assert.equal(h.eval('game.current.deadline'),deadline);
+  assert.equal(h.eval('game.current.autoStartAt'),null);assert.equal(h.eval('game.phase'),'play');
+  clock=deadline-10000;fire();fire();h.eval('render();continueGame()');
+  clock=deadline-3000;fire();fire();
+  assert.deepEqual(sounds,['go','tick','last']);
+  const stale=Array.from(active.values())[0];clock=deadline;fire();
+  const stored=h.storage.get('iskra-party:v1'),state=h.eval('JSON.stringify(game)');
+  stale();h.eval('tick();render();continueGame();finishTimer("timeout")');
+  assert.equal(h.eval('JSON.stringify(game)'),state);assert.equal(h.storage.get('iskra-party:v1'),stored);
+  assert.equal(h.eval('game.current.finishedReason'),'timeout');assert.equal(h.eval('game.roundIndex'),0);
+  assert.deepEqual(Array.from(h.eval('game.scores')),[0,0]);assert.equal(active.size,0);
+  assert.equal(timeoutWrites,1);assert.deepEqual(sounds,['go','tick','last','time']);
  }
 });
 test('vocabulary is varied, unique within packs and contains at least 400 prompts',()=>{
