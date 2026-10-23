@@ -63,6 +63,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('timer-controller.js'),context);
    vm.runInContext(read('round-presentation.js'),context);
    vm.runInContext(read('round-actions.js'),context);
+   vm.runInContext(read('storage-controller.js'),context);
    vm.runInContext(read('app.js'),context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
@@ -301,6 +302,54 @@ test('last Blitz answer checks the exact deadline before changing its queue or c
    assert.equal(h.storage.get('iskra-party:v1'),raw);
   }
  }
+});
+test('storage failures preserve the write barrier and verify backup before any reset',()=>{
+ const key='iskra-party:v1',recovery='iskra-party:recovery:v1',raw=' {"version":1,"options":',changed='another-tab-save';
+ const sequence=['get:save','set:backup','get:backup','get:save','set:save','get:save'];
+ for(const [fault,until]of [['first-read',1],['changed-before',1],['backup-throw',2],['backup-drop',3],
+  ['backup-mismatch',3],['backup-read',3],['changed-after-backup',4],['second-read',4],
+  ['reset-throw',5],['reset-drop',6],['reset-read',6]]){
+  const h=harness(),events=[];let reads=0,confirmed=0;
+  h.storage.set(key,raw);h.eval('readSaved()');
+  h.context.Date=class extends Date{static now(){return 1792756800000}};
+  h.context.window.confirm=()=>{confirmed++;return true};
+  h.context.toast=()=>events.push('toast');
+  h.context.Math.random=()=>{throw Error('Storage operation consumed RNG')};
+  const state=h.eval('JSON.stringify([game,options,soundOn,taskMemory])');
+  const reset=h.eval('JSON.stringify({version:1,options,soundOn,game:null,...(taskMemory?{taskMemory}:{})})');
+  if(fault==='changed-before')h.storage.set(key,changed);
+  h.context.localStorage.getItem=name=>{
+   events.push('get:'+(name===key?'save':'backup'));
+   if(name===key){reads++;if((fault==='first-read'&&reads===1)||(fault==='second-read'&&reads===2)||(fault==='reset-read'&&reads===3))throw Error(fault)}
+   if(name===recovery&&fault==='backup-read')throw Error(fault);
+   if(name===recovery&&fault==='backup-mismatch')return 'unverified';
+   return h.storage.has(name)?h.storage.get(name):null;
+  };
+  h.context.localStorage.setItem=(name,value)=>{
+   events.push('set:'+(name===key?'save':'backup'));
+   if((name===recovery&&fault==='backup-throw')||(name===key&&fault==='reset-throw'))throw Error(fault);
+   if((name===recovery&&fault==='backup-drop')||(name===key&&fault==='reset-drop'))return;
+   h.storage.set(name,value);
+   if(name===recovery&&fault==='changed-after-backup')h.storage.set(key,changed);
+  };
+  assert.equal(h.eval('recoverCorruptSave()'),false,fault);assert.equal(confirmed,1);
+  assert.deepEqual(events,[...sequence.slice(0,until),'toast'],fault+' I/O order');
+  assert.equal(h.eval('storageBlocked'),true);assert.equal(h.eval('storageProblem'),'corrupt');
+  assert.equal(h.eval('loadedSaveRaw'),raw);assert.equal(h.eval('JSON.stringify([game,options,soundOn,taskMemory])'),state);
+  assert.equal(h.storage.get(key),fault==='reset-read'?reset:fault.startsWith('changed-')?changed:raw,fault);
+  if(h.storage.has(recovery))assert.equal(h.storage.get(recovery),JSON.stringify({version:1,createdAt:1792756800000,raw}));
+  const snapshot=Array.from(h.storage);events.length=0;h.eval('persist()');
+  assert.deepEqual(events,[]);assert.deepEqual(Array.from(h.storage),snapshot);
+ }
+ const inaccessible=harness();let writes=0;
+ inaccessible.context.localStorage.getItem=()=>{throw Error('read denied')};
+ inaccessible.context.localStorage.setItem=()=>{writes++;throw Error('write denied')};
+ assert.equal(inaccessible.eval('readSaved()'),null);assert.equal(inaccessible.eval('storageProblem'),'unavailable');
+ assert.equal(inaccessible.eval('storageBlocked'),true);inaccessible.eval('persist()');assert.equal(writes,0);
+ const unwritable=harness(),before=unwritable.eval('JSON.stringify([game,options,taskMemory,storageBlocked,storageProblem,loadedSaveRaw])');
+ unwritable.context.localStorage.setItem=()=>{throw Error('quota exceeded')};
+ assert.doesNotThrow(()=>unwritable.eval('persist()'));
+ assert.equal(unwritable.eval('JSON.stringify([game,options,taskMemory,storageBlocked,storageProblem,loadedSaveRaw])'),before);
 });
 test('vocabulary is varied, unique within packs and contains at least 400 prompts',()=>{
   const h=harness();
