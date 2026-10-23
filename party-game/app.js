@@ -285,22 +285,6 @@ function showApprox(){
    makeButton('Обе команды +1','award-both')+makeButton('Никому','award-none'):
    makeButton('Показать ответ','reveal-approx','button-primary button-big'))+'</div>';
 }
-function revealApprox(){
- if(!game||game.phase!=='task'||roundInteraction()!=='estimate')return;
- game.phase='judge';game.current.answerRevealed=true;persist();render();
-}
-function awardApprox(choice){
- if(!game||game.phase!=='judge'||roundInteraction()!=='estimate'||!game.current.answerRevealed)return;
- const c=game.current,outcome=settleSharedAward(c,choice);
- outcome.deltas.forEach((delta,index)=>{game.scores[index]+=delta;});
- game.history.push({mode:c.modeId,word:c.question.question,questionId:c.question.id,
-  answer:c.question.answer,unit:c.question.unit,note:c.question.note,difficulty:c.difficulty,
-  recipients:outcome.recipients,recipientNames:outcome.recipients.map(index=>game.teams[index]),
-  sharedAward:choice==='both',deltas:outcome.deltas,awarded:outcome.deltas.reduce((a,b)=>a+b,0),
-  correct:outcome.recipients.length>0,risk:false,basePoints:c.basePoints,modifierPoints:0,
-  rulesVersion:game.rulesVersion,setter:currentTeam()});
- completeRound(outcome.recipients.length>0);
-}
 function blitzStatus() {
   const c=game.current;
   const left=c.blitzQueue?.length ?? Math.max(0,c.blitzWords.length-c.blitzIndex);
@@ -384,49 +368,6 @@ function finishTimer(reason) {
     if(navigator.vibrate)navigator.vibrate([120,60,180]);
   }
   render();
-}
-function recordAnswer(yes,modifierSuccess=true) {
-  if(!game||!['judge','play'].includes(game.phase)||roundInteraction()!=='explain')return;
-  if(yes&&!modifierSuccess&&!allowsModifierResult())return;
-  const teamIndex=awardTeamIndex(),c=game.current;
-  const outcome=settleQuipRound(game,c,{taskSuccess:yes,modifierSuccess},game.scores[teamIndex]);
-  game.scores[teamIndex]+=outcome.delta;
-  game.history.push({
-    team:game.teams[teamIndex],setter:currentTeam(),mode:c.modeId,
-    ...(game.awardPolicyVersion?{recipientIndex:teamIndex,awardTo:game.awardTo,awardPolicyVersion:game.awardPolicyVersion}:{}),
-    word:c.modeId==='blitz'?c.blitzWords.join(' / '):c.word,
-    awarded:outcome.delta,correct:outcome.success,risk:!!c.risk,
-    rulesVersion:outcome.rulesVersion,difficulty:c.difficulty,
-    basePoints:c.basePoints,modifierPoints:outcome.success?(outcome.modifierAwarded??c.modifierPoints??0):0,
-    ...(ruleSetForGame(game).splitModifierOutcome?{outcome:outcome.outcome,taskSuccess:outcome.taskSuccess,
-      modifierSuccess:outcome.modifierSuccess,baseAwarded:outcome.baseAwarded,reward:outcome.reward,penalty:outcome.penalty,modeName:getMode(c.modeId).title}:{})
-  });
-  completeRound(outcome.success);
-}
-function completeRound(success){
-  game.roundIndex++;
-  // Confirmation is the final action for a round; no extra Next button.
-  game.phase=matchComplete()?'results':'ready';
-  if(game.phase==='results')archiveCurrentTaskHistory();
-  game.current=null;
-  stopTicking();persist();sfx(success?'win':'fail');render();
-}
-function correctNow(modifierSuccess=true) {
-  if(!game||game.phase!=='play'||game.current?.modeId==='blitz')return;
-  const c=game.current;
-  if(!c.paused&&Date.now()>=c.deadline){finishTimer('timeout');return;}
-  if(c.paused&&(c.remainingMs??0)<=0){finishTimer('timeout');return;}
-  recordAnswer(true,modifierSuccess);
-}
-function wrongNow() {
-  if(!game||game.phase!=='play'||game.current?.modeId==='blitz')return;
-  const c=game.current;
-  if(!c.paused && Date.now()>=c.deadline){finishTimer('timeout');return;}
-  recordAnswer(false);
-}
-function judge(yes,modifierSuccess=true) {
-  if(!game||game.phase!=='judge')return;
-  recordAnswer(yes,modifierSuccess);
 }
 function render() {
   if(!game||game.phase==='home'){setScene('home');return;}
