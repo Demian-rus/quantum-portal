@@ -57,6 +57,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('audio.js'),context);
    vm.runInContext(read('round-views.js'),context);
    vm.runInContext(read('match-views.js'),context);
+   vm.runInContext(read('timer-view.js'),context);
    vm.runInContext(read('app.js'),context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
@@ -117,6 +118,35 @@ test('match views preserve V1-V5 and shared-award state without RNG or storage w
   check('renderMatch();showBetween();game.history.map(historyMarkup);showResults();');
   assert.equal(h.eval('document.body.dataset.screen'),'results');
   if(approx)assert.match(h.elements.get('results-content').innerHTML,/Обе команды.*\+1 \/ \+1/);
+ }
+});
+test('timer views preserve restored V1-V5 clocks without RNG, writes or new intervals',()=>{
+ for(const version of [1,2,3,4,5])for(const mode of ['talk','blitz']){
+  const stored=new Map(),a=harness(stored);
+  a.eval('soundOn=false;options.modes=["'+mode+'"];options.dice=false;options.difficulty="easy";Math.random=()=>0;'+
+   (version===5?'newGame()':version===4?'v4Game()':'legacyGame('+version+')')+';'+
+   (version===1?'delete game.scoringVersion;':'')+'roll();toggleWord();startTimer();pauseTimer();'+
+   'game.current.remainingMs=65000;game.dice=true;persist()');
+  const saved=a.eval('JSON.stringify(game)'),raw=stored.get('iskra-party:v1'),h=harness(stored);
+  assert.equal(h.eval('JSON.stringify(game)'),saved,'Restored V'+version+' '+mode);
+  assert.equal(stored.get('iskra-party:v1'),raw,'Restore must preserve saved bytes');
+  const check=source=>{
+   const before=h.eval('JSON.stringify([game,options,taskMemory,intervalId,lastChimeAt])'),bytes=stored.get('iskra-party:v1');
+   h.eval('var timerViewOriginals=[Math.random,persist,rewardForRound,settleQuipRound,setInterval,localStorage.setItem];'+
+    'Math.random=persist=rewardForRound=settleQuipRound=setInterval=localStorage.setItem=()=>{throw Error("Side effect in timer view")};'+
+    'try{'+source+'}finally{[Math.random,persist,rewardForRound,settleQuipRound,setInterval,localStorage.setItem]=timerViewOriginals}');
+   assert.equal(h.eval('JSON.stringify([game,options,taskMemory,intervalId,lastChimeAt])'),before,source+' V'+version+' '+mode);
+   assert.equal(stored.get('iskra-party:v1'),bytes,source+' saved bytes');
+  };
+  check('showTimer();updateTimerVisual(5000);');assert.equal(h.elements.get('active-timer').innerHTML,'0:05');
+  check('updateTimerVisual(65000);');assert.equal(h.elements.get('active-timer').innerHTML,'1:05');
+  h.eval('resumeTimer()');check('showTimer();');
+  h.eval('game.current.deadline=Date.now()-1;persist()');check('showTimer();');
+  assert.equal(h.elements.get('active-timer').innerHTML,'0:00');
+  for(const offset of [60000,-1]){
+   h.eval('game.phase="countdown";game.current.deadline=null;game.current.autoStartAt=Date.now()+'+offset+';persist()');
+   check('showCountdown();');
+  }
  }
 });
 test('vocabulary is varied, unique within packs and contains at least 400 prompts',()=>{
