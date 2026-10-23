@@ -154,6 +154,8 @@ const PARTY_VOCABULARY=Object.freeze(Object.fromEntries(
     PARTY_CARD_LEVELS.map(level=>[level,Object.freeze(PARTY_CARD_POOLS[type][level].map(card=>card.text))])
   ))])
 ));
+// Lucide-like vector UI controls; illustrated mode assets continue to use WebP.
+// The wheel is a window into a repeating ring, not a strip that ends on the prize.
 function advanceBlitz(correct) {
   if(!game||game.phase!=='play'||game.current.paused||game.current.modeId!=='blitz')return;
   const c=game.current;
