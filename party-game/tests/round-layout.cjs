@@ -71,7 +71,7 @@ module.exports=async function roundLayout(browser,url){
     }
     if(mode!=='blitz'){
      assert.ok(playing.eye.w>=44&&playing.eye.h>=44,'Hide target too small');
-     assert.ok(playing.eye.y>=playing.card.bottom+3,'Hide control overlaps the card');
+     assert.ok(playing.eye.y>=playing.card.bottom+3||playing.eye.right<=playing.card.x-3||playing.eye.x>=playing.card.right+3,'Hide control overlaps the card');
      assert.ok(playing.eye.bottom<=playing.wrong.y-3,'Hide control overlaps verdicts');
      const deadline=await page.evaluate(()=>game.current.deadline);
      await page.locator('[data-action="toggle-word"]').click();

@@ -54,6 +54,7 @@ function fitsViewport(g,device,stage) {
     headless:true,args:['--no-sandbox']
   });
   try{
+    await require('./round-layout.cjs')(browser,URL);
     await require('./storage-protection.cjs')(browser,URL);
     await require('./task-history-browser.cjs')(browser,URL);
     await require('./modifiers-v2-browser.cjs')(browser,URL);
@@ -63,7 +64,6 @@ function fitsViewport(g,device,stage) {
     await require('./thematic-game.cjs')(browser,URL);
     await require('./modifier-frequency.cjs')(browser,URL);
     await require('./mode-settings-browser.cjs')(browser,URL);
-    await require('./round-layout.cjs')(browser,URL);
     await require('./round-outcomes.cjs')(browser,URL);
     await require('./award-policy.cjs')(browser,URL);
     await require('./rules-guide.cjs')(browser,URL);

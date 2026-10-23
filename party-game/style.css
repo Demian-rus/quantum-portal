@@ -950,11 +950,11 @@ body[data-screen="preferences"]::after{background:#11082085}
 .scene--game .stable-round .round-top {
  width:100%;min-height:0;max-height:100%;min-width:0;
  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
- gap:clamp(6px,calc(.85 * var(--kvip-locked-vh, 1dvh)),10px);overflow:hidden;padding:0 3px clamp(8px,calc(1.8 * var(--kvip-locked-vh, 1dvh)),17px);
+ gap:clamp(6px,calc(.85 * var(--kvip-locked-vh, 1dvh)),10px);overflow:hidden;padding:6px 3px clamp(8px,calc(1.8 * var(--kvip-locked-vh, 1dvh)),17px);
 }
 .scene--game .stable-round .round-top--task .mode-symbol {
  width:clamp(64px,calc(11 * var(--kvip-locked-vh, 1dvh)),112px);height:clamp(64px,calc(11 * var(--kvip-locked-vh, 1dvh)),112px);
- margin:0;flex:0 0 auto;min-height:0;animation:task-icon-enter .35s ease-out both;
+ margin:0 0 3px;flex:0 0 auto;min-height:0;animation:task-icon-enter .35s ease-out both;
 }
 .scene--game .stable-round .round-top--task .mode-name {
  font-size:clamp(20px,calc(3 * var(--kvip-locked-vh, 1dvh)),30px);margin:0;line-height:1.17;
@@ -1754,7 +1754,7 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
  .scene--game .stable-round .round-top{grid-column:1;grid-row:1;justify-content:center;padding:0;gap:3px}
  .scene--game .stable-round .round-fixed-card{grid-column:2;grid-row:1;height:100%;max-height:120px}
  .scene--game .stable-round .round-bottom{grid-column:1/-1;grid-row:2;padding-bottom:8px;position:relative}
- .scene--game .round-visibility{position:absolute;bottom:calc(8px + var(--decision-label) + var(--decision-size) + 8px);left:0;width:100%}
+ .scene--game .round-visibility{position:absolute;bottom:calc(8px + var(--decision-label) + var(--decision-size) + 8px);left:0;width:calc((100% - 12px)/2.4)}
  .scene--game .stable-round .round-top--task .mode-symbol{width:38px;height:38px;min-height:28px}
  .scene--game .stable-round .round-top--task .mode-name{font-size:15px}
  .scene--game .stable-round .round-top--task .mode-rule{font-size:9px;max-height:44px;padding:3px 5px}
