@@ -62,6 +62,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('round-settlement.js'),context);
    vm.runInContext(read('timer-controller.js'),context);
    vm.runInContext(read('round-presentation.js'),context);
+   vm.runInContext(read('round-actions.js'),context);
    vm.runInContext(read('app.js'),context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
@@ -256,6 +257,49 @@ test('repeated reel rendering preserves saved state and ignores stale animation 
   assert.equal(landed,marks,'Old round must not highlight the new winner');
   assert.equal(h.eval('JSON.stringify([game,options,taskMemory])'),next);
   assert.equal(h.storage.get('iskra-party:v1'),nextRaw);
+ }
+});
+test('last Blitz answer checks the exact deadline before changing its queue or completing twice',()=>{
+ for(const version of [1,2,3,4,5])for(const offset of [-1,0,1])for(const correct of [false,true]){
+  const h=harness();let clock=1792756800000;
+  h.context.Date=class extends Date{static now(){return clock}};
+  h.eval('soundOn=false;options.modes=["blitz"];options.difficulty="easy";options.dice=false;'+
+   (version===5?'newGame()':version===4?'v4Game()':'legacyGame('+version+')')+';'+
+   (version===1?'delete game.scoringVersion;':'')+'roll();toggleWord();startTimer();'+
+   'while(game.current.blitzQueue.length>1)advanceBlitz(true)');
+  const before=JSON.parse(h.eval('JSON.stringify(game.current)'));
+  h.eval(`globalThis.boundaryEffects=[];
+   for(const name of ['finishTimer','stopTicking','persist','sfx','render','showTimer']){
+    const original=globalThis[name];globalThis[name]=function(...args){
+     boundaryEffects.push(name+(['finishTimer','sfx'].includes(name)?':'+args[0]:''));
+     return Reflect.apply(original,this,args);
+    };
+   }
+   const write=localStorage.setItem;localStorage.setItem=function(...args){
+    boundaryEffects.push('write');return Reflect.apply(write,this,args);
+   };
+   Math.random=()=>{throw Error('Blitz action consumed RNG')};`);
+  clock=before.deadline+offset;h.eval('advanceBlitz('+correct+')');
+  const after=JSON.parse(h.eval('JSON.stringify(game.current)'));
+  const reason=offset>=0?'timeout':correct?'completed':null;
+  assert.equal(h.eval('game.phase'),reason?'judge':'play');
+  assert.equal(after.blitzIndex,before.blitzIndex+(offset<0?1:0));
+  assert.equal(after.blitzCorrect,before.blitzCorrect+(offset<0&&correct?1:0));
+  assert.deepEqual(after.blitzQueue,reason==='completed'?[]:before.blitzQueue);
+  assert.equal(after.word,before.word);assert.equal(after.deadline,reason?null:before.deadline);
+  assert.equal(after.finishedReason,reason||before.finishedReason);
+  assert.equal(h.eval('game.roundIndex'),0);assert.equal(h.eval('game.history.length'),0);
+  assert.deepEqual(Array.from(h.eval('game.scores')),[0,0]);
+  const expected=reason?['finishTimer:'+reason,'stopTicking','persist','write',
+   ...(reason==='timeout'?['sfx:time']:[]),'render','stopTicking']:['persist','write','sfx:button','showTimer'];
+  assert.deepEqual(Array.from(h.eval('boundaryEffects')),expected);
+  if(reason){
+   const state=h.eval('JSON.stringify([game,options,taskMemory])'),raw=h.storage.get('iskra-party:v1');
+   h.eval('boundaryEffects.length=0;advanceBlitz(true);advanceBlitz(false);tick()');
+   assert.deepEqual(Array.from(h.eval('boundaryEffects')),[]);
+   assert.equal(h.eval('JSON.stringify([game,options,taskMemory])'),state);
+   assert.equal(h.storage.get('iskra-party:v1'),raw);
+  }
  }
 });
 test('vocabulary is varied, unique within packs and contains at least 400 prompts',()=>{
