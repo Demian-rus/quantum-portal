@@ -30,6 +30,7 @@ function armBrowserBackGuard(){
   }catch{backGuardArmed=false;}
 }
 function backWithinKvip(){
+  if(!$('mode-options-backdrop').hidden){closeModeSettings();return;}
   if(!$('rules-backdrop').hidden){closeRules();return;}
   switch(activeScene){
     case 'advanced':closeAdvanced();return;
@@ -42,7 +43,7 @@ function backWithinKvip(){
 function onBrowserBack(){
   if(!backGuardArmed)return;
   backGuardArmed=false;
-  if(activeScene==='home'&&$('rules-backdrop').hidden){
+  if(activeScene==='home'&&$('rules-backdrop').hidden&&$('mode-options-backdrop').hidden){
     const now=Date.now();
     if(lastHomeBackAt&&now-lastHomeBackAt<2000){
       lastHomeBackAt=0;
