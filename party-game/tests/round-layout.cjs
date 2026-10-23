@@ -54,6 +54,7 @@ module.exports=async function roundLayout(browser,url){
     assert.ok(g.title.bottom<=g.rule.y-3&&g.rule.bottom<=g.reward.y-3,'Mode copy/reward collide: '+JSON.stringify(g));
     if(device.height>device.width)assert.ok(g.reward.bottom<=g.card.y-3,'Reward collides with card: '+JSON.stringify(g));
     assert.equal(await page.locator('.challenge-overline,.challenge-details').count(),0);
+    if(mode==='mime'&&device.name==='phone')await page.screenshot({path:'artifacts/quip-mobile-layout/task013a-phone-plain-task.png'});
     const saved=await page.evaluate(()=>({raw:localStorage.getItem('iskra-party:v1'),game:JSON.stringify(game),memory:JSON.stringify(taskMemory)}));
     await page.evaluate(()=>render());
     assert.deepEqual(await page.evaluate(()=>({raw:localStorage.getItem('iskra-party:v1'),game:JSON.stringify(game),memory:JSON.stringify(taskMemory)})),saved,'Rendering changed saved data');
@@ -74,11 +75,14 @@ module.exports=async function roundLayout(browser,url){
      assert.ok(playing.eye.w>=44&&playing.eye.h>=44,'Hide target too small');
      assert.ok(playing.eye.y>=playing.card.bottom+3||playing.eye.right<=playing.card.x-3||playing.eye.x>=playing.card.right+3,'Hide control overlaps the card');
      assert.ok(playing.eye.bottom<=playing.wrong.y-3,'Hide control overlaps verdicts');
+     assert.ok(playing.eye.y>=playing.timer.bottom+3||playing.eye.right<=playing.timer.x-3||playing.eye.x>=playing.timer.right+3,'Hide control overlaps timer');
      const deadline=await page.evaluate(()=>game.current.deadline);
      await page.locator('[data-action="toggle-word"]').click();
      await page.locator('[data-action="toggle-word"]').click();
      assert.equal(await page.evaluate(()=>game.current.deadline),deadline);
     }
+    if(mode==='mime'&&device.name==='phone')await page.screenshot({path:'artifacts/quip-mobile-layout/task013a-phone-plain-timer.png'});
+    if(mode==='secret'&&device.name==='landscape')await page.screenshot({path:'artifacts/quip-mobile-layout/task013a-landscape-timer.png'});
     if(mode==='secret'&&['phone','narrow'].includes(device.name)){
      await page.screenshot({path:'artifacts/quip-mobile-layout/task013a-'+device.name+'-timer.png'});
      await fixture(page,mode,true);
