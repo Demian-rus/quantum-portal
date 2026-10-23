@@ -59,6 +59,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('match-views.js'),context);
    vm.runInContext(read('timer-view.js'),context);
    vm.runInContext(read('round-selection.js'),context);
+   vm.runInContext(read('round-settlement.js'),context);
    vm.runInContext(read('app.js'),context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
@@ -148,6 +149,36 @@ test('timer views preserve restored V1-V5 clocks without RNG, writes or new inte
    h.eval('game.phase="countdown";game.current.deadline=null;game.current.autoStartAt=Date.now()+'+offset+';persist()');
    check('showCountdown();');
   }
+ }
+});
+test('round settlement archives before saving and preserves timer, sound and render order without RNG',()=>{
+ for(const mode of ['talk','approx'])for(const success of [false,true]){
+  const h=harness();
+  h.eval(`soundOn=false;options.modes=['${mode}'];options.dice=false;options.finishType='rounds';options.rounds=2;newGame();roll();
+   if(roundInteraction()==='estimate'){revealApprox();awardApprox('none')}else{game.phase='judge';judge(false)}
+   roll();if(roundInteraction()==='estimate')revealApprox();else game.phase='judge';`);
+  h.eval(`globalThis.effects=[];
+   for(const name of ['archiveCurrentTaskHistory','stopTicking','persist','sfx','render']){
+    const original=globalThis[name];globalThis[name]=function(...args){
+     effects.push(name==='sfx'?'sfx:'+args[0]:name);return Reflect.apply(original,this,args);
+    };
+   }
+   const write=localStorage.setItem;localStorage.setItem=function(...args){
+    if(args[0]==='iskra-party:v1'){
+     if(game.phase!=='results'||game.current!==null||game.roundIndex!==2)throw Error('Incomplete settlement at save');
+     effects.push('write');
+    }
+    return Reflect.apply(write,this,args);
+   };
+   Math.random=()=>{throw Error('Settlement consumed RNG')};`);
+  const action=mode==='approx'?`awardApprox('${success?'both':'none'}')`:`judge(${success})`;
+  h.eval(action);
+  assert.deepEqual(Array.from(h.eval('effects')),['archiveCurrentTaskHistory','stopTicking','persist','write','sfx:'+(success?'win':'fail'),'render','stopTicking']);
+  const raw=h.storage.get('iskra-party:v1');
+  assert.equal(raw,h.eval('JSON.stringify({version:1,options,soundOn,game,...(taskMemory?{taskMemory}:{})})'));
+  h.eval('effects.length=0;'+action);
+  assert.deepEqual(Array.from(h.eval('effects')),[]);
+  assert.equal(h.storage.get('iskra-party:v1'),raw);
  }
 });
 test('vocabulary is varied, unique within packs and contains at least 400 prompts',()=>{
