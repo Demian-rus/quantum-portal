@@ -71,7 +71,7 @@ async function upgradingPWA(){
   const url='http://127.0.0.1:'+port+'/party-game/';
   browser=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',
    headless:true,args:['--no-sandbox']});
-  const context=await browser.newContext({viewport:{width:390,height:844}});
+  const context=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});
   try{
    const page=await context.newPage(),errors=[];
    page.setDefaultTimeout(30000);
@@ -84,14 +84,16 @@ async function upgradingPWA(){
    await page.evaluate(()=>{
     chooseStartingTeam=()=>0;
     options.modes=['talk'];options.promptTypes=['word'];options.difficulty='easy';
-    options.dice=false;options.complications=false;options.finishType='rounds';options.rounds=6;
+    options.complications=false;options.finishType='rounds';options.rounds=6;
     soundOn=false;newGame();
    });
    await page.locator('[data-action="roll"]').click();
+   await page.waitForFunction(()=>game?.phase==='task');
    await page.locator('[data-action="toggle-word"]').click();
    await page.locator('[data-action="start-timer"]').click();
    await page.locator('[data-action="correct-now"]').click();
    await page.locator('[data-action="roll"]').click();
+   await page.waitForFunction(()=>game?.phase==='task');
    const before=await readMatch(page);
    assert.equal(before.game.roundIndex,1);
    assert.equal(before.game.history.length,1);
