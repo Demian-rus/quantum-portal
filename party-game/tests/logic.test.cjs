@@ -55,6 +55,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('setup-view.js'),context);
    vm.runInContext(read('setup-controls.js'),context);
    vm.runInContext(read('audio.js'),context);
+   vm.runInContext(read('round-views.js'),context);
    vm.runInContext(read('app.js'),context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
@@ -71,6 +72,29 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
   if(!randomizeStarter)vm.runInContext('chooseStartingTeam=()=>0',context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
 }
+test('round views keep V1-V5 snapshots without RNG, writes or reward recalculation',()=>{
+ for(const version of [1,2,3,4,5]){
+  const h=harness();
+  h.eval('soundOn=false;options.modes=["talk"];options.dice=false;Math.random=()=>0;'+
+   (version<4?'legacyGame('+version+')':'newGame();game.rulesVersion='+version)+';'+
+   (version===1?'delete game.scoringVersion;':''));
+  const check=view=>{
+   const before=h.eval('JSON.stringify([game,options,taskMemory])'),raw=h.storage.get('iskra-party:v1');
+   h.eval('var viewOriginals=[Math.random,persist,rewardForRound,localStorage.setItem];'+
+    'Math.random=persist=rewardForRound=localStorage.setItem=()=>{throw Error("Side effect while rendering")};'+
+    view+'();[Math.random,persist,rewardForRound,localStorage.setItem]=viewOriginals');
+   assert.equal(h.eval('JSON.stringify([game,options,taskMemory])'),before,view+' V'+version);
+   assert.equal(h.storage.get('iskra-party:v1'),raw,view+' persisted V'+version);
+  };
+  check('showReady');
+  // A saved reward may differ from the current table; views must trust its snapshot.
+  h.eval('game.current=rollOutcome();game.phase="task";game.current.points=37;'+
+   'game.current.basePoints=31;game.current.modifierPoints=6;game.current.complication="Сохранённое условие";persist()');
+  check('showTask');assert.match(h.elements.get('play-content').innerHTML,/ЗА ВЕРНЫЙ ОТВЕТ: \+37/);
+  h.eval('game.phase="judge";persist()');check('showJudge');
+  assert.match(h.elements.get('play-content').innerHTML,version===5?/Основа \+31 · усложнение \+6/:/Награда: \+37/);
+ }
+});
 test('vocabulary is varied, unique within packs and contains at least 400 prompts',()=>{
   const h=harness();
   let total=0;
