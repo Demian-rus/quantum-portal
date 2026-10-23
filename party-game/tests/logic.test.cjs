@@ -61,6 +61,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('round-selection.js'),context);
    vm.runInContext(read('round-settlement.js'),context);
    vm.runInContext(read('timer-controller.js'),context);
+   vm.runInContext(read('round-presentation.js'),context);
    vm.runInContext(read('app.js'),context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
@@ -212,6 +213,49 @@ test('late countdown callbacks preserve the planned deadline, one interval and o
   assert.equal(h.eval('game.current.finishedReason'),'timeout');assert.equal(h.eval('game.roundIndex'),0);
   assert.deepEqual(Array.from(h.eval('game.scores')),[0,0]);assert.equal(active.size,0);
   assert.equal(timeoutWrites,1);assert.deepEqual(sounds,['go','tick','last','time']);
+ }
+});
+test('repeated reel rendering preserves saved state and ignores stale animation callbacks',()=>{
+ for(const reduced of [false,true]){
+  const h=harness(),frames=[],ends=[];let landed=0;
+  h.context.requestAnimationFrame=fn=>frames.push(fn);
+  h.context.window.matchMedia=()=>({matches:reduced});
+  const track=h.context.document.getElementById('reel-track');
+  track.children=Array.from({length:100},(_,i)=>({offsetLeft:i*160,offsetWidth:160}));
+  track.addEventListener=(type,fn)=>{assert.equal(type,'transitionend');ends.push(fn)};
+  track.querySelector=()=>({classList:{add:name=>{assert.equal(name,'reel-item--landed');landed++}}});
+  h.context.document.getElementById('reel-window').clientWidth=390;
+  h.eval('soundOn=false;options.modes=["talk","draw","secret"];options.dice=true;newGame();roll()');
+  const before=h.eval('JSON.stringify([game,options,taskMemory])'),raw=h.storage.get('iskra-party:v1');
+  const originals=[h.context.Math.random,h.context.localStorage.setItem];
+  const forbidden=()=>{throw Error('Reel rendering consumed RNG or wrote storage')};
+  h.context.Math.random=h.context.localStorage.setItem=forbidden;
+  h.eval('render();render()');
+  assert.equal(h.eval('JSON.stringify([game,options,taskMemory])'),before);
+  assert.equal(h.storage.get('iskra-party:v1'),raw);
+  assert.equal(frames.length,3,'Each render schedules the first of two frames');
+  frames.shift()();
+  assert.equal(track.style.transition,'none','First frame must not start animation');
+  frames.pop()();
+  assert.equal(track.style.transition,'transform '+(reduced?1:2850)+'ms cubic-bezier(.08,.72,.12,1)');
+  ends[0]({propertyName:'opacity'});
+  assert.equal(landed,reduced?1:0,'Unrelated transition must not mark a winner');
+  ends[0]({propertyName:'transform'});
+  assert.equal(landed,reduced?2:1);
+  [h.context.Math.random,h.context.localStorage.setItem]=originals;
+  const staleFrames=frames.splice(0),staleEnds=ends.splice(0),staleTimeout=h.pending.shift();
+  h.eval('backToMenu();newGame();roll()');
+  const next=h.eval('JSON.stringify([game,options,taskMemory])'),nextRaw=h.storage.get('iskra-party:v1');
+  const transition=track.style.transition,transform=track.style.transform,marks=landed;
+  h.context.Math.random=h.context.localStorage.setItem=forbidden;
+  // Complete the second frame from the previous round while a new reel is live.
+  for(const fn of staleFrames){fn();frames.pop()()}
+  for(const fn of staleEnds)fn({propertyName:'transform'});
+  staleTimeout();
+  assert.equal(track.style.transition,transition);assert.equal(track.style.transform,transform);
+  assert.equal(landed,marks,'Old round must not highlight the new winner');
+  assert.equal(h.eval('JSON.stringify([game,options,taskMemory])'),next);
+  assert.equal(h.storage.get('iskra-party:v1'),nextRaw);
  }
 });
 test('vocabulary is varied, unique within packs and contains at least 400 prompts',()=>{
