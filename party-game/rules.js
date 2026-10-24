@@ -108,3 +108,9 @@ function scoreMatchComplete(match){
   if(match.roundIndex%2===0)return true;
   return !scoreReplyReachable(match);
 }
+
+function scoreNeedsTiebreak(match){
+ return finishPolicyVersion(match)===1&&match.finishType==='score'&&
+  match.roundIndex>0&&match.roundIndex%2===0&&
+  match.scores[0]===match.scores[1]&&match.scores[0]>=match.targetScore;
+}

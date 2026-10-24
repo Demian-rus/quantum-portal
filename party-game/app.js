@@ -134,6 +134,7 @@ function render() {
   else if(game.phase==='play')showTimer();
   else if(game.phase==='judge')ROUND_INTERACTIONS[roundInteraction()].judge();
   else if(game.phase==='between')showBetween();
+  else if(game.phase==='tiebreak')showTiebreak();
   if(game.phase==='countdown'||(game.phase==='play'&&!game.current.paused))startTicking();
   else stopTicking();
 }
@@ -223,6 +224,8 @@ function handleAction(action) {
   switch(action) {
     case 'roll':return roll();
     case 'reveal-approx':return revealApprox();
+    case 'tiebreak-reveal':return revealTiebreak();
+    case 'tiebreak-a':case 'tiebreak-b':case 'tiebreak-same':return settleTiebreak(action.slice(9));
     case 'award-a':case 'award-b':case 'award-both':case 'award-none':return awardApprox(action.slice(6));
     case 'toggle-word':return toggleWord();
     case 'replace-word':return replaceWord();

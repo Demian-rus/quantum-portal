@@ -19,6 +19,10 @@ function renderMatch() {
   $('match-team-b').classList.toggle('is-turn',activeTeam===1);
   $('role-a').textContent=legacy?(currentTeamIndex()===0?'ХОД':'ЖДЁТ'):(guessingTeamIndex()===0?'ОТГАДЫВАЕТ':'ЗАГАДЫВАЕТ');
   $('role-b').textContent=legacy?(currentTeamIndex()===1?'ХОД':'ЖДЁТ'):(guessingTeamIndex()===1?'ОТГАДЫВАЕТ':'ЗАГАДЫВАЕТ');
+  if(game.phase==='tiebreak'){
+    for(const id of ['a','b']){$('role-'+id).textContent='НАЗЫВАЕТ ЧИСЛО';$('match-team-'+id).classList.add('is-turn');}
+    $('match-center-label').textContent='РЕШАЮЩИЙ РАУНД';
+  }
   if(game.current&&modeConfigForGame(game,game.current.modeId).supportsSharedAward){
     for(const id of ['a','b']){
       $('role-'+id).textContent='НАЗЫВАЕТ ЧИСЛО';
@@ -61,7 +65,7 @@ function showResults() {
     '<span class="section-kicker">ПАРТИЯ ЗАВЕРШЕНА</span>'+
     '<div class="result-trophy" aria-hidden="true">'+(a===b?'✳':'🏆')+'</div>'+
     '<h1 class="match-finished">'+(a===b?'ПОБЕДИЛА <em>ДРУЖБА</em>':'ПОБЕДИТЕЛЬ:<br><span style="color:var(--lime)">'+escapeHTML(winner)+'</span>')+'</h1>'+
-    '<p class="play-subtitle" style="margin:15px auto">Отличная партия. Но разве это повод останавливаться?</p>'+
+    '<p class="play-subtitle" style="margin:15px auto">'+(game.tiebreak?.stage==='decided'?'Победа решилась в общем тай-брейке «Примерно»!':'Отличная партия. Но разве это повод останавливаться?')+'</p>'+
     '<div class="final-score">'+item(0)+'<span class="final-score-divider">:</span>'+item(1)+'</div>'+
     '<div class="inline-actions">'+makeButton('СЫГРАТЬ ЕЩЁ','again','button-primary button-big')+
     makeButton('В ГЛАВНОЕ МЕНЮ','menu')+'</div>'+
