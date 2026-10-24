@@ -103,6 +103,10 @@ function modeInformation() {
       'Напойте любую песню, в названии или тексте которой есть указанное слово. Формы слова допустимы. Отгадывающий называет тему.':method.rule
   };
 }
+function roundConditionMarkup(){
+  const condition=game.current?.complication;
+  return condition?'<div class="round-condition"><strong>УСЛОЖНЕНИЕ: '+escapeHTML(condition)+'</strong></div>':'';
+}
 function taskMarkup(hidden) {
   const word=displayPrompt(game.current.word);
   const wordLength=game.current.word.length;

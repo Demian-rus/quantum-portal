@@ -54,6 +54,7 @@ function fitsViewport(g,device,stage) {
     headless:true,args:['--no-sandbox']
   });
   try{
+    await require('./task013b-browser.cjs')(browser,URL);
     await require('./round-layout.cjs')(browser,URL);
     await require('./storage-protection.cjs')(browser,URL);
     await require('./task-history-browser.cjs')(browser,URL);

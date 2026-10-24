@@ -1,5 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict');
+const {capture}=require('./screenshots.cjs');
 const devices=[{name:'narrow',width:320,height:568},{name:'phone',width:390,height:844},
  {name:'tall-phone',width:412,height:915},{name:'desktop',width:1280,height:800},
  {name:'landscape',width:640,height:360}];
@@ -26,7 +27,7 @@ async function fixture(page,mode,modified=false){
 const geometry=page=>page.evaluate(()=>{
  const rect=selector=>{const el=document.querySelector(selector);if(!el)return null;const r=el.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom}};
  return {bar:rect('.match-bar'),top:rect('.round-top'),icon:rect('.round-top .mode-symbol'),
-  title:rect('.mode-name'),rule:rect('.mode-rule'),reward:rect('.round-top .score-note,.round-top .secret-flag'),
+  title:rect('.mode-name'),rule:rect('.round-condition'),reward:rect('.round-top .score-note,.round-top .secret-flag'),
   card:rect('.challenge-card'),word:rect('.challenge-word'),caption:rect('.round-top--timer .game-eyebrow'),
   timer:rect('.timer-ring'),eye:rect('.round-bottom--play [data-action="toggle-word"]'),
   wrong:rect('[data-action="wrong-now"]'),base:rect('[data-action="base-now"]'),correct:rect('[data-action="correct-now"]'),
@@ -51,10 +52,12 @@ module.exports=async function roundLayout(browser,url){
     if(iconBox)sameBox({x:0,y:0,w:g.icon.w,h:g.icon.h},{x:0,y:0,w:iconBox.w,h:iconBox.h},'Mode icon size changed');
     iconBox=g.icon;
     assert.ok(g.icon.y>=g.top.y-1&&g.icon.bottom<=g.title.y-3,'Icon/title collide or clip: '+JSON.stringify(g));
-    assert.ok(g.title.bottom<=g.rule.y-3&&g.rule.bottom<=g.reward.y-3,'Mode copy/reward collide: '+JSON.stringify(g));
+    if(g.rule)assert.ok(g.title.bottom<=g.rule.y-3&&g.rule.bottom<=g.reward.y-3,'Condition/reward collide: '+JSON.stringify(g));
+    else assert.ok(g.title.bottom<=g.reward.y-3,'Title/reward collide: '+JSON.stringify(g));
+    assert.equal(await page.locator('.mode-rule').count(),0,'Generic rules should stay in the guide');
     if(device.height>device.width)assert.ok(g.reward.bottom<=g.card.y-3,'Reward collides with card: '+JSON.stringify(g));
     assert.equal(await page.locator('.challenge-overline,.challenge-details').count(),0);
-    if(mode==='mime'&&device.name==='phone')await page.screenshot({path:'artifacts/quip-mobile-layout/task013a-phone-plain-task.png'});
+    if(mode==='mime'&&device.name==='phone')await capture(page,{path:'artifacts/quip-mobile-layout/task013a-phone-plain-task.png'});
     const saved=await page.evaluate(()=>({raw:localStorage.getItem('iskra-party:v1'),game:JSON.stringify(game),memory:JSON.stringify(taskMemory)}));
     await page.evaluate(()=>render());
     assert.deepEqual(await page.evaluate(()=>({raw:localStorage.getItem('iskra-party:v1'),game:JSON.stringify(game),memory:JSON.stringify(taskMemory)})),saved,'Rendering changed saved data');
@@ -81,12 +84,12 @@ module.exports=async function roundLayout(browser,url){
      await page.locator('[data-action="toggle-word"]').click();
      assert.equal(await page.evaluate(()=>game.current.deadline),deadline);
     }
-    if(mode==='mime'&&device.name==='phone')await page.screenshot({path:'artifacts/quip-mobile-layout/task013a-phone-plain-timer.png'});
-    if(mode==='secret'&&device.name==='landscape')await page.screenshot({path:'artifacts/quip-mobile-layout/task013a-landscape-timer.png'});
+    if(mode==='mime'&&device.name==='phone')await capture(page,{path:'artifacts/quip-mobile-layout/task013a-phone-plain-timer.png'});
+    if(mode==='secret'&&device.name==='landscape')await capture(page,{path:'artifacts/quip-mobile-layout/task013a-landscape-timer.png'});
     if(mode==='secret'&&['phone','narrow'].includes(device.name)){
-     await page.screenshot({path:'artifacts/quip-mobile-layout/task013a-'+device.name+'-timer.png'});
+     await capture(page,{path:'artifacts/quip-mobile-layout/task013a-'+device.name+'-timer.png'});
      await fixture(page,mode,true);
-     await page.screenshot({path:'artifacts/quip-mobile-layout/task013a-'+device.name+'-task.png'});
+     await capture(page,{path:'artifacts/quip-mobile-layout/task013a-'+device.name+'-task.png'});
     }
    }
    assert.deepEqual(errors,[]);

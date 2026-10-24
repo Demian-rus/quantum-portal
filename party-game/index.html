@@ -10,7 +10,7 @@
   <link rel="manifest" href="./manifest.webmanifest?v=3">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=29">
+  <link rel="stylesheet" href="./style.css?v=30">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
   <script src="./curated-words.js?v=1" defer></script>
@@ -26,26 +26,26 @@
   <script src="./modifiers.js?v=3" defer></script>
   <script src="./round-planner.js?v=2" defer></script>
   <script src="./task-history.js?v=1" defer></script>
-  <script src="./modifiers-v2.js?v=2" defer></script>
-  <script src="./content-packs.js?v=15" defer></script>
+  <script src="./modifiers-v2.js?v=3" defer></script>
+  <script src="./content-packs.js?v=16" defer></script>
   <script src="./presets.js?v=4" defer></script>
   <script src="./immersive-viewport.js?v=1" defer></script>
   <script src="./rules-guide.js?v=1" defer></script>
   <script src="./menu-navigation.js?v=2" defer></script>
-  <script src="./setup-view.js?v=2" defer></script>
-  <script src="./setup-controls.js?v=2" defer></script>
+  <script src="./setup-view.js?v=3" defer></script>
+  <script src="./setup-controls.js?v=3" defer></script>
   <script src="./audio.js?v=1" defer></script>
-  <script src="./round-views.js?v=1" defer></script>
+  <script src="./round-views.js?v=2" defer></script>
   <script src="./match-views.js?v=2" defer></script>
-  <script src="./timer-view.js?v=2" defer></script>
-  <script src="./round-selection.js?v=2" defer></script>
+  <script src="./timer-view.js?v=3" defer></script>
+  <script src="./round-selection.js?v=3" defer></script>
   <script src="./round-settlement.js?v=1" defer></script>
   <script src="./timer-controller.js?v=1" defer></script>
-  <script src="./round-presentation.js?v=2" defer></script>
+  <script src="./round-presentation.js?v=3" defer></script>
   <script src="./round-actions.js?v=1" defer></script>
   <script src="./storage-controller.js?v=1" defer></script>
-  <script src="./session-restoration.js?v=4" defer></script>
-  <script src="./app.js?v=54" defer></script>
+  <script src="./session-restoration.js?v=5" defer></script>
+  <script src="./app.js?v=55" defer></script>
 </head>
 <body>
 
@@ -144,7 +144,6 @@
               <div id="finish-rounds-settings" class="slider-option" hidden><div class="slider-title"><label for="custom-rounds">Общее число ходов</label><output id="rounds-value">12</output></div><input id="custom-rounds" type="range" min="2" max="100" step="2" value="12"><div class="slider-extremes"><span>2</span><span>100</span></div><small>У каждого игрока поровну ходов.</small></div>
             </fieldset>
             <div class="slider-option"><div class="slider-title"><label for="base-duration">Минимальное время</label><output id="base-duration-value-advanced">60 с</output></div><input id="base-duration" type="range" min="30" max="90" step="5" value="60"><div class="slider-extremes"><span>30 с</span><span>90 с</span></div><small>Нарисуй, Напой, Данетки и Блиц: +30 с. При базовых 60 секундах — 90 секунд; максимум 120 секунд. Жесты — базовое время.</small></div>
-            <label class="modifier-toggle"><input id="toggle-risk" type="checkbox" checked><span><strong>Риск-раунды ⚡</strong><small>Примерно каждый пятый ход после первых двух: успех — обычные очки, провал — потеря до 2 очков. Счёт не может стать отрицательным.</small></span></label>
             <details class="settings-fold" id="mode-settings">
               <summary><span class="settings-fold-label">АКТИВНЫЕ РЕЖИМЫ <span class="settings-fold-count">· <span id="mode-selection-count"></span></span></span><svg class="settings-fold-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
               <div class="settings-fold-body">
@@ -171,10 +170,13 @@
                 <p class="advanced-help">«Примерно»: обе команды называют число, без таймера, риска и усложнений. У «Напой» темы подобраны по существующим известным песням разных жанров. В «Данетках» герои и знаменитости распределены по узнаваемости.</p>
               </div>
             </details>
+            <fieldset class="advanced-section extra-rules"><legend>ДОПОЛНИТЕЛЬНЫЕ ПРАВИЛА</legend>
+            <label class="modifier-toggle"><input id="toggle-risk" type="checkbox" checked><span><strong>Риск-раунды ⚡</strong><small>Примерно каждый пятый ход после первых двух: успех — обычные очки, провал — потеря до 2 очков. Счёт не может стать отрицательным.</small></span></label>
             <div class="modifier-settings">
               <label class="modifier-toggle"><input id="toggle-complications" type="checkbox" checked><span><strong>Случайные усложнения</strong><small>В «Секретке» усложнение обязательно, в «Примерно» его нет. Выполнение условия добавляет +1 к базовым очкам.</small></span></label>
               <div class="slider-option modifier-frequency" id="modifier-chance-settings"><div class="slider-title"><label for="modifier-chance">Частота усложнений</label><output id="modifier-chance-value">20%</output></div><input id="modifier-chance" type="range" min="10" max="100" step="5" value="20"><div class="slider-extremes"><span>10%</span><span>100%</span></div><small>Шанс в каждом подходящем раунде, без гарантированного числа выпадений.</small></div>
             </div>
+            </fieldset>
           </div>
         </div>
 

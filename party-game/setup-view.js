@@ -54,7 +54,7 @@ function renderOptions() {
     input.checked=options.modes.includes(input.value);
     const tile=input.closest('label'),art=tile.querySelector('img');
     if(art.getAttribute('src')!==MODE_ASSETS[input.value])art.src=MODE_ASSETS[input.value];
-    const status=setupPack?packModeAvailability(options.contentPack,options,input.value):{available:false,reason:'Набор недоступен'};
+    const status=setupPack?packModeAvailability(options.contentPack,{...options,...setupSongPolicy(options)},input.value):{available:false,reason:'Набор недоступен'};
     input.disabled=!status.available;tile.title=status.reason;
     const config=getModeConfig(input.value),label=tile.querySelector('b');
     label.textContent='+'+(config.basePoints+(config.id==='secret'?config.modifierBonus:0))+

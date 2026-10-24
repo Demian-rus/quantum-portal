@@ -7,8 +7,10 @@ function showTimer() {
   const c=game.current,remaining=c.paused?c.remainingMs:c.deadline-Date.now();
   const shown=Math.max(0,remaining),blitz=c.modeId==='blitz';
   $('play-content').innerHTML=
-    '<div class="round-top round-top--timer">'+
+    '<div class="round-top round-top--timer" tabindex="0" role="region" aria-label="Таймер и условия раунда">'+
       '<span class="game-eyebrow">'+escapeHTML(modeInformation().name)+' · '+c.seconds+' СЕКУНД</span>'+
+      roundConditionMarkup()+
+      '<div class="timer-dial">'+
       '<div class="timer-ring'+(shown<=10000?' warning':'')+'" aria-label="Таймер">'+
         '<svg viewBox="0 0 200 200" class="ring-svg" aria-hidden="true">'+
           '<circle class="ring-bg" cx="100" cy="100" r="88" />'+
@@ -17,6 +19,7 @@ function showTimer() {
         '<div id="active-timer" class="play-timer'+(shown<=10000?' warning':'')+'" role="timer" aria-label="Оставшееся время">'+timerMarkup(shown)+'</div>'+
       '</div>'+
       (allowPause()?'<div class="timer-pause">'+iconButton(c.paused?'play':'pause',c.paused?'resume':'pause',c.paused?'Продолжить':'Пауза')+'</div>':'')+
+      '</div>'+
       (blitz?blitzStatus():'')+
       (c.risk?'<p class="risk-notice">⚡ РИСК: ПРОВАЛ −'+ruleSetForGame(game).risk.loss+' ОЧКА</p>':'')+
     '</div>'+
@@ -39,8 +42,9 @@ function showCountdown() {
   $('play-content').className='play-inner is-countdown stable-round';
   $('play-step').textContent='ПРИГОТОВЬТЕСЬ';
   $('play-content').innerHTML=
-    '<div class="round-top round-top--timer">'+
+    '<div class="round-top round-top--timer" tabindex="0" role="region" aria-label="Таймер и условия раунда">'+
       '<span class="game-eyebrow">'+escapeHTML(modeInformation().name)+'</span>'+
+      roundConditionMarkup()+
       '<h2 class="play-title">СТАРТ ЧЕРЕЗ <em>1 СЕКУНДУ</em></h2>'+
     '</div>'+
     '<div class="round-fixed-card">'+taskMarkup(false)+'</div>'+

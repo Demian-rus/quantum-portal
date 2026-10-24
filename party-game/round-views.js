@@ -8,7 +8,6 @@ function showReady() {
   const team=escapeHTML(currentTeam()),opponent=escapeHTML(guessingTeam());
   $('play-content').innerHTML=
     '<div class="ready-content">'+
-      '<span class="game-eyebrow">ХОД '+(game.roundIndex+1)+(game.finishType==='score'?' · ДО '+game.targetScore+' ОЧКОВ':' ИЗ '+game.rounds)+'</span>'+
       '<div class="ready-avatar '+(index===1?'is-blue':'')+'">'+modeArt('secret')+'</div>'+
       '<h2 class="play-title">'+(game.scoringVersion===2?'ЗАГАДЫВАЕТ':'НА ОЧЕРЕДИ')+'<br><em>'+team+'</em></h2>'+
       '<p class="play-subtitle">'+(game.scoringVersion===2?'<strong>'+opponent+'</strong> отгадывает. Очки получает <strong>'+escapeHTML(awardTeam())+'</strong>. Задание видит только загадывающий.':'Продолжение сохранённой партии по прежним правилам: очки получает команда текущего хода.')+'</p>'+
@@ -20,15 +19,14 @@ function showReady() {
 
 function showTask() {
   $('play-content').className='play-inner is-task stable-round';
-  const {mode,secret,name,rule}=modeInformation();
+  const {mode,secret,name}=modeInformation();
   $('play-step').textContent=game.scoringVersion===2?'ЗАГАДЫВАЕТ: '+currentTeam():'ЗАДАНИЕ ДЛЯ '+currentTeam();
   const c=game.current;
   $('play-content').innerHTML=
-    '<div class="round-top round-top--task">'+
+    '<div class="round-top round-top--task" tabindex="0" role="region" aria-label="Условия раунда">'+
       symbol(mode.id)+
       '<h2 class="play-title mode-name">'+escapeHTML(name)+'</h2>'+
-      '<div class="mode-rule">'+escapeHTML(rule)+
-      (c.complication?'<br><strong>УСЛОЖНЕНИЕ: '+escapeHTML(c.complication)+'</strong>':'')+'</div>'+
+      roundConditionMarkup()+
       (secret?'<span class="secret-flag">СЕКРЕТКА · +'+c.points+' '+pointNoun(c.points)+'</span>':
         '<span class="score-note">ЗА ВЕРНЫЙ ОТВЕТ: +'+(c.modeId==='blitz'?(game.scoringVersion===2?c.points+' ЗА ВСЕ '+c.blitzWords.length+' СЛОВ':'1 ЗА СЛОВО'):c.points)+'</span>')+
     (c.risk?'<p class="risk-notice">⚡ РИСК-РАУНД: ПРОВАЛ — ДО −'+ruleSetForGame(game).risk.loss+' ОЧКОВ</p>':'')+

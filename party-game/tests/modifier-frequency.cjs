@@ -66,7 +66,7 @@ async function songLanguageUpgrade(browser,url){
  const root=path.resolve(__dirname,'../..'),baseline='fb350403a485ca85e2711bd6500e39fc5a0d046f';
  const git=args=>execFileSync('git',args,{cwd:root,timeout:30000,maxBuffer:4*1024*1024,stdio:['ignore','pipe','pipe']});
  try{git(['cat-file','-e',baseline+'^{commit}'])}catch{git(['fetch','--depth=1','origin',baseline])}
- const files=['sw.js','index.html','app.js','content-packs.js','round-selection.js','session-restoration.js','menu-navigation.js','setup-view.js','setup-controls.js','style.css','match-views.js','timer-view.js','round-presentation.js'];
+ const files=['sw.js','index.html','app.js','content-packs.js','round-selection.js','session-restoration.js','menu-navigation.js','setup-view.js','setup-controls.js','style.css','match-views.js','timer-view.js','round-presentation.js','round-views.js','modifiers-v2.js'];
  const current=new Map(files.map(name=>[name,fs.readFileSync(path.join(root,'party-game',name))]));
  const previous=new Map(files.map(name=>[name,git(['show',baseline+':party-game/'+name])]));
  const cache=source=>source.toString().match(/const CACHE='([^']+)'/)[1];
@@ -117,7 +117,7 @@ async function songLanguageUpgrade(browser,url){
    newGame();game.dice=false;roll();
    return {policy:game.songLanguagePolicyVersion,languages:game.songLanguages,id:getPackCardPool(game.contentPack,'songs',game.current.difficulty).find(row=>row.text===game.current.word).id};
   });
-  assert.equal(fresh.policy,1);assert.deepEqual(fresh.languages,['ru']);assert.ok(russian.includes(fresh.id));
+  assert.equal(fresh.policy,2);assert.deepEqual(fresh.languages,['ru']);assert.ok(russian.includes(fresh.id));
   assert.deepEqual(errors,[]);
   console.log('TASK012 B offline song update PASS',oldCache,'→',newCache,'foreign card',snapshot.card,'preserved; historical en and new ru selection PASS');
  }finally{write(current);await context.close()}

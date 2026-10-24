@@ -68,7 +68,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('app.js'),context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
-  vm.runInContext(`function startHistoricalFixture(){const awardTo=options.awardTo;options.awardTo='guesser';newGame();options.awardTo=awardTo;if(game){game.awardTo=awardTo;delete game.modeCompatibilityVersion;delete game.modePlannerVersion;delete game.modePlannerState;delete game.songLanguagePolicyVersion;delete game.songLanguages;}}
+  vm.runInContext(`function startHistoricalFixture(){const awardTo=options.awardTo;options.awardTo='guesser';newGame();options.awardTo=awardTo;if(game){game.awardTo=awardTo;delete game.modeCompatibilityVersion;delete game.modePlannerVersion;delete game.modePlannerState;delete game.songLanguagePolicyVersion;delete game.songLanguages;delete game.timerPolicyVersion;}}
   function legacyGame(version=3){
     options.modes=options.modes.filter(id=>id!=='approx');
     if(options.contentPack?.id==='general')options.contentPack={id:'general',version:1};
@@ -2223,4 +2223,69 @@ test('TASK008 both thematic registries have no dead-end mode, type or difficulty
 test('TASK008 balance diagnostic is reproducible and distinguishes optional, forced and absent modifiers',()=>{
  const {simulate}=require('../scripts/balance-audit.cjs');const first=simulate('science',20,120,8008);assert.deepEqual(first,simulate('science',20,120,8008));assert.equal(first.unnecessaryRepeats,0);assert.equal(first.forcedModified,first.forced);assert.equal(first.approxModified,0);assert.deepEqual(first.levels,{easy:40,medium:40,hard:40});
  const always=simulate('geography',100,120,8009);assert.equal(always.optional,always.modified);
+});
+
+test('TASK013 B new Mixed Easy auto-starts once and rejects manual start pause replacement and deadline extension',()=>{
+ const h=harness();let now=1792818000000;h.context.Date=class extends Date{static now(){return now}};
+ h.eval('soundOn=false;Object.assign(options,{modes:["talk"],difficulty:"mixed",dice:false,complications:false,riskRounds:false});Math.random=()=>.999999;newGame();roll()');
+ assert.equal(h.eval('game.current.difficulty'),'easy');assert.equal(h.eval('game.current.points'),1);assert.equal(h.eval('game.timerPolicyVersion'),1);
+ const word=h.eval('game.current.word');h.eval('toggleWord()');
+ assert.equal(h.eval('game.phase'),'countdown');const autoStartAt=h.eval('game.current.autoStartAt');assert.equal(autoStartAt,now+1000);
+ assert.equal(h.eval('allowPause()'),false);assert.ok(!h.elements.get('play-content').innerHTML.includes('data-action="start-timer"'));
+ h.eval('startTimer();replaceWord();pauseTimer()');assert.equal(h.eval('game.current.word'),word);assert.equal(h.eval('game.current.autoStartAt'),autoStartAt);
+ now=autoStartAt+4300;h.eval('tick()');const deadline=h.eval('game.current.deadline');assert.equal(deadline,autoStartAt+h.eval('game.current.seconds')*1000);
+ h.eval('pauseTimer();beginAutomaticRound();tick();toggleWord();toggleWord()');assert.equal(h.eval('game.current.deadline'),deadline);assert.equal(h.eval('game.current.paused'),false);
+ assert.ok(!h.elements.get('play-content').innerHTML.includes('data-action="pause"'));
+ now=deadline+1;h.eval('tick();tick();correctNow()');assert.equal(h.eval('game.phase'),'judge');assert.deepEqual(Array.from(h.eval('game.scores')),[0,0]);
+});
+test('TASK013 B party timer policy keeps Easy manual and Medium Hard automatic, estimate stays untimed',()=>{
+ for(const difficulty of ['easy','medium','hard']){
+  const h=harness();h.context.level=difficulty;
+  h.eval('soundOn=false;Object.assign(options,{modes:["talk"],difficulty:level,dice:false,complications:false});newGame();roll();toggleWord()');
+  assert.equal(h.eval('game.phase'),difficulty==='easy'?'task':'countdown');
+  if(difficulty==='easy'){
+   h.eval('startTimer();pauseTimer()');assert.equal(h.eval('game.current.paused'),true);h.eval('resumeTimer()');assert.equal(h.eval('game.current.paused'),false);
+  }else{h.eval('game.current.autoStartAt=Date.now()-1;tick();pauseTimer()');assert.equal(h.eval('game.current.paused'),false)}
+ }
+ const h=harness();h.eval('soundOn=false;Object.assign(options,{modes:["approx"],difficulty:"mixed",dice:false});newGame();roll()');
+ const before=h.eval('JSON.stringify(game)');h.eval('toggleWord();startTimer();pauseTimer();resumeTimer();beginAutomaticRound();tick()');assert.equal(h.eval('JSON.stringify(game)'),before);
+});
+test('TASK013 B historical paused Mixed and active v69-v71 snapshots keep controls and original bytes',()=>{
+ for(const phase of ['task','countdown','play','paused']){
+  const h=harness();h.eval('soundOn=false;Object.assign(options,{modes:["talk"],difficulty:"mixed",dice:false,complications:false});Math.random=()=>.999999;newGame();delete game.timerPolicyVersion;roll()');
+  if(phase!=='task')h.eval('toggleWord();startTimer()');
+  if(phase==='paused')h.eval('pauseTimer()');
+  if(phase==='countdown')h.eval('game.phase="countdown";game.current.difficulty="medium";game.plannerState.levels=["medium","easy","hard"];game.current.autoStartAt=Date.now()+30000;game.current.deadline=null');
+  h.eval('game.dice=true;options.dice=true;persist()');const raw=h.storage.get('iskra-party:v1'),before=h.eval('JSON.stringify(game)');
+  const store=new Map([['iskra-party:v1',raw]]);let writes=0;const set=store.set;store.set=function(...args){writes++;return Reflect.apply(set,this,args)};
+  const again=harness(store);again.eval('continueGame();render()');assert.equal(again.eval('JSON.stringify(game)'),before);assert.equal(store.get('iskra-party:v1'),raw);assert.equal(writes,0);
+  assert.equal(again.eval('game.timerPolicyVersion'),undefined);
+  if(phase==='paused'){
+   assert.match(again.elements.get('play-content').innerHTML,/data-action="resume"/);const remaining=again.eval('game.current.remainingMs');again.eval('resumeTimer()');
+   assert.equal(again.eval('game.current.paused'),false);assert.ok(Math.abs(again.eval('game.current.deadline')-Date.now()-remaining)<1000);
+  }
+ }
+});
+test('TASK013 B new Mixed countdown restores its original start and rejects unknown future timer policies',()=>{
+ const h=harness();let now=Date.now()+120000;h.context.Date=class extends Date{static now(){return now}};
+ h.eval('soundOn=false;Object.assign(options,{modes:["talk"],difficulty:"mixed",dice:false});Math.random=()=>.999999;newGame();roll();toggleWord();game.dice=true;options.dice=true;persist()');
+ const raw=h.storage.get('iskra-party:v1'),start=h.eval('game.current.autoStartAt');
+ const next=harness(new Map([['iskra-party:v1',raw]]));next.context.Date=class extends Date{static now(){return now}};
+ // Boot used real time (before this controlled future fixture); Continue must use the saved start.
+ now=start+1500;next.eval('continueGame()');assert.equal(next.eval('game.current.deadline'),start+next.eval('game.current.seconds')*1000);
+ const deadline=next.eval('game.current.deadline');next.eval('continueGame();beginAutomaticRound();pauseTimer()');assert.equal(next.eval('game.current.deadline'),deadline);assert.equal(next.eval('game.current.paused'),false);
+ for(const version of [0,2,'1']){
+  const saved=JSON.parse(raw);saved.game.timerPolicyVersion=version;const protectedRaw=' '+JSON.stringify(saved)+'\n',store=new Map([['iskra-party:v1',protectedRaw]]),blocked=harness(store);
+  assert.equal(blocked.eval('storageBlocked'),true);assert.equal(blocked.eval('game'),null);blocked.eval('persist();newGame()');assert.equal(store.get('iskra-party:v1'),protectedRaw);
+ }
+});
+test('TASK013 B round views remove duplicate setup copy but retain actual conditions in task countdown and play',()=>{
+ const h=harness();h.eval('soundOn=false;Object.assign(options,{modes:["mime"],difficulty:"easy",dice:false,complications:false});newGame()');
+ assert.ok(!h.elements.get('play-content').innerHTML.includes('game-eyebrow'));assert.equal(h.elements.get('round-now').textContent,1);
+ h.eval('roll()');assert.ok(!h.elements.get('play-content').innerHTML.includes('Только жесты'));assert.ok(!h.elements.get('play-content').innerHTML.includes('round-condition'));
+ h.eval('game.current.complication="Не рисуй <линии> & точки";render();toggleWord()');
+ for(const phase of ['task','countdown','play']){
+  h.context.phase=phase;h.eval('game.phase=phase;if(phase==="play")game.current.deadline=Date.now()+60000;render()');
+  assert.match(h.elements.get('play-content').innerHTML,/УСЛОЖНЕНИЕ: Не рисуй &lt;линии&gt; &amp; точки/);
+ }
 });

@@ -27,7 +27,7 @@ test('TASK012 C selected ru en and both preferences become immutable party snaps
   const h=createSimulation(22);h.context.languages=languages;
   h.eval('Object.assign(options,{modes:["sing"],difficulty:"hard",dice:false,complications:false,modeSettings:{sing:{songLanguages:languages.slice()}}});newGame();roll()');
   assert.deepEqual(plain(h.eval('game.songLanguages')),languages);
-  assert.equal(h.eval('game.songLanguagePolicyVersion'),1);
+  assert.equal(h.eval('game.songLanguagePolicyVersion'),2);
   const pool=plain(h.eval('getPackCardPool(game.contentPack,"songs","hard")')),seen=new Set();
   for(let i=0;i<pool.length+3;i++){
    const word=h.eval('pullWord("songs","hard")'),card=pool.find(row=>row.text===word);
@@ -107,7 +107,7 @@ test('TASK012 B both song selectors exhaust eligible pools without foreign fallb
  for(const history of [false,true])for(const languages of [['ru'],['en'],['ru','en']])for(const level of ['easy','medium','hard']){
   const h=createSimulation(12);h.context.request={languages,level};
   h.eval('Object.assign(options,{modes:["sing"],dice:false,difficulty:request.level});newGame();game.songLanguages=request.languages');
-  if(!history)h.eval('delete game.taskHistoryVersion;delete game.taskHistory');
+  if(!history)h.eval('delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierSelectionVersion;delete game.modifierCatalogVersion;delete game.modifierChance;delete game.modifierRecent');
   const pool=plain(h.eval('getPackCardPool(game.contentPack,"songs",game.difficulty)'));
   const eligible=pool.filter(card=>languages.includes(ledger.get(card.id))),seen=new Set();
   if(!eligible.length){
@@ -161,10 +161,10 @@ test('TASK012 B unknown and malformed language policies preserve the protected o
   assert.equal(again.eval('storageBlocked'),true);again.eval('persist();newGame()');assert.equal(stored.get('iskra-party:v1'),raw);
  }
 });
-test('TASK012 B Secret singing keeps its full source and RNG independently of sing language policy',()=>{
+test('historical V1 Secret singing keeps its full source and RNG independently of sing language policy',()=>{
  const pair=[createSimulation(17),createSimulation(17)],calls=[0,0];
  for(const [index,h]of pair.entries()){
-  h.eval('Object.assign(options,{modes:["sing","secret"],difficulty:"hard",dice:false,awardTo:"guesser"});newGame();pickMode=()=>getMode("secret")');
+  h.eval('Object.assign(options,{modes:["sing","secret"],difficulty:"hard",dice:false,awardTo:"guesser"});newGame();game.songLanguagePolicyVersion=1;pickMode=()=>getMode("secret")');
   if(index)h.eval('delete game.songLanguagePolicyVersion;delete game.songLanguages');
   h.context.Math.random=()=>{calls[index]++;return .999999};h.eval('roll()');
   assert.equal(h.eval('game.current.methodId'),'sing');
@@ -198,4 +198,95 @@ test('TASK009 D2 rule copy and saved song stay pinned, new parties alone adopt m
  const store=new Map(),h=createSimulation(3,store);h.eval('options.dice=false;options.modes=["sing"];options.complications=false;newGame();roll()');assert.equal(h.eval('game.contentPack.version'),h.eval('latestGeneralPackSelection().version'));assert.match(h.eval('modeInformation().rule'),/любую песню/);
  h.eval('game.contentPack={id:"general",version:3};game.dice=true;persist()');const snapshot=h.eval('JSON.stringify(game)'),again=createSimulation(4,store);assert.equal(again.eval('JSON.stringify(game)'),snapshot);assert.doesNotMatch(again.eval('modeInformation().rule'),/любую песню/);
  again.eval('newGame();roll()');assert.match(again.eval('modeInformation().rule'),/любую песню/);
+});
+
+test('TASK013 B real song selection applies V2 to direct sing, Secret and solo Secret at every tier',()=>{
+ const ledger=new Map(require('../content/editorial/music-theme-review.json').map(row=>[row.id,row.language]));
+ let songs=0,secretSongs=0;
+ for(const history of [false,true])for(const languages of [['ru'],['en'],['ru','en']])
+ for(const difficulty of ['easy','medium','hard','mixed'])for(const modes of [['sing'],['sing','secret'],['secret']]){
+  const h=createSimulation(20261024);h.context.fixture={languages,difficulty,modes};
+  h.eval('Object.assign(options,{modes:fixture.modes,difficulty:fixture.difficulty,dice:false,awardTo:"guesser",complications:false,riskRounds:false,rounds:100,finishType:"rounds",modeSettings:{sing:{songLanguages:fixture.languages}}})');
+  const invalid=languages.length===1&&languages[0]==='en'&&['easy','mixed'].includes(difficulty)&&modes.includes('sing');
+  if(invalid){
+   h.eval('Math.random=()=>{throw Error("Invalid configuration consumed RNG")};newGame()');
+   assert.equal(h.eval('game'),null);continue;
+  }
+  h.eval('newGame()');assert.equal(h.eval('game.songLanguagePolicyVersion'),2);
+  if(!history)h.eval('delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierSelectionVersion;delete game.modifierCatalogVersion;delete game.modifierChance;delete game.modifierRecent');
+  for(let round=0;round<24;round++){
+   h.eval('roll()');
+   const current=plain(h.eval('game.current'));
+   if(current.methodId==='sing'){
+    const card=plain(h.eval('getPackCardPool(game.contentPack,"songs",game.current.difficulty).find(row=>row.text===game.current.word)'));
+    assert.ok(languages.includes(ledger.get(card.id)),JSON.stringify({history,languages,difficulty,modes,current}));
+    if(languages.length===1&&languages[0]==='en')assert.notEqual(current.difficulty,'easy');
+    songs++;if(current.modeId==='secret')secretSongs++;
+   }
+   h.eval('game.phase="judge";judge(false)');
+  }
+ }
+ assert.ok(songs>100);assert.ok(secretSongs>30,'The matrix must exercise actual singing inside Secret');
+});
+test('TASK013 B both word selectors exhaust Secret language pools and replacements keep the snapshot',()=>{
+ const ledger=new Map(require('../content/editorial/music-theme-review.json').map(row=>[row.id,row.language]));
+ for(const history of [false,true])for(const languages of [['ru'],['en'],['ru','en']])for(const level of ['easy','medium','hard']){
+  const h=createSimulation(41);h.context.fixture={languages,level};
+  h.eval('Object.assign(options,{modes:["secret"],difficulty:fixture.level,dice:false,awardTo:"guesser",modeSettings:{sing:{songLanguages:fixture.languages}}});newGame()');
+  if(!history)h.eval('delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierSelectionVersion;delete game.modifierCatalogVersion;delete game.modifierChance;delete game.modifierRecent');
+  const pool=plain(h.eval('getPackCardPool(game.contentPack,"songs",game.difficulty)'));
+  const eligible=pool.filter(row=>languages.includes(ledger.get(row.id))),seen=new Set();
+  const methods=plain(h.eval('v2SecretMethods(game.contentPack,game,game.difficulty)'));
+  assert.equal(methods.includes('sing'),eligible.length>0);
+  if(!eligible.length){h.eval('Math.random=()=>{throw Error("Empty pool consumed RNG")}');assert.throws(()=>h.eval('pullWord("songs",game.difficulty,[],"secret")'),/Нет слов|No distinct eligible/);continue}
+  for(let i=0;i<eligible.length+2;i++){
+   const word=h.eval('pullWord("songs",game.difficulty,[],"secret")'),row=pool.find(row=>row.text===word);
+   assert.ok(languages.includes(ledger.get(row.id)));seen.add(row.id);
+  }
+  assert.deepEqual(seen,new Set(eligible.map(row=>row.id)));
+  if(level==='easy'){
+   h.eval('pickMode=()=>getMode("secret");v2SecretMethods=()=>["sing"];roll();toggleWord();options.modeSettings.sing.songLanguages=["en"];replaceWord()');
+   const card=pool.find(row=>row.text===h.eval('game.current.word'));assert.equal(ledger.get(card.id),'ru');
+   assert.deepEqual(plain(h.eval('game.songLanguages')),languages);
+  }
+ }
+});
+test('TASK013 B unavailable singing never enters solo Secret Easy and impossible packs reject START before mutation',()=>{
+ const h=createSimulation(42);h.eval('Object.assign(options,{modes:["secret"],difficulty:"mixed",dice:false,modeSettings:{sing:{songLanguages:["en"]}}});newGame()');
+ assert.equal(h.eval('v2SecretMethods(game.contentPack,game,"easy").includes("sing")'),false);
+ for(const level of ['medium','hard']){h.context.level=level;assert.equal(h.eval('v2SecretMethods(game.contentPack,game,level).includes("sing")'),true)}
+ const before=h.eval('JSON.stringify([game,taskMemory])'),raw=h.storage.get('iskra-party:v1');
+ h.eval('const onlySong=PARTY_CARDS.find(row=>row.type==="song"&&QUIP_SONG_LANGUAGES[row.id]==="en");'+
+  'getContentPack=selection=>({id:selection.id,version:selection.version,name:"Songs only",enabled:true,types:["song"],categories:[],criteria:{cardIds:[onlySong.id],sourcePacks:[]},minCardsPerPool:1,allowedModes:["secret","sing"],secretMethods:["sing"]});'+
+  'options.difficulty="easy";Math.random=()=>{throw Error("Rejected Secret consumed RNG")};newGame()');
+ assert.equal(h.eval('JSON.stringify([game,taskMemory])'),before);assert.equal(h.storage.get('iskra-party:v1'),raw);
+ assert.match(h.elements.get('toast').textContent,/Нет подходящих способов/);
+});
+test('TASK013 B v69-v71 V1 and pre-policy Secret snapshots retain full pools, RAW and subsequent draws',()=>{
+ for(const version of [1,2,3,4,5])for(const policy of [null,1]){
+  const h=createSimulation(43);h.eval('Object.assign(options,{modes:["sing","secret"],difficulty:"hard",dice:false,awardTo:"guesser"});newGame()');
+  h.context.fixture={version,policy};h.eval('game.rulesVersion=fixture.version;delete game.timerPolicyVersion;'+
+   'if(fixture.policy){game.songLanguagePolicyVersion=1}else{delete game.songLanguagePolicyVersion;delete game.songLanguages};'+
+   'pickMode=()=>getMode("secret");Math.random=()=>.999999;roll();game.dice=true;options.dice=true;persist()');
+  const raw=h.storage.get('iskra-party:v1'),before=h.eval('JSON.stringify([game,options,taskMemory])');let writes=0;
+  const stored=new Map([['iskra-party:v1',raw]]),set=stored.set;stored.set=function(...args){writes++;return Reflect.apply(set,this,args)};
+  const next=createSimulation(44,stored);next.eval('continueGame();render()');
+  assert.deepEqual(plain(next.eval('[game,options,taskMemory]')),JSON.parse(before));assert.equal(stored.get('iskra-party:v1'),raw);assert.equal(writes,0);
+  assert.equal(next.eval('QUIP_SONG_LANGUAGES[getPackCardPool(game.contentPack,"songs","hard").find(row=>row.text===game.current.word).id]'),'en');
+  assert.equal(next.eval('getPromptPool("songs","hard","secret").length'),h.eval('getPackCardPool(game.contentPack,"songs","hard").length'));
+  for(const simulation of [h,next])simulation.eval('Math.random=()=>.999999;game.phase="judge";judge(false);game.dice=false;pickMode=()=>getMode("secret");roll()');
+  assert.equal(next.eval('JSON.stringify(game)'),h.eval('JSON.stringify(game)'));
+ }
+});
+test('TASK013 B V2 song snapshots restore unchanged and unknown future versions stay protected',()=>{
+ for(const languages of [['ru'],['en'],['ru','en']]){
+  const h=createSimulation(45);h.context.languages=languages;
+  h.eval('Object.assign(options,{modes:["secret"],difficulty:"hard",dice:false,modeSettings:{sing:{songLanguages:languages}}});newGame();roll();game.dice=true;options.dice=true;persist()');
+  const raw=h.storage.get('iskra-party:v1'),before=h.eval('JSON.stringify([game,taskMemory])');let writes=0;
+  const stored=new Map([['iskra-party:v1',raw]]),set=stored.set;stored.set=function(...args){writes++;return Reflect.apply(set,this,args)};
+  const again=createSimulation(46,stored);again.eval('continueGame();render()');assert.equal(again.eval('JSON.stringify([game,taskMemory])'),before);
+  assert.equal(stored.get('iskra-party:v1'),raw);assert.equal(writes,0);
+  const future=JSON.parse(raw);future.game.songLanguagePolicyVersion=3;const futureRaw=' '+JSON.stringify(future)+'\n',badStore=new Map([['iskra-party:v1',futureRaw]]),bad=createSimulation(47,badStore);
+  assert.equal(bad.eval('storageBlocked'),true);assert.equal(bad.eval('game'),null);bad.eval('persist();newGame()');assert.equal(badStore.get('iskra-party:v1'),futureRaw);
+ }
 });

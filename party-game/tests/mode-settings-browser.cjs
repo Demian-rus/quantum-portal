@@ -1,5 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const {capture}=require('./screenshots.cjs');
 const ledger=require('../content/editorial/music-theme-review.json');
 const language=id=>ledger.find(row=>row.id===id)?.language;
 const devices=[{name:'narrow',width:320,height:568},{name:'phone',width:390,height:844},
@@ -51,7 +52,7 @@ async function ui(browser,url,device){
    }
    await page.evaluate(()=>document.body.style.zoom='');
   }
-  if(device.name==='phone'||device.name==='narrow')await page.screenshot({path:'artifacts/quip-mobile-layout/task012c-'+device.name+'-gears.png'});
+  if(device.name==='phone'||device.name==='narrow')await capture(page,{path:'artifacts/quip-mobile-layout/task012c-'+device.name+'-gears.png'});
   const modes=await page.evaluate(()=>JSON.stringify(options.modes));
   for(const id of ['talk','mime','draw','yesno','secret','blitz','approx']){
    await openMode(page,id);assert.equal(await page.locator('#mode-options-placeholder').isVisible(),true);
@@ -69,7 +70,7 @@ async function ui(browser,url,device){
   await page.locator('[data-song-language="ru"]').click();assert.match(await page.locator('#mode-source-status').textContent(),/хотя бы один/);
   await page.locator('[data-song-language="en"]').click();
   assert.deepEqual(await page.evaluate(()=>options.modeSettings.sing.songLanguages),['ru','en']);
-  if(device.name==='phone'||device.name==='narrow')await page.screenshot({path:'artifacts/quip-mobile-layout/task012c-'+device.name+'-sources.png'});
+  if(device.name==='phone'||device.name==='narrow')await capture(page,{path:'artifacts/quip-mobile-layout/task012c-'+device.name+'-sources.png'});
   await page.locator('#close-mode-options').press('Shift+Tab');assert.equal(await page.evaluate(()=>document.activeElement.id),'mode-options-done');
   await page.locator('#mode-options-done').press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.id),'close-mode-options');
   await page.locator('#close-mode-options').press('Escape');
@@ -118,7 +119,7 @@ async function upgrade(browser,url){
  const {execFileSync}=require('node:child_process'),root=path.resolve(__dirname,'../..'),baseline='4001c01aecb6e088da19c94a0197768552736e81';
  const git=args=>execFileSync('git',args,{cwd:root,timeout:30000,maxBuffer:4*1024*1024,stdio:['ignore','pipe','pipe']});
  try{git(['cat-file','-e',baseline+'^{commit}'])}catch{git(['fetch','--depth=1','origin',baseline])}
- const files=['sw.js','index.html','style.css','app.js','session-restoration.js','setup-view.js','setup-controls.js','menu-navigation.js','match-views.js','timer-view.js','round-presentation.js'];
+ const files=['sw.js','index.html','style.css','app.js','session-restoration.js','setup-view.js','setup-controls.js','menu-navigation.js','match-views.js','timer-view.js','round-presentation.js','round-selection.js','content-packs.js','round-views.js','modifiers-v2.js'];
  const current=new Map(files.map(name=>[name,fs.readFileSync(path.join(root,'party-game',name))]));
  const previous=new Map(files.map(name=>[name,git(['show',baseline+':party-game/'+name])]));
  const cache=source=>source.toString().match(/const CACHE='([^']+)'/)[1],oldCache=cache(previous.get('sw.js')),newCache=cache(current.get('sw.js'));
