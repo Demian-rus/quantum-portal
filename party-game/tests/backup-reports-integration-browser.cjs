@@ -25,7 +25,7 @@ async function upload(page,file){const picker=page.waitForEvent('filechooser');a
    await page.locator('[data-action="menu"]').click();await page.locator('#settings-menu').click();
    const profilesBefore=await raw(page,'kvip-player-profiles:v1'),reports=await raw(page,'kvip-card-reports:v1');
    assert.equal(JSON.parse(profilesBefore).recent.length,1);
-   if(width===390)await page.screenshot({path:'artifacts/quip-integration/settings-both.png'});
+   if(width===390)await page.screenshot({path:'artifacts/quip-integration/settings-both.png',animations:'disabled'});
    await page.locator('#reports-view').click();await page.keyboard.press('Escape');await page.locator('#report-backdrop').waitFor({state:'hidden'});
    assert.equal(await page.evaluate(()=>document.activeElement.id),'reports-view');
    await upload(page,file);await page.goBack();await page.locator('#backup-backdrop').waitFor({state:'hidden'});
@@ -54,7 +54,7 @@ async function upload(page,file){const picker=page.waitForEvent('filechooser');a
    await page.locator('#exit-game').click();await page.locator('#settings-menu').click();
    await download(page,'backup-export',path.join(tmp,'offline-profiles-'+width+'.json'));await download(page,'reports-export',path.join(tmp,'offline-reports-'+width+'.json'));
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);assert.deepEqual(errors,[]);
-   await ctx.close();console.log('v78 combined archives / modal focus / timer / paused restore / offline exports',width,height,'PASS');
+   await ctx.close();console.log('v79 combined archives / modal focus / timer / paused restore / offline exports',width,height,'PASS');
   }
   await source.close();
  }finally{await browser.close();fs.rmSync(tmp,{recursive:true,force:true});}
