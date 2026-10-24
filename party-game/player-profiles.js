@@ -3,7 +3,11 @@
 const QUIP_PROFILES_KEY='kvip-player-profiles:v1';
 const QUIP_PROFILE_COLORS=Object.freeze({coral:'#ff827e',cyan:'#9aeee6',violet:'#af98ff',green:'#a8ef9b',yellow:'#f5df87',pink:'#f49ecb',orange:'#ffb06e',blue:'#88baff'});
 const QUIP_PROFILE_COLOR_NAMES=Object.freeze({coral:'Коралловый',cyan:'Голубой',violet:'Фиолетовый',green:'Зелёный',yellow:'Жёлтый',pink:'Розовый',orange:'Оранжевый',blue:'Синий'});
-const QUIP_PROFILE_MODES=Object.freeze(['talk','mime','draw','sing','yesno','secret','blitz','approx']);
+// Statistics keys follow a safe ID format, not a hardcoded catalog of modes.
+// This supports future modes and keeps retired mode totals readable.
+function validProfileModeId(id){
+  return typeof id==='string'&&/^[a-z][a-z0-9_-]{0,63}$/.test(id)&&id!=='constructor'&&id!=='prototype';
+}
 const QUIP_RECENT_MATCH_LIMIT=100;
 let profileStore=null,profileStoreProblem=null;
 let selectedProfileIds=[null,null],statisticsProfileId=null;
@@ -32,10 +36,10 @@ function validateProfileStore(data){
     if(!total||!['matches','wins','losses','draws','points','turns'].every(key=>profileCount(total[key],key==='points'))||
        total.matches!==total.wins+total.losses+total.draws||!total.modes||typeof total.modes!=='object'||Array.isArray(total.modes))fail();
     for(const [mode,stats] of Object.entries(total.modes)){
-      if(!QUIP_PROFILE_MODES.includes(mode)||!stats||!profileCount(stats.rounds)||!profileCount(stats.success)||stats.success>stats.rounds||!profileCount(stats.points,true))fail();
+      if(!validProfileModeId(mode)||!stats||!profileCount(stats.rounds)||!profileCount(stats.success)||stats.success>stats.rounds||!profileCount(stats.points,true))fail();
       if(stats.methods!=null){
         if(mode!=='secret'||typeof stats.methods!=='object'||Array.isArray(stats.methods))fail();
-        for(const [method,value] of Object.entries(stats.methods))if(!QUIP_PROFILE_MODES.includes(method)||!value||
+        for(const [method,value] of Object.entries(stats.methods))if(!validProfileModeId(method)||!value||
           !profileCount(value.rounds)||!profileCount(value.success)||value.success>value.rounds||!profileCount(value.points,true))fail();
       }
     }
@@ -112,7 +116,7 @@ function completedProfileSummary(match){
   summaries.forEach((s,i)=>{s.matches=1;s.points=match.scores[i];s.turns=match.history.length;
     s[match.scores[0]===match.scores[1]?'draws':match.scores[i]>match.scores[1-i]?'wins':'losses']=1;});
   for(const row of match.history){
-    if(!QUIP_PROFILE_MODES.includes(row.mode))throw Error('Неизвестный режим в истории.');
+    if(!validProfileModeId(row.mode))throw Error('Некорректный ID режима в истории.');
     const deltas=row.mode==='approx'?row.deltas:[0,0];
     if(row.mode!=='approx'){
       if(![0,1].includes(row.recipientIndex)||!profileCount(row.awarded,true))throw Error('Неизвестный получатель очков.');
@@ -125,7 +129,7 @@ function completedProfileSummary(match){
       mode.rounds++;mode.success+=success;
       mode.points+=deltas[i];
       if(row.mode==='secret'){
-        if(!QUIP_PROFILE_MODES.includes(row.methodId))throw Error('Неизвестный способ Секретки.');
+        if(!validProfileModeId(row.methodId))throw Error('Некорректный ID способа Секретки.');
         mode.methods=mode.methods||{};const method=mode.methods[row.methodId]||(mode.methods[row.methodId]={rounds:0,success:0,points:0});
         method.rounds++;method.success+=success;method.points+=deltas[i];
       }
