@@ -1,0 +1,344 @@
+{
+  "editorialStatus": "research-only-not-playable",
+  "generatedAt": "2026-10-24",
+  "baseHead": "87a36561c895aacccf9f1cb05ee9dad48c3d0023",
+  "scope": "Russian Напой prompts; 100 target; song words not merely track titles. No song gameplay is changed by this file.",
+  "acceptance": [
+    "Two independently identified song compositions with verified word occurrence in lyrics",
+    "Manual morphological and semantic collision review against both legacy and thematic song cards",
+    "Difficulty determined from actual recognition",
+    "No historical pack mutations"
+  ],
+  "rejectedCandidates": [
+    {
+      "text": "ДЕНЬГИ",
+      "reason": "Existing historical song-000139 'ЗА ДЕНЬГИ ДА' is too close in meaning; requires manual rejection/decision, not counted."
+    }
+  ],
+  "candidates": [
+    {
+      "text": "ДЫМ",
+      "difficultyCandidate": "easy",
+      "status": "editorial-candidate-2-examples",
+      "language": "ru",
+      "examples": [
+        {
+          "artist": "Кино",
+          "title": "Звезда по имени Солнце",
+          "source": "https://ru.muzland.ru/songs.html?auth=116&song=8&tone=no",
+          "wordForm": "дым",
+          "genre": "рок",
+          "checkedAt": "2026-10-22",
+          "evidenceKind": "lyrics"
+        },
+        {
+          "artist": "Макс Корж",
+          "title": "Тает дым",
+          "source": "https://ru.muzland.ru/songs.html?auth=573&song=9&tone=no",
+          "wordForm": "дым",
+          "genre": "поп/рэп",
+          "checkedAt": "2026-10-24",
+          "evidenceKind": "lyrics"
+        }
+      ],
+      "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
+    },
+    {
+      "text": "ТЕПЛО",
+      "difficultyCandidate": "easy",
+      "status": "editorial-candidate-2-examples",
+      "language": "ru",
+      "examples": [
+        {
+          "artist": "ДДТ",
+          "title": "Ветер",
+          "source": "https://ru.muzland.ru/songs.html?auth=108&song=24",
+          "wordForm": "тепло",
+          "genre": "рок",
+          "checkedAt": "2026-10-22",
+          "evidenceKind": "lyrics"
+        },
+        {
+          "artist": "Макс Корж",
+          "title": "Тепло",
+          "source": "https://ru.muzland.ru/songs.html?auth=573&song=21&tone=no",
+          "wordForm": "тепло",
+          "genre": "поп/рэп",
+          "checkedAt": "2026-10-24",
+          "evidenceKind": "lyrics"
+        }
+      ],
+      "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
+    },
+    {
+      "text": "ПРАЗДНИК",
+      "difficultyCandidate": "easy",
+      "status": "editorial-candidate-2-examples",
+      "language": "ru",
+      "examples": [
+        {
+          "artist": "Григорий Лепс",
+          "title": "Рюмка водки на столе",
+          "source": "https://ru.muzland.ru/songs.html?auth=205&song=2&tone=no",
+          "wordForm": "праздник",
+          "genre": "эстрада",
+          "checkedAt": "2026-10-22",
+          "evidenceKind": "lyrics"
+        },
+        {
+          "artist": "Иосиф Кобзон",
+          "title": "День Победы",
+          "source": "https://ru.muzland.ru/songs.html?auth=376&song=1&tone=no",
+          "wordForm": "праздник",
+          "genre": "эстрада",
+          "checkedAt": "2026-10-24",
+          "evidenceKind": "lyrics"
+        }
+      ],
+      "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
+    },
+    {
+      "text": "ЗЕРКАЛО",
+      "difficultyCandidate": "medium",
+      "status": "editorial-candidate-2-examples",
+      "language": "ru",
+      "examples": [
+        {
+          "artist": "Чайф",
+          "title": "Оранжевое настроение",
+          "source": "https://ru.muzland.ru/songs.html?auth=75&song=7&tone=no",
+          "wordForm": "зеркала",
+          "genre": "рок",
+          "checkedAt": "2026-10-22",
+          "evidenceKind": "lyrics"
+        },
+        {
+          "artist": "Юрий Антонов",
+          "title": "Зеркало",
+          "source": "https://ru.muzland.ru/songs.html?auth=180&song=5&tone=no",
+          "wordForm": "зеркало",
+          "genre": "эстрада",
+          "checkedAt": "2026-10-24",
+          "evidenceKind": "lyrics"
+        }
+      ],
+      "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
+    },
+    {
+      "text": "ДРУЖБА",
+      "difficultyCandidate": "easy",
+      "status": "editorial-candidate-2-examples",
+      "language": "ru",
+      "examples": [
+        {
+          "artist": "Клара Румянова",
+          "title": "Улыбка",
+          "source": "https://ru.muzland.ru/songs.html?auth=18&song=14",
+          "wordForm": "дружба",
+          "genre": "детская",
+          "checkedAt": "2026-10-22",
+          "evidenceKind": "lyrics"
+        },
+        {
+          "artist": "Клара Румянова",
+          "title": "Настоящий друг",
+          "source": "https://allforchildren.ru/songs/friend3.php",
+          "wordForm": "дружба",
+          "genre": "детская песня",
+          "checkedAt": "2026-10-24",
+          "evidenceKind": "lyrics"
+        }
+      ],
+      "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
+    },
+    {
+      "text": "ПОБЕДА",
+      "difficultyCandidate": "easy",
+      "status": "editorial-candidate-2-examples",
+      "language": "ru",
+      "examples": [
+        {
+          "artist": "Кино",
+          "title": "Группа крови",
+          "source": "https://ru.muzland.ru/songs.html?auth=116&song=11&tone=no",
+          "wordForm": "победы",
+          "genre": "рок",
+          "checkedAt": "2026-10-22",
+          "evidenceKind": "lyrics"
+        },
+        {
+          "artist": "Иосиф Кобзон",
+          "title": "День Победы",
+          "source": "https://ru.muzland.ru/songs.html?auth=376&song=1&tone=no",
+          "wordForm": "победы",
+          "genre": "эстрада",
+          "checkedAt": "2026-10-24",
+          "evidenceKind": "lyrics"
+        }
+      ],
+      "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
+    },
+    {
+      "text": "ГРОЗА",
+      "difficultyCandidate": "medium",
+      "status": "editorial-candidate-2-examples",
+      "language": "ru",
+      "examples": [
+        {
+          "artist": "Алла Пугачёва",
+          "title": "Волшебник-недоучка",
+          "source": "https://ru.muzland.ru/songs.html?auth=53&song=15&tone=no",
+          "wordForm": "грозу",
+          "genre": "эстрада",
+          "checkedAt": "2026-10-22",
+          "evidenceKind": "lyrics"
+        },
+        {
+          "artist": "Макс Корж",
+          "title": "Тепло",
+          "source": "https://ru.muzland.ru/songs.html?auth=573&song=21&tone=no",
+          "wordForm": "гроза",
+          "genre": "поп/рэп",
+          "checkedAt": "2026-10-24",
+          "evidenceKind": "lyrics"
+        }
+      ],
+      "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
+    },
+    {
+      "text": "РЫБА",
+      "difficultyCandidate": "hard",
+      "status": "editorial-candidate-2-examples",
+      "language": "ru",
+      "examples": [
+        {
+          "artist": "Григорий Лепс",
+          "title": "Самый лучший день",
+          "source": "https://ru.muzland.ru/songs.html?auth=205&song=5&tone=no",
+          "wordForm": "рыба",
+          "genre": "эстрада",
+          "checkedAt": "2026-10-22",
+          "evidenceKind": "lyrics"
+        },
+        {
+          "artist": "Кирпичи",
+          "title": "Плюю я",
+          "source": "https://ru.muzland.ru/songs.html?auth=29&song=1&tone=no",
+          "wordForm": "рыбу",
+          "genre": "рэп/рок",
+          "checkedAt": "2026-10-24",
+          "evidenceKind": "lyrics"
+        }
+      ],
+      "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
+    },
+    {
+      "text": "ГОРА",
+      "difficultyCandidate": "medium",
+      "status": "editorial-candidate-2-examples",
+      "language": "ru",
+      "examples": [
+        {
+          "artist": "ДДТ",
+          "title": "Просвистела",
+          "source": "https://ru.muzland.ru/songs.html?auth=108&song=2",
+          "wordForm": "горы",
+          "genre": "рок",
+          "checkedAt": "2026-10-22",
+          "evidenceKind": "lyrics"
+        },
+        {
+          "artist": "Макс Корж",
+          "title": "Пролетарка",
+          "source": "https://ru.muzland.ru/songs.html?auth=573&song=14&tone=no",
+          "wordForm": "гору",
+          "genre": "поп/рэп",
+          "checkedAt": "2026-10-24",
+          "evidenceKind": "lyrics"
+        }
+      ],
+      "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
+    },
+    {
+      "text": "РАЗЛУКА",
+      "difficultyCandidate": "medium",
+      "status": "editorial-candidate-2-examples",
+      "language": "ru",
+      "examples": [
+        {
+          "artist": "Саундтреки",
+          "title": "Ветер перемен",
+          "source": "https://ru.muzland.ru/songs.html?auth=20&song=80&tone=no",
+          "wordForm": "разлук",
+          "genre": "кино",
+          "checkedAt": "2026-10-22",
+          "evidenceKind": "lyrics"
+        },
+        {
+          "artist": "Олег Митяев",
+          "title": "Праздник",
+          "source": "https://ru.muzland.ru/songs.html?auth=19&song=9&tone=no",
+          "wordForm": "разлуке",
+          "genre": "авторская песня",
+          "checkedAt": "2026-10-24",
+          "evidenceKind": "lyrics"
+        }
+      ],
+      "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
+    },
+    {
+      "text": "КЛЁН",
+      "difficultyCandidate": "medium",
+      "status": "editorial-candidate-2-examples",
+      "language": "ru",
+      "examples": [
+        {
+          "artist": "Любэ",
+          "title": "Ребята с нашего двора",
+          "source": "https://ru.muzland.ru/songs.html?auth=54&song=7&tone=no",
+          "wordForm": "клены",
+          "genre": "фолк-рок",
+          "checkedAt": "2026-10-22",
+          "evidenceKind": "lyrics"
+        },
+        {
+          "artist": "Синяя птица",
+          "title": "Клён",
+          "source": "https://dfm.ru/mediateka/13740-sinqq-ptica/26425klyon",
+          "wordForm": "клён",
+          "genre": "эстрада",
+          "checkedAt": "2026-10-24",
+          "evidenceKind": "lyrics"
+        }
+      ],
+      "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
+    },
+    {
+      "text": "ОСТРОВ",
+      "difficultyCandidate": "easy",
+      "status": "editorial-candidate-2-examples",
+      "language": "ru",
+      "examples": [
+        {
+          "artist": "Андрей Миронов",
+          "title": "Остров невезения",
+          "source": "https://ru.muzland.ru/songs.html?auth=20&song=16&tone=no",
+          "wordForm": "остров",
+          "genre": "кино",
+          "checkedAt": "2026-10-22",
+          "evidenceKind": "lyrics"
+        },
+        {
+          "artist": "RASA",
+          "title": "Чунга-Чанга",
+          "source": "https://musprofile.com/rasa/texts/chungaminuschanga-chungaminuschanga",
+          "wordForm": "остров",
+          "genre": "поп",
+          "checkedAt": "2026-10-24",
+          "evidenceKind": "lyrics"
+        }
+      ],
+      "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
+    }
+  ]
+}
