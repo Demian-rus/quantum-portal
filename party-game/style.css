@@ -949,8 +949,8 @@ body[data-screen="preferences"]::after{background:#11082085}
 }
 .scene--game .stable-round .round-top {
  width:100%;min-height:0;max-height:100%;min-width:0;
- display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
- gap:clamp(6px,calc(.85 * var(--kvip-locked-vh, 1dvh)),10px);overflow:hidden;padding:6px 3px clamp(8px,calc(1.8 * var(--kvip-locked-vh, 1dvh)),17px);
+ display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+ gap:clamp(6px,calc(.85 * var(--kvip-locked-vh, 1dvh)),10px);overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:none;padding:6px 3px clamp(8px,calc(1.8 * var(--kvip-locked-vh, 1dvh)),17px);
 }
 .scene--game .stable-round .round-top--task .mode-symbol {
  width:clamp(64px,calc(11 * var(--kvip-locked-vh, 1dvh)),112px);height:clamp(64px,calc(11 * var(--kvip-locked-vh, 1dvh)),112px);
@@ -960,10 +960,20 @@ body[data-screen="preferences"]::after{background:#11082085}
  font-size:clamp(20px,calc(3 * var(--kvip-locked-vh, 1dvh)),30px);margin:0;line-height:1.17;
  max-width:100%;flex-shrink:0;
 }
-.scene--game .stable-round .round-top--task .mode-rule{
- max-height:min(calc(12 * var(--kvip-locked-vh, 1dvh)),100px);overflow:auto;font-size:clamp(10px,calc(1.45 * var(--kvip-locked-vh, 1dvh)),13px);
- line-height:1.32;padding:7px 11px;flex:0 1 auto;min-height:0;width:100%;
+.scene--game .stable-round .round-top::-webkit-scrollbar,
+.scene--game .round-condition::-webkit-scrollbar{display:none;width:0;height:0}
+.scene--game .round-condition{
+ width:min(100%,540px);min-width:0;min-height:calc(1.4em + 16px);flex:0 1 auto;overflow-y:auto;scrollbar-width:none;overscroll-behavior:contain;
+ padding:7px 11px;border:1px solid #9095da76;border-radius:14px;
+ background:#171735df;font-size:clamp(10px,calc(1.45 * var(--kvip-locked-vh, 1dvh)),13px);
+ line-height:1.4;overflow-wrap:anywhere;
 }
+.scene--game .round-condition strong{color:var(--lime)}
+/* Conditions use the available height and remain scrollable when needed. The
+   upper region is a fallback on very short screens; card and actions stay fixed. */
+.scene--game .timer-dial{position:relative;display:grid;place-items:center;flex:0 0 auto}
+.scene--game .timer-dial>.timer-pause{position:absolute;right:calc(100% + 8px);top:50%;transform:translateY(-50%);margin:0}
+
 .scene--game .stable-round .round-top--task>.score-note,
 .scene--game .stable-round .round-top--task>.secret-flag {
  font-size:clamp(9px,calc(1.4 * var(--kvip-locked-vh, 1dvh)),12px);flex:0 0 auto;
@@ -1046,7 +1056,7 @@ body[data-screen="preferences"]::after{background:#11082085}
 @media(max-height:740px) {
  .scene--game .stable-round .round-top--task .mode-symbol{width:52px;height:52px;min-height:0}
  .scene--game .stable-round .round-top--task .mode-name{font-size:19px}
- .scene--game .stable-round .round-top--task .mode-rule{max-height:calc(11 * var(--kvip-locked-vh, 1dvh));font-size:10px;padding:5px 8px}
+ .scene--game .round-condition{font-size:10px;padding:5px 8px}
  .scene--game .stable-round .round-fixed-card{height:clamp(122px,calc(19 * var(--kvip-locked-vh, 1dvh)),152px)}
  .scene--game .stable-round .round-top--timer .timer-ring{width:clamp(93px,calc(17 * var(--kvip-locked-vh, 1dvh)),119px);height:clamp(93px,calc(17 * var(--kvip-locked-vh, 1dvh)),119px)}
  .scene--game .stable-round .round-bottom{padding-bottom:8px}
@@ -1316,13 +1326,10 @@ body[data-screen="results"]::after {
  display:flex;flex-direction:column;
  align-items:center;justify-content:flex-start;
  width:100%;height:100%;min-width:0;min-height:0;
- gap:clamp(5px,.calc(95 * var(--kvip-locked-vh, 1dvh)),12px);
+ gap:clamp(5px,calc(.95 * var(--kvip-locked-vh, 1dvh)),12px);
  padding:clamp(5px,calc(1.4 * var(--kvip-locked-vh, 1dvh)),16px) 3px 4px;
  text-align:center;
  overflow:hidden;
-}
-.scene--game .is-ready .ready-content .game-eyebrow {
- flex:0 0 auto;font-size:clamp(10px,calc(1.35 * var(--kvip-locked-vh, 1dvh)),12px);
 }
 .scene--game .is-ready .ready-content .ready-avatar,
 .scene--game .is-ready .ready-content .ready-avatar .mode-art {
@@ -1393,7 +1400,7 @@ body[data-screen="results"]::after {
 .scene--game .reel-item--landed{transform:scale(1.11);opacity:1}
 
 @media(max-height:740px) and (max-width:779px) {
- .scene--game .is-ready .ready-content {gap:clamp(4px,.calc(85 * var(--kvip-locked-vh, 1dvh)),9px);padding-top:5px}
+ .scene--game .is-ready .ready-content {gap:clamp(4px,calc(.85 * var(--kvip-locked-vh, 1dvh)),9px);padding-top:5px}
  .scene--game .is-ready .ready-content .play-title {
    font-size:clamp(18px,5.5vw,29px);margin-top:clamp(6px,calc(1.9 * var(--kvip-locked-vh, 1dvh)),15px);
  }
@@ -1494,7 +1501,7 @@ body[data-screen="results"]::after {
 @media(min-width:1024px) and (min-aspect-ratio:5/4) {
  .scene--game .is-ready .ready-content {
    display:grid;grid-template-columns:minmax(210px,.8fr) minmax(0,1.2fr);
-   grid-template-rows:auto auto auto;
+   grid-template-rows:auto auto;
    justify-content:center;justify-items:start;
    align-content:center;align-items:center;
    width:min(100%,1150px);margin:0 auto;
@@ -1503,21 +1510,20 @@ body[data-screen="results"]::after {
    text-align:left;
  }
  .scene--game .is-ready .ready-content .ready-avatar {
-   grid-column:1;grid-row:1/4;justify-self:center;align-self:center;
+   grid-column:1;grid-row:1/3;justify-self:center;align-self:center;
  }
  .scene--game .is-ready .ready-content .ready-avatar,
  .scene--game .is-ready .ready-content .ready-avatar .mode-art {
    width:clamp(210px,calc(27 * var(--kvip-locked-vh, 1dvh)),320px)!important;
    height:clamp(210px,calc(27 * var(--kvip-locked-vh, 1dvh)),320px)!important;
  }
- .scene--game .is-ready .ready-content .game-eyebrow {grid-column:2;grid-row:1;justify-self:start}
  .scene--game .is-ready .ready-content .play-title{
-   grid-column:2;grid-row:2;text-align:left;justify-self:start;margin:0;
+   grid-column:2;grid-row:1;text-align:left;justify-self:start;margin:0;
    white-space:nowrap;font-size:clamp(28px,2.7vw,48px);
  }
  .scene--game .is-ready .ready-content .play-title em{text-align:left}
  .scene--game .is-ready .ready-content .play-subtitle{
-   grid-column:2;grid-row:3;text-align:left;justify-self:start;margin:0;
+   grid-column:2;grid-row:2;text-align:left;justify-self:start;margin:0;
  }
  .scene--game .is-ready .ready-action-slot [data-action="roll"]{
    width:min(100%,630px);max-width:630px;
@@ -1758,7 +1764,7 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
  .scene--game .round-visibility>.round-action{grid-column:3}
  .scene--game .stable-round .round-top--task .mode-symbol{width:38px;height:38px;min-height:28px}
  .scene--game .stable-round .round-top--task .mode-name{font-size:15px}
- .scene--game .stable-round .round-top--task .mode-rule{font-size:9px;max-height:44px;padding:3px 5px}
+ .scene--game .round-condition{font-size:9px;padding:3px 5px}
  .scene--game .stable-round .round-top--timer .timer-ring{width:58px;height:58px;min-height:48px}
  .scene--game .stable-round .round-top--timer .timer-pause .round-action{width:44px;height:44px}
  .scene--game .judge-copy{gap:5px;padding:3px 6px 9px}
@@ -1777,7 +1783,6 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
 
 @media(max-height:480px){
  .scene--game .stable-round .round-top--timer{position:relative}
- .scene--game .stable-round .round-top--timer .timer-pause{position:absolute;left:calc(50% - 83px);top:50%;transform:translateY(-50%);margin:0}
  .scene--game .judge-copy{display:grid;grid-template-columns:48px minmax(0,1fr);grid-auto-rows:auto;align-content:safe center;gap:3px 12px}
  .scene--game .judge-copy>.mode-symbol{grid-column:1;grid-row:1/span 6;align-self:center}
  .scene--game .judge-copy>:not(.mode-symbol){grid-column:2}
@@ -1822,3 +1827,5 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
 .mode-options-note{margin:10px 0 0;color:#b2bfd4;font-size:12px;line-height:1.5}
 @media(max-width:359px){.mode-options-dialog{padding:16px;gap:14px}.mode-options-header{gap:8px}.mode-options-header img{width:42px;height:42px;flex-basis:42px}.mode-options-dialog h2{font-size:20px}}
 #content-toggles input:disabled+span{display:flex;flex-direction:column;gap:4px;cursor:not-allowed}
+
+.extra-rules{display:grid;gap:12px;margin-top:4px}

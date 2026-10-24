@@ -2,20 +2,22 @@
 ]);
 // Generated from the editorial ledger, including reviewed legacy songs without metadata.
 const QUIP_SONG_LANGUAGES=Object.freeze(/* reviewed-song-languages */{});
-const QUIP_SONG_LANGUAGE_POLICY_VERSION=1;
+// V1 filters direct sing only; V2 also covers the singing method inside Secret.
+const QUIP_SONG_LANGUAGE_POLICY_VERSION=2;
 function songLanguagePolicy(match){
  if(match?.songLanguagePolicyVersion==null){
   if(match?.songLanguages!=null)throw Error('Missing QUIP song language policy');
   return null;
  }
- if(match.songLanguagePolicyVersion!==QUIP_SONG_LANGUAGE_POLICY_VERSION||!Array.isArray(match.songLanguages)||!match.songLanguages.length||
+ if(![1,2].includes(match.songLanguagePolicyVersion)||!Array.isArray(match.songLanguages)||!match.songLanguages.length||
   new Set(match.songLanguages).size!==match.songLanguages.length||match.songLanguages.some(language=>!['ru','en'].includes(language)))
   throw Error('Unsupported QUIP song language policy');
  return match.songLanguages;
 }
-function filterSongLanguagePool(pool,match){
+function filterSongLanguagePool(pool,match,modeId='sing'){
  const languages=songLanguagePolicy(match);
- return languages?pool.filter(card=>languages.includes(QUIP_SONG_LANGUAGES[card.id])):pool;
+ const applies=modeId==='sing'||match?.songLanguagePolicyVersion===2;
+ return languages&&applies?pool.filter(card=>languages.includes(QUIP_SONG_LANGUAGES[card.id])):pool;
 }
 function listThematicPacks(settings,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACKS,questions=QUIP_APPROX_QUESTIONS){
  const latest=new Map();
@@ -77,9 +79,10 @@ function checkContentPack(selection,settings,cards=PARTY_CARDS,registry=QUIP_CON
  if(compatibility)for(const id of settings.modes){const status=modeAwardAvailability(id,settings);if(!status.available)problems.push(getModeConfig(id).title+': '+status.reason);}
  const levels=settings.difficulty==='mixed'?PARTY_CARD_LEVELS:[settings.difficulty];
  if(pack.allowedModes)for(const mode of settings.modes)if(!pack.allowedModes.includes(mode))problems.push('Режим «'+getModeConfig(mode).title+'» недоступен в теме «'+pack.name+'».');
- const methods=new Set(settings.modes.flatMap(mode=>mode==='secret'?(compatibility?[]:secretMethodsForPack(selection,settings,registry)):[mode]));
+ const tieredSecret=compatibility||settings.songLanguagePolicyVersion===2;
+ const methods=new Set(settings.modes.flatMap(mode=>mode==='secret'?(tieredSecret?[]:secretMethodsForPack(selection,settings,registry)):[mode]));
  if(settings.modes.includes('secret')){
-  if(compatibility){for(const level of levels)if(!secretMethodsForPack(selection,settings,registry,level,cards).length)problems.push('Нет подходящих способов Секретки на выбранной сложности.');}
+  if(tieredSecret){for(const level of levels)if(!secretMethodsForPack(selection,settings,registry,level,cards).length)problems.push('Нет подходящих способов Секретки на выбранной сложности.');}
   else if(!secretMethodsForPack(selection,settings,registry).length)problems.push('Нет способов для Секретки.');
  }
  for(const method of methods){
@@ -106,7 +109,8 @@ function secretMethodsForPack(selection,settings,registry=QUIP_CONTENT_PACKS,dif
   const levels=difficulty?[difficulty]:settings.difficulty==='mixed'?PARTY_CARD_LEVELS:[settings.difficulty];
   return candidates.filter(id=>getModeConfig(id).secretMethod&&modeAwardAvailability(id,settings).available&&
    (!pack?.allowedModes||pack.allowedModes.includes(id))&&(!pack?.secretMethods||pack.secretMethods.includes(id))&&levels.some(level=>{
-    const pool=getPackCardPool(selection,getModeConfig(id).cardType,level,settings.promptTypes,cards,registry);
+    let pool=getPackCardPool(selection,getModeConfig(id).cardType,level,settings.promptTypes,cards,registry);
+    if(id==='sing')pool=filterSongLanguagePool(pool,settings,'secret');
     if(new Set(pool.map(card=>card.text)).size<Math.max(1,pack.minCardsPerPool))return false;
     // A mandatory condition must be possible for every card the existing selector can draw.
     return getV2ModifierPool(id,level,settings).length>0||pool.every(card=>getV2ModifierPool(id,level,settings,{card}).length>0);
@@ -114,7 +118,14 @@ function secretMethodsForPack(selection,settings,registry=QUIP_CONTENT_PACKS,dif
  }
  const basic=Object.values(QUIP_MODES_V4).filter(mode=>mode.secretMethod&&(!pack?.secretMethods||pack.secretMethods.includes(mode.id))).map(mode=>mode.id);
  const enabled=basic.filter(id=>settings.modes.includes(id));
- return enabled.length?enabled:basic;
+ const methods=enabled.length?enabled:basic;
+ if(settings.songLanguagePolicyVersion!==2)return methods;
+ const levels=difficulty?[difficulty]:settings.difficulty==='mixed'?PARTY_CARD_LEVELS:[settings.difficulty];
+ return methods.filter(id=>levels.some(level=>{
+  let pool=getPackCardPool(selection,getModeConfig(id).cardType,level,settings.promptTypes,cards,registry);
+  if(id==='sing')pool=filterSongLanguagePool(pool,settings,'secret');
+  return new Set(pool.map(card=>card.text)).size>=Math.max(1,pack?.minCardsPerPool||1);
+ }));
 }
 function packSetupSettings(selection,settings,registry=QUIP_CONTENT_PACKS){
  const pack=getContentPack(selection,registry),key=pack.id+'@'+pack.version;

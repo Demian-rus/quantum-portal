@@ -34,11 +34,12 @@ function v2SecretMethods(selection,match,difficulty){
  }
  // Historical pre-G selection below is pinned by the absence of a compatibility version.
  const eligible=method=>getV2ModifierPool(method,difficulty,match).length>0;
- let methods=secretMethodsForPack(selection,match).filter(eligible);
+ const level=match.songLanguagePolicyVersion===2?difficulty:null;
+ let methods=secretMethodsForPack(selection,match,QUIP_CONTENT_PACKS,level).filter(eligible);
  // Proposal documented in MODIFIERS-V2-AUDIT.md: never give a setter a
  // guesser's condition. If only an incompatible method is enabled, use another
  // supported pack method rather than removing Secret's mandatory modifier.
- if(!methods.length)methods=secretMethodsForPack(selection,{...match,modes:['secret']}).filter(eligible);
+ if(!methods.length)methods=secretMethodsForPack(selection,{...match,modes:['secret']},QUIP_CONTENT_PACKS,level).filter(eligible);
  if(!methods.length)throw Error('No supported V2 Secret method');
  return methods;
 }

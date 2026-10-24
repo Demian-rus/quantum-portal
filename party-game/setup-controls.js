@@ -6,7 +6,7 @@ function sanitizeModeSettings(raw){
   return {sing:{songLanguages:languages.length?languages:['ru']}};
 }
 function setupSongPolicy(settings){
-  return settings.modes.includes('sing')?{songLanguagePolicyVersion:QUIP_SONG_LANGUAGE_POLICY_VERSION,
+  return settings.modes.some(id=>id==='sing'||id==='secret')?{songLanguagePolicyVersion:QUIP_SONG_LANGUAGE_POLICY_VERSION,
     songLanguages:sanitizeModeSettings(settings.modeSettings).sing.songLanguages}:{};
 }
 function selectSongLanguage(language){
@@ -55,7 +55,11 @@ function selectAwardTo(value){
 }
 function selectSetupMode(id,enabled){
   if(!DEFAULT_MODES.includes(id))return false;
-  if(enabled){const status=packModeAvailability(options.contentPack,{...options,modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION},id);if(!status.available){toast(status.reason);return false;}}
+  if(enabled){
+    const settings={...options,modes:[...new Set([...options.modes,id])],modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION};
+    const status=packModeAvailability(options.contentPack,{...settings,...setupSongPolicy(settings)},id);
+    if(!status.available){toast(status.reason);return false;}
+  }
   const modes=enabled?[...new Set([...options.modes,id])]:options.modes.filter(mode=>mode!==id);
   if(!modes.length){toast('Нужен хотя бы один режим');return false;}
   options.modes=DEFAULT_MODES.filter(mode=>modes.includes(mode));return true;

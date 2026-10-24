@@ -16,7 +16,7 @@ function renderModeSettings(){
   let available=false;
   try{available=checkContentPack(options.contentPack,{...settings,...setupSongPolicy(settings)}).available;}catch{}
   $('mode-source-availability').hidden=available;
-  $('mode-source-availability').textContent=available?'':'Для этих источников на выбранной сложности нет доступных заданий. Измените источники, сложность или набор перед началом партии.';
+  $('mode-source-availability').textContent=available?'':'Для «Напой» нет заданий с этими источниками на выбранной сложности. В «Секретке» песенный способ будет исключён, если доступны другие способы. Для прямого «Напой» измените источники, сложность или набор.';
 }
 // DOM-only rendering of new-game and advanced settings; original behavior preserved.
 function renderOptions() {
@@ -54,7 +54,7 @@ function renderOptions() {
     input.checked=options.modes.includes(input.value);
     const tile=input.closest('label'),art=tile.querySelector('img');
     if(art.getAttribute('src')!==MODE_ASSETS[input.value])art.src=MODE_ASSETS[input.value];
-    const status=setupPack?packModeAvailability(options.contentPack,options,input.value):{available:false,reason:'Набор недоступен'};
+    const status=setupPack?packModeAvailability(options.contentPack,{...options,...setupSongPolicy(options)},input.value):{available:false,reason:'Набор недоступен'};
     input.disabled=!status.available;tile.title=status.reason;
     const config=getModeConfig(input.value),label=tile.querySelector('b');
     label.textContent='+'+(config.basePoints+(config.id==='secret'?config.modifierBonus:0))+

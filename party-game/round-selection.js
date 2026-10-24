@@ -31,7 +31,7 @@ function chooseDifficulty() {
 function getPromptPool(kind,level,modeId=game?.current?.modeId??'sing'){
   let cards=game?.contentPack?getPackCardPool(game.contentPack,kind,level,game.promptTypes):
     getPackCardPool({id:'general',version:1},kind,level,game?.promptTypes);
-  if(kind==='songs'&&modeId==='sing')cards=filterSongLanguagePool(cards,game);
+  if(kind==='songs')cards=filterSongLanguagePool(cards,game,modeId);
   return [...new Set(cards.map(card=>card.text))];
 }
 
@@ -57,7 +57,7 @@ function rememberLegacyWordUse(kind,level,word,modeId=game?.current?.modeId??'si
 function pullWord(kind, level=chooseDifficulty(),excluded=[],modeId=game?.current?.modeId??'sing') {
   if(game.taskHistoryVersion!=null){
     let pool=game.contentPack?getPackCardPool(game.contentPack,kind,level,game.promptTypes):getCardPool(kind,level,game.promptTypes);
-    if(kind==='songs'&&modeId==='sing')pool=filterSongLanguagePool(pool,game);
+    if(kind==='songs')pool=filterSongLanguagePool(pool,game,modeId);
     const selected=chooseRememberedTask(pool,excluded);rememberLegacyWordUse(kind,level,selected.text,modeId);return selected.text;
   }
   const pool=getPromptPool(kind,level,modeId).filter(word=>!excluded.includes(word));
@@ -91,12 +91,12 @@ function rollOutcome() {
   let actualMode=mode;
   const level=plannedLevel??chooseDifficulty();
   if(mode.id==='secret'){
-    actualMode=getMode(randomOne(game.modifierSelectionVersion===2?v2SecretMethods(game.contentPack,game,level):secretMethodsForPack(game.contentPack,game)));
+    actualMode=getMode(randomOne(game.modifierSelectionVersion===2?v2SecretMethods(game.contentPack,game,level):secretMethodsForPack(game.contentPack,game,QUIP_CONTENT_PACKS,game.songLanguagePolicyVersion===2?level:null)));
   }
   let selection=game.modifierSelectionVersion!==2&&config.usesModifiers?choosePartyModifier(game,{modeId:mode.id,methodId:actualMode.id,
     difficulty:level,complications:game.complications}):null;
   const question=config.cardType==='number'?pullApproxQuestion(level):null;
-  // Secret keeps its historical song source; the language policy belongs to sing.
+  // V2 applies the pinned language snapshot to every singing method; V1 keeps Secret historical.
   const word=question?question.question:pullWord(mode.id==='blitz'?'blitz':actualMode.kind,level,[],mode.id);
   const blitzWords=mode.id==='blitz'?[word]:null;
   if(blitzWords)while(blitzWords.length<config.blitzWordsCount)blitzWords.push(pullWord('blitz',level,blitzWords));

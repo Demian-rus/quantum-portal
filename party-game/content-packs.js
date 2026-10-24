@@ -50,20 +50,22 @@ const QUIP_CONTENT_PACKS=defineContentPacks([
 ]);
 // Generated from the editorial ledger, including reviewed legacy songs without metadata.
 const QUIP_SONG_LANGUAGES=Object.freeze({"song-020001":"ru","song-020002":"ru","song-020003":"ru","song-020004":"ru","song-020005":"ru","song-000018":"ru","song-000041":"ru","song-020006":"ru","song-020007":"ru","song-020008":"ru","song-020009":"ru","song-020010":"ru","song-020011":"ru","song-020012":"ru","song-020013":"ru","song-020014":"ru","song-020015":"ru","song-020016":"ru","song-000009":"ru","song-020017":"ru","song-020018":"ru","song-020019":"ru","song-020020":"ru","song-020021":"ru","song-020022":"ru","song-020023":"ru","song-020024":"ru","song-000029":"ru","song-020025":"ru","song-000007":"ru","song-020026":"ru","song-020027":"ru","song-020028":"ru","song-020029":"ru","song-020030":"ru","song-020031":"ru","song-020032":"ru","song-000043":"ru","song-020033":"ru","song-000038":"ru","song-020034":"ru","song-020035":"ru","song-020036":"ru","song-020037":"ru","song-020038":"ru","song-020039":"ru","song-020040":"ru","song-000020":"ru","song-020041":"ru","song-020042":"ru","song-020043":"ru","song-000039":"ru","song-020044":"ru","song-000001":"ru","song-020045":"ru","song-000013":"ru","song-020046":"ru","song-020047":"ru","song-020048":"ru","song-020049":"ru","song-000012":"ru","song-020050":"ru","song-020051":"ru","song-020052":"ru","song-000027":"ru","song-000047":"ru","song-000123":"ru","song-020053":"ru","song-020054":"ru","song-000008":"ru","song-020055":"ru","song-000017":"ru","song-020056":"ru","song-020057":"ru","song-020058":"ru","song-020059":"ru","song-000073":"ru","song-020060":"ru","song-020061":"ru","song-020062":"ru","song-000098":"ru","song-000032":"ru","song-020063":"ru","song-020064":"ru","song-020065":"ru","song-020066":"ru","song-020067":"ru","song-020068":"ru","song-000094":"ru","song-020069":"ru","song-020070":"ru","song-000045":"ru","song-020071":"ru","song-020072":"ru","song-000042":"ru","song-020073":"ru","song-020074":"ru","song-020075":"ru","song-020076":"ru","song-000016":"ru","song-000002":"ru","song-020077":"ru","song-020078":"ru","song-020079":"ru","song-020080":"ru","song-020081":"ru","song-020082":"ru","song-020083":"ru","song-000093":"ru","song-020084":"ru","song-000070":"ru","song-020085":"ru","song-020086":"ru","song-020087":"ru","song-020088":"ru","song-020089":"ru","song-020090":"ru","song-020091":"ru","song-020092":"en","song-020093":"en","song-020094":"en","song-020095":"en","song-020096":"en","song-020097":"en","song-020098":"en","song-020099":"en","song-020100":"en","song-020101":"en","song-020102":"en","song-020103":"en","song-020104":"en","song-020105":"en","song-020106":"en","song-020107":"en","song-020108":"en","song-020109":"en","song-020110":"en","song-020111":"en","song-020112":"en","song-020113":"en","song-020114":"en","song-020115":"en","song-020116":"en","song-020117":"en","song-020118":"en","song-020119":"en","song-020120":"en","song-020121":"en","song-020122":"en","song-020123":"en","song-020124":"en","song-020125":"en","song-020126":"en","song-020127":"en","song-020128":"en","song-020129":"en","song-020130":"en","song-020131":"en","song-020132":"en","song-020133":"en","song-020134":"en","song-020135":"en","song-020136":"en","song-020137":"en","song-020138":"en","song-020139":"en","song-020140":"en","song-020141":"en","song-020142":"en","song-020143":"en","song-020144":"en","song-020145":"en","song-020146":"en","song-020147":"en","song-020148":"en","song-020149":"en","song-020150":"en","song-020151":"en","song-020152":"en","song-020153":"en","song-020154":"en","song-020155":"en","song-020156":"en","song-020157":"en","song-020158":"en","song-020159":"en","song-020160":"en","song-020161":"en","song-020162":"en","song-020163":"en","song-020164":"en","song-020165":"en","song-020166":"en","song-020167":"en","song-020168":"en","song-020169":"en","song-020170":"en","song-020171":"en","song-020172":"en","song-020173":"en","song-020174":"en","song-020175":"en","song-020176":"en","song-020177":"en","song-020178":"en","song-020179":"en","song-020180":"en","song-020181":"en","song-020182":"en","song-020183":"en","song-020184":"en","song-020185":"en","song-020186":"en","song-020187":"en","song-020188":"en","song-020189":"en","song-020190":"en","song-020191":"en","song-020192":"en","song-020193":"en","song-020194":"en","song-020195":"en","song-020196":"en","song-020197":"en"});
-const QUIP_SONG_LANGUAGE_POLICY_VERSION=1;
+// V1 filters direct sing only; V2 also covers the singing method inside Secret.
+const QUIP_SONG_LANGUAGE_POLICY_VERSION=2;
 function songLanguagePolicy(match){
  if(match?.songLanguagePolicyVersion==null){
   if(match?.songLanguages!=null)throw Error('Missing QUIP song language policy');
   return null;
  }
- if(match.songLanguagePolicyVersion!==QUIP_SONG_LANGUAGE_POLICY_VERSION||!Array.isArray(match.songLanguages)||!match.songLanguages.length||
+ if(![1,2].includes(match.songLanguagePolicyVersion)||!Array.isArray(match.songLanguages)||!match.songLanguages.length||
   new Set(match.songLanguages).size!==match.songLanguages.length||match.songLanguages.some(language=>!['ru','en'].includes(language)))
   throw Error('Unsupported QUIP song language policy');
  return match.songLanguages;
 }
-function filterSongLanguagePool(pool,match){
+function filterSongLanguagePool(pool,match,modeId='sing'){
  const languages=songLanguagePolicy(match);
- return languages?pool.filter(card=>languages.includes(QUIP_SONG_LANGUAGES[card.id])):pool;
+ const applies=modeId==='sing'||match?.songLanguagePolicyVersion===2;
+ return languages&&applies?pool.filter(card=>languages.includes(QUIP_SONG_LANGUAGES[card.id])):pool;
 }
 function listThematicPacks(settings,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACKS,questions=QUIP_APPROX_QUESTIONS){
  const latest=new Map();
@@ -125,9 +127,10 @@ function checkContentPack(selection,settings,cards=PARTY_CARDS,registry=QUIP_CON
  if(compatibility)for(const id of settings.modes){const status=modeAwardAvailability(id,settings);if(!status.available)problems.push(getModeConfig(id).title+': '+status.reason);}
  const levels=settings.difficulty==='mixed'?PARTY_CARD_LEVELS:[settings.difficulty];
  if(pack.allowedModes)for(const mode of settings.modes)if(!pack.allowedModes.includes(mode))problems.push('Режим «'+getModeConfig(mode).title+'» недоступен в теме «'+pack.name+'».');
- const methods=new Set(settings.modes.flatMap(mode=>mode==='secret'?(compatibility?[]:secretMethodsForPack(selection,settings,registry)):[mode]));
+ const tieredSecret=compatibility||settings.songLanguagePolicyVersion===2;
+ const methods=new Set(settings.modes.flatMap(mode=>mode==='secret'?(tieredSecret?[]:secretMethodsForPack(selection,settings,registry)):[mode]));
  if(settings.modes.includes('secret')){
-  if(compatibility){for(const level of levels)if(!secretMethodsForPack(selection,settings,registry,level,cards).length)problems.push('Нет подходящих способов Секретки на выбранной сложности.');}
+  if(tieredSecret){for(const level of levels)if(!secretMethodsForPack(selection,settings,registry,level,cards).length)problems.push('Нет подходящих способов Секретки на выбранной сложности.');}
   else if(!secretMethodsForPack(selection,settings,registry).length)problems.push('Нет способов для Секретки.');
  }
  for(const method of methods){
@@ -154,7 +157,8 @@ function secretMethodsForPack(selection,settings,registry=QUIP_CONTENT_PACKS,dif
   const levels=difficulty?[difficulty]:settings.difficulty==='mixed'?PARTY_CARD_LEVELS:[settings.difficulty];
   return candidates.filter(id=>getModeConfig(id).secretMethod&&modeAwardAvailability(id,settings).available&&
    (!pack?.allowedModes||pack.allowedModes.includes(id))&&(!pack?.secretMethods||pack.secretMethods.includes(id))&&levels.some(level=>{
-    const pool=getPackCardPool(selection,getModeConfig(id).cardType,level,settings.promptTypes,cards,registry);
+    let pool=getPackCardPool(selection,getModeConfig(id).cardType,level,settings.promptTypes,cards,registry);
+    if(id==='sing')pool=filterSongLanguagePool(pool,settings,'secret');
     if(new Set(pool.map(card=>card.text)).size<Math.max(1,pack.minCardsPerPool))return false;
     // A mandatory condition must be possible for every card the existing selector can draw.
     return getV2ModifierPool(id,level,settings).length>0||pool.every(card=>getV2ModifierPool(id,level,settings,{card}).length>0);
@@ -162,7 +166,14 @@ function secretMethodsForPack(selection,settings,registry=QUIP_CONTENT_PACKS,dif
  }
  const basic=Object.values(QUIP_MODES_V4).filter(mode=>mode.secretMethod&&(!pack?.secretMethods||pack.secretMethods.includes(mode.id))).map(mode=>mode.id);
  const enabled=basic.filter(id=>settings.modes.includes(id));
- return enabled.length?enabled:basic;
+ const methods=enabled.length?enabled:basic;
+ if(settings.songLanguagePolicyVersion!==2)return methods;
+ const levels=difficulty?[difficulty]:settings.difficulty==='mixed'?PARTY_CARD_LEVELS:[settings.difficulty];
+ return methods.filter(id=>levels.some(level=>{
+  let pool=getPackCardPool(selection,getModeConfig(id).cardType,level,settings.promptTypes,cards,registry);
+  if(id==='sing')pool=filterSongLanguagePool(pool,settings,'secret');
+  return new Set(pool.map(card=>card.text)).size>=Math.max(1,pack?.minCardsPerPool||1);
+ }));
 }
 function packSetupSettings(selection,settings,registry=QUIP_CONTENT_PACKS){
  const pack=getContentPack(selection,registry),key=pack.id+'@'+pack.version;

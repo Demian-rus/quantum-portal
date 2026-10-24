@@ -4,7 +4,14 @@ const MODE_LIST=Object.freeze(Object.values(QUIP_MODES_V4).filter(mode=>mode.ena
 function severityForRound() {
   return game.current?.difficulty || game.difficulty;
 }
-function allowPause() { return severityForRound()==='easy'; }
+// Missing version preserves card-based controls in historical parties, including paused Mixed.
+const QUIP_TIMER_POLICY_VERSION=1;
+function timerPolicy(match){
+  const version=match?.timerPolicyVersion;
+  if(version!=null&&version!==QUIP_TIMER_POLICY_VERSION)throw Error('Unsupported QUIP timer policy');
+  return version??null;
+}
+function allowPause() { return (timerPolicy(game)===1?game.difficulty:severityForRound())==='easy'; }
 const DEFAULT_MODES = Object.freeze(MODE_LIST.map(mode=>mode.id));
 const PROMPT_TYPES = Object.freeze(['word','phrase','idiom']);
 function modeArt(id) {
@@ -162,7 +169,7 @@ function newGame() {
   const teamB=sanitizeTeam($('team-b').value,'Кометы');
   game={
     teams:[teamA,teamB],scores:[0,0],roundIndex:0,startingTeamIndex:chooseStartingTeam(),
-    ...songPolicy,
+    ...songPolicy,timerPolicyVersion:QUIP_TIMER_POLICY_VERSION,
     taskHistoryVersion:QUIP_TASK_HISTORY_VERSION,taskHistory:startedHistory.history,
     rounds:options.rounds,targetScore:options.targetScore,finishType:options.finishType,
     riskRounds:options.riskRounds,scoringVersion:2,rulesVersion:QUIP_RULE_VERSION,modeConfigVersion:QUIP_MODE_CONFIG_VERSION,
