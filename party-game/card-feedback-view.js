@@ -9,6 +9,7 @@ function feedbackButtonMarkup(positive){
 function refreshCardApproval(){
  const pause=$('timer-pause-control');pause.hidden=game?.phase!=='play'||!allowPause();
  if(!pause.hidden){pause.dataset.action=game.current.paused?'resume':'pause';pause.setAttribute('aria-label',game.current.paused?'Продолжить':'Пауза');pause.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">'+CONTROL_ICONS[game.current.paused?'play':'pause']+'</svg>';}
+ else{delete pause.dataset.action;pause.innerHTML='';}
  const button=document.querySelector?.('[data-feedback="approve"]');if(!button)return;
  try{const item=currentReportItem(game),exists=item&&readCardApprovals().data.items.some(row=>row.itemKey===reportItemKey(item));button.setAttribute('aria-pressed',String(!!exists));}catch{/* A read error is explained on the explicit action, never rewritten. */}
 }
