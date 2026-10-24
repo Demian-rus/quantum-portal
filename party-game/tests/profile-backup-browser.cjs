@@ -56,6 +56,9 @@ async function success(page){await page.waitForFunction(()=>document.getElementB
   try{
    write(previous);for(const name of files)fs.utimesSync(path.join(root,'party-game',name),new Date('2026-01-01'),new Date('2026-01-01'));
    await sp.goto(URL);await startApprox(sp);await answer(sp,'a');await answer(sp,'none');await sp.locator('[data-action="menu"]').click();
+   // Keep a real v75 paused task across the update, including its original ID-less snapshot.
+   await sp.evaluate(()=>{Object.assign(options,{modes:['talk'],difficulty:'easy',dice:true});newGame();game.dice=false;roll();toggleWord();startTimer();pauseTimer();game.dice=true;options.dice=true;persist();backToMenu()});
+   const oldGame=await sp.evaluate(()=>JSON.stringify(game)),oldMain=(await snapshot(sp))[GAME];
    const raw=(await snapshot(sp))[KEY];
    await sp.evaluate(async()=>{await navigator.serviceWorker.ready});await sp.waitForFunction(()=>!!navigator.serviceWorker.controller);
    write(current);
@@ -67,8 +70,10 @@ async function success(page){await page.waitForFunction(()=>document.getElementB
    await sp.waitForFunction(async({oldCache,newCache})=>await caches.has(newCache)&&!await caches.has(oldCache),{oldCache:cache(previous.get('sw.js')),newCache:cache(current.get('sw.js'))});
    await source.setOffline(true);await sp.reload();assert.equal((await snapshot(sp))[KEY],raw,'PWA update cannot mutate profiles');
    const cached=await sp.evaluate(async name=>{const c=await caches.open(name);return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>({url:s.src,found:!!await c.match(s.src)})))},cache(current.get('sw.js')));
-   assert.equal(cached.length,42);assert.deepEqual(cached.filter(row=>!row.found),[],'Every runtime script must be precached');await sp.locator('#settings-menu').click();
-   console.log('v75 → v78 PWA upgrade / exact profile RAW / offline backup UI / precache 42/42 PASS');
+   assert.equal(cached.length,42);assert.deepEqual(cached.filter(row=>!row.found),[],'Every runtime script must be precached');
+   await sp.locator('#continue-game').click();assert.equal(await sp.evaluate(()=>JSON.stringify(game)),oldGame,'v75 paused game must remain exact');assert.equal((await snapshot(sp))[GAME],oldMain,'v75 main RAW must remain exact');
+   await sp.locator('#exit-game').click();await sp.locator('#settings-menu').click();
+   console.log('v75 → v78 PWA upgrade / exact v75 profiles + paused game RAW / offline backup UI / precache 42/42 PASS');
   }finally{write(current);}
   const file=path.join(tmp,'profiles.json'),text=await download(sp,'#backup-export',file),payload=JSON.parse(text).payload;
   assert.equal(payload.recent.length,1);assert.equal(payload.totals[payload.profiles[0].id].matches,1);

@@ -46,7 +46,7 @@ async function upload(page,file){const picker=page.waitForEvent('filechooser');a
    const deadline=await page.evaluate(()=>game.current.deadline),visible=await page.evaluate(()=>game.current.visible),profileActive=await raw(page,'kvip-player-profiles:v1');
    await page.locator('#report-card').tap();await page.evaluate(()=>{window.__now+=500;tick()});assert.equal(await page.evaluate(()=>game.current.deadline),deadline);
    await page.locator('#report-save').click();assert.equal(await page.evaluate(()=>game.current.visible),visible);assert.equal(await page.evaluate(()=>window.__reportRandomCalls),0);
-   assert.equal(await raw(page,'kvip-player-profiles:v1'),profileActive);await page.evaluate(()=>pauseTimer());
+   assert.equal(await raw(page,'kvip-player-profiles:v1'),profileActive);await page.evaluate(()=>{pauseTimer();game.dice=true;options.dice=true;persist()});
    const savedGame=await page.evaluate(()=>JSON.stringify(game)),main=await raw(page,'iskra-party:v1'),reportsAfter=await raw(page,'kvip-card-reports:v1');
    await page.locator('#exit-game').click();await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
    await ctx.setOffline(true);await page.reload();await page.locator('#continue-game').click();
