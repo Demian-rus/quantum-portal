@@ -97,6 +97,17 @@ test('Science S3 adds 50 unique playable concepts while preserving science@6/gen
   assert.deepEqual(after.criteria.cardIds.slice(oldN),fresh.map(c=>c.id));
  }
 });
+test('Idioms I1 adds 50 normalized unique prompts to general@12 without mutating general@11',()=>{
+ const fresh=base.cards.filter(c=>c.pack==='idiom-expansion-v1');assert.equal(fresh.length,50);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(d=>[d,fresh.filter(c=>c.difficulty===d).length])),{easy:20,medium:20,hard:10});
+ assert.ok(fresh.every(c=>c.type==='idiom'&&c.categories.length===0));
+ const known=new Set(base.cards.filter(c=>c.pack!=='idiom-expansion-v1').map(c=>api.normalize(c.text)));
+ assert.ok(fresh.every(c=>!known.has(api.normalize(c.text))));assert.equal(new Set(fresh.map(c=>api.normalize(c.text))).size,50);
+ const before=base.packs.find(p=>p.id==='general'&&p.version===11),after=base.packs.find(p=>p.id==='general'&&p.version===12);
+ assert.ok(before&&after);assert.equal(before.criteria.cardIds.length,5250);assert.equal(after.criteria.cardIds.length,5300);
+ assert.deepEqual(after.criteria.cardIds.slice(0,5250),before.criteria.cardIds);
+ assert.deepEqual(after.criteria.cardIds.slice(5250),fresh.map(c=>c.id));
+});
 test('TASK009 A validator rejects duplicate IDs/text, bad types/tags and invalid answers or sources',()=>{
  for(const[code,mutate]of [
   ['id',d=>d.cards[1].id=d.cards[0].id],['normalized-duplicate',d=>d.cards[1].text='  карандаш! '],
