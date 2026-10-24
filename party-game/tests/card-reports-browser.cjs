@@ -36,13 +36,14 @@ async function protectedState(page){return page.evaluate(()=>({game:JSON.stringi
     if(mode!=='approx'){
      await page.locator('.challenge-card').tap();assert.equal(await page.evaluate(()=>game.current.visible),true);
      await page.locator('[data-action="start-timer"]').click();const deadline=await page.evaluate(()=>game.current.deadline);
-     await page.locator('#report-card').tap();assert.equal(await page.locator('#report-timer-notice').isVisible(),true);
-     await page.evaluate(()=>{window.__now+=500;tick()});assert.equal(await page.evaluate(()=>game.current.deadline),deadline);
-     assert.equal(await page.evaluate(()=>game.current.paused),false);
-     await page.locator('#report-cancel').click();assert.equal(await page.evaluate(()=>game.current.deadline),deadline);
+     await page.locator('[data-feedback="report"]').tap();assert.equal(await page.locator('#report-card').isVisible(),false);assert.equal(await page.locator('#report-timer-notice').isVisible(),true);
+     const remain=await page.evaluate(()=>game.current.feedbackHold.remainingMs);
+     await page.evaluate(()=>{window.__now+=500;tick()});assert.equal(await page.evaluate(()=>game.current.deadline),null);
+     assert.equal(await page.evaluate(()=>game.current.paused),true);assert.equal(await page.evaluate(()=>game.current.feedbackHold.remainingMs),remain);
+     await page.locator('#report-cancel').click();assert.equal(await page.evaluate(()=>game.current.deadline),deadline+500);assert.equal(await page.evaluate(()=>game.current.paused),false);
      if(mode==='blitz'){
       await page.locator('[data-action="blitz-skip"]').click();const next=await page.evaluate(()=>currentReportItem(game));assert.notEqual(next.cardId,item.cardId);
-      await page.locator('#report-card').tap();await page.locator('#report-save').click();assert.equal((await saved(page)).items.length,count+1);
+      await page.locator('[data-feedback="report"]').tap();await page.locator('#report-save').click();assert.equal((await saved(page)).items.length,count+1);
       assert.equal((await saved(page)).items.at(-1).item.cardId,next.cardId);
      }
     }
@@ -68,7 +69,7 @@ async function protectedState(page){return page.evaluate(()=>({game:JSON.stringi
    await page.locator('#reports-view').click();page.once('dialog',d=>d.accept());await page.locator('[data-report-delete="0"]').click();assert.equal((await saved(page)).items.length,archive.items.length-1);
    page.once('dialog',d=>d.dismiss());await page.locator('#reports-clear').click();assert.equal((await saved(page)).items.length,archive.items.length-1);
    page.once('dialog',d=>d.accept());await page.locator('#reports-clear').click();assert.equal((await saved(page)).items.length,0);
-   assert.deepEqual(errors,[]);await ctx.close();console.log('reports all modes / ID / touch / Back / clock / offline / export',width,height,'PASS');
+   assert.deepEqual(errors,[]);await ctx.close();console.log('reports all modes / ID / touch / Back / held clock / offline / export',width,height,'PASS');
   }
   // The real settled history retains each source ID, including individual Blitz words.
   {

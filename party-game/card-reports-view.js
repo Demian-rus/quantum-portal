@@ -8,27 +8,34 @@ function reportHistoryButtons(row,index){
 }
 function updateReportFlag(){
  const button=$('report-card');
- try{button.hidden=!currentReportItem(game);}catch{button.hidden=true;}
+ try{button.hidden=game?.phase==='play'||!currentReportItem(game);}catch{button.hidden=true;}
 }
 function openReportPanel(){
  reportView.focus=document.activeElement;$('report-backdrop').hidden=false;
  document.querySelector('.site-shell').inert=true;$('report-close').focus({preventScroll:true});
 }
 function closeReportPanel(){
+ const focus=reportView.focus,feedback=focus?.dataset?.feedback;
+ let released=false;
+ try{released=releaseFeedbackTimer();}catch(error){setReportError(error);return false;}
  $('report-backdrop').hidden=true;document.querySelector('.site-shell').inert=false;
- reportView.item=null;reportView.focus?.focus({preventScroll:true});reportView.focus=null;
+ reportView.item=null;reportView.focus=null;
+ if(released)render();
+ (feedback?document.querySelector('[data-feedback="'+feedback+'"]'):focus)?.focus({preventScroll:true});
+ return true;
 }
 function setReportError(error){$('report-error').textContent=error?.message||String(error||'');}
 function openCardReport(item,{hidden=false}={}){
  if(!item)return;
  reportView.item=JSON.parse(JSON.stringify(item));reportView.existing=null;reportView.editing=false;
- $('report-title').textContent='СООБЩИТЬ О ПРОБЛЕМЕ';$('report-list').hidden=true;$('report-editor').hidden=false;
+ $('report-title').textContent='ПОЧЕМУ НЕ НРАВИТСЯ ЗАДАНИЕ?';$('report-list').hidden=true;$('report-editor').hidden=false;
  $('report-target').textContent=hidden?'Задание скрыто. Замечание относится к выбранной карточке.':item.text;
  const level={easy:'Лёгкое',medium:'Среднее',hard:'Сложное'};
  $('report-context').textContent=[item.context==='tiebreak'?'Решающий вопрос':getMode(item.modeId)?.title||'Задание',item.methodId?getMode(item.methodId)?.title:null,level[item.difficulty],item.cardId===null?'Задание из ранее начатой партии':null].filter(Boolean).join(' · ');
- $('report-timer-notice').hidden=!['countdown','play'].includes(game?.phase);
+ $('report-timer-notice').hidden=!game?.current?.feedbackHold;
+ $('report-timer-notice').textContent=game?.current?.feedbackHold?.wasPaused?'Таймер остаётся на паузе.':'Таймер приостановлен. После закрытия отсчёт продолжится.';
  $('report-reason').value='error';$('report-comment').value='';updateReportComment();
- $('report-existing').hidden=true;$('report-save').disabled=false;$('report-save').textContent='СОХРАНИТЬ';setReportError('');
+ $('report-existing').hidden=true;$('report-save').disabled=false;$('report-save').textContent='ОТПРАВИТЬ ЖАЛОБУ';setReportError('');
  try{
   reportView.existing=readCardReports().data.items.find(row=>row.itemKey===reportItemKey(item))??null;
   if(reportView.existing){
@@ -39,28 +46,43 @@ function openCardReport(item,{hidden=false}={}){
  openReportPanel();
 }
 function openCurrentCardReport(){
- try{openCardReport(currentReportItem(game),{hidden:!!game?.current&&game.current.question==null&&!game.current.visible&&game.phase!=='judge'});}
+ try{
+  if(!currentReportItem(game))return;
+  const held=holdFeedbackTimer();
+  openCardReport(currentReportItem(game),{hidden:!!game?.current&&game.current.question==null&&!game.current.visible&&game.phase!=='judge'});
+  if(held)render();
+ }
  catch(error){toast(error.message);}
 }
 function updateReportComment(){
- const other=$('report-reason').value==='other';$('report-comment-label').hidden=!other;
+ $('report-comment-label').hidden=false;
  $('report-comment-count').textContent=Array.from($('report-comment').value).length+' / 160';
 }
 function saveReportPanel(){
  if(!reportView.item)return;
  try{
-  const result=saveCardReport(reportView.item,$('report-reason').value,$('report-reason').value==='other'?$('report-comment').value:'',{
+  const settings={
    allowUpdate:reportView.editing,expectedRow:reportView.existing?JSON.stringify(reportView.existing):null
-  });
+  };
+  let result=saveCardFeedbackReport(reportView.item,$('report-reason').value,$('report-comment').value,settings);
+  if(result.status==='change-required'){
+   if(!window.confirm('Заменить одобрение этого задания жалобой?'))return;
+   result=saveCardFeedbackReport(reportView.item,$('report-reason').value,$('report-comment').value,{...settings,replaceApproval:true,expectedApproval:JSON.stringify(result.approval)});
+   if(result.status==='change-required')throw reportError('одобрение изменилось. Повторите выбор.');
+  }
   if(result.status==='exists'){
    reportView.existing=result.row;$('report-existing').hidden=false;$('report-save').disabled=true;setReportError('Для этой карточки уже есть замечание. Нажмите «Изменить замечание».');return;
   }
-  closeReportPanel();toast(result.status==='updated'?'Замечание обновлено':'Замечание сохранено');renderReportsCount();
+  reportView.existing=result.row;$('report-save').disabled=true;
+  renderReportsCount();if(!closeReportPanel())return;
+  toast(result.status==='updated'?'Замечание обновлено':'Замечание сохранено на устройстве');
  }catch(error){setReportError(error);}
 }
 function renderReportsCount(){
- try{const {data}=readCardReports();$('reports-count').textContent='Отмечено карточек: '+data.items.length+' / 500';}
+ try{const {data}=readCardReports();$('reports-count').textContent='Жалоб: '+data.items.length+' / 500';}
  catch(error){$('reports-count').textContent=error.message;}
+ try{const {data}=readCardApprovals();$('approvals-count').textContent='Одобрений: '+data.items.length+' / 500';$('approvals-clear').disabled=data.items.length===0;}
+ catch(error){$('approvals-count').textContent=error.message;$('approvals-clear').disabled=true;}
 }
 function openReportsList(){
  $('report-title').textContent='ЗАМЕЧАНИЯ К ЗАДАНИЯМ';$('report-editor').hidden=true;$('report-list').hidden=false;setReportError('');

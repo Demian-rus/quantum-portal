@@ -93,8 +93,8 @@ module.exports=async function outcomes(browser,url){
    await fixture(page,{mode:'blitz'});
    if(device.height<=390){
     await shot(page,device.name+'-blitz-playing');
-    const timer=await page.evaluate(()=>{const a=document.querySelector('.timer-ring').getBoundingClientRect(),b=document.querySelector('.timer-pause').getBoundingClientRect();return {ring:{left:a.left,right:a.right},pause:{left:b.left,right:b.right}}});
-    assert.ok(timer.pause.right<=timer.ring.left-2||timer.pause.left>=timer.ring.right+2,'Pause overlaps timer: '+JSON.stringify(timer));
+    const timer=await page.evaluate(()=>{const a=document.querySelector('.timer-ring').getBoundingClientRect(),b=document.querySelector('.timer-pause').getBoundingClientRect();return {ring:{left:a.left,right:a.right,top:a.top,bottom:a.bottom},pause:{left:b.left,right:b.right,top:b.top,bottom:b.bottom,w:b.width,h:b.height}}});
+    assert.ok(timer.pause.w>=44&&timer.pause.h>=44);assert.ok(timer.pause.bottom<=timer.ring.top-2||timer.pause.right<=timer.ring.left-2||timer.pause.left>=timer.ring.right+2,'Pause overlaps timer: '+JSON.stringify(timer));
    }
    for(let i=0;i<3;i++)await page.locator('[data-action="blitz-correct"]').click();
    await controls(page,'judge',true);await page.locator('[data-action="base"]').click();assert.deepEqual(await page.evaluate(()=>game.scores),[2,0]);
