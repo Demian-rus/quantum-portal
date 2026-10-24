@@ -1,0 +1,502 @@
+[
+  {
+    "text": "АФРИКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031001"
+  },
+  {
+    "text": "АЗИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031002"
+  },
+  {
+    "text": "АНТАРКТИДА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031003"
+  },
+  {
+    "text": "АРКТИКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031004"
+  },
+  {
+    "text": "СИБИРЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031005"
+  },
+  {
+    "text": "АЛЬПЫ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031006"
+  },
+  {
+    "text": "УРАЛ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031007"
+  },
+  {
+    "text": "НИЛ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031008"
+  },
+  {
+    "text": "ДУБАЙ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031009"
+  },
+  {
+    "text": "СТАМБУЛ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031010"
+  },
+  {
+    "text": "ЧЁРНОЕ МОРЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031001"
+  },
+  {
+    "text": "СРЕДИЗЕМНОЕ МОРЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031002"
+  },
+  {
+    "text": "КРАСНОЕ МОРЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031003"
+  },
+  {
+    "text": "ЭЙФЕЛЕВА БАШНЯ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031004"
+  },
+  {
+    "text": "СТАТУЯ СВОБОДЫ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031005"
+  },
+  {
+    "text": "КРАСНАЯ ПЛОЩАДЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031006"
+  },
+  {
+    "text": "ПИРАМИДЫ ГИЗЫ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031007"
+  },
+  {
+    "text": "БЕРМУДСКИЙ ТРЕУГОЛЬНИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031008"
+  },
+  {
+    "text": "МОСТ ЗОЛОТЫЕ ВОРОТА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031009"
+  },
+  {
+    "text": "БЕАР ГРИЛЛС",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "person-031001"
+  },
+  {
+    "text": "БАЛКАНЫ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031011"
+  },
+  {
+    "text": "КАРПАТЫ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031012"
+  },
+  {
+    "text": "БОСФОР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031013"
+  },
+  {
+    "text": "ДУНАЙ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031014"
+  },
+  {
+    "text": "СЕЙШЕЛЫ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031015"
+  },
+  {
+    "text": "КАРИБЫ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031016"
+  },
+  {
+    "text": "СИНГАПУР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031017"
+  },
+  {
+    "text": "КАМЧАТКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031018"
+  },
+  {
+    "text": "АЛЯСКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031019"
+  },
+  {
+    "text": "ГОЛЬФСТРИМ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031020"
+  },
+  {
+    "text": "МАРИАНСКАЯ ВПАДИНА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031010"
+  },
+  {
+    "text": "КАСПИЙСКОЕ МОРЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031011"
+  },
+  {
+    "text": "МЁРТВОЕ МОРЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031012"
+  },
+  {
+    "text": "АРАВИЙСКИЙ ПОЛУОСТРОВ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031013"
+  },
+  {
+    "text": "ДОЛИНА ГЕЙЗЕРОВ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031014"
+  },
+  {
+    "text": "ГАЛАПАГОССКИЕ ОСТРОВА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031015"
+  },
+  {
+    "text": "КОРАЛЛОВЫЙ РИФ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031016"
+  },
+  {
+    "text": "ВУЛКАН КРАКАТАУ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031017"
+  },
+  {
+    "text": "ЮРИЙ СЕНКЕВИЧ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "person-031002"
+  },
+  {
+    "text": "ФРЭНСИС ДРЕЙК",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "person-031003"
+  },
+  {
+    "text": "АТАКАМА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031021"
+  },
+  {
+    "text": "КОРДИЛЬЕРЫ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031022"
+  },
+  {
+    "text": "ШПИЦБЕРГЕН",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031023"
+  },
+  {
+    "text": "КАРАКОРУМ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031024"
+  },
+  {
+    "text": "ПЛОСКОГОРЬЕ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "word-031025"
+  },
+  {
+    "text": "СЕВЕРО-ЗАПАДНЫЙ ПРОХОД",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031018"
+  },
+  {
+    "text": "ВОСТОЧНО-АФРИКАНСКИЙ РАЗЛОМ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031019"
+  },
+  {
+    "text": "БОЛЬШОЙ ВОДОРАЗДЕЛЬНЫЙ ХРЕБЕТ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "phrase-031020"
+  },
+  {
+    "text": "АБЕЛЬ ТАСМАН",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "person-031004"
+  },
+  {
+    "text": "ВИЛЛЕМ БАРЕНЦ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "geography-expansion-v1",
+    "id": "person-031005"
+  }
+]
