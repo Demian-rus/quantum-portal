@@ -224,7 +224,8 @@ function handleAction(action) {
     case 'next':if(game?.phase==='between'){game.phase='ready';game.current=null;persist();render();}return;
     case 'again':if(game?.phase==='results'){
       if(!saveCompletedProfileResult()){toast(profileResultProblem);return;}
-      archiveCurrentTaskHistory();game=null;openSetup();
+      archiveCurrentTaskHistory();game=null;
+      if(selectedPlayerProfiles())newGame();else openSetup();
     }return;
     case 'retry-statistics':saveCompletedProfileResult();showResults();return;
     case 'menu':return backToMenu();
