@@ -111,7 +111,9 @@ function completedProfileSummary(match){
   validateProfileMatch(match);
   if(!match.profileMatch||match.phase!=='results'||!Array.isArray(match.history)||match.history.length!==match.roundIndex||
      !Array.isArray(match.scores)||match.scores.length!==2||match.scores.some(score=>!profileCount(score))||
-     !scoreMatchComplete(match))throw Error('Партия ещё не завершена.');
+     !(match.finishPolicyVersion===1?scoreMatchComplete(match):
+       match.finishType==='score'?match.roundIndex%2===0&&Math.max(...match.scores)>=match.targetScore&&match.scores[0]!==match.scores[1]:
+       match.roundIndex>=match.rounds))throw Error('Партия ещё не завершена.');
   // Each prompt belongs to the setter on that turn. Points may belong
   // to another player, so assignment must never be derived from score.
   const first=match.startingTeamIndex??0;
