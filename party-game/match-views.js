@@ -2,6 +2,7 @@
 // Match display views; state, navigation and helpers remain in the existing scripts.
 
 function renderMatch() {
+  updateReportFlag();
   for(const [i,id] of ['a','b'].entries())$('match-team-'+id).style.setProperty('--profile-color',profileColorForMatch(game,i));
   $('label-team-a').textContent=game.teams[0];
   $('label-team-b').textContent=game.teams[1];
@@ -48,11 +49,11 @@ function historyMarkup(row,index){
  if(row.mode==='approx')return '<div class="history-row"><span>'+(index+1)+'. ПРИМЕРНО · '+escapeHTML(row.word)+
   ' · Ответ: '+escapeHTML(row.answer)+' '+escapeHTML(row.unit||'')+' · '+
   (row.sharedAward?'Обе команды':row.recipientNames.length?escapeHTML(row.recipientNames.join(', ')):'Никому')+
-  '</span><b>'+row.deltas.map(delta=>'+'+delta).join(' / ')+'</b></div>';
+  '</span><b>'+row.deltas.map(delta=>'+'+delta).join(' / ')+'</b>'+reportHistoryButtons(row,index)+'</div>';
  return '<div class="history-row"><span>'+(index+1)+'. '+escapeHTML(row.team)+' · '+
   escapeHTML(getMode(row.mode)?.title||'')+' · '+escapeHTML(row.word)+
   (row.outcome?' · '+(row.outcome==='failed'?'Не угадали':row.outcome==='base-only'?'Без усложнения':row.modifierSuccess===true?'С усложнением':'Угадали'):'')+'</span>'+
-  '<b>'+(row.awarded>0?'+'+row.awarded:row.awarded)+'</b></div>';
+  '<b>'+(row.awarded>0?'+'+row.awarded:row.awarded)+'</b>'+reportHistoryButtons(row,index)+'</div>';
 }
 
 function showResults() {
@@ -72,5 +73,6 @@ function showResults() {
     (profileResultProblem?'<p class="profile-error" role="status">'+escapeHTML(profileResultProblem)+'</p>'+makeButton('ПОВТОРИТЬ ЗАПИСЬ','retry-statistics','button button-secondary'):'')+
     '<div class="history-block"><h3>ИСТОРИЯ ХОДОВ</h3>'+
     game.history.map(historyMarkup).join('')+
+    (game.tiebreak?.question?'<button type="button" id="report-final-tiebreak" class="button button-secondary">⚑ Замечание к тай-брейку</button>':'')+
     '</div>';
 }
