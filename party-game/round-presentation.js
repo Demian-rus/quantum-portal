@@ -105,7 +105,7 @@ function modeInformation() {
 }
 function roundConditionMarkup(){
   const condition=game.current?.complication;
-  return condition?'<div class="round-condition"><strong>УСЛОЖНЕНИЕ: '+escapeHTML(condition)+'</strong></div>':'';
+  return condition?'<div class="round-condition" tabindex="0" role="region" aria-label="Усложнение"><strong>УСЛОЖНЕНИЕ: '+escapeHTML(condition)+'</strong></div>':'';
 }
 function taskMarkup(hidden) {
   const word=displayPrompt(game.current.word);

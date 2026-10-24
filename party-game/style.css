@@ -960,16 +960,17 @@ body[data-screen="preferences"]::after{background:#11082085}
  font-size:clamp(20px,calc(3 * var(--kvip-locked-vh, 1dvh)),30px);margin:0;line-height:1.17;
  max-width:100%;flex-shrink:0;
 }
-.scene--game .stable-round .round-top::-webkit-scrollbar{display:none;width:0;height:0}
+.scene--game .stable-round .round-top::-webkit-scrollbar,
+.scene--game .round-condition::-webkit-scrollbar{display:none;width:0;height:0}
 .scene--game .round-condition{
- width:min(100%,540px);min-width:0;flex:0 0 auto;
+ width:min(100%,540px);min-width:0;min-height:calc(1.4em + 16px);flex:0 1 auto;overflow-y:auto;scrollbar-width:none;overscroll-behavior:contain;
  padding:7px 11px;border:1px solid #9095da76;border-radius:14px;
  background:#171735df;font-size:clamp(10px,calc(1.45 * var(--kvip-locked-vh, 1dvh)),13px);
  line-height:1.4;overflow-wrap:anywhere;
 }
 .scene--game .round-condition strong{color:var(--lime)}
-/* One scrollable upper region keeps every condition accessible without moving
-   the fixed word card or actions. The dial frees the pause button's old row. */
+/* Conditions use the available height and remain scrollable when needed. The
+   upper region is a fallback on very short screens; card and actions stay fixed. */
 .scene--game .timer-dial{position:relative;display:grid;place-items:center;flex:0 0 auto}
 .scene--game .timer-dial>.timer-pause{position:absolute;right:calc(100% + 8px);top:50%;transform:translateY(-50%);margin:0}
 
