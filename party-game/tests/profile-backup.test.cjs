@@ -114,9 +114,10 @@ test('backup: failed replacement restores prior RAW and retains a verified recov
  const a=harness(),b=harness();profiles(a);profiles(b);
  const old=a.storage.get('kvip-player-profiles:v1');a.context.archived=await backup(b);
  const set=a.context.localStorage.setItem,get=a.context.localStorage.getItem;
- let falseRead=false;
+ let falseRead=false,injectOnce=true;
  a.context.localStorage.setItem=(key,value)=>{
-   set(key,value);if(key==='kvip-player-profiles:v1')falseRead=true;
+   set(key,value);
+   if(key==='kvip-player-profiles:v1'&&injectOnce){falseRead=true;injectOnce=false;}
  };
  a.context.localStorage.getItem=key=>{
    if(key==='kvip-player-profiles:v1'&&falseRead){falseRead=false;return 'not persisted'}
