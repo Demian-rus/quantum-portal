@@ -9,7 +9,7 @@ async function fixture(page,{modifier=true,policy='setter',mode='talk',long=fals
  await page.evaluate(({modifier,policy,mode,long,version})=>{
   soundOn=false;options.awardTo=policy;options.modes=[mode];options.dice=false;options.complications=modifier;
   chooseStartingTeam=()=>0;Math.random=()=>0;
-  selectedProfileIds=[long?'ПЕРВАЯСУПЕРДЛИННАЯКОМАНДА':'ПА',long?'ВТОРАЯСУПЕРДЛИННАЯКОМАНДА':'ДС'].map((name,i)=>
+  selectedProfileIds=[long?'ПЕРВАЯСУПЕРДЛИННАЯКОМАНДА':'ПА',long?'ВТОРАЯСУПЕРДЛИННАЯКОМАНДА':'ДС'].map(name=>Array.from(name).slice(0,24).join('')).map((name,i)=>
    (profileStore.profiles.find(p=>p.name===name)||createPlayerProfile(name,i?'cyan':'coral')).id);
   newGame();game.rulesVersion=version;roll();game.dice=true;options.dice=true;persist();render();
  },{modifier,policy,mode,long,version});

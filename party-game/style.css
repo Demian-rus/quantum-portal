@@ -1588,8 +1588,8 @@ body[data-screen="results"]::after {
 .final-score-item>span:first-child{overflow-wrap:anywhere}
 body[data-screen="statistics"]::before{background-image:url('./assets/bg-setup.webp?v=3')}
 .scene--statistics .settings-scroller{inset-block-start:calc(env(safe-area-inset-top) + 66px)}
-@media(max-height:650px){.scene--home .home-menu{top:40%;gap:7px}.scene--home .home-menu .home-action{min-height:46px;padding:10px}.scene--home .other-games-menu{bottom:8dvh;min-height:40px}}
-@media(max-height:450px) and (orientation:landscape){.scene--home .home-menu{top:32%;width:min(90vw,650px);grid-template-columns:1fr 1fr}.scene--home .other-games-menu{bottom:12dvh;min-height:38px}}
+@media(max-height:650px){.scene--home .home-menu{top:40%;gap:7px}.scene--home .home-menu .home-action{min-height:46px;padding:10px}.scene--home .other-games-menu{bottom:8dvh;min-height:44px}}
+@media(max-height:450px) and (orientation:landscape){.scene--home .home-menu{top:32%;width:min(90vw,650px);grid-template-columns:1fr 1fr}.scene--home .other-games-menu{bottom:12dvh;min-height:44px}}
 body[data-screen="other-games"]::before {background-image:url('./assets/bg-setup.webp?v=3');}
 body[data-screen="other-games"]::after {background:linear-gradient(180deg,#07051b38,#08051a64);}
 .scene--other-games .settings-scroller {inset-block-start:calc(env(safe-area-inset-top) + 66px);}
