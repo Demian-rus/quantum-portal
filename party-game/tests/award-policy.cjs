@@ -6,6 +6,11 @@ const devices=[{name:'narrow',width:320,height:568},{name:'phone',width:390,heig
  {name:'desktop',width:1440,height:900},{name:'landscape',width:640,height:360}];
 const choose=(page,value)=>page.locator('#award-policy-choices [data-value="'+value+'"]');
 const yesno=page=>page.locator('#mode-toggles input[value="yesno"]');
+async function enableMode(page,id){
+ const input=page.locator('#mode-toggles input[value="'+id+'"]');
+ if(!await input.isChecked())await page.locator('#mode-toggles label:has(input[value="'+id+'"])').click();
+ assert.equal(await input.isChecked(),true);
+}
 async function setup(page){await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();}
 async function geometry(page){
  const g=await page.locator('#award-policy-choices').evaluate(el=>{
@@ -36,7 +41,7 @@ module.exports=async function awardPolicy(browser,url){
    if(device.name==='phone')await shot(page,'phone-setter');
    await choose(page,'guesser').click();await geometry(page);
    if(device.name==='phone')await shot(page,'phone-guesser');
-   await page.locator('#go-advanced').click();await page.locator('#mode-settings > summary').click();await yesno(page).check({force:true});
+   await page.locator('#go-advanced').click();await page.locator('#mode-settings > summary').click();await enableMode(page,'yesno');
    await page.locator('#advanced-done').click();const previous=await page.evaluate(()=>options.modes);
    await choose(page,'setter').click();assert.equal(await page.evaluate(()=>options.modes.includes('yesno')),false);
    assert.deepEqual(await page.evaluate(()=>options.modes),previous.filter(id=>id!=='yesno'));
@@ -47,13 +52,13 @@ module.exports=async function awardPolicy(browser,url){
    assert.equal(await yesno(page).isChecked(),false);assert.equal(await page.evaluate(()=>options.modes.includes('yesno')),false);
    await page.locator('#advanced-done').click();await choose(page,'guesser').click();
    await page.locator('#go-advanced').click();await page.locator('#mode-settings > summary').click();assert.equal(await yesno(page).isDisabled(),false);assert.equal(await yesno(page).isChecked(),false);
-   await yesno(page).check();await page.locator('#advanced-done').click();
+   await enableMode(page,'yesno');await page.locator('#advanced-done').click();
    await page.reload({waitUntil:'load'});await setup(page);assert.equal(await choose(page,'guesser').getAttribute('aria-pressed'),'true');
    await page.locator('#go-advanced').click();await page.locator('#mode-settings > summary').click();assert.equal(await yesno(page).isChecked(),true);await page.locator('#advanced-done').click();
    await page.evaluate(()=>{options.modes=['yesno'];persist();renderOptions()});await choose(page,'setter').click();
    assert.deepEqual(await page.evaluate(()=>options.modes),[]);assert.equal(await page.locator('#start-game').isDisabled(),true);assert.match(await page.locator('#setup-mode-notice').textContent(),/Выберите/);
    await page.reload({waitUntil:'load'});await setup(page);assert.deepEqual(await page.evaluate(()=>options.modes),[]);assert.equal(await page.locator('#start-game').isDisabled(),true);
-   await page.locator('#go-advanced').click();await page.locator('#mode-settings > summary').click();await page.locator('#mode-toggles input[value="talk"]').check();await page.locator('#advanced-done').click();assert.equal(await page.locator('#start-game').isEnabled(),true);
+   await page.locator('#go-advanced').click();await page.locator('#mode-settings > summary').click();await enableMode(page,'talk');await page.locator('#advanced-done').click();assert.equal(await page.locator('#start-game').isEnabled(),true);
    for(const value of ['setter','guesser']){
     await choose(page,value).click();
     await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.dice=false;options.complications=false;chooseStartingTeam=()=>0});

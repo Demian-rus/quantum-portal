@@ -7,11 +7,13 @@ const URL='http://127.0.0.1:8765/party-game/';
 async function configureOnly(page,id) {
   await page.locator('#go-advanced').click();
   await page.locator('#mode-settings > summary').click();
-  await page.locator('#mode-toggles input[value="'+id+'"]').check({force:true});
+  const selected=page.locator('#mode-toggles input[value="'+id+'"]');
+  if(!await selected.isChecked())await page.locator('#mode-toggles label:has(input[value="'+id+'"])').click();
   const inputs=page.locator('#mode-toggles input');
   for(let i=0;i<await inputs.count();i++){
     const current=inputs.nth(i);
-    if(await current.getAttribute('value')!==id)await current.uncheck({force:true});
+    const value=await current.getAttribute('value');
+    if(value!==id&&await current.isChecked())await page.locator('#mode-toggles label:has(input[value="'+value+'"])').click();
   }
   assert.equal(await page.locator('#mode-toggles input:checked').count(),1);
 }

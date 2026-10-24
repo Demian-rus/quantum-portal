@@ -101,8 +101,9 @@ async function ui(browser,url,width,height){
   await page.locator('#toggle-complications').uncheck();assert.equal(await page.locator('#modifier-chance-settings').isVisible(),false);
   await page.locator('#toggle-complications').check();await page.locator('#modifier-chance').evaluate(el=>{el.value='35';el.dispatchEvent(new Event('input',{bubbles:true}))});assert.equal(await page.evaluate(()=>options.modifierChance),35);
   if(width===390){await page.locator('.extra-rules').scrollIntoViewIfNeeded();await page.screenshot({path:ART+'settings-after.png'})}
-  const inputs=page.locator('#mode-toggles input');await page.locator('#mode-toggles input[value="secret"]').check({force:true});
-  for(let i=0;i<await inputs.count();i++){const input=inputs.nth(i);if(await input.getAttribute('value')!=='secret'&&await input.isChecked())await input.uncheck({force:true})}
+  const inputs=page.locator('#mode-toggles input');
+  if(!await page.locator('#mode-toggles input[value="secret"]').isChecked())await page.locator('#mode-toggles label:has(input[value="secret"])').click();
+  for(let i=0;i<await inputs.count();i++){const input=inputs.nth(i),value=await input.getAttribute('value');if(value!=='secret'&&await input.isChecked())await page.locator('#mode-toggles label:has(input[value="'+value+'"])').click()}
   assert.deepEqual(await page.evaluate(()=>options.modes),['secret']);
   for(const languages of [['ru'],['en'],['ru','en']]){
    if(!await page.locator('#scene-advanced').isVisible()){await setup(page);await page.locator('#go-advanced').click()}
