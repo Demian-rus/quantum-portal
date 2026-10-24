@@ -14,6 +14,7 @@ function advanceBlitz(correct) {
   c.blitzIndex++;
   if(!c.blitzQueue.length){finishTimer('completed');return;}
   c.word=c.blitzWords[c.blitzQueue[0]];
+  c.cardId=c.blitzCardIds?.[c.blitzQueue[0]]??null;
   // Each next Blitz prompt starts visible, as it did before card toggling.
   c.visible=true;
   persist();sfx(correct?'win':'button');
@@ -58,7 +59,9 @@ function toggleWord() {
 
 function replaceWord() {
   if(!game||!roundUsesTimer()||game.phase!=='task'||!allowPause()||game.current.modeId==='blitz')return;
-  game.current.word=pullWord(getMode(game.current.methodId).kind,game.current.difficulty);
+  const identity={cardId:null};
+  game.current.word=pullWord(getMode(game.current.methodId).kind,game.current.difficulty,[],undefined,identity);
+  game.current.cardId=identity.cardId;
   game.current.visible=false;
   persist();sfx('button');render();
 }
