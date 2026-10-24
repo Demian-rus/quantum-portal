@@ -64,6 +64,48 @@ test('statistics: actual deltas preserve risk penalties, partial modifier succes
   secret:{rounds:1,success:1,points:2,methods:{sing:{rounds:1,success:1,points:2}}},talk:{rounds:1,success:0,points:-2}});
  assert.equal(h.eval('profileStore.totals[profileStore.profiles[1].id].modes.secret.points'),0);
 });
+test('statistics: future modes and Secret methods work without a static mode ID list',()=>{
+ const h=harness();players(h);
+ finished(h,[{mode:'future-mode',recipientIndex:0,awarded:1,correct:true},
+  {mode:'secret',methodId:'future-method',recipientIndex:1,awarded:0,taskSuccess:false}],[1,0]);
+ h.eval('commitProfileResult(match)');
+ const restored=harness(h.storage);restored.eval('restoreProfiles()');
+ const modes=plain(restored.eval('profileStore.totals[profileStore.profiles[0].id].modes'));
+ assert.equal(modes['future-mode'].rounds,1);assert.equal(modes['future-mode'].points,1);
+ assert.equal(modes.secret.methods['future-method'].rounds,1);
+ const broken=JSON.parse(h.storage.get('kvip-player-profiles:v1'));
+ broken.totals[broken.profiles[0].id].modes.constructor={rounds:1,success:1,points:0};
+ h.context.broken=broken;assert.throws(()=>h.eval('validateProfileStore(broken)'));
+});
+test('statistics integration: failed START preserves old durable RAW and previous game',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation();
+ h.eval('newGame()');
+ const beforeRaw=h.storage.get('iskra-party:v1');
+ const beforeGame=h.eval('JSON.stringify(game)'),beforeMemory=h.eval('JSON.stringify(taskMemory)');
+ const original=h.context.localStorage.setItem;
+ h.context.localStorage.setItem=(key,value)=>{if(key==='iskra-party:v1')throw Error('quota');return original(key,value)};
+ h.eval('newGame()');
+ assert.equal(h.storage.get('iskra-party:v1'),beforeRaw);
+ assert.equal(h.eval('JSON.stringify(game)'),beforeGame);
+ assert.equal(h.eval('JSON.stringify(taskMemory)'),beforeMemory);
+ h.context.localStorage.setItem=original;h.eval('newGame()');
+ assert.notEqual(h.storage.get('iskra-party:v1'),beforeRaw);
+ assert.notEqual(h.eval('JSON.stringify(game)'),beforeGame);
+ assert.equal(h.eval('game.profileMatch.sequence'),3);
+});
+test('statistics integration: failed START readback rolls back the exact prior RAW',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation();
+ h.eval('newGame()');const beforeRaw=h.storage.get('iskra-party:v1');
+ const beforeGame=h.eval('JSON.stringify(game)');
+ const set=h.context.localStorage.setItem,get=h.context.localStorage.getItem;
+ let nextReadFailure=false,injected=false;
+ h.context.localStorage.setItem=(key,value)=>{set(key,value);if(key==='iskra-party:v1'&&!injected){nextReadFailure=true;injected=true}};
+ h.context.localStorage.getItem=key=>{if(key==='iskra-party:v1'&&nextReadFailure){nextReadFailure=false;return '__not-confirmed__'}return get(key)};
+ h.eval('newGame()');
+ assert.equal(h.storage.get('iskra-party:v1'),beforeRaw);
+ assert.equal(h.eval('JSON.stringify(game)'),beforeGame);
+ assert.equal(h.eval('storageBlocked'),false);
+});
 test('statistics: incomplete and mismatched histories cannot be counted',()=>{
  const h=harness();players(h);finished(h);h.eval('match.phase="ready"');assert.throws(()=>h.eval('commitProfileResult(match)'));
  h.eval('match.phase="results";match.scores=[100,0]');assert.throws(()=>h.eval('commitProfileResult(match)'));
