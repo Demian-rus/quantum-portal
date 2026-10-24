@@ -2381,3 +2381,31 @@ test('TASK013 B round views remove duplicate setup copy but retain actual condit
   assert.match(h.elements.get('play-content').innerHTML,/УСЛОЖНЕНИЕ: Не рисуй &lt;линии&gt; &amp; точки/);
  }
 });
+
+
+test('smart finish: Mixed tiebreak restores at a six-turn planner boundary without advancing the plan',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs'),storage=new Map(),h=createSimulation(1,storage);
+ h.eval(`chooseStartingTeam=()=>0;Object.assign(options,{modes:['talk'],awardTo:'setter',difficulty:'mixed',finishType:'score',targetScore:15,dice:false,complications:false,riskRounds:false});newGame();
+  for(let i=0;i<30;i++){roll();game.phase='judge';judge(true)}`);
+ assert.equal(h.eval('game.phase'),'tiebreak');assert.equal(h.eval('game.roundIndex'),30);
+ const raw=storage.get('iskra-party:v1'),plan=h.eval('JSON.stringify(game.plannerState)'),question=h.eval('JSON.stringify(game.tiebreak.question)');
+ const restored=createSimulation(2,storage);
+ assert.equal(restored.eval('storageBlocked'),false);assert.equal(restored.eval('game.phase'),'tiebreak');
+ assert.equal(restored.eval('JSON.stringify(game.plannerState)'),plan);assert.equal(restored.eval('JSON.stringify(game.tiebreak.question)'),question);
+ assert.equal(storage.get('iskra-party:v1'),raw);
+ restored.eval('Math.random=()=>{throw Error("Restore must not consume RNG")};restoreSession();revealTiebreak();settleTiebreak("a");settleTiebreak("a")');
+ assert.equal(restored.eval('game.phase'),'results');assert.deepEqual(Array.from(restored.eval('game.scores')),[16,15]);
+ assert.equal(restored.eval('profileStore.totals[game.profileMatch.participants[0].id].wins'),1);
+ assert.equal(restored.eval('game.history.length'),30);
+});
+
+test('smart finish: missing or misplaced pending tiebreak protects saved RAW',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs'),storage=new Map(),h=createSimulation(1,storage);
+ h.eval("Object.assign(options,{finishType:'score',targetScore:15,modes:['talk']});newGame();game.roundIndex=2;game.scores=[15,15];beginTiebreak();persist()");
+ const good=JSON.parse(storage.get('iskra-party:v1'));
+ for(const missing of [true,false]){
+  const saved=structuredClone(good);if(missing)delete saved.game.tiebreak;else saved.game.phase='ready';
+  const raw=JSON.stringify(saved),store=new Map(storage);store.set('iskra-party:v1',raw);
+  const restored=createSimulation(2,store);assert.equal(restored.eval('storageBlocked'),true);assert.equal(store.get('iskra-party:v1'),raw);
+ }
+});

@@ -3,7 +3,7 @@
 const QUIP_TIEBREAK_VERSION=1;
 function validateTiebreakState(match){
  const tie=match?.tiebreak;
- if(tie==null)return;
+ if(tie==null){if(match?.phase==='tiebreak')throw Error('Missing saved QUIP tiebreak');return;}
  if(finishPolicyVersion(match)!==1||match.finishType!=='score'||!tie||
     tie.version!==QUIP_TIEBREAK_VERSION||!['question','judge','decided'].includes(tie.stage)||
     !Array.isArray(tie.attempted)||tie.attempted.length>120||
@@ -16,6 +16,7 @@ function validateTiebreakState(match){
     !(tie.winnerIndex===null||[0,1].includes(tie.winnerIndex))||
     (tie.stage==='decided')!==(tie.winnerIndex!==null)||
     (tie.stage==='decided')!==(match.phase==='results')||
+    (tie.stage!=='decided'&&match.phase!=='tiebreak')||
     match.roundIndex%2!==0||match.roundIndex<2||
     (tie.winnerIndex===null?match.scores[0]!==match.scores[1]:
       match.scores[tie.winnerIndex]!==match.scores[1-tie.winnerIndex]+1)||
