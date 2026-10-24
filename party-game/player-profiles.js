@@ -117,15 +117,20 @@ function completedProfileSummary(match){
     s[match.scores[0]===match.scores[1]?'draws':match.scores[i]>match.scores[1-i]?'wins':'losses']=1;});
   for(const row of match.history){
     if(!validProfileModeId(row.mode))throw Error('Некорректный ID режима в истории.');
-    const deltas=row.mode==='approx'?row.deltas:[0,0];
-    if(row.mode!=='approx'){
+    // A shared-award mode supplies per-player deltas; future modes can use
+    // this contract without adding their ID to the statistics module.
+    const shared=Object.hasOwn(row,'deltas');
+    const deltas=shared?row.deltas:[0,0];
+    if(row.mode==='approx'&&!shared)throw Error('Нет индивидуальных результатов Примерно.');
+    if(shared&&(!Array.isArray(row.recipients)||row.recipients.some(i=>![0,1].includes(i))||new Set(row.recipients).size!==row.recipients.length))throw Error('Повреждены получатели общего результата.');
+    if(!shared){
       if(![0,1].includes(row.recipientIndex)||!profileCount(row.awarded,true))throw Error('Неизвестный получатель очков.');
       deltas[row.recipientIndex]=row.awarded;
     }
     if(!Array.isArray(deltas)||deltas.length!==2||deltas.some(d=>!profileCount(d,true)))throw Error('Повреждён результат хода.');
     summaries.forEach((summary,i)=>{
       const mode=summary.modes[row.mode]||(summary.modes[row.mode]={rounds:0,success:0,points:0});
-      const success=(row.mode==='approx'?row.recipients?.includes(i):row.taskSuccess??row.correct)?1:0;
+      const success=(shared?row.recipients.includes(i):row.taskSuccess??row.correct)?1:0;
       mode.rounds++;mode.success+=success;
       mode.points+=deltas[i];
       if(row.mode==='secret'){
