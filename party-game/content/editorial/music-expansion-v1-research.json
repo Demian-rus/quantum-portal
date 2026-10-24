@@ -339,6 +339,114 @@
         }
       ],
       "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
+    },
+    {
+      "text": "ВОРОН",
+      "difficultyCandidate": "medium",
+      "status": "editorial-candidate-2-examples",
+      "language": "ru",
+      "examples": [
+        {
+          "artist": "Земфира",
+          "title": "Ариведерчи",
+          "source": "https://ru.muzland.ru/songs.html?auth=45&song=20&tone=no",
+          "wordForm": "вороны",
+          "genre": "рок",
+          "checkedAt": "2026-10-22",
+          "evidenceKind": "lyrics"
+        },
+        {
+          "artist": "Московский Казачий Хор",
+          "title": "Чёрный ворон",
+          "source": "https://www.youtube.com/watch?v=XEG820O7i4k",
+          "wordForm": "ворон",
+          "genre": "народная",
+          "checkedAt": "2026-10-24",
+          "evidenceKind": "lyrics"
+        }
+      ],
+      "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
+    },
+    {
+      "text": "РЯБИНА",
+      "difficultyCandidate": "medium",
+      "status": "editorial-candidate-2-examples",
+      "language": "ru",
+      "examples": [
+        {
+          "artist": "Трофим",
+          "title": "Снегири",
+          "source": "https://ru.muzland.ru/songs.html?auth=67&song=3&tone=no",
+          "wordForm": "рябина",
+          "genre": "авторская",
+          "checkedAt": "2026-10-22",
+          "evidenceKind": "lyrics"
+        },
+        {
+          "artist": "Надежда Кадышева и «Золотое кольцо»",
+          "title": "Тонкая рябина",
+          "source": "https://t4k.info/tracks/ru/t/tonkaya-ryabina",
+          "wordForm": "рябина",
+          "genre": "народная",
+          "checkedAt": "2026-10-24",
+          "evidenceKind": "lyrics"
+        }
+      ],
+      "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
+    },
+    {
+      "text": "МАЛЬЧИК",
+      "difficultyCandidate": "easy",
+      "status": "editorial-candidate-2-examples",
+      "language": "ru",
+      "examples": [
+        {
+          "artist": "Кино",
+          "title": "Алюминиевые огурцы",
+          "source": "https://ru.muzland.ru/songs.html?auth=116&song=21&tone=no",
+          "wordForm": "мальчики",
+          "genre": "рок",
+          "checkedAt": "2026-10-22",
+          "evidenceKind": "lyrics"
+        },
+        {
+          "artist": "Земфира",
+          "title": "Мальчик",
+          "source": "https://www.karaoke.ru/artists/zemfira/text/malchik/",
+          "wordForm": "мальчик",
+          "genre": "рок",
+          "checkedAt": "2026-10-24",
+          "evidenceKind": "lyrics"
+        }
+      ],
+      "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
+    },
+    {
+      "text": "СКРИПКА",
+      "difficultyCandidate": "medium",
+      "status": "editorial-candidate-2-examples",
+      "language": "ru",
+      "examples": [
+        {
+          "artist": "Клара Румянова",
+          "title": "Улыбка",
+          "source": "https://ru.muzland.ru/songs.html?auth=18&song=14",
+          "wordForm": "скрипке",
+          "genre": "детская",
+          "checkedAt": "2026-10-22",
+          "evidenceKind": "lyrics"
+        },
+        {
+          "artist": "Валерий Меладзе",
+          "title": "Не тревожь мне душу, скрипка",
+          "source": "https://zvuk.com/track/46652366",
+          "wordForm": "скрипка",
+          "genre": "эстрада",
+          "checkedAt": "2026-10-24",
+          "evidenceKind": "lyrics"
+        }
+      ],
+      "note": "Предварительная редактура; ID и включение в пул только после финального аудита 50-карточечной партии"
     }
   ]
 }
