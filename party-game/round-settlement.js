@@ -10,7 +10,9 @@ function awardApprox(choice){
  if(!game||game.phase!=='judge'||roundInteraction()!=='estimate'||!game.current.answerRevealed)return;
  const c=game.current,outcome=settleSharedAward(c,choice);
  outcome.deltas.forEach((delta,index)=>{game.scores[index]+=delta;});
- game.history.push({mode:c.modeId,word:c.question.question,questionId:c.question.id,
+ game.history.push({mode:c.modeId,
+  ...(game.profileMatch?{setterIndex:currentTeamIndex(),guesserIndex:guessingTeamIndex(),assignedIndices:[0,1]}:{}),
+  word:c.question.question,questionId:c.question.id,
   answer:c.question.answer,unit:c.question.unit,note:c.question.note,difficulty:c.difficulty,
   recipients:outcome.recipients,recipientNames:outcome.recipients.map(index=>game.teams[index]),
   sharedAward:choice==='both',deltas:outcome.deltas,awarded:outcome.deltas.reduce((a,b)=>a+b,0),
@@ -27,6 +29,7 @@ function recordAnswer(yes,modifierSuccess=true) {
   game.scores[teamIndex]+=outcome.delta;
   game.history.push({
     team:game.teams[teamIndex],setter:currentTeam(),mode:c.modeId,
+    ...(game.profileMatch?{setterIndex:currentTeamIndex(),guesserIndex:guessingTeamIndex(),methodId:c.methodId}:{}),
     ...(game.awardPolicyVersion?{recipientIndex:teamIndex,awardTo:game.awardTo,awardPolicyVersion:game.awardPolicyVersion}:{}),
     word:c.modeId==='blitz'?c.blitzWords.join(' / '):c.word,
     awarded:outcome.delta,correct:outcome.success,risk:!!c.risk,
@@ -44,7 +47,9 @@ function completeRound(success){
   game.phase=matchComplete()?'results':'ready';
   if(game.phase==='results')archiveCurrentTaskHistory();
   game.current=null;
-  stopTicking();persist();sfx(success?'win':'fail');render();
+  stopTicking();persist();
+  if(game.phase==='results')saveCompletedProfileResult();
+  sfx(success?'win':'fail');render();
 }
 
 function correctNow(modifierSuccess=true) {

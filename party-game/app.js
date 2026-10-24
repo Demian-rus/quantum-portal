@@ -162,12 +162,21 @@ function newGame() {
       for(const level of options.difficulty==='mixed'?PARTY_CARD_LEVELS:[options.difficulty])v2SecretMethods(contentPack,settings,level);
     }
   }catch{toast('Набор заданий недоступен для выбранных настроек.');return;}
+  if(!selectedPlayerProfiles()){toast('Выберите два разных профиля.');return;}
   if(storageBlocked&&!recoverCorruptSave()){toast(storageNotice());return;}
+  if(!saveCompletedProfileResult()){toast(profileResultProblem);return;}
+  // Capture the previous session before reserving the new profile match.
+  const previousGame=game,previousTaskMemory=taskMemory;
+  let previousSavedRaw;
+  try{previousSavedRaw=localStorage.getItem(STORAGE_KEY);}
+  catch{toast('Не удалось прочитать сохранение. Новая партия не начата.');return;}
+  let identity;
+  try{identity=reserveProfileMatch();}catch(error){toast(profileStoreProblem||error.message);return;}
   archiveCurrentTaskHistory();
   const startedHistory=startTaskHistory(taskMemory||freshTaskMemory());taskMemory=startedHistory.memory;
-  const teamA=sanitizeTeam($('team-a').value,'Молнии');
-  const teamB=sanitizeTeam($('team-b').value,'Кометы');
+  const [teamA,teamB]=identity.participants.map(profile=>profile.name);
   game={
+    matchId:identity.storeId+':'+identity.sequence,profileMatch:identity,
     teams:[teamA,teamB],scores:[0,0],roundIndex:0,startingTeamIndex:chooseStartingTeam(),
     ...songPolicy,timerPolicyVersion:QUIP_TIMER_POLICY_VERSION,
     taskHistoryVersion:QUIP_TASK_HISTORY_VERSION,taskHistory:startedHistory.history,
@@ -184,13 +193,32 @@ function newGame() {
     dice:options.dice,complications:options.complications,blitzCount:getModeConfig('blitz').blitzWordsCount,
     current:null,modeHistory:[],used:{},history:[],phase:'ready'
   };
-  persist();sfx('go');render();
+  if(!persist()){
+    // A normal quota failure leaves the old localStorage value untouched.
+    // On a confirmation failure, attempt to restore the exact prior RAW.
+    game=previousGame;taskMemory=previousTaskMemory;
+    try{
+      if(localStorage.getItem(STORAGE_KEY)!==previousSavedRaw){
+        if(previousSavedRaw===null)localStorage.removeItem(STORAGE_KEY);
+        else localStorage.setItem(STORAGE_KEY,previousSavedRaw);
+        if(localStorage.getItem(STORAGE_KEY)!==previousSavedRaw)throw Error('Start rollback failed');
+      }
+    }catch{
+      storageBlocked=true;storageProblem='unavailable';
+      toast('Не удалось проверить сохранение. Новая партия не запущена.');return;
+    }
+    toast('Новая партия не запущена: не удалось сохранить её на устройстве.');return;
+  }
+  sfx('go');render();
 }
 
 function backToMenu() {
   stopTicking();
   if(game?.phase==='rolling')game.phase=game.current?'task':'ready';
-  if(game?.phase==='results'){archiveCurrentTaskHistory();game=null;}
+  if(game?.phase==='results'){
+    if(!saveCompletedProfileResult()){toast(profileResultProblem);return;}
+    archiveCurrentTaskHistory();game=null;
+  }
   persist();
   setScene('home');
   renderOptions();
@@ -215,12 +243,19 @@ function handleAction(action) {
     case 'base':return judge(true,false);
     case 'no':return judge(false);
     case 'next':if(game?.phase==='between'){game.phase='ready';game.current=null;persist();render();}return;
-    case 'again':if(game?.phase==='results'){archiveCurrentTaskHistory();game=null;newGame();}return;
+    case 'again':if(game?.phase==='results'){
+      if(!saveCompletedProfileResult()){toast(profileResultProblem);return;}
+      // Let newGame replace the previous result only after START is durable.
+      if(selectedPlayerProfiles())newGame();
+      else{archiveCurrentTaskHistory();game=null;openSetup();}
+    }return;
+    case 'retry-statistics':saveCompletedProfileResult();showResults();return;
     case 'menu':return backToMenu();
   }
 }
 function setupEvents() {
   registerSetupControls();
+  registerProfileControls();
   $('new-game-menu').addEventListener('click',openGameType);
   $('game-type-back').addEventListener('click',()=>setScene('home'));
   $('standard-game').addEventListener('click',selectStandardGame);
@@ -270,12 +305,15 @@ function setupEvents() {
 }
 function boot() {
   setupEvents();
+  restoreProfiles();
   restoreSession();
+  if(game?.phase==='results')saveCompletedProfileResult();
   setSoundIcon();
   renderOptions();
   // Even when a match is saved, start at the main menu to offer Continue.
   setScene('home');
   installBrowserBackNavigation();
+  if(profileResultProblem)showResults();
   if(storageBlocked)toast(storageNotice());
   if('serviceWorker' in navigator && location.protocol.startsWith('http'))
     navigator.serviceWorker.register('./sw.js').catch(()=>{});

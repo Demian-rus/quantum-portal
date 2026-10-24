@@ -1,4 +1,5 @@
 'use strict';
+const {provisionProfiles,chooseNamedProfile}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -19,7 +20,7 @@ async function isInViewport(page){
    const dialogs=[],errors=[];
    page.on('dialog',d=>{dialogs.push(d.message());d.dismiss()});
    page.on('pageerror',e=>errors.push(e.message));
-   await page.goto(URL,{waitUntil:'load'});
+   await page.goto(URL,{waitUntil:'load'});await provisionProfiles(page);
       await page.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
    // Test the three approved backgrounds on every device, including preferences.
    const art=async expected=>page.evaluate(expected=>{
@@ -52,8 +53,8 @@ async function isInViewport(page){
    });
    assert.deepEqual(selection,{style:'none',selectCanceled:true,menuCanceled:true},
      'Settings are selectable: '+JSON.stringify(selection));
-   await page.locator('#team-a').fill('Тестовая команда');
-   assert.equal(await page.locator('#team-a').inputValue(),'Тестовая команда',
+   await chooseNamedProfile(page,0,'Тестовая команда');
+   assert.equal(await page.locator('#team-a').locator('span').nth(1).textContent(),'Тестовая команда',
      'Disabling selection must not block typing a team name');
    await page.evaluate(()=>{options.modes=['talk'];options.dice=false;options.difficulty='easy';});
    await page.locator('#start-game').click();
@@ -189,7 +190,7 @@ async function isInViewport(page){
   // The hard/medium auto-start path passes through a one-second countdown;
   // check all THREE states have the exact same word-card geometry.
   const medium=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
-  await medium.goto(URL,{waitUntil:'load'});
+  await medium.goto(URL,{waitUntil:'load'});await provisionProfiles(medium);
       await medium.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
   await medium.locator('#new-game-menu').click();
       await medium.locator('#standard-game').click();
@@ -209,7 +210,7 @@ async function isInViewport(page){
   await medium.close();
   // Blitz keeps the same left-red/right-green spatial language as other modes.
   const blitz=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
-  await blitz.goto(URL,{waitUntil:'load'});
+  await blitz.goto(URL,{waitUntil:'load'});await provisionProfiles(blitz);
       await blitz.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
   await blitz.locator('#new-game-menu').click();
       await blitz.locator('#standard-game').click();

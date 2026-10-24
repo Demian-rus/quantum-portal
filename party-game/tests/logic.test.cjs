@@ -11,7 +11,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
   const element = id => {
     if(!elements.has(id)) {
       const node={id,value:id==='team-a'?'Молнии':id==='team-b'?'Кометы':'',
-        hidden:false,style:{},textContent:'',innerHTML:'',dataset:{},
+        hidden:false,style:{setProperty(){}},textContent:'',innerHTML:'',dataset:{},
         classList:{add(){},remove(){},toggle(){}},parentElement:{classList:{add(){},remove(){},toggle(){}}},children:[],
         addEventListener(){},setAttribute(){},getAttribute(){return null}};
       elements.set(id,node);
@@ -24,7 +24,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
     addEventListener(){},hidden:false
   };
   const context=vm.createContext({
-    document,window:{confirm:()=>true},navigator:{vibrate(){}},
+    crypto:require('node:crypto').webcrypto,document,window:{confirm:()=>true},navigator:{vibrate(){}},
     localStorage:{getItem:key=>existing.has(key)?existing.get(key):null,setItem:(key,val)=>existing.set(key,val)},
     setInterval:()=>7,clearInterval(){},
     setTimeout:fn=>{pending.push(fn);return pending.length},
@@ -65,10 +65,14 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('round-actions.js'),context);
    vm.runInContext(read('storage-controller.js'),context);
    vm.runInContext(read('session-restoration.js'),context);
+   vm.runInContext(read('player-profiles.js'),context);
+   vm.runInContext(read('profile-views.js'),context);
    vm.runInContext(read('app.js'),context);
+   vm.runInContext(`if(!profileStore&&!profileStoreProblem&&loadedSaveRaw===null){createPlayerProfile('Молнии','coral');createPlayerProfile('Кометы','cyan');}
+    if(profileStore&&!selectedPlayerProfiles())selectedProfileIds=profileStore.profiles.slice(0,2).map(p=>p.id);`,context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
-  vm.runInContext(`function startHistoricalFixture(){const awardTo=options.awardTo;options.awardTo='guesser';newGame();options.awardTo=awardTo;if(game){game.awardTo=awardTo;delete game.modeCompatibilityVersion;delete game.modePlannerVersion;delete game.modePlannerState;delete game.songLanguagePolicyVersion;delete game.songLanguages;delete game.timerPolicyVersion;}}
+  vm.runInContext(`function startHistoricalFixture(){const awardTo=options.awardTo;options.awardTo='guesser';newGame();options.awardTo=awardTo;if(game){delete game.profileMatch;delete game.matchId;game.awardTo=awardTo;delete game.modeCompatibilityVersion;delete game.modePlannerVersion;delete game.modePlannerState;delete game.songLanguagePolicyVersion;delete game.songLanguages;delete game.timerPolicyVersion;}}
   function legacyGame(version=3){
     options.modes=options.modes.filter(id=>id!=='approx');
     if(options.contentPack?.id==='general')options.contentPack={id:'general',version:1};
@@ -525,7 +529,7 @@ test('reloading after deadline shows judgement rather than restarting a round',(
 });
 test('team names are escaped to prevent injection into game views',()=>{
   const h=harness();
-  h.context.document.getElementById('team-a').value='<img src=x onerror=alert(1)>';
+  h.eval("selectedProfileIds[0]=createPlayerProfile('<img src=x>','violet').id");
   h.eval('legacyGame()');
   assert.ok(h.elements.get('play-content').innerHTML.includes('&lt;img'));
   assert.ok(!h.elements.get('play-content').innerHTML.includes('<img src=x onerror='));

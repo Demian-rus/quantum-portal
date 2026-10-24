@@ -43,6 +43,7 @@ function restoreSession() {
       throw Error('Unsupported QUIP rulesVersion');
     if(candidate.modeConfigVersion!=null&&!QUIP_MODE_CONFIGS[candidate.modeConfigVersion])
       throw Error('Unknown mode config version');
+    validateProfileMatch(candidate);
     validateGameTaskHistory(candidate,taskMemory);
     validateAwardPolicy(candidate);
     modeCompatibilityPolicy(candidate);
@@ -90,7 +91,5 @@ function restoreSession() {
   game.complications=game.complications!==false;
   game.dice=true;
   if(game.current&&!game.current.difficulty)game.current.difficulty=game.difficulty==='mixed'?'medium':game.difficulty;
-  $('team-a').value=game.teams[0];
-  $('team-b').value=game.teams[1];
   renderOptions();
 }

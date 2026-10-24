@@ -1,4 +1,5 @@
 'use strict';
+const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -49,7 +50,7 @@ async function settingsUI(browser,url,device){
  const context=await browser.newContext({viewport:{width:device.width,height:device.height},deviceScaleFactor:device.name==='phone'?2:1});
  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
  try{
-  await page.goto(url,{waitUntil:'load'});await page.evaluate(()=>{options.awardTo='guesser';options.modes=DEFAULT_MODES.slice()});await openSetup(page);
+  await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await page.evaluate(()=>{options.awardTo='guesser';options.modes=DEFAULT_MODES.slice()});await openSetup(page);
   assert.equal(await page.locator('#scene-setup input[type="range"]').count(),0,'Basic setup must use buttons');
   for(const [field,values] of [['targetScore',[15,30,60,100]],['duration',[30,45,60]]]){
    const group=page.locator('.quick-choices[data-setting="'+field+'"]');
@@ -145,7 +146,7 @@ async function approxUI(browser,url,device){
  const context=await browser.newContext({viewport:{width:device.width,height:device.height},deviceScaleFactor:device.name==='phone'?2:1});
  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
  try{
-  await page.goto(url,{waitUntil:'load'});
+  await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);
   await page.evaluate(()=>{soundOn=false;options.modes=['approx'];options.dice=false;newGame()});
   const fixtures=await page.evaluate(()=>{
    const byLength=[...QUIP_APPROX_QUESTIONS].sort((a,b)=>a.question.length-b.question.length);

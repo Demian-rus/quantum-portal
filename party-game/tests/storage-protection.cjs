@@ -1,9 +1,10 @@
 'use strict';
+const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const assert=require('node:assert/strict');
 module.exports=async function storageProtection(browser,url){
  const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage(),raw='{incomplete-save';
  try{
-  await page.goto(url,{waitUntil:'load'});await page.evaluate(raw=>localStorage.setItem('iskra-party:v1',raw),raw);await page.reload({waitUntil:'load'});
+  await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await page.evaluate(raw=>localStorage.setItem('iskra-party:v1',raw),raw);await page.reload({waitUntil:'load'});await provisionProfiles(page);
   assert.equal(await page.evaluate(()=>storageBlocked),true);assert.equal(await page.evaluate(()=>localStorage.getItem(STORAGE_KEY)),raw);
   await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();
   page.once('dialog',dialog=>dialog.dismiss());await page.locator('#start-game').click();assert.equal(await page.evaluate(()=>localStorage.getItem(STORAGE_KEY)),raw);assert.equal(await page.evaluate(()=>game),null);

@@ -35,7 +35,10 @@ function recoverCorruptSave(){
   }catch{toast('Сброс не выполнен. Исходные данные защищены; попробуйте перезагрузить страницу.');return false;}
 }
 function persist() {
-  if(storageBlocked)return;
-  try { localStorage.setItem(STORAGE_KEY,JSON.stringify({version:1,options,soundOn,game,...(taskMemory?{taskMemory}:{})})); }
-  catch { /* Private browsing might block storage; a session still works. */ }
+  if(storageBlocked)return false;
+  try {
+    const raw=JSON.stringify({version:1,options,soundOn,game,...(taskMemory?{taskMemory}:{})});
+    localStorage.setItem(STORAGE_KEY,raw);
+    return localStorage.getItem(STORAGE_KEY)===raw;
+  }catch { return false; }
 }

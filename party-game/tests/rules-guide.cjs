@@ -1,4 +1,5 @@
 'use strict';
+const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -62,7 +63,7 @@ module.exports=async function rulesGuide(browser,url){
   const context=await browser.newContext({viewport:{width:device.width,height:device.height},hasTouch:true,deviceScaleFactor:device.name==='phone'?2:1});
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   try{
-   await page.goto(url,{waitUntil:'load'});
+   await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);
    // Use an actual unfinished, revealed V4 round to guard against side effects.
    await page.evaluate(()=>{soundOn=false;options.modes=['approx'];options.dice=false;newGame();roll();revealApprox();game.dice=true;options.dice=true;persist();setScene('home')});
    await openPreferences(page,device);

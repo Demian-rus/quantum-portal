@@ -1,4 +1,5 @@
 'use strict';
+const {provisionProfiles,chooseNamedProfile}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -28,7 +29,7 @@ async function configureOnly(page,id) {
       const page=await browser.newPage({viewport:{width:device.width,height:device.height},deviceScaleFactor:device.dpr});
       const errors=[];
       page.on('pageerror',e=>errors.push(e.message));
-      await page.goto(URL,{waitUntil:'load'});
+      await page.goto(URL,{waitUntil:'load'});await provisionProfiles(page);
       await page.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
       await page.locator('#new-game-menu').click();
       await page.locator('#standard-game').click();
@@ -84,7 +85,7 @@ async function configureOnly(page,id) {
     }
     const blitz=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
     const errs=[];blitz.on('pageerror',e=>errs.push(e.message));
-    await blitz.goto(URL,{waitUntil:'load'});
+    await blitz.goto(URL,{waitUntil:'load'});await provisionProfiles(blitz);
       await blitz.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
     await blitz.locator('#new-game-menu').click();
       await blitz.locator('#standard-game').click();

@@ -1,4 +1,5 @@
 'use strict';
+const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs');
 const topics=[{id:'geography',version:4,source:'geography-v2',name:'География',prefix:'task008b'},{id:'science',version:4,source:'science-v2',name:'Наука',prefix:'task008c'}];
@@ -17,7 +18,7 @@ module.exports=async function thematicUI(browser,url){
  for(const topic of topics)for(const device of devices){
   const context=await browser.newContext({viewport:{width:device.width,height:device.height},deviceScaleFactor:device.name==='phone'?2:1}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   try{
-   await page.goto(url,{waitUntil:'load'});const standard=await page.evaluate(()=>JSON.stringify({modes:options.modes,promptTypes:options.promptTypes}));
+   await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);const standard=await page.evaluate(()=>JSON.stringify({modes:options.modes,promptTypes:options.promptTypes}));
    await page.locator('#new-game-menu').click();await page.locator('#thematic-game').click();
    assert.equal(await page.locator('[data-theme="'+topic.id+'"]').isEnabled(),true);
    for(const id of ['biology','history','culture'])assert.equal(await page.locator('[data-theme="'+id+'"]').isDisabled(),true);

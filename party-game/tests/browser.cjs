@@ -1,4 +1,5 @@
 'use strict';
+const {provisionProfiles,chooseNamedProfile}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -21,7 +22,7 @@ const {chromium} = require('playwright-core');
       });
       const errors=[];
       page.on('pageerror',e=>errors.push(e.message));
-      await page.goto('http://127.0.0.1:8765/party-game/',{waitUntil:'load'});
+      await page.goto('http://127.0.0.1:8765/party-game/',{waitUntil:'load'});await provisionProfiles(page);
       // Same-document history should turn Android Back into in-app navigation.
       if(profile.name==='phone'){
         assert.equal(await page.evaluate(()=>history.state?.__kvipBackGuard),true);
@@ -79,8 +80,8 @@ const {chromium} = require('playwright-core');
       await page.locator('#preferences-back').click();
       await page.locator('#new-game-menu').click();
       await page.locator('#standard-game').click();
-      await page.fill('#team-a','Крутые коты');
-      await page.fill('#team-b','Синие кометы');
+      await chooseNamedProfile(page,0,'Крутые коты');
+      await chooseNamedProfile(page,1,'Синие кометы');
       await page.locator('[data-setting="difficulty"] [data-value="medium"]').click();
       await page.locator('#go-advanced').click();
       await page.locator('#finish-rounds').check({force:true});

@@ -1,4 +1,5 @@
 'use strict';
+const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const BASELINE='007abb864aa727fcdf4249662af732df819bf73b';
 const ART='artifacts/quip-mobile-layout/task013b-';
@@ -31,7 +32,7 @@ async function upgrade(browser,url){
  const {execFileSync}=require('node:child_process'),root=path.resolve(__dirname,'../..');
  const git=args=>execFileSync('git',args,{cwd:root,timeout:30000,maxBuffer:4*1024*1024,stdio:['ignore','pipe','pipe']});
  try{git(['cat-file','-e',BASELINE+'^{commit}'])}catch{git(['fetch','--depth=1','origin',BASELINE])}
- const files=['sw.js','index.html','style.css','app.js','setup-controls.js','setup-view.js','session-restoration.js','content-packs.js','modifiers-v2.js','round-selection.js','round-views.js','round-presentation.js','timer-view.js'];
+ const files=historicalRuntimeFiles(git,BASELINE,['sw.js','index.html','style.css','app.js','setup-controls.js','setup-view.js','session-restoration.js','content-packs.js','modifiers-v2.js','round-selection.js','round-views.js','round-presentation.js','timer-view.js']);
  const current=new Map(files.map(name=>[name,fs.readFileSync(path.join(root,'party-game',name))]));
  const previous=new Map(files.map(name=>[name,git(['show',BASELINE+':party-game/'+name])]));
  const cache=s=>s.toString().match(/const CACHE='([^']+)'/)[1],oldCache=cache(previous.get('sw.js')),newCache=cache(current.get('sw.js'));
@@ -39,7 +40,7 @@ async function upgrade(browser,url){
  const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
  try{
   write(previous);for(const name of files)fs.utimesSync(path.join(root,'party-game',name),new Date('2026-01-01'),new Date('2026-01-01'));
-  await page.goto(url,{waitUntil:'load'});await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
+  await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
   await page.evaluate(()=>{
    soundOn=false;chooseStartingTeam=()=>0;Object.assign(options,{modes:['draw','sing','secret'],difficulty:'mixed',dice:false,complications:true,riskRounds:false});
    newGame();pickMode=()=>getMode('secret');let values=[.999999,.999999,0];Math.random=()=>values.length?values.shift():.999999;
@@ -94,7 +95,7 @@ async function languageSources(page,languages){
 async function ui(browser,url,width,height){
  const context=await browser.newContext({viewport:{width,height},hasTouch:true,reducedMotion:'reduce'}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
  try{
-  await page.goto(url,{waitUntil:'load'});await setup(page);await page.locator('.choices[data-setting="difficulty"] [data-value="hard"]').click();await page.locator('#go-advanced').click();
+  await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await setup(page);await page.locator('.choices[data-setting="difficulty"] [data-value="hard"]').click();await page.locator('#go-advanced').click();
   await settingsOrder(page);
   await page.locator('#mode-settings summary').click();await page.locator('#content-settings summary').click();await settingsOrder(page);
   await page.locator('#toggle-risk').uncheck();assert.equal(await page.evaluate(()=>options.riskRounds),false);

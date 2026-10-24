@@ -1,4 +1,5 @@
 'use strict';
+const {provisionProfiles,chooseNamedProfile}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -16,7 +17,7 @@ const URL='http://127.0.0.1:8765/party-game/';
     ]){
       const page=await browser.newPage({viewport:{width:device.width,height:device.height},deviceScaleFactor:device.width<500?2:1});
       const errors=[];page.on('pageerror',e=>errors.push(e.message));
-      await page.goto(URL,{waitUntil:'load'});
+      await page.goto(URL,{waitUntil:'load'});await provisionProfiles(page);
       // This suite exercises timed explanations; Approx has dedicated shared-award coverage.
       await page.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false;options.modes=options.modes.filter(id=>id!=='approx')});
       await page.waitForSelector('#new-game-menu',{state:'visible'});
@@ -145,7 +146,7 @@ const URL='http://127.0.0.1:8765/party-game/';
       const original=window.matchMedia.bind(window);
       window.matchMedia=query=>query==='(display-mode: fullscreen)'?{matches:true}:original(query);
     });
-    await stablePage.goto(URL,{waitUntil:'load'});
+    await stablePage.goto(URL,{waitUntil:'load'});await provisionProfiles(stablePage);
     await stablePage.locator('#new-game-menu').click();
     await stablePage.locator('#standard-game').click();
     const geometry=()=>stablePage.evaluate(()=>{
@@ -173,7 +174,7 @@ const URL='http://127.0.0.1:8765/party-game/';
     assert.ok(Math.abs(rotated.height-390)<2,'Rotation should rebase the canvas');
     await stablePage.close();
     const page=await browser.newPage({viewport:{width:390,height:844}});
-    await page.goto(URL,{waitUntil:'load'});
+    await page.goto(URL,{waitUntil:'load'});await provisionProfiles(page);
       await page.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
     const manifest=await page.evaluate(async()=>{
       const response=await fetch('./manifest.webmanifest');return response.json();

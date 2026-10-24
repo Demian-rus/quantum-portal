@@ -1,4 +1,5 @@
 'use strict';
+const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -20,7 +21,7 @@ async function offlineUpgrade(browser,url){
  // necessary, without switching branches or changing the checkout's files.
  const git=args=>execFileSync('git',args,{cwd:root,timeout:30000,maxBuffer:2*1024*1024,stdio:['ignore','pipe','pipe']});
  try{git(['cat-file','-e',legacyCommit+'^{commit}'])}catch{git(['fetch','--depth=1','origin',legacyCommit])}
- const files=['sw.js','index.html','style.css','app.js','modifiers.js','cards.js','approx-questions.js','content-packs.js','presets.js'];
+ const files=historicalRuntimeFiles(git,legacyCommit,['sw.js','index.html','style.css','app.js','modifiers.js','cards.js','approx-questions.js','content-packs.js','presets.js']);
  const current=new Map(files.map(name=>[name,fs.readFileSync(path.join(root,'party-game',name))]));
  const legacy=new Map(files.map(name=>[name,git(['show',legacyCommit+':party-game/'+name])]));
  const cache=source=>source.toString().match(/const CACHE='([^']+)'/)[1];
@@ -35,7 +36,7 @@ async function offlineUpgrade(browser,url){
   // server has one-second precision; two writes within a second can yield a
   // false HTTP 304 despite different bytes during this synthetic deployment.
   for(const name of files)fs.utimesSync(path.join(root,'party-game',name),new Date('2026-01-01'),new Date('2026-01-01'));
-  await page.goto(url,{waitUntil:'load'});await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
+  await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
   assert.ok(await page.evaluate(key=>caches.has(key),oldCache));
   await page.evaluate(()=>{
    soundOn=false;options.modes=['talk'];options.dice=false;Math.random=()=>0;chooseStartingTeam=()=>0;newGame();roll();
@@ -66,7 +67,7 @@ async function songLanguageUpgrade(browser,url){
  const root=path.resolve(__dirname,'../..'),baseline='fb350403a485ca85e2711bd6500e39fc5a0d046f';
  const git=args=>execFileSync('git',args,{cwd:root,timeout:30000,maxBuffer:4*1024*1024,stdio:['ignore','pipe','pipe']});
  try{git(['cat-file','-e',baseline+'^{commit}'])}catch{git(['fetch','--depth=1','origin',baseline])}
- const files=['sw.js','index.html','app.js','content-packs.js','round-selection.js','session-restoration.js','menu-navigation.js','setup-view.js','setup-controls.js','style.css','match-views.js','timer-view.js','round-presentation.js','round-views.js','modifiers-v2.js'];
+ const files=historicalRuntimeFiles(git,baseline,['sw.js','index.html','app.js','content-packs.js','round-selection.js','session-restoration.js','menu-navigation.js','setup-view.js','setup-controls.js','style.css','match-views.js','timer-view.js','round-presentation.js','round-views.js','modifiers-v2.js']);
  const current=new Map(files.map(name=>[name,fs.readFileSync(path.join(root,'party-game',name))]));
  const previous=new Map(files.map(name=>[name,git(['show',baseline+':party-game/'+name])]));
  const cache=source=>source.toString().match(/const CACHE='([^']+)'/)[1];
@@ -79,7 +80,7 @@ async function songLanguageUpgrade(browser,url){
  try{
   write(previous);
   for(const name of files)fs.utimesSync(path.join(root,'party-game',name),new Date('2026-01-01'),new Date('2026-01-01'));
-  await page.goto(url,{waitUntil:'load'});await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
+  await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
   assert.equal(await page.evaluate(key=>caches.has(key),oldCache),true);
   const snapshot=await page.evaluate(english=>{
    soundOn=false;Object.assign(options,{modes:['sing'],difficulty:'hard',dice:false,complications:false,riskRounds:false});
@@ -113,6 +114,7 @@ async function songLanguageUpgrade(browser,url){
    return getPackCardPool(game.contentPack,'songs',game.current.difficulty).find(row=>row.text===game.current.word).id;
   });
   assert.ok(english.includes(next),'Historical continuation must retain its full song source');
+  await provisionProfiles(page);
   const fresh=await page.evaluate(()=>{
    newGame();game.dice=false;roll();
    return {policy:game.songLanguagePolicyVersion,languages:game.songLanguages,id:getPackCardPool(game.contentPack,'songs',game.current.difficulty).find(row=>row.text===game.current.word).id};
@@ -128,7 +130,7 @@ module.exports=async function frequencyUI(browser,url){
   const context=await browser.newContext({viewport:{width:device.width,height:device.height},deviceScaleFactor:device.name==='phone'?2:1});
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   try{
-   await page.goto(url,{waitUntil:'load'});await openSetup(page);await advanced(page);
+   await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await openSetup(page);await advanced(page);
    const checkbox=page.locator('#toggle-complications'),slider=page.locator('#modifier-chance');
    assert.equal(await checkbox.isChecked(),true);assert.equal(await slider.inputValue(),'20');assert.equal(await page.locator('#modifier-chance-value').textContent(),'20%');
    for(const [name,value] of [['min','10'],['max','100'],['step','5']])assert.equal(await slider.getAttribute(name),value);
