@@ -165,6 +165,11 @@ function newGame() {
   if(!selectedPlayerProfiles()){toast('Выберите два разных профиля.');return;}
   if(storageBlocked&&!recoverCorruptSave()){toast(storageNotice());return;}
   if(!saveCompletedProfileResult()){toast(profileResultProblem);return;}
+  // Capture the previous session before reserving the new profile match.
+  const previousGame=game,previousTaskMemory=taskMemory;
+  let previousSavedRaw;
+  try{previousSavedRaw=localStorage.getItem(STORAGE_KEY);}
+  catch{toast('Не удалось прочитать сохранение. Новая партия не начата.');return;}
   let identity;
   try{identity=reserveProfileMatch();}catch(error){toast(profileStoreProblem||error.message);return;}
   archiveCurrentTaskHistory();
@@ -188,7 +193,23 @@ function newGame() {
     dice:options.dice,complications:options.complications,blitzCount:getModeConfig('blitz').blitzWordsCount,
     current:null,modeHistory:[],used:{},history:[],phase:'ready'
   };
-  persist();sfx('go');render();
+  if(!persist()){
+    // A normal quota failure leaves the old localStorage value untouched.
+    // On a confirmation failure, attempt to restore the exact prior RAW.
+    game=previousGame;taskMemory=previousTaskMemory;
+    try{
+      if(localStorage.getItem(STORAGE_KEY)!==previousSavedRaw){
+        if(previousSavedRaw===null)localStorage.removeItem(STORAGE_KEY);
+        else localStorage.setItem(STORAGE_KEY,previousSavedRaw);
+        if(localStorage.getItem(STORAGE_KEY)!==previousSavedRaw)throw Error('Start rollback failed');
+      }
+    }catch{
+      storageBlocked=true;storageProblem='unavailable';
+      toast('Не удалось проверить сохранение. Новая партия не запущена.');return;
+    }
+    toast('Новая партия не запущена: не удалось сохранить её на устройстве.');return;
+  }
+  sfx('go');render();
 }
 
 function backToMenu() {
