@@ -112,10 +112,17 @@ function completedProfileSummary(match){
   if(!match.profileMatch||match.phase!=='results'||!Array.isArray(match.history)||match.history.length!==match.roundIndex||
      !Array.isArray(match.scores)||match.scores.length!==2||match.scores.some(score=>!profileCount(score))||
      !(match.finishType==='score'?match.roundIndex%2===0&&Math.max(...match.scores)>=match.targetScore&&match.scores[0]!==match.scores[1]:match.roundIndex>=match.rounds))throw Error('Партия ещё не завершена.');
+  // Each prompt belongs to the setter on that turn. Points may belong
+  // to another player, so assignment must never be derived from score.
+  const first=match.startingTeamIndex??0;
+  if(![0,1].includes(first))throw Error('Некорректный первый игрок.');
   const summaries=[emptyProfileTotals(),emptyProfileTotals()];
-  summaries.forEach((s,i)=>{s.matches=1;s.points=match.scores[i];s.turns=match.history.length;
+  summaries.forEach((s,i)=>{s.matches=1;s.points=match.scores[i];
     s[match.scores[0]===match.scores[1]?'draws':match.scores[i]>match.scores[1-i]?'wins':'losses']=1;});
-  for(const row of match.history){
+  for(const [turn,row] of match.history.entries()){
+    const owner=(first+turn)%2;
+    if(row.setterIndex!=null&&row.setterIndex!==owner)throw Error('Некорректный владелец задания.');
+    summaries[owner].turns++;
     if(!validProfileModeId(row.mode))throw Error('Некорректный ID режима в истории.');
     // A shared-award mode supplies per-player deltas; future modes can use
     // this contract without adding their ID to the statistics module.
@@ -128,15 +135,23 @@ function completedProfileSummary(match){
       deltas[row.recipientIndex]=row.awarded;
     }
     if(!Array.isArray(deltas)||deltas.length!==2||deltas.some(d=>!profileCount(d,true)))throw Error('Повреждён результат хода.');
+    if(row.mode==='secret'&&!validProfileModeId(row.methodId))throw Error('Некорректный ID способа Секретки.');
     summaries.forEach((summary,i)=>{
+      const assigned=i===owner;
+      // An unassigned participant can still earn or lose real points.
+      if(!assigned&&deltas[i]===0)return;
       const mode=summary.modes[row.mode]||(summary.modes[row.mode]={rounds:0,success:0,points:0});
-      const success=(shared?row.recipients.includes(i):row.taskSuccess??row.correct)?1:0;
-      mode.rounds++;mode.success+=success;
+      if(assigned){
+        const success=shared?row.recipients.includes(i):row.taskSuccess??row.correct;
+        if(typeof success!=='boolean')throw Error('Неизвестен исход задания.');
+        mode.rounds++;mode.success+=Number(success);
+      }
       mode.points+=deltas[i];
       if(row.mode==='secret'){
-        if(!validProfileModeId(row.methodId))throw Error('Некорректный ID способа Секретки.');
-        mode.methods=mode.methods||{};const method=mode.methods[row.methodId]||(mode.methods[row.methodId]={rounds:0,success:0,points:0});
-        method.rounds++;method.success+=success;method.points+=deltas[i];
+        mode.methods=mode.methods||{};
+        const method=mode.methods[row.methodId]||(mode.methods[row.methodId]={rounds:0,success:0,points:0});
+        if(assigned){method.rounds++;method.success+=Number(row.taskSuccess??row.correct);}
+        method.points+=deltas[i];
       }
     });
   }

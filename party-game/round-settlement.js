@@ -10,7 +10,9 @@ function awardApprox(choice){
  if(!game||game.phase!=='judge'||roundInteraction()!=='estimate'||!game.current.answerRevealed)return;
  const c=game.current,outcome=settleSharedAward(c,choice);
  outcome.deltas.forEach((delta,index)=>{game.scores[index]+=delta;});
- game.history.push({mode:c.modeId,word:c.question.question,questionId:c.question.id,
+ game.history.push({mode:c.modeId,
+  ...(game.profileMatch?{setterIndex:currentTeamIndex(),guesserIndex:guessingTeamIndex()}:{}),
+  word:c.question.question,questionId:c.question.id,
   answer:c.question.answer,unit:c.question.unit,note:c.question.note,difficulty:c.difficulty,
   recipients:outcome.recipients,recipientNames:outcome.recipients.map(index=>game.teams[index]),
   sharedAward:choice==='both',deltas:outcome.deltas,awarded:outcome.deltas.reduce((a,b)=>a+b,0),

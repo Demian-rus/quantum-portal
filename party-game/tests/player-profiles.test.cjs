@@ -49,9 +49,35 @@ test('statistics: wins follow IDs across positions and different opponents',()=>
  finished(h,[{mode:'talk',recipientIndex:0,awarded:0,correct:false},{mode:'talk',recipientIndex:1,awarded:1,correct:true}],[0,1]);h.eval('commitProfileResult(match)');
  assert.deepEqual(plain(h.eval('profileStore.profiles.map(p=>profileStore.totals[p.id]).map(t=>[t.matches,t.wins,t.losses,t.points])')),[[3,2,1,3],[2,0,2,0],[1,1,0,1]]);
 });
+test('statistics: 10 completed matches of 30 questions give each profile 150 assigned tasks',()=>{
+ const h=harness();players(h);
+ const rows=Array.from({length:30},(_,turn)=>({
+  mode:Math.floor(turn/2)%2?'mime':'talk',
+  setterIndex:turn%2,recipientIndex:turn%2,
+  awarded:turn%4===0?1:0,taskSuccess:turn%4===0
+ }));
+ for(let i=0;i<10;i++){finished(h,rows,[8,0]);h.eval('commitProfileResult(match)');}
+ const data=plain(h.eval('profileStore.profiles.slice(0,2).map(p=>profileStore.totals[p.id])'));
+ assert.deepEqual(data.map(x=>[x.matches,x.turns,x.wins,x.losses]),[[10,150,10,0],[10,150,0,10]]);
+ assert.deepEqual(data.map(x=>[x.modes.talk.rounds,x.modes.mime.rounds]),[[80,70],[80,70]]);
+ assert.equal(data[0].modes.talk.success,80);assert.equal(data[1].modes.talk.success,0);
+});
+test('statistics: starting-player swap and inconsistent setter index do not misattribute assignments',()=>{
+ const h=harness();players(h);
+ finished(h,[{mode:'talk',setterIndex:1,recipientIndex:0,awarded:1,correct:true},
+  {mode:'mime',setterIndex:0,recipientIndex:1,awarded:0,correct:false}],[1,0]);
+ h.eval('match.startingTeamIndex=1;commitProfileResult(match)');
+ const data=plain(h.eval('profileStore.profiles.slice(0,2).map(p=>profileStore.totals[p.id])'));
+ assert.equal(data[0].turns,1);assert.equal(data[1].turns,1);
+ assert.equal(data[0].modes.talk.rounds,0);assert.equal(data[0].modes.talk.points,1);
+ assert.equal(data[1].modes.talk.rounds,1);assert.equal(data[1].modes.talk.success,1);
+ finished(h,[{mode:'talk',setterIndex:0,recipientIndex:0,awarded:1,correct:true},
+  {mode:'mime',setterIndex:0,recipientIndex:1,awarded:0,correct:false}],[1,0]);
+ assert.throws(()=>h.eval('commitProfileResult(match)'));
+});
 test('statistics: draw, shared awards to one/both/neither, individual success',()=>{
  const h=harness();players(h);finished(h,[{mode:'approx',deltas:[1,1],recipients:[0,1]},{mode:'approx',deltas:[0,0],recipients:[]}],[1,1]);h.eval('commitProfileResult(match)');
- assert.deepEqual(plain(h.eval('Object.values(profileStore.totals).slice(0,2).map(t=>[t.draws,t.wins,t.modes.approx.success,t.modes.approx.points])')),[[1,0,1,1],[1,0,1,1]]);
+ assert.deepEqual(plain(h.eval('Object.values(profileStore.totals).slice(0,2).map(t=>[t.draws,t.wins,t.modes.approx.success,t.modes.approx.points])')),[[1,0,1,1],[1,0,0,1]]);
  for(const [recipient,scores] of [[0,[1,0]],[1,[0,1]]]){
   finished(h,[{mode:'approx',deltas:scores,recipients:[recipient]},{mode:'approx',deltas:[0,0],recipients:[]}],scores);h.eval('commitProfileResult(match)');
  }
@@ -61,8 +87,9 @@ test('statistics: actual deltas preserve risk penalties, partial modifier succes
  const h=harness();players(h);finished(h,[{mode:'secret',methodId:'sing',recipientIndex:0,awarded:2,taskSuccess:true,modifierSuccess:false},
   {mode:'talk',recipientIndex:0,awarded:-2,taskSuccess:false}], [0,0]);h.eval('commitProfileResult(match)');
  assert.deepEqual(plain(h.eval('profileStore.totals[profileStore.profiles[0].id].modes')),{
-  secret:{rounds:1,success:1,points:2,methods:{sing:{rounds:1,success:1,points:2}}},talk:{rounds:1,success:0,points:-2}});
- assert.equal(h.eval('profileStore.totals[profileStore.profiles[1].id].modes.secret.points'),0);
+  secret:{rounds:1,success:1,points:2,methods:{sing:{rounds:1,success:1,points:2}}},talk:{rounds:0,success:0,points:-2}});
+ assert.equal(h.eval('profileStore.totals[profileStore.profiles[1].id].modes.secret'),undefined);
+ assert.equal(h.eval('profileStore.totals[profileStore.profiles[1].id].modes.talk.rounds'),1);
 });
 test('statistics: future modes and Secret methods work without a static mode ID list',()=>{
  const h=harness();players(h);
@@ -72,7 +99,8 @@ test('statistics: future modes and Secret methods work without a static mode ID 
  const restored=harness(h.storage);restored.eval('restoreProfiles()');
  const modes=plain(restored.eval('profileStore.totals[profileStore.profiles[0].id].modes'));
  assert.equal(modes['future-mode'].rounds,1);assert.equal(modes['future-mode'].points,1);
- assert.equal(modes.secret.methods['future-method'].rounds,1);
+ assert.equal(modes.secret,undefined);
+ assert.equal(restored.eval('profileStore.totals[profileStore.profiles[1].id].modes.secret.methods["future-method"].rounds'),1);
  const broken=JSON.parse(h.storage.get('kvip-player-profiles:v1'));
  broken.totals[broken.profiles[0].id].modes.constructor={rounds:1,success:1,points:0};
  h.context.broken=broken;assert.throws(()=>h.eval('validateProfileStore(broken)'));
@@ -83,7 +111,7 @@ test('statistics: future shared-award modes credit each profile without mode-spe
   {mode:'future-shared',deltas:[0,0],recipients:[]}],[1,2]);
  h.eval('commitProfileResult(match)');
  const data=plain(h.eval('profileStore.profiles.slice(0,2).map(p=>profileStore.totals[p.id].modes["future-shared"])'));
- assert.deepEqual(data, [{rounds:2,success:1,points:1},{rounds:2,success:1,points:2}]);
+ assert.deepEqual(data, [{rounds:1,success:1,points:1},{rounds:1,success:0,points:2}]);
 });
 test('statistics integration: failed START preserves old durable RAW and previous game',()=>{
  const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation();
@@ -174,8 +202,8 @@ test('statistics integration: real V5 settlement routes either recipient, full B
   assert.equal(archive.recent.length,1);assert.deepEqual(archive.recent[0].scores,data.scores);
   for(let i=0;i<2;i++){
    const total=archive.totals[data.profileMatch.participants[i].id];assert.equal(total.points,data.scores[i]);assert.equal(total.matches,1);
-   assert.equal(total.modes[mode].rounds,2);assert.equal(total.modes[mode].success,1);
-   if(mode==='secret')assert.equal(Object.values(total.modes.secret.methods).reduce((sum,value)=>sum+value.rounds,0),2);
+   assert.equal(total.modes[mode].rounds,1);assert.equal(total.modes[mode].success,i===0?1:0);
+   if(mode==='secret')assert.equal(Object.values(total.modes.secret.methods).reduce((sum,value)=>sum+value.rounds,0),1);
   }
   const raw=h.storage.get('kvip-player-profiles:v1');h.eval('showResults();render();showResults();saveCompletedProfileResult()');assert.equal(h.storage.get('kvip-player-profiles:v1'),raw);
  }
