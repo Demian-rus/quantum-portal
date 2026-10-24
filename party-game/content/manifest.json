@@ -169,6 +169,11 @@
       "path": "cards/science-expansion-v2.json",
       "immutable": false,
       "review": "S2: 50 science concept prompts with independent ID block 034; editorial review in science-expansion-v2-review.md"
+    },
+    {
+      "path": "cards/science-expansion-v3.json",
+      "immutable": false,
+      "review": "Science S3: 50 unique science cards and an independent editorial review"
     }
   ],
   "questions": [
@@ -268,6 +273,11 @@
       "path": "packs/science-expansion-v2.json",
       "immutable": false,
       "review": "S2 pins science@6 (482), general@10 (5200), preserving all past selections."
+    },
+    {
+      "path": "packs/science-expansion-v3.json",
+      "immutable": false,
+      "review": "Science S3 pins science@7 (532), general@11 (5250), all historical IDs preserved"
     }
   ],
   "legacyCollisions": [
