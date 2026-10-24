@@ -11,7 +11,7 @@ function createSimulation(seed=1,existing=new Map()){
  const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
  for(const match of html.matchAll(/<script src="\.\/([^?"/]+\.js)(?:\?[^" ]*)?" defer><\/script>/g))vm.runInContext(fs.readFileSync(path.join(root,match[1]),'utf8'),context);
  vm.runInContext(`soundOn=false;
- if(!profileStore&&!profileStoreProblem&&loadedSaveRaw===null){createPlayerProfile('Молнии','coral');createPlayerProfile('Кометы','cyan');}
+ if(!profileStore&&!profileStoreProblem&&loadedSaveRaw===null&&localStorage.getItem(QUIP_PROFILES_KEY)===null){createPlayerProfile('Молнии','coral');createPlayerProfile('Кометы','cyan');}
  if(profileStore&&!selectedPlayerProfiles())selectedProfileIds=profileStore.profiles.slice(0,2).map(p=>p.id);`,context);
  return {context,elements,storage:existing,eval:source=>vm.runInContext(source,context)};
 }
