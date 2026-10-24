@@ -54,11 +54,12 @@ function rememberLegacyWordUse(kind,level,word,modeId=game?.current?.modeId??'si
  if(!next.includes(word))next.push(word);game.used[key]=next;
 }
 
-function pullWord(kind, level=chooseDifficulty(),excluded=[],modeId=game?.current?.modeId??'sing') {
+function pullWord(kind, level=chooseDifficulty(),excluded=[],modeId=game?.current?.modeId??'sing',identity=null) {
+  if(identity)identity.cardId=null;
   if(game.taskHistoryVersion!=null){
     let pool=game.contentPack?getPackCardPool(game.contentPack,kind,level,game.promptTypes):getCardPool(kind,level,game.promptTypes);
     if(kind==='songs')pool=filterSongLanguagePool(pool,game,modeId);
-    const selected=chooseRememberedTask(pool,excluded);rememberLegacyWordUse(kind,level,selected.text,modeId);return selected.text;
+    const selected=chooseRememberedTask(pool,excluded);if(identity)identity.cardId=selected.id;rememberLegacyWordUse(kind,level,selected.text,modeId);return selected.text;
   }
   const pool=getPromptPool(kind,level,modeId).filter(word=>!excluded.includes(word));
   if(!pool?.length)throw Error('Нет слов для выбранных настроек');
@@ -97,9 +98,13 @@ function rollOutcome() {
     difficulty:level,complications:game.complications}):null;
   const question=config.cardType==='number'?pullApproxQuestion(level):null;
   // V2 applies the pinned language snapshot to every singing method; V1 keeps Secret historical.
-  const word=question?question.question:pullWord(mode.id==='blitz'?'blitz':actualMode.kind,level,[],mode.id);
+  const identity={cardId:null};
+  const word=question?question.question:pullWord(mode.id==='blitz'?'blitz':actualMode.kind,level,[],mode.id,identity);
   const blitzWords=mode.id==='blitz'?[word]:null;
-  if(blitzWords)while(blitzWords.length<config.blitzWordsCount)blitzWords.push(pullWord('blitz',level,blitzWords));
+  const blitzCardIds=blitzWords?[identity.cardId]:null;
+  if(blitzWords)while(blitzWords.length<config.blitzWordsCount){
+    const picked={cardId:null};blitzWords.push(pullWord('blitz',level,blitzWords,undefined,picked));blitzCardIds.push(picked.cardId);
+  }
   if(game.modifierSelectionVersion===2&&config.usesModifiers){
     const card=getPackCardPool(game.contentPack,actualMode.kind,level,game.promptTypes).find(row=>row.text===word);
     selection=choosePartyModifier(game,{modeId:mode.id,methodId:actualMode.id,difficulty:level,complications:game.complications,card,memory:taskMemory});
@@ -108,7 +113,7 @@ function rollOutcome() {
   if(selection&&game.modifierSelectionVersion!=null)game.modifierRecent=selection.recent;
   if(selection?.taskHistory)game.taskHistory=selection.taskHistory;
   return {
-    modeId:mode.id,methodId:actualMode.id,word,...(question?{question}:{}),complication:modifier?.text||'',
+    modeId:mode.id,methodId:actualMode.id,word,cardId:question?.id??identity.cardId,...(question?{question}:{}),complication:modifier?.text||'',
     complicationId:modifier?.id||null,modifierVersion:game.modifierCatalogVersion??QUIP_MODIFIER_VERSION,difficulty:level,
     basePoints:rewardForRound(game,mode.id,level),
     modifierPoints:ruleSetForGame(game).version>=4&&modifier?config.modifierBonus:0,
@@ -116,7 +121,7 @@ function rollOutcome() {
     blitzRequired:config.blitzWordsCount,seconds:durationForMode(mode.id,actualMode.id,game.duration),
     risk:config.allowsRisk&&game.riskRounds&&game.roundIndex>=ruleSetForGame(game).risk.firstRoundIndex&&
       shouldSelectRisk(game,Math.random(),mode.id),
-    blitzWords,
+    blitzWords,blitzCardIds,
     blitzIndex:0,blitzCorrect:0,
     blitzQueue:mode.id==='blitz'?Array.from({length:config.blitzWordsCount},(_,i)=>i):null,
     visible:false,paused:false,remainingMs:null,deadline:null,autoStartAt:null,

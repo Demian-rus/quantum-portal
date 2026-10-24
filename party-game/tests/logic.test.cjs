@@ -68,6 +68,8 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('session-restoration.js'),context);
    vm.runInContext(read('player-profiles.js'),context);
    vm.runInContext(read('profile-views.js'),context);
+   vm.runInContext(read('card-reports.js'),context);
+   vm.runInContext(read('card-reports-view.js'),context);
    vm.runInContext(read('app.js'),context);
    vm.runInContext(`if(!profileStore&&!profileStoreProblem&&loadedSaveRaw===null){createPlayerProfile('Молнии','coral');createPlayerProfile('Кометы','cyan');}
     if(profileStore&&!selectedPlayerProfiles())selectedProfileIds=profileStore.profiles.slice(0,2).map(p=>p.id);`,context);

@@ -256,6 +256,7 @@ function handleAction(action) {
 function setupEvents() {
   registerSetupControls();
   registerProfileControls();
+  registerCardReportControls();
   $('new-game-menu').addEventListener('click',openGameType);
   $('game-type-back').addEventListener('click',()=>setScene('home'));
   $('standard-game').addEventListener('click',selectStandardGame);
@@ -301,8 +302,8 @@ function setupEvents() {
   document.addEventListener('keydown',rulesKeydown);
   // Disallow native Android selection handles and context menus on every scene,
   // including settings buttons. Keyboard editing of team names still works.
-  document.addEventListener('selectstart',event=>event.preventDefault());
-  document.addEventListener('contextmenu',event=>event.preventDefault());
+  document.addEventListener('selectstart',event=>{if(event.target.id!=='report-comment')event.preventDefault();});
+  document.addEventListener('contextmenu',event=>{if(event.target.id!=='report-comment')event.preventDefault();});
   document.addEventListener('visibilitychange',()=>{
     if(!document.hidden&&game?.phase==='play')tick();
   });
