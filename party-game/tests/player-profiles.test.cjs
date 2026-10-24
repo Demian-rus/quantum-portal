@@ -17,7 +17,7 @@ test('profiles: v73 totals without tiebreak counters remain valid and upgradable
  const before=JSON.parse(h.storage.get('kvip-player-profiles:v1'));
  for(const row of Object.values(before.totals)){delete row.tiebreaks;delete row.tiebreakWins}
  const old=JSON.stringify(before);h.storage.set('kvip-player-profiles:v1',old);
- const reloaded=harness(h.storage);reloaded.eval('restoreProfiles()');
+ const reloaded=harness(h.storage);reloaded.eval('restoreProfiles();selectedProfileIds=profileStore.profiles.slice(0,2).map(p=>p.id)');
  assert.equal(reloaded.eval('profileStore.profiles.length'),3);
  assert.equal(h.storage.get('kvip-player-profiles:v1'),old);
  finished(reloaded);reloaded.eval('commitProfileResult(match)');

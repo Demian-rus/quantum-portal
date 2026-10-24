@@ -986,7 +986,8 @@ test('smart finish: shared tiebreak chooses a distinct question, resumes offline
  h.eval("Object.assign(options,{finishType:'score',targetScore:15,modes:['talk'],difficulty:'easy'});newGame()");
  h.eval(`game.roundIndex=30;game.scores=[15,15];
   game.history=Array.from({length:30},(_,i)=>({mode:'approx',setterIndex:i%2,assignedIndices:[0,1],
-   deltas:i<15?[1,1]:[0,0],recipients:i<15?[0,1]:[]}));
+   deltas:i<15?[1,1]:[0,0],recipients:i<15?[0,1]:[],sharedAward:i<15,
+   recipientNames:i<15?game.teams.slice():[],word:'Пример',answer:'42',unit:''}));
   game.phase='ready';persist();beginTiebreak()`);
  assert.equal(h.eval('game.phase'),'tiebreak');
  assert.equal(h.eval('game.roundIndex'),30);
@@ -2019,7 +2020,7 @@ test('unknown award policies protect the original save from replacement',()=>{
 });
 test('both recipient policies preserve reply turns, ties and round-count boundaries',()=>{
  for(const policy of ['setter','guesser']){
-  const h=harness();h.eval('soundOn=false;options.awardTo="'+policy+'";options.modes=["talk"];options.complications=false;options.dice=false;options.targetScore=1;newGame()');
+  const h=harness();h.eval('soundOn=false;options.awardTo="'+policy+'";options.modes=["talk"];options.complications=false;options.dice=false;options.targetScore=1;newGame();delete game.finishPolicyVersion');
   for(const yes of [true,true,true,false])h.eval('roll();game.phase="judge";judge('+yes+')');
   assert.equal(h.eval('game.phase'),'results');assert.equal(h.eval('game.roundIndex'),4);assert.notEqual(h.eval('game.scores[0]'),h.eval('game.scores[1]'));
   h.eval('options.finishType="rounds";options.rounds=2;newGame()');
