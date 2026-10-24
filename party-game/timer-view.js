@@ -23,9 +23,8 @@ function showTimer() {
       (blitz?blitzStatus():'')+
       (c.risk?'<p class="risk-notice">⚡ РИСК: ПРОВАЛ −'+ruleSetForGame(game).risk.loss+' ОЧКА</p>':'')+
     '</div>'+
-    '<div class="round-fixed-card">'+taskMarkup(blitz?false:!c.visible)+'</div>'+
+    '<div class="round-fixed-card">'+taskMarkup(!c.visible)+'</div>'+
     '<div class="round-bottom round-bottom--play">'+
-      (!blitz?'<div class="round-visibility">'+iconButton(c.visible?'eye-off':'eye','toggle-word',c.visible?'Скрыть слово':'Показать слово')+'</div>':'')+
       (blitz?'<div class="three-answer-actions blitz-actions">'+
         '<div class="blitz-control">'+iconButton('x','blitz-skip','Пропустить слово','danger prominent')+
           '<span>ПРОПУСТИТЬ</span></div>'+
@@ -47,7 +46,7 @@ function showCountdown() {
       roundConditionMarkup()+
       '<h2 class="play-title">СТАРТ ЧЕРЕЗ <em>1 СЕКУНДУ</em></h2>'+
     '</div>'+
-    '<div class="round-fixed-card">'+taskMarkup(false)+'</div>'+
+    '<div class="round-fixed-card">'+taskMarkup(!game.current.visible)+'</div>'+
     '<div class="round-bottom"><p class="play-subtitle">Таймер запускается автоматически</p></div>';
 }
 

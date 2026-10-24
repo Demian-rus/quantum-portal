@@ -14,6 +14,8 @@ function advanceBlitz(correct) {
   c.blitzIndex++;
   if(!c.blitzQueue.length){finishTimer('completed');return;}
   c.word=c.blitzWords[c.blitzQueue[0]];
+  // Each next Blitz prompt starts visible, as it did before card toggling.
+  c.visible=true;
   persist();sfx(correct?'win':'button');
   showTimer();
 }
@@ -37,8 +39,8 @@ function roll() {
 }
 
 function toggleWord() {
-  if(!game||!roundUsesTimer()||!['task','play'].includes(game.phase))return;
-  if(game.current.modeId==='blitz'&&game.phase==='play')return;
+  if(!game||!roundUsesTimer()||!['task','countdown','play'].includes(game.phase))return;
+  const phase=game.phase;
   // Revealing or hiding an answer never pauses or restarts the clock.
   game.current.visible=!game.current.visible;
   if(game.phase==='task'&&game.current.visible&&!allowPause()){
@@ -46,7 +48,12 @@ function toggleWord() {
     game.current.autoStartAt=Date.now()+1000;
   }
   persist();
-  render();
+  // Visibility updates keep the existing ticker. Only the first automatic
+  // reveal changes phase and starts the original countdown lifecycle.
+  if(game.phase!==phase)render(false);
+  else if(phase==='task')showTask();
+  else if(phase==='countdown')showCountdown();
+  else showTimer();
 }
 
 function replaceWord() {
