@@ -6,6 +6,8 @@ async function provisionProfiles(page){
     if(typeof createPlayerProfile!=='function')return;
     if(!profileStore){createPlayerProfile('Молнии','coral');createPlayerProfile('Кометы','cyan');}
     if(!selectedPlayerProfiles())selectedProfileIds=profileStore.profiles.slice(0,2).map(p=>p.id);
+    if(selectedPlayerProfiles()&&JSON.stringify(profileStore.lastPair)!==JSON.stringify(selectedProfileIds))
+      writeProfileStore({...profileStore,lastPair:selectedProfileIds.slice()});
     renderOptions();
   });
 }
