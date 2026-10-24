@@ -82,6 +82,21 @@ test('Science S2 adds 50 unique prompts preserving science@5 and general@9',()=>
   assert.deepEqual(after.criteria.cardIds.slice(oldN),fresh.map(c=>c.id));
  }
 });
+test('Science S3 adds 50 unique playable concepts while preserving science@6/general@10',()=>{
+ const fresh=base.cards.filter(c=>c.pack==='science-expansion-v3');
+ assert.equal(fresh.length,50);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(d=>[d,fresh.filter(c=>c.difficulty===d).length])),{easy:20,medium:20,hard:10});
+ assert.deepEqual(Object.fromEntries(['word','phrase'].map(type=>[type,fresh.filter(c=>c.type===type).length])),{word:27,phrase:23});
+ const older=base.cards.filter(c=>c.pack!=='science-expansion-v3');const known=new Set(older.map(c=>api.normalize(c.text)));
+ assert.ok(fresh.every(c=>c.categories.length===1&&c.categories[0]==='science'&&!known.has(api.normalize(c.text))));
+ assert.equal(new Set(fresh.map(c=>api.normalize(c.text))).size,50);
+ for(const [id,oldV,newV,oldN,newN] of [['science',6,7,482,532],['general',10,11,5200,5250]]){
+  const before=base.packs.find(p=>p.id===id&&p.version===oldV),after=base.packs.find(p=>p.id===id&&p.version===newV);
+  assert.ok(before&&after);assert.equal(before.criteria.cardIds.length,oldN);assert.equal(after.criteria.cardIds.length,newN);
+  assert.deepEqual(after.criteria.cardIds.slice(0,oldN),before.criteria.cardIds);
+  assert.deepEqual(after.criteria.cardIds.slice(oldN),fresh.map(c=>c.id));
+ }
+});
 test('TASK009 A validator rejects duplicate IDs/text, bad types/tags and invalid answers or sources',()=>{
  for(const[code,mutate]of [
   ['id',d=>d.cards[1].id=d.cards[0].id],['normalized-duplicate',d=>d.cards[1].text='  карандаш! '],
