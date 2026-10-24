@@ -61,12 +61,14 @@ function validateProfileStore(data){
 }
 function readProfileStore(){
   try{
+    if(typeof assertProfileBackupWritable==='function')assertProfileBackupWritable();
     const raw=localStorage.getItem(QUIP_PROFILES_KEY);
     profileStore=raw===null?null:validateProfileStore(JSON.parse(raw));profileStoreProblem=null;
     return profileStore;
   }catch(error){profileStore=null;profileStoreProblem='Не удалось открыть профили. Данные сохранены; проверьте доступ к памяти и версию приложения.';throw error;}
 }
 function writeProfileStore(next){
+  if(typeof assertProfileBackupWritable==='function')assertProfileBackupWritable();
   validateProfileStore(next);
   const raw=JSON.stringify(next);
   localStorage.setItem(QUIP_PROFILES_KEY,raw);

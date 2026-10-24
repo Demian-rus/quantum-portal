@@ -1,0 +1,502 @@
+[
+  {
+    "text": "ЛАБОРАТОРИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033001"
+  },
+  {
+    "text": "ДИНОЗАВР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033002"
+  },
+  {
+    "text": "РЕНТГЕН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033003"
+  },
+  {
+    "text": "ЭЛЕКТРОМОБИЛЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033004"
+  },
+  {
+    "text": "ЭЛЕКТРОСТАНЦИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033005"
+  },
+  {
+    "text": "СОЛНЕЧНАЯ БАТАРЕЯ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033001"
+  },
+  {
+    "text": "БИОЛОГ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033006"
+  },
+  {
+    "text": "КРОВЕНОСНЫЕ СОСУДЫ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033002"
+  },
+  {
+    "text": "ЭЛЕКТРИЧЕСКИЙ ТОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033003"
+  },
+  {
+    "text": "СОЛНЕЧНАЯ СИСТЕМА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033004"
+  },
+  {
+    "text": "СОЛНЕЧНЫЕ ПЯТНА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033005"
+  },
+  {
+    "text": "СЕРДЦЕБИЕНИЕ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033007"
+  },
+  {
+    "text": "КОСМИЧЕСКИЙ ЗОНД",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033006"
+  },
+  {
+    "text": "ЛУННЫЙ КРАТЕР",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033007"
+  },
+  {
+    "text": "ТЕЛЕГРАФ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033008"
+  },
+  {
+    "text": "ФОТОАППАРАТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033009"
+  },
+  {
+    "text": "ПУЛЬС",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033010"
+  },
+  {
+    "text": "КОМЕТНЫЙ ХВОСТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033008"
+  },
+  {
+    "text": "ИЗВЕРЖЕНИЕ ВУЛКАНА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033009"
+  },
+  {
+    "text": "ВЕТРЯНАЯ ТУРБИНА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033010"
+  },
+  {
+    "text": "ТЕОРИЯ ЭВОЛЮЦИИ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033011"
+  },
+  {
+    "text": "СЕЙСМОГРАФ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033011"
+  },
+  {
+    "text": "СПУТНИКОВАЯ СВЯЗЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033012"
+  },
+  {
+    "text": "ПАРНИКОВЫЙ ЭФФЕКТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033013"
+  },
+  {
+    "text": "ХИМИЧЕСКАЯ РЕАКЦИЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033014"
+  },
+  {
+    "text": "ЭЛЕКТРОМАГНИТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033012"
+  },
+  {
+    "text": "АНТИБИОТИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033013"
+  },
+  {
+    "text": "ЗВУКОВАЯ ВОЛНА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033015"
+  },
+  {
+    "text": "ГАММА-ИЗЛУЧЕНИЕ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033014"
+  },
+  {
+    "text": "КИСЛОТНЫЙ ДОЖДЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033016"
+  },
+  {
+    "text": "ЛЕДНИКОВЫЙ ПЕРИОД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033017"
+  },
+  {
+    "text": "ДИСПЕРСИЯ СВЕТА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033018"
+  },
+  {
+    "text": "НЕЙРОСЕТЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033015"
+  },
+  {
+    "text": "ОПТИЧЕСКАЯ ИЛЛЮЗИЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033019"
+  },
+  {
+    "text": "ПИЩЕВАРЕНИЕ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033016"
+  },
+  {
+    "text": "ДЫМОВОЙ ДАТЧИК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033020"
+  },
+  {
+    "text": "ЭЛЕКТРОН",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033017"
+  },
+  {
+    "text": "ВИРУС",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033018"
+  },
+  {
+    "text": "ВАКЦИНА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033019"
+  },
+  {
+    "text": "УГЛЕКИСЛЫЙ ГАЗ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033021"
+  },
+  {
+    "text": "ГРАВИТАЦИОННЫЕ ВОЛНЫ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033022"
+  },
+  {
+    "text": "ТЕКТОНИЧЕСКИЕ ПЛИТЫ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033023"
+  },
+  {
+    "text": "ПЕРИОД ПОЛУРАСПАДА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033024"
+  },
+  {
+    "text": "ТЕРМОЯДЕРНЫЙ СИНТЕЗ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033025"
+  },
+  {
+    "text": "ЭФФЕКТ ДОПЛЕРА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033026"
+  },
+  {
+    "text": "ЧАСТИЦА ХИГГСА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033027"
+  },
+  {
+    "text": "БРОУНОВСКОЕ ДВИЖЕНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033028"
+  },
+  {
+    "text": "ФЛУОРЕСЦЕНЦИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033020"
+  },
+  {
+    "text": "КРИОКОНСЕРВАЦИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "word-033021"
+  },
+  {
+    "text": "ГРАВИТАЦИОННАЯ ЛИНЗА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v1",
+    "id": "phrase-033029"
+  }
+]

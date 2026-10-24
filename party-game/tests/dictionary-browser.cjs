@@ -6,8 +6,13 @@ module.exports=async function dictionaryBrowser(browser,url){
  try{
   await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();
   await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.promptTypes=['word'];options.complications=false;options.dice=false;options.difficulty='easy';Math.random=()=>.99999});
-  await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();
-  assert.equal(await page.evaluate(()=>game.contentPack.version),await page.evaluate(()=>latestGeneralPackSelection().version));assert.equal(await page.evaluate(()=>game.current.word),'ПОДОДЕЯЛЬНИК');
+  await page.locator('#start-game').click();
+  // With a fresh history and RNG near 1, selection must reach the last eligible card.
+  // Derive it from the latest catalog so adding cards does not freeze this test to an old word.
+  const expectedWord=await page.evaluate(()=>getPackCardPool(latestGeneralPackSelection(),'words','easy',['word']).at(-1).text);
+  await page.locator('[data-action="roll"]').click();
+  assert.equal(await page.evaluate(()=>game.contentPack.version),await page.evaluate(()=>latestGeneralPackSelection().version));assert.equal(await page.evaluate(()=>game.current.word),expectedWord);
+  assert.equal(await page.evaluate(()=>getPackCardPool({id:'general',version:6},'words','easy',['word']).at(-1).text),'ПОДОДЕЯЛЬНИК');
   await page.evaluate(()=>{game.dice=true;persist()});const snapshot=await page.evaluate(()=>JSON.stringify(game));
   await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
   await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();assert.equal(await page.evaluate(()=>JSON.stringify(game)),snapshot);
