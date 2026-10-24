@@ -245,8 +245,9 @@ function handleAction(action) {
     case 'next':if(game?.phase==='between'){game.phase='ready';game.current=null;persist();render();}return;
     case 'again':if(game?.phase==='results'){
       if(!saveCompletedProfileResult()){toast(profileResultProblem);return;}
-      archiveCurrentTaskHistory();game=null;
-      if(selectedPlayerProfiles())newGame();else openSetup();
+      // Let newGame replace the previous result only after START is durable.
+      if(selectedPlayerProfiles())newGame();
+      else{archiveCurrentTaskHistory();game=null;openSetup();}
     }return;
     case 'retry-statistics':saveCompletedProfileResult();showResults();return;
     case 'menu':return backToMenu();
