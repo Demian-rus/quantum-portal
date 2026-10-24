@@ -77,6 +77,14 @@ test('statistics: future modes and Secret methods work without a static mode ID 
  broken.totals[broken.profiles[0].id].modes.constructor={rounds:1,success:1,points:0};
  h.context.broken=broken;assert.throws(()=>h.eval('validateProfileStore(broken)'));
 });
+test('statistics: future shared-award modes credit each profile without mode-specific branching',()=>{
+ const h=harness();players(h);
+ finished(h,[{mode:'future-shared',deltas:[1,2],recipients:[0,1]},
+  {mode:'future-shared',deltas:[0,0],recipients:[]}],[1,2]);
+ h.eval('commitProfileResult(match)');
+ const data=plain(h.eval('profileStore.profiles.slice(0,2).map(p=>profileStore.totals[p.id].modes["future-shared"])'));
+ assert.deepEqual(data, [{rounds:2,success:1,points:1},{rounds:2,success:1,points:2}]);
+});
 test('statistics integration: failed START preserves old durable RAW and previous game',()=>{
  const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation();
  h.eval('newGame()');
