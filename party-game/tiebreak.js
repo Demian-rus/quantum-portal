@@ -22,6 +22,7 @@ function validateTiebreakState(match){
     Math.max(...match.scores)<match.targetScore)throw Error('Invalid saved QUIP tiebreak');
 }
 function nextTiebreakQuestion(attempted=[]){
+ if(attempted.length>=120)return null;
  const levels=game.difficulty==='mixed'?['medium','easy','hard']:
   [game.difficulty,...['medium','easy','hard'].filter(level=>level!==game.difficulty)];
  for(const level of levels){

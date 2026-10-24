@@ -12,6 +12,18 @@ function finished(h,rows=[{mode:'talk',recipientIndex:0,awarded:1,correct:true},
  h.eval(`var identity=reserveProfileMatch();var match={matchId:identity.storeId+':'+identity.sequence,profileMatch:identity,teams:identity.participants.map(p=>p.name),scores,history:rows,roundIndex:rows.length,finishType:'rounds',rounds:rows.length,phase:'results'};`);
 }
 const plain=value=>JSON.parse(JSON.stringify(value));
+test('profiles: v73 totals without tiebreak counters remain valid and upgradable',()=>{
+ const h=harness();players(h);
+ const before=JSON.parse(h.storage.get('kvip-player-profiles:v1'));
+ for(const row of Object.values(before.totals)){delete row.tiebreaks;delete row.tiebreakWins}
+ const old=JSON.stringify(before);h.storage.set('kvip-player-profiles:v1',old);
+ const reloaded=harness(h.storage);reloaded.eval('restoreProfiles()');
+ assert.equal(reloaded.eval('profileStore.profiles.length'),3);
+ assert.equal(h.storage.get('kvip-player-profiles:v1'),old);
+ finished(reloaded);reloaded.eval('commitProfileResult(match)');
+ const after=JSON.parse(h.storage.get('kvip-player-profiles:v1'));
+ for(const row of Object.values(after.totals))if(row.matches)assert.equal(row.tiebreakWins,0);
+});
 test('profiles: fresh boot is read-only; UUIDs never consume gameplay random',()=>{
  const h=harness();h.eval('Math.random=()=>{throw Error("RNG consumed")};restoreProfiles()');assert.equal(h.storage.size,0);
  players(h);finished(h);assert.match(h.eval('match.matchId'),/^[a-f0-9]{32}:1$/);assert.equal(h.eval('profileStore.profiles.length'),3);

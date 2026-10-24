@@ -59,6 +59,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('match-views.js'),context);
    vm.runInContext(read('timer-view.js'),context);
    vm.runInContext(read('round-selection.js'),context);
+   vm.runInContext(read('tiebreak.js'),context);
    vm.runInContext(read('round-settlement.js'),context);
    vm.runInContext(read('timer-controller.js'),context);
    vm.runInContext(read('round-presentation.js'),context);
@@ -979,6 +980,54 @@ test('smart finish: pure pre-reply evaluation preserves RNG and saved plan',()=>
  const before=h.eval('JSON.stringify(game)');
  h.eval('Math.random=()=>{throw Error("finish evaluation consumed RNG")};matchComplete()');
  assert.equal(h.eval('JSON.stringify(game)'),before);
+});
+test('smart finish: shared tiebreak chooses a distinct question, resumes offline and awards no ordinary task',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs'),store=new Map(),h=createSimulation(1,store);
+ h.eval("Object.assign(options,{finishType:'score',targetScore:15,modes:['talk'],difficulty:'easy'});newGame()");
+ h.eval(`game.roundIndex=30;game.scores=[15,15];
+  game.history=Array.from({length:30},(_,i)=>({mode:'approx',setterIndex:i%2,assignedIndices:[0,1],
+   deltas:i<15?[1,1]:[0,0],recipients:i<15?[0,1]:[]}));
+  game.phase='ready';persist();beginTiebreak()`);
+ assert.equal(h.eval('game.phase'),'tiebreak');
+ assert.equal(h.eval('game.roundIndex'),30);
+ assert.equal(h.eval('game.history.length'),30);
+ const firstQuestion=h.eval('game.tiebreak.question.id');
+ h.eval("revealTiebreak();settleTiebreak('same')");
+ assert.equal(h.eval('game.phase'),'tiebreak');
+ assert.equal(h.eval('game.tiebreak.stage'),'question');
+ assert.notEqual(h.eval('game.tiebreak.question.id'),firstQuestion);
+ const savedRaw=store.get('iskra-party:v1');
+ const reload=createSimulation(2,store);
+ reload.eval('restoreProfiles();restoreSession()');
+ assert.equal(reload.eval('game.phase'),'tiebreak');
+ assert.equal(store.get('iskra-party:v1'),savedRaw);
+ reload.eval("revealTiebreak();settleTiebreak('a')");
+ assert.equal(reload.eval('game.phase'),'results');
+ assert.deepEqual(Array.from(reload.eval('game.scores')),[16,15]);
+ assert.equal(reload.eval('game.roundIndex'),30);
+ assert.equal(reload.eval('game.history.length'),30);
+ assert.equal(reload.eval('profileStore.totals[profileStore.profiles[0].id].matches'),1);
+ assert.equal(reload.eval('profileStore.totals[profileStore.profiles[0].id].tiebreakWins'),1);
+ assert.equal(reload.eval('profileStore.totals[profileStore.profiles[1].id].tiebreakWins'),0);
+ assert.deepEqual(Array.from(reload.eval('profileStore.profiles.slice(0,2).map(p=>profileStore.totals[p.id].turns)')),[30,30]);
+ reload.eval('commitProfileResult(game)');
+ assert.equal(reload.eval('profileStore.totals[profileStore.profiles[0].id].matches'),1);
+});
+test('smart finish: no numerical questions in a saved theme keeps tied paired turns',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation();
+ h.eval("Object.assign(options,{finishType:'score',targetScore:15,modes:['talk']});newGame()");
+ h.eval("game.contentPack={id:'general',version:1};game.roundIndex=2;game.scores=[15,15]");
+ assert.equal(h.eval('beginTiebreak()'),false);
+ assert.equal(h.eval('game.tiebreak'),undefined);
+ assert.equal(h.eval('game.phase'),'ready');
+});
+test('smart finish: invalid persisted tiebreak cannot be restored',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs'),store=new Map(),h=createSimulation(1,store);
+ h.eval("Object.assign(options,{finishType:'score',targetScore:15,modes:['talk']});newGame()");
+ h.eval("game.roundIndex=2;game.scores=[15,15];beginTiebreak();game.tiebreak.winnerIndex=0;persist()");
+ const reloaded=createSimulation(1,store);
+ reloaded.eval('restoreProfiles();restoreSession()');
+ assert.equal(reloaded.eval('storageBlocked'),true);
 });
 test('smart finish: a legacy saved party retains its original even-turn rules',()=>{
  const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation();
