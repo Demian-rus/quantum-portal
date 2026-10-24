@@ -25,6 +25,7 @@ async function protectedState(page){return page.evaluate(()=>({game:JSON.stringi
     assert.deepEqual(await protectedState(page),before,'opening report cannot mutate game or profiles');
     await page.keyboard.press('Escape');await page.locator('#report-backdrop').waitFor({state:'hidden'});assert.deepEqual(await protectedState(page),before);
     await page.locator('#report-card').tap();await page.goBack();await page.locator('#report-backdrop').waitFor({state:'hidden'});assert.deepEqual(await protectedState(page),before);
+    if(width===390&&mode==='talk'){await page.locator('#report-card').focus();await page.locator('#report-card').press('Enter');await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.closest('#report-backdrop')!==null),true);await page.keyboard.press('Escape');assert.deepEqual(await protectedState(page),before);}
     await page.locator('#report-card').tap();await page.locator('#report-reason').selectOption('other');await page.locator('#report-comment').fill('  Проверить   формулировку  ');
     if(width===390&&mode==='talk')await page.screenshot({path:'artifacts/quip-reports/report-dialog.png'});
     await page.locator('#report-save').click();await page.locator('#report-backdrop').waitFor({state:'hidden'});
@@ -68,6 +69,20 @@ async function protectedState(page){return page.evaluate(()=>({game:JSON.stringi
    page.once('dialog',d=>d.dismiss());await page.locator('#reports-clear').click();assert.equal((await saved(page)).items.length,archive.items.length-1);
    page.once('dialog',d=>d.accept());await page.locator('#reports-clear').click();assert.equal((await saved(page)).items.length,0);
    assert.deepEqual(errors,[]);await ctx.close();console.log('reports all modes / ID / touch / Back / clock / offline / export',width,height,'PASS');
+  }
+  // The real settled history retains each source ID, including individual Blitz words.
+  {
+   const ctx=await browser.newContext({viewport:{width:390,height:844}}),page=await ctx.newPage();await page.goto(URL);await provisionProfiles(page);
+   for(const mode of ['approx','blitz']){
+    await page.evaluate(mode=>{Object.assign(options,{modes:[mode],difficulty:'easy',finishType:'rounds',rounds:2,dice:false,complications:false});newGame();game.dice=false;},mode);
+    for(let turn=0;turn<2;turn++)await page.evaluate(mode=>{roll();if(mode==='approx'){revealApprox();awardApprox('both');}else{toggleWord();startTimer();while(game.phase==='play')advanceBlitz(true);judge(true);}},mode);
+    await page.locator('#scene-results').waitFor({state:'visible'});
+    const expected=await page.evaluate(mode=>mode==='approx'?game.history[0].questionId:game.history[0].blitzCardIds[1],mode);
+    await page.locator(mode==='approx'?'[data-report-history="0"]':'[data-report-history="0"][data-report-blitz="1"]').click();
+    await page.locator('#report-save').click();assert.equal((await saved(page)).items.at(-1).item.cardId,expected);
+    await page.locator('[data-action="menu"]').click();
+   }
+   await ctx.close();console.log('settled Approx / individual Blitz history reports PASS');
   }
  }finally{await browser.close();fs.rmSync(tmp,{recursive:true,force:true});}
 })().catch(error=>{console.error(error);process.exitCode=1;});

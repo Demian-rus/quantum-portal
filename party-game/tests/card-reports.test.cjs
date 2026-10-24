@@ -104,3 +104,11 @@ test('reports: reporting does not change live game RAW, scores, profiles, visibi
  h.eval("Math.random=()=>{throw Error('report consumed RNG')};saveCardReport(currentReportItem(game),'other','Проверить')");
  assert.equal(h.eval('JSON.stringify(game)'),game);assert.equal(h.storage.get('iskra-party:v1'),main);assert.equal(h.storage.get('kvip-player-profiles:v1'),profiles);
 });
+
+test('reports: the same source ID across modes offers one explicit update; pack editions stay distinct',()=>{
+ const h=harness();prepare(h);h.eval("saveCardReport(item,'error')");
+ assert.equal(h.eval("saveCardReport({...item,modeId:'draw'},'theme').status"),'exists');
+ assert.equal(h.eval('readCardReports().data.items.length'),1);
+ assert.equal(h.eval("saveCardReport({...item,pack:{id:'geography',version:5}},'theme').status"),'saved');
+ assert.equal(h.eval('readCardReports().data.items.length'),2);
+});

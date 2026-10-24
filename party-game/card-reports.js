@@ -7,7 +7,10 @@ let cardReportsBlocked=false;
 function reportError(message){return Error('Замечания: '+message);}
 function reportComment(text){return String(text??'').normalize('NFKC').replace(/\s+/gu,' ').trim();}
 function reportId(value){return typeof value==='string'&&/^[a-z][a-z0-9_-]{0,159}$/.test(value);}
-function reportItemKey(item){return JSON.stringify([item.pack?.id??null,item.pack?.version??null,item.context,item.modeId,item.methodId,item.difficulty,item.cardId,item.cardId===null?item.text:null]);}
+function reportItemKey(item){
+ const source=[item.pack?.id??null,item.pack?.version??null];
+ return JSON.stringify(item.cardId!==null?[...source,'id',item.cardId]:[...source,'legacy',item.context,item.modeId,item.methodId,item.difficulty,item.text]);
+}
 function validateReportItem(item){
  if(!item||typeof item!=='object'||Array.isArray(item)||
   Object.keys(item).sort().join('|')!=='cardId|context|difficulty|methodId|modeId|pack|text'||
