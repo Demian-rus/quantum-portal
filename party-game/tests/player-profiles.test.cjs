@@ -61,7 +61,7 @@ test('statistics: actual deltas preserve risk penalties, partial modifier succes
  const h=harness();players(h);finished(h,[{mode:'secret',methodId:'sing',recipientIndex:0,awarded:2,taskSuccess:true,modifierSuccess:false},
   {mode:'talk',recipientIndex:0,awarded:-2,taskSuccess:false}], [0,0]);h.eval('commitProfileResult(match)');
  assert.deepEqual(plain(h.eval('profileStore.totals[profileStore.profiles[0].id].modes')),{
-  secret:{rounds:1,success:1,points:2,methods:{sing:1}},talk:{rounds:1,success:0,points:-2}});
+  secret:{rounds:1,success:1,points:2,methods:{sing:{rounds:1,success:1,points:2}}},talk:{rounds:1,success:0,points:-2}});
  assert.equal(h.eval('profileStore.totals[profileStore.profiles[1].id].modes.secret.points'),0);
 });
 test('statistics: incomplete and mismatched histories cannot be counted',()=>{
@@ -107,7 +107,7 @@ test('statistics integration: real V5 settlement routes either recipient, full B
   for(let i=0;i<2;i++){
    const total=archive.totals[data.profileMatch.participants[i].id];assert.equal(total.points,data.scores[i]);assert.equal(total.matches,1);
    assert.equal(total.modes[mode].rounds,2);assert.equal(total.modes[mode].success,1);
-   if(mode==='secret')assert.equal(Object.values(total.modes.secret.methods).reduce((a,b)=>a+b,0),2);
+   if(mode==='secret')assert.equal(Object.values(total.modes.secret.methods).reduce((sum,value)=>sum+value.rounds,0),2);
   }
   const raw=h.storage.get('kvip-player-profiles:v1');h.eval('showResults();render();showResults();saveCompletedProfileResult()');assert.equal(h.storage.get('kvip-player-profiles:v1'),raw);
  }

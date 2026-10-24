@@ -35,7 +35,8 @@ function validateProfileStore(data){
       if(!QUIP_PROFILE_MODES.includes(mode)||!stats||!profileCount(stats.rounds)||!profileCount(stats.success)||stats.success>stats.rounds||!profileCount(stats.points,true))fail();
       if(stats.methods!=null){
         if(mode!=='secret'||typeof stats.methods!=='object'||Array.isArray(stats.methods))fail();
-        for(const [method,count] of Object.entries(stats.methods))if(!QUIP_PROFILE_MODES.includes(method)||!profileCount(count))fail();
+        for(const [method,value] of Object.entries(stats.methods))if(!QUIP_PROFILE_MODES.includes(method)||!value||
+          !profileCount(value.rounds)||!profileCount(value.success)||value.success>value.rounds||!profileCount(value.points,true))fail();
       }
     }
   }
@@ -120,11 +121,13 @@ function completedProfileSummary(match){
     if(!Array.isArray(deltas)||deltas.length!==2||deltas.some(d=>!profileCount(d,true)))throw Error('Повреждён результат хода.');
     summaries.forEach((summary,i)=>{
       const mode=summary.modes[row.mode]||(summary.modes[row.mode]={rounds:0,success:0,points:0});
-      mode.rounds++;mode.success+=(row.mode==='approx'?row.recipients?.includes(i):row.taskSuccess??row.correct)?1:0;
+      const success=(row.mode==='approx'?row.recipients?.includes(i):row.taskSuccess??row.correct)?1:0;
+      mode.rounds++;mode.success+=success;
       mode.points+=deltas[i];
       if(row.mode==='secret'){
         if(!QUIP_PROFILE_MODES.includes(row.methodId))throw Error('Неизвестный способ Секретки.');
-        mode.methods=mode.methods||{};mode.methods[row.methodId]=(mode.methods[row.methodId]||0)+1;
+        mode.methods=mode.methods||{};const method=mode.methods[row.methodId]||(mode.methods[row.methodId]={rounds:0,success:0,points:0});
+        method.rounds++;method.success+=success;method.points+=deltas[i];
       }
     });
   }
@@ -147,7 +150,13 @@ function commitProfileResult(match){
     for(const [id,stats] of Object.entries(summary.modes)){
       const mode=total.modes[id]||(total.modes[id]={rounds:0,success:0,points:0});
       for(const key of ['rounds','success','points'])mode[key]+=stats[key];
-      if(stats.methods){mode.methods=mode.methods||{};for(const [method,count] of Object.entries(stats.methods))mode.methods[method]=(mode.methods[method]||0)+count;}
+      if(stats.methods){
+        mode.methods=mode.methods||{};
+        for(const [id,value] of Object.entries(stats.methods)){
+          const method=mode.methods[id]||(mode.methods[id]={rounds:0,success:0,points:0});
+          for(const key of ['rounds','success','points'])method[key]+=value[key];
+        }
+      }
     }
   });
   next.settledThrough=identity.sequence;
