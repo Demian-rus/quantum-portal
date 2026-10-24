@@ -179,6 +179,11 @@
       "path": "cards/idiom-expansion-v1.json",
       "immutable": false,
       "review": "Idioms I1 editorial review and normalized dedupe"
+    },
+    {
+      "path": "cards/idiom-expansion-v2.json",
+      "immutable": false,
+      "review": "Idioms I2 50 new expressions with editorial review"
     }
   ],
   "questions": [
@@ -288,6 +293,11 @@
       "path": "packs/idiom-expansion-v1.json",
       "immutable": false,
       "review": "Idioms I1 general@12=5300. Prior editions remain pinned"
+    },
+    {
+      "path": "packs/idiom-expansion-v2.json",
+      "immutable": false,
+      "review": "Idioms I2 general@13 (5350) pinned with all historical versions retained"
     }
   ],
   "legacyCollisions": [
