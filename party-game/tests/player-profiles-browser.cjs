@@ -75,6 +75,14 @@ async function geometry(page){
    await page.evaluate(async()=>{await navigator.serviceWorker.ready});await context.setOffline(true);await page.reload({waitUntil:'load'});
    await page.locator('#continue-game').click();assert.deepEqual(await page.evaluate(()=>game.profileMatch.participants.map(p=>p.color)),['green','violet']);
    await page.locator('#exit-game').click();await page.locator('#statistics-menu').click();assert.equal((await store(page)).recent.length,1);
+   if(width===320){
+    await context.setOffline(false);await page.locator('#statistics-back').click();await setup(page);
+    await chooseNamedProfile(page,0,'Я'.repeat(24),'pink');await page.locator('#start-game').click();await page.evaluate(()=>{game.dice=false});
+    await answer(page,'a');await answer(page,'none');
+    assert.match(await page.locator('.match-finished').textContent(),/Я{24}/);
+    assert.equal(await page.locator('.match-finished').evaluate(el=>el.scrollWidth<=el.clientWidth+1),true,'Long winner name must wrap completely');
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
+   }
    assert.deepEqual(errors,[]);await context.close();console.log('profiles UI / offline / geometry',width,height,'PASS');
   }
   // A failed final aggregate write keeps the actual completed match available.

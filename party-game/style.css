@@ -1586,6 +1586,8 @@ body[data-screen="results"]::after {
 .stat-mode span{font-size:12px;color:var(--soft)}
 .stat-mode b{color:var(--lime);font-size:14px}
 .final-score-item>span:first-child{overflow-wrap:anywhere}
+.match-finished{max-width:100%;overflow-wrap:anywhere}
+.final-score-item{min-width:0}
 body[data-screen="statistics"]::before{background-image:url('./assets/bg-setup.webp?v=3')}
 .scene--statistics .settings-scroller{inset-block-start:calc(env(safe-area-inset-top) + 66px)}
 @media(max-height:650px){.scene--home .home-menu{top:40%;gap:7px}.scene--home .home-menu .home-action{min-height:46px;padding:10px}.scene--home .other-games-menu{bottom:8dvh;min-height:44px}}
