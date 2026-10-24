@@ -16,7 +16,7 @@ function renderModeSettings(){
   let available=false;
   try{available=checkContentPack(options.contentPack,{...settings,...setupSongPolicy(settings)}).available;}catch{}
   $('mode-source-availability').hidden=available;
-  $('mode-source-availability').textContent=available?'':'Для этих источников на выбранной сложности нет доступных заданий. Измените источники, сложность или набор перед началом партии.';
+  $('mode-source-availability').textContent=available?'':'Для «Напой» нет заданий с этими источниками на выбранной сложности. В «Секретке» песенный способ будет исключён, если доступны другие способы. Для прямого «Напой» измените источники, сложность или набор.';
 }
 // DOM-only rendering of new-game and advanced settings; original behavior preserved.
 function renderOptions() {
