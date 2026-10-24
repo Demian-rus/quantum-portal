@@ -28,10 +28,10 @@ function iconButton(icon,action,label,variant='muted') {
   '" title="'+label+'" aria-label="'+label+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+CONTROL_ICONS[icon]+'</svg></button>';
 }
 function taskControls(c) {
-  if(!c.visible)return '<div class="task-open">'+makeButton('ОТКРЫТЬ ЗАДАНИЕ','toggle-word','button-coral button-big')+'</div>';
+  if(!c.visible)return '';
   if(!allowPause())return '<div class="task-open-hint">ТАЙМЕР ЗАПУСТИТСЯ АВТОМАТИЧЕСКИ</div>';
   return '<div class="round-controls task-controls">'+
-    iconButton('eye-off','toggle-word','Скрыть слово')+
+    '<span class="round-action-placeholder" aria-hidden="true"></span>'+
     iconButton('clock','start-timer','Запустить таймер','success')+
     (c.modeId!=='blitz'?iconButton('refresh','replace-word','Другое слово'):'<span class="round-action-placeholder" aria-hidden="true"></span>')+
     '</div>';
@@ -107,15 +107,23 @@ function roundConditionMarkup(){
   const condition=game.current?.complication;
   return condition?'<div class="round-condition" tabindex="0" role="region" aria-label="Усложнение"><strong>УСЛОЖНЕНИЕ: '+escapeHTML(condition)+'</strong></div>':'';
 }
+// Keyboard focus follows the same card when a phase rebuilds its DOM.
+function taskCardHasKeyboardFocus(){
+  return document.activeElement?.matches?.('.challenge-card[data-action="toggle-word"]:focus-visible')===true;
+}
+function focusTaskCard(){
+  $('play-content').querySelector('.challenge-card[data-action="toggle-word"]')?.focus({preventScroll:true});
+}
 function taskMarkup(hidden) {
   const word=displayPrompt(game.current.word);
   const wordLength=game.current.word.length;
   const lengthStyle=wordLength>45?' challenge-word--very-long':wordLength>23?' challenge-word--long':'';
-  return '<div class="challenge-card '+(hidden?'is-hidden':'')+'">'+
-    '<div class="challenge-word '+(hidden?'challenge-word--hidden':lengthStyle)+'">'+
-    (hidden?'НАЖМИ, ЧТОБЫ ОТКРЫТЬ':word)+'</div>'+
-    '</div>';
+  const label=hidden?'Открыть задание':'Задание: '+game.current.word+'. Нажмите, чтобы скрыть';
+  return '<button type="button" class="challenge-card '+(hidden?'is-hidden':'')+'" data-action="toggle-word" aria-pressed="'+!hidden+'" aria-label="'+escapeHTML(label)+'">'+
+    '<span class="challenge-word '+(hidden?'challenge-word--hidden':lengthStyle)+'">'+
+    (hidden?'НАЖМИ, ЧТОБЫ ОТКРЫТЬ':word)+'</span></button>';
 }
+
 function showApprox(){
  const c=game.current,q=c.question,revealed=game.phase==='judge';
  $('play-content').className='play-inner is-approx';

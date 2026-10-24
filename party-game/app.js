@@ -87,11 +87,7 @@ function roundUsesTimer(){
  if(!game?.current)return false;
  return game?.current?.usesTimer??modeConfigForGame(game,game.current.modeId).usesTimer;
 }
-function matchComplete() {
-  if(game.finishType!=='score')return game.roundIndex>=game.rounds;
-  // The second player always has a reply turn; ties continue in pairs.
-  return game.roundIndex%2===0 && Math.max(...game.scores)>=game.targetScore && game.scores[0]!==game.scores[1];
-}
+function matchComplete(){return scoreMatchComplete(game);}
 function currentMode() { return MODE_LIST.find(mode=>mode.id===game.current?.modeId); }
 function getMode(id) { return MODE_LIST.find(m=>m.id===id); }
 function formatTimer(ms) {
@@ -126,7 +122,7 @@ const PARTY_VOCABULARY=Object.freeze(Object.fromEntries(
 // Lucide-like vector UI controls; illustrated mode assets continue to use WebP.
 // The wheel is a window into a repeating ring, not a strip that ends on the prize.
 
-function render() {
+function render(keepCardFocus=taskCardHasKeyboardFocus()) {
   if(!game||game.phase==='home'){setScene('home');return;}
   if(game.phase==='results'){stopTicking();showResults();return;}
   setScene('game');
@@ -138,8 +134,10 @@ function render() {
   else if(game.phase==='play')showTimer();
   else if(game.phase==='judge')ROUND_INTERACTIONS[roundInteraction()].judge();
   else if(game.phase==='between')showBetween();
+  else if(game.phase==='tiebreak')showTiebreak();
   if(game.phase==='countdown'||(game.phase==='play'&&!game.current.paused))startTicking();
   else stopTicking();
+  if(keepCardFocus)focusTaskCard();
 }
 function newGame() {
   if(storageBlocked&&storageProblem!=='corrupt'){toast(storageNotice());return;}
@@ -178,7 +176,7 @@ function newGame() {
   game={
     matchId:identity.storeId+':'+identity.sequence,profileMatch:identity,
     teams:[teamA,teamB],scores:[0,0],roundIndex:0,startingTeamIndex:chooseStartingTeam(),
-    ...songPolicy,timerPolicyVersion:QUIP_TIMER_POLICY_VERSION,
+    ...songPolicy,timerPolicyVersion:QUIP_TIMER_POLICY_VERSION,finishPolicyVersion:QUIP_FINISH_POLICY_VERSION,
     taskHistoryVersion:QUIP_TASK_HISTORY_VERSION,taskHistory:startedHistory.history,
     rounds:options.rounds,targetScore:options.targetScore,finishType:options.finishType,
     riskRounds:options.riskRounds,scoringVersion:2,rulesVersion:QUIP_RULE_VERSION,modeConfigVersion:QUIP_MODE_CONFIG_VERSION,
@@ -227,6 +225,8 @@ function handleAction(action) {
   switch(action) {
     case 'roll':return roll();
     case 'reveal-approx':return revealApprox();
+    case 'tiebreak-reveal':return revealTiebreak();
+    case 'tiebreak-a':case 'tiebreak-b':case 'tiebreak-same':return settleTiebreak(action.slice(9));
     case 'award-a':case 'award-b':case 'award-both':case 'award-none':return awardApprox(action.slice(6));
     case 'toggle-word':return toggleWord();
     case 'replace-word':return replaceWord();
@@ -256,6 +256,7 @@ function handleAction(action) {
 function setupEvents() {
   registerSetupControls();
   registerProfileControls();
+  registerProfileBackupControls();
   $('new-game-menu').addEventListener('click',openGameType);
   $('game-type-back').addEventListener('click',()=>setScene('home'));
   $('standard-game').addEventListener('click',selectStandardGame);
@@ -279,7 +280,11 @@ function setupEvents() {
   $('start-game').addEventListener('click',newGame);
   $('play-content').addEventListener('click',event=>{
     const button=event.target.closest('[data-action]');
-    if(button)handleAction(button.dataset.action);
+    if(button){
+      const keyboardCard=event.detail===0&&button.matches('.challenge-card[data-action="toggle-word"]');
+      handleAction(button.dataset.action);
+      if(keyboardCard)focusTaskCard();
+    }
   });
   $('results-content').addEventListener('click',event=>{
     const button=event.target.closest('[data-action]');

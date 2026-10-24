@@ -115,7 +115,7 @@ async function ui(browser,url,width,height){
    await page.locator('[data-action="roll"]').click();await page.locator('.is-task').waitFor();
    const selected=await page.evaluate(()=>({mode:game.current.modeId,method:game.current.methodId,policy:game.songLanguagePolicyVersion,languages:game.songLanguages,card:getPackCardPool(game.contentPack,'songs',game.current.difficulty).find(row=>row.text===game.current.word).id}));
    assert.equal(selected.mode,'secret');assert.equal(selected.method,'sing');assert.equal(selected.policy,2);assert.deepEqual(selected.languages,languages);assert.ok(languages.includes(ledger.get(selected.card)));
-   await page.locator('.task-open [data-action="toggle-word"]').click();assert.equal(await page.locator('[data-action="start-timer"]').count(),0);
+   await page.locator('.challenge-card[data-action="toggle-word"]').click();assert.equal(await page.locator('[data-action="start-timer"]').count(),0);
    await page.locator('#active-timer').waitFor();assert.equal(await page.locator('[data-action="pause"]').count(),0);
    const snapshot=await page.evaluate(()=>({current:JSON.stringify(game.current),raw:localStorage.getItem(STORAGE_KEY)}));
    await page.evaluate(()=>pauseTimer());assert.equal(await page.evaluate(()=>game.current.paused),false);
@@ -131,7 +131,7 @@ async function ui(browser,url,width,height){
   },LONG);await settle(page);
   const fixed=await cardBox(page);const conditionGeometry=await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Scrolling moved card');
   if(width===320){await page.locator('.round-top,.round-condition').evaluateAll(elements=>elements.forEach(el=>el.scrollTop=0));await page.screenshot({path:ART+'narrow-condition-after.png'})}
-  await page.locator('.task-open [data-action="toggle-word"]').click();await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Reveal moved card');
+  await page.locator('.challenge-card[data-action="toggle-word"]').click();await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Reveal moved card');
   await page.locator('[data-action="start-timer"]').click();await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Timer moved card');
   await page.locator('#exit-game').click();await setup(page);
   await page.locator('.choices[data-setting="difficulty"] [data-value="mixed"]').click();
@@ -142,7 +142,7 @@ async function ui(browser,url,width,height){
   });
   await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();
   assert.equal(await page.evaluate(()=>game.current.difficulty),'easy');assert.equal(await page.evaluate(()=>game.current.points),1);
-  await settle(page);const mixedBox=await cardBox(page);await page.locator('.task-open [data-action="toggle-word"]').click();assert.equal(await page.evaluate(()=>game.phase),'countdown');
+  await settle(page);const mixedBox=await cardBox(page);await page.locator('.challenge-card[data-action="toggle-word"]').click();assert.equal(await page.evaluate(()=>game.phase),'countdown');
   assert.equal(await page.locator('[data-action="start-timer"]').count(),0);sameBox(await cardBox(page),mixedBox,'Countdown moved card');
   const auto=await page.evaluate(()=>game.current.autoStartAt);
   await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});document.dispatchEvent(new Event('visibilitychange'))});

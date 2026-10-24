@@ -98,5 +98,39 @@ async function geometry(page){
    await page.reload({waitUntil:'load'});const result=await store(page);assert.equal(result.recent.length,1);
    await page.reload({waitUntil:'load'});assert.deepEqual(await store(page),result);await context.close();console.log('quota / reload retry PASS');
   }
+
+   // Browser acceptance: shared decision survives reload and is counted once.
+   {
+    const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage(),errors=[];
+    page.on('pageerror',e=>errors.push(e.message));await page.goto(URL);
+    await setup(page);await chooseNamedProfile(page,0,'ДС');await chooseNamedProfile(page,1,'ПА');
+    await page.locator('#start-game').click();
+    await page.evaluate(()=>{
+      game.finishType='score';game.targetScore=15;game.roundIndex=30;game.scores=[15,15];
+      game.history=Array.from({length:30},(_,i)=>({
+        mode:'approx',setterIndex:(i+(game.startingTeamIndex??0))%2,assignedIndices:[0,1],
+        deltas:i<15?[1,1]:[0,0],recipients:i<15?[0,1]:[],
+        sharedAward:i<15,recipientNames:i<15?game.teams.slice():[],
+        word:'Пример',answer:'42',unit:''
+      }));
+      game.phase='ready';beginTiebreak();persist();render();
+    });
+    assert.equal(await page.locator('[data-action="tiebreak-reveal"]').count(),1);
+    assert.equal(await page.locator('.approx-answer').count(),0);
+    const first=await page.evaluate(()=>game.tiebreak.question.id);
+    await page.locator('[data-action="tiebreak-reveal"]').click();
+    await page.locator('[data-action="tiebreak-same"]').click();
+    assert.notEqual(await page.evaluate(()=>game.tiebreak.question.id),first);
+    await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
+    assert.equal(await page.locator('[data-action="tiebreak-reveal"]').count(),1);
+    await page.locator('[data-action="tiebreak-reveal"]').click();
+    await page.locator('[data-action="tiebreak-a"]').click();
+    assert.equal(await page.locator('#scene-results').isVisible(),true);
+    const state=await store(page),p0=state.profiles[0].id;
+    assert.equal(state.totals[p0].tiebreakWins,1);
+    assert.equal(state.totals[p0].turns,30);
+    await page.reload({waitUntil:'load'});assert.deepEqual(await store(page),state);
+    assert.deepEqual(errors,[]);await context.close();console.log('shared tiebreak UI / reload / stats PASS');
+   }
  }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});

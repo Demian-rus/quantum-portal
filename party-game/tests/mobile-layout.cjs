@@ -34,7 +34,7 @@ const selectors=[
   '.is-ready .ready-content','.is-ready [data-action="roll"]',
   '#label-team-a','#score-a','.reel-window','.reel-item img',
   '.reel-track','.play-inner',
-  '.is-task .task-open [data-action="toggle-word"]',
+  '.is-task .challenge-card[data-action="toggle-word"]',
   '.round-fixed-card','.round-bottom--task'
 ];
 const take=async page=>page.evaluate(`(()=>{
@@ -204,14 +204,13 @@ function fitsViewport(g,device,stage) {
       assert.ok(reelTrack.width>reel.width*3,'Carousel animation lost repeating track');
       await capture(page,{path:'artifacts/quip-mobile-layout/'+device.name+'-carousel.png'});
 
-      await page.locator('.is-task .task-open [data-action="toggle-word"]').waitFor({timeout:6500});
+      await page.locator('.is-task .challenge-card[data-action="toggle-word"]').waitFor({timeout:6500});
       const task=await take(page);
       fitsViewport(task,device,'task');
-      const openButton=at(task,'.is-task .task-open [data-action="toggle-word"]');
-      assert.ok(openButton&&Math.abs(openButton.bottom-readyButton.bottom)<=3,
-        'Ready/task bottom buttons differ: '+JSON.stringify({device,readyButton,openButton}));
-      assert.ok(Math.abs(openButton.top-readyButton.top)<=3,
-        'Ready/task button tops differ: '+JSON.stringify({device,readyButton,openButton}));
+      const openButton=at(task,'.is-task .challenge-card[data-action="toggle-word"]');
+      assert.ok(openButton&&openButton.width>=44&&openButton.height>=44,'Task card is not a usable touch target');
+      assert.equal(await page.locator('.is-task .round-action[data-action="toggle-word"]').count(),0,'Separate visibility controls must be absent');
+      assert.equal(await page.locator('.is-task .challenge-card').evaluate(el=>el.tagName),'BUTTON');
       await capture(page,{path:'artifacts/quip-mobile-layout/'+device.name+'-task.png'});
 
       // Stress very long cards before testing the timer: the content must never
@@ -225,7 +224,7 @@ function fitsViewport(g,device,stage) {
       assert.ok(at(longTask,'.round-fixed-card').bottom<=at(longTask,'.round-bottom--task').bottom,
         'Long card overlaps action region: '+JSON.stringify(longTask));
 
-      await page.locator('.is-task .task-open [data-action="toggle-word"]').click();
+      await page.locator('.is-task .challenge-card[data-action="toggle-word"]').click();
       await page.locator('.is-task [data-action="start-timer"]').click();
       await page.locator('#active-timer').waitFor({timeout:2000});
       fitsViewport(await take(page),device,'play');

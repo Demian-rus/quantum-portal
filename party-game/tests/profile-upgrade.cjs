@@ -39,7 +39,7 @@ module.exports=async function profileUpgrade(browser,url){
    const cache=await caches.open(cacheName),scripts=Array.from(document.querySelectorAll('script[src]'),el=>el.src);
    return Promise.all(scripts.map(async url=>!!await cache.match(url)));
   },newCache);
-  assert.equal(coverage.length,37);assert.ok(coverage.every(Boolean));
-  assert.deepEqual(errors,[]);console.log('v72 → v73 offline upgrade PASS: exact legacy RAW, paused Mixed / Secret song V1, no automatic profiles; precache 37/37');
+  assert.equal(coverage.length,40);assert.ok(coverage.every(Boolean));
+  assert.deepEqual(errors,[]);console.log('v72 → v74 offline upgrade PASS: exact legacy RAW, paused Mixed / Secret song V1, no automatic profiles; precache 40/40');
  }finally{write(current);await context.close()}
 };

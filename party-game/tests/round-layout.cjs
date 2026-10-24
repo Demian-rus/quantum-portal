@@ -30,7 +30,7 @@ const geometry=page=>page.evaluate(()=>{
  return {bar:rect('.match-bar'),top:rect('.round-top'),icon:rect('.round-top .mode-symbol'),
   title:rect('.mode-name'),rule:rect('.round-condition'),reward:rect('.round-top .score-note,.round-top .secret-flag'),
   card:rect('.challenge-card'),word:rect('.challenge-word'),caption:rect('.round-top--timer .game-eyebrow'),
-  timer:rect('.timer-ring'),eye:rect('.round-bottom--play [data-action="toggle-word"]'),
+  timer:rect('.timer-ring'),
   wrong:rect('[data-action="wrong-now"]'),base:rect('[data-action="base-now"]'),correct:rect('[data-action="correct-now"]'),
   page:{w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight},w:innerWidth,h:innerHeight};
 });
@@ -62,7 +62,7 @@ module.exports=async function roundLayout(browser,url){
     const saved=await page.evaluate(()=>({raw:localStorage.getItem('iskra-party:v1'),game:JSON.stringify(game),memory:JSON.stringify(taskMemory)}));
     await page.evaluate(()=>render());
     assert.deepEqual(await page.evaluate(()=>({raw:localStorage.getItem('iskra-party:v1'),game:JSON.stringify(game),memory:JSON.stringify(taskMemory)})),saved,'Rendering changed saved data');
-    await page.locator('.task-open [data-action="toggle-word"]').click();
+    await page.locator('.challenge-card[data-action="toggle-word"]').click();
     const prompt=await page.locator('.challenge-word').evaluate(el=>{const range=document.createRange();range.selectNodeContents(el);return {text:el.textContent,lines:range.getClientRects().length}});
     assert.equal(prompt.text,'УВЕДОМЛЕНИЕ');assert.equal(prompt.lines,1,'Word should fit before hyphenation');
     await page.locator('[data-action="start-timer"]').click();
@@ -72,19 +72,16 @@ module.exports=async function roundLayout(browser,url){
     assert.ok(playing.caption.bottom<=playing.timer.y-(device.height>device.width?7:2),'Timer caption needs breathing room');
     if(mode==='mime')plain=playing;
     if(mode==='secret'){
-     for(const key of ['wrong','correct','eye'])sameBox(playing[key],plain[key],'Extra outcome moved '+key);
+     for(const key of ['wrong','correct','card'])sameBox(playing[key],plain[key],'Extra outcome moved '+key);
      assert.ok(playing.wrong.x<playing.base.x&&playing.base.x<playing.correct.x,'Verdict slots out of order');
     }
-    if(mode!=='blitz'){
-     assert.ok(playing.eye.w>=44&&playing.eye.h>=44,'Hide target too small');
-     assert.ok(playing.eye.y>=playing.card.bottom+3||playing.eye.right<=playing.card.x-3||playing.eye.x>=playing.card.right+3,'Hide control overlaps the card');
-     assert.ok(playing.eye.bottom<=playing.wrong.y-3,'Hide control overlaps verdicts');
-     assert.ok(playing.eye.y>=playing.timer.bottom+3||playing.eye.right<=playing.timer.x-3||playing.eye.x>=playing.timer.right+3,'Hide control overlaps timer');
-     const deadline=await page.evaluate(()=>game.current.deadline);
-     await page.locator('[data-action="toggle-word"]').click();
-     await page.locator('[data-action="toggle-word"]').click();
-     assert.equal(await page.evaluate(()=>game.current.deadline),deadline);
-    }
+    assert.ok(playing.card.w>=44&&playing.card.h>=44,'Card touch target too small');
+    assert.equal(await page.locator('.round-visibility').count(),0,'Standalone visibility row remains');
+    assert.equal(await page.locator('.challenge-card[data-action="toggle-word"]').count(),1);
+    const deadline=await page.evaluate(()=>game.current.deadline);
+    await page.locator('.challenge-card').click();await page.locator('.challenge-card').click();
+    assert.equal(await page.evaluate(()=>game.current.deadline),deadline);
+    sameBox((await geometry(page)).card,playing.card,'Visibility changed the card geometry');
     if(mode==='mime'&&device.name==='phone')await capture(page,{path:'artifacts/quip-mobile-layout/task013a-phone-plain-timer.png'});
     if(mode==='secret'&&device.name==='landscape')await capture(page,{path:'artifacts/quip-mobile-layout/task013a-landscape-timer.png'});
     if(mode==='secret'&&['phone','narrow'].includes(device.name)){
@@ -94,7 +91,7 @@ module.exports=async function roundLayout(browser,url){
     }
    }
    assert.deepEqual(errors,[]);
-   console.log('round-layout PASS',device.name,JSON.stringify({modes:modes.length,icon:{w:iconBox.w,h:iconBox.h},eye:plain.eye,verdicts:[plain.wrong,plain.correct]}));
+   console.log('round-layout PASS',device.name,JSON.stringify({modes:modes.length,icon:{w:iconBox.w,h:iconBox.h},card:plain.card,verdicts:[plain.wrong,plain.correct]}));
   }catch(error){
    console.error('round-layout failure',device.name,await page.evaluate(()=>({phase:game?.phase,mode:game?.current?.modeId,startingTeam:game?.startingTeamIndex})));
    await page.screenshot({path:'artifacts/quip-mobile-layout/task013a-'+device.name+'-failure.png'});throw error;
