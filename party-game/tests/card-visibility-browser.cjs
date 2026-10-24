@@ -31,6 +31,8 @@ async function state(page,visible){
      if(mode!=='blitz')game.current.word='ПАРАЛЛЕЛЬНАЯ РЕАЛЬНОСТЬ';
      persist();render();
     },{mode,difficulty});
+    await page.evaluate(()=>document.fonts.ready);
+    await page.locator('#scene-game').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
     await state(page,false);const fixed=await box(page);
     assert.ok(fixed.width>=44&&fixed.height>=44);
     if(width===320&&mode==='talk'&&difficulty==='easy')await page.screenshot({path:'artifacts/quip-card-visibility/hidden-320.png',animations:'disabled'});
