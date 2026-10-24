@@ -24,7 +24,8 @@ function openCardReport(item,{hidden=false}={}){
  reportView.item=JSON.parse(JSON.stringify(item));reportView.existing=null;reportView.editing=false;
  $('report-title').textContent='СООБЩИТЬ О ПРОБЛЕМЕ';$('report-list').hidden=true;$('report-editor').hidden=false;
  $('report-target').textContent=hidden?'Задание скрыто. Замечание относится к выбранной карточке.':item.text;
- $('report-context').textContent=(item.cardId?'ID: '+item.cardId:'ID отсутствует в старом сохранении')+' · '+(item.pack?item.pack.id+'@'+item.pack.version:'исторический набор');
+ const level={easy:'Лёгкое',medium:'Среднее',hard:'Сложное'};
+ $('report-context').textContent=[item.context==='tiebreak'?'Решающий вопрос':getMode(item.modeId)?.title||'Задание',item.methodId?getMode(item.methodId)?.title:null,level[item.difficulty],item.cardId===null?'Задание из ранее начатой партии':null].filter(Boolean).join(' · ');
  $('report-timer-notice').hidden=!['countdown','play'].includes(game?.phase);
  $('report-reason').value='error';$('report-comment').value='';updateReportComment();
  $('report-existing').hidden=true;$('report-save').disabled=false;$('report-save').textContent='СОХРАНИТЬ';setReportError('');
