@@ -72,8 +72,8 @@ function pullWord(kind, level=chooseDifficulty(),excluded=[],modeId=game?.curren
   return word;
 }
 
-function pullApproxQuestion(level){
- const pool=getPackQuestionPool(game.contentPack,level);
+function pullApproxQuestion(level,excludedIds=[]){
+ const pool=getPackQuestionPool(game.contentPack,level).filter(q=>!excludedIds.includes(q.id));
  if(game.taskHistoryVersion!=null){const question=chooseRememberedTask(pool);const key='approx:'+level,used=game.used[key]||[];game.used[key]=(pool.every(row=>used.includes(row.id))?[]:used).concat(question.id);return {...question,categories:question.categories.slice()};}
  if(!pool.length)throw Error('Нет числовых вопросов для выбранных настроек');
  const key='approx:'+level;

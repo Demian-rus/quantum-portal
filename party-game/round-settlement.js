@@ -45,6 +45,7 @@ function completeRound(success){
   game.roundIndex++;
   // Confirmation is the final action for a round; no extra Next button.
   game.phase=matchComplete()?'results':'ready';
+  if(game.phase==='ready')beginTiebreak();
   if(game.phase==='results')archiveCurrentTaskHistory();
   game.current=null;
   stopTicking();persist();

@@ -38,7 +38,7 @@ function validatePlannedGame(match){
  validateRoundPlan(match.plannerVersion,match.plannerState);
  if(match.difficulty!=='mixed')return;
  const cycleIndex=Math.floor(match.roundIndex/6),state=match.plannerState;
- const betweenCycles=!match.current&&['ready','between','results'].includes(match.phase)&&
+ const betweenCycles=!match.current&&['ready','between','results','tiebreak'].includes(match.phase)&&
   match.roundIndex%6===0&&state.cycleIndex===cycleIndex-1;
  if(state.cycleIndex!==cycleIndex&&!betweenCycles)throw Error('Missing saved QUIP cycle');
  if(match.current&&match.current.difficulty!==state.levels[Math.floor(match.roundIndex/2)%3])
