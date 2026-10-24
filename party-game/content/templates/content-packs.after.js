@@ -44,7 +44,17 @@ function latestContentPackSelection(id,registry=QUIP_CONTENT_PACKS){
  if(!versions.length)throw Error('No enabled content pack: '+id);
  return {id,version:Math.max(...versions)};
 }
-function historicalGeneralRecord(pack,row){return pack.id!=='general'||pack.version>2||QUIP_PRE_TASK009_SOURCES.includes(row.pack);}
+// The first thematic editions used open category filters. Freeze their v78
+// source universes so later tagged additions cannot change a saved old party.
+const QUIP_PRE_EXPANSION_THEMATIC_SOURCES=Object.freeze({
+ geography:Object.freeze(['geography-v2']),
+ science:Object.freeze(['general-expansion-v1','science-v2'])
+});
+function historicalGeneralRecord(pack,row){
+ const sources=pack.id==='general'&&pack.version<=2?QUIP_PRE_TASK009_SOURCES:
+  pack.version===1?QUIP_PRE_EXPANSION_THEMATIC_SOURCES[pack.id]:null;
+ return !sources||sources.includes(row.pack);
+}
 function getPackCardPool(selection,kind,level,promptTypes,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACKS){
  const pack=getContentPack(selection,registry);
  if(!PARTY_CARD_LEVELS.includes(level))throw Error('Unknown card difficulty');

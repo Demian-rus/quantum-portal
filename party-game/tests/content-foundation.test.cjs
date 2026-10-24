@@ -13,6 +13,111 @@ test('TASK009 A deterministic generated modules preserve every existing record a
  assert.equal(api.digest(JSON.parse(vm.runInContext('JSON.stringify(Object.values(QUIP_CONTENT_PACKS).slice(0,10))',context))),'94e4a270642f4bd8a027f4fcd17db9270632b4a4dcddb4d19ceff9ef9f6b3093');
  assert.equal(api.validate(base).ok,true);
 });
+test('Geography G1 adds 50 unique prompts only in geography@5 and general@7',()=>{
+ const authored=base.cards.filter(c=>c.pack==='geography-expansion-v1');
+ assert.equal(authored.length,50);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(level=>[level,authored.filter(c=>c.difficulty===level).length])),
+  {easy:20,medium:20,hard:10});
+ assert.deepEqual(Object.fromEntries(['word','phrase','person'].map(type=>[type,authored.filter(c=>c.type===type).length])),
+  {word:25,phrase:20,person:5});
+ assert.ok(authored.every(c=>c.categories.length===1&&c.categories[0]==='geography'));
+ const existing=base.cards.filter(c=>c.pack!=='geography-expansion-v1');
+ const normalized=new Set(existing.map(c=>api.normalize(c.text)));
+ assert.ok(authored.every(c=>!normalized.has(api.normalize(c.text))));
+ assert.equal(new Set(authored.map(c=>api.normalize(c.text))).size,50);
+ for(const [id,oldVersion,newVersion,oldCount,newCount] of [
+  ['geography',4,5,256,306],['general',6,7,4950,5000]
+ ]){
+  const old=base.packs.find(p=>p.id===id&&p.version===oldVersion);
+  const next=base.packs.find(p=>p.id===id&&p.version===newVersion);
+  assert.ok(old&&next);assert.equal(old.criteria.cardIds.length,oldCount);
+  assert.equal(next.criteria.cardIds.length,newCount);
+  assert.deepEqual(next.criteria.cardIds.slice(0,oldCount),old.criteria.cardIds);
+  assert.deepEqual(next.criteria.cardIds.slice(oldCount),authored.map(c=>c.id));
+ }
+});
+test('Geography G2 adds 100 unique prompts while preserving geography@5/general@7',()=>{
+ const fresh=base.cards.filter(c=>c.pack==='geography-expansion-v2');
+ assert.equal(fresh.length,100);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(d=>[d,fresh.filter(c=>c.difficulty===d).length])),{easy:40,medium:40,hard:20});
+ const older=base.cards.filter(c=>c.pack!=='geography-expansion-v2');
+ const known=new Set(older.map(c=>api.normalize(c.text)));
+ assert.ok(fresh.every(c=>c.categories.length===1&&c.categories[0]==='geography'&&!known.has(api.normalize(c.text))));
+ assert.equal(new Set(fresh.map(c=>api.normalize(c.text))).size,100);
+ for(const[id,oldV,newV,oldN,newN]of [['geography',5,6,306,406],['general',7,8,5000,5100]]){
+  const before=base.packs.find(p=>p.id===id&&p.version===oldV),after=base.packs.find(p=>p.id===id&&p.version===newV);
+  assert.ok(before&&after);assert.equal(before.criteria.cardIds.length,oldN);assert.equal(after.criteria.cardIds.length,newN);
+  assert.deepEqual(after.criteria.cardIds.slice(0,oldN),before.criteria.cardIds);
+  assert.deepEqual(after.criteria.cardIds.slice(oldN),fresh.map(c=>c.id));
+ }
+});
+test('Science S1 adds 50 unique prompts and retains science@4 and general@8',()=>{
+ const fresh=base.cards.filter(c=>c.pack==='science-expansion-v1');
+ assert.equal(fresh.length,50);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(d=>[d,fresh.filter(c=>c.difficulty===d).length])),{easy:20,medium:20,hard:10});
+ assert.deepEqual(Object.fromEntries(['word','phrase'].map(type=>[type,fresh.filter(c=>c.type===type).length])),{word:21,phrase:29});
+ const older=base.cards.filter(c=>c.pack!=='science-expansion-v1');
+ const known=new Set(older.map(c=>api.normalize(c.text)));
+ assert.ok(fresh.every(c=>c.categories.length===1&&c.categories[0]==='science'&&!known.has(api.normalize(c.text))));
+ assert.equal(new Set(fresh.map(c=>api.normalize(c.text))).size,50);
+ for(const[id,oldV,newV,oldN,newN]of [['science',4,5,382,432],['general',8,9,5100,5150]]){
+  const before=base.packs.find(p=>p.id===id&&p.version===oldV),after=base.packs.find(p=>p.id===id&&p.version===newV);
+  assert.ok(before&&after);assert.equal(before.criteria.cardIds.length,oldN);assert.equal(after.criteria.cardIds.length,newN);
+  assert.deepEqual(after.criteria.cardIds.slice(0,oldN),before.criteria.cardIds);
+  assert.deepEqual(after.criteria.cardIds.slice(oldN),fresh.map(c=>c.id));
+ }
+});
+test('Science S2 adds 50 unique prompts preserving science@5 and general@9',()=>{
+ const fresh=base.cards.filter(c=>c.pack==='science-expansion-v2');
+ assert.equal(fresh.length,50);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(d=>[d,fresh.filter(c=>c.difficulty===d).length])),{easy:20,medium:20,hard:10});
+ assert.deepEqual(Object.fromEntries(['word','phrase'].map(type=>[type,fresh.filter(c=>c.type===type).length])),{word:6,phrase:44});
+ const prior=base.cards.filter(c=>c.pack!=='science-expansion-v2');const oldText=new Set(prior.map(c=>api.normalize(c.text)));
+ assert.ok(fresh.every(c=>c.categories.length===1&&c.categories[0]==='science'&&!oldText.has(api.normalize(c.text))));
+ assert.equal(new Set(fresh.map(c=>api.normalize(c.text))).size,50);
+ for(const[id,oldV,newV,oldN,newN]of [['science',5,6,432,482],['general',9,10,5150,5200]]){
+  const before=base.packs.find(p=>p.id===id&&p.version===oldV),after=base.packs.find(p=>p.id===id&&p.version===newV);
+  assert.ok(before&&after);assert.equal(before.criteria.cardIds.length,oldN);assert.equal(after.criteria.cardIds.length,newN);
+  assert.deepEqual(after.criteria.cardIds.slice(0,oldN),before.criteria.cardIds);
+  assert.deepEqual(after.criteria.cardIds.slice(oldN),fresh.map(c=>c.id));
+ }
+});
+test('Science S3 adds 50 unique playable concepts while preserving science@6/general@10',()=>{
+ const fresh=base.cards.filter(c=>c.pack==='science-expansion-v3');
+ assert.equal(fresh.length,50);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(d=>[d,fresh.filter(c=>c.difficulty===d).length])),{easy:20,medium:20,hard:10});
+ assert.deepEqual(Object.fromEntries(['word','phrase'].map(type=>[type,fresh.filter(c=>c.type===type).length])),{word:27,phrase:23});
+ const older=base.cards.filter(c=>c.pack!=='science-expansion-v3');const known=new Set(older.map(c=>api.normalize(c.text)));
+ assert.ok(fresh.every(c=>c.categories.length===1&&c.categories[0]==='science'&&!known.has(api.normalize(c.text))));
+ assert.equal(new Set(fresh.map(c=>api.normalize(c.text))).size,50);
+ for(const [id,oldV,newV,oldN,newN] of [['science',6,7,482,532],['general',10,11,5200,5250]]){
+  const before=base.packs.find(p=>p.id===id&&p.version===oldV),after=base.packs.find(p=>p.id===id&&p.version===newV);
+  assert.ok(before&&after);assert.equal(before.criteria.cardIds.length,oldN);assert.equal(after.criteria.cardIds.length,newN);
+  assert.deepEqual(after.criteria.cardIds.slice(0,oldN),before.criteria.cardIds);
+  assert.deepEqual(after.criteria.cardIds.slice(oldN),fresh.map(c=>c.id));
+ }
+});
+test('Idioms I1 adds 50 normalized unique prompts to general@12 without mutating general@11',()=>{
+ const fresh=base.cards.filter(c=>c.pack==='idiom-expansion-v1');assert.equal(fresh.length,50);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(d=>[d,fresh.filter(c=>c.difficulty===d).length])),{easy:20,medium:20,hard:10});
+ assert.ok(fresh.every(c=>c.type==='idiom'&&c.categories.length===0));
+ const known=new Set(base.cards.filter(c=>c.pack!=='idiom-expansion-v1').map(c=>api.normalize(c.text)));
+ assert.ok(fresh.every(c=>!known.has(api.normalize(c.text))));assert.equal(new Set(fresh.map(c=>api.normalize(c.text))).size,50);
+ const before=base.packs.find(p=>p.id==='general'&&p.version===11),after=base.packs.find(p=>p.id==='general'&&p.version===12);
+ assert.ok(before&&after);assert.equal(before.criteria.cardIds.length,5250);assert.equal(after.criteria.cardIds.length,5300);
+ assert.deepEqual(after.criteria.cardIds.slice(0,5250),before.criteria.cardIds);
+ assert.deepEqual(after.criteria.cardIds.slice(5250),fresh.map(c=>c.id));
+});
+test('Idioms I2 adds 50 distinct expressions while preserving general@12',()=>{
+ const fresh=base.cards.filter(c=>c.pack==='idiom-expansion-v2');assert.equal(fresh.length,50);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(d=>[d,fresh.filter(c=>c.difficulty===d).length])),{easy:20,medium:20,hard:10});
+ assert.ok(fresh.every(c=>c.type==='idiom'&&c.categories.length===0));
+ const prior=new Set(base.cards.filter(c=>c.pack!=='idiom-expansion-v2').map(c=>api.normalize(c.text)));
+ assert.ok(fresh.every(c=>!prior.has(api.normalize(c.text))));assert.equal(new Set(fresh.map(c=>api.normalize(c.text))).size,50);
+ const before=base.packs.find(p=>p.id==='general'&&p.version===12),after=base.packs.find(p=>p.id==='general'&&p.version===13);
+ assert.ok(before&&after);assert.equal(before.criteria.cardIds.length,5300);assert.equal(after.criteria.cardIds.length,5350);
+ assert.deepEqual(after.criteria.cardIds.slice(0,5300),before.criteria.cardIds);assert.deepEqual(after.criteria.cardIds.slice(5300),fresh.map(c=>c.id));
+});
 test('TASK009 A validator rejects duplicate IDs/text, bad types/tags and invalid answers or sources',()=>{
  for(const[code,mutate]of [
   ['id',d=>d.cards[1].id=d.cards[0].id],['normalized-duplicate',d=>d.cards[1].text='  карандаш! '],
