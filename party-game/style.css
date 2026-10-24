@@ -1874,3 +1874,7 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
 #content-toggles input:disabled+span{display:flex;flex-direction:column;gap:4px;cursor:not-allowed}
 
 .extra-rules{display:grid;gap:12px;margin-top:4px}
+
+/* Shared numeric tie-break uses the standard estimate card, with tappable decisions. */
+.scene--game .is-tiebreak .approx-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px}
+.scene--game .is-tiebreak .approx-actions .button{flex:1 1 160px;min-height:46px}

@@ -18,7 +18,7 @@ function profileUUID(){
 }
 function normalizeProfileName(value){return String(value??'').normalize('NFKC').replace(/\s+/gu,' ').trim();}
 function profileNameKey(value){return normalizeProfileName(value).toLocaleLowerCase('ru-RU');}
-function emptyProfileTotals(){return {matches:0,wins:0,losses:0,draws:0,points:0,turns:0,modes:{}};}
+function emptyProfileTotals(){return {matches:0,wins:0,losses:0,draws:0,points:0,turns:0,tiebreaks:0,tiebreakWins:0,modes:{}};}
 function freshProfileStore(){return {version:1,storeId:profileUUID(),nextSequence:1,settledThrough:0,profiles:[],totals:{},recent:[],lastPair:[]};}
 function validProfileId(id){return typeof id==='string'&&/^[a-f0-9]{32}$/.test(id);}
 function profileCount(value,signed=false){return Number.isSafeInteger(value)&&(signed||value>=0);}
@@ -34,7 +34,11 @@ function validateProfileStore(data){
     ids.add(p.id);names.add(profileNameKey(p.name));
     const total=data.totals[p.id];
     if(!total||!['matches','wins','losses','draws','points','turns'].every(key=>profileCount(total[key],key==='points'))||
-       total.matches!==total.wins+total.losses+total.draws||!total.modes||typeof total.modes!=='object'||Array.isArray(total.modes))fail();
+       total.matches!==total.wins+total.losses+total.draws||
+       (total.tiebreaks!=null&&!profileCount(total.tiebreaks))||
+       (total.tiebreakWins!=null&&!profileCount(total.tiebreakWins))||
+       (total.tiebreakWins??0)>(total.tiebreaks??0)||
+       !total.modes||typeof total.modes!=='object'||Array.isArray(total.modes))fail();
     for(const [mode,stats] of Object.entries(total.modes)){
       if(!validProfileModeId(mode)||!stats||!profileCount(stats.rounds)||!profileCount(stats.success)||stats.success>stats.rounds||!profileCount(stats.points,true))fail();
       if(stats.methods!=null){
@@ -118,8 +122,12 @@ function completedProfileSummary(match){
   // to another player, so assignment must never be derived from score.
   const first=match.startingTeamIndex??0;
   if(![0,1].includes(first))throw Error('Некорректный первый игрок.');
+  if(match.tiebreak)validateTiebreakState(match);
+  const tieWinner=match.tiebreak?.stage==='decided'?match.tiebreak.winnerIndex:null;
   const summaries=[emptyProfileTotals(),emptyProfileTotals()];
   summaries.forEach((s,i)=>{s.matches=1;s.points=match.scores[i];
+    if(tieWinner!==null){s.tiebreaks=1;s.tiebreakWins=Number(i===tieWinner);}
+
     s[match.scores[0]===match.scores[1]?'draws':match.scores[i]>match.scores[1-i]?'wins':'losses']=1;});
   for(const [turn,row] of match.history.entries()){
     const owner=(first+turn)%2;
@@ -164,7 +172,11 @@ function completedProfileSummary(match){
       }
     });
   }
-  summaries.forEach(s=>{if(Object.values(s.modes).reduce((sum,mode)=>sum+mode.points,0)!==s.points)throw Error('Очки не совпадают с историей.');});
+  summaries.forEach((s,i)=>{
+    const decidingPoint=tieWinner===i?1:0;
+    if(Object.values(s.modes).reduce((sum,mode)=>sum+mode.points,0)+decidingPoint!==s.points)
+      throw Error('Очки не совпадают с историей и тай-брейком.');
+  });
   return summaries;
 }
 // One active local match: reserving a later sequence supersedes abandoned older
@@ -180,6 +192,8 @@ function commitProfileResult(match){
   summaries.forEach((summary,i)=>{
     const total=next.totals[identity.participants[i].id];
     for(const key of ['matches','wins','losses','draws','points','turns'])total[key]+=summary[key];
+    total.tiebreaks=(total.tiebreaks??0)+summary.tiebreaks;
+    total.tiebreakWins=(total.tiebreakWins??0)+summary.tiebreakWins;
     for(const [id,stats] of Object.entries(summary.modes)){
       const mode=total.modes[id]||(total.modes[id]={rounds:0,success:0,points:0});
       for(const key of ['rounds','success','points'])mode[key]+=stats[key];
