@@ -954,8 +954,8 @@ test('smart finish: hopeless reply stops early but a reachable reply remains',()
  assert.equal(h.eval('game.finishPolicyVersion'),1);
  h.eval('game.startingTeamIndex=0;game.roundIndex=1;game.scores=[30,15]');assert.equal(h.eval('matchComplete()'),true);
  h.eval('game.scores=[30,28]');assert.equal(h.eval('matchComplete()'),true,'Only +1 Words cannot catch +2');
- h.eval("game.modes=['mime']");assert.equal(h.eval('matchComplete()'),false,'+2 Gesture can draw at 30:28');
- h.eval('game.scores=[30,27]');assert.equal(h.eval('matchComplete()'),true,'+2 Gesture cannot catch +3');
+ h.eval("game.modes=['blitz']");assert.equal(h.eval('matchComplete()'),false,'+2 Blitz can draw at 30:28');
+ h.eval('game.scores=[30,27]');assert.equal(h.eval('matchComplete()'),true,'+2 Blitz cannot catch +3');
  h.eval("game.modes=['approx'];game.scores=[30,29]");assert.equal(h.eval('matchComplete()'),false,'Approx can give the laggard +1');
  h.eval('game.scores=[30,28]');assert.equal(h.eval('matchComplete()'),true);
  h.eval('game.scores=[30,30];game.roundIndex=2');assert.equal(h.eval('matchComplete()'),false,'Tie continues for separate tie-break policy');
