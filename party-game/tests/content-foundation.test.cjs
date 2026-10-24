@@ -1,6 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
 const api=require('../scripts/content.cjs'),{createSimulation}=require('../scripts/game-simulation.cjs');
+function selectRecoveryProfiles(h){h.eval("createPlayerProfile('Первый','coral');createPlayerProfile('Второй','cyan');selectedProfileIds=profileStore.profiles.map(p=>p.id)");}
 const root=path.resolve(__dirname,'..'),base=api.readDataset(),copy=()=>structuredClone(base);
 function hasError(data,code){return api.validate(data,{locks:false}).errors.some(e=>e.code===code)}
 test('TASK009 A deterministic generated modules preserve every existing record and pack declaration',()=>{
@@ -41,14 +42,14 @@ test('TASK009 A corrupt JSON and invalid root stay byte-exact until explicit rec
  const absent=createSimulation();assert.equal(absent.eval('storageBlocked'),false);absent.eval('newGame()');assert.ok(absent.eval('game'));
 });
 test('TASK009 A confirmed recovery verifies a raw backup and unknown versions never offer destructive recovery',()=>{
- const raw='{broken',stored=new Map([['iskra-party:v1',raw]]),h=createSimulation(1,stored);let confirmations=0;h.context.window.confirm=()=>{confirmations++;return true};h.eval('newGame()');
+ const raw='{broken',stored=new Map([['iskra-party:v1',raw]]),h=createSimulation(1,stored);selectRecoveryProfiles(h);let confirmations=0;h.context.window.confirm=()=>{confirmations++;return true};h.eval('newGame()');
  assert.equal(confirmations,1);assert.equal(JSON.parse(stored.get('iskra-party:recovery:v1')).raw,raw);assert.equal(JSON.parse(stored.get('iskra-party:v1')).version,1);assert.ok(h.eval('game'));assert.equal(h.eval('storageBlocked'),false);
  const next=createSimulation(1,stored);assert.equal(next.eval('storageBlocked'),false);assert.ok(next.eval('game'));
  const futureRaw='{"version":99,"game":{"important":true}}',futureStore=new Map([['iskra-party:v1',futureRaw]]),future=createSimulation(1,futureStore);future.context.window.confirm=()=>{throw Error('Must not offer reset for future versions')};future.eval('newGame();persist()');assert.equal(futureStore.get('iskra-party:v1'),futureRaw);
 });
 test('TASK009 A recovery aborts on backup failure or a save changed while the confirmation was open',()=>{
- const raw='{broken',store=new Map([['iskra-party:v1',raw]]),h=createSimulation(1,store);h.context.localStorage.setItem=()=>{throw Error('Quota exceeded')};h.eval('newGame()');assert.equal(h.eval('storageBlocked'),true);assert.equal(store.get('iskra-party:v1'),raw);
- const changed=new Map([['iskra-party:v1',raw]]),other=createSimulation(1,changed);other.context.window.confirm=()=>{changed.set('iskra-party:v1','{"version":99}');return true};other.eval('newGame()');assert.equal(changed.get('iskra-party:v1'),'{"version":99}');assert.equal(other.eval('storageBlocked'),true);
+ const raw='{broken',store=new Map([['iskra-party:v1',raw]]),h=createSimulation(1,store);selectRecoveryProfiles(h);h.context.localStorage.setItem=()=>{throw Error('Quota exceeded')};h.eval('newGame()');assert.equal(h.eval('storageBlocked'),true);assert.equal(store.get('iskra-party:v1'),raw);
+ const changed=new Map([['iskra-party:v1',raw]]),other=createSimulation(1,changed);selectRecoveryProfiles(other);other.context.window.confirm=()=>{changed.set('iskra-party:v1','{"version":99}');return true};other.eval('newGame()');assert.equal(changed.get('iskra-party:v1'),'{"version":99}');assert.equal(other.eval('storageBlocked'),true);
 });
 test('TASK009 A screenshots require an explicit diagnostic flag',async()=>{
  const {capture}=require('./screenshots.cjs'),previous=process.env.QUIP_SCREENSHOTS;let calls=0;const page={screenshot:async()=>{calls++}};

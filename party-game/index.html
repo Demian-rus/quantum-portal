@@ -10,7 +10,7 @@
   <link rel="manifest" href="./manifest.webmanifest?v=3">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=30">
+  <link rel="stylesheet" href="./style.css?v=31">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
   <script src="./curated-words.js?v=1" defer></script>
@@ -31,21 +31,23 @@
   <script src="./presets.js?v=4" defer></script>
   <script src="./immersive-viewport.js?v=1" defer></script>
   <script src="./rules-guide.js?v=1" defer></script>
-  <script src="./menu-navigation.js?v=2" defer></script>
-  <script src="./setup-view.js?v=3" defer></script>
+  <script src="./menu-navigation.js?v=3" defer></script>
+  <script src="./setup-view.js?v=4" defer></script>
   <script src="./setup-controls.js?v=3" defer></script>
   <script src="./audio.js?v=1" defer></script>
   <script src="./round-views.js?v=2" defer></script>
-  <script src="./match-views.js?v=2" defer></script>
+  <script src="./match-views.js?v=3" defer></script>
   <script src="./timer-view.js?v=3" defer></script>
   <script src="./round-selection.js?v=3" defer></script>
-  <script src="./round-settlement.js?v=1" defer></script>
+  <script src="./round-settlement.js?v=2" defer></script>
   <script src="./timer-controller.js?v=1" defer></script>
   <script src="./round-presentation.js?v=3" defer></script>
   <script src="./round-actions.js?v=1" defer></script>
-  <script src="./storage-controller.js?v=1" defer></script>
-  <script src="./session-restoration.js?v=5" defer></script>
-  <script src="./app.js?v=55" defer></script>
+  <script src="./storage-controller.js?v=2" defer></script>
+  <script src="./session-restoration.js?v=6" defer></script>
+  <script src="./player-profiles.js?v=1" defer></script>
+  <script src="./profile-views.js?v=1" defer></script>
+  <script src="./app.js?v=56" defer></script>
 </head>
 <body>
 
@@ -56,6 +58,7 @@
       <div class="home-menu">
         <button id="continue-game" class="home-action home-action--continue" type="button" disabled>ПРОДОЛЖИТЬ</button>
         <button id="new-game-menu" class="home-action home-action--primary" type="button">НОВАЯ ИГРА</button>
+        <button id="statistics-menu" class="home-action home-action--settings" type="button">СТАТИСТИКА</button>
         <button id="settings-menu" class="home-action home-action--settings" type="button">НАСТРОЙКИ</button>
       </div>
       <button id="other-games-menu" class="home-action home-action--settings other-games-menu" type="button">ДРУГИЕ ИГРЫ</button>
@@ -76,6 +79,20 @@
           </ul>
         </div>
       </div>
+    </section>
+    <section class="scene scene--statistics immersive-screen" id="scene-statistics" hidden aria-labelledby="statistics-title">
+      <button class="scene-back" id="statistics-back" type="button">‹ <span>МЕНЮ</span></button>
+      <div class="settings-scroller" id="statistics-scroll"><div class="statistics-panel">
+        <h1 class="preferences-title" id="statistics-title">СТАТИСТИКА</h1>
+        <button type="button" id="statistics-profile" class="profile-selector" aria-haspopup="dialog" aria-label="Выбрать профиль для статистики">ВЫБРАТЬ ПРОФИЛЬ</button>
+        <p id="statistics-notice" class="profile-muted" role="status"></p>
+        <div id="statistics-empty"><p>Создайте первый профиль — КВИП запомнит результаты ваших партий.</p><button id="statistics-create" class="button button-primary button-big" type="button">СОЗДАТЬ ПРОФИЛЬ</button></div>
+        <div id="statistics-details" hidden>
+          <div id="statistics-metrics" class="statistics-metrics"></div>
+          <h2>ПО ИГРОВЫМ РЕЖИМАМ</h2><p class="profile-muted">Оба игрока участвуют в каждом раунде. Успех задания общий, очки учитываются по получателю. В «Примерно» успех определяется отдельно для каждого.</p>
+          <div id="statistics-modes"></div>
+        </div>
+      </div></div>
     </section>
     <section class="scene scene--preferences immersive-screen" id="scene-preferences" hidden>
       <button class="scene-back" id="preferences-back" type="button" aria-label="Вернуться в меню">‹ <span>МЕНЮ</span></button>
@@ -116,9 +133,10 @@
               <div class="setup-panel" id="setup-panel">
         <div class="setup-top"><span class="section-kicker">НАСТРОЙКИ ПАРТИИ</span><span class="setup-pack-caption" id="setup-pack-caption">Общий словарь</span></div>
         <div class="setup-grid">
-          <label class="team-input-wrap team-input-wrap--a"><span><span class="team-spot team-spot--a"></span> ИГРОК 1</span><input id="team-a" type="text" maxlength="24" value="Молнии" placeholder="Имя игрока" autocomplete="off" spellcheck="false"></label>
-          <label class="team-input-wrap team-input-wrap--b"><span><span class="team-spot team-spot--b"></span> ИГРОК 2</span><input id="team-b" type="text" maxlength="24" value="Кометы" placeholder="Имя игрока" autocomplete="off" spellcheck="false"></label>
+          <div class="team-input-wrap"><span>ИГРОК 1</span><button id="team-a" class="profile-selector" type="button" aria-haspopup="dialog" aria-label="Профиль игрока 1">ВЫБРАТЬ ПРОФИЛЬ</button></div>
+          <div class="team-input-wrap"><span>ИГРОК 2</span><button id="team-b" class="profile-selector" type="button" aria-haspopup="dialog" aria-label="Профиль игрока 2">ВЫБРАТЬ ПРОФИЛЬ</button></div>
         </div>
+        <p id="setup-profile-notice" class="profile-muted" role="status"></p>
         <fieldset class="option-set award-policy"><legend>КТО ПОЛУЧАЕТ ОЧКИ</legend><div id="award-policy-choices" class="choices" data-setting="awardTo" aria-label="Кто получает очки"><button type="button" data-value="setter">ЗАГАДЫВАЮЩИЙ</button><button type="button" data-value="guesser">ОТГАДЫВАЮЩИЙ</button></div></fieldset>
         <div class="settings-grid settings-grid--compact">
           <fieldset class="option-set"><legend>СЛОЖНОСТЬ</legend><div class="choices" data-setting="difficulty"><button type="button" data-value="easy" class="is-chosen">Легко</button><button type="button" data-value="medium">Средний</button><button type="button" data-value="hard">Сложный</button><button type="button" data-value="mixed">Микс</button></div></fieldset>
@@ -220,6 +238,18 @@
     </div>
     <p id="mode-options-placeholder" class="mode-options-copy">Настройки режима скоро появятся.</p>
     <button type="button" id="mode-options-done" class="button button-primary">ГОТОВО</button>
+  </section>
+</div>
+<div class="dialog-backdrop" id="profile-backdrop" hidden>
+  <section class="dialog profile-dialog" role="dialog" aria-modal="true" aria-labelledby="profile-panel-title">
+    <header class="profile-dialog-header"><button id="profile-panel-back" type="button" class="dialog-close" aria-label="Назад">‹</button><h2 id="profile-panel-title">ВЫБРАТЬ ПРОФИЛЬ</h2><button id="profile-close" type="button" class="dialog-close" aria-label="Закрыть">×</button></header>
+    <div id="profile-list-area"><p id="profile-empty" class="profile-muted">Профилей пока нет. Создайте первый.</p><div id="profile-list"></div><button id="profile-create-open" class="button button-primary button-big" type="button">+ СОЗДАТЬ ПРОФИЛЬ</button></div>
+    <form id="profile-create-form" hidden>
+      <label for="profile-name">ИМЯ ПРОФИЛЯ</label><input id="profile-name" type="text" autocomplete="off" spellcheck="false" placeholder="Например, ДС" required aria-describedby="profile-name-hint"><small id="profile-name-hint">До 24 символов</small>
+      <fieldset><legend>ПЕРСОНАЛЬНЫЙ ЦВЕТ</legend><div id="profile-palette" role="group" aria-label="Цвет профиля"></div></fieldset>
+      <button id="profile-create-save" class="button button-primary button-big" type="submit">СОЗДАТЬ ПРОФИЛЬ</button>
+    </form>
+    <p id="profile-panel-error" class="profile-error" role="status" aria-live="polite"></p>
   </section>
 </div>
 <div class="dialog-backdrop" id="rules-backdrop" hidden>

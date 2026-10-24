@@ -27,6 +27,7 @@ function recordAnswer(yes,modifierSuccess=true) {
   game.scores[teamIndex]+=outcome.delta;
   game.history.push({
     team:game.teams[teamIndex],setter:currentTeam(),mode:c.modeId,
+    ...(game.profileMatch?{setterIndex:currentTeamIndex(),guesserIndex:guessingTeamIndex(),methodId:c.methodId}:{}),
     ...(game.awardPolicyVersion?{recipientIndex:teamIndex,awardTo:game.awardTo,awardPolicyVersion:game.awardPolicyVersion}:{}),
     word:c.modeId==='blitz'?c.blitzWords.join(' / '):c.word,
     awarded:outcome.delta,correct:outcome.success,risk:!!c.risk,
@@ -44,7 +45,9 @@ function completeRound(success){
   game.phase=matchComplete()?'results':'ready';
   if(game.phase==='results')archiveCurrentTaskHistory();
   game.current=null;
-  stopTicking();persist();sfx(success?'win':'fail');render();
+  stopTicking();persist();
+  if(game.phase==='results')saveCompletedProfileResult();
+  sfx(success?'win':'fail');render();
 }
 
 function correctNow(modifierSuccess=true) {

@@ -12,7 +12,7 @@ function updateContinue() {
 }
 function setScene(which) {
   activeScene=which;
-  for(const scene of ['home','other-games','preferences','game-type','themes','setup','advanced','game','results'])
+  for(const scene of ['home','other-games','preferences','statistics','game-type','themes','setup','advanced','game','results'])
     $('scene-'+scene).hidden=scene!==which;
   document.body.dataset.screen=which;
   updateContinue();
@@ -30,20 +30,21 @@ function armBrowserBackGuard(){
   }catch{backGuardArmed=false;}
 }
 function backWithinKvip(){
+  if(!$('profile-backdrop').hidden){backProfilePanel();return;}
   if(!$('mode-options-backdrop').hidden){closeModeSettings();return;}
   if(!$('rules-backdrop').hidden){closeRules();return;}
   switch(activeScene){
     case 'advanced':closeAdvanced();return;
     case 'setup':setupReturn==='themes'?openThemes():openGameType();return;
     case 'themes':openGameType();return;
-    case 'game-type':case 'preferences':case 'other-games':setScene('home');return;
+    case 'statistics':case 'game-type':case 'preferences':case 'other-games':setScene('home');return;
     case 'game':case 'results':backToMenu();return;
   }
 }
 function onBrowserBack(){
   if(!backGuardArmed)return;
   backGuardArmed=false;
-  if(activeScene==='home'&&$('rules-backdrop').hidden&&$('mode-options-backdrop').hidden){
+  if(activeScene==='home'&&$('profile-backdrop').hidden&&$('rules-backdrop').hidden&&$('mode-options-backdrop').hidden){
     const now=Date.now();
     if(lastHomeBackAt&&now-lastHomeBackAt<2000){
       lastHomeBackAt=0;

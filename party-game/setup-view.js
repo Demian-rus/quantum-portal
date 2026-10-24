@@ -71,7 +71,8 @@ function renderOptions() {
   $('setup-award-caption').textContent='Один телефон — два соперника. Очки получает '+(options.awardTo==='setter'?'загадывающий':'отгадывающий')+'. В «Примерно» — ручной выбор.';
   let problems=['Набор недоступен'];
   if(setupPack)try{problems=checkContentPack(options.contentPack,{...options,...setupSongPolicy(options),modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION}).problems;}catch{}
-  $('start-game').disabled=problems.length>0;
+  renderProfileSelectors();
+  $('start-game').disabled=problems.length>0||!selectedPlayerProfiles()||!!profileStoreProblem;
   $('setup-mode-notice').hidden=!problems.length;
   $('setup-mode-notice').textContent=problems[0]?.startsWith('sing/')?'Для «Напой» нет заданий с выбранными источниками на этой сложности. Измените источники или сложность в тонкой настройке.':problems[0]||'';
 }

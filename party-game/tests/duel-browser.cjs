@@ -1,4 +1,5 @@
 'use strict';
+const {provisionProfiles,chooseNamedProfile}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -11,12 +12,12 @@ const URL='http://127.0.0.1:8765/party-game/';
   for(const [name,width,height] of [['short-phone',360,640],['phone',390,844]]){
    const page=await browser.newPage({viewport:{width,height},deviceScaleFactor:2});
    const errors=[];page.on('pageerror',err=>errors.push(err.message));
-   await page.goto(URL,{waitUntil:'load'});
+   await page.goto(URL,{waitUntil:'load'});await provisionProfiles(page);
       await page.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
    await page.locator('#new-game-menu').click();
       await page.locator('#standard-game').click();
-   await page.locator('#team-a').fill('Молнии');
-   await page.locator('#team-b').fill('Кометы');
+   await chooseNamedProfile(page,0,'Молнии');
+   await chooseNamedProfile(page,1,'Кометы');
    await page.locator('#quick-score-choices [data-value="30"]').click();
    await page.locator('.quick-choices[data-setting="duration"] [data-value="45"]').click();
    assert.equal(await page.locator('#score-goal-preview').textContent(),'30 очков');
@@ -57,7 +58,7 @@ const URL='http://127.0.0.1:8765/party-game/';
   const context=await browser.newContext({viewport:{width:390,height:844}});
   const page=await context.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(URL,{waitUntil:'load'});
+  await page.goto(URL,{waitUntil:'load'});await provisionProfiles(page);
       await page.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
   await page.locator('#new-game-menu').click();
       await page.locator('#standard-game').click();
@@ -90,7 +91,7 @@ const URL='http://127.0.0.1:8765/party-game/';
   for(const starter of [0,1]){
    const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[];
    page.on('pageerror',e=>errors.push(e.message));
-   await page.goto(URL,{waitUntil:'load'});
+   await page.goto(URL,{waitUntil:'load'});await provisionProfiles(page);
    await page.locator('#new-game-menu').click();
       await page.locator('#standard-game').click();
    await page.evaluate(starter=>{chooseStartingTeam=()=>starter;options.awardTo='guesser';options.complications=false;options.modes=['talk'];options.dice=false;options.finishType='rounds';options.rounds=2;options.riskRounds=false;soundOn=false},starter);
@@ -119,7 +120,7 @@ const URL='http://127.0.0.1:8765/party-game/';
   for(const [width,height] of [[320,568],[390,844],[844,390]]){
    const context=await browser.newContext({viewport:{width,height}}),page=await context.newPage(),errors=[];
    page.on('pageerror',error=>errors.push(error.message));
-   await page.goto(URL,{waitUntil:'load'});
+   await page.goto(URL,{waitUntil:'load'});await provisionProfiles(page);
    await page.evaluate(()=>{soundOn=false;options.modes=['approx'];options.dice=false;options.difficulty='hard';newGame()});
    for(const choice of ['a','b','both','none']){
     await page.evaluate(()=>{game.dice=false});
@@ -172,7 +173,7 @@ const URL='http://127.0.0.1:8765/party-game/';
      'const QUIP_CONTENT_PACKS=defineContentPacks(['+JSON.stringify(fixture)+',');
     await route.fulfill({response,body});
    });
-   await page.goto(URL,{waitUntil:'load'});
+   await page.goto(URL,{waitUntil:'load'});await provisionProfiles(page);
    await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.promptTypes=['word'];options.dice=false;options.complications=false;options.duration=45});
    await page.locator('#new-game-menu').click();await page.locator('#thematic-game').click();
    await page.locator('[data-theme="fixture-topic"]').click();

@@ -1,4 +1,5 @@
 'use strict';
+const {provisionProfiles,chooseNamedProfile}=require('./profile-fixtures.cjs');
 // Browser contracts across subsystem boundaries. Drive the shipped HTML and UI;
 // evaluate only reads snapshots or installs a transparent observation probe.
 const assert=require('node:assert/strict');
@@ -64,7 +65,7 @@ async function silence(page){
 }
 async function menuDetour(page){
  await silence(page);await standard(page);
- await page.locator('#team-a').fill('Первый игрок');await page.locator('#team-b').fill('Второй игрок');
+ await chooseNamedProfile(page,0,'Первый игрок');await chooseNamedProfile(page,1,'Второй игрок');
  await advanced(page);await page.locator('#toggle-complications').uncheck();
  await fold(page,'mode-settings');await selection(page,'mode-toggles',['talk']);
  await page.locator('#advanced-done').click();await page.locator('#start-game').click();await scene(page,'game');
@@ -187,7 +188,7 @@ async function protectedMenus(page,raw){
    const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage(),errors=[];
    page.on('pageerror',error=>errors.push(error.message));await context.addInitScript(observe);
    try{
-    await page.goto(URL,{waitUntil:'load'});await scene(page,'home');await run(page);
+    await page.goto(URL,{waitUntil:'load'});await provisionProfiles(page);await scene(page,'home');await run(page);
     assert.deepEqual(errors,[],'Uncaught browser errors: '+name);console.log('TASK011 B PASS:',name);
    }catch(error){error.message=name+': '+error.message;throw error;}
    finally{await context.close();}

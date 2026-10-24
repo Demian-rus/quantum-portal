@@ -1,4 +1,5 @@
 'use strict';
+const {provisionProfiles,chooseNamedProfile}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -76,7 +77,7 @@ function fitsViewport(g,device,stage) {
       });
       const errors=[];
       page.on('pageerror',error=>errors.push(error.message));
-      await page.goto(URL,{waitUntil:'load'});
+      await page.goto(URL,{waitUntil:'load'});await provisionProfiles(page);
       await page.evaluate(()=>{chooseStartingTeam=()=>0;options.complications=false});
       await page.locator('#scene-home').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
       const homeButtons=await page.evaluate(()=>{
@@ -144,8 +145,8 @@ function fitsViewport(g,device,stage) {
           'Wide settings fail to use multiple columns: '+JSON.stringify(setup));
         await capture(page,{path:'artifacts/quip-mobile-layout/'+device.name+'-setup.png'});
       }
-      await page.locator('#team-a').fill('ПЕРВЫЙСУПЕРДЛИННЫЙИГРОК');
-      await page.locator('#team-b').fill('ВТОРОЙСУПЕРДЛИННЫЙИГРОК');
+      await chooseNamedProfile(page,0,'ПЕРВЫЙСУПЕРДЛИННЫЙИГРОК');
+      await chooseNamedProfile(page,1,'ВТОРОЙСУПЕРДЛИННЫЙИГРОК');
       await page.evaluate(()=>{options.modes=['talk'];soundOn=false;persist()});
       await page.locator('#start-game').click();
       // The scene enters with a 7px translateY animation. Compare settled

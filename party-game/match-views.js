@@ -2,6 +2,7 @@
 // Match display views; state, navigation and helpers remain in the existing scripts.
 
 function renderMatch() {
+  for(const [i,id] of ['a','b'].entries())$('match-team-'+id).style.setProperty('--profile-color',profileColorForMatch(game,i));
   $('label-team-a').textContent=game.teams[0];
   $('label-team-b').textContent=game.teams[1];
   $('score-a').textContent=game.scores[0];
@@ -55,7 +56,7 @@ function showResults() {
   const [a,b]=game.scores;
   const winner=a===b?'НИЧЬЯ!':(a>b?game.teams[0]:game.teams[1]);
   const item=(index)=>'<div class="final-score-item '+(game.scores[index]===Math.max(a,b)&&a!==b?'is-winner':'')+'">'+
-    '<span>'+escapeHTML(game.teams[index])+'</span><b>'+game.scores[index]+'</b><span>ОЧКОВ</span></div>';
+    '<span>'+profileDot(game.profileMatch?.participants[index]?.color||(index===0?'coral':'cyan'))+escapeHTML(game.teams[index])+'</span><b>'+game.scores[index]+'</b><span>ОЧКОВ</span></div>';
   $('results-content').innerHTML=
     '<span class="section-kicker">ПАРТИЯ ЗАВЕРШЕНА</span>'+
     '<div class="result-trophy" aria-hidden="true">'+(a===b?'✳':'🏆')+'</div>'+
@@ -64,6 +65,7 @@ function showResults() {
     '<div class="final-score">'+item(0)+'<span class="final-score-divider">:</span>'+item(1)+'</div>'+
     '<div class="inline-actions">'+makeButton('СЫГРАТЬ ЕЩЁ','again','button-primary button-big')+
     makeButton('В ГЛАВНОЕ МЕНЮ','menu')+'</div>'+
+    (profileResultProblem?'<p class="profile-error" role="status">'+escapeHTML(profileResultProblem)+'</p>'+makeButton('ПОВТОРИТЬ ЗАПИСЬ','retry-statistics','button button-secondary'):'')+
     '<div class="history-block"><h3>ИСТОРИЯ ХОДОВ</h3>'+
     game.history.map(historyMarkup).join('')+
     '</div>';
