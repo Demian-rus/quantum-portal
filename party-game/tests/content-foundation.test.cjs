@@ -108,6 +108,16 @@ test('Idioms I1 adds 50 normalized unique prompts to general@12 without mutating
  assert.deepEqual(after.criteria.cardIds.slice(0,5250),before.criteria.cardIds);
  assert.deepEqual(after.criteria.cardIds.slice(5250),fresh.map(c=>c.id));
 });
+test('Idioms I2 adds 50 distinct expressions while preserving general@12',()=>{
+ const fresh=base.cards.filter(c=>c.pack==='idiom-expansion-v2');assert.equal(fresh.length,50);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(d=>[d,fresh.filter(c=>c.difficulty===d).length])),{easy:20,medium:20,hard:10});
+ assert.ok(fresh.every(c=>c.type==='idiom'&&c.categories.length===0));
+ const prior=new Set(base.cards.filter(c=>c.pack!=='idiom-expansion-v2').map(c=>api.normalize(c.text)));
+ assert.ok(fresh.every(c=>!prior.has(api.normalize(c.text))));assert.equal(new Set(fresh.map(c=>api.normalize(c.text))).size,50);
+ const before=base.packs.find(p=>p.id==='general'&&p.version===12),after=base.packs.find(p=>p.id==='general'&&p.version===13);
+ assert.ok(before&&after);assert.equal(before.criteria.cardIds.length,5300);assert.equal(after.criteria.cardIds.length,5350);
+ assert.deepEqual(after.criteria.cardIds.slice(0,5300),before.criteria.cardIds);assert.deepEqual(after.criteria.cardIds.slice(5300),fresh.map(c=>c.id));
+});
 test('TASK009 A validator rejects duplicate IDs/text, bad types/tags and invalid answers or sources',()=>{
  for(const[code,mutate]of [
   ['id',d=>d.cards[1].id=d.cards[0].id],['normalized-duplicate',d=>d.cards[1].text='  карандаш! '],
