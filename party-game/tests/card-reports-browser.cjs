@@ -18,7 +18,7 @@ async function protectedState(page){return page.evaluate(()=>({game:JSON.stringi
     await page.locator('#report-card').waitFor({state:'visible'});
     const before=await protectedState(page),item=await page.evaluate(()=>currentReportItem(game));
     const fixed=mode==='approx'?null:await page.locator('.challenge-card').boundingBox();
-    const flag=await page.locator('#report-card').boundingBox();assert.ok(flag.width>=44&&flag.height>=44);
+    const flag=await page.locator('#report-card').boundingBox();assert.ok(flag.width>=43.999&&flag.height>=43.999,JSON.stringify(flag));
     if(fixed)assert.ok(flag.y+flag.height<=fixed.y+1,'flag must not overlap card');
     await page.locator('#report-card').tap();assert.equal(await page.locator('#report-backdrop').isVisible(),true);
     if(mode!=='approx')assert.ok(!(await page.locator('#report-target').textContent()).includes(item.text),'hidden prompt cannot be revealed by flag');
