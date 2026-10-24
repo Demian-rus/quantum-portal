@@ -59,8 +59,12 @@ async function success(page){await page.waitForFunction(()=>document.getElementB
    const raw=(await snapshot(sp))[KEY];
    await sp.evaluate(async()=>{await navigator.serviceWorker.ready});await sp.waitForFunction(()=>!!navigator.serviceWorker.controller);
    write(current);
-   await sp.evaluate(async()=>{await navigator.serviceWorker.register('./sw.js?qa-backup-v76',{scope:'./',updateViaCache:'none'})});
-   await sp.waitForFunction(async({oldCache,newCache})=>navigator.serviceWorker.controller?.scriptURL.includes('qa-backup-v76')&&await caches.has(newCache)&&!await caches.has(oldCache),{oldCache:cache(previous.get('sw.js')),newCache:cache(current.get('sw.js'))});
+   await sp.evaluate(async()=>{
+    const changed=new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));
+    const registration=await navigator.serviceWorker.getRegistration();await registration.update();
+    await Promise.race([changed,new Promise((_,reject)=>setTimeout(()=>reject(Error('Backup PWA update timed out')),15000))]);
+   });
+   await sp.waitForFunction(async({oldCache,newCache})=>await caches.has(newCache)&&!await caches.has(oldCache),{oldCache:cache(previous.get('sw.js')),newCache:cache(current.get('sw.js'))});
    await source.setOffline(true);await sp.reload();assert.equal((await snapshot(sp))[KEY],raw,'PWA update cannot mutate profiles');
    const cached=await sp.evaluate(async name=>{const c=await caches.open(name);return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>({url:s.src,found:!!await c.match(s.src)})))},cache(current.get('sw.js')));
    assert.equal(cached.length,40);assert.deepEqual(cached.filter(row=>!row.found),[],'Every runtime script must be precached');await sp.locator('#settings-menu').click();
