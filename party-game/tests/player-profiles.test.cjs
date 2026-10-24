@@ -77,11 +77,49 @@ test('statistics: starting-player swap and inconsistent setter index do not misa
 });
 test('statistics: draw, shared awards to one/both/neither, individual success',()=>{
  const h=harness();players(h);finished(h,[{mode:'approx',deltas:[1,1],recipients:[0,1]},{mode:'approx',deltas:[0,0],recipients:[]}],[1,1]);h.eval('commitProfileResult(match)');
- assert.deepEqual(plain(h.eval('Object.values(profileStore.totals).slice(0,2).map(t=>[t.draws,t.wins,t.modes.approx.success,t.modes.approx.points])')),[[1,0,1,1],[1,0,0,1]]);
+ assert.deepEqual(plain(h.eval('Object.values(profileStore.totals).slice(0,2).map(t=>[t.draws,t.wins,t.modes.approx.success,t.modes.approx.points])')),[[1,0,1,1],[1,0,1,1]]);
  for(const [recipient,scores] of [[0,[1,0]],[1,[0,1]]]){
   finished(h,[{mode:'approx',deltas:scores,recipients:[recipient]},{mode:'approx',deltas:[0,0],recipients:[]}],scores);h.eval('commitProfileResult(match)');
  }
  assert.equal(h.eval('profileStore.totals[profileStore.profiles[0].id].matches'),3);
+});
+test('statistics: Примерно counts one common question for both profiles, success individually',()=>{
+ const h=harness();players(h);
+ finished(h,[{mode:'approx',deltas:[1,0],recipients:[0]},
+  {mode:'approx',deltas:[0,1],recipients:[1]}],[1,1]);
+ h.eval('commitProfileResult(match)');
+ const totals=plain(h.eval('profileStore.profiles.slice(0,2).map(p=>profileStore.totals[p.id])'));
+ assert.deepEqual(totals.map(t=>[t.matches,t.turns,t.modes.approx.rounds,t.modes.approx.success,t.modes.approx.points]),
+  [[1,2,2,1,1],[1,2,2,1,1]]);
+});
+test('statistics: 30 turns with two Примерно questions count 16 personal questions each',()=>{
+ const h=harness();players(h);
+ const rows=Array.from({length:30},(_,i)=>i<2
+  ?{mode:'approx',setterIndex:i,assignedIndices:[0,1],
+    deltas:i===0?[1,0]:[0,1],recipients:[i]}
+  :{mode:'talk',setterIndex:i%2,recipientIndex:i%2,awarded:0,correct:false});
+ finished(h,rows,[1,1]);h.eval('commitProfileResult(match)');
+ const totals=plain(h.eval('profileStore.profiles.slice(0,2).map(p=>profileStore.totals[p.id])'));
+ assert.deepEqual(totals.map(t=>[t.turns,t.modes.approx.rounds,t.modes.approx.success,t.modes.talk.rounds]),
+  [[16,2,1,14],[16,2,1,14]]);
+});
+test('statistics: future shared mode supports simultaneous assignments when declared',()=>{
+ const h=harness();players(h);
+ finished(h,[{mode:'future-shared',assignedIndices:[0,1],deltas:[1,1],recipients:[0,1]},
+  {mode:'future-shared',assignedIndices:[0,1],deltas:[0,0],recipients:[]}],[1,1]);
+ h.eval('commitProfileResult(match)');
+ const totals=plain(h.eval('profileStore.profiles.slice(0,2).map(p=>profileStore.totals[p.id])'));
+ assert.deepEqual(totals.map(t=>[t.turns,t.modes['future-shared'].rounds,t.modes['future-shared'].success]),
+  [[2,2,1],[2,2,1]]);
+});
+test('statistics: invalid shared assignments cannot be written',()=>{
+ for(const assignedIndices of [[0,0],[2],[1],[]]){
+  const h=harness();players(h);finished(h,[
+   {mode:'approx',assignedIndices,deltas:[1,1],recipients:[0,1]},
+   {mode:'approx',deltas:[0,0],recipients:[]}],[1,1]);
+  assert.throws(()=>h.eval('commitProfileResult(match)'));
+  assert.equal(h.eval('profileStore.settledThrough'),0);
+ }
 });
 test('statistics: actual deltas preserve risk penalties, partial modifier success and Secret methods',()=>{
  const h=harness();players(h);finished(h,[{mode:'secret',methodId:'sing',recipientIndex:0,awarded:2,taskSuccess:true,modifierSuccess:false},

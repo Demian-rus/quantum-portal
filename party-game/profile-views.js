@@ -74,7 +74,7 @@ function renderStatistics(){
   const percent=(success,count)=>count?Math.round(success/count*100)+'%':'0%';
   const metrics=[['Заданий',total.turns],['Игр',total.matches],['Побед',total.wins],['Поражений',total.losses],['Ничьих',total.draws],['Побед',percent(total.wins,total.matches)],['Всего очков',total.points]];
   $('statistics-metrics').innerHTML=metrics.map(([title,value])=>'<div class="stat-metric"><b>'+value+'</b><span>'+title+'</span></div>').join('');
-  $('statistics-modes').innerHTML=Object.entries(total.modes).map(([id,stats])=>'<div class="stat-mode"><strong>'+escapeHTML(getMode(id)?.title||id)+'</strong><span>'+'Заданий: '+stats.rounds+' · Отгадано: '+stats.success+' · Не отгадано: '+(stats.rounds-stats.success)+'</span><b>'+stats.points+' очков</b></div>').join('')||'<p class="profile-muted">Пока нет данных</p>';
+  $('statistics-modes').innerHTML=Object.entries(total.modes).map(([id,stats])=>'<div class="stat-mode"><strong>'+escapeHTML(getMode(id)?.title||id)+'</strong><span>'+'Заданий: '+stats.rounds+' · '+(id==='approx'?'Верно: ':'Отгадано: ')+stats.success+' · '+(id==='approx'?'Неверно: ':'Не отгадано: ')+(stats.rounds-stats.success)+'</span><b>'+stats.points+' очков</b></div>').join('')||'<p class="profile-muted">Пока нет данных</p>';
 }
 function profilePanelKeydown(event){
   if($('profile-backdrop').hidden)return;

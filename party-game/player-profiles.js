@@ -122,8 +122,15 @@ function completedProfileSummary(match){
   for(const [turn,row] of match.history.entries()){
     const owner=(first+turn)%2;
     if(row.setterIndex!=null&&row.setterIndex!==owner)throw Error('Некорректный владелец задания.');
-    summaries[owner].turns++;
     if(!validProfileModeId(row.mode))throw Error('Некорректный ID режима в истории.');
+    // Most modes assign one question to the setter. «Примерно» is answered
+    // by BOTH profiles; a future simultaneous mode can specify assignedIndices.
+    const assignedIndices=row.assignedIndices??(row.mode==='approx'?[0,1]:[owner]);
+    if(!Array.isArray(assignedIndices)||!assignedIndices.length||
+       assignedIndices.some(i=>![0,1].includes(i))||
+       new Set(assignedIndices).size!==assignedIndices.length||
+       !assignedIndices.includes(owner))throw Error('Некорректные участники задания.');
+    assignedIndices.forEach(i=>summaries[i].turns++);
     // A shared-award mode supplies per-player deltas; future modes can use
     // this contract without adding their ID to the statistics module.
     const shared=Object.hasOwn(row,'deltas');
@@ -137,7 +144,7 @@ function completedProfileSummary(match){
     if(!Array.isArray(deltas)||deltas.length!==2||deltas.some(d=>!profileCount(d,true)))throw Error('Повреждён результат хода.');
     if(row.mode==='secret'&&!validProfileModeId(row.methodId))throw Error('Некорректный ID способа Секретки.');
     summaries.forEach((summary,i)=>{
-      const assigned=i===owner;
+      const assigned=assignedIndices.includes(i);
       // An unassigned participant can still earn or lose real points.
       if(!assigned&&deltas[i]===0)return;
       const mode=summary.modes[row.mode]||(summary.modes[row.mode]={rounds:0,success:0,points:0});
