@@ -13,6 +13,29 @@ test('TASK009 A deterministic generated modules preserve every existing record a
  assert.equal(api.digest(JSON.parse(vm.runInContext('JSON.stringify(Object.values(QUIP_CONTENT_PACKS).slice(0,10))',context))),'94e4a270642f4bd8a027f4fcd17db9270632b4a4dcddb4d19ceff9ef9f6b3093');
  assert.equal(api.validate(base).ok,true);
 });
+test('Geography G1 adds 50 unique prompts only in geography@5 and general@7',()=>{
+ const authored=base.cards.filter(c=>c.pack==='geography-expansion-v1');
+ assert.equal(authored.length,50);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(level=>[level,authored.filter(c=>c.difficulty===level).length])),
+  {easy:20,medium:20,hard:10});
+ assert.deepEqual(Object.fromEntries(['word','phrase','person'].map(type=>[type,authored.filter(c=>c.type===type).length])),
+  {word:25,phrase:20,person:5});
+ assert.ok(authored.every(c=>c.categories.length===1&&c.categories[0]==='geography'));
+ const existing=base.cards.filter(c=>c.pack!=='geography-expansion-v1');
+ const normalized=new Set(existing.map(c=>api.normalize(c.text)));
+ assert.ok(authored.every(c=>!normalized.has(api.normalize(c.text))));
+ assert.equal(new Set(authored.map(c=>api.normalize(c.text))).size,50);
+ for(const [id,oldVersion,newVersion,oldCount,newCount] of [
+  ['geography',4,5,256,306],['general',6,7,4950,5000]
+ ]){
+  const old=base.packs.find(p=>p.id===id&&p.version===oldVersion);
+  const next=base.packs.find(p=>p.id===id&&p.version===newVersion);
+  assert.ok(old&&next);assert.equal(old.criteria.cardIds.length,oldCount);
+  assert.equal(next.criteria.cardIds.length,newCount);
+  assert.deepEqual(next.criteria.cardIds.slice(0,oldCount),old.criteria.cardIds);
+  assert.deepEqual(next.criteria.cardIds.slice(oldCount),authored.map(c=>c.id));
+ }
+});
 test('TASK009 A validator rejects duplicate IDs/text, bad types/tags and invalid answers or sources',()=>{
  for(const[code,mutate]of [
   ['id',d=>d.cards[1].id=d.cards[0].id],['normalized-duplicate',d=>d.cards[1].text='  карандаш! '],
