@@ -159,6 +159,11 @@
       "path": "cards/geography-expansion-v2.json",
       "immutable": false,
       "review": "G2: 100 manually edited geography prompts; see editorial/geography-expansion-v2-review.md"
+    },
+    {
+      "path": "cards/science-expansion-v1.json",
+      "immutable": false,
+      "review": "Science S1: 50 new manually selected prompts; see editorial/science-expansion-v1-review.md."
     }
   ],
   "questions": [
@@ -248,6 +253,11 @@
       "path": "packs/geography-expansion-v2.json",
       "immutable": false,
       "review": "G2: pins geography@6 and general@8 while retaining historical selections"
+    },
+    {
+      "path": "packs/science-expansion-v1.json",
+      "immutable": false,
+      "review": "Science S1: science@5 (432) and general@9 (5150), earlier versions unchanged."
     }
   ],
   "legacyCollisions": [
