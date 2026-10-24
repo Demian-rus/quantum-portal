@@ -101,7 +101,13 @@ async function start(page,difficulty='hard',mode='talk'){
     await page.locator('[data-feedback="report"]').tap();const held=await state(page),remaining=await page.evaluate(()=>game.current.feedbackHold.remainingMs);
     await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);await ctx.setOffline(true);await page.reload();await page.locator('#continue-game').click();
     await page.locator('#report-backdrop').waitFor({state:'visible'});assert.deepEqual(await state(page),held);assert.equal(await page.evaluate(()=>game.current.feedbackHold.remainingMs),remaining);
-    await page.locator('#report-close').click();assert.ok(await page.evaluate(remaining=>Math.abs(game.current.deadline-Date.now()-remaining)<300,remaining));assert.equal(await page.evaluate(()=>game.history.length),0);
+    await page.locator('#report-close').click();assert.ok(await page.evaluate(remaining=>Math.abs(game.current.deadline-Date.now()-remaining)<300,remaining));assert.equal(await page.evaluate(()=>game.history.length),0);assert.equal(await page.evaluate(()=>document.activeElement.dataset.feedback),'report');
+    if(width===390){
+     await page.evaluate(()=>{window.__now=Date.now();Date.now=()=>window.__now;Object.assign(options,{modes:['talk'],difficulty:'hard',dice:false});newGame();game.dice=false;roll();game.dice=true;options.dice=true;persist()});
+     await page.locator('.challenge-card').tap();await page.evaluate(()=>{stopTicking();window.__now=game.current.autoStartAt+1});
+     await page.locator('#report-card').tap();assert.equal(await page.evaluate(()=>game.current.feedbackHold.phase),'play');
+     await page.keyboard.press('Escape');assert.equal(await page.evaluate(()=>document.activeElement.dataset.feedback),'report');
+    }
     await start(page,'easy');await page.locator('[data-action="pause"]').click();assert.equal(await page.evaluate(()=>game.current.paused),true);
     await page.locator('[data-feedback="report"]').tap();const paused=await state(page);await page.reload();await page.locator('#continue-game').click();assert.deepEqual(await state(page),paused);
     await page.locator('#report-cancel').click();assert.equal(await page.evaluate(()=>game.current.paused),true);assert.equal(await page.evaluate(()=>game.current.deadline),null);

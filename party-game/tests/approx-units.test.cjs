@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
 const {createSimulation}=require('../scripts/game-simulation.cjs'),{auditApproxUnits}=require('../scripts/approx-unit-audit.cjs');
-const parent='1498309d79bb97e68392b3d6f46996700e39d37b',root=path.resolve(__dirname,'..');
+const parent='39b72c05a567be43db3f013319a1954a72632235',root=path.resolve(__dirname,'..');
 test('approx units: every active/historical source is audited; all 37 empty units are explicit legacy counts',()=>{
  const a=auditApproxUnits();assert.equal(a.total,648);assert.equal(a.withUnit,611);assert.equal(a.empty.length,37);assert.ok(a.empty.every(r=>r.file==='questions/legacy-v1.json'));assert.ok(a.empty.every(r=>/^Скольк[ои]/u.test(r.question)));
  assert.ok(a.manualCandidates.length>0);assert.ok(a.manualCandidates.every(r=>r.unit));
