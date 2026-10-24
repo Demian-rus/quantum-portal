@@ -36,6 +36,21 @@ test('Geography G1 adds 50 unique prompts only in geography@5 and general@7',()=
   assert.deepEqual(next.criteria.cardIds.slice(oldCount),authored.map(c=>c.id));
  }
 });
+test('Geography G2 adds 100 unique prompts while preserving geography@5/general@7',()=>{
+ const fresh=base.cards.filter(c=>c.pack==='geography-expansion-v2');
+ assert.equal(fresh.length,100);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(d=>[d,fresh.filter(c=>c.difficulty===d).length])),{easy:40,medium:40,hard:20});
+ const older=base.cards.filter(c=>c.pack!=='geography-expansion-v2');
+ const known=new Set(older.map(c=>api.normalize(c.text)));
+ assert.ok(fresh.every(c=>c.categories.length===1&&c.categories[0]==='geography'&&!known.has(api.normalize(c.text))));
+ assert.equal(new Set(fresh.map(c=>api.normalize(c.text))).size,100);
+ for(const[id,oldV,newV,oldN,newN]of [['geography',5,6,306,406],['general',7,8,5000,5100]]){
+  const before=base.packs.find(p=>p.id===id&&p.version===oldV),after=base.packs.find(p=>p.id===id&&p.version===newV);
+  assert.ok(before&&after);assert.equal(before.criteria.cardIds.length,oldN);assert.equal(after.criteria.cardIds.length,newN);
+  assert.deepEqual(after.criteria.cardIds.slice(0,oldN),before.criteria.cardIds);
+  assert.deepEqual(after.criteria.cardIds.slice(oldN),fresh.map(c=>c.id));
+ }
+});
 test('TASK009 A validator rejects duplicate IDs/text, bad types/tags and invalid answers or sources',()=>{
  for(const[code,mutate]of [
   ['id',d=>d.cards[1].id=d.cards[0].id],['normalized-duplicate',d=>d.cards[1].text='  карандаш! '],
