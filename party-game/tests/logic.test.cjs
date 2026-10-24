@@ -948,6 +948,44 @@ test('duel score goal gives the opponent a reply, then extends a tie',()=>{
  assert.equal(h.eval('game.phase'),'results');
  assert.deepEqual(Array.from(h.eval('game.scores')),[15,16]);
 });
+test('smart finish: hopeless reply stops early but a reachable reply remains',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation();
+ h.eval("chooseStartingTeam=()=>0;Object.assign(options,{finishType:'score',targetScore:30,awardTo:'setter',modes:['talk'],complications:false,riskRounds:false});newGame()");
+ assert.equal(h.eval('game.finishPolicyVersion'),1);
+ h.eval('game.roundIndex=1;game.scores=[30,15]');assert.equal(h.eval('matchComplete()'),true);
+ h.eval('game.scores=[30,28]');assert.equal(h.eval('matchComplete()'),true,'Only +1 Words cannot catch +2');
+ h.eval("game.modes=['mime']");assert.equal(h.eval('matchComplete()'),false,'+2 Gesture can draw at 30:28');
+ h.eval('game.scores=[30,27]');assert.equal(h.eval('matchComplete()'),true,'+2 Gesture cannot catch +3');
+ h.eval("game.modes=['approx'];game.scores=[30,29]");assert.equal(h.eval('matchComplete()'),false,'Approx can give the laggard +1');
+ h.eval('game.scores=[30,28]');assert.equal(h.eval('matchComplete()'),true);
+ h.eval('game.scores=[30,30];game.roundIndex=2');assert.equal(h.eval('matchComplete()'),false,'Tie continues for separate tie-break policy');
+ h.eval('game.scores=[31,30]');assert.equal(h.eval('matchComplete()'),true);
+});
+test('smart finish: recipient and risk determine whether a comeback is possible',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation();
+ h.eval("chooseStartingTeam=()=>0;Object.assign(options,{finishType:'score',targetScore:30,awardTo:'guesser',modes:['mime'],riskRounds:false,complications:false});newGame()");
+ h.eval('game.scores=[30,28];game.roundIndex=1');
+ assert.equal(h.eval('matchComplete()'),true,'Next guesser would be the leader, no chance to catch');
+ h.eval('game.roundIndex=3;game.riskRounds=true');
+ assert.equal(h.eval('matchComplete()'),false,'Risk loss by the leader can draw the score');
+ h.eval('game.modes=["approx"];game.riskRounds=false');
+ assert.equal(h.eval('matchComplete()'),true,'Approx +1 cannot overcome +2 gap');
+ h.eval('game.scores=[30,29]');assert.equal(h.eval('matchComplete()'),false);
+});
+test('smart finish: pure pre-reply evaluation preserves RNG and saved plan',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation();
+ h.eval("chooseStartingTeam=()=>0;Object.assign(options,{finishType:'score',targetScore:30,awardTo:'setter',modes:['talk','mime'],difficulty:'mixed',riskRounds:false});newGame()");
+ h.eval("game.roundIndex=1;game.scores=[30,27];game.plannerState={cycleIndex:0,levels:['easy','medium','hard']};");
+ const before=h.eval('JSON.stringify(game)');
+ h.eval('Math.random=()=>{throw Error("finish evaluation consumed RNG")};matchComplete()');
+ assert.equal(h.eval('JSON.stringify(game)'),before);
+});
+test('smart finish: a legacy saved party retains its original even-turn rules',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation();
+ h.eval("chooseStartingTeam=()=>0;Object.assign(options,{finishType:'score',targetScore:30,modes:['talk']});newGame();delete game.finishPolicyVersion;game.roundIndex=1;game.scores=[30,15]");
+ assert.equal(h.eval('matchComplete()'),false);
+ h.eval('game.roundIndex=2');assert.equal(h.eval('matchComplete()'),true);
+});
 test('fixed turn matches always use an equal even number of turns',()=>{
  const h=harness();
  assert.equal(h.eval("sanitizeOptions({finishType:'rounds',rounds:5}).rounds"),6);

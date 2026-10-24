@@ -56,3 +56,55 @@ function awardRecipientIndex(match,setterIndex){
  const setter=match.awardPolicyVersion==null?match.scoringVersion!==2:match.awardTo==='setter';
  return setter?setterIndex:(setterIndex+1)%2;
 }
+
+// New score-finish policy. Missing version retains historical equal-pair endings.
+// This pure check never selects a mode/card or advances any random planner.
+const QUIP_FINISH_POLICY_VERSION=1;
+function finishPolicyVersion(match){
+  if(match?.finishPolicyVersion==null)return null;
+  if(match.finishPolicyVersion!==QUIP_FINISH_POLICY_VERSION)throw Error('Unsupported QUIP finish policy');
+  return match.finishPolicyVersion;
+}
+function scoreReplyReachable(match){
+  // Called after the first of two scheduled turns was settled.
+  // Check whether ANY eligible next round could close the leader's gap.
+  const gap=Math.abs(match.scores[0]-match.scores[1]);
+  if(!gap)return true;
+  const leader=match.scores[0]>match.scores[1]?0:1,laggard=1-leader;
+  const setter=(match.roundIndex+(match.startingTeamIndex??0))%2;
+  const recipient=awardRecipientIndex(match,setter);
+  const rules=ruleSetForGame(match);
+  const difficulty=match.difficulty==='mixed'&&match.plannerVersion!=null?
+    match.plannerState?.levels?.[Math.floor(match.roundIndex/2)%3]:match.difficulty;
+  if(!QUIP_DIFFICULTIES.includes(difficulty))throw Error('Unknown next round difficulty');
+  const pack=match.contentPack?getContentPack(match.contentPack):null;
+  return match.modes.some(id=>{
+    if(pack?.allowedModes&&!pack.allowedModes.includes(id))return false;
+    if(!modeAwardAvailability(id,match).available)return false;
+    const config=modeConfigForGame(match,id);
+    if(config.supportsSharedAward){
+      // One player can be awarded independently while the other gets zero.
+      return rewardForRound(match,id,difficulty,false)>=gap;
+    }
+    const modifier=rules.version>=4&&config.usesModifiers&&
+      (id==='secret'||match.complications&&match.modifierChance>0);
+    const reward=rewardForRound(match,id,difficulty,modifier);
+    if(recipient===laggard&&reward>=gap)return true;
+    // The next recipient can be the leader under guesser-scoring.
+    // A risk failure can then close the gap by subtracting points.
+    const risk=match.riskRounds&&config.allowsRisk&&rules.risk.chance>0&&
+      match.roundIndex>=rules.risk.firstRoundIndex;
+    return recipient===leader&&risk&&
+      Math.min(rules.risk.loss,Math.max(rules.risk.minScore,match.scores[leader]))>=gap;
+  });
+}
+function scoreMatchComplete(match){
+  if(finishPolicyVersion(match)==null){
+    if(match.finishType!=='score')return match.roundIndex>=match.rounds;
+    return match.roundIndex%2===0&&Math.max(...match.scores)>=match.targetScore&&match.scores[0]!==match.scores[1];
+  }
+  if(match.finishType!=='score')return match.roundIndex>=match.rounds;
+  if(Math.max(...match.scores)<match.targetScore||match.scores[0]===match.scores[1])return false;
+  if(match.roundIndex%2===0)return true;
+  return !scoreReplyReachable(match);
+}

@@ -87,11 +87,7 @@ function roundUsesTimer(){
  if(!game?.current)return false;
  return game?.current?.usesTimer??modeConfigForGame(game,game.current.modeId).usesTimer;
 }
-function matchComplete() {
-  if(game.finishType!=='score')return game.roundIndex>=game.rounds;
-  // The second player always has a reply turn; ties continue in pairs.
-  return game.roundIndex%2===0 && Math.max(...game.scores)>=game.targetScore && game.scores[0]!==game.scores[1];
-}
+function matchComplete(){return scoreMatchComplete(game);}
 function currentMode() { return MODE_LIST.find(mode=>mode.id===game.current?.modeId); }
 function getMode(id) { return MODE_LIST.find(m=>m.id===id); }
 function formatTimer(ms) {
@@ -178,7 +174,7 @@ function newGame() {
   game={
     matchId:identity.storeId+':'+identity.sequence,profileMatch:identity,
     teams:[teamA,teamB],scores:[0,0],roundIndex:0,startingTeamIndex:chooseStartingTeam(),
-    ...songPolicy,timerPolicyVersion:QUIP_TIMER_POLICY_VERSION,
+    ...songPolicy,timerPolicyVersion:QUIP_TIMER_POLICY_VERSION,finishPolicyVersion:QUIP_FINISH_POLICY_VERSION,
     taskHistoryVersion:QUIP_TASK_HISTORY_VERSION,taskHistory:startedHistory.history,
     rounds:options.rounds,targetScore:options.targetScore,finishType:options.finishType,
     riskRounds:options.riskRounds,scoringVersion:2,rulesVersion:QUIP_RULE_VERSION,modeConfigVersion:QUIP_MODE_CONFIG_VERSION,
