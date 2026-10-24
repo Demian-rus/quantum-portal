@@ -122,7 +122,7 @@ const PARTY_VOCABULARY=Object.freeze(Object.fromEntries(
 // Lucide-like vector UI controls; illustrated mode assets continue to use WebP.
 // The wheel is a window into a repeating ring, not a strip that ends on the prize.
 
-function render() {
+function render(keepCardFocus=taskCardHasKeyboardFocus()) {
   if(!game||game.phase==='home'){setScene('home');return;}
   if(game.phase==='results'){stopTicking();showResults();return;}
   setScene('game');
@@ -137,6 +137,7 @@ function render() {
   else if(game.phase==='tiebreak')showTiebreak();
   if(game.phase==='countdown'||(game.phase==='play'&&!game.current.paused))startTicking();
   else stopTicking();
+  if(keepCardFocus)focusTaskCard();
 }
 function newGame() {
   if(storageBlocked&&storageProblem!=='corrupt'){toast(storageNotice());return;}
@@ -278,7 +279,11 @@ function setupEvents() {
   $('start-game').addEventListener('click',newGame);
   $('play-content').addEventListener('click',event=>{
     const button=event.target.closest('[data-action]');
-    if(button)handleAction(button.dataset.action);
+    if(button){
+      const keyboardCard=event.detail===0&&button.matches('.challenge-card[data-action="toggle-word"]');
+      handleAction(button.dataset.action);
+      if(keyboardCard)focusTaskCard();
+    }
   });
   $('results-content').addEventListener('click',event=>{
     const button=event.target.closest('[data-action]');

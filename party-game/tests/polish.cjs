@@ -94,7 +94,7 @@ async function isInViewport(page){
    assert.equal(wordFit.wrappers,0,'Task card should contain the prompt only');
    assert.ok(wordFit.textBottom<wordFit.cardBottom-4,
      'Prompt is cut off by the card border: '+JSON.stringify(wordFit));
-   for(const act of ['toggle-word','start-timer','replace-word']){
+   for(const act of ['start-timer','replace-word']){
      assert.equal(await page.locator('.is-task .round-action[data-action="'+act+'"]').count(),1,act+' missing');
    }
    const task=await page.evaluate(()=>{
@@ -132,14 +132,11 @@ async function isInViewport(page){
    assert.ok(Math.abs(task.cardTop-geometry.cardTop)<=2,
      'Card jumped after timer start: '+JSON.stringify({task,geometry}));
    assert.ok(geometry.timerBottom<geometry.cardTop-3,'Timer should be above fixed card');
-   assert.deepEqual(geometry.actions.map(x=>x.action),['toggle-word','wrong-now','correct-now']);
-   assert.ok(geometry.actions[1].centerX<geometry.actions[0].centerX &&
-     geometry.actions[0].centerX<geometry.actions[2].centerX,'Answer controls not ordered');
-   assert.ok(Math.abs(geometry.actions[0].centerX-geometry.viewport/2)<=4,'Hide button not centered');
-   assert.ok(geometry.actions[1].width>geometry.actions[0].width &&
-     geometry.actions[2].width>geometry.actions[0].width,'Side decisions must be larger');
-   assert.equal(geometry.actions[1].color,'rgb(255, 255, 255)');
-   assert.equal(geometry.actions[2].color,'rgb(255, 255, 255)');
+   assert.deepEqual(geometry.actions.map(x=>x.action),['wrong-now','correct-now']);
+   assert.ok(geometry.actions[0].centerX<geometry.viewport/2&&geometry.actions[1].centerX>geometry.viewport/2,'Verdicts must stay on opposite sides');
+   assert.equal(geometry.actions[0].color,'rgb(255, 255, 255)');assert.equal(geometry.actions[1].color,'rgb(255, 255, 255)');
+   assert.equal(await page.locator('.round-action[data-action="toggle-word"]').count(),0);
+   assert.equal(await page.locator('.challenge-card[data-action="toggle-word"]').count(),1);
    await capture(page,{path:'artifacts/quip-polish/'+device.name+'-timer-controls.png'});
    const first=await isInViewport(page);
    assert.ok(first.page<=first.window+2&&first.inside<=first.height+4,'Game scroll overflow '+JSON.stringify(first));

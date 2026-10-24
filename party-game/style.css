@@ -1878,3 +1878,7 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
 /* Shared numeric tie-break uses the standard estimate card, with tappable decisions. */
 .scene--game .is-tiebreak .approx-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px}
 .scene--game .is-tiebreak .approx-actions .button{flex:1 1 160px;min-height:46px}
+
+/* The prompt itself is the sole visibility control; focus does not change geometry. */
+.scene--game button.challenge-card{font-family:inherit;text-align:center;touch-action:manipulation}
+.scene--game button.challenge-card:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
