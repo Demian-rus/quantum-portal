@@ -11,9 +11,11 @@ function renderMatch() {
   $('round-total').hidden=game.finishType==='score';
   $('round-slash').hidden=game.finishType==='score';
   $('match-progress').style.width=game.finishType==='score'?(Math.min(100,Math.max(...game.scores)/game.targetScore*100))+'%':(game.roundIndex/game.rounds*100)+'%';
-  $('match-team-a').classList.toggle('is-turn',guessingTeamIndex()===0);
-  $('match-team-b').classList.toggle('is-turn',guessingTeamIndex()===1);
   const legacy=game.scoringVersion!==2;
+  const activeTeam=legacy?currentTeamIndex():
+    (['play','judge'].includes(game.phase)?guessingTeamIndex():currentTeamIndex());
+  $('match-team-a').classList.toggle('is-turn',activeTeam===0);
+  $('match-team-b').classList.toggle('is-turn',activeTeam===1);
   $('role-a').textContent=legacy?(currentTeamIndex()===0?'ХОД':'ЖДЁТ'):(guessingTeamIndex()===0?'ОТГАДЫВАЕТ':'ЗАГАДЫВАЕТ');
   $('role-b').textContent=legacy?(currentTeamIndex()===1?'ХОД':'ЖДЁТ'):(guessingTeamIndex()===1?'ОТГАДЫВАЕТ':'ЗАГАДЫВАЕТ');
   if(game.current&&modeConfigForGame(game,game.current.modeId).supportsSharedAward){

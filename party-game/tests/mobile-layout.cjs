@@ -54,6 +54,7 @@ function fitsViewport(g,device,stage) {
     headless:true,args:['--no-sandbox']
   });
   try{
+    await require('./round-layout.cjs')(browser,URL);
     await require('./storage-protection.cjs')(browser,URL);
     await require('./task-history-browser.cjs')(browser,URL);
     await require('./modifiers-v2-browser.cjs')(browser,URL);
@@ -175,8 +176,9 @@ function fitsViewport(g,device,stage) {
       assert.ok(description.bottom<readyButton.top-5,
         'Main description collides with the bottom CTA: '+JSON.stringify({device,description,readyButton}));
       const name=at(ready,'#label-team-a'),score=at(ready,'#score-a');
-      assert.ok(kicker.right<=menu.left-2,'header overlaps menu: '+JSON.stringify(ready));
-      assert.ok(kicker.scroll<=kicker.client+2,'header label vertically clipped: '+JSON.stringify(ready));
+      assert.equal(await page.locator('#play-step').evaluate(el=>getComputedStyle(el).clipPath),'inset(50%)',
+        'Phase context should be accessible without duplicating the visible team roles');
+      assert.ok(menu.right<=header.right+1&&menu.left>=header.left,'Menu outside header');
       assert.ok(title.scrollWidth<=title.clientWidth+2,'ready heading horizontally clipped: '+JSON.stringify(ready));
       assert.ok(readyContent.scroll<=readyContent.client+3,'ready main copy vertically clipped: '+JSON.stringify(ready));
       assert.ok(name.right<=score.left+2,'long team name overlaps score: '+JSON.stringify(ready));
