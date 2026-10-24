@@ -154,6 +154,11 @@
       "path": "cards/geography-expansion-v1.json",
       "immutable": false,
       "review": "2026-10-24 editorial batch G1: 50 geography cards (20 easy, 20 medium, 10 hard), source identity and exact duplicates checked against entire active card catalog; new IDs; manual semantic review required."
+    },
+    {
+      "path": "cards/geography-expansion-v2.json",
+      "immutable": false,
+      "review": "G2: 100 manually edited geography prompts; see editorial/geography-expansion-v2-review.md"
     }
   ],
   "questions": [
@@ -238,6 +243,11 @@
       "path": "packs/geography-expansion-v1.json",
       "immutable": false,
       "review": "Geography@5 306 IDs and general@7 5000 IDs pin original eligible IDs plus 50 new geography cards. Historical versions unchanged."
+    },
+    {
+      "path": "packs/geography-expansion-v2.json",
+      "immutable": false,
+      "review": "G2: pins geography@6 and general@8 while retaining historical selections"
     }
   ],
   "legacyCollisions": [
