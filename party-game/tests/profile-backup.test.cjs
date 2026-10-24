@@ -78,8 +78,7 @@ test('backup: conflicting store IDs never silently merge lifetime aggregates',as
  assert.equal(a.storage.get('kvip-player-profiles:v1'),bRaw);
  const safety=JSON.parse(a.storage.get('kvip-player-profiles:import-recovery:v1'));
  assert.equal(safety.raw,aRaw);
- await assert.rejects(()=>a.eval('restoreProfileBackupText(localStorage,other,{allowReplace:true})')
-   .then(result=>{if(result.status==='unchanged')throw Error('same source no-op')}),/same source no-op/);
+ assert.equal((await a.eval('restoreProfileBackupText(localStorage,other,{allowReplace:true})')).status,'unchanged');
 });
 test('backup: old snapshot from same store is classified older and cannot automatically replace newer stats',async()=>{
  const h=harness();profiles(h);
@@ -101,6 +100,31 @@ test('backup: unfinished or completed local game prevents importing unrelated pr
   await assert.rejects(()=>a.eval('restoreProfileBackupText(localStorage,archived,{allowReplace:true})'),/есть партия/);
   assert.equal(a.storage.get('kvip-player-profiles:v1'),before);
  }
+});
+test('backup: optional v74 tiebreak counters survive export and import exactly',async()=>{
+ const h=harness();profiles(h);
+ h.eval("profileStore.totals[profileStore.profiles[0].id].tiebreaks=4;profileStore.totals[profileStore.profiles[0].id].tiebreakWins=3;writeProfileStore(profileStore)");
+ const fresh=harness();fresh.context.archived=await backup(h);
+ await fresh.eval('restoreProfileBackupText(localStorage,archived)');
+ const restored=JSON.parse(fresh.storage.get('kvip-player-profiles:v1'));
+ assert.equal(restored.totals[restored.profiles[0].id].tiebreaks,4);
+ assert.equal(restored.totals[restored.profiles[0].id].tiebreakWins,3);
+});
+test('backup: failed replacement restores prior RAW and retains a verified recovery',async()=>{
+ const a=harness(),b=harness();profiles(a);profiles(b);
+ const old=a.storage.get('kvip-player-profiles:v1');a.context.archived=await backup(b);
+ const set=a.context.localStorage.setItem,get=a.context.localStorage.getItem;
+ let falseRead=false;
+ a.context.localStorage.setItem=(key,value)=>{
+   set(key,value);if(key==='kvip-player-profiles:v1')falseRead=true;
+ };
+ a.context.localStorage.getItem=key=>{
+   if(key==='kvip-player-profiles:v1'&&falseRead){falseRead=false;return 'not persisted'}
+   return get(key);
+ };
+ await assert.rejects(()=>a.eval('restoreProfileBackupText(localStorage,archived,{allowReplace:true})'),/импорт не выполнен/);
+ assert.equal(a.storage.get('kvip-player-profiles:v1'),old);
+ assert.equal(JSON.parse(a.storage.get('kvip-player-profiles:import-recovery:v1')).raw,old);
 });
 test('backup: a failed initial write rolls back a partially written fresh import',async()=>{
  const source=harness();profiles(source);const target=harness();target.context.archived=await backup(source);
