@@ -21,7 +21,9 @@ function closeReportPanel(){
  $('report-backdrop').hidden=true;document.querySelector('.site-shell').inert=false;
  reportView.item=null;reportView.focus=null;
  if(released)render();
- (feedback?document.querySelector('[data-feedback="'+feedback+'"]'):focus)?.focus({preventScroll:true});
+ let target=feedback?document.querySelector('[data-feedback="'+feedback+'"]'):focus;
+ if(!target?.isConnected||target===document.body||!target.getClientRects().length)target=document.querySelector('[data-feedback="report"]')||$('report-card');
+ target?.focus({preventScroll:true});
  return true;
 }
 function setReportError(error){$('report-error').textContent=error?.message||String(error||'');}
@@ -48,8 +50,10 @@ function openCardReport(item,{hidden=false}={}){
 function openCurrentCardReport(){
  try{
   if(!currentReportItem(game))return;
+  const trigger=document.activeElement;
   const held=holdFeedbackTimer();
   openCardReport(currentReportItem(game),{hidden:!!game?.current&&game.current.question==null&&!game.current.visible&&game.phase!=='judge'});
+  reportView.focus=trigger;
   if(held)render();
  }
  catch(error){toast(error.message);}
