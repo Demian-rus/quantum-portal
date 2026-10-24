@@ -256,6 +256,7 @@ function handleAction(action) {
 function setupEvents() {
   registerSetupControls();
   registerProfileControls();
+  registerProfileBackupControls();
   $('new-game-menu').addEventListener('click',openGameType);
   $('game-type-back').addEventListener('click',()=>setScene('home'));
   $('standard-game').addEventListener('click',selectStandardGame);

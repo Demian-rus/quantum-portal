@@ -30,6 +30,7 @@ function armBrowserBackGuard(){
   }catch{backGuardArmed=false;}
 }
 function backWithinKvip(){
+  if(!$('backup-backdrop').hidden){closeBackupPanel();return;}
   if(!$('profile-backdrop').hidden){backProfilePanel();return;}
   if(!$('mode-options-backdrop').hidden){closeModeSettings();return;}
   if(!$('rules-backdrop').hidden){closeRules();return;}
@@ -44,7 +45,7 @@ function backWithinKvip(){
 function onBrowserBack(){
   if(!backGuardArmed)return;
   backGuardArmed=false;
-  if(activeScene==='home'&&$('profile-backdrop').hidden&&$('rules-backdrop').hidden&&$('mode-options-backdrop').hidden){
+  if(activeScene==='home'&&$('backup-backdrop').hidden&&$('profile-backdrop').hidden&&$('rules-backdrop').hidden&&$('mode-options-backdrop').hidden){
     const now=Date.now();
     if(lastHomeBackAt&&now-lastHomeBackAt<2000){
       lastHomeBackAt=0;
@@ -67,6 +68,7 @@ function installBrowserBackNavigation(){
 }
 function openPreferences() {
   setSoundIcon();
+  renderBackupPreferences();
   setScene('preferences');
 }
 // Counts come from the current versioned packs, never from a hard-coded UI total.

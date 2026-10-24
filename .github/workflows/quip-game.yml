@@ -28,7 +28,7 @@ jobs:
           node-version: '22'
       - run: node party-game/scripts/content.cjs check
       - run: node party-game/scripts/modifiers-v2.cjs check
-      - run: node --test party-game/tests/logic.test.cjs party-game/tests/content-foundation.test.cjs party-game/tests/task-history.test.cjs party-game/tests/modifiers-v2.test.cjs party-game/tests/dictionary.test.cjs party-game/tests/music-themes.test.cjs party-game/tests/estimation.test.cjs party-game/tests/estimation-editorial.test.cjs party-game/tests/mode-compatibility.test.cjs party-game/tests/mode-planner.test.cjs party-game/tests/player-profiles.test.cjs party-game/tests/card-visibility.test.cjs
+      - run: node --test party-game/tests/logic.test.cjs party-game/tests/content-foundation.test.cjs party-game/tests/task-history.test.cjs party-game/tests/modifiers-v2.test.cjs party-game/tests/dictionary.test.cjs party-game/tests/music-themes.test.cjs party-game/tests/estimation.test.cjs party-game/tests/estimation-editorial.test.cjs party-game/tests/mode-compatibility.test.cjs party-game/tests/mode-planner.test.cjs party-game/tests/player-profiles.test.cjs party-game/tests/card-visibility.test.cjs party-game/tests/profile-backup.test.cjs
   browser:
     runs-on: ubuntu-latest
     steps:
@@ -39,6 +39,7 @@ jobs:
       - run: npm install --no-save playwright-core@1.55.0
       - run: |
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/quip-http.log 2>&1 &
+      - run: node party-game/tests/profile-backup-browser.cjs
       - run: node party-game/tests/card-visibility-browser.cjs
       - run: node party-game/tests/player-profiles-browser.cjs
       - run: node party-game/tests/refactor-guardrails.cjs
@@ -57,6 +58,7 @@ jobs:
             artifacts/quip-v2
             artifacts/quip-immersive
             artifacts/quip-polish
+            artifacts/quip-backup
             artifacts/quip-card-visibility
             artifacts/quip-profiles
             artifacts/quip-duel

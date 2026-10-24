@@ -1882,3 +1882,25 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
 /* The prompt itself is the sole visibility control; focus does not change geometry. */
 .scene--game button.challenge-card{font-family:inherit;text-align:center;touch-action:manipulation}
 .scene--game button.challenge-card:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+
+/* TASK 016: compact local backups, with reachable controls on short screens. */
+.scene--preferences{overflow-y:auto;overscroll-behavior:contain;}
+.backup-settings{border-top:1px solid #a6b9dc50;padding-top:22px;margin-top:20px;}
+.backup-settings h2{font:800 clamp(16px,4.3vw,21px) var(--font-title);line-height:1.3;margin:0 0 16px;overflow-wrap:anywhere;}
+.backup-settings .button{width:100%;min-height:48px;padding:13px 10px;margin:0 0 10px;font-size:12px;line-height:1.5;white-space:normal;}
+.backup-settings p,.backup-dialog p{line-height:1.6;}
+.backup-dialog{padding:22px;max-height:calc(92 * var(--kvip-locked-vh,1dvh));overflow-wrap:anywhere;}
+.backup-dialog-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:18px;}
+.backup-dialog-header h2{font-size:clamp(20px,5.5vw,28px);line-height:1.2;margin:0;flex:1;}
+.backup-dialog .dialog-close{position:static;flex:0 0 44px;height:44px;line-height:1;border:1px solid #a6b9dc50;border-radius:12px;}
+.backup-dialog h3{font-size:13px;letter-spacing:.04em;margin:22px 0 8px;color:#a8f5ff;}
+.backup-profiles{list-style:none;padding:0;margin:0;}
+.backup-profiles li{padding:10px 0;border-bottom:1px solid #a6b9dc30;}
+.backup-profiles strong{display:flex;align-items:center;gap:10px;overflow-wrap:anywhere;}
+.backup-profiles li>span{display:block;color:#bcc4de;font-size:12px;line-height:1.6;margin-top:6px;}
+.backup-ack{display:flex;align-items:flex-start;gap:10px;line-height:1.6;font-size:14px;padding:12px 0;min-height:44px;cursor:pointer;}
+.backup-ack input{flex:0 0 22px;width:22px;height:22px;accent-color:#a8f5ff;margin-top:2px;}
+.backup-actions{display:flex;flex-direction:column-reverse;gap:10px;margin-top:16px;}
+.backup-dialog .button{min-height:48px;white-space:normal;line-height:1.5;font-size:13px;}
+#backup-confirm-area{border:1px solid #f5df8780;border-radius:14px;padding:12px;margin-top:18px;}
+#backup-recovery{border-top:1px solid #a6b9dc50;padding-top:12px;margin-top:12px;}
