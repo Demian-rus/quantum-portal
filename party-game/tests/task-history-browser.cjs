@@ -1,10 +1,11 @@
 'use strict';
+const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const assert=require('node:assert/strict');
 module.exports=async function taskHistoryBrowser(browser,url){
  const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage(),errors=[];
  page.on('pageerror',error=>errors.push(error.message));
  try{
-  await page.goto(url,{waitUntil:'load'});
+  await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);
   await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();
   await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.complications=false;options.dice=false});
   await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();

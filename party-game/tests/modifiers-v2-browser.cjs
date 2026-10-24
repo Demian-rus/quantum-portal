@@ -1,10 +1,11 @@
 'use strict';
+const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const assert=require('node:assert/strict');
 module.exports=async function modifiersV2Browser(browser,url){
  const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage(),errors=[];
  page.on('pageerror',e=>errors.push(e.message));
  try{
-  await page.goto(url,{waitUntil:'load'});
+  await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);
   await page.evaluate(()=>{soundOn=false;options.modes=['yesno'];options.difficulty='hard';options.awardTo='guesser';options.modifierChance=100;options.dice=false;newGame();delete game.modeCompatibilityVersion;game.awardTo='setter';roll()});
   assert.equal(await page.evaluate(()=>game.current.complication),'');
   assert.equal(await page.locator('[data-action="toggle-word"]').count(),1);

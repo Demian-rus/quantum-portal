@@ -33,11 +33,12 @@ async function geometry(page){
  fs.mkdirSync('artifacts/quip-profiles',{recursive:true});
  const browser=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
  try{
+  await require('./profile-upgrade.cjs')(browser,URL);
   for(const [width,height] of [[320,568],[390,844],[412,915],[1440,900],[844,390]]){
    const context=await browser.newContext({viewport:{width,height}}),page=await context.newPage(),errors=[];
    page.on('pageerror',e=>errors.push(e.message));await page.goto(URL,{waitUntil:'load'});await geometry(page);
    assert.equal(await store(page),null,'Boot creates no fake profiles');
-   if(width===390)await page.screenshot({path:'artifacts/quip-profiles/home.png'});
+   if(width===390)await page.screenshot({path:'artifacts/quip-profiles/home.png',animations:'disabled'});
    await setup(page);assert.equal(await page.locator('#start-game').isDisabled(),true);
    await page.locator('#team-a').click();assert.equal(await page.locator('#profile-empty').isVisible(),true);
    await page.locator('#profile-create-open').click();await page.locator('#profile-name').fill('Отмена');
@@ -54,13 +55,14 @@ async function geometry(page){
    assert.deepEqual(await page.evaluate(()=>[0,1].map(i=>profileColorForMatch(game,i))),['#af98ff','#a8ef9b']);
    const colors=await page.locator('.match-team .team-spot').evaluateAll(nodes=>nodes.map(el=>getComputedStyle(el).backgroundColor));
    assert.deepEqual(colors,['rgb(175, 152, 255)','rgb(168, 239, 155)']);
-   if(width===390)await page.screenshot({path:'artifacts/quip-profiles/active-colors.png'});
-   await answer(page,'both');await answer(page,'none');
+   await page.locator('[data-action="roll"]').click();await page.locator('[data-action="reveal-approx"]').click();
+   if(width===390)await page.screenshot({path:'artifacts/quip-profiles/active-colors.png',animations:'disabled'});
+   await page.locator('[data-action="award-both"]').click();await answer(page,'none');
    assert.equal(await page.locator('#scene-results').isVisible(),true);
    const result=await store(page);assert.equal(result.recent.length,1);assert.equal(result.totals[result.profiles[0].id].draws,1);
    await page.reload({waitUntil:'load'});assert.deepEqual(await store(page),result,'reload cannot count results twice');
    await page.locator('#statistics-menu').click();assert.match(await page.locator('#statistics-metrics').textContent(),/1/);
-   if(width===390)await page.screenshot({path:'artifacts/quip-profiles/statistics.png'});
+   if(width===390)await page.screenshot({path:'artifacts/quip-profiles/statistics.png',animations:'disabled'});
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
    await page.locator('#statistics-profile').click();await page.locator('#profile-create-open').click();await page.locator('#profile-name').fill('Третий');await page.locator('[data-profile-color="orange"]').click();await page.locator('#profile-create-save').click();
    assert.match(await page.locator('#statistics-profile').textContent(),/Третий/);

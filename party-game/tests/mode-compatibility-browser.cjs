@@ -1,9 +1,10 @@
 'use strict';
+const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const assert=require('node:assert/strict');
 module.exports=async function modeCompatibilityBrowser(browser,url){
  const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
  try{
-  await page.goto(url,{waitUntil:'load'});
+  await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);
   await page.evaluate(()=>{soundOn=false;options.modes=['yesno'];options.awardTo='setter';newGame()});assert.equal(await page.evaluate(()=>game),null);
   await page.evaluate(()=>{options=optionsForPartyPreset('classic-duel',3,{awardTo:'setter',modes:['secret','yesno'],dice:false});newGame();roll()});
   assert.deepEqual(await page.evaluate(()=>game.modes),['secret']);assert.equal(await page.evaluate(()=>game.modeCompatibilityVersion),1);assert.notEqual(await page.evaluate(()=>game.current.methodId),'yesno');assert.ok(await page.evaluate(()=>game.current.complicationId));

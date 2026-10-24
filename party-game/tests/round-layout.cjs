@@ -1,4 +1,5 @@
 'use strict';
+const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const assert=require('node:assert/strict');
 const {capture}=require('./screenshots.cjs');
 const devices=[{name:'narrow',width:320,height:568},{name:'phone',width:390,height:844},
@@ -39,7 +40,7 @@ module.exports=async function roundLayout(browser,url){
   const context=await browser.newContext({viewport:{width:device.width,height:device.height},hasTouch:device.width<500});
   const page=await context.newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));
   try{
-   await page.goto(url,{waitUntil:'load'});
+   await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);
    let iconBox,plain;
    for(const mode of modes){
     await fixture(page,mode,mode==='secret'||mode==='talk');

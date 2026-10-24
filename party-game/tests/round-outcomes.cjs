@@ -1,4 +1,5 @@
 'use strict';
+const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -8,8 +9,8 @@ async function fixture(page,{modifier=true,policy='setter',mode='talk',long=fals
  await page.evaluate(({modifier,policy,mode,long,version})=>{
   soundOn=false;options.awardTo=policy;options.modes=[mode];options.dice=false;options.complications=modifier;
   chooseStartingTeam=()=>0;Math.random=()=>0;
-  document.getElementById('team-a').value=long?'ПЕРВАЯСУПЕРДЛИННАЯКОМАНДА':'ПА';
-  document.getElementById('team-b').value=long?'ВТОРАЯСУПЕРДЛИННАЯКОМАНДА':'ДС';
+  selectedProfileIds=[long?'ПЕРВАЯСУПЕРДЛИННАЯКОМАНДА':'ПА',long?'ВТОРАЯСУПЕРДЛИННАЯКОМАНДА':'ДС'].map((name,i)=>
+   (profileStore.profiles.find(p=>p.name===name)||createPlayerProfile(name,i?'cyan':'coral')).id);
   newGame();game.rulesVersion=version;roll();game.dice=true;options.dice=true;persist();render();
  },{modifier,policy,mode,long,version});
  await page.locator('#scene-game').evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{}))));
@@ -51,7 +52,7 @@ module.exports=async function outcomes(browser,url){
   const context=await browser.newContext({viewport:{width:device.width,height:device.height},deviceScaleFactor:device.name==='phone'?2:1});
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   try{
-   await page.goto(url,{waitUntil:'load'});
+   await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);
    await fixture(page,{modifier:false});const plain=await controls(page,'play',false);
    const plainCard=await page.locator('.round-fixed-card').boundingBox();
    await expire(page);const plainJudge=await controls(page,'judge',false);

@@ -1,4 +1,5 @@
 'use strict';
+const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {capture}=require('./screenshots.cjs');
 const ledger=require('../content/editorial/music-theme-review.json');
@@ -20,7 +21,7 @@ async function ui(browser,url,device){
  const context=await browser.newContext({viewport:{width:device.width,height:device.height},hasTouch:device.width<500});
  const page=await context.newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));
  try{
-  await page.goto(url,{waitUntil:'load'});await setup(page);
+  await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await setup(page);
   await page.evaluate(()=>{soundOn=false;Object.assign(options,{modes:['sing'],difficulty:'hard',dice:false,complications:false,riskRounds:false});renderOptions()});
   await page.locator('#go-advanced').click();await page.locator('#mode-settings summary').click();
   await page.locator('#scene-advanced').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(animation=>animation.finished.catch(()=>{}))));
@@ -100,6 +101,7 @@ async function ui(browser,url,device){
   await page.evaluate(()=>{options.dice=false;Math.random=()=>0});await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();
   assert.equal(language(await selected(page)),'ru');
   await page.evaluate(()=>{game.phase='judge';judge(false);Math.random=()=>.999999;roll()});assert.equal(language(await selected(page)),'en');
+  await provisionProfiles(page);
   await page.locator('#exit-game').click();await setup(page);await openMode(page);await sources(page,['en']);
   const active=await page.evaluate(()=>JSON.stringify(game));
   await sources(page,['ru']);assert.equal(await page.evaluate(()=>JSON.stringify(game)),active,'Menu changed active party');
@@ -119,7 +121,7 @@ async function upgrade(browser,url){
  const {execFileSync}=require('node:child_process'),root=path.resolve(__dirname,'../..'),baseline='4001c01aecb6e088da19c94a0197768552736e81';
  const git=args=>execFileSync('git',args,{cwd:root,timeout:30000,maxBuffer:4*1024*1024,stdio:['ignore','pipe','pipe']});
  try{git(['cat-file','-e',baseline+'^{commit}'])}catch{git(['fetch','--depth=1','origin',baseline])}
- const files=['sw.js','index.html','style.css','app.js','session-restoration.js','setup-view.js','setup-controls.js','menu-navigation.js','match-views.js','timer-view.js','round-presentation.js','round-selection.js','content-packs.js','round-views.js','modifiers-v2.js'];
+ const files=historicalRuntimeFiles(git,baseline,['sw.js','index.html','style.css','app.js','session-restoration.js','setup-view.js','setup-controls.js','menu-navigation.js','match-views.js','timer-view.js','round-presentation.js','round-selection.js','content-packs.js','round-views.js','modifiers-v2.js']);
  const current=new Map(files.map(name=>[name,fs.readFileSync(path.join(root,'party-game',name))]));
  const previous=new Map(files.map(name=>[name,git(['show',baseline+':party-game/'+name])]));
  const cache=source=>source.toString().match(/const CACHE='([^']+)'/)[1],oldCache=cache(previous.get('sw.js')),newCache=cache(current.get('sw.js'));
@@ -127,7 +129,7 @@ async function upgrade(browser,url){
  const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));
  try{
   write(previous);for(const name of files)fs.utimesSync(path.join(root,'party-game',name),new Date('2026-01-01'),new Date('2026-01-01'));
-  await page.goto(url,{waitUntil:'load'});await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
+  await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
   assert.equal(await page.evaluate(key=>caches.has(key),oldCache),true);
   await page.evaluate(()=>{soundOn=false;Object.assign(options,{modes:['sing'],difficulty:'hard',dice:false,complications:false});newGame();roll();game.dice=true;options.dice=true;persist()});
   await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
@@ -143,6 +145,7 @@ async function upgrade(browser,url){
   assert.equal(await page.evaluate(()=>JSON.stringify(game)),snapshot.game);assert.equal(await page.evaluate(()=>JSON.stringify(taskMemory)),snapshot.memory);
   assert.equal(await page.evaluate(()=>localStorage.getItem(STORAGE_KEY)),snapshot.raw);
   assert.deepEqual(await page.evaluate(()=>options),{...JSON.parse(snapshot.options),modeSettings:{sing:{songLanguages:['ru']}}});
+  await provisionProfiles(page);
   await page.locator('#exit-game').click();await setup(page);await openMode(page);await sources(page,['en']);
   assert.equal(await page.evaluate(()=>JSON.stringify(game)),snapshot.game);
   await page.locator('#mode-options-done').click();await page.locator('#advanced-done').click();await page.locator('#setup-back').click();await page.locator('#game-type-back').click();

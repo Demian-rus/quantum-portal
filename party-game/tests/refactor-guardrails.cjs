@@ -150,6 +150,7 @@ async function settingsReload(page){
  await page.reload({waitUntil:'load'});await scene(page,'home');
  const again=await snapshot(page);
  assert.deepEqual(again.options,guesser.options);assert.equal(again.raw,guesser.raw);assert.deepEqual(again.probe.writes,[]);
+ await provisionProfiles(page);
  await standard(page);await advanced(page);await fold(page,'mode-settings');
  assert.equal(await danetki.isDisabled(),false);assert.equal(await danetki.isChecked(),true);
  await page.locator('#advanced-done').click();await page.locator('#start-game').click();await scene(page,'game');

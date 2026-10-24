@@ -94,3 +94,57 @@ test('statistics: 10,000 matches retain lifetime totals, cap recent results, rej
  assert.equal(h.eval('profileStore.recent.length'),100);assert.equal(h.eval('profileStore.totals[profileStore.profiles[0].id].wins'),10000);
  const bytes=Buffer.byteLength(h.storage.get('kvip-player-profiles:v1'));assert.ok(bytes<40000,'archive '+bytes+' bytes');console.log('10,000 matches / 3 profiles:',bytes,'UTF-8 bytes');
 });
+test('statistics integration: real V5 settlement routes either recipient, full Blitz, and Secret methods',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs');
+ for(const mode of ['talk','secret','blitz'])for(const award of ['setter','guesser']){
+  const h=createSimulation();h.context.mode=mode;h.context.award=award;
+  h.eval(`chooseStartingTeam=()=>0;Object.assign(options,{modes:[mode],awardTo:award,finishType:'rounds',rounds:2,dice:false,complications:true,modifierChance:100});newGame();
+   roll();if(mode==='blitz')game.current.blitzCorrect=3;game.phase='judge';judge(true,false);
+   roll();if(mode==='blitz')game.current.blitzCorrect=2;game.phase='judge';judge(false);`);
+  assert.equal(h.eval('game.phase'),'results');assert.equal(h.eval('profileResultProblem'),null);
+  const data=plain(h.eval('game')),archive=JSON.parse(h.storage.get('kvip-player-profiles:v1'));
+  assert.equal(archive.recent.length,1);assert.deepEqual(archive.recent[0].scores,data.scores);
+  for(let i=0;i<2;i++){
+   const total=archive.totals[data.profileMatch.participants[i].id];assert.equal(total.points,data.scores[i]);assert.equal(total.matches,1);
+   assert.equal(total.modes[mode].rounds,2);assert.equal(total.modes[mode].success,1);
+   if(mode==='secret')assert.equal(Object.values(total.modes.secret.methods).reduce((a,b)=>a+b,0),2);
+  }
+  const raw=h.storage.get('kvip-player-profiles:v1');h.eval('showResults();render();showResults();saveCompletedProfileResult()');assert.equal(h.storage.get('kvip-player-profiles:v1'),raw);
+ }
+});
+test('statistics integration: real risk loss is signed and score/round completion use the engine',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs');
+ for(const finishType of ['score','rounds']){
+  const h=createSimulation();h.context.finishType=finishType;
+  h.eval(`chooseStartingTeam=()=>0;Object.assign(options,{modes:['talk'],awardTo:'setter',finishType,rounds:4,dice:false,complications:false});newGame();if(finishType==='score')game.targetScore=2;
+   for(let i=0;i<2;i++){roll();game.phase='judge';judge(true)}
+   roll();game.current.risk=true;game.phase='judge';judge(false);
+   roll();game.phase='judge';judge(true);`);
+  assert.equal(h.eval('game.phase'),'results');assert.deepEqual(Array.from(h.eval('game.scores')),[0,2]);
+  assert.equal(h.eval('game.history[2].awarded'),-1);assert.equal(h.eval('profileResultProblem'),null);
+  assert.equal(h.eval('profileStore.totals[game.profileMatch.participants[0].id].modes.talk.points'),0);
+  assert.equal(h.eval('profileStore.totals[game.profileMatch.participants[1].id].wins'),1);
+ }
+});
+test('statistics integration: failed commit blocks discard, reload retries; color snapshots stay fixed',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation();
+ h.eval(`chooseStartingTeam=()=>0;Object.assign(options,{modes:['approx'],finishType:'rounds',rounds:2,dice:false});newGame();
+  roll();revealApprox();awardApprox('both');`);
+ const set=h.context.localStorage.setItem;h.context.localStorage.setItem=(key,value)=>{if(key==='kvip-player-profiles:v1')throw Error('quota');return set(key,value);};
+ h.eval(`roll();revealApprox();awardApprox('none');backToMenu();handleAction('again')`);
+ assert.equal(h.eval('game.phase'),'results');assert.ok(h.eval('profileResultProblem'));
+ assert.equal(h.eval('profileStore.recent.length'),0);
+ const restored=createSimulation(2,h.storage);assert.equal(restored.eval('profileResultProblem'),null);assert.equal(restored.eval('profileStore.recent.length'),1);
+ const raw=h.storage.get('kvip-player-profiles:v1');restored.eval(`profileStore.profiles[0].color='blue';writeProfileStore(profileStore)`);
+ assert.equal(restored.eval('profileColorForMatch(game,0)'),'#ff827e');assert.notEqual(h.storage.get('kvip-player-profiles:v1'),raw);
+});
+test('statistics integration: missing or future profile archive does not block a legacy Continue or touch RAW',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs'),source=createSimulation();source.eval('newGame();delete game.profileMatch;delete game.matchId;persist()');
+ const raw=source.storage.get('iskra-party:v1');
+ for(const archive of [null,'{"version":99}']){
+  const storage=new Map([['iskra-party:v1',raw]]);if(archive!==null)storage.set('kvip-player-profiles:v1',archive);
+  const restored=createSimulation(3,storage);restored.eval('continueGame()');assert.equal(restored.eval('activeScene'),'game');
+  assert.equal(restored.eval('game.profileMatch'),undefined);assert.equal(storage.get('iskra-party:v1'),raw);
+  assert.equal(storage.get('kvip-player-profiles:v1')??null,archive);
+ }
+});
