@@ -1962,3 +1962,8 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
  .scene--game .stable-round .round-top--timer .timer-ring{width:52px;height:52px;min-height:48px}
  .scene--game .stable-round .blitz-status{min-height:14px;padding:0 8px;line-height:1.2}
 }
+/* Unit metadata stays visible even when an exceptional question needs scrolling. */
+.approx-unit{flex:0 0 auto;margin:0;color:#b1f4ff;font-size:12px;line-height:1.4;overflow-wrap:anywhere}
+.approx-unit span{font-weight:800;letter-spacing:.03em}.approx-unit strong{font-size:16px}
+.approx-card:not(.is-revealed){gap:8px}
+@media(max-height:640px){.approx-card:not(.is-revealed) .approx-question{font-size:17px;line-height:1.3}.approx-unit{font-size:11px}.approx-unit strong{font-size:14px}}

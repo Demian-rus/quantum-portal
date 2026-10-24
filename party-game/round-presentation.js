@@ -133,6 +133,10 @@ function taskMarkup(hidden) {
     (hidden?'НАЖМИ, ЧТОБЫ ОТКРЫТЬ':word)+'</span></button>';
 }
 
+function approxUnitMarkup(q){
+ const unit=typeof q?.unit==='string'?q.unit.trim():'';
+ return unit?'<p class="approx-unit"><span>ЕДИНИЦА ОТВЕТА:</span> <strong>'+escapeHTML(unit)+'</strong></p>':'';
+}
 function showApprox(){
  const c=game.current,q=c.question,revealed=game.phase==='judge';
  $('play-content').className='play-inner is-approx';
@@ -142,6 +146,7 @@ function showApprox(){
   '<p class="play-subtitle">'+(revealed?'Решите вместе, кому начислить очки.':'Назовите ответы вслух, затем откройте правильный.')+'</p></div>'+
   '<div class="approx-card'+(revealed?' is-revealed':'')+'">'+
   (revealed?'<div class="approx-answer"><span>ПРАВИЛЬНЫЙ ОТВЕТ</span><strong>'+escapeHTML(q.answer)+' '+escapeHTML(q.unit||'')+'</strong></div>':'')+
+  (!revealed?approxUnitMarkup(q):'')+
   '<div class="approx-copy" tabindex="0" aria-label="Вопрос и пояснение"><p class="approx-question">'+escapeHTML(q.question)+'</p>'+
    (revealed&&q.note?'<p class="approx-note">'+escapeHTML(q.note)+'</p>':'')+'</div></div>'+
   '<div class="approx-actions">'+(revealed?
