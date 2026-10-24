@@ -101,6 +101,24 @@ test('statistics integration: failed START preserves old durable RAW and previou
  assert.notEqual(h.eval('JSON.stringify(game)'),beforeGame);
  assert.equal(h.eval('game.profileMatch.sequence'),3);
 });
+test('statistics integration: failed quick replay keeps the completed result and its stats',()=>{
+ const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation();
+ h.eval(`Object.assign(options,{modes:['approx'],finishType:'rounds',rounds:2,dice:false});newGame();
+  roll();revealApprox();awardApprox('both');roll();revealApprox();awardApprox('none');`);
+ assert.equal(h.eval('game.phase'),'results');
+ const beforeRaw=h.storage.get('iskra-party:v1');
+ const beforeGame=h.eval('JSON.stringify(game)'),beforeStats=h.storage.get('kvip-player-profiles:v1');
+ const set=h.context.localStorage.setItem;
+ h.context.localStorage.setItem=(key,value)=>{if(key==='iskra-party:v1')throw Error('quota');return set(key,value)};
+ h.eval('handleAction("again")');
+ assert.equal(h.eval('game.phase'),'results');
+ assert.equal(h.eval('JSON.stringify(game)'),beforeGame);
+ assert.equal(h.storage.get('iskra-party:v1'),beforeRaw);
+ assert.equal(JSON.parse(h.storage.get('kvip-player-profiles:v1')).settledThrough,1);
+ h.context.localStorage.setItem=set;h.eval('handleAction("again")');
+ assert.equal(h.eval('game.phase'),'ready');
+ assert.equal(h.eval('profileStore.totals[profileStore.profiles[0].id].matches'),1);
+});
 test('statistics integration: failed START readback rolls back the exact prior RAW',()=>{
  const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation();
  h.eval('newGame()');const beforeRaw=h.storage.get('iskra-party:v1');
