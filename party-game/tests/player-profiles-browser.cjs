@@ -26,7 +26,8 @@ async function store(page){return page.evaluate(()=>JSON.parse(localStorage.getI
 async function geometry(page){
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'horizontal overflow');
  const boxes=await page.locator('#scene-home .home-menu button,#other-games-menu').evaluateAll(nodes=>nodes.map(el=>{const r=el.getBoundingClientRect();return {top:r.top,bottom:r.bottom,left:r.left,right:r.right,height:r.height};}));
- for(const rect of boxes)assert.ok(rect.top>=0&&rect.bottom<=await page.evaluate(()=>innerHeight)&&rect.height>=44,JSON.stringify(boxes));
+ // CSS pixel bounding boxes can round 44px to 43.99997px in Chromium; do not mistake floating-point noise for a too-small tap target.
+ for(const rect of boxes)assert.ok(rect.top>=0&&rect.bottom<=await page.evaluate(()=>innerHeight)&&rect.height>=43.999,JSON.stringify(boxes));
  assert.ok(boxes[3].bottom<=boxes[4].top,'Settings overlaps Other games');
 }
 (async()=>{
