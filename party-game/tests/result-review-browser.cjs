@@ -29,6 +29,12 @@ async function rectCheck(page,id){
   for(const [id,width,height]of [['320',320,568],['390',390,844],['landscape',844,390]]){
    const ctx=await browser.newContext({viewport:{width,height},hasTouch:true,deviceScaleFactor:2.625}),page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
    await page.goto(URL);await provisionProfiles(page);await start(page);
+   await page.evaluate(()=>{game.dice=true;persist()});await page.locator('[data-action="roll"]').click();
+   assert.equal(await page.evaluate(()=>game.phase),'rolling');
+   const rolling=await page.evaluate(()=>JSON.stringify({card:game.current,used:game.used,plan:game.plannerState,mode:game.modePlannerState}));
+   await page.locator('#match-team-a').click();assert.equal(await page.evaluate(()=>game.phase),'task');await page.locator('#result-history-cancel').click();
+   assert.equal(await page.evaluate(()=>JSON.stringify({card:game.current,used:game.used,plan:game.plannerState,mode:game.modePlannerState})),rolling,'History during the reel retains the selected task and planner');
+   assert.equal(await page.locator('.challenge-card').isVisible(),true);await start(page);
    await settle(page);await settle(page);
    const stored=await page.evaluate(()=>({scores:game.scores,stats:localStorage.getItem(QUIP_PROFILES_KEY)}));
    await page.locator('#match-team-a').click();geometry.push({id,...await rectCheck(page,id)});

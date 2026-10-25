@@ -34,6 +34,8 @@ test('Blitz uses real 0/partial/full and modifier outcomes; Approx awards neithe
  assert.deepEqual(plain(b.eval('reviewChoices(game.history[0])')),['failed','0','1','2','3','base']);
  const recipient=b.eval('game.history[0].recipientIndex');
  for(const [choice,expected] of [['0',0],['1',0],['2',0],['3',3],['base',2]]){edit(b,0,choice);assert.equal(b.eval('game.scores['+recipient+']'),expected,choice);}
+ edit(b,0,'3');edit(b,0,'failed');assert.equal(b.eval('reviewChoice(game.history[0])'),'failed');assert.equal(b.eval('game.history[0].awarded'),0);
+ edit(b,0,'0');assert.equal(b.eval('reviewChoices(game.history[0]).includes("failed")'),false,'No duplicate rejected outcome for zero/partial Blitz');
  const a=start({mode:'approx'});a.eval("roll();revealApprox();awardApprox('none')");
  for(const [choice,scores]of [['a',[1,0]],['b',[0,1]],['both',[1,1]],['none',[0,0]]])assert.deepEqual(plain(edit(a,0,choice)),scores);
 });
@@ -218,4 +220,12 @@ test('an early correction suspends the selected live task; undoing victory resum
  const actual=plain(restored.eval('game.current')),original=JSON.parse(selected);delete original.feedbackHold;original.paused=false;original.remainingMs=null;original.deadline=actual.deadline;
  assert.deepEqual(actual,original);assert.ok(restored.eval('game.current.deadline-Date.now()')>remain-1000);
  assert.equal(restored.eval('JSON.stringify({used:game.used,history:game.taskHistory,planner:game.plannerState,mode:game.modePlannerState})'),source);assert.equal(restored.eval('profileStore.recent.length'),0);
+});
+test('opening history during the reel retains its selected task and cannot strand a stale animation callback',()=>{
+ const h=start(),callbacks=[];h.context.setTimeout=fn=>{callbacks.push(fn);return callbacks.length};
+ h.eval("game.dice=true;roll();$('report-backdrop').hidden=true");assert.equal(h.eval('game.phase'),'rolling');
+ const selected=h.eval('JSON.stringify({current:game.current,used:game.used,planner:game.plannerState,mode:game.modePlannerState})');
+ h.eval("Math.random=()=>{throw Error('History rerolled the selected task')};openResultHistory(0);closeResultHistory(false)");
+ assert.equal(h.eval('game.phase'),'task');for(const fn of callbacks)fn();assert.equal(h.eval('game.phase'),'task');
+ assert.equal(h.eval('JSON.stringify({current:game.current,used:game.used,planner:game.plannerState,mode:game.modePlannerState})'),selected);
 });

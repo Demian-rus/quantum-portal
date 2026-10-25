@@ -18,7 +18,7 @@ function reviewChoices(row){
  if(row.mode==='blitz'){
   const n=blitzRequiredForRound(s.rules,r);
   if(!Number.isInteger(n)||n<1||n>5)throw Error('Неверный размер Блица.');
-  return ['failed',...Array.from({length:n+1},(_,i)=>String(i)),...(split?['base']:[])];
+  return [...(s.result.blitzCorrect===n||rules.legacyBlitz?['failed']:[]),...Array.from({length:n+1},(_,i)=>String(i)),...(split?['base']:[])];
  }
  return ['failed',...(split?['base']:[]),'complete'];
 }

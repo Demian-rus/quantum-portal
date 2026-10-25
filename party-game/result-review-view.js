@@ -60,7 +60,7 @@ function openResultHistory(player){
   const editable=resultReviewPolicy(game)&&!game.reviewConfirmed;
   if(!game.resultEditor)holdFeedbackTimer();
   if(editable&&!game.resultEditor){
-   const next=reviewCopy(game);next.resultEditor={version:1,playerIndex:player,history:reviewCopy(game.history),tiebreak:reviewCopy(game.tiebreak??null)};next.reviewRevision++;
+   const next=reviewCopy(game);if(next.phase==='rolling')next.phase='task';next.resultEditor={version:1,playerIndex:player,history:reviewCopy(game.history),tiebreak:reviewCopy(game.tiebreak??null)};next.reviewRevision++;
    commitReviewState(next);stopTicking();
   }
   $('result-history-error').textContent='';$('result-history-backdrop').dataset.player=String(player);$('result-history-backdrop').hidden=false;
