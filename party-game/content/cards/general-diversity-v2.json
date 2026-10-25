@@ -31,11 +31,11 @@
   },
   {
     "id": "word-041004",
-    "text": "РАКУШКА",
+    "text": "КОСУЛЯ",
     "type": "word",
     "difficulty": "easy",
     "categories": [
-      "nature"
+      "animals"
     ],
     "pack": "general-diversity-v2"
   },
@@ -61,7 +61,7 @@
   },
   {
     "id": "word-041007",
-    "text": "КЛОУН",
+    "text": "ЖОНГЛЁР",
     "type": "word",
     "difficulty": "easy",
     "categories": [
@@ -101,7 +101,7 @@
   },
   {
     "id": "word-041011",
-    "text": "ЛИМОНАД",
+    "text": "КОМПОТ",
     "type": "word",
     "difficulty": "easy",
     "categories": [
@@ -181,21 +181,21 @@
   },
   {
     "id": "phrase-041003",
-    "text": "ПЕРВОЕ СВИДАНИЕ",
+    "text": "СПАСАТЕЛЬНЫЙ ЖИЛЕТ",
     "type": "phrase",
     "difficulty": "easy",
     "categories": [
-      "everyday"
+      "marine"
     ],
     "pack": "general-diversity-v2"
   },
   {
     "id": "phrase-041004",
-    "text": "СОЛНЕЧНОЕ ЗАТМЕНИЕ",
+    "text": "ПОИСК СОКРОВИЩ",
     "type": "phrase",
     "difficulty": "easy",
     "categories": [
-      "space"
+      "culture"
     ],
     "pack": "general-diversity-v2"
   },
@@ -361,11 +361,11 @@
   },
   {
     "id": "phrase-041005",
-    "text": "ПРОПАВШИЙ БАГАЖ",
+    "text": "КИТАЙСКИЙ ФОНАРИК",
     "type": "phrase",
     "difficulty": "medium",
     "categories": [
-      "transport"
+      "culture"
     ],
     "pack": "general-diversity-v2"
   },
@@ -381,11 +381,11 @@
   },
   {
     "id": "phrase-041007",
-    "text": "ТАЙНЫЙ АГЕНТ",
+    "text": "КРУГОВОРОТ ВОДЫ",
     "type": "phrase",
     "difficulty": "medium",
     "categories": [
-      "culture"
+      "science"
     ],
     "pack": "general-diversity-v2"
   },
