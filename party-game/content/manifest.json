@@ -149,6 +149,41 @@
       "path": "cards/animals-v1.json",
       "immutable": false,
       "review": "TASK011 Animals: 216 unique authored cards; existing species and animal characters reused by explicit IDs, original historical files unchanged."
+    },
+    {
+      "path": "cards/geography-expansion-v1.json",
+      "immutable": false,
+      "review": "2026-10-24 editorial batch G1: 50 geography cards (20 easy, 20 medium, 10 hard), source identity and exact duplicates checked against entire active card catalog; new IDs; manual semantic review required."
+    },
+    {
+      "path": "cards/geography-expansion-v2.json",
+      "immutable": false,
+      "review": "G2: 100 manually edited geography prompts; see editorial/geography-expansion-v2-review.md"
+    },
+    {
+      "path": "cards/science-expansion-v1.json",
+      "immutable": false,
+      "review": "Science S1: 50 new manually selected prompts; see editorial/science-expansion-v1-review.md."
+    },
+    {
+      "path": "cards/science-expansion-v2.json",
+      "immutable": false,
+      "review": "S2: 50 science concept prompts with independent ID block 034; editorial review in science-expansion-v2-review.md"
+    },
+    {
+      "path": "cards/science-expansion-v3.json",
+      "immutable": false,
+      "review": "Science S3: 50 unique science cards and an independent editorial review"
+    },
+    {
+      "path": "cards/idiom-expansion-v1.json",
+      "immutable": false,
+      "review": "Idioms I1 editorial review and normalized dedupe"
+    },
+    {
+      "path": "cards/idiom-expansion-v2.json",
+      "immutable": false,
+      "review": "Idioms I2 50 new expressions with editorial review"
     }
   ],
   "questions": [
@@ -228,6 +263,41 @@
       "path": "packs/animals-v2.json",
       "immutable": false,
       "review": "Animals@1 explicitly pinned IDs: no automatic inference of tags on historical records; general@6 unchanged."
+    },
+    {
+      "path": "packs/geography-expansion-v1.json",
+      "immutable": false,
+      "review": "Geography@5 306 IDs and general@7 5000 IDs pin original eligible IDs plus 50 new geography cards. Historical versions unchanged."
+    },
+    {
+      "path": "packs/geography-expansion-v2.json",
+      "immutable": false,
+      "review": "G2: pins geography@6 and general@8 while retaining historical selections"
+    },
+    {
+      "path": "packs/science-expansion-v1.json",
+      "immutable": false,
+      "review": "Science S1: science@5 (432) and general@9 (5150), earlier versions unchanged."
+    },
+    {
+      "path": "packs/science-expansion-v2.json",
+      "immutable": false,
+      "review": "S2 pins science@6 (482), general@10 (5200), preserving all past selections."
+    },
+    {
+      "path": "packs/science-expansion-v3.json",
+      "immutable": false,
+      "review": "Science S3 pins science@7 (532), general@11 (5250), all historical IDs preserved"
+    },
+    {
+      "path": "packs/idiom-expansion-v1.json",
+      "immutable": false,
+      "review": "Idioms I1 general@12=5300. Prior editions remain pinned"
+    },
+    {
+      "path": "packs/idiom-expansion-v2.json",
+      "immutable": false,
+      "review": "Idioms I2 general@13 (5350) pinned with all historical versions retained"
     }
   ],
   "legacyCollisions": [

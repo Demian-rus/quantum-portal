@@ -72,6 +72,9 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('profile-backup-view.js'),context);
    vm.runInContext(read('card-reports.js'),context);
    vm.runInContext(read('card-reports-view.js'),context);
+   vm.runInContext(read('card-feedback.js'),context);
+   vm.runInContext(read('feedback-clock.js'),context);
+   vm.runInContext(read('card-feedback-view.js'),context);
    vm.runInContext(read('app.js'),context);
    vm.runInContext(`if(!profileStore&&!profileStoreProblem&&loadedSaveRaw===null){createPlayerProfile('Молнии','coral');createPlayerProfile('Кометы','cyan');}
     if(profileStore&&!selectedPlayerProfiles())selectedProfileIds=profileStore.profiles.slice(0,2).map(p=>p.id);`,context);
@@ -1861,13 +1864,13 @@ test('live catalog counters use active pack IDs and not the historical archive',
  h.eval('openGameType()');
  const general=h.elements.get('standard-content-count').textContent.replace(/\s/g,' ');
  const thematic=h.elements.get('thematic-content-count').textContent.replace(/\s/g,' ');
- assert.equal(general,'(4 950 заданий)');
+ assert.equal(general,'(5 350 заданий)');
  const expectedIds=h.eval('new Set(listThematicPacks(options).filter(entry=>entry.pack.enabled&&entry.pack.criteria.cardIds.length).flatMap(entry=>entry.pack.criteria.cardIds)).size');
  assert.equal(thematic.replace(/[^\d]/g,''),String(expectedIds));
  h.eval('openThemes()');
  const markup=h.elements.get('theme-list').innerHTML;
- assert.ok(markup.includes('>256</span>'), 'Geography shows the catalog count');
- assert.ok(markup.includes('>382</span>'), 'Science shows the catalog count');
+ assert.ok(markup.includes('>406</span>'), 'Geography shows the catalog count');
+ assert.ok(markup.includes('>532</span>'), 'Science shows the catalog count');
  assert.ok(!markup.includes('Выбрать тему'), 'No verbose labels for enabled themes');
  assert.ok(markup.includes('Скоро'), 'Future themes remain marked soon');
  assert.equal(h.eval('options.contentPack.id'),'general','Navigation must not switch packs or modify saved settings');
@@ -2313,7 +2316,7 @@ test('TASK008 both thematic registries have no dead-end mode, type or difficulty
  const {checkSettings}=require('../scripts/balance-audit.cjs');assert.deepEqual(checkSettings(),{checked:3048,deadEnds:0});
  const h=harness();h.eval('selectTheme("science",2);options.modes=["secret"];options.difficulty="mixed";options.dice=false;newGame();delete game.modeCompatibilityVersion;game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
  const results=h.eval(`(()=>{const methods=new Set(),seen=[];for(let i=0;i<120;i++){const c=rollOutcome();methods.add(c.methodId);if(!c.complication||c.methodId==='sing')return false;
- const pool=getPackCardPool(game.contentPack,getMode(c.methodId).kind,c.difficulty,game.promptTypes);if(!pool.some(row=>row.text===c.word)||!pool.every(row=>row.pack==='science-v2'))return false;seen.push(c.difficulty);game.roundIndex++}return {methods:[...methods].sort(),counts:['easy','medium','hard'].map(l=>seen.filter(x=>x===l).length)}})()`);
+ const pool=getPackCardPool(game.contentPack,getMode(c.methodId).kind,c.difficulty,game.promptTypes);if(!pool.some(row=>row.text===c.word)||!pool.every(row=>row.categories.includes('science')&&getContentPack(game.contentPack).criteria.cardIds.includes(row.id)))return false;seen.push(c.difficulty);game.roundIndex++}return {methods:[...methods].sort(),counts:['easy','medium','hard'].map(l=>seen.filter(x=>x===l).length)}})()`);
  assert.deepEqual(Array.from(results.methods),['draw','mime','talk','yesno']);assert.deepEqual(Array.from(results.counts),[40,40,40]);
 });
 test('TASK008 balance diagnostic is reproducible and distinguishes optional, forced and absent modifiers',()=>{
@@ -2357,7 +2360,7 @@ test('TASK013 B historical paused Mixed and active v69-v71 snapshots keep contro
   const again=harness(store);again.eval('continueGame();render()');assert.equal(again.eval('JSON.stringify(game)'),before);assert.equal(store.get('iskra-party:v1'),raw);assert.equal(writes,0);
   assert.equal(again.eval('game.timerPolicyVersion'),undefined);
   if(phase==='paused'){
-   assert.match(again.elements.get('play-content').innerHTML,/data-action="resume"/);const remaining=again.eval('game.current.remainingMs');again.eval('resumeTimer()');
+   assert.equal(again.elements.get('timer-pause-control').dataset.action,'resume');assert.equal(again.elements.get('timer-pause-control').hidden,false);const remaining=again.eval('game.current.remainingMs');again.eval('resumeTimer()');
    assert.equal(again.eval('game.current.paused'),false);assert.ok(Math.abs(again.eval('game.current.deadline')-Date.now()-remaining)<1000);
   }
  }

@@ -11,6 +11,31 @@ async function isInViewport(page){
   return {page:document.documentElement.scrollHeight,window:window.innerHeight,inside:v.scrollHeight,height:v.clientHeight};
  });
 }
+async function roundInvariant(page){
+ return page.evaluate(()=>{
+  const snapshot=JSON.parse(JSON.stringify(game));
+  for(const key of ['deadline','remainingMs','paused','feedbackHold'])delete snapshot.current[key];
+  return {game:snapshot,memory:JSON.stringify(taskMemory),profiles:localStorage.getItem(QUIP_PROFILES_KEY),reports:localStorage.getItem(QUIP_CARD_REPORTS_KEY),approvals:localStorage.getItem(QUIP_CARD_APPROVALS_KEY)};
+ });
+}
+async function pauseAndRatingsGeometry(page,allowed){
+ const pause=page.locator('#timer-pause-control');
+ assert.equal(await pause.isVisible(),allowed,'Ordinary pause eligibility');
+ assert.equal(await page.locator('[data-action="pause"],[data-action="resume"]').count(),allowed?1:0);
+ if(allowed){assert.equal(await pause.isEnabled(),true);assert.equal(await pause.getAttribute('aria-label'),'Пауза');}
+ const {boxes,width,height}=await page.evaluate(()=>{
+  const elements=[...document.querySelectorAll('#timer-pause-control,#exit-game,[data-feedback],.round-bottom--play .round-action')].filter(el=>!el.hidden);
+  return {width:innerWidth,height:innerHeight,boxes:elements.map(el=>{const r=el.getBoundingClientRect();return {name:el.id||el.dataset.feedback||el.dataset.action,x:r.x,y:r.y,right:r.right,bottom:r.bottom,w:r.width,h:r.height};})};
+ });
+ for(const box of boxes)assert.ok(box.w>=44&&box.h>=44&&box.x>=0&&box.y>=0&&box.right<=width&&box.bottom<=height,'Unreachable control '+JSON.stringify(box));
+ for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){
+  const a=boxes[i],b=boxes[j];assert.ok(a.right<=b.x||b.right<=a.x||a.bottom<=b.y||b.bottom<=a.y,'Pause, ratings or results overlap '+JSON.stringify({a,b}));
+ }
+ assert.equal(await page.locator('[data-feedback="report"]').count(),1);
+ assert.equal(await page.locator('[data-feedback="approve"]').count(),1);
+}
+async function freezeClock(page){await page.evaluate(()=>{window.__polishRealNow=Date.now;window.__polishNow=Date.now();Date.now=()=>window.__polishNow;});}
+async function restoreClock(page){await page.evaluate(()=>{Date.now=window.__polishRealNow;});}
 (async()=>{
  fs.mkdirSync('artifacts/quip-polish',{recursive:true});
  const browser=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
@@ -119,7 +144,27 @@ async function isInViewport(page){
    await capture(page,{path:'artifacts/quip-polish/'+device.name+'-task-controls.png'});
    await page.locator('.is-task [data-action="start-timer"]').click();
    assert.equal(await page.locator('.is-play [data-action="correct-now"]').count(),1);
-   assert.equal(await page.locator('.is-play [data-action="pause"]').count(),1);
+   await pauseAndRatingsGeometry(page,true);
+   const invariant=await roundInvariant(page);
+   await freezeClock(page);
+   const remaining=await page.evaluate(()=>game.current.deadline-Date.now());
+   await page.locator('#timer-pause-control[data-action="pause"]').click();
+   assert.equal(await page.evaluate(()=>game.current.paused),true);
+   assert.equal(await page.evaluate(()=>game.current.deadline),null);
+   assert.equal(await page.evaluate(()=>game.current.remainingMs),remaining);
+   // Reporting an already paused Easy round must never resume it on dismissal.
+   await page.locator('[data-feedback="report"]').click();
+   assert.equal(await page.evaluate(()=>game.current.feedbackHold.wasPaused),true);
+   await page.evaluate(()=>{window.__polishNow+=700;tick()});
+   assert.equal(await page.evaluate(()=>game.current.feedbackHold.remainingMs),remaining);
+   await page.keyboard.press('Escape');
+   assert.equal(await page.evaluate(()=>game.current.paused),true);
+   assert.equal(await page.evaluate(()=>game.current.remainingMs),remaining);
+   await page.locator('#timer-pause-control[data-action="resume"]').click();
+   assert.equal(await page.evaluate(()=>game.current.paused),false);
+   assert.equal(await page.evaluate(()=>game.current.deadline-Date.now()),remaining);
+   assert.deepEqual(await roundInvariant(page),invariant,'Pause/report changed non-timer match data');
+   await restoreClock(page);
    const geometry=await page.evaluate(()=>{
      const card=document.querySelector('.is-play .challenge-card').getBoundingClientRect();
      const actions=[...document.querySelectorAll('.round-bottom--play .round-action')].map(e=>{
@@ -131,7 +176,7 @@ async function isInViewport(page){
    });
    assert.ok(Math.abs(task.cardTop-geometry.cardTop)<=2,
      'Card jumped after timer start: '+JSON.stringify({task,geometry}));
-   assert.ok(geometry.timerBottom<geometry.cardTop-3,'Timer should be above fixed card');
+   assert.ok(geometry.timerBottom<geometry.cardTop-3,'Timer should be above fixed card: '+JSON.stringify(geometry));
    assert.deepEqual(geometry.actions.map(x=>x.action),['wrong-now','correct-now']);
    assert.ok(geometry.actions[0].centerX<geometry.viewport/2&&geometry.actions[1].centerX>geometry.viewport/2,'Verdicts must stay on opposite sides');
    assert.equal(geometry.actions[0].color,'rgb(255, 255, 255)');assert.equal(geometry.actions[1].color,'rgb(255, 255, 255)');
@@ -186,12 +231,13 @@ async function isInViewport(page){
   }
   // The hard/medium auto-start path passes through a one-second countdown;
   // check all THREE states have the exact same word-card geometry.
+  for(const difficulty of ['medium','hard']){
   const medium=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
   await medium.goto(URL,{waitUntil:'load'});await provisionProfiles(medium);
       await medium.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
   await medium.locator('#new-game-menu').click();
       await medium.locator('#standard-game').click();
-  await medium.evaluate(()=>{options.modes=['talk'];options.dice=false;options.difficulty='medium';});
+  await medium.evaluate(difficulty=>{options.modes=['talk'];options.dice=false;options.difficulty=difficulty;},difficulty);
   await medium.locator('#start-game').click();
   await medium.locator('[data-action="roll"]').click();
   const cardTop=()=>medium.locator('.round-fixed-card .challenge-card').evaluate(el=>el.getBoundingClientRect().top);
@@ -203,8 +249,29 @@ async function isInViewport(page){
   const timerTop=await cardTop();
   assert.ok(Math.abs(taskTop-countdownTop)<=2 && Math.abs(taskTop-timerTop)<=2,
     'Autostart card jumps: '+JSON.stringify({taskTop,countdownTop,timerTop}));
-  await capture(medium,{path:'artifacts/quip-polish/phone-autostart-fixed-card.png'});
+  await pauseAndRatingsGeometry(medium,false);
+  const deadline=await medium.evaluate(()=>game.current.deadline),invariant=await roundInvariant(medium);
+  await medium.evaluate(()=>pauseTimer());
+  assert.equal(await medium.evaluate(()=>game.current.deadline),deadline,'Forbidden ordinary pause changed deadline');
+  assert.equal(await medium.evaluate(()=>game.current.paused),false);
+  await freezeClock(medium);
+  const remaining=await medium.evaluate(()=>game.current.deadline-Date.now());
+  await medium.locator('[data-feedback="report"]').click();
+  assert.equal(await medium.evaluate(()=>game.current.deadline),null);
+  assert.equal(await medium.evaluate(()=>game.current.feedbackHold.remainingMs),remaining);
+  await medium.evaluate(()=>{window.__polishNow+=700;tick();resumeTimer()});
+  assert.equal(await medium.evaluate(()=>game.current.feedbackHold.remainingMs),remaining);
+  assert.equal(await medium.evaluate(()=>game.phase),'play');
+  if(difficulty==='medium')await medium.keyboard.press('Escape');else await medium.goBack();
+  assert.equal(await medium.evaluate(()=>game.current.paused),false);
+  assert.equal(await medium.evaluate(()=>game.current.deadline-Date.now()),remaining);
+  assert.equal(await medium.evaluate(()=>document.activeElement.dataset.feedback),'report');
+  assert.deepEqual(await roundInvariant(medium),invariant,'Report hold changed non-timer match data');
+  await pauseAndRatingsGeometry(medium,false);await restoreClock(medium);
+  await capture(medium,{path:'artifacts/quip-polish/phone-'+difficulty+'-autostart-fixed-card.png'});
+  console.log('polish',difficulty,'autostart / ordinary pause forbidden / report hold / focus / Back-Escape PASS');
   await medium.close();
+  }
   // Blitz keeps the same left-red/right-green spatial language as other modes.
   const blitz=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
   await blitz.goto(URL,{waitUntil:'load'});await provisionProfiles(blitz);
@@ -251,5 +318,6 @@ async function isInViewport(page){
   assert.ok(!(await blitz.locator('.is-judge').innerText()).includes('Пропущено'));
   await capture(blitz,{path:'artifacts/quip-polish/phone-blitz-incomplete-finalize.png'});
   await blitz.close();
+  console.log('polish complete: four device layouts / Easy pause+resume / all-difficulty report hold / result controls / Blitz PASS');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

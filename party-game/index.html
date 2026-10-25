@@ -10,14 +10,14 @@
   <link rel="manifest" href="./manifest.webmanifest?v=3">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=36">
+  <link rel="stylesheet" href="./style.css?v=39">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
   <script src="./curated-words.js?v=1" defer></script>
   <script src="./curated-songs.js?v=1" defer></script>
   <script src="./curated-people.js?v=1" defer></script>
   <script src="./mode-images.js?v=6" defer></script>
-  <script src="./cards.js?v=8" defer></script>
+  <script src="./cards.js?v=9" defer></script>
   <script src="./approx-questions.js?v=7" defer></script>
   <script src="./mode-config.js?v=2" defer></script>
   <script src="./mode-compatibility.js?v=1" defer></script>
@@ -27,7 +27,7 @@
   <script src="./round-planner.js?v=3" defer></script>
   <script src="./task-history.js?v=1" defer></script>
   <script src="./modifiers-v2.js?v=3" defer></script>
-  <script src="./content-packs.js?v=16" defer></script>
+  <script src="./content-packs.js?v=17" defer></script>
   <script src="./presets.js?v=4" defer></script>
   <script src="./immersive-viewport.js?v=1" defer></script>
   <script src="./rules-guide.js?v=1" defer></script>
@@ -37,22 +37,25 @@
   <script src="./audio.js?v=1" defer></script>
   <script src="./round-views.js?v=2" defer></script>
   <script src="./match-views.js?v=5" defer></script>
-  <script src="./timer-view.js?v=4" defer></script>
+  <script src="./timer-view.js?v=5" defer></script>
   <script src="./round-selection.js?v=5" defer></script>
-  <script src="./tiebreak.js?v=2" defer></script>
+  <script src="./tiebreak.js?v=3" defer></script>
   <script src="./round-settlement.js?v=6" defer></script>
-  <script src="./timer-controller.js?v=1" defer></script>
-  <script src="./round-presentation.js?v=4" defer></script>
+  <script src="./timer-controller.js?v=2" defer></script>
+  <script src="./round-presentation.js?v=6" defer></script>
   <script src="./round-actions.js?v=3" defer></script>
   <script src="./storage-controller.js?v=2" defer></script>
-  <script src="./session-restoration.js?v=8" defer></script>
+  <script src="./session-restoration.js?v=9" defer></script>
   <script src="./player-profiles.js?v=6" defer></script>
   <script src="./profile-views.js?v=3" defer></script>
   <script src="./profile-backup.js?v=1" defer></script>
   <script src="./profile-backup-view.js?v=1" defer></script>
   <script src="./card-reports.js?v=1" defer></script>
-  <script src="./card-reports-view.js?v=1" defer></script>
-  <script src="./app.js?v=62" defer></script>
+  <script src="./card-reports-view.js?v=3" defer></script>
+  <script src="./card-feedback.js?v=1" defer></script>
+  <script src="./feedback-clock.js?v=1" defer></script>
+  <script src="./card-feedback-view.js?v=2" defer></script>
+  <script src="./app.js?v=63" defer></script>
 </head>
 <body>
 
@@ -124,7 +127,7 @@
           </div>
           <p id="backup-status" class="profile-error" role="status" aria-live="polite"></p>
         </section>
-        <section class="reports-settings" aria-labelledby="reports-heading"><h2 id="reports-heading">ЗАМЕЧАНИЯ К ЗАДАНИЯМ</h2><p id="reports-count" class="profile-muted"></p><button id="reports-export" class="button button-primary" type="button">ЭКСПОРТИРОВАТЬ ЗАМЕЧАНИЯ</button><button id="reports-view" class="button button-secondary" type="button">ПРОСМОТРЕТЬ ЗАМЕЧАНИЯ</button><p class="profile-muted">Замечания хранятся только на этом устройстве. Экспорт не содержит профили и результаты партий.</p></section>
+        <section class="reports-settings" aria-labelledby="reports-heading"><h2 id="reports-heading">ОЦЕНКИ ЗАДАНИЙ</h2><p id="approvals-count" class="profile-muted"></p><p id="reports-count" class="profile-muted"></p><button id="feedback-share" class="button button-primary" type="button">ПОДЕЛИТЬСЯ СТАТИСТИКОЙ ЗАДАНИЙ</button><button id="feedback-download" class="button button-secondary" type="button">СКАЧАТЬ JSON</button><button id="approvals-clear" class="button button-secondary" type="button">ОЧИСТИТЬ ОДОБРЕНИЯ</button><button id="reports-export" class="button button-primary" type="button">ЭКСПОРТИРОВАТЬ ЗАМЕЧАНИЯ</button><button id="reports-view" class="button button-secondary" type="button">ПРОСМОТРЕТЬ ЗАМЕЧАНИЯ</button><p class="profile-muted">Оценки хранятся на этом устройстве. JSON содержит одобрения и жалобы без профилей и результатов партий. Выберите получателя в системном меню или скачайте файл. Отдельный экспорт замечаний также доступен.</p></section>
         <button id="preferences-rules" class="preferences-rules" type="button">Правила игры <span aria-hidden="true">›</span></button>
       </div>
     </section>
@@ -229,7 +232,7 @@
         <div class="match-team match-team--b" id="match-team-b"><b id="score-b">0</b><span class="match-team-meta"><span class="match-team-label"><span id="label-team-b">Кометы</span><i class="team-spot team-spot--b"></i></span><small id="role-b">ОТГАДЫВАЕТ</small></span></div>
       </div>
       <div class="play-card">
-        <div class="play-card-head"><span class="section-kicker" id="play-step">ПЕРЕДАЙТЕ ТЕЛЕФОН</span><button id="report-card" class="report-card" type="button" aria-label="Сообщить о проблеме с заданием" aria-haspopup="dialog" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 21V3m0 1c5-4 9 4 14 0v10c-5 4-9-4-14 0"/></svg></button><button id="exit-game" type="button" class="text-link">В МЕНЮ</button></div>
+        <div class="play-card-head"><span class="section-kicker" id="play-step">ПЕРЕДАЙТЕ ТЕЛЕФОН</span><button id="timer-pause-control" class="timer-pause report-card" type="button" aria-label="Пауза" hidden></button><button id="report-card" class="report-card" type="button" aria-label="Сообщить о проблеме с заданием" aria-haspopup="dialog" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 21V3m0 1c5-4 9 4 14 0v10c-5 4-9-4-14 0"/></svg></button><button id="exit-game" type="button" class="text-link">В МЕНЮ</button></div>
         <div class="play-inner" id="play-content" aria-live="polite"></div>
       </div>
       <div class="play-footer"><span>КВИП</span><span>ПОБЕДИТ САМАЯ ШУМНАЯ КОМАНДА</span></div>
@@ -277,14 +280,14 @@
 <div class="dialog-backdrop" id="report-backdrop" hidden>
  <section class="dialog report-dialog" role="dialog" aria-modal="true" aria-labelledby="report-title">
   <header class="report-header"><h2 id="report-title">СООБЩИТЬ О ПРОБЛЕМЕ</h2><button id="report-close" class="dialog-close" type="button" aria-label="Закрыть">×</button></header>
-  <div id="report-editor"><p id="report-target"></p><p id="report-context" class="profile-muted"></p><p id="report-timer-notice" class="report-timer-notice" hidden>Отсчёт продолжается. Панель не ставит игру на паузу.</p>
+  <div id="report-editor"><p id="report-target"></p><p id="report-context" class="profile-muted"></p><p id="report-timer-notice" class="report-timer-notice" hidden>Таймер приостановлен до закрытия панели.</p>
    <div id="report-existing" hidden><p>Для этой карточки уже есть замечание.</p><button id="report-edit-existing" class="button button-secondary" type="button">ИЗМЕНИТЬ ЗАМЕЧАНИЕ</button></div>
    <label class="report-field" for="report-reason">ПРИЧИНА<select id="report-reason"><option value="error">Ошибка / неверный ответ</option><option value="ambiguous">Неоднозначно</option><option value="hard">Слишком сложно</option><option value="duplicate">Дубликат</option><option value="theme">Не подходит теме</option><option value="other">Другое</option></select></label>
-   <label id="report-comment-label" class="report-field" for="report-comment" hidden>КОММЕНТАРИЙ<textarea id="report-comment" rows="3" aria-describedby="report-comment-count"></textarea><small id="report-comment-count">0 / 160</small></label>
+   <label id="report-comment-label" class="report-field" for="report-comment">КОММЕНТАРИЙ<textarea id="report-comment" rows="3" aria-describedby="report-comment-count"></textarea><small id="report-comment-count">0 / 160</small></label>
    <button id="report-save" class="button button-primary" type="button">СОХРАНИТЬ</button>
   </div>
   <div id="report-list" hidden><div id="report-list-rows"></div><button id="reports-clear" class="button button-secondary" type="button">ОЧИСТИТЬ ВЕСЬ ЖУРНАЛ</button></div>
-  <p id="report-error" class="profile-error" role="status" aria-live="polite"></p><button id="report-cancel" class="button button-secondary" type="button">ОТМЕНА</button>
+  <p class="profile-muted">«Отправить жалобу» сохраняет её на устройстве. Поделиться JSON можно в настройках.</p><p id="report-error" class="profile-error" role="status" aria-live="polite"></p><button id="report-cancel" class="button button-secondary" type="button">ОТМЕНА</button>
  </section>
 </div>
 <div class="dialog-backdrop" id="profile-backdrop" hidden>

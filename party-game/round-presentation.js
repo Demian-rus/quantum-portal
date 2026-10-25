@@ -103,9 +103,18 @@ function modeInformation() {
       'Напойте любую песню, в названии или тексте которой есть указанное слово. Формы слова допустимы. Отгадывающий называет тему.':method.rule
   };
 }
+// Exact presentation aliases only: the saved choice and both catalogs stay authoritative.
+const CONDITION_PRESENTATION=Object.freeze({
+ 'v2-other-hand':Object.freeze({source:'Рисуй неведущей рукой, только если это удобно и безопасно.',short:'Рисуй неведущей рукой.'}),
+ 'v2-closed-mouth':Object.freeze({source:'Напевай с закрытым ртом, без произнесения слов. Не задерживай дыхание.',short:'Напевай с закрытым ртом, без слов.'})
+});
+function displayedRoundCondition(c){
+ const alias=c?.modifierVersion===2?CONDITION_PRESENTATION[c.complicationId]:null;
+ return alias&&c.complication===alias.source?alias.short:c?.complication||'';
+}
 function roundConditionMarkup(){
   const condition=game.current?.complication;
-  return condition?'<div class="round-condition" tabindex="0" role="region" aria-label="Усложнение"><strong>УСЛОЖНЕНИЕ: '+escapeHTML(condition)+'</strong></div>':'';
+  return condition?'<div class="round-condition" tabindex="0" role="region" aria-label="Усложнение" title="'+escapeHTML(condition)+'"><strong>УСЛОЖНЕНИЕ: '+escapeHTML(displayedRoundCondition(game.current))+'</strong></div>':'';
 }
 // Keyboard focus follows the same card when a phase rebuilds its DOM.
 function taskCardHasKeyboardFocus(){
@@ -124,6 +133,10 @@ function taskMarkup(hidden) {
     (hidden?'НАЖМИ, ЧТОБЫ ОТКРЫТЬ':word)+'</span></button>';
 }
 
+function approxUnitMarkup(q){
+ const unit=typeof q?.unit==='string'?q.unit.trim():'';
+ return unit?'<p class="approx-unit"><span>ЕДИНИЦА ОТВЕТА:</span> <strong>'+escapeHTML(unit)+'</strong></p>':'';
+}
 function showApprox(){
  const c=game.current,q=c.question,revealed=game.phase==='judge';
  $('play-content').className='play-inner is-approx';
@@ -133,6 +146,7 @@ function showApprox(){
   '<p class="play-subtitle">'+(revealed?'Решите вместе, кому начислить очки.':'Назовите ответы вслух, затем откройте правильный.')+'</p></div>'+
   '<div class="approx-card'+(revealed?' is-revealed':'')+'">'+
   (revealed?'<div class="approx-answer"><span>ПРАВИЛЬНЫЙ ОТВЕТ</span><strong>'+escapeHTML(q.answer)+' '+escapeHTML(q.unit||'')+'</strong></div>':'')+
+  (!revealed?approxUnitMarkup(q):'')+
   '<div class="approx-copy" tabindex="0" aria-label="Вопрос и пояснение"><p class="approx-question">'+escapeHTML(q.question)+'</p>'+
    (revealed&&q.note?'<p class="approx-note">'+escapeHTML(q.note)+'</p>':'')+'</div></div>'+
   '<div class="approx-actions">'+(revealed?
