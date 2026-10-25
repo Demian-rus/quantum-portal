@@ -48,7 +48,7 @@ function restoreSession() {
     validateAwardPolicy(candidate);
     modeCompatibilityPolicy(candidate);
     modifierSelectionPolicy(candidate);
-    if(candidate.plannerVersion!=null)validatePlannedGame(candidate);
+    if(candidate.plannerVersion!=null)validatePlannedGame(reviewPlannerProjection(candidate));
     if(candidate.modePlannerVersion!=null||candidate.modePlannerState!=null)
       validateModePlan(candidate.modePlannerVersion,candidate.modePlannerState);
     if(candidate.contentPack)getContentPack(candidate.contentPack);

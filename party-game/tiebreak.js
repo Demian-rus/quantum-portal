@@ -55,6 +55,7 @@ function settleTiebreak(choice){
   const question=nextTiebreakQuestion(game.tiebreak.attempted);
   if(!question){
    game.tiebreak=null;game.phase='ready';
+   if(resultReviewPolicy(game))resumeReviewedRound(game);
    persist();toast('Числовые вопросы закончились. Продолжаем обычные ходы.');render();return;
   }
   game.tiebreak.question=question;game.tiebreak.attempted.push(question.id);

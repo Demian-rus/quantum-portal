@@ -30,6 +30,6 @@ test('integration: pinned storage cores and gameplay contracts are byte-exact fr
 });
 
 test('integration: session restoration retains every previous guard plus the explicit report-hold guard',()=>{
- const current=fs.readFileSync(path.join(__dirname,'../session-restoration.js'),'utf8').replace('    validateResultReview(candidate);\n','').replace('    validateFeedbackHold(candidate);\n','').replace(' && !candidate.current?.feedbackHold &&',' &&');
+ const current=fs.readFileSync(path.join(__dirname,'../session-restoration.js'),'utf8').replace('validatePlannedGame(reviewPlannerProjection(candidate))','validatePlannedGame(candidate)').replace('    validateResultReview(candidate);\n','').replace('    validateFeedbackHold(candidate);\n','').replace(' && !candidate.current?.feedbackHold &&',' &&');
  assert.equal(current,execFileSync('git',['show','6b68155a2584eda787dc383e60e36c54cbe8b9c5:party-game/session-restoration.js'],{encoding:'utf8'}));
 });

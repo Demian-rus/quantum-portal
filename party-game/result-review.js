@@ -75,6 +75,23 @@ function replayResultHistory(match,history=match.history,tiebreak=match.tiebreak
  if(tie?.stage==='decided')scores[tie.winnerIndex]+=1;
  return {history:rows,scores,tiebreak:tie,needsTiebreak:eligible&&!tie,complete:scoreMatchComplete({...ordinary,scores,tiebreak:tie})};
 }
+function reviewPlannerProjection(match){
+ if(match?.resultReviewVersion!==1)return match;
+ const suspended=match.reviewSuspendedRound;
+ if(suspended)return {...match,phase:suspended.phase,current:suspended.current};
+ return match.phase==='review'?{...match,phase:'results'}:match;
+}
+function suspendReviewedRound(match){
+ if(!match.current)return;
+ match.reviewSuspendedRound={version:1,phase:match.phase,current:match.current};
+ match.current=null;
+}
+function resumeReviewedRound(match){
+ const s=match.reviewSuspendedRound;if(!s)return false;
+ match.phase=s.phase==='rolling'?'task':s.phase;
+ match.current=s.current.feedbackHold?releasedFeedbackRound(s.current):s.current;
+ delete match.reviewSuspendedRound;return true;
+}
 function validateResultReview(match){
  if(!resultReviewPolicy(match)){
   if(match?.pendingReview!=null||match?.resultEditor!=null||match?.phase==='review')throw Error('Нет политики проверки результатов.');
@@ -104,6 +121,14 @@ function validateResultReview(match){
    if(row.questionId!==c.question.id||row.answer!==c.question.answer||row.unit!==c.question.unit||row.note!==c.question.note)throw Error('Изменён снимок числового вопроса.');
   }else if(row.cardId!==(c.cardId??null)||row.team!==match.teams[row.recipientIndex]||
      row.mode==='blitz'&&(JSON.stringify(row.blitzWords)!==JSON.stringify(c.blitzWords)||JSON.stringify(row.blitzCardIds)!==JSON.stringify(c.blitzCardIds??c.blitzWords.map(()=>null))))throw Error('Изменён исходный ID или получатель задания.');
+ }
+ if(match.reviewSuspendedRound!=null){
+  const s=match.reviewSuspendedRound;
+  if(s.version!==1||!['rolling','task','countdown','play','judge'].includes(s.phase)||
+     !s.current||match.current!==null||!['review','tiebreak','results'].includes(match.phase)||
+     ['play','countdown'].includes(s.phase)&&!s.current.feedbackHold)throw Error('Повреждено отложенное задание.');
+  modeConfigForGame(match,s.current.modeId);
+  validateFeedbackHold({...match,phase:s.phase,current:s.current});
  }
  const replay=replayResultHistory(match);
  if(match.phase==='results'&&!replay.complete)throw Error('Итог ещё не достигнут.');
@@ -170,6 +195,7 @@ function confirmReviewedResults(){
   if(out.complete){next.phase='results';next.reviewConfirmed=true;}
   else next.phase=next.tiebreak?'tiebreak':'ready';
   let tieMemory=taskMemory;
+  if(next.phase==='ready'&&!scoreNeedsTiebreak(next))resumeReviewedRound(next);
   if(next.phase==='ready'&&scoreNeedsTiebreak(next)){
    const previous=game,previousMemory=taskMemory;
    try{game=next;taskMemory=reviewCopy(taskMemory);beginTiebreak();tieMemory=taskMemory;}

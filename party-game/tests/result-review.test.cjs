@@ -196,3 +196,26 @@ test('new review policy consumes exactly the old selection RNG and retains every
   }
  }
 });
+test('Mixed pending review restores on every six-turn planner boundary without a new cycle or RNG',()=>{
+ for(const rounds of [6,12]){
+  const h=createSimulation(17);h.context.rounds=rounds;h.eval("Object.assign(options,{modes:['talk'],difficulty:'mixed',finishType:'rounds',rounds,dice:false,complications:false});newGame();game.dice=false;for(let i=0;i<rounds;i++){roll();game.phase='judge';recordAnswer(false)};game.dice=true;options.dice=true;persist()");
+  assert.equal(h.eval('game.phase'),'review');const raw=h.storage.get('iskra-party:v1'),plan=h.eval('JSON.stringify(game.plannerState)');
+  const restored=createSimulation(1,h.storage);assert.equal(restored.eval('storageBlocked'),false);assert.equal(restored.eval('game.phase'),'review');
+  restored.eval("Math.random=()=>{throw Error('Review restore consumed RNG')};continueGame()");assert.equal(h.storage.get('iskra-party:v1'),raw);assert.equal(restored.eval('JSON.stringify(game.plannerState)'),plan);
+  restored.eval('confirmReviewedResults()');assert.equal(restored.eval('game.phase'),'results');assert.equal(restored.eval('profileStore.recent.length'),1);
+ }
+});
+test('an early correction suspends the selected live task; undoing victory resumes the same task and held milliseconds',()=>{
+ const h=start({finishType:'score',targetScore:1});answer(h,false);answer(h,false);
+ h.eval("roll();game.phase='play';Object.assign(game.current,{visible:true,paused:false,deadline:Date.now()+25000});game.dice=true;options.dice=true;persist();$('report-backdrop').hidden=true;openResultHistory(0)");
+ const selected=h.eval('JSON.stringify(game.current)'),source=h.eval('JSON.stringify({used:game.used,history:game.taskHistory,planner:game.plannerState,mode:game.modePlannerState})');
+ h.eval("Math.random=()=>{throw Error('Correction consumed RNG')};updateResultHistory(e=>{e.history[0]=changeReviewedOutcome(e.history[0],'complete')});closeResultHistory(true)");
+ assert.equal(h.eval('game.phase'),'review');assert.equal(h.eval('game.current'),null);assert.equal(h.eval('JSON.stringify(game.reviewSuspendedRound.current)'),selected);
+ const remain=h.eval('game.reviewSuspendedRound.current.feedbackHold.remainingMs'),restored=createSimulation(2,h.storage);
+ assert.equal(restored.eval('storageBlocked'),false);assert.equal(restored.eval('game.phase'),'review');
+ restored.eval("Math.random=()=>{throw Error('Resume consumed RNG')};$('report-backdrop').hidden=true;openResultHistory(0);updateResultHistory(e=>{e.history[0]=changeReviewedOutcome(e.history[0],'failed')});closeResultHistory(true);confirmReviewedResults()");
+ assert.equal(restored.eval('game.phase'),'play');assert.equal(restored.eval('game.reviewSuspendedRound'),undefined);
+ const actual=plain(restored.eval('game.current')),original=JSON.parse(selected);delete original.feedbackHold;original.paused=false;original.remainingMs=null;original.deadline=actual.deadline;
+ assert.deepEqual(actual,original);assert.ok(restored.eval('game.current.deadline-Date.now()')>remain-1000);
+ assert.equal(restored.eval('JSON.stringify({used:game.used,history:game.taskHistory,planner:game.plannerState,mode:game.modePlannerState})'),source);assert.equal(restored.eval('profileStore.recent.length'),0);
+});

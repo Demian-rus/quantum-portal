@@ -66,6 +66,17 @@ async function rectCheck(page,id){
    // Existing complaint hold is independent and resumes through Escape.
    await page.locator('[data-feedback="report"]').click();assert.equal(await page.evaluate(()=>!!game.current.feedbackHold),true);await page.keyboard.press('Escape');
    assert.equal(await page.evaluate(()=>game.current.feedbackHold),undefined);
+   await start(page,'talk','mixed',false);await page.evaluate(()=>{game.finishType='score';game.targetScore=1;persist()});await settle(page,'no');await settle(page,'no');
+   await page.locator('[data-action="roll"]').click();await page.locator('.challenge-card').click();await page.waitForFunction(()=>game.phase==='play');
+   await page.evaluate(()=>{game.dice=true;options.dice=true;persist()});const liveWord=await page.evaluate(()=>game.current.word);
+   await page.locator('#match-team-a').click();const liveRemaining=await page.evaluate(()=>game.current.feedbackHold.remainingMs);
+   await page.locator('[data-review-turn="0"] [data-review-choice="complete"]').click();await page.locator('#result-history-save').click();
+   assert.equal(await page.evaluate(()=>game.phase),'review');assert.equal(await page.evaluate(()=>game.current),null);assert.equal(await page.evaluate(()=>game.reviewSuspendedRound.current.word),liveWord);
+   const suspended=await snapshot(page);await page.reload();await page.locator('#continue-game').click();assert.deepEqual(await snapshot(page),suspended,'Suspended Mixed task and pending review survive restart exactly');
+   await page.screenshot({path:folder+'/'+id+'-suspended-review.png',animations:'disabled'});
+   await page.locator('.pending-review-rows [data-review-turn="0"] [data-review-choice="failed"]').click();await page.locator('[data-action="confirm-results"]').click();
+   assert.equal(await page.evaluate(()=>game.phase),'play');assert.equal(await page.evaluate(()=>game.current.word),liveWord);
+   assert.ok(await page.evaluate(()=>game.current.deadline-Date.now())>liveRemaining-1500,'Undoing victory resumes the same held time');
    await start(page,'approx','easy',false);await page.evaluate(()=>{game.rounds=2;persist()});
    for(const choice of ['a','none']){await page.locator('[data-action="roll"]').click();await page.locator('[data-action="reveal-approx"]').click();await page.locator('[data-action="award-'+choice+'"]').click();}
    assert.equal(await page.evaluate(()=>game.phase),'review');assert.equal(await page.evaluate(()=>profileStore.recent.length),0);

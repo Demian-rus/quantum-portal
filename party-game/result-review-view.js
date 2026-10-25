@@ -82,6 +82,7 @@ function closeResultHistory(apply=false){
     if(!next.tiebreak&&scoreNeedsTiebreak(next)&&next.reviewTiebreakArchive?.roundIndex===next.roundIndex){
      next.tiebreak=reviewCopy(next.reviewTiebreakArchive.tiebreak);next.scores=replayResultHistory(next).scores;
     }
+    if(next.current&&(scoreMatchComplete(next)||scoreNeedsTiebreak(next)))suspendReviewedRound(next);
     if(!next.current){
      next.phase=game.phase==='review'||scoreMatchComplete(next)||scoreNeedsTiebreak(next)||next.tiebreak?'review':'ready';
      next.pendingReview=next.phase==='review'?{version:1}:null;
@@ -109,7 +110,7 @@ function showPendingReview(){
  $('play-content').innerHTML='<h2 class="play-title">ПРОВЕРКА РЕЗУЛЬТАТОВ</h2>'+
   '<div class="review-tabs" role="tablist" aria-label="История игроков">'+reviewTabsMarkup(player)+'</div>'+
   '<div class="review-final-score">'+game.teams.map((n,i)=>'<span>'+escapeHTML(n)+' <b>'+game.scores[i]+'</b></span>').join('')+'</div>'+
-  '<div class="pending-review-rows" tabindex="0" aria-label="Проверка ходов">'+reviewedRowsMarkup(game,player,true)+
+  '<div class="pending-review-rows" tabindex="0" aria-label="Проверка ходов">'+(game.reviewSuspendedRound?'<p class="profile-muted">Текущий ход приостановлен. Если партия продолжится, вернётся то же задание и время.</p>':'')+reviewedRowsMarkup(game,player,true)+
   (game.tiebreak?'<article class="review-row"><h3>Решающий тай-брейк</h3><p>'+escapeHTML(game.tiebreak.question.question)+'</p><div class="review-choices">'+['a','b','same'].map((v,i)=>'<button type="button" class="button" data-review-tie="'+v+'" aria-pressed="'+(game.tiebreak.winnerIndex===i)+'">'+escapeHTML(i<2?game.teams[i]+' ближе':'Одинаково близко')+'</button>').join('')+'</div></article>':'')+'</div>'+
   makeButton('ПОДТВЕРДИТЬ РЕЗУЛЬТАТЫ','confirm-results','button-primary button-big');
 }
