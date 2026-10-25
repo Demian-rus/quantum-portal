@@ -7,7 +7,11 @@ module.exports=async function dictionaryBrowser(browser,url){
   await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();
   await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.promptTypes=['word'];options.complications=false;options.dice=false;options.difficulty='easy';Math.random=()=>.99999});
   await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();
-  assert.equal(await page.evaluate(()=>game.contentPack.version),await page.evaluate(()=>latestGeneralPackSelection().version));assert.equal(await page.evaluate(()=>game.current.word),'ПОДОДЕЯЛЬНИК');
+  assert.equal(await page.evaluate(()=>game.contentPack.version),await page.evaluate(()=>latestGeneralPackSelection().version));
+  // This deterministic random value selects the last eligible Easy word. As catalogs grow,
+  // verify the selected card comes from the pinned pool instead of locking an obsolete label.
+  const selected=await page.evaluate(()=>({id:game.current.cardId,text:game.current.word,expected:getPackCardPool(latestGeneralPackSelection(),'words','easy',['word']).at(-1)}));
+  assert.equal(selected.text,selected.expected.text);assert.equal(selected.id,selected.expected.id);
   await page.evaluate(()=>{game.dice=true;persist()});const snapshot=await page.evaluate(()=>JSON.stringify(game));
   await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
   await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();assert.equal(await page.evaluate(()=>JSON.stringify(game)),snapshot);
