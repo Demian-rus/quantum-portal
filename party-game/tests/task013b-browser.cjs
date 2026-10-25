@@ -10,20 +10,25 @@ async function setup(page){await page.locator('#new-game-menu').click();await pa
 const cardBox=page=>page.locator('.round-fixed-card').boundingBox();
 function sameBox(a,b,label){for(const k of ['x','y','width','height'])assert.ok(Math.abs(a[k]-b[k])<=2,label+': '+JSON.stringify({a,b}))}
 async function fullCondition(page,expected){
- const area=page.locator('.round-condition');
- assert.equal(await page.locator('.round-condition').textContent(),'УСЛОЖНЕНИЕ: '+expected);
- await area.focus();await area.press('End');
- await page.waitForFunction(()=>{const e=document.querySelector('.round-condition');return e.scrollTop+e.clientHeight>=e.scrollHeight-2});
- await area.scrollIntoViewIfNeeded();
+ const area=page.locator('.round-condition'),outer=page.locator('.round-top');
+ assert.equal(await area.textContent(),'УСЛОЖНЕНИЕ: '+expected);
+ // #95 moves only the exceptional-long-text fallback to the complete upper
+ // region. Keep the original requirement: both ends must be keyboard reachable.
+ await outer.focus();await outer.press('Home');
+ const first=await area.evaluate(el=>{const node=el.querySelector('strong').firstChild,r=document.createRange();r.setStart(node,0);r.setEnd(node,1);const b=r.getBoundingClientRect(),p=el.closest('.round-top').getBoundingClientRect();return{top:b.top,bottom:b.bottom,parentTop:p.top,parentBottom:p.bottom}});
+ assert.ok(first.top>=first.parentTop-1&&first.bottom<=first.parentBottom+1,'Condition beginning is inaccessible: '+JSON.stringify(first));
+ await outer.press('End');
+ await page.waitForFunction(()=>{const e=document.querySelector('.round-top');return e.scrollTop+e.clientHeight>=e.scrollHeight-2});
  const g=await page.evaluate(()=>{
-  const parent=document.querySelector('.round-condition'),condition=parent.querySelector('strong'),node=condition.firstChild;
+  const condition=document.querySelector('.round-condition'),parent=condition.closest('.round-top'),node=condition.querySelector('strong').firstChild;
   const range=document.createRange();range.setStart(node,node.length-1);range.setEnd(node,node.length);
   const tail=range.getBoundingClientRect(),p=parent.getBoundingClientRect();
-  return {overflow:getComputedStyle(parent).overflowY,bar:getComputedStyle(parent).scrollbarWidth,webkit:getComputedStyle(parent,'::-webkit-scrollbar').display,
+  return {overflow:getComputedStyle(parent).overflowY,bar:getComputedStyle(parent).scrollbarWidth,
+   innerOverflow:getComputedStyle(condition).overflowY,innerClient:condition.clientHeight,innerScroll:condition.scrollHeight,
    tail:{top:tail.top,bottom:tail.bottom},parent:{top:p.top,bottom:p.bottom},scroll:parent.scrollTop,total:parent.scrollHeight,client:parent.clientHeight,
    document:{w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight},w:innerWidth,h:innerHeight};
  });
- assert.equal(g.overflow,'auto');assert.equal(g.bar,'none');assert.equal(g.webkit,'none');
+ assert.equal(g.overflow,'auto');assert.equal(g.bar,'thin');assert.equal(g.innerOverflow,'visible');assert.ok(g.innerScroll<=g.innerClient+1);
  assert.ok(g.tail.top>=g.parent.top-1&&g.tail.bottom<=g.parent.bottom+1,'Condition ending is inaccessible: '+JSON.stringify(g));
  assert.ok(g.document.w<=g.w+1&&g.document.h<=g.h+1,'Page scroll instead of local region');
  return g;
