@@ -1,6 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
 const api=require('../scripts/content.cjs'),{createSimulation}=require('../scripts/game-simulation.cjs');
+require('./science-expansion-v4.test.cjs'); // New science content checks share the existing CI test entrypoint.
 function selectRecoveryProfiles(h){h.eval("createPlayerProfile('Первый','coral');createPlayerProfile('Второй','cyan');selectedProfileIds=profileStore.profiles.map(p=>p.id)");}
 const root=path.resolve(__dirname,'..'),base=api.readDataset(),copy=()=>structuredClone(base);
 function hasError(data,code){return api.validate(data,{locks:false}).errors.some(e=>e.code===code)}
