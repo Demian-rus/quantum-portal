@@ -95,7 +95,7 @@
 
 - Альфред Нобель — https://www.nobelprize.org/alfred-nobel/ (изобретатель и основатель премии)
 - Уильям Гершель — https://ssd.jpl.nasa.gov/planets/discovery.html (Уран, 1781)
-- Роберт Кох — https://irp.nih.gov/system/files/media/file/2022-01/catalyst_v20i6.pdf (бактериология)
+- Роберт Кох — https://www.nobelprize.org/prizes/lists/all-nobel-laureates-in-physiology-or-medicine/all/ (бактериология)
 - Антони ван Левенгук — https://pubmed.ncbi.nlm.nih.gov/15209075/ (исследование микроорганизмов)
 
 Источники подтверждают приведённые исторические сведения, а не экспериментально установленную сложность карточек. Другие формулировки — короткие устойчивые названия, не числовые факты. Перед окончательной публикацией желательно проверить сомнительные уровни в игре.
