@@ -1,0 +1,35 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
+const {createSimulation}=require('../scripts/game-simulation.cjs'),base='c4220005d43e2a86d448466617698b2ed069455a',root=path.resolve(__dirname,'../..');
+const git=(...a)=>execFileSync('git',a,{cwd:root,encoding:'utf8',maxBuffer:12e6});
+function start(){const h=createSimulation(12);h.eval("soundOn=false;Math.random=()=>0;Object.assign(options,{modes:['secret'],dice:false,difficulty:'easy',complications:true,modifierChance:100});newGame();game.dice=false;roll()");return h;}
+test('TASK024 render-only views keep state, RAW, profiles, source conditions and RNG unchanged',()=>{
+ const h=start();
+ for(const stage of ['task','opened','countdown','play']){
+  h.context.stage=stage;h.eval("game.current.visible=stage!=='task';game.phase=stage==='opened'?'task':stage;game.current.deadline=Date.now()+60000;game.current.remainingMs=60000");
+  const before=h.eval('JSON.stringify([game,profileStore,taskMemory])'),raw=h.storage.get('iskra-party:v1');
+  h.eval("Math.random=()=>{throw Error('View RNG')};localStorage.setItem=()=>{throw Error('View storage')};if(stage==='countdown')showCountdown();else if(stage==='play')showTimer();else showTask()");
+  assert.equal(h.eval('JSON.stringify([game,profileStore,taskMemory])'),before);assert.equal(h.storage.get('iskra-party:v1'),raw);
+  const html=h.elements.get('play-content').innerHTML;
+  assert.ok(html.indexOf('round-fixed-card')<html.indexOf('round-condition-slot'));assert.ok(html.indexOf('round-condition-slot')<html.indexOf('round-bottom'));
+  assert.ok(!html.slice(0,html.indexOf('round-fixed-card')).includes('class="round-condition"'));
+  if(stage!=='task'){assert.ok(html.includes('timer-dial'));assert.ok(!html.includes('mode-symbol'));assert.equal((html.match(/data-feedback=/g)||[]).length,2);}
+ }
+});
+test('TASK024 published mechanisms, history, catalogs and all unrelated runtime scripts remain byte-exact',()=>{
+ const html=git('show',base+':party-game/index.html'),allowed=['round-views.js','timer-view.js','round-presentation.js'];
+ for(const [,name]of html.matchAll(/<script src="\.\/([^?]+\.js)\?/g))if(!allowed.includes(name))assert.equal(fs.readFileSync(path.join(root,'party-game',name),'utf8'),git('show',base+':party-game/'+name),name);
+ const read=n=>fs.readFileSync(path.join(root,'party-game',n),'utf8'),segment=(s,a,b)=>s.slice(s.indexOf(a),s.indexOf(b,s.indexOf(a)));
+ for(const [name,a,b]of [['round-presentation.js','function showApprox()','function blitzStatus()'],['round-presentation.js','function displayedRoundCondition(','// Independent lower grid row'],['timer-view.js','function updateTimerVisual(','\u0000'],['round-views.js','function showJudge()','\u0000']]){
+  const current=read(name),old=git('show',base+':party-game/'+name);
+  if(b==='\u0000')assert.equal(current.slice(current.indexOf(a)),old.slice(old.indexOf(a)),a);
+  else if(a==='function displayedRoundCondition(')assert.equal(segment(current,a,'// Independent lower grid row'),segment(old,a,'// Keyboard focus'),a);
+  else assert.equal(segment(current,a,b),segment(old,a,b),a);
+ }
+ assert.ok(read('style.css').startsWith(git('show',base+':party-game/style.css')),'Published CSS remains exact prefix, new rules scoped to stable-round');
+});
+test('TASK024 v88 uses consistent resource versions without adding sync or changing content URLs',()=>{
+ const html=fs.readFileSync(path.join(root,'party-game/index.html'),'utf8'),sw=fs.readFileSync(path.join(root,'party-game/sw.js'),'utf8');
+ const scripts=[...html.matchAll(/<script src="\.\/([^"?]+\.js\?v=\d+)"/g)].map(m=>m[1]);assert.equal(scripts.length,48);for(const name of scripts)assert.ok(sw.includes("'./"+name+"'"),name);
+ assert.match(sw,/kvip-pwa-v88-20261025-round-layout-candidate/);assert.ok(!html.includes('feedback-sync'));assert.ok(html.includes('cards.js?v=9')&&html.includes('content-packs.js?v=17'));
+});

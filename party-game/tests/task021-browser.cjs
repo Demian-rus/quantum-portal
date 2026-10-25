@@ -22,9 +22,9 @@ async function fixture(page,{mode='mime',method='mime',id='v2-no-touch',phase='t
 }
 async function measure(page){return page.evaluate(()=>{
  const box=e=>{if(!e)return null;const b=e.getBoundingClientRect();return{x:b.x,y:b.y,right:b.right,bottom:b.bottom,w:b.width,h:b.height}};
- const q=s=>box(document.querySelector(s)),condition=document.querySelector('.round-condition'),top=document.querySelector('.round-top'),card=document.querySelector('.challenge-card'),word=card?.querySelector('.challenge-word');
+ const q=s=>box(document.querySelector(s)),condition=document.querySelector('.round-condition'),top=document.querySelector('.round-condition-slot')||document.querySelector('.round-top'),card=document.querySelector('.challenge-card'),word=card?.querySelector('.challenge-word');
  const range=e=>{if(!e)return null;const r=document.createRange();r.selectNodeContents(e);return box(r)};
- return{width:innerWidth,height:innerHeight,phase:game.phase,card:q('.challenge-card'),top:q('.round-top'),ring:q('.timer-ring'),svg:q('.ring-svg'),dial:q('.timer-dial'),time:q('#active-timer'),
+ return{width:innerWidth,height:innerHeight,phase:game.phase,card:q('.challenge-card'),top:q('.round-top'),conditionRegion:box(top),ring:q('.timer-ring'),svg:q('.ring-svg'),dial:q('.timer-dial'),time:q('#active-timer'),
   ratings:[...document.querySelectorAll('[data-feedback]')].map(box),controls:[...document.querySelectorAll('.round-bottom button')].map(box),
   condition:box(condition),copy:range(condition?.querySelector('strong')),word:range(word),wordScroll:card?{h:card.scrollHeight,ch:card.clientHeight,w:card.scrollWidth,cw:card.clientWidth}:null,
   topScroll:top?{h:top.scrollHeight,ch:top.clientHeight}:null,page:{h:document.documentElement.scrollHeight,w:document.documentElement.scrollWidth},
@@ -49,7 +49,7 @@ function fits(g,{ordinary=true}={}){
  }
  assert.ok(g.wordScroll.h<=g.wordScroll.ch+1&&g.wordScroll.w<=g.wordScroll.cw+1,'Word scroller/clipping '+JSON.stringify(g));
  assert.ok(g.word.y>=g.card.y-1&&g.word.bottom<=g.card.bottom+1,'Word text outside card '+JSON.stringify(g));
- if(ordinary&&g.condition){assert.ok(g.topScroll.h<=g.topScroll.ch+1,'Ordinary upper content scrolls '+JSON.stringify(g));assert.ok(g.copy.y>=g.top.y-.5&&g.copy.bottom<=g.top.bottom+.5,'Condition clipped '+JSON.stringify(g));}
+ if(ordinary&&g.condition){assert.ok(g.topScroll.h<=g.topScroll.ch+1,'Ordinary condition region scrolls '+JSON.stringify(g));assert.ok(g.copy.y>=g.conditionRegion.y-.5&&g.copy.bottom<=g.conditionRegion.bottom+.5,'Condition clipped '+JSON.stringify(g));}
 }
 function stable(a,b){for(const k of ['x','y','w','h'])assert.ok(Math.abs(a.card[k]-b.card[k])<=2,'Phase moves card '+JSON.stringify({a,b,k}));}
 (async()=>{

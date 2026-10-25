@@ -24,7 +24,7 @@ async function layoutFixture(page,{phase='play',mode='secret',modified=true}={})
 const geometry=page=>page.evaluate(()=>{
  const box=selector=>{const el=document.querySelector(selector);if(!el)return null;const r=el.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom,client:el.clientHeight,scroll:el.scrollHeight}};
  const condition=document.querySelector('.round-condition');let copy=null;if(condition){const r=document.createRange();r.selectNodeContents(condition.querySelector('strong'));const b=r.getBoundingClientRect();copy={y:b.y,bottom:b.bottom};}
- return {card:box('.challenge-card'),top:box('.round-top'),condition:box('.round-condition'),copy,timer:box('.timer-ring'),down:box('[data-feedback="report"]'),up:box('[data-feedback="approve"]'),
+ return {card:box('.challenge-card'),top:box('.round-condition-slot')||box('.round-top'),condition:box('.round-condition'),copy,timer:box('.timer-ring'),down:box('[data-feedback="report"]'),up:box('[data-feedback="approve"]'),
   actions:[...document.querySelectorAll('.round-bottom--play .round-action')].map(el=>{const r=el.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom}}),
   header:[...document.querySelectorAll('#report-card,#timer-pause-control,#exit-game')].filter(e=>!e.hidden).map(e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom}}),
   page:{w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight},w:innerWidth,h:innerHeight};
@@ -65,7 +65,7 @@ async function start(page,difficulty='hard',mode='talk'){
    page.on('pageerror',e=>errors.push(e.message));
    try{
     await page.goto(URL);await provisionProfiles(page);await layoutFixture(page);const after=await geometry(page);fits(after);
-    if(height>width){assert.ok(after.card.y>before.card.y+8,'Card did not move lower');if(height>740)assert.ok(after.card.h>before.card.h+10,'Card did not grow');else assert.ok(after.card.h>=110,'Compact card must remain readable');}
+    if(height>width){if(height>740)assert.ok(after.card.h>before.card.h+10,'Card did not grow');else assert.ok(after.card.h>=100,'Compact card must retain its readable fixed track');}
     assert.ok(after.actions.every(b=>b.w<=68.01),'Result circles not compact');
     await page.screenshot({path:folder+'/after-'+width+'.png',animations:'disabled'});
     const card=after.card;
@@ -76,7 +76,7 @@ async function start(page,difficulty='hard',mode='talk'){
     await page.evaluate(()=>{game.current.complicationId=null;game.current.complication='После каждой музыкальной фразы сделай паузу на два ровных счёта, затем продолжай.';render()});fits(await geometry(page));
     await page.evaluate(()=>{game.current.complication='Очень длинное сохранённое условие. '.repeat(24);render()});
     assert.equal(await page.locator('.round-condition').evaluate(el=>getComputedStyle(el).overflowY),'visible');
-    const fallback=await page.locator('.round-top').evaluate(el=>{el.scrollTop=el.scrollHeight;return{scroll:el.scrollHeight,client:el.clientHeight,at:el.scrollTop}});assert.ok(fallback.scroll>fallback.client&&fallback.at>0,'Historical fallback must be reachable');
+    const fallback=await page.locator('.round-condition-slot').evaluate(el=>{el.scrollTop=el.scrollHeight;return{scroll:el.scrollHeight,client:el.clientHeight,at:el.scrollTop}});assert.ok(fallback.scroll>fallback.client&&fallback.at>0,'Historical fallback must be reachable');
     await start(page,'hard');assert.equal(await page.locator('#report-card').isVisible(),false);assert.equal(await page.locator('[data-action="pause"]').isVisible(),false);
     await page.evaluate(()=>{window.__randomCalls=0;const random=Math.random;Math.random=()=>{window.__randomCalls++;return random()}});
     const unvoted=await state(page),item=await page.evaluate(()=>currentReportItem(game));

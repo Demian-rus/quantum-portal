@@ -28,7 +28,7 @@ async function fixture(page,mode,modified=false){
 const geometry=page=>page.evaluate(()=>{
  const rect=selector=>{const el=document.querySelector(selector);if(!el)return null;const r=el.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom}};
  return {bar:rect('.match-bar'),top:rect('.round-top'),icon:rect('.round-top .mode-symbol'),
-  title:rect('.mode-name'),rule:rect('.round-condition'),reward:rect('.round-top .score-note,.round-top .secret-flag'),
+  title:rect('.mode-name'),rule:rect('.round-condition'),reward:rect('.round-top .score-note,.round-notes .secret-flag'),
   card:rect('.challenge-card'),word:rect('.challenge-word'),caption:rect('.round-top--timer .game-eyebrow'),
   timer:rect('.timer-ring'),
   wrong:rect('[data-action="wrong-now"]'),base:rect('[data-action="base-now"]'),correct:rect('[data-action="correct-now"]'),
@@ -54,10 +54,10 @@ module.exports=async function roundLayout(browser,url){
     iconBox=g.icon;
     if(device.height>480)assert.ok(g.icon.y>=g.top.y-1&&g.icon.bottom<=g.title.y-3,'Icon/title collide or clip: '+JSON.stringify(g));
     else assert.ok(g.icon.y>=g.top.y-1&&g.icon.right<=g.title.x-3&&g.title.bottom<=g.top.bottom,'Landscape icon/title collide or clip: '+JSON.stringify(g));
-    if(g.rule)assert.ok(g.title.bottom<=g.rule.y-3&&g.rule.bottom<=g.reward.y-3,'Condition/reward collide: '+JSON.stringify(g));
+    if(g.rule){assert.ok(g.rule.y>=g.card.bottom+12,'Condition must follow card: '+JSON.stringify(g));if(mode==='secret')assert.ok(g.rule.bottom<=g.reward.y-3,'Condition/reward collide: '+JSON.stringify(g));}
     else assert.ok(g.title.bottom<=g.reward.y-3,'Title/reward collide: '+JSON.stringify(g));
     assert.equal(await page.locator('.mode-rule').count(),0,'Generic rules should stay in the guide');
-    if(device.height>device.width)assert.ok(g.reward.bottom<=g.card.y-3,'Reward collides with card: '+JSON.stringify(g));
+    if(device.height>device.width&&mode!=='secret')assert.ok(g.reward.bottom<=g.card.y-3,'Reward collides with card: '+JSON.stringify(g));
     assert.equal(await page.locator('.challenge-overline,.challenge-details').count(),0);
     if(mode==='mime'&&device.name==='phone')await capture(page,{path:'artifacts/quip-mobile-layout/task013a-phone-plain-task.png'});
     const saved=await page.evaluate(()=>({raw:localStorage.getItem('iskra-party:v1'),game:JSON.stringify(game),memory:JSON.stringify(taskMemory)}));

@@ -32,6 +32,7 @@ jobs:
       - run: node party-game/scripts/approx-unit-audit.cjs check
       - run: node party-game/scripts/condition-audit.cjs check
       - run: node party-game/scripts/modifiers-v2.cjs check
+      - run: node --test party-game/tests/task024.test.cjs
       - run: node --test party-game/tests/logic.test.cjs party-game/tests/content-foundation.test.cjs party-game/tests/task-history.test.cjs party-game/tests/modifiers-v2.test.cjs party-game/tests/dictionary.test.cjs party-game/tests/music-themes.test.cjs party-game/tests/estimation.test.cjs party-game/tests/estimation-editorial.test.cjs party-game/tests/mode-compatibility.test.cjs party-game/tests/mode-planner.test.cjs party-game/tests/player-profiles.test.cjs party-game/tests/card-visibility.test.cjs party-game/tests/profile-backup.test.cjs party-game/tests/card-reports.test.cjs party-game/tests/backup-reports-integration.test.cjs party-game/tests/card-feedback.test.cjs party-game/tests/approx-units.test.cjs party-game/tests/v83-content-guard.test.cjs party-game/tests/task021.test.cjs party-game/tests/result-review.test.cjs party-game/tests/risk-planner.test.cjs party-game/tests/compact-history.test.cjs
   browser:
     runs-on: ubuntu-latest
@@ -45,6 +46,9 @@ jobs:
       - run: npm install --no-save playwright-core@1.55.0
       - run: |
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/quip-http.log 2>&1 &
+      - run: node party-game/tests/task024-browser.cjs
+      - run: node party-game/tests/task024-interactions-browser.cjs
+      - run: node party-game/tests/v87-upgrade-browser.cjs
       - run: node party-game/tests/compact-history-browser.cjs
       - run: node party-game/tests/v86-upgrade-browser.cjs
       - run: node party-game/tests/risk-planner-browser.cjs
@@ -85,6 +89,8 @@ jobs:
             artifacts/quip-result-review
             artifacts/quip-v84-upgrade
             artifacts/quip-task021
+            artifacts/quip-task024
+            artifacts/quip-v87-upgrade
             artifacts/quip-feedback
             artifacts/quip-content400
             artifacts/quip-integration
