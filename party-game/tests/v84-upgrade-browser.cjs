@@ -39,7 +39,7 @@ async function completedMatch(page){
  const write=sources=>{for(const[name,content]of sources)fs.writeFileSync(path.join(root,'party-game',name),content)};
  const cache=bytes=>bytes.toString().match(/const CACHE='([^']+)'/)[1];
  const oldCache=cache(previous.get('sw.js')),newCache=cache(current.get('sw.js'));
- assert.match(oldCache,/v84/);assert.match(newCache,/v86/);assert.notEqual(oldCache,newCache);
+ assert.match(oldCache,/v84/);assert.match(newCache,/v87/);assert.notEqual(oldCache,newCache);
  const browser=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
  const ctx=await browser.newContext({viewport:{width:390,height:844},hasTouch:true}),page=await ctx.newPage(),errors=[];
  page.on('pageerror',e=>errors.push(e.message));
@@ -76,7 +76,7 @@ async function completedMatch(page){
   assert.equal(cached.length,48);assert.deepEqual(cached.filter(row=>!row.found),[],'48 current scripts must load from the new worker offline');
   assert.equal(await page.locator('#timer-pause-control[data-action="resume"]').isVisible(),true);
   assert.equal(await page.locator('[data-feedback]').count(),2);
-  await page.screenshot({path:folder+'/v84-paused-offline-v86.png',animations:'disabled'});
+  await page.screenshot({path:folder+'/v84-paused-offline-v87.png',animations:'disabled'});
   // Opening and closing a report on an already paused historical party keeps it paused.
   await page.locator('[data-feedback="report"]').click();await page.keyboard.press('Escape');
   const cancelled=await snapshot(page);
@@ -100,9 +100,9 @@ async function completedMatch(page){
   assert.deepEqual(await snapshot(page),protectedState,'Offline exports are read-only');
   assert.equal(protectedState.profiles,before.profiles,'No second settlement or watermark change');
   assert.equal(protectedState.reports,before.reports,'No conversion of the old journal or original task ID');
-  await page.screenshot({path:folder+'/v84-data-offline-v86.png',animations:'disabled'});
+  await page.screenshot({path:folder+'/v84-data-offline-v87.png',animations:'disabled'});
   assert.deepEqual(errors,[]);
-  console.log('v84 → v86 real warm worker / offline cold reload / exact game, profiles, totals, recent, watermarks, task memory and report RAW PASS');
+  console.log('v84 → v87 real warm worker / offline cold reload / exact game, profiles, totals, recent, watermarks, task memory and report RAW PASS');
   console.log('48/48 precache / header Resume + retained time / report Escape / backup SHA-256 + legacy and combined JSON offline PASS');
  }finally{
   write(current);await ctx.close();await browser.close();fs.rmSync(tmp,{recursive:true,force:true});

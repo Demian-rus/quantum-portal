@@ -20,6 +20,7 @@ async function protectedState(page){return page.evaluate(()=>({game:JSON.stringi
     },mode);
     await page.locator('[data-action="confirm-results"]').click();
     assert.equal(await page.locator('#report-card').isVisible(),false);
+    await page.locator('#results-content [data-review-expand="0"]').click();
     const trigger=page.locator(mode==='blitz'?'[data-report-history="0"][data-report-blitz="0"]':'[data-report-history="0"]');
     const before=await protectedState(page),item=await page.evaluate(()=>makeReportItem(game,{row:game.history[0],blitzIndex:game.history[0].mode==='blitz'?0:null}));
     const target=await trigger.boundingBox();assert.ok(target.width>=43.999&&target.height>=43.999,JSON.stringify(target));
@@ -86,6 +87,7 @@ async function protectedState(page){return page.evaluate(()=>({game:JSON.stringi
     await page.locator('[data-action="confirm-results"]').click();
     await page.locator('#scene-results').waitFor({state:'visible'});
     const expected=await page.evaluate(mode=>mode==='approx'?game.history[0].questionId:game.history[0].blitzCardIds[1],mode);
+    await page.locator('#results-content [data-review-expand="0"]').click();
     await page.locator(mode==='approx'?'[data-report-history="0"]':'[data-report-history="0"][data-report-blitz="1"]').click();
     await page.locator('#report-save').click();assert.equal((await saved(page)).items.at(-1).item.cardId,expected);
     await page.locator('[data-action="menu"]').click();

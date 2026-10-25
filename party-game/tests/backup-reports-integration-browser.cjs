@@ -20,6 +20,7 @@ async function upload(page,file){const picker=page.waitForEvent('filechooser');a
    page.on('pageerror',e=>errors.push(e.message));await page.goto(URL);await provisionProfiles(page);
    await page.evaluate(()=>{soundOn=false;Object.assign(options,{modes:['approx'],difficulty:'easy',rounds:2,finishType:'rounds',dice:false});newGame();game.dice=false;roll();revealApprox();awardApprox('a');roll();revealApprox();awardApprox('none')});
    await page.locator('[data-action="confirm-results"]').click();
+   await page.locator('#results-content [data-review-expand="0"]').click();
    const played=await page.evaluate(()=>JSON.stringify(game));await page.locator('[data-report-history="0"]').tap();await page.goBack();await page.locator('#report-backdrop').waitFor({state:'hidden'});
    assert.equal(await page.evaluate(()=>JSON.stringify(game)),played);
    await page.locator('[data-report-history="0"]').tap();await page.locator('#report-reason').selectOption('theme');await page.locator('#report-save').click();

@@ -2098,3 +2098,26 @@ button.match-team:focus-visible{outline:3px solid var(--lime);outline-offset:3px
 #result-history-error:empty{display:none}
 #result-history-error{margin:0;font-size:11px;flex-shrink:0;max-height:60px;overflow:auto}
 .review-choice>span:not(.review-choice-icon),.review-choice small{max-width:100%;overflow-wrap:anywhere;hyphens:auto}
+
+/* TASK022: result lists only; gameplay card/timer geometry stays unchanged. */
+.review-row--compact{padding:5px;margin-bottom:6px;border-radius:12px;overflow-anchor:none}
+.review-compact-bar{display:flex;align-items:center;gap:2px;min-width:0;min-height:44px}
+.review-row-toggle{flex:1 1 0;min-width:0;min-height:44px;padding:4px;border:0;border-radius:7px;background:transparent;color:var(--white);font:inherit;font-size:13px;font-weight:750;line-height:1.25;text-align:left;display:flex;align-items:center;gap:3px;cursor:pointer}
+.review-row-title{min-width:0;overflow-wrap:anywhere;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.review-disclosure{flex:0 0 10px;font-size:12px;color:var(--cyan)}
+.review-row-toggle:focus-visible{outline:3px solid var(--cyan);outline-offset:-3px}
+.review-compact-controls{display:flex;flex:0 0 auto;gap:1px;align-items:center}
+.review-choice.review-choice--compact{flex:0 0 44px;width:44px;height:44px;min-width:44px;min-height:44px;padding:0;border:0;border-radius:50%;background:transparent;display:grid;place-items:center;gap:0}
+.review-choice--compact .review-choice-icon{width:28px;height:28px;font-size:18px;opacity:.65}
+.review-choice--compact[aria-pressed=true] .review-choice-icon{opacity:1;outline:2px solid var(--white);outline-offset:2px;font-weight:900}
+.review-choice--compact:focus-visible{outline:3px solid var(--cyan);outline-offset:-3px}
+.review-compact-summary{flex:0 1 auto;max-width:40%;padding:4px 5px;border-radius:7px;background:#302943;color:var(--cyan);font-size:11px;line-height:1.25;overflow-wrap:anywhere;text-align:right}
+.review-details{border-top:1px solid #635b82;margin-top:4px;padding:12px 6px 6px;min-width:0}
+.review-details[hidden]{display:none}
+.review-details .review-choices .button{flex:1 1 90px;min-width:0;min-height:44px;white-space:normal;overflow-wrap:anywhere;font-size:12px}
+.review-condition{font-size:12px;line-height:1.4;color:var(--lime);overflow-wrap:anywhere}
+@media(max-width:360px){.review-row-toggle{font-size:12px}.review-row--compact{padding:3px}.review-compact-bar{gap:0}}
+.review-choice--partial.review-choice--compact .review-choice-icon{font-size:14px}
+/* Keep final-review tabs and confirmation anchored while only the list scrolls. */
+.scene--game .play-inner.is-result-review{display:grid;grid-template-columns:minmax(0,1fr);justify-content:normal;justify-items:center;align-items:stretch}
+.scene--game .is-result-review>.pending-review-rows{width:100%;min-width:0}

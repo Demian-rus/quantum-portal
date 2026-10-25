@@ -16,23 +16,111 @@ function reviewChoiceLabel(row,choice){
 function reviewDeltaText(row){
  return row.deltas?row.deltas.map((d,i)=>game.teams[i]+': '+(d>0?'+':'')+d).join(' · '):(game.teams[row.recipientIndex]??row.team??'Очки')+': '+(row.awarded>0?'+':'')+row.awarded;
 }
-function reviewedRowsMarkup(match,player,editable){
- const history=match.history;
- return history.map((row,index)=>{
-  if(!reviewHistoryOwner(row,index,player))return '';
-  const setter=row.setterIndex??((game.startingTeamIndex??0)+index)%2,guesser=row.guesserIndex??(game.scoringVersion===2?1-setter:setter);
-  const selected=editable?reviewChoice(row):null;
-  const choices=editable?reviewChoices(row).map(choice=>{
-   const alternate=history.slice();alternate[index]=changeReviewedOutcome(row,choice);
-   const preview=replayResultHistory(game,alternate,match.tiebreak).history[index];
-   const color=choice==='failed'||choice==='none'||choice==='0'?'bad':choice==='base'||row.mode==='blitz'&&Number(choice)<blitzRequiredForRound(row.review.rules,row.review.round)?'partial':'good';
-   return '<button type="button" class="review-choice review-choice--'+color+'" data-review-row="'+index+'" data-review-choice="'+choice+'" aria-pressed="'+(selected===choice)+'"><span class="review-choice-icon" aria-hidden="true">'+(color==='bad'?'×':color==='partial'?'✓−':'✓')+'</span><span>'+escapeHTML(reviewChoiceLabel(row,choice))+'</span><small>'+escapeHTML(reviewDeltaText(preview))+'</small></button>';
-  }).join(''):'';
-  return '<article class="review-row" data-review-turn="'+index+'"><h3>Ход '+(index+1)+' · '+escapeHTML(getMode(row.mode)?.title||row.mode)+'</h3><p class="review-word">'+escapeHTML(row.word)+'</p>'+
-   '<p class="profile-muted">'+(row.mode==='approx'?'Отвечали оба: '+game.teams.map(escapeHTML).join(' · '):'Загадывал: '+escapeHTML(game.teams[setter])+' · Отгадывал: '+escapeHTML(game.teams[guesser]))+'</p>'+
-   '<p class="review-award">'+escapeHTML(reviewDeltaText(row))+(row.risk?' · РИСК: штраф '+(row.penalty??Math.max(0,-row.awarded)):'')+'</p>'+
-   (editable?'<div class="review-choices">'+choices+'</div>':'<p>'+escapeHTML(row.outcome==='failed'||row.correct===false?'Не угадали':row.outcome==='base-only'?'Без усложнения':'Угадали')+'</p>')+'</article>';
- }).join('')||'<p class="profile-muted">Завершённых ходов пока нет.</p>';
+// Presentation state is transient: expanding a row never changes game or storage.
+const reviewPresentation={modal:{},pending:{},results:{}};
+function reviewPresentationFor(surface,player){
+ const state=reviewPresentation[surface],key=game?.matchId??JSON.stringify([game?.taskHistory?.partyId,game?.teams,game?.startingTeamIndex,game?.history?.[0]?.word]);
+ if(state.key!==key||state.player!==player){state.key=key;state.player=player;state.expanded=null;}
+ return state;
+}
+function reviewSavedLabel(row){
+ if(row.review)return reviewChoiceLabel(row,reviewChoice(row));
+ if(row.mode==='approx'||Object.hasOwn(row,'deltas')){
+  const recipients=row.recipients??row.deltas?.flatMap((n,i)=>n>0?[i]:[])??[];
+  return recipients.length===2?'Обоим':recipients.length?game.teams[recipients[0]]:'Никому';
+ }
+ return row.outcome==='failed'||row.correct===false?'Не угадали':row.outcome==='base-only'?'Без усложнения':row.modifierSuccess===true?'С усложнением':'Угадали';
+}
+function reviewChoiceColor(row,choice){
+ return choice==='failed'||choice==='none'||choice==='0'?'bad':choice==='base'||row.mode==='blitz'&&Number(choice)<blitzRequiredForRound(row.review.rules,row.review.round)?'partial':'good';
+}
+function reviewButtonsMarkup(match,index,compact=false){
+ const row=match.history[index],selected=reviewChoice(row);
+ return reviewChoices(row).map(choice=>{
+  const color=reviewChoiceColor(row,choice),icon=color==='bad'?'×':color==='partial'?'✓−':'✓';
+  let award='';
+  if(!compact){
+   const alternate=match.history.slice();alternate[index]=changeReviewedOutcome(row,choice);
+   award=reviewDeltaText(replayResultHistory(game,alternate,match.tiebreak).history[index]);
+  }
+  return '<button type="button" class="review-choice review-choice--'+color+(compact?' review-choice--compact':'')+'" data-review-row="'+index+'" data-review-choice="'+choice+'" aria-label="'+escapeHTML('Ход '+(index+1)+'. '+row.word+': '+reviewChoiceLabel(row,choice))+'" aria-pressed="'+(selected===choice)+'"><span class="review-choice-icon" aria-hidden="true">'+icon+'</span>'+
+   (compact?'':'<span>'+escapeHTML(reviewChoiceLabel(row,choice))+'</span><small>'+escapeHTML(award)+'</small>')+'</button>';
+ }).join('');
+}
+function reviewedRowDetailsMarkup(match,index,editable){
+ const row=match.history[index],round=row.review?.round;
+ const setter=row.setterIndex??((game.startingTeamIndex??0)+index)%2,guesser=row.guesserIndex??(game.scoringVersion===2?1-setter:setter);
+ const method=row.methodId&&row.methodId!==row.mode?' · '+(getMode(row.methodId)?.title||row.methodId):'';
+ const condition=round?displayedRoundCondition(round):row.complication;
+ return '<h3>Ход '+(index+1)+' · '+escapeHTML(getMode(row.mode)?.title||row.mode)+escapeHTML(method)+'</h3><p class="review-word">'+escapeHTML(row.word)+'</p>'+
+  '<p class="profile-muted">'+(row.mode==='approx'?'Отвечали оба: '+game.teams.map(escapeHTML).join(' · '):'Загадывал: '+escapeHTML(game.teams[setter])+' · Отгадывал: '+escapeHTML(game.teams[guesser]))+'</p>'+
+  (condition?'<p class="review-condition">Усложнение: '+escapeHTML(condition)+'</p>':'')+
+  (row.mode==='approx'?'<p class="profile-muted">Ответ: '+escapeHTML(row.answer??round?.question?.answer??'')+' '+escapeHTML(row.unit??round?.question?.unit??'')+'</p>':'')+
+  '<p class="review-award">'+escapeHTML(reviewDeltaText(row))+(row.risk?' · РИСК: штраф '+(row.penalty??Math.max(0,-row.awarded)):'')+'</p>'+
+  (editable?'<div class="review-choices">'+reviewButtonsMarkup(match,index)+'</div>':'<p>'+escapeHTML(reviewSavedLabel(row))+'</p>');
+}
+function reviewTieDetailsMarkup(match,editable){
+ const tie=match.tiebreak;
+ return '<h3>Решающий тай-брейк</h3><p class="review-word">'+escapeHTML(tie.question.question)+'</p>'+
+  '<p class="profile-muted">Ответ: '+escapeHTML(tie.question.answer)+' '+escapeHTML(tie.question.unit||'')+'</p>'+
+  (tie.stage==='decided'?'<p>Очко: '+escapeHTML(game.teams[tie.winnerIndex])+'</p>':'<p>Нужно сравнить ответы.</p>')+
+  (editable?'<div class="review-choices">'+['a','b','same'].map((v,i)=>'<button type="button" class="button" data-review-tie="'+v+'" aria-pressed="'+(i<2?tie.winnerIndex===i:tie.stage==='judge'&&tie.winnerIndex===null)+'">'+escapeHTML(i<2?game.teams[i]+' ближе':'Одинаково близко')+'</button>').join('')+'</div>':'');
+}
+function reviewCompactRow(surface,key,title,summary,controls,details,expanded){
+ const id='review-details-'+surface+'-'+key;
+ return '<article class="review-row review-row--compact"'+(key!=='tie'?' data-review-turn="'+key+'"':' data-review-tiebreak')+'><div class="review-compact-bar">'+
+  '<button type="button" class="review-row-toggle" data-review-expand="'+key+'" aria-expanded="'+expanded+'" aria-controls="'+id+'" title="'+escapeHTML(title)+'"><span class="review-row-title">'+escapeHTML(title)+'</span><span class="review-disclosure" aria-hidden="true">'+(expanded?'▴':'▾')+'</span></button>'+
+  (controls?'<div class="review-compact-controls" role="group" aria-label="Исход хода">'+controls+'</div>':'<span class="review-compact-summary">'+escapeHTML(summary)+'</span>')+
+  '</div><div class="review-details" id="'+id+'" data-review-details="'+key+'"'+(expanded?'':' hidden')+'>'+details+'</div></article>';
+}
+function reviewedHistoryRowMarkup(match,row,index,editable,surface,player){
+ const state=reviewPresentationFor(surface,player);state.match=match;state.editable=editable;
+ if(player!=null&&!reviewHistoryOwner(row,index,player))return '';
+ const expanded=state.expanded===String(index),compact=editable&&row.mode!=='approx'&&row.mode!=='blitz';
+ const summary=reviewSavedLabel(row)+(surface==='results'?' · '+reviewDeltaText(row):'');
+ return reviewCompactRow(surface,String(index),(index+1)+'. '+row.word,summary,compact?reviewButtonsMarkup(match,index,true):'',
+  expanded?reviewedRowDetailsMarkup(match,index,editable)+(surface==='results'?reportHistoryButtons(row,index):''):'',expanded);
+}
+function reviewedRowsMarkup(match,player,editable,surface='modal'){
+ const state=reviewPresentationFor(surface,player);state.match=match;state.editable=editable;
+ return match.history.map((row,index)=>reviewedHistoryRowMarkup(match,row,index,editable,surface,player)).join('')||'<p class="profile-muted">Завершённых ходов пока нет.</p>';
+}
+function reviewedTieMarkup(match,player,editable,surface){
+ if(!match.tiebreak)return '';
+ const state=reviewPresentationFor(surface,player),expanded=state.expanded==='tie',tie=match.tiebreak;
+ return reviewCompactRow(surface,'tie','Решающий тай-брейк · '+tie.question.question,
+  tie.stage==='decided'?game.teams[tie.winnerIndex]+' ближе':'Сравнить ответы','',expanded?reviewTieDetailsMarkup(match,editable):'',expanded);
+}
+function toggleReviewedDetails(event,surface){
+ if(event.target.closest('[data-review-choice],[data-review-tab],[data-review-tie]'))return false;
+ const toggle=event.target.closest('[data-review-expand]')||event.target.closest('.review-compact-bar')?.querySelector('[data-review-expand]');
+ if(!toggle)return false;
+ const root=surface==='modal'?$('result-history-rows'):surface==='pending'?document.querySelector('.pending-review-rows'):$('results-content').querySelector('.history-block');
+ if(!root?.contains(toggle))return false;
+ const player=surface==='modal'?game.resultEditor?.playerIndex??Number($('result-history-backdrop').dataset.player||0):surface==='pending'?game.pendingReview?.playerIndex??0:null;
+ const state=reviewPresentationFor(surface,player),key=toggle.dataset.reviewExpand;
+ let scroller=root;
+ if(surface==='results'){scroller=root.parentElement;while(scroller&&!(scroller.scrollHeight>scroller.clientHeight&&/auto|scroll/.test(getComputedStyle(scroller).overflowY)))scroller=scroller.parentElement;scroller=scroller||document.scrollingElement;}
+ const before=toggle.getBoundingClientRect().top,scroll=scroller.scrollTop;
+ const previous=root.querySelector('[data-review-expand][aria-expanded="true"]');
+ const oldDetails=root.querySelector('.review-details:not([hidden])');
+ if(previous){previous.setAttribute('aria-expanded','false');previous.querySelector('.review-disclosure').textContent='▾';}
+ if(oldDetails){oldDetails.hidden=true;oldDetails.innerHTML='';}
+ const open=state.expanded!==key;state.expanded=open?key:null;
+ if(open){
+  const details=toggle.closest('.review-row').querySelector('.review-details');
+  details.innerHTML=key==='tie'?reviewTieDetailsMarkup(state.match,state.editable):reviewedRowDetailsMarkup(state.match,Number(key),state.editable)+(surface==='results'?reportHistoryButtons(state.match.history[Number(key)],Number(key)):'');
+  details.hidden=false;toggle.setAttribute('aria-expanded','true');toggle.querySelector('.review-disclosure').textContent='▴';
+ }
+ scroller.scrollTop=scroll+toggle.getBoundingClientRect().top-before;
+ toggle.focus({preventScroll:true});return true;
+}
+function reviewFocusSelector(element){
+ const choice=element?.closest?.('[data-review-choice]');
+ if(choice)return (choice.closest('.review-details')?'.review-details ':'.review-compact-controls ')+'[data-review-row="'+choice.dataset.reviewRow+'"][data-review-choice="'+choice.dataset.reviewChoice+'"]';
+ if(element?.dataset.reviewTab!=null)return '[data-review-tab="'+element.dataset.reviewTab+'"]';
+ if(element?.dataset.reviewTie)return '[data-review-tie="'+element.dataset.reviewTie+'"]';
+ return null;
 }
 function reviewTabsMarkup(player){
  return game.teams.map((name,i)=>'<button type="button" role="tab" aria-selected="'+(i===player)+'" data-review-tab="'+i+'">'+profileDot(game.profileMatch?.participants[i]?.color||(i===0?'coral':'cyan'))+escapeHTML(name)+'</button>').join('');
@@ -44,10 +132,7 @@ function renderResultHistory(){
  $('result-history-title').textContent=game.teams[player]+' — ИСТОРИЯ ОТВЕТОВ';
  $('result-history-tabs').innerHTML=reviewTabsMarkup(player);
  const scroll=$('result-history-rows').scrollTop;
- $('result-history-rows').innerHTML=reviewedRowsMarkup(out,player,editable)+
-  (out.tiebreak?'<article class="review-row"><h3>Решающий тай-брейк</h3><p>'+escapeHTML(out.tiebreak.question.question)+'</p>'+
-   (out.tiebreak.stage==='decided'?'<p>Очко: '+escapeHTML(game.teams[out.tiebreak.winnerIndex])+'</p>':'<p>Нужно сравнить ответы.</p>')+
-   (editable?'<div class="review-choices">'+['a','b','same'].map((v,i)=>'<button type="button" class="button" data-review-tie="'+v+'" aria-pressed="'+(out.tiebreak.winnerIndex===i)+'">'+escapeHTML(i<2?game.teams[i]+' ближе':'Одинаково близко')+'</button>').join('')+'</div>':'')+'</article>':'');
+ $('result-history-rows').innerHTML=reviewedRowsMarkup(out,player,editable,'modal')+reviewedTieMarkup(out,player,editable,'modal');
  $('result-history-rows').scrollTop=scroll;
  $('result-history-score').innerHTML=game.teams.map((n,i)=>'<span><small title="'+escapeHTML(n)+'">'+escapeHTML(n)+'</small><b>'+out.scores[i]+'</b></span>').join('');
  $('result-history-save').hidden=!editable;$('result-history-cancel').textContent=editable?'ОТМЕНА':'ЗАКРЫТЬ';
@@ -55,7 +140,7 @@ function renderResultHistory(){
 }
 function openResultHistory(player){
  if(!game||![0,1].includes(player)||!$('report-backdrop').hidden)return;
- resultHistoryFocus=document.activeElement;
+ resultHistoryFocus=document.activeElement;reviewPresentation.modal.expanded=null;
  try{
   const editable=resultReviewPolicy(game)&&!game.reviewConfirmed;
   if(!game.resultEditor)holdFeedbackTimer();
@@ -99,7 +184,7 @@ function closeResultHistory(apply=false){
  }catch(error){$('result-history-error').textContent=error.message;return false;}
 }
 function updateResultHistory(change){
- try{const focus=document.activeElement,selector=focus?.dataset.reviewChoice?'[data-review-row="'+focus.dataset.reviewRow+'"][data-review-choice="'+focus.dataset.reviewChoice+'"]':focus?.dataset.reviewTab?'[data-review-tab="'+focus.dataset.reviewTab+'"]':null;
+ try{const selector=reviewFocusSelector(document.activeElement);
  const next=reviewCopy(game);change(next.resultEditor);next.reviewRevision++;commitReviewState(next);renderResultHistory();
  if(selector)$('result-history-backdrop').querySelector?.(selector)?.focus?.({preventScroll:true});$('result-history-error').textContent='';}
  catch(error){$('result-history-error').textContent=error.message;}
@@ -110,12 +195,12 @@ function showPendingReview(){
  $('play-content').innerHTML='<h2 class="play-title">ПРОВЕРКА РЕЗУЛЬТАТОВ</h2>'+
   '<div class="review-tabs" role="tablist" aria-label="История игроков">'+reviewTabsMarkup(player)+'</div>'+
   '<div class="review-final-score">'+game.teams.map((n,i)=>'<span>'+escapeHTML(n)+' <b>'+game.scores[i]+'</b></span>').join('')+'</div>'+
-  '<div class="pending-review-rows" tabindex="0" aria-label="Проверка ходов">'+(game.reviewSuspendedRound?'<p class="profile-muted">Текущий ход приостановлен. Если партия продолжится, вернётся то же задание и время.</p>':'')+reviewedRowsMarkup(game,player,true)+
-  (game.tiebreak?'<article class="review-row"><h3>Решающий тай-брейк</h3><p>'+escapeHTML(game.tiebreak.question.question)+'</p><div class="review-choices">'+['a','b','same'].map((v,i)=>'<button type="button" class="button" data-review-tie="'+v+'" aria-pressed="'+(game.tiebreak.winnerIndex===i)+'">'+escapeHTML(i<2?game.teams[i]+' ближе':'Одинаково близко')+'</button>').join('')+'</div></article>':'')+'</div>'+
+  '<div class="pending-review-rows" tabindex="0" aria-label="Проверка ходов">'+(game.reviewSuspendedRound?'<p class="profile-muted">Текущий ход приостановлен. Если партия продолжится, вернётся то же задание и время.</p>':'')+reviewedRowsMarkup(game,player,true,'pending')+reviewedTieMarkup(game,player,true,'pending')+'</div>'+
   makeButton('ПОДТВЕРДИТЬ РЕЗУЛЬТАТЫ','confirm-results','button-primary button-big');
 }
 function changePendingReview(event){
  if(game?.phase!=='review')return;
+ if(toggleReviewedDetails(event,'pending'))return;
  const tab=event.target.closest('[data-review-tab]'),choice=event.target.closest('[data-review-choice]'),tie=event.target.closest('[data-review-tie]');
  if(!tab&&!choice&&!tie)return;
  try{
@@ -133,7 +218,7 @@ function changePendingReview(event){
   const scroll=document.querySelector?.('.pending-review-rows')?.scrollTop||0;
   commitReviewState(next);renderMatch();showPendingReview();
   const list=document.querySelector?.('.pending-review-rows');if(list)list.scrollTop=tab?0:scroll;
-  const selector=choice?'[data-review-row="'+choice.dataset.reviewRow+'"][data-review-choice="'+choice.dataset.reviewChoice+'"]':tab?'[data-review-tab="'+tab.dataset.reviewTab+'"]':'[data-review-tie="'+tie.dataset.reviewTie+'"]';
+  const selector=reviewFocusSelector(choice||tab||tie);
   $('play-content').querySelector?.(selector)?.focus?.({preventScroll:true});
  }catch(error){toast(error.message);}
 }
@@ -143,12 +228,14 @@ function registerResultReviewControls(){
  $('result-history-save').addEventListener('click',()=>closeResultHistory(true));
  $('result-history-backdrop').addEventListener('click',event=>{
   if(event.target.id==='result-history-backdrop'){closeResultHistory(false);return;}
+  if(toggleReviewedDetails(event,'modal'))return;
   const tab=event.target.closest('[data-review-tab]'),choice=event.target.closest('[data-review-choice]'),tie=event.target.closest('[data-review-tie]');
   if(tab){if(game.resultEditor)updateResultHistory(e=>{e.playerIndex=Number(tab.dataset.reviewTab)});else{$('result-history-backdrop').dataset.player=tab.dataset.reviewTab;renderResultHistory();}}
   if(choice)updateResultHistory(e=>{const i=Number(choice.dataset.reviewRow);e.history[i]=changeReviewedOutcome(e.history[i],choice.dataset.reviewChoice);});
   if(tie)updateResultHistory(e=>{e.tiebreak.winnerIndex=tie.dataset.reviewTie==='same'?null:tie.dataset.reviewTie==='a'?0:1;e.tiebreak.stage=e.tiebreak.winnerIndex===null?'judge':'decided';});
  });
  $('play-content').addEventListener('click',changePendingReview);
+ $('results-content').addEventListener('click',event=>toggleReviewedDetails(event,'results'));
  document.addEventListener('keydown',event=>{
   if($('result-history-backdrop').hidden)return;
   if(event.key==='Escape'){event.preventDefault();closeResultHistory(false);}
