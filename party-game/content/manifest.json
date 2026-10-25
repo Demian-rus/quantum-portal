@@ -189,6 +189,11 @@
       "path": "cards/science-expansion-v4.json",
       "immutable": false,
       "review": "S4: 50 вручную отобранных игровых научных заданий; 13 персон; независимая сверка с 5317 прежними карточками; см. editorial/science-expansion-v4-review.md"
+    },
+    {
+      "path": "cards/general-expansion-v2.json",
+      "immutable": false,
+      "review": "G14: 50 individually reviewed general playable cards; categories varied; compare with all 5367 previous entries and candidate rejects in editorial/general-expansion-v2-review.md"
     }
   ],
   "questions": [
@@ -308,6 +313,11 @@
       "path": "packs/science-expansion-v4.json",
       "immutable": false,
       "review": "S4 adds science@8=582, general@14=5400 while preserving all earlier pinned ID lists"
+    },
+    {
+      "path": "packs/general-expansion-v2.json",
+      "immutable": false,
+      "review": "G14 pins new general@15=5450; all prior catalog versions and card IDs retained"
     }
   ],
   "legacyCollisions": [

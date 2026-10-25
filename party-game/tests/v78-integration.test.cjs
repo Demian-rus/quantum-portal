@@ -25,6 +25,7 @@ test('v82 editorial descendants retain inherited runtime bytes and only explicit
  'party-game/cards.js','party-game/content-packs.js','party-game/content/manifest.json',
  'party-game/content/cards/science-expansion-v2.json','party-game/content/cards/science-expansion-v3.json','party-game/content/cards/idiom-expansion-v1.json',
  'party-game/content/cards/science-expansion-v4.json','party-game/content/packs/science-expansion-v4.json',
+ 'party-game/content/cards/general-expansion-v2.json','party-game/content/packs/general-expansion-v2.json','party-game/content/editorial/general-expansion-v2-review.md',
  'party-game/content/editorial/content400-independent-audit-v1.json','party-game/content/editorial/content400-independent-audit-v1.md','party-game/content/editorial/science-expansion-v4-review.md'
 ]);
  for(const name of git(['diff','--name-only',source,'HEAD','--','party-game']).trim().split('\n').filter(Boolean))assert.ok(allowed.has(name),'Unexpected integration edit '+name);

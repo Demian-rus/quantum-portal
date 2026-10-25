@@ -11,7 +11,7 @@ test('Science S4 contains 50 independently typed and unique records, with 13 sci
  for(const row of rows){assert.match(row.id,new RegExp('^'+row.type+'-038\\d{3}$'));assert.deepEqual(row.categories,['science']);assert.equal(row.pack,'science-expansion-v4');}
 });
 test('Science@8 and general@14 extend pinned previous catalogues only by S4',()=>{
- assert.equal(manifest.cards.at(-1).path,'cards/science-expansion-v4.json');assert.equal(manifest.packs.at(-1).path,'packs/science-expansion-v4.json');
+ assert.ok(manifest.cards.some(s=>s.path==='cards/science-expansion-v4.json'));assert.ok(manifest.packs.some(s=>s.path==='packs/science-expansion-v4.json'));
  const [science,general]=packs,previousScience=read('packs/science-expansion-v3.json').find(p=>p.id==='science'&&p.version===7),previousGeneral=read('packs/idiom-expansion-v2.json').find(p=>p.id==='general'&&p.version===13);
  for(const [current,old,count]of [[science,previousScience,582],[general,previousGeneral,5400]]){
   assert.equal(current.version,old.version+1);assert.equal(current.criteria.cardIds.length,count);assert.deepEqual(current.criteria.cardIds.slice(0,old.criteria.cardIds.length),old.criteria.cardIds);assert.deepEqual(current.criteria.cardIds.slice(old.criteria.cardIds.length),rows.map(x=>x.id));

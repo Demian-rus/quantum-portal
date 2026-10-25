@@ -161,3 +161,16 @@ test('TASK009 A screenshots require an explicit diagnostic flag',async()=>{
  const {capture}=require('./screenshots.cjs'),previous=process.env.QUIP_SCREENSHOTS;let calls=0;const page={screenshot:async()=>{calls++}};
  try{delete process.env.QUIP_SCREENSHOTS;await capture(page,{path:'unused.png'});assert.equal(calls,0);process.env.QUIP_SCREENSHOTS='1';await capture(page,{path:'unused.png'});assert.equal(calls,1)}finally{if(previous===undefined)delete process.env.QUIP_SCREENSHOTS;else process.env.QUIP_SCREENSHOTS=previous}
 });
+
+test('General G14: 50 unique playable prompts and general@15 pinned to exactly 5450 IDs',()=>{
+ const rows=JSON.parse(fs.readFileSync(path.join(__dirname,'../content/cards/general-expansion-v2.json'),'utf8'));
+ const p=JSON.parse(fs.readFileSync(path.join(__dirname,'../content/packs/general-expansion-v2.json'),'utf8'))[0];
+ const before=JSON.parse(fs.readFileSync(path.join(__dirname,'../content/packs/science-expansion-v4.json'),'utf8')).find(v=>v.id==='general'&&v.version===14);
+ assert.equal(rows.length,50);assert.equal(new Set(rows.map(r=>r.id)).size,50);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(level=>[level,rows.filter(r=>r.difficulty===level).length])),{easy:20,medium:20,hard:10});
+ assert.deepEqual(Object.fromEntries(['word','phrase','person'].map(type=>[type,rows.filter(r=>r.type===type).length])),{word:21,phrase:18,person:11});
+ for(const row of rows){assert.match(row.id,new RegExp('^'+row.type+'-039\\d{3}$'));assert.equal(row.pack,'general-expansion-v2');assert.equal(row.categories.length,1)}
+ assert.equal(p.id,'general');assert.equal(p.version,15);assert.equal(p.criteria.cardIds.length,5450);
+ assert.deepEqual(p.criteria.cardIds.slice(0,before.criteria.cardIds.length),before.criteria.cardIds);
+ assert.deepEqual(p.criteria.cardIds.slice(before.criteria.cardIds.length),rows.map(x=>x.id));
+});

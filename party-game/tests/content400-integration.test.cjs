@@ -13,7 +13,7 @@ const plain=x=>JSON.parse(JSON.stringify(x));
 test('v79: exactly 400 additions, all earlier card objects, questions and music survive unchanged',()=>{
  const old=plain(before.eval('PARTY_CARDS')),now=plain(current.eval('PARTY_CARDS')),map=new Map(now.map(c=>[c.id,c])),oldIds=new Set(old.map(c=>c.id));
  for(const card of old)assert.deepEqual(map.get(card.id),card,card.id);
- const fresh=now.filter(c=>!oldIds.has(c.id));assert.equal(fresh.length,450);assert.equal(fresh.filter(c=>c.pack==='science-expansion-v4').length,50);
+ const fresh=now.filter(c=>!oldIds.has(c.id));assert.equal(fresh.length,500);assert.equal(fresh.filter(c=>c.pack==='science-expansion-v4').length,50);assert.equal(fresh.filter(c=>c.pack==='general-expansion-v2').length,50);
  assert.deepEqual(Object.fromEntries(['geography-expansion-v1','geography-expansion-v2','science-expansion-v1','science-expansion-v2','science-expansion-v3','idiom-expansion-v1','idiom-expansion-v2'].map(source=>[source,fresh.filter(c=>c.pack===source).length])),{'geography-expansion-v1':50,'geography-expansion-v2':100,'science-expansion-v1':50,'science-expansion-v2':50,'science-expansion-v3':50,'idiom-expansion-v1':50,'idiom-expansion-v2':50});
  assert.deepEqual(now.filter(c=>c.type==='song'),old.filter(c=>c.type==='song'));
  assert.deepEqual(plain(current.eval('QUIP_APPROX_QUESTIONS')),plain(before.eval('QUIP_APPROX_QUESTIONS')));
@@ -24,6 +24,10 @@ test('v79: exactly 400 additions, all earlier card objects, questions and music 
  assert.equal(audit.records.length,400);
  let normalized=fs.readFileSync(path.join(root,'party-game/cards.js'),'utf8');
  const s4=JSON.parse(fs.readFileSync(path.join(root,'party-game/content/cards/science-expansion-v4.json'),'utf8'));
+ const g14=JSON.parse(fs.readFileSync(path.join(root,'party-game/content/cards/general-expansion-v2.json'),'utf8'));
+ const appendedGeneral=',\n'+g14.map(c=>'  '+JSON.stringify(c)).join(',\n');
+ assert.equal(normalized.split(appendedGeneral).length,2,'Exactly 50 new general cards appended');
+ normalized=normalized.replace(appendedGeneral,'');
  const appended=',\n'+s4.map(c=>'  '+JSON.stringify(c)).join(',\n');
  assert.equal(normalized.split(appended).length,2,'Exactly 50 new cards appended');
  normalized=normalized.replace(appended,'');
@@ -35,7 +39,7 @@ test('v79: exactly 400 additions, all earlier card objects, questions and music 
  assert.equal(normalized,oldFile('cards.js',contentHead),'Only documented editorial corrections may differ from source PR');
  const manifest=JSON.parse(fs.readFileSync(path.join(root,'party-game/content/manifest.json'),'utf8'));
  const oldManifest=JSON.parse(oldFile('content/manifest.json',contentHead));
- assert.deepEqual({...manifest,cards:manifest.cards.filter(s=>s.path!=='cards/science-expansion-v4.json'),packs:manifest.packs.filter(s=>s.path!=='packs/science-expansion-v4.json')},oldManifest);
+ assert.deepEqual({...manifest,cards:manifest.cards.filter(s=>!['cards/science-expansion-v4.json','cards/general-expansion-v2.json'].includes(s.path)),packs:manifest.packs.filter(s=>!['packs/science-expansion-v4.json','packs/general-expansion-v2.json'].includes(s.path))},oldManifest);
 });
 test('v79: every historical catalog and its pools retain exact IDs and ordering; latest counts are pinned',()=>{
  const packs=plain(before.eval('Object.values(QUIP_CONTENT_PACKS)'));
@@ -54,7 +58,7 @@ test('v79: every historical catalog and its pools retain exact IDs and ordering;
  for(const[id,version,count]of [['general',13,5350],['geography',6,406],['science',7,532]])assert.equal(current.eval(`getContentPack({id:'${id}',version:${version}}).criteria.cardIds.length`),count);
 });
 test('v79: real latest-pack selection reports the new source ID, and new singing parties remain Russian-only',()=>{
- for(const [pack,version]of [['general',14],['geography',6],['science',8]]){
+ for(const [pack,version]of [['general',15],['geography',6],['science',8]]){
   const h=createSimulation(1);h.context.pack=pack;
   h.eval("Math.random=()=>.999999;options.contentPack=latestContentPackSelection(pack);Object.assign(options,{modes:['talk'],difficulty:'easy',complications:false,dice:false});newGame();game.dice=false;roll()");
   assert.equal(h.eval('game.contentPack.version'),version);
