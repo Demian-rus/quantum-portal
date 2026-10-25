@@ -40,6 +40,106 @@
     "pack": "general-diversity-v1"
   },
   {
+    "id": "word-040005",
+    "text": "БУМЕРАНГ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "sport"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "word-040006",
+    "text": "ПАНДУС",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "word-040007",
+    "text": "ЗАЖИГАЛКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "word-040008",
+    "text": "ДОМОФОН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "word-040009",
+    "text": "ТЕЛЕЖКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "word-040010",
+    "text": "ПАРИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "word-040011",
+    "text": "ЗУБОЧИСТКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "word-040012",
+    "text": "КОСТЫЛЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "word-040013",
+    "text": "БОЧКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "word-040014",
+    "text": "МИШУРА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
     "id": "phrase-040001",
     "text": "ШТОРКА ДЛЯ ДУША",
     "type": "phrase",
@@ -51,26 +151,6 @@
   },
   {
     "id": "phrase-040002",
-    "text": "ОБЛОЖКА ДЛЯ ПАСПОРТА",
-    "type": "phrase",
-    "difficulty": "easy",
-    "categories": [
-      "everyday"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040003",
-    "text": "КОЛЬЦО ДЛЯ КЛЮЧЕЙ",
-    "type": "phrase",
-    "difficulty": "easy",
-    "categories": [
-      "everyday"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040004",
     "text": "ПЕСОЧНЫЕ ЧАСЫ",
     "type": "phrase",
     "difficulty": "easy",
@@ -80,27 +160,7 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040005",
-    "text": "ПЛЯЖНЫЙ ЗОНТИК",
-    "type": "phrase",
-    "difficulty": "easy",
-    "categories": [
-      "everyday"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040006",
-    "text": "ПРОБКА ОТ ВАННЫ",
-    "type": "phrase",
-    "difficulty": "easy",
-    "categories": [
-      "everyday"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040007",
+    "id": "phrase-040003",
     "text": "ПОЧТОВЫЙ ЯЩИК",
     "type": "phrase",
     "difficulty": "easy",
@@ -110,47 +170,7 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040008",
-    "text": "РАЗБИТАЯ ЧАШКА",
-    "type": "phrase",
-    "difficulty": "easy",
-    "categories": [
-      "everyday"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040009",
-    "text": "КОРЗИНА ДЛЯ БЕЛЬЯ",
-    "type": "phrase",
-    "difficulty": "easy",
-    "categories": [
-      "everyday"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040010",
-    "text": "СУШИЛКА ДЛЯ БЕЛЬЯ",
-    "type": "phrase",
-    "difficulty": "easy",
-    "categories": [
-      "everyday"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040011",
-    "text": "КНИЖНАЯ ПОЛКА",
-    "type": "phrase",
-    "difficulty": "easy",
-    "categories": [
-      "everyday"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040012",
+    "id": "phrase-040004",
     "text": "ДВЕРНОЙ ГЛАЗОК",
     "type": "phrase",
     "difficulty": "easy",
@@ -160,7 +180,7 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040013",
+    "id": "phrase-040005",
     "text": "РЕЗИНОВЫЕ САПОГИ",
     "type": "phrase",
     "difficulty": "easy",
@@ -170,18 +190,8 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040014",
-    "text": "СИЛИКОНОВАЯ ЛОПАТКА",
-    "type": "phrase",
-    "difficulty": "easy",
-    "categories": [
-      "food"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040015",
-    "text": "МНОГОРАЗОВАЯ БУТЫЛКА",
+    "id": "phrase-040006",
+    "text": "КОРЗИНА ДЛЯ БЕЛЬЯ",
     "type": "phrase",
     "difficulty": "easy",
     "categories": [
@@ -190,18 +200,8 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040016",
-    "text": "СКЛАДНОЙ СТУЛ",
-    "type": "phrase",
-    "difficulty": "easy",
-    "categories": [
-      "everyday"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "word-040005",
-    "text": "ПОДСВЕЧНИК",
+    "id": "word-040015",
+    "text": "КУВАЛДА",
     "type": "word",
     "difficulty": "medium",
     "categories": [
@@ -210,18 +210,78 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "word-040006",
-    "text": "МОРОЖЕНИЦА",
+    "id": "word-040016",
+    "text": "ПАССАТИЖИ",
     "type": "word",
     "difficulty": "medium",
     "categories": [
-      "food"
+      "everyday"
     ],
     "pack": "general-diversity-v1"
   },
   {
-    "id": "word-040007",
-    "text": "ПРОТИВОГАЗ",
+    "id": "word-040017",
+    "text": "ШАРМАНКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "word-040018",
+    "text": "АБАЖУР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "word-040019",
+    "text": "ГАРПУН",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "marine"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "word-040020",
+    "text": "СТЕПЛЕР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "word-040021",
+    "text": "ДЫРОКОЛ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "word-040022",
+    "text": "КАТУШКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "word-040023",
+    "text": "ВЕНТИЛЬ",
     "type": "word",
     "difficulty": "medium",
     "categories": [
@@ -230,37 +290,37 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "word-040008",
-    "text": "СЕЙФ",
+    "id": "word-040024",
+    "text": "ТРАМПЛИН",
     "type": "word",
     "difficulty": "medium",
     "categories": [
-      "everyday"
+      "sport"
     ],
     "pack": "general-diversity-v1"
   },
   {
-    "id": "word-040009",
-    "text": "ШИФОНЬЕР",
+    "id": "word-040025",
+    "text": "ПУГАЛО",
     "type": "word",
     "difficulty": "medium",
     "categories": [
-      "everyday"
+      "nature"
     ],
     "pack": "general-diversity-v1"
   },
   {
-    "id": "word-040010",
-    "text": "ШИРМА",
+    "id": "word-040026",
+    "text": "МАНЕКЕН",
     "type": "word",
     "difficulty": "medium",
     "categories": [
-      "arts"
+      "culture"
     ],
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040017",
+    "id": "phrase-040007",
     "text": "БАГАЖНАЯ БИРКА",
     "type": "phrase",
     "difficulty": "medium",
@@ -270,17 +330,7 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040018",
-    "text": "КОШЕЛЁК С МЕЛОЧЬЮ",
-    "type": "phrase",
-    "difficulty": "medium",
-    "categories": [
-      "everyday"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040019",
+    "id": "phrase-040008",
     "text": "ГОНЧАРНЫЙ КРУГ",
     "type": "phrase",
     "difficulty": "medium",
@@ -290,7 +340,7 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040020",
+    "id": "phrase-040009",
     "text": "КОРОБКА ПЕРЕДАЧ",
     "type": "phrase",
     "difficulty": "medium",
@@ -300,47 +350,7 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040021",
-    "text": "КАРМАННЫЙ ФОНАРИК",
-    "type": "phrase",
-    "difficulty": "medium",
-    "categories": [
-      "everyday"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040022",
-    "text": "ДЫМОВАЯ ШАШКА",
-    "type": "phrase",
-    "difficulty": "medium",
-    "categories": [
-      "everyday"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040023",
-    "text": "ПРУЖИННЫЙ МАТРАС",
-    "type": "phrase",
-    "difficulty": "medium",
-    "categories": [
-      "everyday"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040024",
-    "text": "СВИСТОК АРБИТРА",
-    "type": "phrase",
-    "difficulty": "medium",
-    "categories": [
-      "sport"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040025",
+    "id": "phrase-040010",
     "text": "СНЕЖНЫЙ АНГЕЛ",
     "type": "phrase",
     "difficulty": "medium",
@@ -350,7 +360,7 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040026",
+    "id": "phrase-040011",
     "text": "КОРАБЛЬ В БУТЫЛКЕ",
     "type": "phrase",
     "difficulty": "medium",
@@ -360,17 +370,7 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040027",
-    "text": "ЛОВУШКА ДЛЯ МЫШЕЙ",
-    "type": "phrase",
-    "difficulty": "medium",
-    "categories": [
-      "everyday"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040028",
+    "id": "phrase-040012",
     "text": "ЗЕРКАЛЬНЫЙ ЛАБИРИНТ",
     "type": "phrase",
     "difficulty": "medium",
@@ -380,17 +380,7 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040029",
-    "text": "ОЧИСТИТЕЛЬ ВОЗДУХА",
-    "type": "phrase",
-    "difficulty": "medium",
-    "categories": [
-      "technology"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040030",
+    "id": "phrase-040013",
     "text": "КОНДИТЕРСКИЙ ШПРИЦ",
     "type": "phrase",
     "difficulty": "medium",
@@ -400,27 +390,17 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "word-040011",
-    "text": "ПАЛИМПСЕСТ",
-    "type": "word",
-    "difficulty": "hard",
-    "categories": [
-      "arts"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "word-040012",
-    "text": "КАРАБИН",
-    "type": "word",
-    "difficulty": "hard",
+    "id": "phrase-040014",
+    "text": "СВИСТОК АРБИТРА",
+    "type": "phrase",
+    "difficulty": "medium",
     "categories": [
       "sport"
     ],
     "pack": "general-diversity-v1"
   },
   {
-    "id": "word-040013",
+    "id": "word-040027",
     "text": "ПАТЕФОН",
     "type": "word",
     "difficulty": "hard",
@@ -430,37 +410,37 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040031",
-    "text": "МЕХАНИЧЕСКИЙ МЕТРОНОМ",
-    "type": "phrase",
+    "id": "word-040028",
+    "text": "ОКАРИНА",
+    "type": "word",
     "difficulty": "hard",
     "categories": [
-      "arts"
+      "music"
     ],
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040032",
-    "text": "СКАМЕЙКА ЗАПАСНЫХ",
-    "type": "phrase",
+    "id": "word-040029",
+    "text": "КОЛЧАН",
+    "type": "word",
     "difficulty": "hard",
     "categories": [
-      "sport"
+      "history"
     ],
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040033",
-    "text": "ПЕРЕВОРОТ ПЕСОЧНЫХ ЧАСОВ",
-    "type": "phrase",
+    "id": "word-040030",
+    "text": "ПЕЙДЖЕР",
+    "type": "word",
     "difficulty": "hard",
     "categories": [
-      "everyday"
+      "technology"
     ],
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040034",
+    "id": "phrase-040015",
     "text": "ТЕНЕВОЙ ТЕАТР",
     "type": "phrase",
     "difficulty": "hard",
@@ -470,17 +450,7 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040035",
-    "text": "КУКОЛЬНЫЙ ТЕАТР",
-    "type": "phrase",
-    "difficulty": "hard",
-    "categories": [
-      "arts"
-    ],
-    "pack": "general-diversity-v1"
-  },
-  {
-    "id": "phrase-040036",
+    "id": "phrase-040016",
     "text": "ПОЖАРНАЯ КАЛАНЧА",
     "type": "phrase",
     "difficulty": "hard",
@@ -490,12 +460,42 @@
     "pack": "general-diversity-v1"
   },
   {
-    "id": "phrase-040037",
+    "id": "phrase-040017",
     "text": "СЛЕПОЙ ПОВОРОТ",
     "type": "phrase",
     "difficulty": "hard",
     "categories": [
       "transport"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "phrase-040018",
+    "text": "СКАМЕЙКА ЗАПАСНЫХ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "sport"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "phrase-040019",
+    "text": "МЕХАНИЧЕСКИЙ МЕТРОНОМ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v1"
+  },
+  {
+    "id": "phrase-040020",
+    "text": "КУКОЛЬНЫЙ ТЕАТР",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "arts"
     ],
     "pack": "general-diversity-v1"
   }
