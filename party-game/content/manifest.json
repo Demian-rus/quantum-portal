@@ -149,6 +149,11 @@
       "path": "cards/animals-v1.json",
       "immutable": false,
       "review": "TASK011 Animals: 216 unique authored cards; existing species and animal characters reused by explicit IDs, original historical files unchanged."
+    },
+    {
+      "path": "cards/geography-expansion-v1.json",
+      "immutable": false,
+      "review": "2026-10-24 editorial batch G1: 50 geography cards (20 easy, 20 medium, 10 hard), source identity and exact duplicates checked against entire active card catalog; new IDs; manual semantic review required."
     }
   ],
   "questions": [
@@ -228,6 +233,11 @@
       "path": "packs/animals-v2.json",
       "immutable": false,
       "review": "Animals@1 explicitly pinned IDs: no automatic inference of tags on historical records; general@6 unchanged."
+    },
+    {
+      "path": "packs/geography-expansion-v1.json",
+      "immutable": false,
+      "review": "Geography@5 306 IDs and general@7 5000 IDs pin original eligible IDs plus 50 new geography cards. Historical versions unchanged."
     }
   ],
   "legacyCollisions": [
