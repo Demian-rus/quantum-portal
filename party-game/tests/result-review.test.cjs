@@ -4,7 +4,7 @@ const {createSimulation}=require('../scripts/game-simulation.cjs');
 const plain=v=>JSON.parse(JSON.stringify(v));
 function start({mode='talk',modifier=false,risk=false,rounds=8,awardTo='setter',finishType='rounds',targetScore=25}={}){
  const h=createSimulation(37);h.context.settings={mode,modifier,risk,rounds,awardTo,finishType,targetScore};
- h.eval(`Object.assign(options,{modes:[settings.mode],dice:false,rounds:settings.rounds,finishType:settings.finishType,targetScore:settings.targetScore,awardTo:settings.awardTo,complications:settings.modifier,modifierChance:settings.modifier?100:0,riskRounds:settings.risk});newGame();game.dice=false;persist();`);
+ h.eval(`Object.assign(options,{modes:[settings.mode],dice:false,rounds:settings.rounds,finishType:settings.finishType,targetScore:settings.targetScore,awardTo:settings.awardTo,complications:settings.modifier,modifierChance:settings.modifier?100:0,riskRounds:settings.risk});newGame();if(settings.risk){delete game.riskPolicyVersion;delete game.riskPlannerState;}game.dice=false;persist();`);
  return h;
 }
 function answer(h,yes=true,mod=true){h.context.yes=yes;h.context.mod=mod;h.eval("roll();game.phase='judge';persist();recordAnswer(yes,mod)");}

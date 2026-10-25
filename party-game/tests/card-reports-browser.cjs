@@ -56,7 +56,7 @@ async function protectedState(page){return page.evaluate(()=>({game:JSON.stringi
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
    }
    // Shared deciding question reports its numerical ID and leaves scores untouched.
-   await page.evaluate(()=>{delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;game.finishType='score';game.roundIndex=30;game.scores=[15,15];game.targetScore=15;game.current=null;beginTiebreak();persist();render()});
+   await page.evaluate(()=>{delete game.riskPolicyVersion;delete game.riskPlannerState;delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;game.finishType='score';game.roundIndex=30;game.scores=[15,15];game.targetScore=15;game.current=null;beginTiebreak();persist();render()});
    const tie=await protectedState(page),id=await page.evaluate(()=>game.tiebreak.question.id);
    await page.locator('#report-card').tap();await page.locator('#report-save').click();
    assert.deepEqual(await protectedState(page),tie);assert.equal((await saved(page)).items.at(-1).item.cardId,id);assert.equal((await saved(page)).items.at(-1).item.context,'tiebreak');

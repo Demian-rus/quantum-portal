@@ -119,8 +119,7 @@ function rollOutcome() {
     modifierPoints:ruleSetForGame(game).version>=4&&modifier?config.modifierBonus:0,
     points:rewardForRound(game,mode.id,level,!!modifier),usesTimer:config.usesTimer,
     blitzRequired:config.blitzWordsCount,seconds:durationForMode(mode.id,actualMode.id,game.duration),
-    risk:config.allowsRisk&&game.riskRounds&&game.roundIndex>=ruleSetForGame(game).risk.firstRoundIndex&&
-      shouldSelectRisk(game,Math.random(),mode.id),
+    risk:selectRoundRisk(game,mode.id),
     blitzWords,blitzCardIds,
     blitzIndex:0,blitzCorrect:0,
     blitzQueue:mode.id==='blitz'?Array.from({length:config.blitzWordsCount},(_,i)=>i):null,

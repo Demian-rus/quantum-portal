@@ -1,4 +1,5 @@
 'use strict';
+const {withoutRiskDispatch}=require('./selection-source.cjs');
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),{execFileSync}=require('node:child_process');
 const {createSimulation}=require('../scripts/game-simulation.cjs');
 const item={cardId:'word-feedback-1',pack:{id:'general',version:13},context:'round',modeId:'talk',methodId:null,difficulty:'easy',text:'Мачта'};
@@ -105,5 +106,5 @@ test('UX aliases are exact display-only matches; saved/custom/V1 snapshots and c
  h.context.source=source;h.eval('Object.assign(game.current,{modifierVersion:2,complicationId:"v2-closed-mouth",complication:source});persist()');const raw=h.storage.get('iskra-party:v1');
  assert.equal(h.eval('displayedRoundCondition(game.current)'),'Напевай с закрытым ртом, без слов.');h.eval('roundConditionMarkup()');assert.equal(h.storage.get('iskra-party:v1'),raw);
  assert.equal(h.eval('displayedRoundCondition({...game.current,modifierVersion:1})'),source);assert.equal(h.eval('displayedRoundCondition({...game.current,complication:"Особое условие"})'),'Особое условие');
- for(const name of ['content/modifiers/v2.json','modifiers-v2.js','modifiers.js','round-selection.js','round-actions.js','profile-backup.js','storage-controller.js'])assert.equal(fs.readFileSync(path.join(__dirname,'..',name),'utf8'),execFileSync('git',['show','959017bf33c5bb8a8fd08ba047ad99c82682e32d:party-game/'+name],{encoding:'utf8',maxBuffer:8e6}));
+ for(const name of ['content/modifiers/v2.json','modifiers-v2.js','modifiers.js','round-selection.js','round-actions.js','profile-backup.js','storage-controller.js'])assert.equal(name==='round-selection.js'?withoutRiskDispatch(fs.readFileSync(path.join(__dirname,'..',name),'utf8')):fs.readFileSync(path.join(__dirname,'..',name),'utf8'),execFileSync('git',['show','959017bf33c5bb8a8fd08ba047ad99c82682e32d:party-game/'+name],{encoding:'utf8',maxBuffer:8e6}));
 });

@@ -43,6 +43,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
   vm.runInContext(read('approx-questions.js'),context);
   vm.runInContext(read('rules.js'),context);
   vm.runInContext(read('penalties.js'),context);
+  vm.runInContext(read('risk-planner.js'),context);
   vm.runInContext(read('modifiers.js'),context);
   vm.runInContext(read('round-planner.js'),context);
   vm.runInContext(read('task-history.js'),context);
@@ -82,7 +83,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
     if(profileStore&&!selectedPlayerProfiles())selectedProfileIds=profileStore.profiles.slice(0,2).map(p=>p.id);`,context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
-  vm.runInContext(`function startHistoricalFixture(){const awardTo=options.awardTo;options.awardTo='guesser';newGame();options.awardTo=awardTo;if(game){delete game.profileMatch;delete game.matchId;delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;game.awardTo=awardTo;delete game.modeCompatibilityVersion;delete game.modePlannerVersion;delete game.modePlannerState;delete game.songLanguagePolicyVersion;delete game.songLanguages;delete game.timerPolicyVersion;}}
+  vm.runInContext(`function startHistoricalFixture(){const awardTo=options.awardTo;options.awardTo='guesser';newGame();options.awardTo=awardTo;if(game){delete game.profileMatch;delete game.matchId;delete game.riskPolicyVersion;delete game.riskPlannerState;delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;game.awardTo=awardTo;delete game.modeCompatibilityVersion;delete game.modePlannerVersion;delete game.modePlannerState;delete game.songLanguagePolicyVersion;delete game.songLanguages;delete game.timerPolicyVersion;}}
   function legacyGame(version=3){
     options.modes=options.modes.filter(id=>id!=='approx');
     if(options.contentPack?.id==='general')options.contentPack={id:'general',version:1};
@@ -91,7 +92,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
     }
   }`,context);
   vm.runInContext("function v4Game(){startHistoricalFixture();game.rulesVersion=4;delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;persist()}",context);
-  vm.runInContext("function startPreReviewFixture(){newGame();delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;persist()}",context);
+  vm.runInContext("function startPreReviewFixture(){newGame();delete game.riskPolicyVersion;delete game.riskPlannerState;delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;persist()}",context);
   // Scoring fixtures choose a fixed starting player; dedicated tests exercise both draws.
   if(!randomizeStarter)vm.runInContext('chooseStartingTeam=()=>0',context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
@@ -993,7 +994,7 @@ test('smart finish: pure pre-reply evaluation preserves RNG and saved plan',()=>
 });
 test('smart finish: shared tiebreak chooses a distinct question, resumes offline and awards no ordinary task',()=>{
  const {createSimulation}=require('../scripts/game-simulation.cjs'),store=new Map(),h=createSimulation(1,store);
- h.eval("Object.assign(options,{finishType:'score',targetScore:15,modes:['talk'],difficulty:'easy'});newGame();delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed");
+ h.eval("Object.assign(options,{finishType:'score',targetScore:15,modes:['talk'],difficulty:'easy'});newGame();delete game.riskPolicyVersion;delete game.riskPlannerState;delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed");
  h.eval(`game.roundIndex=30;game.scores=[15,15];
   game.history=Array.from({length:30},(_,i)=>({mode:'approx',setterIndex:i%2,assignedIndices:[0,1],
    deltas:i<15?[1,1]:[0,0],recipients:i<15?[0,1]:[],sharedAward:i<15,
