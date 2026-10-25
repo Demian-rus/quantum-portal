@@ -13,6 +13,6 @@ test('45 scripts match service-worker precache and old content URLs',()=>{
  const html=fs.readFileSync(path.join(root,'party-game/index.html'),'utf8'),sw=fs.readFileSync(path.join(root,'party-game/sw.js'),'utf8');
  const scripts=[...html.matchAll(/<script src="\.\/([^?"/]+\.js)\?v=(\d+)"/g)].map(x=>'./'+x[1]+'?v='+x[2]);
  assert.equal(scripts.length,45);for(const s of scripts)assert.ok(sw.includes("'"+s+"'"),s);
- assert.match(sw,/kvip-pwa-v83-20261025-features-only/);
+ assert.match(sw,/kvip-pwa-v84-20261025-ux-hotfix-candidate/);
  for(const x of ['cards.js?v=8','content-packs.js?v=16']){assert.ok(html.includes(x));assert.ok(sw.includes(x));}
 });

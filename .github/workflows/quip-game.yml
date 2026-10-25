@@ -30,8 +30,9 @@ jobs:
           node-version: '22'
       - run: node party-game/scripts/content.cjs check
       - run: node party-game/scripts/approx-unit-audit.cjs check
+      - run: node party-game/scripts/condition-audit.cjs check
       - run: node party-game/scripts/modifiers-v2.cjs check
-      - run: node --test party-game/tests/logic.test.cjs party-game/tests/content-foundation.test.cjs party-game/tests/task-history.test.cjs party-game/tests/modifiers-v2.test.cjs party-game/tests/dictionary.test.cjs party-game/tests/music-themes.test.cjs party-game/tests/estimation.test.cjs party-game/tests/estimation-editorial.test.cjs party-game/tests/mode-compatibility.test.cjs party-game/tests/mode-planner.test.cjs party-game/tests/player-profiles.test.cjs party-game/tests/card-visibility.test.cjs party-game/tests/profile-backup.test.cjs party-game/tests/card-reports.test.cjs party-game/tests/backup-reports-integration.test.cjs party-game/tests/card-feedback.test.cjs party-game/tests/approx-units.test.cjs party-game/tests/v83-content-guard.test.cjs
+      - run: node --test party-game/tests/logic.test.cjs party-game/tests/content-foundation.test.cjs party-game/tests/task-history.test.cjs party-game/tests/modifiers-v2.test.cjs party-game/tests/dictionary.test.cjs party-game/tests/music-themes.test.cjs party-game/tests/estimation.test.cjs party-game/tests/estimation-editorial.test.cjs party-game/tests/mode-compatibility.test.cjs party-game/tests/mode-planner.test.cjs party-game/tests/player-profiles.test.cjs party-game/tests/card-visibility.test.cjs party-game/tests/profile-backup.test.cjs party-game/tests/card-reports.test.cjs party-game/tests/backup-reports-integration.test.cjs party-game/tests/card-feedback.test.cjs party-game/tests/approx-units.test.cjs party-game/tests/v83-content-guard.test.cjs party-game/tests/task021.test.cjs
   browser:
     runs-on: ubuntu-latest
     steps:
@@ -44,10 +45,12 @@ jobs:
       - run: npm install --no-save playwright-core@1.55.0
       - run: |
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/quip-http.log 2>&1 &
+      - run: node party-game/tests/task021-browser.cjs
       - run: node party-game/tests/ux-feedback-browser.cjs
       - run: node party-game/tests/approx-units-browser.cjs
       - run: node party-game/tests/profile-backup-browser.cjs
       - run: node party-game/tests/v78-upgrade-browser.cjs
+      - run: node party-game/tests/v83-upgrade-browser.cjs
       - run: node party-game/tests/card-reports-browser.cjs
       - run: node party-game/tests/backup-reports-integration-browser.cjs
       - run: node party-game/tests/card-visibility-browser.cjs
@@ -69,11 +72,13 @@ jobs:
             artifacts/quip-immersive
             artifacts/quip-polish
             artifacts/quip-approx-units
+            artifacts/quip-task021
             artifacts/quip-feedback
             artifacts/quip-content400
             artifacts/quip-integration
             artifacts/quip-backup
             artifacts/quip-v78-upgrade
+            artifacts/quip-v83-upgrade
             artifacts/quip-reports
             artifacts/quip-card-visibility
             artifacts/quip-profiles

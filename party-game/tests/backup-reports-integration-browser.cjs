@@ -17,11 +17,10 @@ async function upload(page,file){const picker=page.waitForEvent('filechooser');a
   for(const[width,height]of [[320,568],[390,844],[844,390]]){
    const ctx=await browser.newContext({viewport:{width,height},hasTouch:true}),page=await ctx.newPage(),errors=[];
    page.on('pageerror',e=>errors.push(e.message));await page.goto(URL);await provisionProfiles(page);
-   await page.evaluate(()=>{soundOn=false;Object.assign(options,{modes:['approx'],difficulty:'easy',rounds:2,finishType:'rounds',dice:false});newGame();game.dice=false;roll()});
-   const played=await page.evaluate(()=>JSON.stringify(game));await page.locator('#report-card').tap();await page.goBack();await page.locator('#report-backdrop').waitFor({state:'hidden'});
+   await page.evaluate(()=>{soundOn=false;Object.assign(options,{modes:['approx'],difficulty:'easy',rounds:2,finishType:'rounds',dice:false});newGame();game.dice=false;roll();revealApprox();awardApprox('a');roll();revealApprox();awardApprox('none')});
+   const played=await page.evaluate(()=>JSON.stringify(game));await page.locator('[data-report-history="0"]').tap();await page.goBack();await page.locator('#report-backdrop').waitFor({state:'hidden'});
    assert.equal(await page.evaluate(()=>JSON.stringify(game)),played);
-   await page.locator('#report-card').tap();await page.locator('#report-reason').selectOption('theme');await page.locator('#report-save').click();
-   await page.evaluate(()=>{revealApprox();awardApprox('a');roll();revealApprox();awardApprox('none')});
+   await page.locator('[data-report-history="0"]').tap();await page.locator('#report-reason').selectOption('theme');await page.locator('#report-save').click();
    await page.locator('[data-action="menu"]').click();await page.locator('#settings-menu').click();
    const profilesBefore=await raw(page,'kvip-player-profiles:v1'),reports=await raw(page,'kvip-card-reports:v1');
    assert.equal(JSON.parse(profilesBefore).recent.length,1);

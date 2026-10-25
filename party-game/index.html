@@ -10,7 +10,7 @@
   <link rel="manifest" href="./manifest.webmanifest?v=3">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=39">
+  <link rel="stylesheet" href="./style.css?v=40">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
   <script src="./curated-words.js?v=1" defer></script>
@@ -42,7 +42,7 @@
   <script src="./tiebreak.js?v=3" defer></script>
   <script src="./round-settlement.js?v=6" defer></script>
   <script src="./timer-controller.js?v=2" defer></script>
-  <script src="./round-presentation.js?v=6" defer></script>
+  <script src="./round-presentation.js?v=7" defer></script>
   <script src="./round-actions.js?v=3" defer></script>
   <script src="./storage-controller.js?v=2" defer></script>
   <script src="./session-restoration.js?v=9" defer></script>
@@ -51,7 +51,7 @@
   <script src="./profile-backup.js?v=1" defer></script>
   <script src="./profile-backup-view.js?v=1" defer></script>
   <script src="./card-reports.js?v=1" defer></script>
-  <script src="./card-reports-view.js?v=3" defer></script>
+  <script src="./card-reports-view.js?v=4" defer></script>
   <script src="./card-feedback.js?v=1" defer></script>
   <script src="./feedback-clock.js?v=1" defer></script>
   <script src="./card-feedback-view.js?v=2" defer></script>
@@ -232,7 +232,7 @@
         <div class="match-team match-team--b" id="match-team-b"><b id="score-b">0</b><span class="match-team-meta"><span class="match-team-label"><span id="label-team-b">Кометы</span><i class="team-spot team-spot--b"></i></span><small id="role-b">ОТГАДЫВАЕТ</small></span></div>
       </div>
       <div class="play-card">
-        <div class="play-card-head"><span class="section-kicker" id="play-step">ПЕРЕДАЙТЕ ТЕЛЕФОН</span><button id="timer-pause-control" class="timer-pause report-card" type="button" aria-label="Пауза" hidden></button><button id="report-card" class="report-card" type="button" aria-label="Сообщить о проблеме с заданием" aria-haspopup="dialog" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 21V3m0 1c5-4 9 4 14 0v10c-5 4-9-4-14 0"/></svg></button><button id="exit-game" type="button" class="text-link">В МЕНЮ</button></div>
+        <div class="play-card-head"><span class="section-kicker" id="play-step">ПЕРЕДАЙТЕ ТЕЛЕФОН</span><button id="timer-pause-control" class="timer-pause report-card" type="button" aria-label="Пауза" hidden></button><button id="report-card" class="report-card" type="button" aria-label="Сообщить о проблеме с заданием" aria-haspopup="dialog" aria-hidden="true" tabindex="-1" disabled hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 21V3m0 1c5-4 9 4 14 0v10c-5 4-9-4-14 0"/></svg></button><button id="exit-game" type="button" class="text-link">В МЕНЮ</button></div>
         <div class="play-inner" id="play-content" aria-live="polite"></div>
       </div>
       <div class="play-footer"><span>КВИП</span><span>ПОБЕДИТ САМАЯ ШУМНАЯ КОМАНДА</span></div>

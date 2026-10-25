@@ -943,16 +943,17 @@ body[data-screen="preferences"]::after{background:#11082085}
    active countdown. Its bounding box never jumps when the timer appears. */
 .scene--game .play-inner.stable-round {
  display:grid;grid-template-columns:minmax(0,1fr);
- --round-card-size:clamp(150px,calc(23 * var(--kvip-locked-vh,1dvh)),210px);
- --round-footer-space:20px;
- grid-template-rows:minmax(0,1fr) var(--round-card-size) calc(var(--decision-size) + var(--decision-label) + var(--round-footer-space));
+ --round-card-size:clamp(110px,29cqh,230px);
+ --round-gap:24px;
+ grid-template-rows:minmax(0,1fr) var(--round-card-size) calc(var(--decision-size) + var(--decision-label) + var(--decision-bottom) + 5px);
+ row-gap:var(--round-gap);
  align-content:stretch;align-items:center;justify-items:center;
- width:100%;max-width:660px;padding:0;gap:0;position:relative;overflow:hidden;
+ width:100%;max-width:660px;padding:0;column-gap:0;position:relative;overflow:hidden;
 }
 .scene--game .stable-round .round-top {
  width:100%;min-height:0;max-height:100%;min-width:0;
  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
- height:100%;justify-content:safe flex-end;gap:clamp(4px,calc(.7 * var(--kvip-locked-vh,1dvh)),7px);overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;padding:4px 3px 8px;
+ height:100%;justify-content:safe flex-end;gap:clamp(4px,calc(.7 * var(--kvip-locked-vh,1dvh)),7px);overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;padding:4px 3px;
 }
 .scene--game .stable-round .round-top--task .mode-symbol {
  width:clamp(48px,calc(8 * var(--kvip-locked-vh,1dvh)),80px);height:clamp(48px,calc(8 * var(--kvip-locked-vh,1dvh)),80px);
@@ -980,7 +981,7 @@ body[data-screen="preferences"]::after{background:#11082085}
  font-size:clamp(9px,calc(1.4 * var(--kvip-locked-vh, 1dvh)),12px);flex:0 0 auto;
 }
 .scene--game .stable-round .round-top--timer {
- padding:3px 3px 12px;
+ padding:4px 3px;
  gap:8px;
 }
 .scene--game .stable-round .round-top--timer .timer-ring {
@@ -1942,7 +1943,7 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
 @media(prefers-reduced-motion:reduce){.card-rating.is-confirmed{animation:none;box-shadow:0 0 0 4px #a4ff9a80}}
 @media(max-height:480px){.scene--game .timer-dial{gap:10px;grid-template-columns:44px auto 44px}.card-rating{width:44px;height:44px}}
 
-@media(min-height:741px){.scene--game .play-inner.stable-round{--round-footer-space:90px}}
+
 /* Blitz uses the otherwise empty middle result slot for its finish action. */
 .scene--game .stable-round .round-bottom--play{position:relative}
 .scene--game .stable-round .round-bottom--play .minor-action{position:absolute;left:50%;bottom:calc(var(--decision-bottom) + var(--decision-label) + 5px);transform:translateX(-50%);width:min(27%,130px);margin:0}
@@ -1953,7 +1954,7 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
 .scene--game .play-card-head,.scene--game .play-card-head #exit-game{min-height:44px}
 @media(min-height:481px) and (max-height:740px){
  .scene--game .round-top--timer:has(.blitz-status) .timer-ring{width:64px;height:64px}
- .scene--game .stable-round .blitz-status{min-height:18px;padding:0 8px;line-height:1.2;margin-top:-4px}
+ .scene--game .stable-round .blitz-status{min-height:18px;padding:0 8px;line-height:1.2;margin:0}
  .scene--game .stable-round .blitz-status b{font-size:10px}
 }
 @media(max-height:480px){
@@ -1967,3 +1968,72 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
 .approx-unit span{font-weight:800;letter-spacing:.03em}.approx-unit strong{font-size:16px}
 .approx-card:not(.is-revealed){gap:8px}
 @media(max-height:640px){.approx-card:not(.is-revealed) .approx-question{font-size:17px;line-height:1.3}.approx-unit{font-size:11px}.approx-unit strong{font-size:14px}}
+
+/* TASK 021: allocate real rows and gutters, independent of the phase contents.
+   The panel's actual content height includes Android safe areas and the header.
+   24/20px gutters reserve >12px even after the card's 1.2deg border rotation. */
+.scene--game .play-card:has(>.stable-round){container-type:size;container-name:round-panel}
+.scene--game .stable-round .round-top{padding:4px 3px;gap:5px}
+.scene--game .stable-round .round-top--timer .timer-ring{width:clamp(72px,20cqh,144px);height:clamp(72px,20cqh,144px)}
+.scene--game .stable-round .round-top--timer:has(.blitz-status) .timer-ring{width:clamp(56px,16cqh,120px);height:clamp(56px,16cqh,120px)}
+.scene--game .stable-round .timer-dial{gap:clamp(10px,3vw,24px)}
+.scene--game .stable-round .round-fixed-card .challenge-card{padding:10px 12px;overflow:hidden}
+.scene--game .stable-round .challenge-word--very-long{font-size:clamp(13px,min(4.5vw,3cqh),21px);overflow-wrap:anywhere}
+.scene--game .stable-round .round-top--timer .play-timer{font-size:clamp(24px,5.2cqh,40px)}
+@container round-panel (max-height:560px){
+ .scene--game .play-inner.stable-round{--round-card-size:clamp(110px,23cqh,150px);--round-gap:20px}
+ .scene--game .stable-round .round-top{gap:2px;padding:2px 3px}
+ .scene--game .stable-round .round-top--task .mode-symbol{width:28px;height:28px;min-height:0;margin:0}
+ .scene--game .stable-round .round-top--task .mode-name{font-size:17px}
+ .scene--game .stable-round .round-top--task>.score-note,.scene--game .stable-round .round-top--task>.secret-flag{font-size:9px;line-height:1.2;padding:3px 7px}
+ .scene--game .stable-round .round-condition{font-size:11px;line-height:1.3;padding:4px 8px}
+ .scene--game .stable-round .round-top--timer .timer-ring{width:72px;height:72px}
+ .scene--game .stable-round .round-top--timer:has(.blitz-status) .timer-ring{width:56px;height:56px}
+ .scene--game .stable-round .round-top--timer .play-timer{font-size:24px}
+ .scene--game .stable-round .round-top--timer:has(.blitz-status) .play-timer{font-size:22px}
+ .scene--game .stable-round .game-eyebrow{font-size:9px;line-height:1.2}
+ .scene--game .stable-round .blitz-status{min-height:14px;padding:0 6px;margin:0;line-height:1.2}
+ .scene--game .stable-round .blitz-status b{font-size:10px}
+ .scene--game .stable-round .risk-notice{font-size:10px;line-height:1.2;margin:0}
+ .scene--game .stable-round .challenge-word--long{font-size:17px}
+}
+@container round-panel (max-height:430px){
+ .scene--game .play-inner.stable-round{--round-card-size:clamp(100px,25cqh,110px)}
+ .scene--game .stable-round .round-top--task .mode-symbol{width:24px;height:24px}
+ .scene--game .stable-round .round-top--task .mode-name{font-size:15px}
+ .scene--game .stable-round .round-top--timer .timer-ring{width:56px;height:56px}
+ .scene--game .stable-round .round-top--timer .play-timer{font-size:22px}
+}
+@media(max-height:480px){
+ .scene--game .play-inner.stable-round{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);max-width:100%;grid-template-rows:minmax(0,1fr) calc(var(--decision-size) + var(--decision-label) + var(--decision-bottom) + 5px);gap:24px 28px}
+ .scene--game .stable-round .round-top{justify-content:safe center;padding:2px 3px}
+ .scene--game .stable-round .round-top--task{display:grid;grid-template-columns:28px minmax(0,1fr);align-content:safe center;align-items:center;gap:2px 8px}
+ .scene--game .stable-round .round-top--task>.mode-symbol{grid-row:1;grid-column:1}
+ .scene--game .stable-round .round-top--task>.mode-name{grid-row:1;grid-column:2;justify-self:start}
+ .scene--game .stable-round .round-top--task>.round-condition,.scene--game .stable-round .round-top--task>.score-note,.scene--game .stable-round .round-top--task>.secret-flag,.scene--game .stable-round .round-top--task>.risk-notice{grid-column:1/-1;justify-self:center}
+ .scene--game .stable-round .round-top--timer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-content:safe center;align-items:center;justify-content:stretch;gap:2px 10px}
+ .scene--game .stable-round .round-top--timer>.game-eyebrow,.scene--game .stable-round .round-top--timer>.blitz-status,.scene--game .stable-round .round-top--timer>.risk-notice{grid-column:1/-1;justify-self:center}
+ .scene--game .stable-round .round-top--timer>.round-condition{grid-row:2;grid-column:1}
+ .scene--game .stable-round .round-top--timer>.timer-dial,.scene--game .stable-round .round-top--timer>.play-title{grid-row:2;grid-column:2;justify-self:center}
+ .scene--game .stable-round .round-top--timer:not(:has(.round-condition))>.timer-dial,.scene--game .stable-round .round-top--timer:not(:has(.round-condition))>.play-title{grid-column:1/-1}
+ .scene--game .stable-round .timer-dial{gap:8px}
+ .scene--game .stable-round .round-fixed-card{height:calc(100% - 12px);max-height:160px}
+ .scene--game .stable-round .round-bottom{padding-bottom:var(--decision-bottom)}
+ .scene--game .stable-round .round-top--timer .timer-ring{width:56px;height:56px}
+ .scene--game .stable-round .challenge-word--long{font-size:18px}
+ .scene--game .stable-round .challenge-word--very-long{font-size:15px}
+}
+
+/* Preserve separation within the compact heading; a plain timer has no condition between caption and dial. */
+.scene--game .stable-round .round-top--task{row-gap:5px}
+.scene--game .stable-round .round-top--timer:not(:has(.round-condition)){row-gap:8px}
+@media(max-height:480px){
+ .scene--game .stable-round .round-top--task{row-gap:4px}
+ .scene--game .stable-round .round-top--task>.mode-symbol{width:22px;height:22px}
+ .scene--game .stable-round .round-top--task>.score-note,.scene--game .stable-round .round-top--task>.secret-flag{padding:0}
+}
+
+@media(max-height:480px){
+ .scene--game .is-countdown.stable-round .round-top--timer{display:flex;justify-content:safe center;gap:2px}
+ .scene--game .is-countdown.stable-round .round-top--timer .play-title{font-size:17px}
+}

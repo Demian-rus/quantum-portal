@@ -52,7 +52,8 @@ module.exports=async function roundLayout(browser,url){
     assert.ok(Math.abs(g.icon.w-g.icon.h)<=1,'Mode icon was squeezed by a long title');
     if(iconBox)sameBox({x:0,y:0,w:g.icon.w,h:g.icon.h},{x:0,y:0,w:iconBox.w,h:iconBox.h},'Mode icon size changed');
     iconBox=g.icon;
-    assert.ok(g.icon.y>=g.top.y-1&&g.icon.bottom<=g.title.y-3,'Icon/title collide or clip: '+JSON.stringify(g));
+    if(device.height>480)assert.ok(g.icon.y>=g.top.y-1&&g.icon.bottom<=g.title.y-3,'Icon/title collide or clip: '+JSON.stringify(g));
+    else assert.ok(g.icon.y>=g.top.y-1&&g.icon.right<=g.title.x-3&&g.title.bottom<=g.top.bottom,'Landscape icon/title collide or clip: '+JSON.stringify(g));
     if(g.rule)assert.ok(g.title.bottom<=g.rule.y-3&&g.rule.bottom<=g.reward.y-3,'Condition/reward collide: '+JSON.stringify(g));
     else assert.ok(g.title.bottom<=g.reward.y-3,'Title/reward collide: '+JSON.stringify(g));
     assert.equal(await page.locator('.mode-rule').count(),0,'Generic rules should stay in the guide');
