@@ -224,6 +224,11 @@
       "path": "cards/general-diversity-v6.json",
       "immutable": false,
       "review": "G20: 50 general cards (40 words and 10 phrases), manually screened across 5667 prior cards; editorial/general-diversity-v6-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v7.json",
+      "immutable": false,
+      "review": "G21: 50 reviewed general tasks, 40 words and 10 phrases; editorial/general-diversity-v7-review.md"
     }
   ],
   "questions": [
@@ -378,6 +383,11 @@
       "path": "packs/general-diversity-v6.json",
       "immutable": false,
       "review": "G20 general@21 pins 5750 IDs; all older general versions remain frozen"
+    },
+    {
+      "path": "packs/general-diversity-v7.json",
+      "immutable": false,
+      "review": "G21 general@22 pins 5800 IDs, preserves all prior snapshots"
     }
   ],
   "legacyCollisions": [
