@@ -44,8 +44,8 @@ async function upload(page,file){const picker=page.waitForEvent('filechooser');a
    await page.locator('#preferences-back').click();
    await page.evaluate(()=>{Object.assign(options,{modes:['talk'],difficulty:'easy',dice:false});newGame();game.dice=false;roll();toggleWord();startTimer();window.__now=Date.now();Date.now=()=>window.__now;window.__reportRandomCalls=0;const random=Math.random;Math.random=()=>{window.__reportRandomCalls++;return random()}});
    const deadline=await page.evaluate(()=>game.current.deadline),visible=await page.evaluate(()=>game.current.visible),profileActive=await raw(page,'kvip-player-profiles:v1');
-   await page.locator('#report-card').tap();await page.evaluate(()=>{window.__now+=500;tick()});assert.equal(await page.evaluate(()=>game.current.deadline),deadline);
-   await page.locator('#report-save').click();assert.equal(await page.evaluate(()=>game.current.visible),visible);assert.equal(await page.evaluate(()=>window.__reportRandomCalls),0);
+   await page.locator('[data-feedback="report"]').tap();const remain=await page.evaluate(()=>game.current.feedbackHold.remainingMs);await page.evaluate(()=>{window.__now+=500;tick()});assert.equal(await page.evaluate(()=>game.current.deadline),null);assert.equal(await page.evaluate(()=>game.current.feedbackHold.remainingMs),remain);
+   await page.locator('#report-save').click();assert.equal(await page.evaluate(()=>game.current.deadline),deadline+500);assert.equal(await page.evaluate(()=>game.current.visible),visible);assert.equal(await page.evaluate(()=>window.__reportRandomCalls),0);
    assert.equal(await raw(page,'kvip-player-profiles:v1'),profileActive);await page.evaluate(()=>{pauseTimer();game.dice=true;options.dice=true;persist()});
    const savedGame=await page.evaluate(()=>JSON.stringify(game)),main=await raw(page,'iskra-party:v1'),reportsAfter=await raw(page,'kvip-card-reports:v1');
    await page.locator('#exit-game').click();await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
@@ -54,7 +54,7 @@ async function upload(page,file){const picker=page.waitForEvent('filechooser');a
    await page.locator('#exit-game').click();await page.locator('#settings-menu').click();
    await download(page,'backup-export',path.join(tmp,'offline-profiles-'+width+'.json'));await download(page,'reports-export',path.join(tmp,'offline-reports-'+width+'.json'));
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);assert.deepEqual(errors,[]);
-   await ctx.close();console.log('v79 combined archives / modal focus / timer / paused restore / offline exports',width,height,'PASS');
+   await ctx.close();console.log('v80 combined archives / modal focus / timer / paused restore / offline exports',width,height,'PASS');
   }
   await source.close();
  }finally{await browser.close();fs.rmSync(tmp,{recursive:true,force:true});}

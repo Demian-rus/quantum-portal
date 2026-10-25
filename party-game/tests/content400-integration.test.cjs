@@ -52,8 +52,10 @@ test('v79: real latest-pack selection reports the new source ID, and new singing
  assert.equal(h.eval('game.songLanguagePolicyVersion'),2);assert.deepEqual(Array.from(h.eval('game.songLanguages')),['ru']);
 });
 
-test('v79: all 40 noncatalog runtime scripts remain byte-exact from v78',()=>{
+test('v79: untouched runtime scripts remain byte-exact from v78; UI/hold changes are explicit',()=>{
  const html=oldFile('index.html'),scripts=[...html.matchAll(/<script src="\.\/([^?"/]+\.js)/g)].map(m=>m[1]);
  assert.equal(scripts.length,42);
- for(const f of scripts.filter(f=>!['cards.js','content-packs.js'].includes(f)))assert.equal(fs.readFileSync(path.join(root,'party-game',f),'utf8'),oldFile(f),f);
+ const uxChanges=['app.js','timer-view.js','timer-controller.js','session-restoration.js','card-reports-view.js','round-presentation.js'];
+ assert.equal(scripts.filter(f=>!['cards.js','content-packs.js',...uxChanges].includes(f)).length,34);
+ for(const f of scripts.filter(f=>!['cards.js','content-packs.js',...uxChanges].includes(f)))assert.equal(fs.readFileSync(path.join(root,'party-game',f),'utf8'),oldFile(f),f);
 });
