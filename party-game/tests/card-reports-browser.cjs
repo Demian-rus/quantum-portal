@@ -39,7 +39,9 @@ async function protectedState(page){return page.evaluate(()=>({game:JSON.stringi
      await page.evaluate(mode=>{Object.assign(options,{modes:[mode],difficulty:'easy',dice:false});newGame();game.dice=false;roll()},mode);
      await page.locator('.challenge-card').tap();assert.equal(await page.evaluate(()=>game.current.visible),true);
      await page.locator('[data-action="start-timer"]').click();const deadline=await page.evaluate(()=>game.current.deadline);
+     await page.locator('.challenge-card').tap();assert.equal(await page.evaluate(()=>game.current.visible),false);const hiddenText=await page.evaluate(()=>game.current.word);
      await page.locator('[data-feedback="report"]').tap();assert.equal(await page.locator('#report-card').isVisible(),false);assert.equal(await page.locator('#report-timer-notice').isVisible(),true);
+     assert.ok(!(await page.locator('#report-target').textContent()).includes(hiddenText),'A hidden active prompt cannot leak through the rating dialog');
      const remain=await page.evaluate(()=>game.current.feedbackHold.remainingMs);
      await page.evaluate(()=>{window.__now+=500;tick()});assert.equal(await page.evaluate(()=>game.current.deadline),null);
      assert.equal(await page.evaluate(()=>game.current.paused),true);assert.equal(await page.evaluate(()=>game.current.feedbackHold.remainingMs),remain);

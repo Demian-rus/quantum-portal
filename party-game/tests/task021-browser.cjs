@@ -28,12 +28,12 @@ async function measure(page){return page.evaluate(()=>{
   ratings:[...document.querySelectorAll('[data-feedback]')].map(box),controls:[...document.querySelectorAll('.round-bottom button')].map(box),
   condition:box(condition),copy:range(condition?.querySelector('strong')),word:range(word),wordScroll:card?{h:card.scrollHeight,ch:card.clientHeight,w:card.scrollWidth,cw:card.clientWidth}:null,
   topScroll:top?{h:top.scrollHeight,ch:top.clientHeight}:null,page:{h:document.documentElement.scrollHeight,w:document.documentElement.scrollWidth},
-  flag:{hidden:document.getElementById('report-card').hidden,disabled:document.getElementById('report-card').disabled,tab:document.getElementById('report-card').tabIndex,aria:document.getElementById('report-card').getAttribute('aria-hidden')}
+  flag:{rects:document.getElementById('report-card').getClientRects().length,hidden:document.getElementById('report-card').hidden,disabled:document.getElementById('report-card').disabled,tab:document.getElementById('report-card').tabIndex,aria:document.getElementById('report-card').getAttribute('aria-hidden')}
  };
 });}
 const overlaps=(a,b)=>a.x<b.right-.5&&a.right>b.x+.5&&a.y<b.bottom-.5&&a.bottom>b.y+.5;
 function fits(g,{ordinary=true}={}){
- assert.deepEqual(g.flag,{hidden:true,disabled:true,tab:-1,aria:'true'},'No available current-round flag');
+ assert.deepEqual(g.flag,{rects:0,hidden:true,disabled:true,tab:-1,aria:'true'},'No available current-round flag');
  assert.ok(g.page.h<=g.height+1&&g.page.w<=g.width+1,'Page overflow '+JSON.stringify(g));
  const objects=[g.card,...g.ratings,...g.controls,...[g.ring,g.time].filter(Boolean)];
  for(const b of objects)assert.ok(b.x>=-.5&&b.right<=g.width+.5&&b.y>=0&&b.bottom<=g.height+.5,'Offscreen '+JSON.stringify(g));
