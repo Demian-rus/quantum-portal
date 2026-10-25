@@ -2146,7 +2146,7 @@ button.match-team:focus-visible{outline:3px solid var(--lime);outline-offset:3px
 .scene--game .stable-round .round-top .timer-dial{gap:clamp(12px,4vw,24px)}
 .scene--game .stable-round .round-fixed-card{grid-column:1;grid-row:2;align-self:center}
 .scene--game .stable-round .round-fixed-card .challenge-card{box-shadow:0 2px 0 #080820c9,0 12px 24px #0603139c,0 0 20px #8c62fa35;transition-property:background,border-color,box-shadow}
-.scene--game .stable-round .round-fixed-card .challenge-card:has(.challenge-word--very-long){padding-block:6px}
+.scene--game .stable-round .round-fixed-card .challenge-card:has(.challenge-word--long,.challenge-word--very-long){padding-block:6px}
 .scene--game .stable-round .round-condition-slot{
  grid-column:1;grid-row:3;width:100%;height:100%;min-width:0;min-height:0;
  display:flex;flex-direction:column;align-items:center;justify-content:safe flex-start;gap:5px;
