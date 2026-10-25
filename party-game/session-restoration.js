@@ -48,7 +48,7 @@ function restoreSession() {
     validateAwardPolicy(candidate);
     modeCompatibilityPolicy(candidate);
     modifierSelectionPolicy(candidate);
-    if(candidate.plannerVersion!=null)validatePlannedGame(candidate);
+    if(candidate.plannerVersion!=null)validatePlannedGame(reviewPlannerProjection(candidate));
     if(candidate.modePlannerVersion!=null||candidate.modePlannerState!=null)
       validateModePlan(candidate.modePlannerVersion,candidate.modePlannerState);
     if(candidate.contentPack)getContentPack(candidate.contentPack);
@@ -57,6 +57,7 @@ function restoreSession() {
     validateFeedbackHold(candidate);
     finishPolicyVersion(candidate);
     validateTiebreakState(candidate);
+    validateResultReview(candidate);
   }catch{storageBlocked=true;return;}
   if(candidate.phase==='between'){
     const last=Array.isArray(candidate.history)?candidate.history[candidate.history.length-1]:null;

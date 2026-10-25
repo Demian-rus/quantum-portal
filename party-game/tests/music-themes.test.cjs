@@ -81,6 +81,7 @@ test('TASK012 B new sing rounds select only reviewed Russian songs at every diff
   h.context.level=level;
   h.eval('Object.assign(options,{modes:["sing"],difficulty:level,dice:false,complications:false,riskRounds:false,finishType:"rounds",rounds:100});newGame()');
   for(let i=0;i<180;i++){
+   if(h.eval('game.phase')==='review')h.eval('confirmReviewedResults()');
    if(h.eval('game.phase')==='results')h.eval('newGame()');
    h.eval('roll()');
    const card=plain(h.eval('getPackCardPool(game.contentPack,"songs",game.current.difficulty).find(row=>row.text===game.current.word)'));
@@ -135,7 +136,7 @@ test('TASK012 B a song-only pack without reviewed Russian cards cannot replace a
 test('TASK012 B pre-policy V1-V5 songs and all pinned general packs restore without RAW migration',()=>{
  for(const version of [1,2,3,4,5])for(const pack of [1,2,3,4,5,6]){
   const stored=new Map(),h=createSimulation(14,stored);h.context.fixture={version,pack};
-  h.eval('Object.assign(options,{modes:["sing"],difficulty:"hard",dice:false,complications:false});newGame();'+
+  h.eval('Object.assign(options,{modes:["sing"],difficulty:"hard",dice:false,complications:false});newGame();delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;'+
    'delete game.songLanguagePolicyVersion;delete game.songLanguages;game.rulesVersion=fixture.version;game.contentPack={id:"general",version:fixture.pack};Math.random=()=>.999999;roll();game.dice=true;options.dice=true;persist()');
   const before=h.eval('JSON.stringify(game)'),memory=h.eval('JSON.stringify(taskMemory)'),raw=stored.get('iskra-party:v1');
   const pool=h.eval('JSON.stringify(getPromptPool("songs","hard"))');let writes=0;

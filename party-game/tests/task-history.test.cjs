@@ -39,5 +39,5 @@ test('TASK009 B old snapshots keep their prior selector and unknown history vers
  }
 });
 test('TASK009 B completion, menu and replay archive one match only',()=>{
- const h=createSimulation(1);h.eval('options.finishType="rounds";options.rounds=2;options.dice=false;options.modes=["talk"];newGame();roll();game.phase="judge";judge(false);roll();game.phase="judge";judge(false)');assert.equal(h.eval('game.phase'),'results');assert.equal(h.eval('taskMemory.parties.length'),1);h.eval('archiveCurrentTaskHistory();backToMenu();newGame()');assert.equal(h.eval('taskMemory.parties.length'),1);
+ const h=createSimulation(1);h.eval('options.finishType="rounds";options.rounds=2;options.dice=false;options.modes=["talk"];newGame();roll();game.phase="judge";judge(false);roll();game.phase="judge";judge(false);confirmReviewedResults()');assert.equal(h.eval('game.phase'),'results');assert.equal(h.eval('taskMemory.parties.length'),1);h.eval('archiveCurrentTaskHistory();backToMenu();newGame()');assert.equal(h.eval('taskMemory.parties.length'),1);
 });

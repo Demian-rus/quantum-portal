@@ -83,7 +83,8 @@ module.exports=async function outcomes(browser,url){
    assert.equal(await page.locator('.judge-team-name').textContent(),'ДС');
    if(device.name==='phone')await shot(page,'phone-three-timeout');
    await page.locator('[data-action="yes"]').click();assert.deepEqual(await page.evaluate(()=>game.scores),[2,0]);
-   await fixture(page,{policy:'guesser'});await page.evaluate(()=>{game.scores=[5,5];game.current.risk=true;render()});
+   // This legacy geometry fixture seeds points without a ledger; real replayed risk is covered in TASK 020.
+   await fixture(page,{policy:'guesser'});await page.evaluate(()=>{delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;game.scores=[5,5];game.current.risk=true;render()});
    await page.locator('[data-action="wrong-now"]').click();assert.deepEqual(await page.evaluate(()=>game.scores),[5,3]);
    assert.equal(await page.evaluate(()=>game.history[0].penalty),2);
    // Historical V4, including a stage-A policy, keeps two outcomes and its full bonus.

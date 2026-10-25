@@ -15,8 +15,8 @@ function validateTiebreakState(match){
     !['easy','medium','hard'].includes(tie.question.difficulty)||
     !(tie.winnerIndex===null||[0,1].includes(tie.winnerIndex))||
     (tie.stage==='decided')!==(tie.winnerIndex!==null)||
-    (tie.stage==='decided')!==(match.phase==='results')||
-    (tie.stage!=='decided'&&match.phase!=='tiebreak')||
+    (tie.stage==='decided'&&!['results',...(match.resultReviewVersion===1?['review']:[])].includes(match.phase))||
+    (tie.stage!=='decided'&&!['tiebreak',...(match.resultReviewVersion===1?['review']:[])].includes(match.phase))||
     match.roundIndex%2!==0||match.roundIndex<2||
     (tie.winnerIndex===null?match.scores[0]!==match.scores[1]:
       match.scores[tie.winnerIndex]!==match.scores[1-tie.winnerIndex]+1)||
@@ -55,6 +55,7 @@ function settleTiebreak(choice){
   const question=nextTiebreakQuestion(game.tiebreak.attempted);
   if(!question){
    game.tiebreak=null;game.phase='ready';
+   if(resultReviewPolicy(game))resumeReviewedRound(game);
    persist();toast('Числовые вопросы закончились. Продолжаем обычные ходы.');render();return;
   }
   game.tiebreak.question=question;game.tiebreak.attempted.push(question.id);
@@ -62,6 +63,7 @@ function settleTiebreak(choice){
  }
  const winner=choice==='a'?0:choice==='b'?1:null;
  if(winner===null)return;
+ if(resultReviewPolicy(game))return settleReviewedTiebreak(winner);
  game.tiebreak.winnerIndex=winner;game.tiebreak.stage='decided';
  game.scores[winner]+=1;game.phase='results';
  archiveCurrentTaskHistory();stopTicking();persist();

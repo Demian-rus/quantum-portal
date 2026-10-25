@@ -2045,3 +2045,56 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
  .scene--game .stable-round .challenge-word--very-long{font-size:13px}
  .scene--game .stable-round .challenge-word--hidden{font-size:16px}
 }
+
+/* TASK 020: score history is an accessible, bounded editing surface. */
+button.match-team{font:inherit;color:inherit;text-align:inherit;cursor:pointer}
+button.match-team:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+.result-history-dialog{width:min(720px,100%);max-height:calc(100dvh - 24px);display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.result-history-dialog .report-header{flex-shrink:0;gap:10px}
+.result-history-dialog h2{font-size:clamp(14px,3.8vw,22px);overflow-wrap:anywhere}
+.result-history-dialog .profile-muted{margin:0;font-size:12px;line-height:1.4}
+.review-tabs{display:flex;gap:8px;flex-shrink:0;min-width:0}
+.review-tabs button{flex:1;min-width:0;min-height:44px;padding:8px;border:2px solid #69638c;border-radius:14px;background:#211b3d;color:var(--cream);font:inherit;overflow-wrap:anywhere}
+.review-tabs button[aria-selected=true]{border-color:var(--cyan);background:#39305b}
+#result-history-rows,.pending-review-rows{min-height:0;overflow:auto;overscroll-behavior:contain;padding:3px}
+#result-history-rows{flex:1}
+.review-row{border:1px solid #635b82;border-radius:16px;padding:12px;margin-bottom:12px;background:#1b1738}
+.review-row h3{margin:0 0 8px;font-size:14px}
+.review-word{font-weight:800;font-size:18px;line-height:1.3;overflow-wrap:anywhere;margin:8px 0}
+.review-award{font-size:13px;color:var(--cyan);line-height:1.4}
+.review-choices{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.review-choice{flex:1 1 72px;min-width:0;min-height:90px;padding:5px 2px;border:2px solid transparent;border-radius:12px;background:#25213b;color:#e5ddf2;display:flex;flex-direction:column;align-items:center;gap:5px;font:inherit;font-size:12px;cursor:pointer}
+.review-choice-icon{display:grid;place-items:center;width:44px;height:44px;flex-shrink:0;border:2px solid #90869c;border-radius:50%;font-size:25px;background:#52475d}
+.review-choice small{font-size:10px;overflow-wrap:anywhere}
+.review-choice[aria-pressed=true]{border-color:currentColor;background:#39304e}
+.review-choice--bad[aria-pressed=true] .review-choice-icon{background:#bd3553;border-color:#ffa9b6}
+.review-choice--partial[aria-pressed=true] .review-choice-icon{background:#ab691f;border-color:#ffda8a}
+.review-choice--good[aria-pressed=true] .review-choice-icon{background:#167e54;border-color:#a8ef9b}
+.review-choice:focus-visible{outline:3px solid var(--cyan);outline-offset:1px}
+.review-final-score{display:flex;justify-content:space-around;gap:10px;flex-wrap:wrap;font-weight:800;font-size:16px;margin:0;color:var(--cream);overflow-wrap:anywhere}
+.result-history-dialog .backup-actions{flex-shrink:0;gap:8px}
+.result-history-dialog .backup-actions button{font-size:11px;padding:10px;min-height:44px;flex:1}
+.is-result-review{display:grid;grid-template-rows:auto auto auto minmax(0,1fr) auto;gap:10px;min-height:0;height:100%;align-content:stretch}
+.is-result-review .play-title{font-size:clamp(18px,5vw,28px);margin:0}
+.is-result-review .play-subtitle{font-size:12px;margin:0}
+.is-result-review>.button{min-height:44px;padding:10px;font-size:13px;flex-shrink:0}
+@media(max-height:480px){.result-history-dialog{max-height:calc(100dvh - 12px);gap:6px;padding:12px}.result-history-dialog .profile-muted{font-size:11px}.review-row{padding:8px}.review-word{font-size:16px}.is-result-review{gap:5px}.is-result-review .play-title{font-size:18px}}
+/* Reserve space for the actual history on short screens and long names. */
+.result-history-dialog{height:min(720px,calc(100dvh - 24px));padding:16px;gap:8px}
+.result-history-dialog .report-header{align-items:center;margin:0}
+.result-history-dialog h2{font-size:14px;line-height:1.2;margin:0}
+.result-history-dialog .dialog-close{flex:0 0 44px;width:44px;height:44px}
+.review-tabs button{font-size:14px;line-height:1.2;max-height:60px;overflow:hidden}
+.result-history-dialog .profile-muted{font-size:11px;line-height:1.25}
+#result-history-rows{min-height:110px}
+.result-history-dialog .backup-actions{display:grid;grid-template-columns:1fr 1fr;margin:0}
+.result-history-dialog .backup-actions button{min-width:0;font-size:10px;line-height:1.3;padding:6px;margin:0}
+.result-history-dialog .review-final-score{font-size:14px;line-height:1.2;display:grid;grid-template-columns:1fr 1fr}
+.result-history-dialog .review-final-score span{min-width:0;text-align:center}
+.result-history-dialog .review-final-score small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px}
+@media(max-height:480px){.result-history-dialog{height:calc(100dvh - 12px);padding:10px;gap:5px}.result-history-dialog h2{font-size:12px}.result-history-dialog .profile-muted{font-size:10px}.result-history-dialog .dialog-close{height:44px;flex-basis:44px}.result-history-dialog .review-final-score{font-size:12px}.result-history-dialog .review-final-score small{font-size:10px}.review-tabs button{font-size:12px;max-height:44px}.result-history-dialog #result-history-rows{min-height:90px}}
+#result-history-backdrop{padding:6px}
+.result-history-dialog .dialog-close{position:static;display:grid;place-items:center;line-height:1}
+#result-history-error:empty{display:none}
+#result-history-error{margin:0;font-size:11px;flex-shrink:0;max-height:60px;overflow:auto}
+.review-choice>span:not(.review-choice-icon),.review-choice small{max-width:100%;overflow-wrap:anywhere;hyphens:auto}

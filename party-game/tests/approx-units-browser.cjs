@@ -8,7 +8,7 @@ async function fixture(page,{tie=false,id='approx-20130',long=false}={}){
   soundOn=false;Object.assign(options,{modes:['approx'],difficulty:'medium',dice:false,finishType:'score',targetScore:15});newGame();game.dice=false;roll();game.dice=true;options.dice=true;
   const q=long?[...QUIP_APPROX_QUESTIONS].filter(q=>q.unit).sort((a,b)=>b.question.length-a.question.length)[0]:QUIP_APPROX_QUESTIONS.find(q=>q.id===id);
   const snapshot={id:q.id,question:q.question,answer:String(q.answer),unit:q.unit,note:q.note||'',difficulty:q.difficulty};
-  if(tie){game.finishType='score';game.roundIndex=30;game.scores=[15,15];game.targetScore=15;game.current=null;game.tiebreak={version:1,stage:'question',question:snapshot,attempted:[q.id],winnerIndex:null};game.phase='tiebreak';}
+  if(tie){delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;game.finishType='score';game.roundIndex=30;game.scores=[15,15];game.targetScore=15;game.current=null;game.tiebreak={version:1,stage:'question',question:snapshot,attempted:[q.id],winnerIndex:null};game.phase='tiebreak';}
   else{game.current.question=snapshot;game.current.word=q.question;game.current.cardId=q.id;game.phase='task';}
   persist();render();
  },{tie,id,long});
