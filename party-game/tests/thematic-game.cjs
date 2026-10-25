@@ -11,7 +11,10 @@ async function chooseTopic(page,topic){await page.locator('#new-game-menu').clic
 async function assertRoundSource(page,source){assert.equal(await page.evaluate(source=>{
  const c=game.current;if(c.question){const theme=source.replace(/-v2$/,'');return game.contentPack.id===theme&&c.question.categories.includes(theme)&&getPackQuestionPool(game.contentPack,c.difficulty).some(q=>q.id===c.question.id&&JSON.stringify(q)===JSON.stringify(c.question))}
  const kind=c.modeId==='blitz'?'blitz':getMode(c.methodId).kind,pool=getPackCardPool(game.contentPack,kind,c.difficulty,game.promptTypes);
- return pool.every(row=>row.pack===source)&&(c.blitzWords||[c.word]).every(text=>pool.some(row=>row.text===text));
+ const theme=source.replace(/-v2$/,''),pinned=getContentPack(game.contentPack);
+ // New thematic packs deliberately combine multiple content sources. Validate the chosen
+ // category and explicitly pinned IDs, rather than one outdated source filename.
+ return game.contentPack.id===theme&&pool.every(row=>row.categories.includes(theme)&&pinned.criteria.cardIds.includes(row.id))&&(c.blitzWords||[c.word]).every(text=>pool.some(row=>row.text===text));
 },source),true)}
 module.exports=async function thematicUI(browser,url){
  fs.mkdirSync('artifacts/quip-mobile-layout',{recursive:true});
