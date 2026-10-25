@@ -167,6 +167,10 @@ test('General G14: 50 unique playable prompts and general@15 pinned to exactly 5
  const p=JSON.parse(fs.readFileSync(path.join(__dirname,'../content/packs/general-expansion-v2.json'),'utf8'))[0];
  const before=JSON.parse(fs.readFileSync(path.join(__dirname,'../content/packs/science-expansion-v4.json'),'utf8')).find(v=>v.id==='general'&&v.version===14);
  assert.equal(rows.length,50);assert.equal(new Set(rows.map(r=>r.id)).size,50);
+ const identity=s=>s.normalize('NFKC').toLocaleLowerCase('ru').replace(/ё/g,'е').replace(/[^а-яa-z0-9]+/gu,'');
+ const current=api.readDataset().cards;
+ const oldIdentity=new Map(current.filter(c=>c.pack!=='general-expansion-v2').map(c=>[identity(c.text),c.id]));
+ for(const row of rows)assert.equal(oldIdentity.has(identity(row.text)),false,'Orthographic duplicate: '+row.text+' / '+oldIdentity.get(identity(row.text)));
  assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(level=>[level,rows.filter(r=>r.difficulty===level).length])),{easy:20,medium:20,hard:10});
  assert.deepEqual(Object.fromEntries(['word','phrase','person'].map(type=>[type,rows.filter(r=>r.type===type).length])),{word:21,phrase:18,person:11});
  for(const row of rows){assert.match(row.id,new RegExp('^'+row.type+'-039\\d{3}$'));assert.equal(row.pack,'general-expansion-v2');assert.equal(row.categories.length,1)}
