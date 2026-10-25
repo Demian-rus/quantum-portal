@@ -58,8 +58,8 @@ test('TASK009 A screenshots require an explicit diagnostic flag',async()=>{
 
 test('V84 content integration adds exactly 500 reviewed cards without altering old pool revisions',()=>{
  const added=['geography-expansion-v1','geography-expansion-v2','science-expansion-v1','science-expansion-v2','science-expansion-v3','idiom-expansion-v1','idiom-expansion-v2','science-expansion-v4','general-expansion-v2'];
- const all=base.cards,existing=all.filter(c=>!added.includes(c.pack)&&!['general-diversity-v1','general-diversity-v2','general-diversity-v3','general-diversity-v4','general-diversity-v5'].includes(c.pack)),fresh=all.filter(c=>added.includes(c.pack));
- assert.equal(existing.length,4917);assert.equal(fresh.length,500);assert.equal(all.length,5667);
+ const all=base.cards,existing=all.filter(c=>!added.includes(c.pack)&&!['general-diversity-v1','general-diversity-v2','general-diversity-v3','general-diversity-v4','general-diversity-v5','general-diversity-v6'].includes(c.pack)),fresh=all.filter(c=>added.includes(c.pack));
+ assert.equal(existing.length,4917);assert.equal(fresh.length,500);assert.equal(all.length,5717);
  assert.deepEqual(Object.fromEntries(added.map(name=>[name,fresh.filter(c=>c.pack===name).length])),{
   'geography-expansion-v1':50,'geography-expansion-v2':100,'science-expansion-v1':50,'science-expansion-v2':50,
   'science-expansion-v3':50,'idiom-expansion-v1':50,'idiom-expansion-v2':50,
@@ -176,5 +176,25 @@ test('G19 adds 40 single words and 10 phrases to pinned general@20 (5700)',()=>{
  const normalized=api.normalize,previous=new Set(d.cards.filter(c=>c.pack!=='general-diversity-v5').map(c=>normalized(c.text)));
  for(const card of added)assert.equal(previous.has(normalized(card.text)),false,'duplicate '+card.text);
  assert.equal(new Set(added.map(c=>normalized(c.text))).size,50);
+ assert.equal(api.validate(d).ok,true);
+});
+
+// G20 only adds a new frozen snapshot; all previous revisions stay unchanged.
+test('G20 adds 40 words and 10 phrases to general@21 (5750) without changing general@20',()=>{
+ const d=api.readDataset(),fresh=d.cards.filter(c=>c.pack==='general-diversity-v6');
+ assert.equal(fresh.length,50);
+ assert.equal(fresh.filter(c=>c.type==='word').length,40);
+ assert.equal(fresh.filter(c=>c.type==='phrase').length,10);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(k=>[k,fresh.filter(c=>c.difficulty===k).length])),{easy:20,medium:20,hard:10});
+ assert.ok(new Set(fresh.flatMap(c=>c.categories)).size>=10);
+ const old=d.packs.find(p=>p.id==='general'&&p.version===20),next=d.packs.find(p=>p.id==='general'&&p.version===21);
+ assert.ok(old&&next);
+ assert.equal(old.criteria.cardIds.length,5700);
+ assert.equal(next.criteria.cardIds.length,5750);
+ assert.deepEqual(next.criteria.cardIds.slice(0,5700),old.criteria.cardIds);
+ assert.deepEqual(next.criteria.cardIds.slice(5700),fresh.map(c=>c.id));
+ const normalize=api.normalize,prior=new Set(d.cards.filter(c=>c.pack!=='general-diversity-v6').map(c=>normalize(c.text)));
+ for(const c of fresh)assert.equal(prior.has(normalize(c.text)),false,'duplicate '+c.text);
+ assert.equal(new Set(fresh.map(c=>normalize(c.text))).size,50);
  assert.equal(api.validate(d).ok,true);
 });
