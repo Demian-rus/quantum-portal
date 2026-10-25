@@ -14,35 +14,40 @@ async function protectedState(page){return page.evaluate(()=>({game:JSON.stringi
    page.on('pageerror',e=>errors.push(e.message));await page.goto(URL);await provisionProfiles(page);
    await page.evaluate(()=>{window.__now=Date.now();Date.now=()=>window.__now;soundOn=false;});
    for(const mode of ['talk','mime','draw','yesno','secret','blitz','sing','approx']){
-    await page.evaluate(mode=>{Object.assign(options,{modes:[mode],awardTo:'guesser',difficulty:'easy',dice:false,complications:false});newGame();game.dice=false;roll()},mode);
-    await page.locator('#report-card').waitFor({state:'visible'});
-    const before=await protectedState(page),item=await page.evaluate(()=>currentReportItem(game));
-    const fixed=mode==='approx'?null:await page.locator('.challenge-card').boundingBox();
-    const flag=await page.locator('#report-card').boundingBox();assert.ok(flag.width>=43.999&&flag.height>=43.999,JSON.stringify(flag));
-    if(fixed)assert.ok(flag.y+flag.height<=fixed.y+1,'flag must not overlap card');
-    await page.locator('#report-card').tap();assert.equal(await page.locator('#report-backdrop').isVisible(),true);
-    if(mode!=='approx')assert.ok(!(await page.locator('#report-target').textContent()).includes(item.text),'hidden prompt cannot be revealed by flag');
+    await page.evaluate(mode=>{
+     Object.assign(options,{modes:[mode],awardTo:'guesser',difficulty:'easy',dice:false,complications:false,finishType:'rounds',rounds:2});newGame();game.dice=false;
+     for(let turn=0;turn<2;turn++){roll();if(mode==='approx'){revealApprox();awardApprox('a');}else{toggleWord();startTimer();if(mode==='blitz'){while(game.phase==='play')advanceBlitz(true);judge(true);}else correctNow();}}
+    },mode);
+    assert.equal(await page.locator('#report-card').isVisible(),false);
+    const trigger=page.locator(mode==='blitz'?'[data-report-history="0"][data-report-blitz="0"]':'[data-report-history="0"]');
+    const before=await protectedState(page),item=await page.evaluate(()=>makeReportItem(game,{row:game.history[0],blitzIndex:game.history[0].mode==='blitz'?0:null}));
+    const target=await trigger.boundingBox();assert.ok(target.width>=43.999&&target.height>=43.999,JSON.stringify(target));
+    await trigger.tap();assert.equal(await page.locator('#report-backdrop').isVisible(),true);
+    assert.equal(await page.locator('#report-target').textContent(),item.text);
     assert.deepEqual(await protectedState(page),before,'opening report cannot mutate game or profiles');
     await page.keyboard.press('Escape');await page.locator('#report-backdrop').waitFor({state:'hidden'});assert.deepEqual(await protectedState(page),before);
-    await page.locator('#report-card').tap();await page.goBack();await page.locator('#report-backdrop').waitFor({state:'hidden'});assert.deepEqual(await protectedState(page),before);
-    if(width===390&&mode==='talk'){await page.locator('#report-card').focus();await page.locator('#report-card').press('Enter');await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.closest('#report-backdrop')!==null),true);await page.keyboard.press('Escape');assert.deepEqual(await protectedState(page),before);}
-    await page.locator('#report-card').tap();await page.locator('#report-reason').selectOption('other');await page.locator('#report-comment').fill('  Проверить   формулировку  ');
+    await trigger.tap();await page.goBack();await page.locator('#report-backdrop').waitFor({state:'hidden'});assert.deepEqual(await protectedState(page),before);
+    if(width===390&&mode==='talk'){await trigger.focus();await trigger.press('Enter');await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.closest('#report-backdrop')!==null),true);await page.keyboard.press('Escape');assert.deepEqual(await protectedState(page),before);}
+    await trigger.tap();await page.locator('#report-reason').selectOption('other');await page.locator('#report-comment').fill('  Проверить   формулировку  ');
     if(width===390&&mode==='talk')await page.screenshot({path:'artifacts/quip-reports/report-dialog.png'});
     await page.locator('#report-save').click();await page.locator('#report-backdrop').waitFor({state:'hidden'});
     assert.deepEqual(await protectedState(page),before);assert.equal((await saved(page)).items.at(-1).item.cardId,item.cardId);
-    await page.locator('#report-card').click();assert.equal(await page.locator('#report-save').isDisabled(),true);
+    await trigger.click();assert.equal(await page.locator('#report-save').isDisabled(),true);
     await page.locator('#report-edit-existing').click();await page.locator('#report-reason').selectOption('ambiguous');await page.locator('#report-save').click();
     const count=(await saved(page)).items.length;assert.equal((await saved(page)).items.at(-1).reason,'ambiguous');
     if(mode!=='approx'){
+     await page.evaluate(mode=>{Object.assign(options,{modes:[mode],difficulty:'easy',dice:false});newGame();game.dice=false;roll()},mode);
      await page.locator('.challenge-card').tap();assert.equal(await page.evaluate(()=>game.current.visible),true);
      await page.locator('[data-action="start-timer"]').click();const deadline=await page.evaluate(()=>game.current.deadline);
+     await page.locator('.challenge-card').tap();assert.equal(await page.evaluate(()=>game.current.visible),false);const hiddenText=await page.evaluate(()=>game.current.word);
      await page.locator('[data-feedback="report"]').tap();assert.equal(await page.locator('#report-card').isVisible(),false);assert.equal(await page.locator('#report-timer-notice').isVisible(),true);
+     assert.ok(!(await page.locator('#report-target').textContent()).includes(hiddenText),'A hidden active prompt cannot leak through the rating dialog');
      const remain=await page.evaluate(()=>game.current.feedbackHold.remainingMs);
      await page.evaluate(()=>{window.__now+=500;tick()});assert.equal(await page.evaluate(()=>game.current.deadline),null);
      assert.equal(await page.evaluate(()=>game.current.paused),true);assert.equal(await page.evaluate(()=>game.current.feedbackHold.remainingMs),remain);
      await page.locator('#report-cancel').click();assert.equal(await page.evaluate(()=>game.current.deadline),deadline+500);assert.equal(await page.evaluate(()=>game.current.paused),false);
      if(mode==='blitz'){
-      await page.locator('[data-action="blitz-skip"]').click();const next=await page.evaluate(()=>currentReportItem(game));assert.notEqual(next.cardId,item.cardId);
+      const first=await page.evaluate(()=>currentReportItem(game));await page.locator('[data-action="blitz-skip"]').click();const next=await page.evaluate(()=>currentReportItem(game));assert.notEqual(next.cardId,first.cardId);
       await page.locator('[data-feedback="report"]').tap();await page.locator('#report-save').click();assert.equal((await saved(page)).items.length,count+1);
       assert.equal((await saved(page)).items.at(-1).item.cardId,next.cardId);
      }

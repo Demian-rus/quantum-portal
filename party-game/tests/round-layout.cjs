@@ -52,7 +52,8 @@ module.exports=async function roundLayout(browser,url){
     assert.ok(Math.abs(g.icon.w-g.icon.h)<=1,'Mode icon was squeezed by a long title');
     if(iconBox)sameBox({x:0,y:0,w:g.icon.w,h:g.icon.h},{x:0,y:0,w:iconBox.w,h:iconBox.h},'Mode icon size changed');
     iconBox=g.icon;
-    assert.ok(g.icon.y>=g.top.y-1&&g.icon.bottom<=g.title.y-3,'Icon/title collide or clip: '+JSON.stringify(g));
+    if(device.height>480)assert.ok(g.icon.y>=g.top.y-1&&g.icon.bottom<=g.title.y-3,'Icon/title collide or clip: '+JSON.stringify(g));
+    else assert.ok(g.icon.y>=g.top.y-1&&g.icon.right<=g.title.x-3&&g.title.bottom<=g.top.bottom,'Landscape icon/title collide or clip: '+JSON.stringify(g));
     if(g.rule)assert.ok(g.title.bottom<=g.rule.y-3&&g.rule.bottom<=g.reward.y-3,'Condition/reward collide: '+JSON.stringify(g));
     else assert.ok(g.title.bottom<=g.reward.y-3,'Title/reward collide: '+JSON.stringify(g));
     assert.equal(await page.locator('.mode-rule').count(),0,'Generic rules should stay in the guide');
@@ -63,8 +64,8 @@ module.exports=async function roundLayout(browser,url){
     await page.evaluate(()=>render());
     assert.deepEqual(await page.evaluate(()=>({raw:localStorage.getItem('iskra-party:v1'),game:JSON.stringify(game),memory:JSON.stringify(taskMemory)})),saved,'Rendering changed saved data');
     await page.locator('.challenge-card[data-action="toggle-word"]').click();
-    const prompt=await page.locator('.challenge-word').evaluate(el=>{const range=document.createRange();range.selectNodeContents(el);return {text:el.textContent,lines:range.getClientRects().length}});
-    assert.equal(prompt.text,'УВЕДОМЛЕНИЕ');assert.equal(prompt.lines,1,'Word should fit before hyphenation');
+    const prompt=await page.locator('.challenge-word').evaluate(el=>{const range=document.createRange();range.selectNodeContents(el);return {text:el.textContent,lines:range.getClientRects().length,font:getComputedStyle(el).font,available:el.closest('.challenge-card').clientWidth}});
+    assert.equal(prompt.text,'УВЕДОМЛЕНИЕ');assert.equal(prompt.lines,1,'Word should fit before hyphenation: '+JSON.stringify(prompt));
     await page.locator('[data-action="start-timer"]').click();
     const playing=await geometry(page);
     assert.equal(await page.locator('#match-team-b').evaluate(el=>el.classList.contains('is-turn')),true,'Guesser must be active during timer');

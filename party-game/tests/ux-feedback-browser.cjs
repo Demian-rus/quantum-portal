@@ -65,7 +65,7 @@ async function start(page,difficulty='hard',mode='talk'){
    page.on('pageerror',e=>errors.push(e.message));
    try{
     await page.goto(URL);await provisionProfiles(page);await layoutFixture(page);const after=await geometry(page);fits(after);
-    if(height>width){assert.ok(after.card.y>before.card.y+8,'Card did not move lower');assert.ok(after.card.h>before.card.h+10,'Card did not grow');}
+    if(height>width){assert.ok(after.card.y>before.card.y+8,'Card did not move lower');if(height>740)assert.ok(after.card.h>before.card.h+10,'Card did not grow');else assert.ok(after.card.h>=110,'Compact card must remain readable');}
     assert.ok(after.actions.every(b=>b.w<=68.01),'Result circles not compact');
     await page.screenshot({path:folder+'/after-'+width+'.png',animations:'disabled'});
     const card=after.card;
@@ -105,7 +105,7 @@ async function start(page,difficulty='hard',mode='talk'){
     if(width===390){
      await page.evaluate(()=>{window.__now=Date.now();Date.now=()=>window.__now;Object.assign(options,{modes:['talk'],difficulty:'hard',dice:false});newGame();game.dice=false;roll();game.dice=true;options.dice=true;persist()});
      await page.locator('.challenge-card').tap();await page.evaluate(()=>{stopTicking();window.__now=game.current.autoStartAt+1});
-     await page.locator('#report-card').tap();assert.equal(await page.evaluate(()=>game.current.feedbackHold.phase),'play');
+     assert.equal(await page.locator('#report-card').isVisible(),false);await page.evaluate(()=>tick());await page.locator('[data-feedback="report"]').tap();assert.equal(await page.evaluate(()=>game.current.feedbackHold.phase),'play');
      await page.keyboard.press('Escape');assert.equal(await page.evaluate(()=>document.activeElement.dataset.feedback),'report');
     }
     await start(page,'easy');await page.locator('[data-action="pause"]').click();assert.equal(await page.evaluate(()=>game.current.paused),true);

@@ -8,7 +8,9 @@ function reportHistoryButtons(row,index){
 }
 function updateReportFlag(){
  const button=$('report-card');
- try{button.hidden=game?.phase==='play'||!currentReportItem(game);}catch{button.hidden=true;}
+ const available=game?.phase==='tiebreak';
+ button.hidden=!available;button.disabled=!available;button.tabIndex=available?0:-1;
+ button.setAttribute('aria-hidden',String(!available));
 }
 function openReportPanel(){
  reportView.focus=document.activeElement;$('report-backdrop').hidden=false;
@@ -22,7 +24,7 @@ function closeReportPanel(){
  reportView.item=null;reportView.focus=null;
  if(released)render();
  let target=feedback?document.querySelector('[data-feedback="'+feedback+'"]'):focus;
- if(!target?.isConnected||target===document.body||!target.getClientRects().length)target=document.querySelector('[data-feedback="report"]')||$('report-card');
+ if(!target?.isConnected||target===document.body||!target.getClientRects().length)target=document.querySelector('[data-feedback="report"]')||(!$('report-card').hidden?$('report-card'):$('exit-game'));
  target?.focus({preventScroll:true});
  return true;
 }
@@ -118,7 +120,7 @@ function reportPanelKeydown(event){
  }
 }
 function registerCardReportControls(){
- $('report-card').addEventListener('click',event=>{event.stopPropagation();openCurrentCardReport();});
+ $('report-card').addEventListener('click',event=>{event.stopPropagation();if(game?.phase==='tiebreak')openCurrentCardReport();});
  $('report-close').addEventListener('click',closeReportPanel);$('report-cancel').addEventListener('click',closeReportPanel);
  $('report-backdrop').addEventListener('click',event=>{if(event.target.id==='report-backdrop')closeReportPanel();});
  $('report-reason').addEventListener('change',updateReportComment);$('report-comment').addEventListener('input',updateReportComment);
