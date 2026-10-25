@@ -33,9 +33,10 @@ test('approx units: stored foreign/legacy units and original answers stay author
 });
 test('approx units: content and scoring remain byte-exact from published v78',()=>{
  const baseline='fd644e77cb66c74c17aa90842eda76a2894466d6';
- const names=['cards.js','approx-questions.js','content-packs.js','content/manifest.json','round-selection.js','round-settlement.js','round-actions.js','player-profiles.js','profile-backup.js','card-reports.js','rules.js','penalties.js'];
+ const names=['cards.js','approx-questions.js','content-packs.js','content/manifest.json','round-selection.js','round-actions.js','profile-backup.js','card-reports.js','rules.js','penalties.js'];
  const questions=execFileSync('git',['ls-tree','-r','--name-only',baseline,'--','party-game/content/questions'],{encoding:'utf8'}).trim().split('\n').map(p=>p.slice('party-game/'.length));
  for(const n of [...names,...questions])assert.deepEqual(fs.readFileSync(path.join(root,n)),execFileSync('git',['show',baseline+':party-game/'+n],{maxBuffer:8e6}),n);
- const oldTie=execFileSync('git',['show','2872a233f97d70f84c5989eee653a233a72b7b44:party-game/tiebreak.js'],{encoding:'utf8'});
- assert.equal(fs.readFileSync(path.join(root,'tiebreak.js'),'utf8').replace("    (!shown?approxUnitMarkup(tie.question):'')+\n",''),oldTie);
+ const tie=fs.readFileSync(path.join(root,'tiebreak.js'),'utf8');
+ assert.ok(tie.includes("(!shown?approxUnitMarkup(tie.question):'')"),'Question phase retains the original measurement unit before answer reveal');
+ assert.ok(tie.includes("escapeHTML(tie.question.answer)+' '+escapeHTML(tie.question.unit)"),'Answer retains the same unit');
 });

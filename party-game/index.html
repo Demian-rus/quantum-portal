@@ -10,7 +10,7 @@
   <link rel="manifest" href="./manifest.webmanifest?v=3">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./style.css?v=41">
+  <link rel="stylesheet" href="./style.css?v=42">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
   <script src="./curated-words.js?v=1" defer></script>
@@ -31,31 +31,33 @@
   <script src="./presets.js?v=4" defer></script>
   <script src="./immersive-viewport.js?v=1" defer></script>
   <script src="./rules-guide.js?v=1" defer></script>
-  <script src="./menu-navigation.js?v=6" defer></script>
+  <script src="./menu-navigation.js?v=7" defer></script>
   <script src="./setup-view.js?v=4" defer></script>
   <script src="./setup-controls.js?v=3" defer></script>
   <script src="./audio.js?v=1" defer></script>
   <script src="./round-views.js?v=2" defer></script>
-  <script src="./match-views.js?v=5" defer></script>
+  <script src="./match-views.js?v=6" defer></script>
   <script src="./timer-view.js?v=5" defer></script>
   <script src="./round-selection.js?v=5" defer></script>
-  <script src="./tiebreak.js?v=3" defer></script>
-  <script src="./round-settlement.js?v=6" defer></script>
+  <script src="./tiebreak.js?v=4" defer></script>
+  <script src="./round-settlement.js?v=7" defer></script>
   <script src="./timer-controller.js?v=2" defer></script>
   <script src="./round-presentation.js?v=7" defer></script>
   <script src="./round-actions.js?v=3" defer></script>
   <script src="./storage-controller.js?v=2" defer></script>
-  <script src="./session-restoration.js?v=9" defer></script>
-  <script src="./player-profiles.js?v=6" defer></script>
+  <script src="./session-restoration.js?v=10" defer></script>
+  <script src="./player-profiles.js?v=7" defer></script>
   <script src="./profile-views.js?v=3" defer></script>
   <script src="./profile-backup.js?v=1" defer></script>
   <script src="./profile-backup-view.js?v=1" defer></script>
   <script src="./card-reports.js?v=1" defer></script>
   <script src="./card-reports-view.js?v=4" defer></script>
   <script src="./card-feedback.js?v=1" defer></script>
-  <script src="./feedback-clock.js?v=1" defer></script>
-  <script src="./card-feedback-view.js?v=2" defer></script>
-  <script src="./app.js?v=63" defer></script>
+  <script src="./feedback-clock.js?v=2" defer></script>
+  <script src="./card-feedback-view.js?v=3" defer></script>
+  <script src="./result-review.js?v=1" defer></script>
+  <script src="./result-review-view.js?v=1" defer></script>
+  <script src="./app.js?v=64" defer></script>
 </head>
 <body>
 
@@ -227,9 +229,9 @@
     </section>
     <section class="scene scene--game" id="scene-game" hidden>
       <div class="match-bar">
-        <div class="match-team" id="match-team-a"><span class="match-team-meta"><span class="match-team-label"><i class="team-spot team-spot--a"></i><span id="label-team-a">Молнии</span></span><small id="role-a">ЗАГАДЫВАЕТ</small></span><b id="score-a">0</b></div>
+        <button type="button" class="match-team" id="match-team-a" aria-haspopup="dialog" aria-label="История ответов игрока 1"><span class="match-team-meta"><span class="match-team-label"><i class="team-spot team-spot--a"></i><span id="label-team-a">Молнии</span></span><small id="role-a">ЗАГАДЫВАЕТ</small></span><b id="score-a">0</b></button>
         <div class="match-center"><span class="match-center-label" id="match-center-label">ЦЕЛЬ 25</span><span class="match-turn-counter">ХОД <strong id="round-now">1</strong><span id="round-slash"> / </span><span id="round-total">12</span></span><div class="match-progress"><span id="match-progress"></span></div></div>
-        <div class="match-team match-team--b" id="match-team-b"><b id="score-b">0</b><span class="match-team-meta"><span class="match-team-label"><span id="label-team-b">Кометы</span><i class="team-spot team-spot--b"></i></span><small id="role-b">ОТГАДЫВАЕТ</small></span></div>
+        <button type="button" class="match-team match-team--b" id="match-team-b" aria-haspopup="dialog" aria-label="История ответов игрока 2"><b id="score-b">0</b><span class="match-team-meta"><span class="match-team-label"><span id="label-team-b">Кометы</span><i class="team-spot team-spot--b"></i></span><small id="role-b">ОТГАДЫВАЕТ</small></span></button>
       </div>
       <div class="play-card">
         <div class="play-card-head"><span class="section-kicker" id="play-step">ПЕРЕДАЙТЕ ТЕЛЕФОН</span><button id="timer-pause-control" class="timer-pause report-card" type="button" aria-label="Пауза" hidden></button><button id="report-card" class="report-card" type="button" aria-label="Сообщить о проблеме с заданием" aria-haspopup="dialog" aria-hidden="true" tabindex="-1" disabled hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 21V3m0 1c5-4 9 4 14 0v10c-5 4-9-4-14 0"/></svg></button><button id="exit-game" type="button" class="text-link">В МЕНЮ</button></div>
@@ -276,6 +278,17 @@
     <button id="backup-open-results" class="button button-secondary" type="button" hidden>ОТКРЫТЬ РЕЗУЛЬТАТЫ ПАРТИИ</button>
     <div class="backup-actions"><button id="backup-cancel" class="button button-secondary" type="button">ОТМЕНА</button><button id="backup-apply" class="button button-primary" type="button" hidden>ВОССТАНОВИТЬ ПРОФИЛИ</button></div>
   </section>
+</div>
+<div class="dialog-backdrop" id="result-history-backdrop" hidden>
+ <section class="dialog result-history-dialog" role="dialog" aria-modal="true" aria-labelledby="result-history-title">
+  <header class="report-header"><h2 id="result-history-title">ИСТОРИЯ ОТВЕТОВ</h2><button type="button" id="result-history-close" class="dialog-close" aria-label="Отменить правки и закрыть">×</button></header>
+  <div id="result-history-tabs" class="review-tabs" role="tablist" aria-label="История игроков"></div>
+  <p id="result-history-notice" class="profile-muted"></p>
+  <div id="result-history-rows" tabindex="0" aria-label="Результаты ходов"></div>
+  <p id="result-history-score" class="review-final-score" role="status" aria-live="polite"></p>
+  <p id="result-history-error" class="profile-error" role="alert"></p>
+  <footer class="backup-actions"><button type="button" id="result-history-cancel" class="button button-secondary">ОТМЕНА</button><button type="button" id="result-history-save" class="button button-primary">СОХРАНИТЬ ИЗМЕНЕНИЯ</button></footer>
+ </section>
 </div>
 <div class="dialog-backdrop" id="report-backdrop" hidden>
  <section class="dialog report-dialog" role="dialog" aria-modal="true" aria-labelledby="report-title">

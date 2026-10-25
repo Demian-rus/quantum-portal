@@ -21,6 +21,7 @@ async function approxParty(page){
 }
 async function answer(page,choice){
  await page.locator('[data-action="roll"]').click();await page.locator('[data-action="reveal-approx"]').click();await page.locator('[data-action="award-'+choice+'"]').click();
+ if(await page.evaluate(()=>game.phase==='review'))await page.locator('[data-action="confirm-results"]').click();
 }
 async function store(page){return page.evaluate(()=>JSON.parse(localStorage.getItem('kvip-player-profiles:v1')));}
 async function geometry(page){
@@ -106,6 +107,7 @@ async function geometry(page){
     await setup(page);await chooseNamedProfile(page,0,'ДС');await chooseNamedProfile(page,1,'ПА');
     await page.locator('#start-game').click();
     await page.evaluate(()=>{
+      delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;
       game.finishType='score';game.targetScore=15;game.roundIndex=30;game.scores=[15,15];
       game.history=Array.from({length:30},(_,i)=>({
         mode:'approx',setterIndex:(i+(game.startingTeamIndex??0))%2,assignedIndices:[0,1],

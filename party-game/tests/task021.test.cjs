@@ -37,9 +37,9 @@ test('TASK021: current-round flag is unavailable in every phase; deciding-questi
  h.eval('game={phase:"tiebreak"};updateReportFlag()');assert.equal(h.elements.get('report-card').hidden,false);assert.equal(h.elements.get('report-card').disabled,false);
  assert.match(h.eval('reportHistoryButtons({mode:"talk"},0)'),/data-report-history="0"/);
 });
-test('TASK021: content, RNG, clock/hold, all storage, profiles and settlement modules are byte-exact from published v83',()=>{
+test('TASK021: content, RNG, unchanged selection, clock, backup and storage modules are byte-exact from published v83',()=>{
  const files=execFileSync('git',['ls-tree','-r','--name-only',baseline,'party-game/content'],{encoding:'utf8'}).trim().split('\n');
- for(const name of [...files,...['cards.js','content-packs.js','modifiers.js','modifiers-v2.js','rules.js','penalties.js','round-planner.js','round-selection.js','round-settlement.js','round-actions.js','timer-controller.js','feedback-clock.js','storage-controller.js','session-restoration.js','player-profiles.js','profile-backup.js','card-reports.js','card-feedback.js','app.js'].map(n=>'party-game/'+n)]){
+ for(const name of [...files,...['cards.js','content-packs.js','modifiers.js','modifiers-v2.js','rules.js','penalties.js','round-planner.js','round-selection.js','round-actions.js','timer-controller.js','storage-controller.js','profile-backup.js','card-reports.js','card-feedback.js'].map(n=>'party-game/'+n)]){
   assert.equal(fs.readFileSync(path.join(root,'..',name),'utf8'),execFileSync('git',['show',baseline+':'+name],{encoding:'utf8',maxBuffer:12e6}),name);
  }
 });

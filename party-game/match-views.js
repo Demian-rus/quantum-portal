@@ -8,11 +8,12 @@ function renderMatch() {
   $('label-team-b').textContent=game.teams[1];
   $('score-a').textContent=game.scores[0];
   $('score-b').textContent=game.scores[1];
-  $('round-now').textContent=game.roundIndex+1;
+  $('round-now').textContent=game.phase==='review'?game.roundIndex:game.roundIndex+1;
   $('round-total').textContent=game.finishType==='score'?'':game.rounds;
   $('round-total').hidden=game.finishType==='score';
   $('round-slash').hidden=game.finishType==='score';
   $('match-progress').style.width=game.finishType==='score'?(Math.min(100,Math.max(...game.scores)/game.targetScore*100))+'%':(game.roundIndex/game.rounds*100)+'%';
+  for(const [i,id]of ['a','b'].entries())$('match-team-'+id).setAttribute('aria-label',game.teams[i]+' — история ответов');
   const legacy=game.scoringVersion!==2;
   const activeTeam=legacy?currentTeamIndex():
     (['play','judge'].includes(game.phase)?guessingTeamIndex():currentTeamIndex());
@@ -20,6 +21,7 @@ function renderMatch() {
   $('match-team-b').classList.toggle('is-turn',activeTeam===1);
   $('role-a').textContent=legacy?(currentTeamIndex()===0?'ХОД':'ЖДЁТ'):(guessingTeamIndex()===0?'ОТГАДЫВАЕТ':'ЗАГАДЫВАЕТ');
   $('role-b').textContent=legacy?(currentTeamIndex()===1?'ХОД':'ЖДЁТ'):(guessingTeamIndex()===1?'ОТГАДЫВАЕТ':'ЗАГАДЫВАЕТ');
+  if(game.phase==='review'){for(const id of ['a','b']){$('role-'+id).textContent='ПРОВЕРКА';$('match-team-'+id).classList.remove('is-turn');}}
   if(game.phase==='tiebreak'){
     for(const id of ['a','b']){$('role-'+id).textContent='НАЗЫВАЕТ ЧИСЛО';$('match-team-'+id).classList.add('is-turn');}
     $('match-center-label').textContent='РЕШАЮЩИЙ РАУНД';

@@ -113,6 +113,8 @@ const URL='http://127.0.0.1:8765/party-game/';
    await page.locator('[data-action="toggle-word"]').click();
    await page.locator('[data-action="start-timer"]').click();
    await page.locator('[data-action="correct-now"]').click();
+   assert.equal(await page.evaluate(()=>game.phase),'review');
+   await page.locator('[data-action="confirm-results"]').click();
    assert.equal(await page.evaluate(()=>game.phase),'results');
    assert.deepEqual(await page.evaluate(()=>game.scores),[1,1]);
    assert.deepEqual(errors,[]);await page.close();

@@ -53,7 +53,7 @@ async function shareCardFeedback(){
  finally{feedbackSharing=false;$('feedback-share').disabled=false;}
 }
 function restoreFeedbackPanel(){
- if(game?.current?.feedbackHold&&$('report-backdrop').hidden)openCurrentCardReport();
+ if(game?.current?.feedbackHold&&!game?.resultEditor&&$('report-backdrop').hidden)openCurrentCardReport();
 }
 function registerCardFeedbackControls(){
  $('timer-pause-control').addEventListener('click',()=>handleAction($('timer-pause-control').dataset.action));

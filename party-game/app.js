@@ -135,9 +135,10 @@ function render(keepCardFocus=taskCardHasKeyboardFocus()) {
   else if(game.phase==='judge')ROUND_INTERACTIONS[roundInteraction()].judge();
   else if(game.phase==='between')showBetween();
   else if(game.phase==='tiebreak')showTiebreak();
+  else if(game.phase==='review')showPendingReview();
   if(!game.current?.feedbackHold&&(game.phase==='countdown'||(game.phase==='play'&&!game.current.paused)))startTicking();
   else stopTicking();
-  refreshCardApproval();restoreFeedbackPanel();
+  refreshCardApproval();restoreFeedbackPanel();restoreResultHistory();
   if(keepCardFocus)focusTaskCard();
 }
 function newGame() {
@@ -177,6 +178,7 @@ function newGame() {
   game={
     matchId:identity.storeId+':'+identity.sequence,profileMatch:identity,
     teams:[teamA,teamB],scores:[0,0],roundIndex:0,startingTeamIndex:chooseStartingTeam(),
+    resultReviewVersion:QUIP_RESULT_REVIEW_VERSION,reviewRevision:0,reviewConfirmed:false,
     ...songPolicy,timerPolicyVersion:QUIP_TIMER_POLICY_VERSION,finishPolicyVersion:QUIP_FINISH_POLICY_VERSION,
     taskHistoryVersion:QUIP_TASK_HISTORY_VERSION,taskHistory:startedHistory.history,
     rounds:options.rounds,targetScore:options.targetScore,finishType:options.finishType,
@@ -225,6 +227,7 @@ function backToMenu() {
 function handleAction(action) {
   if(game?.current?.feedbackHold)return;
   switch(action) {
+    case 'confirm-results':return confirmReviewedResults();
     case 'roll':return roll();
     case 'reveal-approx':return revealApprox();
     case 'tiebreak-reveal':return revealTiebreak();
@@ -261,6 +264,7 @@ function setupEvents() {
   registerProfileBackupControls();
   registerCardReportControls();
   registerCardFeedbackControls();
+  registerResultReviewControls();
   $('new-game-menu').addEventListener('click',openGameType);
   $('game-type-back').addEventListener('click',()=>setScene('home'));
   $('standard-game').addEventListener('click',selectStandardGame);

@@ -182,7 +182,7 @@ test('statistics integration: failed START preserves old durable RAW and previou
 test('statistics integration: failed quick replay keeps the completed result and its stats',()=>{
  const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation();
  h.eval(`Object.assign(options,{modes:['approx'],finishType:'rounds',rounds:2,dice:false});newGame();
-  roll();revealApprox();awardApprox('both');roll();revealApprox();awardApprox('none');`);
+  roll();revealApprox();awardApprox('both');roll();revealApprox();awardApprox('none');confirmReviewedResults();`);
  assert.equal(h.eval('game.phase'),'results');
  const beforeRaw=h.storage.get('iskra-party:v1');
  const beforeGame=h.eval('JSON.stringify(game)'),beforeStats=h.storage.get('kvip-player-profiles:v1');
@@ -246,7 +246,7 @@ test('statistics integration: real V5 settlement routes either recipient, full B
   const h=createSimulation();h.context.mode=mode;h.context.award=award;
   h.eval(`chooseStartingTeam=()=>0;Object.assign(options,{modes:[mode],awardTo:award,finishType:'rounds',rounds:2,dice:false,complications:true,modifierChance:100});newGame();
    roll();if(mode==='blitz')game.current.blitzCorrect=3;game.phase='judge';judge(true,false);
-   roll();if(mode==='blitz')game.current.blitzCorrect=2;game.phase='judge';judge(false);`);
+   roll();if(mode==='blitz')game.current.blitzCorrect=2;game.phase='judge';judge(false);confirmReviewedResults();`);
   assert.equal(h.eval('game.phase'),'results');assert.equal(h.eval('profileResultProblem'),null);
   const data=plain(h.eval('game')),archive=JSON.parse(h.storage.get('kvip-player-profiles:v1'));
   assert.equal(archive.recent.length,1);assert.deepEqual(archive.recent[0].scores,data.scores);
@@ -265,7 +265,7 @@ test('statistics integration: real risk loss is signed and score/round completio
   h.eval(`chooseStartingTeam=()=>0;Object.assign(options,{modes:['talk'],awardTo:'setter',finishType,rounds:4,dice:false,complications:false});newGame();if(finishType==='score')game.targetScore=2;
    for(let i=0;i<2;i++){roll();game.phase='judge';judge(true)}
    roll();game.current.risk=true;game.phase='judge';judge(false);
-   roll();game.phase='judge';judge(true);`);
+   roll();game.phase='judge';judge(true);confirmReviewedResults();`);
   assert.equal(h.eval('game.phase'),'results');assert.deepEqual(Array.from(h.eval('game.scores')),[0,2]);
   assert.equal(h.eval('game.history[2].awarded'),-1);assert.equal(h.eval('profileResultProblem'),null);
   assert.equal(h.eval('profileStore.totals[game.profileMatch.participants[0].id].modes.talk.points'),0);
@@ -277,7 +277,7 @@ test('statistics integration: failed commit blocks discard, reload retries; colo
  h.eval(`chooseStartingTeam=()=>0;Object.assign(options,{modes:['approx'],finishType:'rounds',rounds:2,dice:false});newGame();
   roll();revealApprox();awardApprox('both');`);
  const set=h.context.localStorage.setItem;h.context.localStorage.setItem=(key,value)=>{if(key==='kvip-player-profiles:v1')throw Error('quota');return set(key,value);};
- h.eval(`roll();revealApprox();awardApprox('none');backToMenu();handleAction('again')`);
+ h.eval(`roll();revealApprox();awardApprox('none');confirmReviewedResults();backToMenu();handleAction('again')`);
  assert.equal(h.eval('game.phase'),'results');assert.ok(h.eval('profileResultProblem'));
  assert.equal(h.eval('profileStore.recent.length'),0);
  const restored=createSimulation(2,h.storage);assert.equal(restored.eval('profileResultProblem'),null);assert.equal(restored.eval('profileStore.recent.length'),1);

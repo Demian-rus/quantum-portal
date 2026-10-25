@@ -12,12 +12,14 @@ async function upload(page,file){const picker=page.waitForEvent('filechooser');a
  try{
   const source=await browser.newContext(),sp=await source.newPage();await sp.goto(URL);await provisionProfiles(sp);
   await sp.evaluate(()=>{soundOn=false;Object.assign(options,{modes:['approx'],difficulty:'easy',rounds:2,finishType:'rounds',dice:false});newGame();game.dice=false;roll();revealApprox();awardApprox('a');roll();revealApprox();awardApprox('none');});
+  await sp.locator('[data-action="confirm-results"]').click();
   await sp.locator('[data-action="menu"]').click();await sp.locator('#settings-menu').click();
   const file=path.join(tmp,'profiles.json'),backup=await download(sp,'backup-export',file);
   for(const[width,height]of [[320,568],[390,844],[844,390]]){
    const ctx=await browser.newContext({viewport:{width,height},hasTouch:true}),page=await ctx.newPage(),errors=[];
    page.on('pageerror',e=>errors.push(e.message));await page.goto(URL);await provisionProfiles(page);
    await page.evaluate(()=>{soundOn=false;Object.assign(options,{modes:['approx'],difficulty:'easy',rounds:2,finishType:'rounds',dice:false});newGame();game.dice=false;roll();revealApprox();awardApprox('a');roll();revealApprox();awardApprox('none')});
+   await page.locator('[data-action="confirm-results"]').click();
    const played=await page.evaluate(()=>JSON.stringify(game));await page.locator('[data-report-history="0"]').tap();await page.goBack();await page.locator('#report-backdrop').waitFor({state:'hidden'});
    assert.equal(await page.evaluate(()=>JSON.stringify(game)),played);
    await page.locator('[data-report-history="0"]').tap();await page.locator('#report-reason').selectOption('theme');await page.locator('#report-save').click();

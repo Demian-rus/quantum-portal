@@ -8,6 +8,7 @@ function revealApprox(){
 
 function awardApprox(choice){
  if(!game||game.phase!=='judge'||roundInteraction()!=='estimate'||!game.current.answerRevealed)return;
+ if(resultReviewPolicy(game))return settleReviewedRound({choice});
  const c=game.current,outcome=settleSharedAward(c,choice);
  outcome.deltas.forEach((delta,index)=>{game.scores[index]+=delta;});
  game.history.push({mode:c.modeId,
@@ -24,6 +25,7 @@ function awardApprox(choice){
 function recordAnswer(yes,modifierSuccess=true) {
   if(!game||!['judge','play'].includes(game.phase)||roundInteraction()!=='explain')return;
   if(yes&&!modifierSuccess&&!allowsModifierResult())return;
+  if(resultReviewPolicy(game))return settleReviewedRound({taskSuccess:yes,modifierSuccess,blitzCorrect:game.current.blitzCorrect});
   const teamIndex=awardTeamIndex(),c=game.current;
   const outcome=settleQuipRound(game,c,{taskSuccess:yes,modifierSuccess},game.scores[teamIndex]);
   game.scores[teamIndex]+=outcome.delta;

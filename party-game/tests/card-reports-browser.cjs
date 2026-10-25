@@ -18,6 +18,7 @@ async function protectedState(page){return page.evaluate(()=>({game:JSON.stringi
      Object.assign(options,{modes:[mode],awardTo:'guesser',difficulty:'easy',dice:false,complications:false,finishType:'rounds',rounds:2});newGame();game.dice=false;
      for(let turn=0;turn<2;turn++){roll();if(mode==='approx'){revealApprox();awardApprox('a');}else{toggleWord();startTimer();if(mode==='blitz'){while(game.phase==='play')advanceBlitz(true);judge(true);}else correctNow();}}
     },mode);
+    await page.locator('[data-action="confirm-results"]').click();
     assert.equal(await page.locator('#report-card').isVisible(),false);
     const trigger=page.locator(mode==='blitz'?'[data-report-history="0"][data-report-blitz="0"]':'[data-report-history="0"]');
     const before=await protectedState(page),item=await page.evaluate(()=>makeReportItem(game,{row:game.history[0],blitzIndex:game.history[0].mode==='blitz'?0:null}));
@@ -55,7 +56,7 @@ async function protectedState(page){return page.evaluate(()=>({game:JSON.stringi
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
    }
    // Shared deciding question reports its numerical ID and leaves scores untouched.
-   await page.evaluate(()=>{game.finishType='score';game.roundIndex=30;game.scores=[15,15];game.targetScore=15;game.current=null;beginTiebreak();persist();render()});
+   await page.evaluate(()=>{delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;game.finishType='score';game.roundIndex=30;game.scores=[15,15];game.targetScore=15;game.current=null;beginTiebreak();persist();render()});
    const tie=await protectedState(page),id=await page.evaluate(()=>game.tiebreak.question.id);
    await page.locator('#report-card').tap();await page.locator('#report-save').click();
    assert.deepEqual(await protectedState(page),tie);assert.equal((await saved(page)).items.at(-1).item.cardId,id);assert.equal((await saved(page)).items.at(-1).item.context,'tiebreak');
@@ -82,6 +83,7 @@ async function protectedState(page){return page.evaluate(()=>({game:JSON.stringi
    for(const mode of ['approx','blitz']){
     await page.evaluate(mode=>{Object.assign(options,{modes:[mode],difficulty:'easy',finishType:'rounds',rounds:2,dice:false,complications:false});newGame();game.dice=false;},mode);
     for(let turn=0;turn<2;turn++)await page.evaluate(mode=>{roll();if(mode==='approx'){revealApprox();awardApprox('both');}else{toggleWord();startTimer();while(game.phase==='play')advanceBlitz(true);judge(true);}},mode);
+    await page.locator('[data-action="confirm-results"]').click();
     await page.locator('#scene-results').waitFor({state:'visible'});
     const expected=await page.evaluate(mode=>mode==='approx'?game.history[0].questionId:game.history[0].blitzCardIds[1],mode);
     await page.locator(mode==='approx'?'[data-report-history="0"]':'[data-report-history="0"][data-report-blitz="1"]').click();

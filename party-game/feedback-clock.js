@@ -44,13 +44,16 @@ function holdFeedbackTimer(now=Date.now()){
  if(game.phase==='countdown')next.autoStartAt=null;
  commitFeedbackClock(next);stopTicking();return true;
 }
-function releaseFeedbackTimer(now=Date.now()){
- const c=game?.current,h=c?.feedbackHold;if(!h)return false;
- validateFeedbackHold(game);
+function releasedFeedbackRound(c,now=Date.now()){
+ const h=c.feedbackHold;
  const next={...c};delete next.feedbackHold;
  if(h.phase==='countdown'){
   next.autoStartAt=now+h.remainingMs;next.paused=false;next.remainingMs=null;
  }else if(h.wasPaused){next.paused=true;next.deadline=null;next.remainingMs=h.remainingMs;}
  else{next.paused=false;next.deadline=now+h.remainingMs;next.remainingMs=null;}
- commitFeedbackClock(next);return true;
+ return next;
+}
+function releaseFeedbackTimer(now=Date.now()){
+ const c=game?.current;if(!c?.feedbackHold)return false;
+ validateFeedbackHold(game);commitFeedbackClock(releasedFeedbackRound(c,now));return true;
 }

@@ -39,7 +39,7 @@ async function completedMatch(page){
  const write=sources=>{for(const[name,content]of sources)fs.writeFileSync(path.join(root,'party-game',name),content)};
  const cache=bytes=>bytes.toString().match(/const CACHE='([^']+)'/)[1];
  const oldCache=cache(previous.get('sw.js')),newCache=cache(current.get('sw.js'));
- assert.match(oldCache,/v78/);assert.match(newCache,/v84/);assert.notEqual(oldCache,newCache);
+ assert.match(oldCache,/v78/);assert.match(newCache,/v85/);assert.notEqual(oldCache,newCache);
  const browser=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
  const ctx=await browser.newContext({viewport:{width:390,height:844},hasTouch:true}),page=await ctx.newPage(),errors=[];
  page.on('pageerror',e=>errors.push(e.message));
@@ -71,7 +71,7 @@ async function completedMatch(page){
   const cached=await page.evaluate(async name=>{
    const c=await caches.open(name);return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>({url:s.src,found:!!await c.match(s.src)})));
   },newCache);
-  assert.equal(cached.length,45);assert.deepEqual(cached.filter(row=>!row.found),[],'45 current scripts must load from the new worker offline');
+  assert.equal(cached.length,47);assert.deepEqual(cached.filter(row=>!row.found),[],'47 current scripts must load from the new worker offline');
   assert.equal(await page.locator('#timer-pause-control[data-action="resume"]').isVisible(),true);
   assert.equal(await page.locator('[data-feedback]').count(),2);
   await page.screenshot({path:folder+'/v78-paused-offline-v84.png',animations:'disabled'});
@@ -101,7 +101,7 @@ async function completedMatch(page){
   await page.screenshot({path:folder+'/v78-data-offline-v84.png',animations:'disabled'});
   assert.deepEqual(errors,[]);
   console.log('v78 → v84 real warm worker / offline cold reload / exact game, profiles, totals, recent, watermarks, task memory and report RAW PASS');
-  console.log('45/45 precache / header Resume + retained time / report Escape / backup SHA-256 + legacy and combined JSON offline PASS');
+  console.log('47/47 precache / header Resume + retained time / report Escape / backup SHA-256 + legacy and combined JSON offline PASS');
  }finally{
   write(current);await ctx.close();await browser.close();fs.rmSync(tmp,{recursive:true,force:true});
  }

@@ -30,6 +30,7 @@ function armBrowserBackGuard(){
   }catch{backGuardArmed=false;}
 }
 function backWithinKvip(){
+  if(!$('result-history-backdrop').hidden){closeResultHistory(false);return;}
   if(!$('backup-backdrop').hidden){closeBackupPanel();return;}
   if(!$('report-backdrop').hidden){closeReportPanel();return;}
   if(!$('profile-backdrop').hidden){backProfilePanel();return;}

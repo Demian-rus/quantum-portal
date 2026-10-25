@@ -115,6 +115,7 @@ function profileColorForMatch(match,index){
 }
 function completedProfileSummary(match){
   validateProfileMatch(match);
+  if(typeof validateResultReview==='function')validateResultReview(match);
   if(!match.profileMatch||match.phase!=='results'||!Array.isArray(match.history)||match.history.length!==match.roundIndex||
      !Array.isArray(match.scores)||match.scores.length!==2||match.scores.some(score=>!profileCount(score))||
      !(match.finishPolicyVersion===1?scoreMatchComplete(match):

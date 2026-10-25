@@ -75,12 +75,14 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
    vm.runInContext(read('card-feedback.js'),context);
    vm.runInContext(read('feedback-clock.js'),context);
    vm.runInContext(read('card-feedback-view.js'),context);
+   vm.runInContext(read('result-review.js'),context);
+   vm.runInContext(read('result-review-view.js'),context);
    vm.runInContext(read('app.js'),context);
    vm.runInContext(`if(!profileStore&&!profileStoreProblem&&loadedSaveRaw===null){createPlayerProfile('Молнии','coral');createPlayerProfile('Кометы','cyan');}
     if(profileStore&&!selectedPlayerProfiles())selectedProfileIds=profileStore.profiles.slice(0,2).map(p=>p.id);`,context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
-  vm.runInContext(`function startHistoricalFixture(){const awardTo=options.awardTo;options.awardTo='guesser';newGame();options.awardTo=awardTo;if(game){delete game.profileMatch;delete game.matchId;game.awardTo=awardTo;delete game.modeCompatibilityVersion;delete game.modePlannerVersion;delete game.modePlannerState;delete game.songLanguagePolicyVersion;delete game.songLanguages;delete game.timerPolicyVersion;}}
+  vm.runInContext(`function startHistoricalFixture(){const awardTo=options.awardTo;options.awardTo='guesser';newGame();options.awardTo=awardTo;if(game){delete game.profileMatch;delete game.matchId;delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;game.awardTo=awardTo;delete game.modeCompatibilityVersion;delete game.modePlannerVersion;delete game.modePlannerState;delete game.songLanguagePolicyVersion;delete game.songLanguages;delete game.timerPolicyVersion;}}
   function legacyGame(version=3){
     options.modes=options.modes.filter(id=>id!=='approx');
     if(options.contentPack?.id==='general')options.contentPack={id:'general',version:1};
@@ -89,6 +91,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
     }
   }`,context);
   vm.runInContext("function v4Game(){startHistoricalFixture();game.rulesVersion=4;delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;persist()}",context);
+  vm.runInContext("function startPreReviewFixture(){newGame();delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;persist()}",context);
   // Scoring fixtures choose a fixed starting player; dedicated tests exercise both draws.
   if(!randomizeStarter)vm.runInContext('chooseStartingTeam=()=>0',context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
@@ -171,7 +174,7 @@ test('timer views preserve restored V1-V5 clocks without RNG, writes or new inte
 test('round settlement archives before saving and preserves timer, sound and render order without RNG',()=>{
  for(const mode of ['talk','approx'])for(const success of [false,true]){
   const h=harness();
-  h.eval(`soundOn=false;options.modes=['${mode}'];options.dice=false;options.finishType='rounds';options.rounds=2;newGame();roll();
+  h.eval(`soundOn=false;options.modes=['${mode}'];options.dice=false;options.finishType='rounds';options.rounds=2;startPreReviewFixture();roll();
    if(roundInteraction()==='estimate'){revealApprox();awardApprox('none')}else{game.phase='judge';judge(false)}
    roll();if(roundInteraction()==='estimate')revealApprox();else game.phase='judge';`);
   h.eval(`globalThis.effects=[];
@@ -410,7 +413,7 @@ test('Continue protects malformed between saves and preserves completed V1-V5 ro
  for(const version of [1,2,3,4,5])for(const success of [false,true]){
   const seed=harness();
   seed.eval('soundOn=false;options.modes=["talk"];options.dice=false;options.complications=false;'+
-   (version===5?'newGame()':version===4?'v4Game()':'legacyGame('+version+')')+';'+
+   (version===5?'startPreReviewFixture()':version===4?'v4Game()':'legacyGame('+version+')')+';'+
    (version===1?'delete game.scoringVersion;':'')+'roll();game.phase="judge";judge('+success+');'+
    'game.phase="between";game.dice=true;options.dice=true;persist()');
   const saved=JSON.parse(seed.storage.get(key));
@@ -990,7 +993,7 @@ test('smart finish: pure pre-reply evaluation preserves RNG and saved plan',()=>
 });
 test('smart finish: shared tiebreak chooses a distinct question, resumes offline and awards no ordinary task',()=>{
  const {createSimulation}=require('../scripts/game-simulation.cjs'),store=new Map(),h=createSimulation(1,store);
- h.eval("Object.assign(options,{finishType:'score',targetScore:15,modes:['talk'],difficulty:'easy'});newGame()");
+ h.eval("Object.assign(options,{finishType:'score',targetScore:15,modes:['talk'],difficulty:'easy'});newGame();delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed");
  h.eval(`game.roundIndex=30;game.scores=[15,15];
   game.history=Array.from({length:30},(_,i)=>({mode:'approx',setterIndex:i%2,assignedIndices:[0,1],
    deltas:i<15?[1,1]:[0,0],recipients:i<15?[0,1]:[],sharedAward:i<15,
@@ -1849,7 +1852,7 @@ test('Approx reload preserves question, answer and reveal state before and after
  }
 });
 test('Approx exhausts each tier before repeats and preserves full-pair match completion',()=>{
- const h=harness();h.eval('soundOn=false;options.modes=["approx"];options.dice=false;newGame();Math.random=()=>0');
+ const h=harness();h.eval('soundOn=false;options.modes=["approx"];options.dice=false;startPreReviewFixture();Math.random=()=>0');
  const ids=[];
  for(let i=0;i<20;i++){h.eval('roll()');ids.push(h.eval('game.current.question.id'));h.eval('revealApprox();awardApprox("none")');}
  assert.equal(new Set(ids).size,20);
@@ -1989,7 +1992,7 @@ test('award selection removes incompatible modes without a fallback and blocks m
 });
 test('award policy routes success, risk and full Blitz to either role without changing roles',()=>{
  for(const policy of ['setter','guesser'])for(const starter of [0,1])for(const mode of ['talk','blitz'])for(const success of [true,false]){
-  const h=harness();h.eval('soundOn=false;options.awardTo="'+policy+'";options.modes=["'+mode+'"];options.dice=false;options.complications=false;chooseStartingTeam=()=>'+starter+';newGame();roll();game.scores=[5,5];game.current.risk=true;game.current.blitzCorrect=3;game.phase="judge"');
+  const h=harness();h.eval('soundOn=false;options.awardTo="'+policy+'";options.modes=["'+mode+'"];options.dice=false;options.complications=false;chooseStartingTeam=()=>'+starter+';startPreReviewFixture();roll();game.scores=[5,5];game.current.risk=true;game.current.blitzCorrect=3;game.phase="judge"');
   const setter=h.eval('currentTeamIndex()'),guesser=h.eval('guessingTeamIndex()'),recipient=policy==='setter'?setter:guesser;
   assert.equal(setter,starter);assert.equal(guesser,1-starter);assert.equal(h.eval('awardTeamIndex()'),recipient);
   const base=mode==='blitz'?2:1;h.eval('judge('+success+');judge(true)');
@@ -2027,10 +2030,10 @@ test('unknown award policies protect the original save from replacement',()=>{
 });
 test('both recipient policies preserve reply turns, ties and round-count boundaries',()=>{
  for(const policy of ['setter','guesser']){
-  const h=harness();h.eval('soundOn=false;options.awardTo="'+policy+'";options.modes=["talk"];options.complications=false;options.dice=false;options.targetScore=1;newGame();delete game.finishPolicyVersion');
+  const h=harness();h.eval('soundOn=false;options.awardTo="'+policy+'";options.modes=["talk"];options.complications=false;options.dice=false;options.targetScore=1;startPreReviewFixture();delete game.finishPolicyVersion');
   for(const yes of [true,true,true,false])h.eval('roll();game.phase="judge";judge('+yes+')');
   assert.equal(h.eval('game.phase'),'results');assert.equal(h.eval('game.roundIndex'),4);assert.notEqual(h.eval('game.scores[0]'),h.eval('game.scores[1]'));
-  h.eval('options.finishType="rounds";options.rounds=2;newGame()');
+  h.eval('options.finishType="rounds";options.rounds=2;startPreReviewFixture()');
   for(let i=0;i<2;i++)h.eval('roll();game.phase="judge";judge(false)');
   assert.equal(h.eval('game.phase'),'results');assert.deepEqual(Array.from(h.eval('game.scores')),[0,0]);
  }
@@ -2068,7 +2071,7 @@ test('V5 incomplete Blitz can never earn base points through either success path
 });
 test('V5 orange and green outcomes avoid risk while failure penalizes the selected recipient',()=>{
  for(const policy of ['setter','guesser'])for(const result of ['failed','base-only','complete']){
-  const h=harness();h.eval('soundOn=false;options.awardTo="'+policy+'";options.modes=["secret"];options.dice=false;options.complications=false;newGame();roll();game.scores=[5,5];game.current.risk=true;game.phase="judge";judge('+(result!=='failed')+','+(result==='complete')+')');
+  const h=harness();h.eval('soundOn=false;options.awardTo="'+policy+'";options.modes=["secret"];options.dice=false;options.complications=false;startPreReviewFixture();roll();game.scores=[5,5];game.current.risk=true;game.phase="judge";judge('+(result!=='failed')+','+(result==='complete')+')');
   const recipient=policy==='setter'?0:1;
   assert.equal(h.eval('game.scores['+recipient+']'),result==='failed'?3:result==='base-only'?7:8);
   assert.equal(h.eval('game.history[0].penalty'),result==='failed'?2:0);
@@ -2393,14 +2396,14 @@ test('TASK013 B round views remove duplicate setup copy but retain actual condit
 test('smart finish: Mixed tiebreak restores at a six-turn planner boundary without advancing the plan',()=>{
  const {createSimulation}=require('../scripts/game-simulation.cjs'),storage=new Map(),h=createSimulation(1,storage);
  h.eval(`chooseStartingTeam=()=>0;Object.assign(options,{modes:['talk'],awardTo:'setter',difficulty:'mixed',finishType:'score',targetScore:15,dice:false,complications:false,riskRounds:false});newGame();
-  for(let i=0;i<30;i++){roll();game.phase='judge';judge(true)}`);
+  for(let i=0;i<30;i++){roll();game.phase='judge';judge(true)};confirmReviewedResults()`);
  assert.equal(h.eval('game.phase'),'tiebreak');assert.equal(h.eval('game.roundIndex'),30);
  const raw=storage.get('iskra-party:v1'),plan=h.eval('JSON.stringify(game.plannerState)'),question=h.eval('JSON.stringify(game.tiebreak.question)');
  const restored=createSimulation(2,storage);
  assert.equal(restored.eval('storageBlocked'),false);assert.equal(restored.eval('game.phase'),'tiebreak');
  assert.equal(restored.eval('JSON.stringify(game.plannerState)'),plan);assert.equal(restored.eval('JSON.stringify(game.tiebreak.question)'),question);
  assert.equal(storage.get('iskra-party:v1'),raw);
- restored.eval('Math.random=()=>{throw Error("Restore must not consume RNG")};restoreSession();revealTiebreak();settleTiebreak("a");settleTiebreak("a")');
+ restored.eval('Math.random=()=>{throw Error("Restore must not consume RNG")};restoreSession();revealTiebreak();settleTiebreak("a");settleTiebreak("a");confirmReviewedResults()');
  assert.equal(restored.eval('game.phase'),'results');assert.deepEqual(Array.from(restored.eval('game.scores')),[16,15]);
  assert.equal(restored.eval('profileStore.totals[game.profileMatch.participants[0].id].wins'),1);
  assert.equal(restored.eval('game.history.length'),30);

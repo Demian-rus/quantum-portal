@@ -57,6 +57,7 @@ function restoreSession() {
     validateFeedbackHold(candidate);
     finishPolicyVersion(candidate);
     validateTiebreakState(candidate);
+    validateResultReview(candidate);
   }catch{storageBlocked=true;return;}
   if(candidate.phase==='between'){
     const last=Array.isArray(candidate.history)?candidate.history[candidate.history.length-1]:null;
