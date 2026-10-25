@@ -19,7 +19,16 @@ test('v79: exactly 400 additions, all earlier card objects, questions and music 
  assert.deepEqual(plain(current.eval('QUIP_APPROX_QUESTIONS')),plain(before.eval('QUIP_APPROX_QUESTIONS')));
  for(const f of ['curated-songs.js','content/cards/music-themes-v2.json','content/editorial/music-theme-review.json'])assert.equal(fs.readFileSync(path.join(root,'party-game',f),'utf8'),oldFile(f));
  assert.deepEqual(plain(current.eval('QUIP_CONTENT_PACKS')),plain(catalog(contentHead).eval('QUIP_CONTENT_PACKS')));
- for(const f of ['cards.js','content/manifest.json'])assert.equal(fs.readFileSync(path.join(root,'party-game',f),'utf8'),execFileSync('git',['show',contentHead+':party-game/'+f],{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024}));
+ const audit=JSON.parse(fs.readFileSync(path.join(root,'party-game/content/editorial/content400-independent-audit-v1.json'),'utf8'));
+ assert.equal(audit.records.length,400);
+ let normalized=fs.readFileSync(path.join(root,'party-game/cards.js'),'utf8');
+ for(const change of audit.changes){
+  const updated='  '+JSON.stringify(change.after),original='  '+JSON.stringify(change.before);
+  assert.equal(normalized.split(updated).length,2,change.id+' must appear once');
+  normalized=normalized.replace(updated,original);
+ }
+ assert.equal(normalized,oldFile('cards.js',contentHead),'Only documented editorial corrections may differ from source PR');
+ assert.equal(fs.readFileSync(path.join(root,'party-game/content/manifest.json'),'utf8'),oldFile('content/manifest.json',contentHead));
 });
 test('v79: every historical catalog and its pools retain exact IDs and ordering; latest counts are pinned',()=>{
  const packs=plain(before.eval('Object.values(QUIP_CONTENT_PACKS)'));
