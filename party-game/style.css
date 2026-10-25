@@ -2118,3 +2118,6 @@ button.match-team:focus-visible{outline:3px solid var(--lime);outline-offset:3px
 .review-condition{font-size:12px;line-height:1.4;color:var(--lime);overflow-wrap:anywhere}
 @media(max-width:360px){.review-row-toggle{font-size:12px}.review-row--compact{padding:3px}.review-compact-bar{gap:0}}
 .review-choice--partial.review-choice--compact .review-choice-icon{font-size:14px}
+/* Keep final-review tabs and confirmation anchored while only the list scrolls. */
+.scene--game .play-inner.is-result-review{display:grid;grid-template-columns:minmax(0,1fr);justify-content:normal;justify-items:center;align-items:stretch}
+.scene--game .is-result-review>.pending-review-rows{width:100%;min-width:0}

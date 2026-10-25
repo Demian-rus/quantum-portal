@@ -25,6 +25,8 @@ const snapshot=p=>p.evaluate(()=>({game:JSON.stringify(game),raw:localStorage.ge
     }
     game.dice=true;options.dice=true;persist();
    },scenario);
+   await p.evaluate(()=>document.fonts.ready);
+   const fixedBefore=scenario==='pending'?await p.evaluate(()=>{const c=$('play-content').getBoundingClientRect(),t=document.querySelector('.review-tabs').getBoundingClientRect(),b=document.querySelector('[data-action="confirm-results"]').getBoundingClientRect();return {tabs:t.y-c.y,bottom:b.bottom-c.bottom}}):null;
    const before=await snapshot(p),risk=await p.evaluate(()=>JSON.stringify(game.riskPlannerState));assert.equal(await p.evaluate(()=>profileStore.recent.length),0);
    if(scenario==='editor'){assert.equal(await p.evaluate(()=>game.current.risk),true);assert.equal(await p.evaluate(()=>!!game.current.feedbackHold),true);assert.equal(await p.locator('#result-history-rows [data-review-choice]').count(),3);}
    await p.screenshot({path:folder+'/'+scenario+'-before-v86.png',animations:'disabled'});
@@ -32,6 +34,7 @@ const snapshot=p=>p.evaluate(()=>({game:JSON.stringify(game),raw:localStorage.ge
    write(current);await p.evaluate(async()=>{const changed=new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));await(await navigator.serviceWorker.getRegistration()).update();await Promise.race([changed,new Promise((_,reject)=>setTimeout(()=>reject(Error('v86 upgrade timeout')),15000))])});
    await p.waitForFunction(async({oldCache,newCache})=>await caches.has(newCache)&&!await caches.has(oldCache),{oldCache,newCache});await ctx.setOffline(true);await p.reload();await p.locator('#continue-game').click();
    assert.deepEqual(await snapshot(p),before,'Actual v86 RAW, ledger, selected task, draft/pending review and profiles survive upgrade exactly');assert.equal(await p.evaluate(()=>JSON.stringify(game.riskPlannerState)),risk);
+   if(scenario==='pending'){await p.evaluate(()=>document.fonts.ready);const fixedAfter=await p.evaluate(()=>{const c=$('play-content').getBoundingClientRect(),t=document.querySelector('.review-tabs').getBoundingClientRect(),b=document.querySelector('[data-action="confirm-results"]').getBoundingClientRect();return {tabs:t.y-c.y,bottom:b.bottom-c.bottom}});assert.ok(Math.abs(fixedAfter.tabs-fixedBefore.tabs)<1,'Published v86 tab anchor retained');assert.ok(Math.abs(fixedAfter.bottom-fixedBefore.bottom)<1,'Published v86 confirmation anchor retained');}
    const list=scenario==='editor'?'#result-history-rows':'.pending-review-rows';assert.equal(await p.locator(list+' [data-review-expand]').count(),scenario==='editor'?1:2);assert.equal(await p.locator(list+' [aria-expanded="true"]').count(),0);
    const cached=await p.evaluate(async name=>{const c=await caches.open(name);return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>!!await c.match(s.src)))},newCache);assert.equal(cached.length,48);assert.ok(cached.every(Boolean));
    await p.screenshot({path:folder+'/'+scenario+'-after-v87-offline.png',animations:'disabled'});
