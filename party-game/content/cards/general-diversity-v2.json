@@ -181,11 +181,11 @@
   },
   {
     "id": "phrase-041003",
-    "text": "СПАСАТЕЛЬНЫЙ ЖИЛЕТ",
+    "text": "КОНКУРС ТАЛАНТОВ",
     "type": "phrase",
     "difficulty": "easy",
     "categories": [
-      "marine"
+      "culture"
     ],
     "pack": "general-diversity-v2"
   },
@@ -231,7 +231,7 @@
   },
   {
     "id": "word-041020",
-    "text": "СКАЛОЛАЗ",
+    "text": "ГОЛКИПЕР",
     "type": "word",
     "difficulty": "medium",
     "categories": [
@@ -431,11 +431,11 @@
   },
   {
     "id": "word-041036",
-    "text": "БУТАФОР",
+    "text": "ОФСАЙД",
     "type": "word",
     "difficulty": "hard",
     "categories": [
-      "professions"
+      "sport"
     ],
     "pack": "general-diversity-v2"
   },
