@@ -26,7 +26,7 @@ Node regression проверяет все 163 display/source пары, 10 base-o
 
 Сохранены все прежние обязательные Logic, Gameplay/Smoke и Browser/upgrade/offline. Добавлен реальный **v83→v84** warm worker/cold offline reload: старая партия содержит compiled alternative, после обновления её RAW, профили, результаты, taskMemory и журнал буквально сохраняются, а UI показывает короткую формулировку. Проверены Resume/остаток, закрытие жалобы, SHA-256 и оба JSON-экспорта. Существующие v75/v78 и legacy upgrade остаются обязательными.
 
-URI HTML/SW: style.css v40, round-presentation.js v7, card-reports-view.js v4. Остальные 45 JS и content URI прежние. Cache `kvip-pwa-v84-20261025-ux-hotfix-candidate`. Новый cache — кандидат, не публикация.
+URI HTML/SW: style.css v41, round-presentation.js v7, card-reports-view.js v4. Остальные 45 JS и content URI прежние. Cache `kvip-pwa-v84-20261025-ux-hotfix-candidate`. Новый cache — кандидат, не публикация.
 
 ## Границы
 

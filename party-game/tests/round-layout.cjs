@@ -64,8 +64,8 @@ module.exports=async function roundLayout(browser,url){
     await page.evaluate(()=>render());
     assert.deepEqual(await page.evaluate(()=>({raw:localStorage.getItem('iskra-party:v1'),game:JSON.stringify(game),memory:JSON.stringify(taskMemory)})),saved,'Rendering changed saved data');
     await page.locator('.challenge-card[data-action="toggle-word"]').click();
-    const prompt=await page.locator('.challenge-word').evaluate(el=>{const range=document.createRange();range.selectNodeContents(el);return {text:el.textContent,lines:range.getClientRects().length}});
-    assert.equal(prompt.text,'УВЕДОМЛЕНИЕ');assert.equal(prompt.lines,1,'Word should fit before hyphenation');
+    const prompt=await page.locator('.challenge-word').evaluate(el=>{const range=document.createRange();range.selectNodeContents(el);return {text:el.textContent,lines:range.getClientRects().length,font:getComputedStyle(el).font,available:el.closest('.challenge-card').clientWidth}});
+    assert.equal(prompt.text,'УВЕДОМЛЕНИЕ');assert.equal(prompt.lines,1,'Word should fit before hyphenation: '+JSON.stringify(prompt));
     await page.locator('[data-action="start-timer"]').click();
     const playing=await geometry(page);
     assert.equal(await page.locator('#match-team-b').evaluate(el=>el.classList.contains('is-turn')),true,'Guesser must be active during timer');

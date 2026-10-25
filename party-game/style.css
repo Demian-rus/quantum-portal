@@ -2037,3 +2037,11 @@ body.rules-open{overflow:hidden;overscroll-behavior:none}
  .scene--game .is-countdown.stable-round .round-top--timer{display:flex;justify-content:safe center;gap:2px}
  .scene--game .is-countdown.stable-round .round-top--timer .play-title{font-size:17px}
 }
+
+/* The narrower landscape card must also fit an ordinary single word before hyphenation. */
+@media(max-height:480px) and (max-width:700px){
+ .scene--game .stable-round .challenge-word{font-size:16px}
+ .scene--game .stable-round .challenge-word--long{font-size:15px}
+ .scene--game .stable-round .challenge-word--very-long{font-size:13px}
+ .scene--game .stable-round .challenge-word--hidden{font-size:16px}
+}
