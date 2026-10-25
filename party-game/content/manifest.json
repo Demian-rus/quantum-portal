@@ -194,6 +194,11 @@
       "path": "cards/general-expansion-v2.json",
       "immutable": false,
       "review": "G14: 50 individually reviewed general playable cards; categories varied; compare with all 5367 previous entries and candidate rejects in editorial/general-expansion-v2-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v1.json",
+      "immutable": false,
+      "review": "G15: 50 general cards (40 words and 10 phrases); editorial/general-diversity-v1-review.md"
     }
   ],
   "questions": [
@@ -318,6 +323,11 @@
       "path": "packs/general-expansion-v2.json",
       "immutable": false,
       "review": "G14 pins new general@15=5450; all prior catalog versions and card IDs retained"
+    },
+    {
+      "path": "packs/general-diversity-v1.json",
+      "immutable": false,
+      "review": "G15: new version general@16 pins 5500 IDs, historical versions unchanged"
     }
   ],
   "legacyCollisions": [
