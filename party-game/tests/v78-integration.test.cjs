@@ -22,7 +22,7 @@ test('v82 editorial descendants retain inherited runtime bytes and only explicit
  'party-game/sw.js','party-game/INTEGRATION-V82.md',
  'party-game/tests/v78-integration.test.cjs','party-game/tests/v78-upgrade-browser.cjs','party-game/tests/profile-backup-browser.cjs',
  'party-game/tests/approx-units.test.cjs','party-game/tests/estimation-editorial.test.cjs','party-game/tests/content-foundation.test.cjs','party-game/tests/content400-integration.test.cjs','party-game/tests/content400-integration-browser.cjs','party-game/tests/science-expansion-v4.test.cjs','party-game/tests/logic.test.cjs',
- 'party-game/cards.js','party-game/content-packs.js','party-game/content/manifest.json',
+ 'party-game/cards.js','party-game/content-packs.js','party-game/content/manifest.json','party-game/content/templates/content-packs.after.js',
  'party-game/content/cards/science-expansion-v2.json','party-game/content/cards/science-expansion-v3.json','party-game/content/cards/idiom-expansion-v1.json',
  'party-game/content/cards/science-expansion-v4.json','party-game/content/packs/science-expansion-v4.json',
  'party-game/content/cards/general-expansion-v2.json','party-game/content/packs/general-expansion-v2.json','party-game/content/editorial/general-expansion-v2-review.md',

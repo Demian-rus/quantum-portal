@@ -111,7 +111,8 @@ function latestContentPackSelection(id,registry=QUIP_CONTENT_PACKS){
 // source universes so later tagged additions cannot change a saved old party.
 const QUIP_PRE_EXPANSION_THEMATIC_SOURCES=Object.freeze({
  geography:Object.freeze(['geography-v2']),
- science:Object.freeze(['general-expansion-v1','science-v2'])
+ science:Object.freeze(['general-expansion-v1','science-v2']),
+ culture:Object.freeze(['general-expansion-v1'])
 });
 function historicalGeneralRecord(pack,row){
  const sources=pack.id==='general'&&pack.version<=2?QUIP_PRE_TASK009_SOURCES:
