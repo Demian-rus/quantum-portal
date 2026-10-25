@@ -1,0 +1,402 @@
+[
+  {
+    "id": "idiom-037001",
+    "text": "ДАВАТЬ ЗЕЛЁНЫЙ СВЕТ",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037002",
+    "text": "ПРОПУСТИТЬ МИМО УШЕЙ",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037003",
+    "text": "РАЗВЯЗАТЬ РУКИ",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037004",
+    "text": "МОРОЧИТЬ ГОЛОВУ",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037005",
+    "text": "СКВОЗЬ ЗЕМЛЮ ПРОВАЛИТЬСЯ",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037006",
+    "text": "ПОПАСТЬ В ТОЧКУ",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037007",
+    "text": "ЛОМАТЬ КОМЕДИЮ",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037008",
+    "text": "СОРВАТЬСЯ С ЦЕПИ",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037009",
+    "text": "НЕ ВИДЕТЬ ДАЛЬШЕ СВОЕГО НОСА",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037010",
+    "text": "ЗАТЯНУТЬ ПОЯС",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037011",
+    "text": "РУКИ ЧЕШУТСЯ",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037012",
+    "text": "ВЫЙТИ ИЗ ТЕНИ",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037013",
+    "text": "С ТРЕСКОМ ПРОВАЛИТЬСЯ",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037014",
+    "text": "СМОТРЕТЬ В ОБА",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037015",
+    "text": "ВО ВСЕ ЛОПАТКИ",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037016",
+    "text": "ПУСТИТЬ КОРНИ",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037017",
+    "text": "ИДТИ РУКА ОБ РУКУ",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037018",
+    "text": "ПРОЛИТЬ СВЕТ",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037019",
+    "text": "ОТВОДИТЬ ГЛАЗА",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037020",
+    "text": "ПРОЩУПАТЬ ПОЧВУ",
+    "type": "idiom",
+    "difficulty": "easy",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037021",
+    "text": "ДАВАТЬ НАГОНЯЙ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037022",
+    "text": "МАЛО КАШИ ЕЛ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037023",
+    "text": "СТОЯТЬ ГОРОЙ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037024",
+    "text": "РАСПУСКАТЬ РУКИ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037025",
+    "text": "ПОДЛОЖИТЬ СВИНЬЮ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037026",
+    "text": "СЕДЬМАЯ ВОДА НА КИСЕЛЕ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037027",
+    "text": "ВСТАВИТЬ ПЯТЬ КОПЕЕК",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037028",
+    "text": "ПРОЙТИ ОГОНЬ И ВОДУ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037029",
+    "text": "НЕ НАЙТИ СЕБЕ МЕСТА",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037030",
+    "text": "ДЕРЖАТЬ ПАЛЕЦ НА ПУЛЬСЕ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037031",
+    "text": "КАК С ЛУНЫ СВАЛИЛСЯ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037032",
+    "text": "РУКИ КОРОТКИ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037033",
+    "text": "ПРИНЯТЬ ЗА ЧИСТУЮ МОНЕТУ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037034",
+    "text": "ПОСТАВИТЬ ВО ГЛАВУ УГЛА",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037035",
+    "text": "НАПУСКАТЬ ТУМАНУ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037036",
+    "text": "ЗАБРОСИТЬ УДОЧКУ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037037",
+    "text": "ЗАЖАТЬ В ТИСКИ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037038",
+    "text": "ОТКРЫТЬ ДУШУ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037039",
+    "text": "ДОЙТИ ДО ТОЧКИ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037040",
+    "text": "СКРЕСТИТЬ МЕЧИ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037041",
+    "text": "ЛОЖКА ДЁГТЯ В БОЧКЕ МЁДА",
+    "type": "idiom",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037042",
+    "text": "БЕРЕЧЬ КАК ЗЕНИЦУ ОКА",
+    "type": "idiom",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037043",
+    "text": "ПРИТЧА ВО ЯЗЫЦЕХ",
+    "type": "idiom",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037044",
+    "text": "КРАЕУГОЛЬНЫЙ КАМЕНЬ",
+    "type": "idiom",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037045",
+    "text": "СТРАУСИНАЯ ПОЛИТИКА",
+    "type": "idiom",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037046",
+    "text": "ТАЙНА ЗА СЕМЬЮ ПЕЧАТЯМИ",
+    "type": "idiom",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037047",
+    "text": "НИТЬ АРИАДНЫ",
+    "type": "idiom",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037048",
+    "text": "АЛЬФА И ОМЕГА",
+    "type": "idiom",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037049",
+    "text": "СОЛЬ ЗЕМЛИ",
+    "type": "idiom",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  },
+  {
+    "id": "idiom-037050",
+    "text": "ДЕРЖАТЬ СВЕЧКУ",
+    "type": "idiom",
+    "difficulty": "hard",
+    "categories": [],
+    "pack": "idiom-expansion-v2"
+  }
+]

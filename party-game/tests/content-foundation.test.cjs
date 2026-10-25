@@ -55,3 +55,37 @@ test('TASK009 A screenshots require an explicit diagnostic flag',async()=>{
  const {capture}=require('./screenshots.cjs'),previous=process.env.QUIP_SCREENSHOTS;let calls=0;const page={screenshot:async()=>{calls++}};
  try{delete process.env.QUIP_SCREENSHOTS;await capture(page,{path:'unused.png'});assert.equal(calls,0);process.env.QUIP_SCREENSHOTS='1';await capture(page,{path:'unused.png'});assert.equal(calls,1)}finally{if(previous===undefined)delete process.env.QUIP_SCREENSHOTS;else process.env.QUIP_SCREENSHOTS=previous}
 });
+
+test('V84 content integration adds exactly 500 reviewed cards without altering old pool revisions',()=>{
+ const added=['geography-expansion-v1','geography-expansion-v2','science-expansion-v1','science-expansion-v2','science-expansion-v3','idiom-expansion-v1','idiom-expansion-v2','science-expansion-v4','general-expansion-v2'];
+ const all=base.cards,existing=all.filter(c=>!added.includes(c.pack)),fresh=all.filter(c=>added.includes(c.pack));
+ assert.equal(existing.length,4917);assert.equal(fresh.length,500);assert.equal(all.length,5417);
+ assert.deepEqual(Object.fromEntries(added.map(name=>[name,fresh.filter(c=>c.pack===name).length])),{
+  'geography-expansion-v1':50,'geography-expansion-v2':100,'science-expansion-v1':50,'science-expansion-v2':50,
+  'science-expansion-v3':50,'idiom-expansion-v1':50,'idiom-expansion-v2':50,
+  'science-expansion-v4':50,'general-expansion-v2':50
+ });
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(level=>[level,base.cards.filter(c=>c.pack==='science-expansion-v4'&&c.difficulty===level).length])),{easy:20,medium:20,hard:10});
+ assert.equal(base.cards.filter(c=>c.pack==='science-expansion-v4'&&c.type==='person').length,13);
+ assert.equal(base.cards.filter(c=>c.pack==='general-expansion-v2'&&c.type==='person').length,11);
+ assert.equal(new Set(fresh.map(c=>c.id)).size,500);
+ const norm=text=>String(text).normalize('NFKC').toLocaleLowerCase('ru').replace(/ё/g,'е').replace(/[^а-яa-z0-9]+/gu,'');
+ const identities=new Set(existing.map(c=>norm(c.text)));
+ for(const row of fresh){assert.equal(identities.has(norm(row.text)),false,'Duplicate/new identity: '+row.text);identities.add(norm(row.text))}
+ assert.equal(api.validate(base).ok,true);
+});
+test('V84 latest content declarations are pinned and older theme categories never receive new cards',()=>{
+ const sim=createSimulation();
+ const count=(id,version)=>sim.eval('getContentPack({id:'+JSON.stringify(id)+',version:'+version+'}).criteria.cardIds.length');
+ assert.equal(count('general',15),5450);assert.equal(count('geography',6),406);assert.equal(count('science',8),582);
+ for(const [id,version] of [['general',6],['geography',4],['science',4]]){
+  const source=base.packs.find(p=>p.id===id&&p.version===version),actual=sim.eval('getContentPack({id:'+JSON.stringify(id)+',version:'+version+'})');
+  assert.deepEqual(JSON.parse(JSON.stringify(actual.criteria.cardIds)),source.criteria.cardIds);
+ }
+ for(const [id,version] of [['culture',1],['geography',1],['science',1]]){
+  const found=sim.eval('getPackCardPool({id:'+JSON.stringify(id)+',version:'+version+'},"words","easy",["word","phrase","idiom"]).map(r=>r.pack)');
+  assert.equal(found.some(source=>source.endsWith('expansion-v2')||/^science-expansion-|^geography-expansion-/.test(source)),false,id+'@'+version+' must remain fixed');
+ }
+ const ledger=JSON.parse(fs.readFileSync(path.join(root,'content/editorial/content400-independent-audit-v1.json'),'utf8'));
+ assert.equal(ledger.records.length,400);assert.equal(ledger.changes.length,9);
+});

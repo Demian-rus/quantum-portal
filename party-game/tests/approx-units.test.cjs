@@ -31,11 +31,13 @@ test('approx units: stored foreign/legacy units and original answers stay author
  h.eval('revealApprox()');assert.match(h.elements.get('play-content').innerHTML,/987654321 морских миль/);
  assert.equal(h.eval('game.current.question.unit'),'морских миль');
 });
-test('approx units: content and scoring remain byte-exact from published v78',()=>{
+test('approx units: numeric answers and scoring retain exact historical bytes; content catalog is reproducible',()=>{
  const baseline='fd644e77cb66c74c17aa90842eda76a2894466d6';
- const names=['cards.js','approx-questions.js','content-packs.js','content/manifest.json','round-selection.js','round-actions.js','profile-backup.js','card-reports.js','rules.js','penalties.js'];
+ const names=['approx-questions.js','round-selection.js','round-actions.js','profile-backup.js','card-reports.js','rules.js','penalties.js'];
  const questions=execFileSync('git',['ls-tree','-r','--name-only',baseline,'--','party-game/content/questions'],{encoding:'utf8'}).trim().split('\n').map(p=>p.slice('party-game/'.length));
  for(const n of [...names,...questions])assert.deepEqual(fs.readFileSync(path.join(root,n)),execFileSync('git',['show',baseline+':party-game/'+n],{maxBuffer:8e6}),n);
+ const contentApi=require('../scripts/content.cjs'),generated=contentApi.render(contentApi.readDataset());
+ for(const name of ['cards.js','content-packs.js'])assert.equal(fs.readFileSync(path.join(root,name),'utf8'),generated[name],name+' reproducible reviewed content');
  const tie=fs.readFileSync(path.join(root,'tiebreak.js'),'utf8');
  assert.ok(tie.includes("(!shown?approxUnitMarkup(tie.question):'')"),'Question phase retains the original measurement unit before answer reveal');
  assert.ok(tie.includes("escapeHTML(tie.question.answer)+' '+escapeHTML(tie.question.unit)"),'Answer retains the same unit');
