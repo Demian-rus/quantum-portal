@@ -31,27 +31,7 @@ jobs:
       - run: node party-game/scripts/content.cjs check
       - run: node party-game/scripts/approx-unit-audit.cjs check
       - run: node party-game/scripts/modifiers-v2.cjs check
-      - run: |
-          set +e
-          node --test party-game/tests/logic.test.cjs party-game/tests/content-foundation.test.cjs party-game/tests/task-history.test.cjs party-game/tests/modifiers-v2.test.cjs party-game/tests/dictionary.test.cjs party-game/tests/music-themes.test.cjs party-game/tests/estimation.test.cjs party-game/tests/estimation-editorial.test.cjs party-game/tests/mode-compatibility.test.cjs party-game/tests/mode-planner.test.cjs party-game/tests/player-profiles.test.cjs party-game/tests/card-visibility.test.cjs party-game/tests/profile-backup.test.cjs party-game/tests/card-reports.test.cjs party-game/tests/backup-reports-integration.test.cjs party-game/tests/content400-integration.test.cjs party-game/tests/card-feedback.test.cjs party-game/tests/approx-units.test.cjs party-game/tests/v78-integration.test.cjs > /tmp/quip-editorial-tests.log 2>&1
-          result=$?
-          python3 - <<'PY'
-          import re
-          p='/tmp/quip-editorial-tests.log'
-          with open(p,encoding='utf8',errors='replace') as f:
-              lines=f.readlines()
-          bad=[i for i,s in enumerate(lines) if re.search(r'not ok|failureType:|error:|ERR_|# fail |AssertionError|Error:|uncaughtException',s,re.I)]
-          print('Editorial CI diagnostic:',len(lines),'lines;',len(bad),'failure indicators')
-          shown=set()
-          for i in bad[:12]:
-              for j in range(max(0,i-6),min(len(lines),i+14)):
-                  if j not in shown:
-                      print(str(j+1)+': '+lines[j].rstrip()[:300])
-                      shown.add(j)
-          print('Tail:')
-          for l in lines[-40:]: print(l.rstrip()[:300])
-          PY
-          exit $result
+      - run: node --test party-game/tests/logic.test.cjs party-game/tests/content-foundation.test.cjs party-game/tests/task-history.test.cjs party-game/tests/modifiers-v2.test.cjs party-game/tests/dictionary.test.cjs party-game/tests/music-themes.test.cjs party-game/tests/estimation.test.cjs party-game/tests/estimation-editorial.test.cjs party-game/tests/mode-compatibility.test.cjs party-game/tests/mode-planner.test.cjs party-game/tests/player-profiles.test.cjs party-game/tests/card-visibility.test.cjs party-game/tests/profile-backup.test.cjs party-game/tests/card-reports.test.cjs party-game/tests/backup-reports-integration.test.cjs party-game/tests/content400-integration.test.cjs party-game/tests/card-feedback.test.cjs party-game/tests/approx-units.test.cjs party-game/tests/v78-integration.test.cjs
   browser:
     runs-on: ubuntu-latest
     steps:

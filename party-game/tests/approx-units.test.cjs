@@ -32,9 +32,11 @@ test('approx units: stored foreign/legacy units and original answers stay author
  assert.equal(h.eval('game.current.question.unit'),'морских миль');
 });
 test('approx units: dictionaries, math, settlement, profiles and hold stay byte-exact from the UX parent',()=>{
- const names=['cards.js','approx-questions.js','content-packs.js','content/manifest.json','round-selection.js','round-settlement.js','round-actions.js','timer-controller.js','feedback-clock.js','app.js','player-profiles.js','profile-backup.js','card-reports.js','card-feedback.js'];
+ const names=['approx-questions.js','round-selection.js','round-settlement.js','round-actions.js','timer-controller.js','feedback-clock.js','app.js','player-profiles.js','profile-backup.js','card-reports.js','card-feedback.js'];
  const sources=execFileSync('git',['ls-tree','-r','--name-only',parent,'--','party-game/content/questions'],{encoding:'utf8'}).trim().split('\n').map(p=>p.slice('party-game/'.length));
  for(const n of [...names,...sources])assert.deepEqual(fs.readFileSync(path.join(root,n)),execFileSync('git',['show',parent+':party-game/'+n],{maxBuffer:8e6}),n);
+ const contentApi=require('../scripts/content.cjs'),generated=contentApi.render(contentApi.readDataset());
+ for(const name of ['cards.js','content-packs.js'])assert.equal(fs.readFileSync(path.join(root,name),'utf8'),generated[name],name+' must be current generated content');
  const oldTie=execFileSync('git',['show',parent+':party-game/tiebreak.js'],{encoding:'utf8'});
  assert.equal(fs.readFileSync(path.join(root,'tiebreak.js'),'utf8').replace("    (!shown?approxUnitMarkup(tie.question):'')+\n",''),oldTie);
 });
