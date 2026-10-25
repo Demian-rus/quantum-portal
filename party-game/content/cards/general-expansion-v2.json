@@ -141,11 +141,11 @@
   },
   {
     "id": "phrase-039006",
-    "text": "ВОЗДУШНЫЙ ЗМЕЙ",
+    "text": "ПОДВОДНЫЙ МИР",
     "type": "phrase",
     "difficulty": "easy",
     "categories": [
-      "everyday"
+      "marine"
     ],
     "pack": "general-expansion-v2"
   },
@@ -391,11 +391,11 @@
   },
   {
     "id": "person-039007",
-    "text": "ГЕНДАЛЬФ",
+    "text": "КОРОЛЬ АРТУР",
     "type": "person",
     "difficulty": "medium",
     "categories": [
-      "literature"
+      "mythology"
     ],
     "pack": "general-expansion-v2"
   },
