@@ -1,0 +1,502 @@
+[
+  {
+    "id": "word-042001",
+    "text": "ПОЗДРАВЛЕНИЕ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042002",
+    "text": "БУНТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042003",
+    "text": "ПРИЗРАК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "mythology"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042004",
+    "text": "БУНКЕР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042005",
+    "text": "ОБЪЯВЛЕНИЕ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042006",
+    "text": "ЧЕРНИЛА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042007",
+    "text": "СКРЕПКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042008",
+    "text": "СУВЕНИР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042009",
+    "text": "АНКЕТА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042010",
+    "text": "ГИД",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042011",
+    "text": "КАССА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042012",
+    "text": "ЛАЙФХАК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042013",
+    "text": "КАШЕЛЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042014",
+    "text": "ИКОТА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042015",
+    "text": "СИНЯК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042016",
+    "text": "ЗАНОЗА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "phrase-042001",
+    "text": "СЛОМАННЫЙ ЛИФТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "phrase-042002",
+    "text": "ПЕРВЫЙ РАБОЧИЙ ДЕНЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "phrase-042003",
+    "text": "ВСТРЕЧА В АЭРОПОРТУ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "transport"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "phrase-042004",
+    "text": "ПОТЕРЯННАЯ ПЕРЧАТКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042017",
+    "text": "РАСПИСКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042018",
+    "text": "ЭВАКУАЦИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042019",
+    "text": "СУББОТНИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042020",
+    "text": "КВИТАНЦИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042021",
+    "text": "КОНСПЕКТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042022",
+    "text": "РУБАНОК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042023",
+    "text": "СТАМЕСКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042024",
+    "text": "ФЕЛЬДШЕР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042025",
+    "text": "ДЕБЮТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042026",
+    "text": "СИТКОМ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042027",
+    "text": "МОНТАЖ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042028",
+    "text": "СОЛИСТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042029",
+    "text": "ДОПРОС",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042030",
+    "text": "ОБОРОНА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042031",
+    "text": "ПУТАНИЦА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042032",
+    "text": "ОТКАЗ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "phrase-042005",
+    "text": "НЕУДАЧНОЕ ИНТЕРВЬЮ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "phrase-042006",
+    "text": "ПОДДЕЛЬНЫЙ АВТОГРАФ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "phrase-042007",
+    "text": "ОТКРЫТЫЙ МИКРОФОН",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "phrase-042008",
+    "text": "ПОГАСШИЙ ПРОЖЕКТОР",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042033",
+    "text": "ДОВЕРЕННОСТЬ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042034",
+    "text": "ЗАБАСТОВКА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042035",
+    "text": "ПИКЕТ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042036",
+    "text": "СМЕТА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042037",
+    "text": "ФАНДОМ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042038",
+    "text": "РАЗОБЛАЧЕНИЕ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042039",
+    "text": "УБЕЖДЕНИЕ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "word-042040",
+    "text": "ФИАСКО",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "phrase-042009",
+    "text": "ЗАПРЕТНЫЙ ПЛОД",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-diversity-v3"
+  },
+  {
+    "id": "phrase-042010",
+    "text": "СОРВАННАЯ ПРЕМЬЕРА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v3"
+  }
+]
