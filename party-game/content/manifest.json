@@ -204,6 +204,11 @@
       "path": "cards/general-diversity-v2.json",
       "immutable": false,
       "review": "G16 editorial batch: 50 new playable cards (40 words, 10 phrases), 13 themes; see editorial/general-diversity-v2-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v3.json",
+      "immutable": false,
+      "review": "G17: 50 general cards, 40 single words / 10 phrases, editorial/general-diversity-v3-review.md"
     }
   ],
   "questions": [
@@ -338,6 +343,11 @@
       "path": "packs/general-diversity-v2.json",
       "immutable": false,
       "review": "G16 general@17 pins 5550 IDs, retains general@16 and all earlier pack versions"
+    },
+    {
+      "path": "packs/general-diversity-v3.json",
+      "immutable": false,
+      "review": "G17 general@18 pins 5600 tasks, all historical pack versions unchanged"
     }
   ],
   "legacyCollisions": [
