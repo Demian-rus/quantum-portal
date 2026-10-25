@@ -58,8 +58,8 @@ test('TASK009 A screenshots require an explicit diagnostic flag',async()=>{
 
 test('V84 content integration adds exactly 500 reviewed cards without altering old pool revisions',()=>{
  const added=['geography-expansion-v1','geography-expansion-v2','science-expansion-v1','science-expansion-v2','science-expansion-v3','idiom-expansion-v1','idiom-expansion-v2','science-expansion-v4','general-expansion-v2'];
- const all=base.cards,existing=all.filter(c=>!added.includes(c.pack)&&c.pack!=='general-diversity-v1'),fresh=all.filter(c=>added.includes(c.pack));
- assert.equal(existing.length,4917);assert.equal(fresh.length,500);assert.equal(all.length,5467);
+ const all=base.cards,existing=all.filter(c=>!added.includes(c.pack)&&c.pack!=='general-diversity-v1'&&c.pack!=='general-diversity-v2'),fresh=all.filter(c=>added.includes(c.pack));
+ assert.equal(existing.length,4917);assert.equal(fresh.length,500);assert.equal(all.length,5517);
  assert.deepEqual(Object.fromEntries(added.map(name=>[name,fresh.filter(c=>c.pack===name).length])),{
   'geography-expansion-v1':50,'geography-expansion-v2':100,'science-expansion-v1':50,'science-expansion-v2':50,
   'science-expansion-v3':50,'idiom-expansion-v1':50,'idiom-expansion-v2':50,
@@ -103,4 +103,21 @@ test('G15 40 individual words and 10 phrases; general@16 contains 5500 immutable
  assert.deepEqual(next.criteria.cardIds.slice(0,5450),old.criteria.cardIds);
  assert.deepEqual(next.criteria.cardIds.slice(5450),newCards.map(c=>c.id));
  assert.equal(api.validate(data).ok,true);
+});
+
+// G16 adds 50 diverse tasks while pinning all old general pack snapshots.
+test('G16 40 words / 10 phrases, general@17 count 5550, historical selections preserved',()=>{
+ const d=api.readDataset(),added=d.cards.filter(c=>c.pack==='general-diversity-v2');
+ assert.equal(added.length,50);
+ assert.equal(added.filter(c=>c.type==='word').length,40);
+ assert.equal(added.filter(c=>c.type==='phrase').length,10);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(k=>[k,added.filter(c=>c.difficulty===k).length])),{easy:20,medium:20,hard:10});
+ assert.ok(new Set(added.flatMap(c=>c.categories)).size>=10);
+ const last=d.packs.find(p=>p.id==='general'&&p.version===16),next=d.packs.find(p=>p.id==='general'&&p.version===17);
+ assert.ok(last&&next);
+ assert.equal(last.criteria.cardIds.length,5500);
+ assert.equal(next.criteria.cardIds.length,5550);
+ assert.deepEqual(next.criteria.cardIds.slice(0,5500),last.criteria.cardIds);
+ assert.deepEqual(next.criteria.cardIds.slice(5500),added.map(c=>c.id));
+ assert.equal(api.validate(d).ok,true);
 });
