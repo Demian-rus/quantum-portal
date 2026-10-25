@@ -95,6 +95,16 @@ function validateResultReview(match){
   validateTiebreakState({...match,roundIndex:a.roundIndex,scores,tiebreak:a.tiebreak,phase:a.tiebreak.stage==='decided'?'review':'tiebreak'});
  }
  if(match.tiebreak)validateTiebreakState(match);
+ for(const row of match.history){
+  const c=row.review?.round;
+  if(!c||row.word!==(row.mode==='approx'?c.question?.question:row.mode==='blitz'?c.blitzWords?.join(' / '):c.word)||
+     row.basePoints!==c.basePoints||row.methodId!==c.methodId||row.setter!==match.teams[row.setterIndex]||
+     row.risk!==(row.mode==='approx'?false:c.risk))throw Error('История не совпадает со снимком задания.');
+  if(row.mode==='approx'){
+   if(row.questionId!==c.question.id||row.answer!==c.question.answer||row.unit!==c.question.unit||row.note!==c.question.note)throw Error('Изменён снимок числового вопроса.');
+  }else if(row.cardId!==(c.cardId??null)||row.team!==match.teams[row.recipientIndex]||
+     row.mode==='blitz'&&(JSON.stringify(row.blitzWords)!==JSON.stringify(c.blitzWords)||JSON.stringify(row.blitzCardIds)!==JSON.stringify(c.blitzCardIds??c.blitzWords.map(()=>null))))throw Error('Изменён исходный ID или получатель задания.');
+ }
  const replay=replayResultHistory(match);
  if(match.phase==='results'&&!replay.complete)throw Error('Итог ещё не достигнут.');
  if(JSON.stringify(replay.history)!==JSON.stringify(match.history)||JSON.stringify(replay.scores)!==JSON.stringify(match.scores)||
@@ -149,7 +159,7 @@ function settleReviewedRound(result){
   Object.assign(next,replayResultHistory(next));delete next.complete;delete next.needsTiebreak;
   next.phase=scoreMatchComplete(next)||scoreNeedsTiebreak(next)?'review':'ready';
   next.pendingReview=next.phase==='review'?{version:1}:null;next.reviewRevision++;
-  commitReviewState(next);stopTicking();sfx((row.mode==='approx'?result.choice!=='none':result.taskSuccess)?'win':'fail');render();
+  commitReviewState(next);stopTicking();sfx(next.history[next.history.length-1].correct?'win':'fail');render();
  }catch(error){toast(error.message);}
 }
 function confirmReviewedResults(){

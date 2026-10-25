@@ -32,6 +32,7 @@ async function startApprox(page){
 async function answer(page,choice){
  await page.locator('[data-action="roll"]').click();await page.locator('[data-action="reveal-approx"]').click();
  await page.locator('[data-action="award-'+choice+'"]').click();
+ if(await page.evaluate(()=>game.phase==='review'))await page.locator('[data-action="confirm-results"]').click();
 }
 async function confirmReplace(page){
  await page.locator('#backup-apply').click();assert.equal(await page.locator('#backup-confirm-area').isVisible(),true);

@@ -3,10 +3,10 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),{chromium}=requ
 const {provisionProfiles}=require('./profile-fixtures.cjs');
 const URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/',folder='artifacts/quip-result-review';
 const snapshot=p=>p.evaluate(()=>({game:JSON.stringify(game),raw:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY),reports:localStorage.getItem(QUIP_CARD_REPORTS_KEY)}));
-async function start(page,mode='talk',difficulty='easy',modifier=true){
- await page.evaluate(({mode,difficulty,modifier})=>{
-  soundOn=false;chooseStartingTeam=()=>0;Object.assign(options,{modes:[mode],difficulty,modifierChance:modifier?100:0,complications:modifier,dice:false,finishType:'rounds',rounds:8,riskRounds:false});newGame();game.dice=false;persist();
- },{mode,difficulty,modifier});
+async function start(page,mode='talk',difficulty='easy',modifier=true,awardTo='setter'){
+ await page.evaluate(({mode,difficulty,modifier,awardTo})=>{
+  soundOn=false;chooseStartingTeam=()=>0;Object.assign(options,{modes:[mode],difficulty,awardTo,modifierChance:modifier?100:0,complications:modifier,dice:false,finishType:'rounds',rounds:8,riskRounds:false});newGame();game.dice=false;persist();
+ },{mode,difficulty,modifier,awardTo});
 }
 async function settle(page,result='yes'){
  await page.locator('[data-action="roll"]').click();
@@ -17,11 +17,11 @@ async function rectCheck(page,id){
  const data=await page.evaluate(()=>{
   const r=el=>{const a=el.getBoundingClientRect();return {x:a.x,y:a.y,right:a.right,bottom:a.bottom,width:a.width,height:a.height}};
   const dialog=document.querySelector('.result-history-dialog'),rows=document.querySelector('#result-history-rows'),save=document.querySelector('#result-history-save');
-  return {dialog:r(dialog),rows:r(rows),save:r(save),height:innerHeight,width:innerWidth,overflow:document.documentElement.scrollWidth>innerWidth};
+  return {dialog:r(dialog),rows:r(rows),save:r(save),close:r(document.getElementById("result-history-close")),title:r(document.getElementById("result-history-title")),labels:[...rows.querySelectorAll(".review-choice>span:not(.review-choice-icon),.review-choice small")].map(el=>({client:el.clientWidth,scroll:el.scrollWidth})),height:innerHeight,width:innerWidth,overflow:document.documentElement.scrollWidth>innerWidth};
  });
  assert.equal(data.overflow,false,id);assert.ok(data.dialog.x>=0&&data.dialog.right<=data.width+1,id+' horizontal');
  assert.ok(data.dialog.y>=0&&data.dialog.bottom<=data.height+1,id+' vertical');assert.ok(data.rows.bottom<=data.save.y+1,id+' footer gap');assert.ok(data.rows.height>=90,id+' usable history viewport');
- assert.ok(data.save.height>=44,id+' touch target');return data;
+ assert.ok(data.save.height>=44&&data.close.height>=44&&data.close.width>=44,id+' touch targets');assert.ok(data.title.right<=data.close.x+1,id+' close/title gap');assert.ok(data.labels.every(el=>el.scroll<=el.client+1),id+' whole result labels');return data;
 }
 (async()=>{
  fs.mkdirSync(folder,{recursive:true});const browser=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});const geometry=[];
@@ -33,6 +33,8 @@ async function rectCheck(page,id){
    const stored=await page.evaluate(()=>({scores:game.scores,stats:localStorage.getItem(QUIP_PROFILES_KEY)}));
    await page.locator('#match-team-a').click();geometry.push({id,...await rectCheck(page,id)});
    assert.equal(await page.locator('[data-review-turn="0"] .review-choice').count(),3);
+   assert.equal(await page.evaluate(()=>document.querySelector('.site-shell').inert),true);
+   await page.locator('#result-history-close').focus();await page.keyboard.press('Shift+Tab');assert.equal(await page.evaluate(()=>document.activeElement.id),'result-history-save');await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.id),'result-history-close');
    assert.equal(await page.locator('[data-review-turn="0"] [data-review-choice="complete"]').getAttribute('aria-pressed'),'true');
    await page.screenshot({path:folder+'/'+id+'-history-before.png',animations:'disabled'});
    await page.locator('[data-review-turn="0"] [data-review-choice="base"]').click();
@@ -44,11 +46,19 @@ async function rectCheck(page,id){
    await page.locator('#match-team-a').click();await page.locator('[data-review-turn="0"] [data-review-choice="failed"]').click();await page.evaluate(()=>history.back());await page.waitForFunction(()=>document.getElementById('result-history-backdrop').hidden);
    assert.equal(await page.evaluate(()=>game.history[0].outcome),'base-only');
    // A real running Hard countdown is held by history, independently of Easy pause.
-   await start(page,'mime','hard');await settle(page);await page.locator('[data-action="roll"]').click();await page.locator('.challenge-card').click();
+   await start(page,'talk','easy',false);await settle(page);await page.locator('#match-team-a').click();
+   assert.equal(await page.locator('[data-review-turn="0"] .review-choice').count(),2,'Unmodified words retain two outcomes');await page.locator('#result-history-cancel').click();
+   await start(page,'blitz');await page.locator('[data-action="roll"]').click();await page.locator('.challenge-card').click();await page.locator('[data-action="start-timer"]').click();await page.locator('[data-action="blitz-correct"]').click();
+   await page.evaluate(()=>finishTimer('early'));await page.locator('[data-action="no"]').click();
+   const blitz=await page.evaluate(()=>({words:game.history[0].blitzWords,ids:game.history[0].blitzCardIds,points:game.history[0].review.round.points}));
+   await page.locator('#match-team-a').click();assert.equal(await page.locator('[data-review-choice="1"]').getAttribute('aria-pressed'),'true');
+   await page.locator('[data-review-choice="3"]').click();await page.locator('#result-history-save').click();
+   assert.equal(await page.evaluate(()=>game.scores[0]),blitz.points);assert.deepEqual(await page.evaluate(()=>game.history[0].blitzWords),blitz.words);assert.deepEqual(await page.evaluate(()=>game.history[0].blitzCardIds),blitz.ids);
+   await start(page,'mime','hard',true,'guesser');await settle(page);await page.locator('[data-action="roll"]').click();await page.locator('.challenge-card').click();
    await page.waitForFunction(()=>game.phase==='play');assert.equal(await page.locator('#timer-pause-control').isVisible(),false);
    await page.evaluate(()=>{game.dice=true;options.dice=true;persist()});
    await page.locator('#match-team-b').click();const remaining=await page.evaluate(()=>game.current.feedbackHold.remainingMs);assert.ok(remaining>0);
-   await page.locator('#result-history-tabs [data-review-tab="0"]').click();await page.locator('[data-review-turn="0"] [data-review-choice="failed"]').click();
+   await page.locator('#result-history-tabs [data-review-tab="1"]').click();await page.locator('[data-review-turn="0"] [data-review-choice="failed"]').click();
    const held=await snapshot(page);await page.reload();await page.locator('#continue-game').click();assert.deepEqual(await snapshot(page),held,'Restored held edit remains byte-exact');
    assert.equal(await page.locator('#report-backdrop').isVisible(),false);assert.equal(await page.locator('#result-history-backdrop').isVisible(),true);
    await page.locator('#result-history-save').click();assert.equal(await page.evaluate(()=>game.history[0].correct),false);

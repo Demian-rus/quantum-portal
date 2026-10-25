@@ -154,3 +154,45 @@ test('new round settlement quota failure preserves prior history and final answe
  h.eval('recordAnswer(true)');assert.equal(h.eval('JSON.stringify(game)'),before);assert.equal(h.storage.get('iskra-party:v1'),raw);assert.equal(h.storage.get('kvip-player-profiles:v1'),profiles);
  h.context.localStorage.setItem=set;h.eval('recordAnswer(true)');assert.equal(h.eval('game.phase'),'review');assert.equal(h.eval('game.history.length'),2);
 });
+test('review and explicit confirmation also work with team names and no profile identity',()=>{
+ const h=start({rounds:2});h.eval('delete game.profileMatch;delete game.matchId;persist()');const profiles=h.storage.get('kvip-player-profiles:v1');
+ answer(h);answer(h,false);assert.equal(h.eval('game.phase'),'review');edit(h,0,'failed');h.eval('confirmReviewedResults()');
+ assert.equal(h.eval('game.phase'),'results');assert.deepEqual(plain(h.eval('game.scores')),[0,0]);assert.equal(h.storage.get('kvip-player-profiles:v1'),profiles);
+});
+test('history editor retains countdown and existing Easy pause, including failed close rollback',()=>{
+ for(const phase of ['countdown','play']){
+  const h=start();answer(h);h.context.phase=phase;
+  h.eval("roll();game.phase=phase;Object.assign(game.current,{visible:true,paused:phase==='play',remainingMs:phase==='play'?12000:null,autoStartAt:phase==='countdown'?Date.now()+900:null,deadline:null});persist();$('report-backdrop').hidden=true;openResultHistory(0)");
+  const before=h.eval('JSON.stringify(game)'),raw=h.storage.get('iskra-party:v1'),remain=h.eval('game.current.feedbackHold.remainingMs');
+  const set=h.context.localStorage.setItem;h.context.localStorage.setItem=()=>{throw Error('quota')};assert.equal(h.eval('closeResultHistory(true)'),false);
+  assert.equal(h.eval('JSON.stringify(game)'),before);assert.equal(h.storage.get('iskra-party:v1'),raw);
+  h.context.localStorage.setItem=set;h.eval('closeResultHistory(false)');
+  if(phase==='play'){assert.equal(h.eval('game.current.paused'),true);assert.equal(h.eval('game.current.remainingMs'),remain);assert.equal(h.eval('game.current.deadline'),null);}
+  else{assert.equal(h.eval('game.phase'),'countdown');assert.ok(h.eval('game.current.autoStartAt-Date.now()')>remain-500);}
+ }
+});
+test('player tabs follow the award recipient while preserving setter, guesser and shared assignments',()=>{
+ for(const awardTo of ['setter','guesser']){
+  const h=start({awardTo});answer(h);const recipient=h.eval('game.history[0].recipientIndex');h.context.recipient=recipient;
+  assert.equal(h.eval('reviewHistoryOwner(game.history[0],0,recipient)'),true);assert.equal(h.eval('reviewHistoryOwner(game.history[0],0,1-recipient)'),false);
+  assert.equal(h.eval('game.history[0].setterIndex===game.startingTeamIndex'),true);assert.equal(h.eval('game.history[0].guesserIndex===1-game.startingTeamIndex'),true);
+ }
+ const shared=start({mode:'approx'});shared.eval("roll();revealApprox();awardApprox('none')");
+ assert.equal(shared.eval('reviewHistoryOwner(game.history[0],0,0)&&reviewHistoryOwner(game.history[0],0,1)'),true);
+});
+test('new review policy consumes exactly the old selection RNG and retains every selected task across real rounds',()=>{
+ for(const seed of [4,19,83]){
+  const pair=[createSimulation(seed),createSimulation(seed)];
+  for(const [index,h]of pair.entries()){
+   h.eval(`var calls=0,draw=Math.random;Math.random=()=>{calls++;return draw()};Object.assign(options,{modes:['talk','mime','draw','sing','blitz','secret','approx'],difficulty:'mixed',finishType:'rounds',rounds:100,dice:false,modifierChance:100});newGame();game.dice=false`);
+   if(index===1)h.eval('delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;persist()');
+  }
+  for(let i=0;i<12;i++){
+   for(const h of pair)h.eval('roll()');
+   const selected=h=>h.eval('JSON.stringify({current:game.current,used:game.used,task:game.taskHistory,plan:game.plannerState,mode:game.modePlannerState,calls})');
+   assert.equal(selected(pair[0]),selected(pair[1]),'seed '+seed+' turn '+i);
+   for(const h of pair){h.context.turn=i;h.eval(`if(game.current.modeId==='approx'){revealApprox();awardApprox(['none','a','b','both'][turn%4])}else{game.current.blitzCorrect=turn%4;game.phase='judge';recordAnswer(turn%3!==0,allowsModifierResult()?turn%2===0:true)}`)}
+   assert.deepEqual(plain(pair[0].eval('game.scores')),plain(pair[1].eval('game.scores')));assert.equal(pair[0].eval('calls'),pair[1].eval('calls'));
+  }
+ }
+});

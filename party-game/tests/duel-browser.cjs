@@ -32,7 +32,7 @@ const URL='http://127.0.0.1:8765/party-game/';
    assert.equal(await page.locator('#role-b').textContent(),'ОТГАДЫВАЕТ');
    assert.equal(await page.locator('#match-center-label').textContent(),'ЦЕЛЬ 30');
    assert.equal(await page.locator('#round-total').isVisible(),false);
-   await page.evaluate(()=>{game.scores=[8,1];game.current=rollOutcome();game.current.risk=true;game.phase='task';render()});
+   await page.evaluate(()=>{delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;game.scores=[8,1];game.current=rollOutcome();game.current.risk=true;game.phase='task';render()});
    assert.equal(await page.locator('.risk-notice').count(),1,'Risk must be visible before revealing the card');
    assert.match(await page.locator('#play-step').textContent(),/ЗАГАДЫВАЕТ/);
    let bounds=await page.locator('.challenge-card').evaluate(el=>{

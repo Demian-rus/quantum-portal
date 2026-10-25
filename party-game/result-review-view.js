@@ -1,9 +1,11 @@
 'use strict';
 let resultHistoryFocus=null;
 function reviewHistoryOwner(row,index,player){
- // The panel follows the owner of the task, with shared questions in both tabs.
- // Every row separately names setter, guesser and actual score recipients.
- return row.assignedIndices?.includes(player)??((row.setterIndex??((game.startingTeamIndex??0)+index)%2)===player);
+ // Tabs show the player's scoring opportunities, independent of setter/guesser.
+ // Shared questions belong to both tabs even when neither player earned points.
+ if(row.mode==='approx'||Object.hasOwn(row,'deltas'))return (row.assignedIndices??[0,1]).includes(player);
+ const setter=row.setterIndex??((game.startingTeamIndex??0)+index)%2;
+ return (row.recipientIndex??awardRecipientIndex(game,setter))===player;
 }
 function reviewChoiceLabel(row,choice){
  if(row.mode==='approx')return {none:'Никому',a:game.teams[0],b:game.teams[1],both:'Обоим'}[choice];
@@ -62,11 +64,11 @@ function openResultHistory(player){
    commitReviewState(next);stopTicking();
   }
   $('result-history-error').textContent='';$('result-history-backdrop').dataset.player=String(player);$('result-history-backdrop').hidden=false;
-  renderResultHistory();$('result-history-close').focus?.({preventScroll:true});
+  renderResultHistory();const shell=document.querySelector?.('.site-shell');if(shell)shell.inert=true;$('result-history-close').focus?.({preventScroll:true});
  }catch(error){toast(error.message);if(!game?.resultEditor&&game?.current?.feedbackHold){try{releaseFeedbackTimer();render();}catch(e){toast(e.message);}}}
 }
 function restoreResultHistory(){
- if(game?.resultEditor&&$('result-history-backdrop').hidden){$('result-history-backdrop').hidden=false;renderResultHistory();$('result-history-close').focus?.({preventScroll:true});}
+ if(game?.resultEditor&&$('result-history-backdrop').hidden){$('result-history-backdrop').hidden=false;renderResultHistory();const shell=document.querySelector?.('.site-shell');if(shell)shell.inert=true;$('result-history-close').focus?.({preventScroll:true});}
 }
 function closeResultHistory(apply=false){
  try{
@@ -90,13 +92,15 @@ function closeResultHistory(apply=false){
    delete next.resultEditor;next.reviewRevision++;commitReviewState(next);
   }
   if(!resultReviewPolicy(game)&&game?.current?.feedbackHold)releaseFeedbackTimer();
-  $('result-history-backdrop').hidden=true;render();
+  $('result-history-backdrop').hidden=true;const shell=document.querySelector?.('.site-shell');if(shell)shell.inert=false;render();
   const target=resultHistoryFocus?.isConnected?resultHistoryFocus:$('match-team-a');target?.focus?.({preventScroll:true});
   return true;
  }catch(error){$('result-history-error').textContent=error.message;return false;}
 }
 function updateResultHistory(change){
- try{const next=reviewCopy(game);change(next.resultEditor);next.reviewRevision++;commitReviewState(next);renderResultHistory();$('result-history-error').textContent='';}
+ try{const focus=document.activeElement,selector=focus?.dataset.reviewChoice?'[data-review-row="'+focus.dataset.reviewRow+'"][data-review-choice="'+focus.dataset.reviewChoice+'"]':focus?.dataset.reviewTab?'[data-review-tab="'+focus.dataset.reviewTab+'"]':null;
+ const next=reviewCopy(game);change(next.resultEditor);next.reviewRevision++;commitReviewState(next);renderResultHistory();
+ if(selector)$('result-history-backdrop').querySelector?.(selector)?.focus?.({preventScroll:true});$('result-history-error').textContent='';}
  catch(error){$('result-history-error').textContent=error.message;}
 }
 function showPendingReview(){

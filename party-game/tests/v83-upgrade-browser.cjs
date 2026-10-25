@@ -76,7 +76,7 @@ async function completedMatch(page){
   assert.equal(cached.length,47);assert.deepEqual(cached.filter(row=>!row.found),[],'47 current scripts must load from the new worker offline');
   assert.equal(await page.locator('#timer-pause-control[data-action="resume"]').isVisible(),true);
   assert.equal(await page.locator('[data-feedback]').count(),2);
-  await page.screenshot({path:folder+'/v83-paused-offline-v84.png',animations:'disabled'});
+  await page.screenshot({path:folder+'/v83-paused-offline-v85.png',animations:'disabled'});
   // Opening and closing a report on an already paused historical party keeps it paused.
   await page.locator('[data-feedback="report"]').click();await page.keyboard.press('Escape');
   const cancelled=await snapshot(page);
@@ -100,9 +100,9 @@ async function completedMatch(page){
   assert.deepEqual(await snapshot(page),protectedState,'Offline exports are read-only');
   assert.equal(protectedState.profiles,before.profiles,'No second settlement or watermark change');
   assert.equal(protectedState.reports,before.reports,'No conversion of the old journal or original task ID');
-  await page.screenshot({path:folder+'/v83-data-offline-v84.png',animations:'disabled'});
+  await page.screenshot({path:folder+'/v83-data-offline-v85.png',animations:'disabled'});
   assert.deepEqual(errors,[]);
-  console.log('v83 → v84 real warm worker / offline cold reload / exact game, profiles, totals, recent, watermarks, task memory and report RAW PASS');
+  console.log('v83 → v85 real warm worker / offline cold reload / exact game, profiles, totals, recent, watermarks, task memory and report RAW PASS');
   console.log('47/47 precache / header Resume + retained time / report Escape / backup SHA-256 + legacy and combined JSON offline PASS');
  }finally{
   write(current);await ctx.close();await browser.close();fs.rmSync(tmp,{recursive:true,force:true});

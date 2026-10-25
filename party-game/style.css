@@ -2092,7 +2092,7 @@ button.match-team:focus-visible{outline:3px solid var(--lime);outline-offset:3px
 .result-history-dialog .review-final-score{font-size:14px;line-height:1.2;display:grid;grid-template-columns:1fr 1fr}
 .result-history-dialog .review-final-score span{min-width:0;text-align:center}
 .result-history-dialog .review-final-score small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px}
-@media(max-height:480px){.result-history-dialog{height:calc(100dvh - 12px);padding:10px;gap:5px}.result-history-dialog h2{font-size:12px}.result-history-dialog .profile-muted{font-size:10px}.result-history-dialog .dialog-close{height:36px;flex-basis:36px}.result-history-dialog .review-final-score{font-size:12px}.result-history-dialog .review-final-score small{font-size:10px}.review-tabs button{font-size:12px;max-height:44px}.result-history-dialog #result-history-rows{min-height:90px}}
+@media(max-height:480px){.result-history-dialog{height:calc(100dvh - 12px);padding:10px;gap:5px}.result-history-dialog h2{font-size:12px}.result-history-dialog .profile-muted{font-size:10px}.result-history-dialog .dialog-close{height:44px;flex-basis:44px}.result-history-dialog .review-final-score{font-size:12px}.result-history-dialog .review-final-score small{font-size:10px}.review-tabs button{font-size:12px;max-height:44px}.result-history-dialog #result-history-rows{min-height:90px}}
 #result-history-backdrop{padding:6px}
 .result-history-dialog .dialog-close{position:static;display:grid;place-items:center;line-height:1}
 #result-history-error:empty{display:none}
