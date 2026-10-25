@@ -184,6 +184,11 @@
       "path": "cards/idiom-expansion-v2.json",
       "immutable": false,
       "review": "Idioms I2 50 new expressions with editorial review"
+    },
+    {
+      "path": "cards/science-expansion-v4.json",
+      "immutable": false,
+      "review": "S4: 50 вручную отобранных игровых научных заданий; 13 персон; независимая сверка с 5317 прежними карточками; см. editorial/science-expansion-v4-review.md"
     }
   ],
   "questions": [
@@ -298,6 +303,11 @@
       "path": "packs/idiom-expansion-v2.json",
       "immutable": false,
       "review": "Idioms I2 general@13 (5350) pinned with all historical versions retained"
+    },
+    {
+      "path": "packs/science-expansion-v4.json",
+      "immutable": false,
+      "review": "S4 adds science@8=582, general@14=5400 while preserving all earlier pinned ID lists"
     }
   ],
   "legacyCollisions": [

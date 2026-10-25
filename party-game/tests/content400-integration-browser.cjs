@@ -11,12 +11,12 @@ const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'quip-v79-'));
    const ctx=await browser.newContext({viewport:{width,height},hasTouch:true}),page=await ctx.newPage(),errors=[];
    page.on('pageerror',e=>errors.push(e.message));await page.goto(URL);await provisionProfiles(page);await page.evaluate(()=>{soundOn=false});
    const selected=[];
-   for(const[pack,version,origin]of [['general',13,'idiom-expansion-v2'],['geography',6,'geography-expansion-v2'],['science',7,'science-expansion-v3']]){
-    await page.locator('#new-game-menu').click();assert.equal((await page.locator('#standard-content-count').textContent()).replace(/\D/g,''),'5350');
+   for(const[pack,version,origin]of [['general',14,'science-expansion-v4'],['geography',6,'geography-expansion-v2'],['science',8,'science-expansion-v4']]){
+    await page.locator('#new-game-menu').click();assert.equal((await page.locator('#standard-content-count').textContent()).replace(/\D/g,''),'5400');
     if(pack==='general')await page.locator('#standard-game').click();
     else{
      await page.locator('#thematic-game').click();
-     for(const[id,v,n]of [['geography',6,406],['science',7,532]]){const button=page.locator('[data-theme="'+id+'"][data-version="'+v+'"]');assert.equal(await button.count(),1);assert.match(await button.textContent(),new RegExp(String(n)));}
+     for(const[id,v,n]of [['geography',6,406],['science',8,582]]){const button=page.locator('[data-theme="'+id+'"][data-version="'+v+'"]');assert.equal(await button.count(),1);assert.match(await button.textContent(),new RegExp(String(n)));}
      if(width===390&&pack==='geography')await page.screenshot({path:'artifacts/quip-content400/catalogs-390.png',animations:'disabled'});
      await page.locator('[data-theme="'+pack+'"]').click();
     }
@@ -36,10 +36,10 @@ const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'quip-v79-'));
    const stored=await page.evaluate(()=>({game:JSON.stringify(game),main:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY),reports:localStorage.getItem(QUIP_CARD_REPORTS_KEY)}));
    await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);await ctx.setOffline(true);await page.reload();await page.locator('#continue-game').click();
    assert.deepEqual(await page.evaluate(()=>({game:JSON.stringify(game),main:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY),reports:localStorage.getItem(QUIP_CARD_REPORTS_KEY)})),stored);
-   assert.equal(await page.evaluate(()=>game.contentPack.version),7);assert.equal(await page.evaluate(()=>game.current.cardId),selected[2]);
+   assert.equal(await page.evaluate(()=>game.contentPack.version),8);assert.equal(await page.evaluate(()=>game.current.cardId),selected[2]);
    await page.locator('#exit-game').click();await page.locator('#settings-menu').click();assert.match(await page.locator('#reports-count').textContent(),/3 \/ 500/);
    const event=page.waitForEvent('download');await page.locator('#reports-export').click();const d=await event,filename=path.join(tmp,'reports-'+width+'.json');await d.saveAs(filename);
-   const rows=JSON.parse(fs.readFileSync(filename,'utf8')).archive.items;assert.deepEqual(rows.map(r=>r.item.cardId),selected);assert.deepEqual(rows.map(r=>r.item.pack.version),[13,6,7]);
+   const rows=JSON.parse(fs.readFileSync(filename,'utf8')).archive.items;assert.deepEqual(rows.map(r=>r.item.cardId),selected);assert.deepEqual(rows.map(r=>r.item.pack.version),[14,6,8]);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);assert.deepEqual(errors,[]);
    await ctx.close();console.log('v79 catalog counts / new source IDs / reports / exact paused offline restore',width,height,'PASS');
   }

@@ -1870,7 +1870,7 @@ test('live catalog counters use active pack IDs and not the historical archive',
  h.eval('openThemes()');
  const markup=h.elements.get('theme-list').innerHTML;
  assert.ok(markup.includes('>406</span>'), 'Geography shows the catalog count');
- assert.ok(markup.includes('>532</span>'), 'Science shows the catalog count');
+ assert.ok(markup.includes('>582</span>'), 'Science shows the catalog count');
  assert.ok(!markup.includes('Выбрать тему'), 'No verbose labels for enabled themes');
  assert.ok(markup.includes('Скоро'), 'Future themes remain marked soon');
  assert.equal(h.eval('options.contentPack.id'),'general','Navigation must not switch packs or modify saved settings');
