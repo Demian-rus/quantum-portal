@@ -34,7 +34,8 @@ function fits(g){
    await before.route('**/party-game/**',async route=>{const name=new globalThis.URL(route.request().url()).pathname.split('/party-game/')[1]||'index.html';if(!oldFiles.has(name))return route.continue();return route.fulfill({body:oldFiles.get(name),contentType:name.endsWith('.js')?'application/javascript':name.endsWith('.css')?'text/css':'text/html'});});
    await F.setup(before,URL);
    const ctx=await browser.newContext({viewport:{width:w,height:h},hasTouch:true,reducedMotion:'reduce'});contexts.push(ctx);const after=await ctx.newPage(),errors=[];after.on('pageerror',e=>errors.push(e.message));await F.setup(after,URL);
-   for(const s of F.scenarios){
+   const longest=await after.evaluate(()=>PARTY_CARDS.filter(r=>['word','phrase','idiom'].includes(r.type)).sort((a,b)=>b.text.length-a.text.length)[0].text);
+   for(const s of [...F.scenarios,{id:'longest',mode:'talk',modifier:null,word:longest}]){
     const baseline={},candidate={};await F.fixture(before,s);await F.fixture(after,s);
     for(const name of ['task','opened','countdown','play','hidden','revealed']){
      await F.phase(before,name);await F.phase(after,name);baseline[name]=await F.geometry(before);candidate[name]=await F.geometry(after);fits(candidate[name]);
