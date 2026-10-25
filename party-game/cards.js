@@ -5424,7 +5424,7 @@ const PARTY_CARDS=Object.freeze([
   {"id":"phrase-039018","text":"СОВРЕМЕННОЕ ИСКУССТВО","type":"phrase","difficulty":"hard","categories":["arts"],"pack":"general-expansion-v2"},
   {"id":"person-039008","text":"РОККИ БАЛЬБОА","type":"person","difficulty":"hard","categories":["cinema"],"pack":"general-expansion-v2"},
   {"id":"person-039009","text":"ХАЯО МИЯДЗАКИ","type":"person","difficulty":"hard","categories":["cinema"],"pack":"general-expansion-v2"},
-  {"id":"person-039010","text":"ЖАННА Д'АРК","type":"person","difficulty":"hard","categories":["history"],"pack":"general-expansion-v2"},
+  {"id":"person-039010","text":"УИНСТОН ЧЕРЧИЛЛЬ","type":"person","difficulty":"hard","categories":["history"],"pack":"general-expansion-v2"},
   {"id":"person-039011","text":"БЕНДЕР ИЗ ФУТУРАМЫ","type":"person","difficulty":"hard","categories":["cinema"],"pack":"general-expansion-v2"}
 ].map(card=>Object.freeze({...card,
   categories:Object.freeze(card.categories),
