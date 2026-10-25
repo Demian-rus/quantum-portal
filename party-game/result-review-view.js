@@ -17,9 +17,9 @@ function reviewDeltaText(row){
  return row.deltas?row.deltas.map((d,i)=>game.teams[i]+': '+(d>0?'+':'')+d).join(' · '):(game.teams[row.recipientIndex]??row.team??'Очки')+': '+(row.awarded>0?'+':'')+row.awarded;
 }
 // Presentation state is transient: expanding a row never changes game or storage.
-const reviewPresentation={modal:{},pending:{}};
+const reviewPresentation={modal:{},pending:{},results:{}};
 function reviewPresentationFor(surface,player){
- const state=reviewPresentation[surface],key=game?.matchId??game;
+ const state=reviewPresentation[surface],key=game?.matchId??JSON.stringify([game?.taskHistory?.partyId,game?.teams,game?.startingTeamIndex,game?.history?.[0]?.word]);
  if(state.key!==key||state.player!==player){state.key=key;state.player=player;state.expanded=null;}
  return state;
 }
@@ -29,7 +29,7 @@ function reviewSavedLabel(row){
   const recipients=row.recipients??row.deltas?.flatMap((n,i)=>n>0?[i]:[])??[];
   return recipients.length===2?'Обоим':recipients.length?game.teams[recipients[0]]:'Никому';
  }
- return row.outcome==='failed'||row.correct===false?'Не угадали':row.outcome==='base-only'?'Без усложнения':'Угадали';
+ return row.outcome==='failed'||row.correct===false?'Не угадали':row.outcome==='base-only'?'Без усложнения':row.modifierSuccess===true?'С усложнением':'Угадали';
 }
 function reviewChoiceColor(row,choice){
  return choice==='failed'||choice==='none'||choice==='0'?'bad':choice==='base'||row.mode==='blitz'&&Number(choice)<blitzRequiredForRound(row.review.rules,row.review.round)?'partial':'good';
@@ -73,15 +73,17 @@ function reviewCompactRow(surface,key,title,summary,controls,details,expanded){
   (controls?'<div class="review-compact-controls" role="group" aria-label="Исход хода">'+controls+'</div>':'<span class="review-compact-summary">'+escapeHTML(summary)+'</span>')+
   '</div><div class="review-details" id="'+id+'" data-review-details="'+key+'"'+(expanded?'':' hidden')+'>'+details+'</div></article>';
 }
+function reviewedHistoryRowMarkup(match,row,index,editable,surface,player){
+ const state=reviewPresentationFor(surface,player);state.match=match;state.editable=editable;
+ if(player!=null&&!reviewHistoryOwner(row,index,player))return '';
+ const expanded=state.expanded===String(index),compact=editable&&row.mode!=='approx'&&row.mode!=='blitz';
+ const summary=reviewSavedLabel(row)+(surface==='results'?' · '+reviewDeltaText(row):'');
+ return reviewCompactRow(surface,String(index),(index+1)+'. '+row.word,summary,compact?reviewButtonsMarkup(match,index,true):'',
+  expanded?reviewedRowDetailsMarkup(match,index,editable)+(surface==='results'?reportHistoryButtons(row,index):''):'',expanded);
+}
 function reviewedRowsMarkup(match,player,editable,surface='modal'){
  const state=reviewPresentationFor(surface,player);state.match=match;state.editable=editable;
- const markup=match.history.map((row,index)=>{
-  if(!reviewHistoryOwner(row,index,player))return '';
-  const expanded=state.expanded===String(index),compact=editable&&row.mode!=='approx'&&row.mode!=='blitz';
-  return reviewCompactRow(surface,String(index),(index+1)+'. '+row.word,reviewSavedLabel(row),compact?reviewButtonsMarkup(match,index,true):'',
-   expanded?reviewedRowDetailsMarkup(match,index,editable):'',expanded);
- }).join('');
- return markup||'<p class="profile-muted">Завершённых ходов пока нет.</p>';
+ return match.history.map((row,index)=>reviewedHistoryRowMarkup(match,row,index,editable,surface,player)).join('')||'<p class="profile-muted">Завершённых ходов пока нет.</p>';
 }
 function reviewedTieMarkup(match,player,editable,surface){
  if(!match.tiebreak)return '';
@@ -93,11 +95,13 @@ function toggleReviewedDetails(event,surface){
  if(event.target.closest('[data-review-choice],[data-review-tab],[data-review-tie]'))return false;
  const toggle=event.target.closest('[data-review-expand]')||event.target.closest('.review-compact-bar')?.querySelector('[data-review-expand]');
  if(!toggle)return false;
- const root=surface==='modal'?$('result-history-rows'):document.querySelector('.pending-review-rows');
+ const root=surface==='modal'?$('result-history-rows'):surface==='pending'?document.querySelector('.pending-review-rows'):$('results-content').querySelector('.history-block');
  if(!root?.contains(toggle))return false;
- const player=surface==='modal'?game.resultEditor?.playerIndex??Number($('result-history-backdrop').dataset.player||0):game.pendingReview?.playerIndex??0;
+ const player=surface==='modal'?game.resultEditor?.playerIndex??Number($('result-history-backdrop').dataset.player||0):surface==='pending'?game.pendingReview?.playerIndex??0:null;
  const state=reviewPresentationFor(surface,player),key=toggle.dataset.reviewExpand;
- const before=toggle.getBoundingClientRect().top,scroll=root.scrollTop;
+ let scroller=root;
+ if(surface==='results'){scroller=root.parentElement;while(scroller&&!(scroller.scrollHeight>scroller.clientHeight&&/auto|scroll/.test(getComputedStyle(scroller).overflowY)))scroller=scroller.parentElement;scroller=scroller||document.scrollingElement;}
+ const before=toggle.getBoundingClientRect().top,scroll=scroller.scrollTop;
  const previous=root.querySelector('[data-review-expand][aria-expanded="true"]');
  const oldDetails=root.querySelector('.review-details:not([hidden])');
  if(previous){previous.setAttribute('aria-expanded','false');previous.querySelector('.review-disclosure').textContent='▾';}
@@ -105,10 +109,10 @@ function toggleReviewedDetails(event,surface){
  const open=state.expanded!==key;state.expanded=open?key:null;
  if(open){
   const details=toggle.closest('.review-row').querySelector('.review-details');
-  details.innerHTML=key==='tie'?reviewTieDetailsMarkup(state.match,state.editable):reviewedRowDetailsMarkup(state.match,Number(key),state.editable);
+  details.innerHTML=key==='tie'?reviewTieDetailsMarkup(state.match,state.editable):reviewedRowDetailsMarkup(state.match,Number(key),state.editable)+(surface==='results'?reportHistoryButtons(state.match.history[Number(key)],Number(key)):'');
   details.hidden=false;toggle.setAttribute('aria-expanded','true');toggle.querySelector('.review-disclosure').textContent='▴';
  }
- root.scrollTop=scroll+toggle.getBoundingClientRect().top-before;
+ scroller.scrollTop=scroll+toggle.getBoundingClientRect().top-before;
  toggle.focus({preventScroll:true});return true;
 }
 function reviewFocusSelector(element){
@@ -231,6 +235,7 @@ function registerResultReviewControls(){
   if(tie)updateResultHistory(e=>{e.tiebreak.winnerIndex=tie.dataset.reviewTie==='same'?null:tie.dataset.reviewTie==='a'?0:1;e.tiebreak.stage=e.tiebreak.winnerIndex===null?'judge':'decided';});
  });
  $('play-content').addEventListener('click',changePendingReview);
+ $('results-content').addEventListener('click',event=>toggleReviewedDetails(event,'results'));
  document.addEventListener('keydown',event=>{
   if($('result-history-backdrop').hidden)return;
   if(event.key==='Escape'){event.preventDefault();closeResultHistory(false);}

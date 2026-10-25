@@ -57,7 +57,7 @@ async function rectCheck(page,id){
    await start(page,'blitz');await page.locator('[data-action="roll"]').click();await page.locator('.challenge-card').click();await page.locator('[data-action="start-timer"]').click();await page.locator('[data-action="blitz-correct"]').click();
    await page.evaluate(()=>finishTimer('early'));await page.locator('[data-action="no"]').click();
    const blitz=await page.evaluate(()=>({words:game.history[0].blitzWords,ids:game.history[0].blitzCardIds,points:game.history[0].review.round.points}));
-   await page.locator('#match-team-a').click();await page.locator('[data-review-expand="0"]').click();assert.equal(await page.locator('[data-review-choice="1"]').getAttribute('aria-pressed'),'true');
+   await page.locator('#match-team-a').click();await page.locator('#result-history-rows [data-review-expand="0"]').click();assert.equal(await page.locator('[data-review-choice="1"]').getAttribute('aria-pressed'),'true');
    await page.locator('[data-review-choice="3"]').click();await page.locator('#result-history-save').click();
    assert.equal(await page.evaluate(()=>game.scores[0]),blitz.points);assert.deepEqual(await page.evaluate(()=>game.history[0].blitzWords),blitz.words);assert.deepEqual(await page.evaluate(()=>game.history[0].blitzCardIds),blitz.ids);
    await start(page,'mime','hard',true,'guesser');await settle(page);await page.locator('[data-action="roll"]').click();await page.locator('.challenge-card').click();

@@ -140,7 +140,7 @@ test('match views preserve V1-V5 and shared-award state without RNG or storage w
   h.eval(approx?'revealApprox();awardApprox("both")':'game.phase="judge";judge(true)');
   check('renderMatch();showBetween();game.history.map(historyMarkup);showResults();');
   assert.equal(h.eval('document.body.dataset.screen'),'results');
-  if(approx)assert.match(h.elements.get('results-content').innerHTML,/Обе команды.*\+1 \/ \+1/);
+  if(approx)assert.match(h.elements.get('results-content').innerHTML,/Обоим.*Молнии: \+1.*Кометы: \+1/);
  }
 });
 test('timer views preserve restored V1-V5 clocks without RNG, writes or new intervals',()=>{
@@ -1833,9 +1833,9 @@ test('Approx awards all four manual choices once and records recipients, answer 
   assert.equal(h.eval('game.history.length'),1);assert.equal(h.eval('game.history[0].answer'),answer);
   assert.equal(h.eval('game.history[0].sharedAward'),choice==='both');
   assert.deepEqual(Array.from(h.eval('game.history[0].deltas')),deltas);
-  const html=h.eval('historyMarkup(game.history[0],0)');
+  h.eval('reviewPresentationFor("results",null).expanded="0"');const html=h.eval('historyMarkup(game.history[0],0)');
   assert.ok(html.includes('ПРИМЕРНО')&&html.includes('Ответ:'));
-  assert.ok(html.includes(choice==='both'?'Обе команды':choice==='none'?'Никому':choice==='a'?'Молнии':'Кометы'));
+  assert.ok(html.includes(choice==='both'?'Обоим':choice==='none'?'Никому':choice==='a'?'Молнии':'Кометы'));
  }
 });
 test('Approx reload preserves question, answer and reveal state before and after disclosure',()=>{

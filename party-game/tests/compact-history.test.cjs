@@ -47,6 +47,17 @@ test('TASK022 102 real shared rounds render no alternative replays or hidden edi
  h.eval("replayResultHistory=()=>{throw Error('Collapsed rows replayed alternatives')}");
  const html=h.eval('reviewedRowsMarkup(game,0,true)');assert.equal((html.match(/data-review-turn=/g)||[]).length,102);assert.doesNotMatch(html,/data-review-choice=|<h3>/);
 });
+test('TASK022 disclosure survives a draft transaction in a supported match without profile identity',()=>{
+ const h=start();answer(h);h.eval('delete game.profileMatch;delete game.matchId;persist();$("report-backdrop").hidden=true;openResultHistory(0);reviewPresentationFor("modal",0).expanded="0"');
+ h.eval('updateResultHistory(e=>{e.history[0]=changeReviewedOutcome(e.history[0],"failed")})');assert.equal(h.eval('reviewPresentation.modal.expanded'),'0');assert.match(h.elements.get('result-history-rows').innerHTML,/data-review-expand="0" aria-expanded="true"/);
+ assert.equal(h.eval('game.history[0].correct'),true);assert.equal(h.eval('game.resultEditor.history[0].review.result.taskSuccess'),false);
+});
+test('TASK022 completed result screen uses the same read-only list and retains per-card reporting',()=>{
+ const h=start('mime');answer(h);answer(h);
+ h.eval('game.phase="results";game.reviewConfirmed=true;reviewPresentationFor("results",null).expanded=null');
+ const closed=h.eval('reviewedRowsMarkup(game,null,false,"results")');assert.equal((closed.match(/data-review-turn=/g)||[]).length,2);assert.doesNotMatch(closed,/data-review-choice=|data-report-history=/);
+ h.eval('reviewPresentationFor("results",null).expanded="0"');const open=h.eval('reviewedRowsMarkup(game,null,false,"results")');assert.match(open,/data-report-history="0"/);assert.doesNotMatch(open,/data-review-choice=/);assert.match(open,/Загадывал:/);
+});
 test('TASK022 mathematical, storage, risk, catalog and gameplay cores remain exact published bytes',()=>{
  const root=path.resolve(__dirname,'../..'),git=args=>execFileSync('git',args,{cwd:root,encoding:'utf8',maxBuffer:12e6});
  for(const name of ['result-review.js','risk-planner.js','round-selection.js','round-settlement.js','rules.js','penalties.js','round-planner.js','round-actions.js','timer-controller.js','feedback-clock.js','player-profiles.js','storage-controller.js','session-restoration.js','profile-backup.js','profile-backup-view.js','card-feedback.js','cards.js','content-packs.js'])
@@ -55,5 +66,8 @@ test('TASK022 mathematical, storage, risk, catalog and gameplay cores remain exa
  const segment=(s,a,b)=>s.slice(s.indexOf(a),s.indexOf(b,s.indexOf(a)));
  assert.equal(segment(view,'function closeResultHistory(','function updateResultHistory('),segment(old,'function closeResultHistory(','function updateResultHistory('),'Save/cancel, rollback and profile protocol');
  assert.equal(segment(view,'  const next=reviewCopy(game);\n  if(tab)', '  const scroll=document.querySelector'),segment(old,'  const next=reviewCopy(game);\n  if(tab)', '  const scroll=document.querySelector'),'Pending review transaction');
+ const oldMatch=git(['show',base+':party-game/match-views.js']),newMatch=fs.readFileSync(path.join(root,'party-game/match-views.js'),'utf8');
+ const withoutHistory=s=>{const a=s.indexOf('function historyMarkup('),b=s.indexOf('\nfunction showResults()',a);assert.ok(a>=0&&b>a);return s.slice(0,a)+s.slice(b)};
+ assert.equal(withoutHistory(newMatch).replace("reviewedRowsMarkup(game,null,false,'results')+reviewedTieMarkup(game,null,false,'results')","game.history.map(historyMarkup).join('')"),withoutHistory(oldMatch),'Completed winner/score/navigation view keeps every other byte');
  const css=fs.readFileSync(path.join(root,'party-game/style.css'),'utf8');assert.ok(css.startsWith(git(['show',base+':party-game/style.css'])),'Original gameplay CSS remains an exact prefix');
 });
