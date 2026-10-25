@@ -1868,13 +1868,13 @@ test('live catalog counters use active pack IDs and not the historical archive',
  h.eval('openGameType()');
  const general=h.elements.get('standard-content-count').textContent.replace(/\s/g,' ');
  const thematic=h.elements.get('thematic-content-count').textContent.replace(/\s/g,' ');
- assert.equal(general,'(4 950 заданий)');
+ assert.equal(general,'(5 450 заданий)');
  const expectedIds=h.eval('new Set(listThematicPacks(options).filter(entry=>entry.pack.enabled&&entry.pack.criteria.cardIds.length).flatMap(entry=>entry.pack.criteria.cardIds)).size');
  assert.equal(thematic.replace(/[^\d]/g,''),String(expectedIds));
  h.eval('openThemes()');
  const markup=h.elements.get('theme-list').innerHTML;
- assert.ok(markup.includes('>256</span>'), 'Geography shows the catalog count');
- assert.ok(markup.includes('>382</span>'), 'Science shows the catalog count');
+ assert.ok(markup.includes('>406</span>'), 'Geography shows the catalog count');
+ assert.ok(markup.includes('>582</span>'), 'Science shows the catalog count');
  assert.ok(!markup.includes('Выбрать тему'), 'No verbose labels for enabled themes');
  assert.ok(markup.includes('Скоро'), 'Future themes remain marked soon');
  assert.equal(h.eval('options.contentPack.id'),'general','Navigation must not switch packs or modify saved settings');
@@ -2318,7 +2318,7 @@ test('TASK008 standard, geography and science keep independent preferences acros
 });
 test('TASK008 both thematic registries have no dead-end mode, type or difficulty settings',()=>{
  const {checkSettings}=require('../scripts/balance-audit.cjs');assert.deepEqual(checkSettings(),{checked:3048,deadEnds:0});
- const h=harness();h.eval('selectTheme("science",2);options.modes=["secret"];options.difficulty="mixed";options.dice=false;newGame();delete game.modeCompatibilityVersion;game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
+ const h=harness();h.eval('selectTheme("science",2);options.modes=["secret"];options.difficulty="mixed";options.dice=false;newGame();game.contentPack={id:"science",version:2};delete game.modeCompatibilityVersion;game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
  const results=h.eval(`(()=>{const methods=new Set(),seen=[];for(let i=0;i<120;i++){const c=rollOutcome();methods.add(c.methodId);if(!c.complication||c.methodId==='sing')return false;
  const pool=getPackCardPool(game.contentPack,getMode(c.methodId).kind,c.difficulty,game.promptTypes);if(!pool.some(row=>row.text===c.word)||!pool.every(row=>row.pack==='science-v2'))return false;seen.push(c.difficulty);game.roundIndex++}return {methods:[...methods].sort(),counts:['easy','medium','hard'].map(l=>seen.filter(x=>x===l).length)}})()`);
  assert.deepEqual(Array.from(results.methods),['draw','mime','talk','yesno']);assert.deepEqual(Array.from(results.counts),[40,40,40]);

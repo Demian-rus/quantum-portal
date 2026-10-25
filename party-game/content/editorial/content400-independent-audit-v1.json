@@ -1,0 +1,3448 @@
+{
+  "schemaVersion": 1,
+  "title": "КВИП: независимая редакционная приёмка подготовленных 400 карточек",
+  "basedOn": {
+    "main": "571757e331e75854a5167c57d792072852336804",
+    "integrationPR": 102,
+    "integrationHead": "f04e567ad1cb0eed316b3d9cf880ff4d6316d398",
+    "originalContentHead": "87a36561c895aacccf9f1cb05ee9dad48c3d0023"
+  },
+  "methodology": [
+    "400 записей из 7 исходных JSON; 4917 предыдущих карточек не трогались",
+    "Кодовые проверки до правок: новых точных нормализованных дублей и конфликтов ID нет",
+    "Ручная содержательная сверка выявила смысловые дубли, неоптимальную сложность и общие неигровые формулировки",
+    "pass-preliminary — не подтверждение полевых тестов узнаваемости; review-required требует дополнительной оценки до публикации"
+  ],
+  "totals": {
+    "examined": 400,
+    "corrected": 9,
+    "reviewRequired": 13,
+    "unmodified": 391
+  },
+  "changes": [
+    {
+      "id": "phrase-034002",
+      "source": "science-expansion-v2",
+      "before": {
+        "text": "ЛАБОРАТОРНЫЙ ХАЛАТ",
+        "type": "phrase",
+        "difficulty": "easy",
+        "categories": [
+          "science"
+        ],
+        "pack": "science-expansion-v2",
+        "id": "phrase-034002"
+      },
+      "after": {
+        "text": "МОЛЕКУЛА ВОДЫ",
+        "type": "phrase",
+        "difficulty": "easy",
+        "categories": [
+          "science"
+        ],
+        "pack": "science-expansion-v2",
+        "id": "phrase-034002"
+      },
+      "reason": "Убрана банальная одежда лаборатории; конкретная научная сущность"
+    },
+    {
+      "id": "phrase-034003",
+      "source": "science-expansion-v2",
+      "before": {
+        "text": "ЗАЩИТНЫЕ ОЧКИ",
+        "type": "phrase",
+        "difficulty": "easy",
+        "categories": [
+          "science"
+        ],
+        "pack": "science-expansion-v2",
+        "id": "phrase-034003"
+      },
+      "after": {
+        "text": "ГЕНЕТИЧЕСКИЙ КОД",
+        "type": "phrase",
+        "difficulty": "easy",
+        "categories": [
+          "science"
+        ],
+        "pack": "science-expansion-v2",
+        "id": "phrase-034003"
+      },
+      "reason": "Убрана универсальная защитная экипировка; конкретная биология"
+    },
+    {
+      "id": "phrase-034011",
+      "source": "science-expansion-v2",
+      "before": {
+        "text": "НАУЧНЫЙ МУЗЕЙ",
+        "type": "phrase",
+        "difficulty": "easy",
+        "categories": [
+          "science"
+        ],
+        "pack": "science-expansion-v2",
+        "id": "phrase-034011"
+      },
+      "after": {
+        "text": "РЕНТГЕНОВСКИЙ СНИМОК",
+        "type": "phrase",
+        "difficulty": "easy",
+        "categories": [
+          "science"
+        ],
+        "pack": "science-expansion-v2",
+        "id": "phrase-034011"
+      },
+      "reason": "Убрана абстрактная площадка; объяснимая медицинская технология"
+    },
+    {
+      "id": "word-035002",
+      "source": "science-expansion-v3",
+      "before": {
+        "text": "ГРАДУСНИК",
+        "type": "word",
+        "difficulty": "easy",
+        "categories": [
+          "science"
+        ],
+        "pack": "science-expansion-v3",
+        "id": "word-035002"
+      },
+      "after": {
+        "text": "ИНГАЛЯТОР",
+        "type": "word",
+        "difficulty": "easy",
+        "categories": [
+          "science"
+        ],
+        "pack": "science-expansion-v3",
+        "id": "word-035002"
+      },
+      "reason": "Градусник семантически повторял исторический термометр"
+    },
+    {
+      "id": "phrase-035005",
+      "source": "science-expansion-v3",
+      "before": {
+        "text": "ДЕТЕКТОР ДЫМА",
+        "type": "phrase",
+        "difficulty": "easy",
+        "categories": [
+          "science"
+        ],
+        "pack": "science-expansion-v3",
+        "id": "phrase-035005"
+      },
+      "after": {
+        "text": "КРОВЯНОЕ ДАВЛЕНИЕ",
+        "type": "phrase",
+        "difficulty": "easy",
+        "categories": [
+          "science"
+        ],
+        "pack": "science-expansion-v3",
+        "id": "phrase-035005"
+      },
+      "reason": "Детектор дыма повторял дымовой датчик из S1"
+    },
+    {
+      "id": "idiom-036037",
+      "source": "idiom-expansion-v1",
+      "before": {
+        "id": "idiom-036037",
+        "text": "НАСТУПИТЬ НА ГОРЛО СОБСТВЕННОЙ ПЕСНЕ",
+        "type": "idiom",
+        "difficulty": "medium",
+        "categories": [],
+        "pack": "idiom-expansion-v1"
+      },
+      "after": {
+        "id": "idiom-036037",
+        "text": "НАСТУПИТЬ НА ГОРЛО СОБСТВЕННОЙ ПЕСНЕ",
+        "type": "idiom",
+        "difficulty": "hard",
+        "categories": [],
+        "pack": "idiom-expansion-v1"
+      },
+      "reason": "Длинный трудно воспроизводимый фразеологизм логичнее в Hard"
+    },
+    {
+      "id": "idiom-036038",
+      "source": "idiom-expansion-v1",
+      "before": {
+        "id": "idiom-036038",
+        "text": "ЧУЖИМИ РУКАМИ ЖАР ЗАГРЕБАТЬ",
+        "type": "idiom",
+        "difficulty": "medium",
+        "categories": [],
+        "pack": "idiom-expansion-v1"
+      },
+      "after": {
+        "id": "idiom-036038",
+        "text": "ЧУЖИМИ РУКАМИ ЖАР ЗАГРЕБАТЬ",
+        "type": "idiom",
+        "difficulty": "hard",
+        "categories": [],
+        "pack": "idiom-expansion-v1"
+      },
+      "reason": "Длинный менее частотный фразеологизм логичнее в Hard"
+    },
+    {
+      "id": "idiom-036042",
+      "source": "idiom-expansion-v1",
+      "before": {
+        "id": "idiom-036042",
+        "text": "КРОКОДИЛОВЫ СЛЁЗЫ",
+        "type": "idiom",
+        "difficulty": "hard",
+        "categories": [],
+        "pack": "idiom-expansion-v1"
+      },
+      "after": {
+        "id": "idiom-036042",
+        "text": "КРОКОДИЛОВЫ СЛЁЗЫ",
+        "type": "idiom",
+        "difficulty": "medium",
+        "categories": [],
+        "pack": "idiom-expansion-v1"
+      },
+      "reason": "Крокодиловы слёзы слишком распространены для Hard"
+    },
+    {
+      "id": "idiom-036043",
+      "source": "idiom-expansion-v1",
+      "before": {
+        "id": "idiom-036043",
+        "text": "СОБАКУ СЪЕЛ",
+        "type": "idiom",
+        "difficulty": "hard",
+        "categories": [],
+        "pack": "idiom-expansion-v1"
+      },
+      "after": {
+        "id": "idiom-036043",
+        "text": "СОБАКУ СЪЕЛ",
+        "type": "idiom",
+        "difficulty": "medium",
+        "categories": [],
+        "pack": "idiom-expansion-v1"
+      },
+      "reason": "Собаку съел слишком распространено для Hard"
+    }
+  ],
+  "records": [
+    {
+      "id": "word-031001",
+      "source": "geography-expansion-v1",
+      "text": "АФРИКА",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031002",
+      "source": "geography-expansion-v1",
+      "text": "АЗИЯ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031003",
+      "source": "geography-expansion-v1",
+      "text": "АНТАРКТИДА",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031004",
+      "source": "geography-expansion-v1",
+      "text": "АРКТИКА",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031005",
+      "source": "geography-expansion-v1",
+      "text": "СИБИРЬ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031006",
+      "source": "geography-expansion-v1",
+      "text": "АЛЬПЫ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031007",
+      "source": "geography-expansion-v1",
+      "text": "УРАЛ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031008",
+      "source": "geography-expansion-v1",
+      "text": "НИЛ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031009",
+      "source": "geography-expansion-v1",
+      "text": "ДУБАЙ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031010",
+      "source": "geography-expansion-v1",
+      "text": "СТАМБУЛ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031001",
+      "source": "geography-expansion-v1",
+      "text": "ЧЁРНОЕ МОРЕ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031002",
+      "source": "geography-expansion-v1",
+      "text": "СРЕДИЗЕМНОЕ МОРЕ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031003",
+      "source": "geography-expansion-v1",
+      "text": "КРАСНОЕ МОРЕ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031004",
+      "source": "geography-expansion-v1",
+      "text": "ЭЙФЕЛЕВА БАШНЯ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031005",
+      "source": "geography-expansion-v1",
+      "text": "СТАТУЯ СВОБОДЫ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031006",
+      "source": "geography-expansion-v1",
+      "text": "КРАСНАЯ ПЛОЩАДЬ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031007",
+      "source": "geography-expansion-v1",
+      "text": "ПИРАМИДЫ ГИЗЫ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031008",
+      "source": "geography-expansion-v1",
+      "text": "БЕРМУДСКИЙ ТРЕУГОЛЬНИК",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031009",
+      "source": "geography-expansion-v1",
+      "text": "МОСТ «ЗОЛОТЫЕ ВОРОТА»",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "person-031001",
+      "source": "geography-expansion-v1",
+      "text": "БЕАР ГРИЛЛС",
+      "type": "person",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031011",
+      "source": "geography-expansion-v1",
+      "text": "БАЛКАНЫ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031012",
+      "source": "geography-expansion-v1",
+      "text": "КАРПАТЫ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031013",
+      "source": "geography-expansion-v1",
+      "text": "БОСФОР",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031014",
+      "source": "geography-expansion-v1",
+      "text": "ДУНАЙ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031015",
+      "source": "geography-expansion-v1",
+      "text": "СЕЙШЕЛЫ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031016",
+      "source": "geography-expansion-v1",
+      "text": "КАРИБЫ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031017",
+      "source": "geography-expansion-v1",
+      "text": "СИНГАПУР",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031018",
+      "source": "geography-expansion-v1",
+      "text": "КАМЧАТКА",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031019",
+      "source": "geography-expansion-v1",
+      "text": "АЛЯСКА",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031020",
+      "source": "geography-expansion-v1",
+      "text": "ГОЛЬФСТРИМ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031010",
+      "source": "geography-expansion-v1",
+      "text": "МАРИАНСКАЯ ВПАДИНА",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031011",
+      "source": "geography-expansion-v1",
+      "text": "КАСПИЙСКОЕ МОРЕ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031012",
+      "source": "geography-expansion-v1",
+      "text": "МЁРТВОЕ МОРЕ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031013",
+      "source": "geography-expansion-v1",
+      "text": "АРАВИЙСКИЙ ПОЛУОСТРОВ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031014",
+      "source": "geography-expansion-v1",
+      "text": "ДОЛИНА ГЕЙЗЕРОВ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031015",
+      "source": "geography-expansion-v1",
+      "text": "ГАЛАПАГОССКИЕ ОСТРОВА",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031016",
+      "source": "geography-expansion-v1",
+      "text": "КОРАЛЛОВЫЙ РИФ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031017",
+      "source": "geography-expansion-v1",
+      "text": "ВУЛКАН КРАКАТАУ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "person-031002",
+      "source": "geography-expansion-v1",
+      "text": "ЮРИЙ СЕНКЕВИЧ",
+      "type": "person",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "person-031003",
+      "source": "geography-expansion-v1",
+      "text": "ФРЭНСИС ДРЕЙК",
+      "type": "person",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031021",
+      "source": "geography-expansion-v1",
+      "text": "АТАКАМА",
+      "type": "word",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031022",
+      "source": "geography-expansion-v1",
+      "text": "КОРДИЛЬЕРЫ",
+      "type": "word",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031023",
+      "source": "geography-expansion-v1",
+      "text": "ШПИЦБЕРГЕН",
+      "type": "word",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031024",
+      "source": "geography-expansion-v1",
+      "text": "ШЕЛЬФ",
+      "type": "word",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-031025",
+      "source": "geography-expansion-v1",
+      "text": "ПЛОСКОГОРЬЕ",
+      "type": "word",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031018",
+      "source": "geography-expansion-v1",
+      "text": "СЕВЕРО-ЗАПАДНЫЙ ПРОХОД",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031019",
+      "source": "geography-expansion-v1",
+      "text": "ВОСТОЧНО-АФРИКАНСКИЙ РАЗЛОМ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-031020",
+      "source": "geography-expansion-v1",
+      "text": "БОЛЬШОЙ ВОДОРАЗДЕЛЬНЫЙ ХРЕБЕТ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "review-required",
+      "note": "Длинный малознакомый топоним; проверить угадываемость прежде чем включать в публикацию"
+    },
+    {
+      "id": "person-031004",
+      "source": "geography-expansion-v1",
+      "text": "АБЕЛЬ ТАСМАН",
+      "type": "person",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "person-031005",
+      "source": "geography-expansion-v1",
+      "text": "ВИЛЛЕМ БАРЕНЦ",
+      "type": "person",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032001",
+      "source": "geography-expansion-v2",
+      "text": "ГЕРМАНИЯ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032002",
+      "source": "geography-expansion-v2",
+      "text": "ПОЛЬША",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032003",
+      "source": "geography-expansion-v2",
+      "text": "БЕЛЬГИЯ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032004",
+      "source": "geography-expansion-v2",
+      "text": "НИДЕРЛАНДЫ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032005",
+      "source": "geography-expansion-v2",
+      "text": "ВЕНГРИЯ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032006",
+      "source": "geography-expansion-v2",
+      "text": "ЧЕХИЯ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032007",
+      "source": "geography-expansion-v2",
+      "text": "ХОРВАТИЯ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032008",
+      "source": "geography-expansion-v2",
+      "text": "США",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032001",
+      "source": "geography-expansion-v2",
+      "text": "НОВАЯ ЗЕЛАНДИЯ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032002",
+      "source": "geography-expansion-v2",
+      "text": "ЮЖНАЯ КОРЕЯ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032003",
+      "source": "geography-expansion-v2",
+      "text": "САУДОВСКАЯ АРАВИЯ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032004",
+      "source": "geography-expansion-v2",
+      "text": "ОБЪЕДИНЁННЫЕ АРАБСКИЕ ЭМИРАТЫ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032009",
+      "source": "geography-expansion-v2",
+      "text": "ЮАР",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032010",
+      "source": "geography-expansion-v2",
+      "text": "НЬЮ-ЙОРК",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032011",
+      "source": "geography-expansion-v2",
+      "text": "АМСТЕРДАМ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032012",
+      "source": "geography-expansion-v2",
+      "text": "БАРСЕЛОНА",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032013",
+      "source": "geography-expansion-v2",
+      "text": "ВАРШАВА",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032014",
+      "source": "geography-expansion-v2",
+      "text": "БУДАПЕШТ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032015",
+      "source": "geography-expansion-v2",
+      "text": "СИДНЕЙ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032016",
+      "source": "geography-expansion-v2",
+      "text": "СЕУЛ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032017",
+      "source": "geography-expansion-v2",
+      "text": "ЛИССАБОН",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032018",
+      "source": "geography-expansion-v2",
+      "text": "БАНГКОК",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032019",
+      "source": "geography-expansion-v2",
+      "text": "САНКТ-ПЕТЕРБУРГ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032020",
+      "source": "geography-expansion-v2",
+      "text": "РИО-ДЕ-ЖАНЕЙРО",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032021",
+      "source": "geography-expansion-v2",
+      "text": "КАВКАЗ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032022",
+      "source": "geography-expansion-v2",
+      "text": "КРЫМ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032023",
+      "source": "geography-expansion-v2",
+      "text": "ВАТИКАН",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032024",
+      "source": "geography-expansion-v2",
+      "text": "АРМЕНИЯ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032025",
+      "source": "geography-expansion-v2",
+      "text": "ГРУЗИЯ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032026",
+      "source": "geography-expansion-v2",
+      "text": "ГОНКОНГ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032027",
+      "source": "geography-expansion-v2",
+      "text": "ИЕРУСАЛИМ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032028",
+      "source": "geography-expansion-v2",
+      "text": "МАЧУ-ПИКЧУ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032029",
+      "source": "geography-expansion-v2",
+      "text": "ГРАНД-КАНЬОН",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032030",
+      "source": "geography-expansion-v2",
+      "text": "БИГ-БЕН",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032031",
+      "source": "geography-expansion-v2",
+      "text": "БУРДЖ-ХАЛИФА",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032005",
+      "source": "geography-expansion-v2",
+      "text": "ТАУЭРСКИЙ МОСТ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032032",
+      "source": "geography-expansion-v2",
+      "text": "ТАЙМС-СКВЕР",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032033",
+      "source": "geography-expansion-v2",
+      "text": "ОАЗИС",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032006",
+      "source": "geography-expansion-v2",
+      "text": "ОЗЕРО ВИКТОРИЯ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032034",
+      "source": "geography-expansion-v2",
+      "text": "ЭТНА",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032035",
+      "source": "geography-expansion-v2",
+      "text": "ФИЛИППИНЫ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032036",
+      "source": "geography-expansion-v2",
+      "text": "ЭФИОПИЯ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032037",
+      "source": "geography-expansion-v2",
+      "text": "КАМБОДЖА",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032038",
+      "source": "geography-expansion-v2",
+      "text": "ШРИ-ЛАНКА",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032039",
+      "source": "geography-expansion-v2",
+      "text": "КОСТА-РИКА",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032040",
+      "source": "geography-expansion-v2",
+      "text": "КОЛУМБИЯ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032041",
+      "source": "geography-expansion-v2",
+      "text": "УРУГВАЙ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032042",
+      "source": "geography-expansion-v2",
+      "text": "ЭКВАДОР",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032043",
+      "source": "geography-expansion-v2",
+      "text": "БОЛИВИЯ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032044",
+      "source": "geography-expansion-v2",
+      "text": "ИОРДАНИЯ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032045",
+      "source": "geography-expansion-v2",
+      "text": "ОМАН",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032046",
+      "source": "geography-expansion-v2",
+      "text": "КАТАР",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032047",
+      "source": "geography-expansion-v2",
+      "text": "НАМИБИЯ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032048",
+      "source": "geography-expansion-v2",
+      "text": "БОТСВАНА",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032049",
+      "source": "geography-expansion-v2",
+      "text": "ЗИМБАБВЕ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032050",
+      "source": "geography-expansion-v2",
+      "text": "ПАКИСТАН",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032051",
+      "source": "geography-expansion-v2",
+      "text": "РЕЙКЬЯВИК",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032052",
+      "source": "geography-expansion-v2",
+      "text": "ЛИМА",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032053",
+      "source": "geography-expansion-v2",
+      "text": "ХАНОЙ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032054",
+      "source": "geography-expansion-v2",
+      "text": "КИТО",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032055",
+      "source": "geography-expansion-v2",
+      "text": "УЛАН-БАТОР",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032056",
+      "source": "geography-expansion-v2",
+      "text": "КЕЙПТАУН",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032057",
+      "source": "geography-expansion-v2",
+      "text": "ТИБЕТ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032058",
+      "source": "geography-expansion-v2",
+      "text": "БОРНЕО",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032059",
+      "source": "geography-expansion-v2",
+      "text": "СУМАТРА",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032060",
+      "source": "geography-expansion-v2",
+      "text": "КОРСИКА",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032061",
+      "source": "geography-expansion-v2",
+      "text": "САРДИНИЯ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032062",
+      "source": "geography-expansion-v2",
+      "text": "САХАЛИН",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032063",
+      "source": "geography-expansion-v2",
+      "text": "ЛА-МАНШ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032064",
+      "source": "geography-expansion-v2",
+      "text": "МЕКОНГ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032065",
+      "source": "geography-expansion-v2",
+      "text": "ОРИНОКО",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032007",
+      "source": "geography-expansion-v2",
+      "text": "ОХОТСКОЕ МОРЕ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032008",
+      "source": "geography-expansion-v2",
+      "text": "ПЕРСИДСКИЙ ЗАЛИВ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032009",
+      "source": "geography-expansion-v2",
+      "text": "БЕНГАЛЬСКИЙ ЗАЛИВ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032010",
+      "source": "geography-expansion-v2",
+      "text": "МЫС ГОРН",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032011",
+      "source": "geography-expansion-v2",
+      "text": "КУРШСКАЯ КОСА",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032012",
+      "source": "geography-expansion-v2",
+      "text": "ГОРА АРАРАТ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032013",
+      "source": "geography-expansion-v2",
+      "text": "ВОДОПАД ВИКТОРИЯ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032066",
+      "source": "geography-expansion-v2",
+      "text": "ТЯНЬ-ШАНЬ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032014",
+      "source": "geography-expansion-v2",
+      "text": "ОГНЕННАЯ ЗЕМЛЯ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032067",
+      "source": "geography-expansion-v2",
+      "text": "КАРАКОРУМ",
+      "type": "word",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032068",
+      "source": "geography-expansion-v2",
+      "text": "ГИНДУКУШ",
+      "type": "word",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032069",
+      "source": "geography-expansion-v2",
+      "text": "АЛЬТИПЛАНО",
+      "type": "word",
+      "difficulty": "hard",
+      "status": "review-required",
+      "note": "Малочастотный топоним без опорного контекста; рассмотреть замену более узнаваемым"
+    },
+    {
+      "id": "word-032070",
+      "source": "geography-expansion-v2",
+      "text": "ВАДИ",
+      "type": "word",
+      "difficulty": "hard",
+      "status": "review-required",
+      "note": "Термин вади непривычен большинству игроков; проверить возможность объяснения"
+    },
+    {
+      "id": "phrase-032015",
+      "source": "geography-expansion-v2",
+      "text": "ПЛАТО ПУТОРАНА",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032071",
+      "source": "geography-expansion-v2",
+      "text": "ПАНГЕЯ",
+      "type": "word",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-032072",
+      "source": "geography-expansion-v2",
+      "text": "ДАРДАНЕЛЛЫ",
+      "type": "word",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032016",
+      "source": "geography-expansion-v2",
+      "text": "МОРЕ УЭДДЕЛЛА",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032017",
+      "source": "geography-expansion-v2",
+      "text": "ТИБЕТСКОЕ НАГОРЬЕ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032018",
+      "source": "geography-expansion-v2",
+      "text": "ЗАПАДНО-СИБИРСКАЯ РАВНИНА",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032019",
+      "source": "geography-expansion-v2",
+      "text": "ПРОЛИВ ДРЕЙКА",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032020",
+      "source": "geography-expansion-v2",
+      "text": "ПРОЛИВ МАГЕЛЛАНА",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032021",
+      "source": "geography-expansion-v2",
+      "text": "ЗАЛИВ ФАНДИ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032022",
+      "source": "geography-expansion-v2",
+      "text": "ПУСТЫНЯ НАМИБ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032023",
+      "source": "geography-expansion-v2",
+      "text": "ПУСТЫНЯ КАЛАХАРИ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032024",
+      "source": "geography-expansion-v2",
+      "text": "ПЛАТО ДЕКАН",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032025",
+      "source": "geography-expansion-v2",
+      "text": "ОСТРОВ СОКОТРА",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032026",
+      "source": "geography-expansion-v2",
+      "text": "СОЛОНЧАК УЮНИ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032027",
+      "source": "geography-expansion-v2",
+      "text": "ФАРЕРСКИЕ ОСТРОВА",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-032028",
+      "source": "geography-expansion-v2",
+      "text": "ВЕРХОЯНСКИЙ ХРЕБЕТ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "review-required",
+      "note": "Редкий региональный объект; игровой тест сложности"
+    },
+    {
+      "id": "word-033001",
+      "source": "science-expansion-v1",
+      "text": "ЛАБОРАТОРИЯ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033002",
+      "source": "science-expansion-v1",
+      "text": "ДИНОЗАВР",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033003",
+      "source": "science-expansion-v1",
+      "text": "РЕНТГЕН",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033004",
+      "source": "science-expansion-v1",
+      "text": "ЭЛЕКТРОМОБИЛЬ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033005",
+      "source": "science-expansion-v1",
+      "text": "ЭЛЕКТРОСТАНЦИЯ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033001",
+      "source": "science-expansion-v1",
+      "text": "СОЛНЕЧНАЯ БАТАРЕЯ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033006",
+      "source": "science-expansion-v1",
+      "text": "БИОЛОГ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033002",
+      "source": "science-expansion-v1",
+      "text": "КРОВЕНОСНЫЕ СОСУДЫ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033003",
+      "source": "science-expansion-v1",
+      "text": "ЭЛЕКТРИЧЕСКИЙ ТОК",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033004",
+      "source": "science-expansion-v1",
+      "text": "СОЛНЕЧНАЯ СИСТЕМА",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033005",
+      "source": "science-expansion-v1",
+      "text": "СОЛНЕЧНЫЕ ПЯТНА",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033007",
+      "source": "science-expansion-v1",
+      "text": "СЕРДЦЕБИЕНИЕ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033006",
+      "source": "science-expansion-v1",
+      "text": "КОСМИЧЕСКИЙ ЗОНД",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033007",
+      "source": "science-expansion-v1",
+      "text": "ЛУННЫЙ КРАТЕР",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033008",
+      "source": "science-expansion-v1",
+      "text": "ТЕЛЕГРАФ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033009",
+      "source": "science-expansion-v1",
+      "text": "ФОТОАППАРАТ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033010",
+      "source": "science-expansion-v1",
+      "text": "ПУЛЬС",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033008",
+      "source": "science-expansion-v1",
+      "text": "КОМЕТНЫЙ ХВОСТ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033009",
+      "source": "science-expansion-v1",
+      "text": "ИЗВЕРЖЕНИЕ ВУЛКАНА",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033010",
+      "source": "science-expansion-v1",
+      "text": "ВЕТРЯНАЯ ТУРБИНА",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033011",
+      "source": "science-expansion-v1",
+      "text": "ТЕОРИЯ ЭВОЛЮЦИИ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033011",
+      "source": "science-expansion-v1",
+      "text": "СЕЙСМОГРАФ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033012",
+      "source": "science-expansion-v1",
+      "text": "СПУТНИКОВАЯ СВЯЗЬ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033013",
+      "source": "science-expansion-v1",
+      "text": "ПАРНИКОВЫЙ ЭФФЕКТ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033014",
+      "source": "science-expansion-v1",
+      "text": "ХИМИЧЕСКАЯ РЕАКЦИЯ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033012",
+      "source": "science-expansion-v1",
+      "text": "ЭЛЕКТРОМАГНИТ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033013",
+      "source": "science-expansion-v1",
+      "text": "АНТИБИОТИК",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033015",
+      "source": "science-expansion-v1",
+      "text": "ЗВУКОВАЯ ВОЛНА",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033014",
+      "source": "science-expansion-v1",
+      "text": "ГАММА-ИЗЛУЧЕНИЕ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033016",
+      "source": "science-expansion-v1",
+      "text": "КИСЛОТНЫЙ ДОЖДЬ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033017",
+      "source": "science-expansion-v1",
+      "text": "ЛЕДНИКОВЫЙ ПЕРИОД",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033018",
+      "source": "science-expansion-v1",
+      "text": "ДИСПЕРСИЯ СВЕТА",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033015",
+      "source": "science-expansion-v1",
+      "text": "НЕЙРОСЕТЬ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033019",
+      "source": "science-expansion-v1",
+      "text": "ОПТИЧЕСКАЯ ИЛЛЮЗИЯ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033016",
+      "source": "science-expansion-v1",
+      "text": "ПИЩЕВАРЕНИЕ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033020",
+      "source": "science-expansion-v1",
+      "text": "ДЫМОВОЙ ДАТЧИК",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033017",
+      "source": "science-expansion-v1",
+      "text": "ЭЛЕКТРОН",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033018",
+      "source": "science-expansion-v1",
+      "text": "ВИРУС",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033019",
+      "source": "science-expansion-v1",
+      "text": "ВАКЦИНА",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033021",
+      "source": "science-expansion-v1",
+      "text": "УГЛЕКИСЛЫЙ ГАЗ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033022",
+      "source": "science-expansion-v1",
+      "text": "ГРАВИТАЦИОННЫЕ ВОЛНЫ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033023",
+      "source": "science-expansion-v1",
+      "text": "ТЕКТОНИЧЕСКИЕ ПЛИТЫ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033024",
+      "source": "science-expansion-v1",
+      "text": "ПЕРИОД ПОЛУРАСПАДА",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033025",
+      "source": "science-expansion-v1",
+      "text": "ТЕРМОЯДЕРНЫЙ СИНТЕЗ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033026",
+      "source": "science-expansion-v1",
+      "text": "ЭФФЕКТ ДОПЛЕРА",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033027",
+      "source": "science-expansion-v1",
+      "text": "ЧАСТИЦА ХИГГСА",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033028",
+      "source": "science-expansion-v1",
+      "text": "БРОУНОВСКОЕ ДВИЖЕНИЕ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033020",
+      "source": "science-expansion-v1",
+      "text": "ФЛУОРЕСЦЕНЦИЯ",
+      "type": "word",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-033021",
+      "source": "science-expansion-v1",
+      "text": "КРИОКОНСЕРВАЦИЯ",
+      "type": "word",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-033029",
+      "source": "science-expansion-v1",
+      "text": "ГРАВИТАЦИОННАЯ ЛИНЗА",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034001",
+      "source": "science-expansion-v2",
+      "text": "КИСЛОРОДНАЯ МАСКА",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034002",
+      "source": "science-expansion-v2",
+      "text": "МОЛЕКУЛА ВОДЫ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "corrected"
+    },
+    {
+      "id": "phrase-034003",
+      "source": "science-expansion-v2",
+      "text": "ГЕНЕТИЧЕСКИЙ КОД",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "corrected"
+    },
+    {
+      "id": "phrase-034004",
+      "source": "science-expansion-v2",
+      "text": "РАКЕТНЫЙ ДВИГАТЕЛЬ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034005",
+      "source": "science-expansion-v2",
+      "text": "СВЕТОВОЙ ЛУЧ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034006",
+      "source": "science-expansion-v2",
+      "text": "ЗЕРКАЛЬНОЕ ОТРАЖЕНИЕ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-034001",
+      "source": "science-expansion-v2",
+      "text": "УЛЬТРАЗВУК",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034007",
+      "source": "science-expansion-v2",
+      "text": "ПОСАДКА НА ЛУНУ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034008",
+      "source": "science-expansion-v2",
+      "text": "КОСМИЧЕСКАЯ СТАНЦИЯ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034009",
+      "source": "science-expansion-v2",
+      "text": "ПЕЧАТЬ НА 3D-ПРИНТЕРЕ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-034002",
+      "source": "science-expansion-v2",
+      "text": "ОГНЕТУШИТЕЛЬ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034010",
+      "source": "science-expansion-v2",
+      "text": "ТЕЛЕСКОП ХАББЛ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034011",
+      "source": "science-expansion-v2",
+      "text": "РЕНТГЕНОВСКИЙ СНИМОК",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "corrected"
+    },
+    {
+      "id": "phrase-034012",
+      "source": "science-expansion-v2",
+      "text": "ЭЛЕКТРИЧЕСКАЯ ИСКРА",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034013",
+      "source": "science-expansion-v2",
+      "text": "СПУТНИКОВАЯ АНТЕННА",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034014",
+      "source": "science-expansion-v2",
+      "text": "КАРТА ЗВЁЗДНОГО НЕБА",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034015",
+      "source": "science-expansion-v2",
+      "text": "МОДЕЛЬ АТОМА",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034016",
+      "source": "science-expansion-v2",
+      "text": "ГЛАЗНОЕ ЯБЛОКО",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034017",
+      "source": "science-expansion-v2",
+      "text": "ЗУБНАЯ ЭМАЛЬ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034018",
+      "source": "science-expansion-v2",
+      "text": "ШАРОВАЯ МОЛНИЯ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034019",
+      "source": "science-expansion-v2",
+      "text": "ТЕМПЕРАТУРА КИПЕНИЯ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034020",
+      "source": "science-expansion-v2",
+      "text": "СОЛНЕЧНЫЙ ВЕТЕР",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034021",
+      "source": "science-expansion-v2",
+      "text": "ПОЛЯРНОЕ СИЯНИЕ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034022",
+      "source": "science-expansion-v2",
+      "text": "ЭЛЕКТРИЧЕСКОЕ СОПРОТИВЛЕНИЕ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-034003",
+      "source": "science-expansion-v2",
+      "text": "РАДИОАКТИВНОСТЬ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034023",
+      "source": "science-expansion-v2",
+      "text": "ДАТЧИК ДВИЖЕНИЯ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-034004",
+      "source": "science-expansion-v2",
+      "text": "ОПТОВОЛОКНО",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034024",
+      "source": "science-expansion-v2",
+      "text": "СОЛНЕЧНАЯ ВСПЫШКА",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034025",
+      "source": "science-expansion-v2",
+      "text": "МАГНИТНОЕ ПОЛЕ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034026",
+      "source": "science-expansion-v2",
+      "text": "ХИМИЧЕСКАЯ ФОРМУЛА",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034027",
+      "source": "science-expansion-v2",
+      "text": "ПРИРОДНЫЙ ОТБОР",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034028",
+      "source": "science-expansion-v2",
+      "text": "ЭКОЛОГИЧЕСКАЯ НИША",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034029",
+      "source": "science-expansion-v2",
+      "text": "СИЛА АРХИМЕДА",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034030",
+      "source": "science-expansion-v2",
+      "text": "АТМОСФЕРНОЕ ДАВЛЕНИЕ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-034005",
+      "source": "science-expansion-v2",
+      "text": "ПОПУЛЯЦИЯ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034031",
+      "source": "science-expansion-v2",
+      "text": "ТЕОРИЯ ОТНОСИТЕЛЬНОСТИ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034032",
+      "source": "science-expansion-v2",
+      "text": "КОНТИНЕНТАЛЬНЫЙ ДРЕЙФ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034033",
+      "source": "science-expansion-v2",
+      "text": "НЕНЬЮТОНОВСКАЯ ЖИДКОСТЬ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-034006",
+      "source": "science-expansion-v2",
+      "text": "НАНОЧАСТИЦА",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034034",
+      "source": "science-expansion-v2",
+      "text": "ОБМЕН ВЕЩЕСТВ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034035",
+      "source": "science-expansion-v2",
+      "text": "ФОТОЭЛЕКТРИЧЕСКИЙ ЭФФЕКТ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034036",
+      "source": "science-expansion-v2",
+      "text": "ЭЛЕКТРОМАГНИТНАЯ ИНДУКЦИЯ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034037",
+      "source": "science-expansion-v2",
+      "text": "КРАСНОЕ СМЕЩЕНИЕ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034038",
+      "source": "science-expansion-v2",
+      "text": "ТОЧКА ЛАГРАНЖА",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034039",
+      "source": "science-expansion-v2",
+      "text": "ГРАВИТАЦИОННЫЙ КОЛЛАПС",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034040",
+      "source": "science-expansion-v2",
+      "text": "ГОРИЗОНТ СОБЫТИЙ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034041",
+      "source": "science-expansion-v2",
+      "text": "КВАНТОВЫЙ ТУННЕЛЬНЫЙ ЭФФЕКТ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "review-required",
+      "note": "Слишком специальная длинная формулировка для обычной компании"
+    },
+    {
+      "id": "phrase-034042",
+      "source": "science-expansion-v2",
+      "text": "ТЁМНАЯ ЭНЕРГИЯ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-034043",
+      "source": "science-expansion-v2",
+      "text": "БЕЛКОВЫЙ СИНТЕЗ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "review-required",
+      "note": "Возможна замена на более привычное «синтез белка» в новой редакции"
+    },
+    {
+      "id": "phrase-034044",
+      "source": "science-expansion-v2",
+      "text": "ТРЕТИЙ ЗАКОН НЬЮТОНА",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035001",
+      "source": "science-expansion-v3",
+      "text": "ТЕПЛОВИЗОР",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035002",
+      "source": "science-expansion-v3",
+      "text": "ИНГАЛЯТОР",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "corrected"
+    },
+    {
+      "id": "word-035003",
+      "source": "science-expansion-v3",
+      "text": "ДИОД",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035004",
+      "source": "science-expansion-v3",
+      "text": "МИКРОСХЕМА",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035005",
+      "source": "science-expansion-v3",
+      "text": "ТРАНЗИСТОР",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035006",
+      "source": "science-expansion-v3",
+      "text": "РАДАР",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035007",
+      "source": "science-expansion-v3",
+      "text": "СОНАР",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035008",
+      "source": "science-expansion-v3",
+      "text": "ЛУНОХОД",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035009",
+      "source": "science-expansion-v3",
+      "text": "МАРСОХОД",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035001",
+      "source": "science-expansion-v3",
+      "text": "ПЕЧАТНАЯ ПЛАТА",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035010",
+      "source": "science-expansion-v3",
+      "text": "ПРОВОДНИК",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035011",
+      "source": "science-expansion-v3",
+      "text": "ИЗОЛЯТОР",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035012",
+      "source": "science-expansion-v3",
+      "text": "РАДИОСИГНАЛ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035013",
+      "source": "science-expansion-v3",
+      "text": "ЛАБОРАНТ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035014",
+      "source": "science-expansion-v3",
+      "text": "АСТРОНАВТ",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035015",
+      "source": "science-expansion-v3",
+      "text": "НЕОН",
+      "type": "word",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035002",
+      "source": "science-expansion-v3",
+      "text": "ГЕЛИЕВЫЙ ШАРИК",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035003",
+      "source": "science-expansion-v3",
+      "text": "СТЕКЛЯННАЯ ПРИЗМА",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035004",
+      "source": "science-expansion-v3",
+      "text": "ЛАЗЕРНАЯ УКАЗКА",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035005",
+      "source": "science-expansion-v3",
+      "text": "КРОВЯНОЕ ДАВЛЕНИЕ",
+      "type": "phrase",
+      "difficulty": "easy",
+      "status": "corrected"
+    },
+    {
+      "id": "phrase-035006",
+      "source": "science-expansion-v3",
+      "text": "ЦЕНТРОБЕЖНАЯ СИЛА",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035016",
+      "source": "science-expansion-v3",
+      "text": "АЛЛЕРГИЯ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035017",
+      "source": "science-expansion-v3",
+      "text": "АНТИГЕН",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035007",
+      "source": "science-expansion-v3",
+      "text": "СЕЙСМИЧЕСКАЯ ВОЛНА",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035008",
+      "source": "science-expansion-v3",
+      "text": "УГЛЕРОДНЫЙ СЛЕД",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035018",
+      "source": "science-expansion-v3",
+      "text": "БИОТОПЛИВО",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035009",
+      "source": "science-expansion-v3",
+      "text": "ЖИДКИЙ АЗОТ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035019",
+      "source": "science-expansion-v3",
+      "text": "ПЛАЗМА",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035010",
+      "source": "science-expansion-v3",
+      "text": "МАГНИТНЫЙ РЕЗОНАНС",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035020",
+      "source": "science-expansion-v3",
+      "text": "ФОТОЭЛЕМЕНТ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035021",
+      "source": "science-expansion-v3",
+      "text": "ПЛАВУЧЕСТЬ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035011",
+      "source": "science-expansion-v3",
+      "text": "ЗАКОН ОМА",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035022",
+      "source": "science-expansion-v3",
+      "text": "РАДИОЗОНД",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035012",
+      "source": "science-expansion-v3",
+      "text": "ИНКУБАЦИОННЫЙ ПЕРИОД",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035013",
+      "source": "science-expansion-v3",
+      "text": "ИНФРАКРАСНОЕ ИЗЛУЧЕНИЕ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035023",
+      "source": "science-expansion-v3",
+      "text": "ГИДРОЭЛЕКТРОСТАНЦИЯ",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035014",
+      "source": "science-expansion-v3",
+      "text": "КРУГОВОРОТ УГЛЕРОДА",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035015",
+      "source": "science-expansion-v3",
+      "text": "СВЕТОВОЙ ГОД",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035016",
+      "source": "science-expansion-v3",
+      "text": "ОРБИТАЛЬНАЯ СКОРОСТЬ",
+      "type": "phrase",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035024",
+      "source": "science-expansion-v3",
+      "text": "ГИДРОПОНИКА",
+      "type": "word",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035017",
+      "source": "science-expansion-v3",
+      "text": "МАТЕМАТИЧЕСКАЯ ИНДУКЦИЯ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "review-required",
+      "note": "Абстрактный математический метод; тест игрового объяснения"
+    },
+    {
+      "id": "phrase-035018",
+      "source": "science-expansion-v3",
+      "text": "ОБРАТНАЯ ТРАНСКРИПЦИЯ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "review-required",
+      "note": "Узкий молекулярно-биологический термин; тест узнаваемости"
+    },
+    {
+      "id": "phrase-035019",
+      "source": "science-expansion-v3",
+      "text": "СИЛА КОРИОЛИСА",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035020",
+      "source": "science-expansion-v3",
+      "text": "ПРИНЦИП ПАУЛИ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035021",
+      "source": "science-expansion-v3",
+      "text": "АППАРАТ ГОЛЬДЖИ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "phrase-035022",
+      "source": "science-expansion-v3",
+      "text": "АДРОННЫЙ КОЛЛАЙДЕР",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035025",
+      "source": "science-expansion-v3",
+      "text": "БАРИЦЕНТР",
+      "type": "word",
+      "difficulty": "hard",
+      "status": "review-required",
+      "note": "Техническое понятие без простых игровых подсказок"
+    },
+    {
+      "id": "word-035026",
+      "source": "science-expansion-v3",
+      "text": "ИНТЕРФЕРОМЕТР",
+      "type": "word",
+      "difficulty": "hard",
+      "status": "review-required",
+      "note": "Непростой специальный прибор; лучше проверить применимость в режимах"
+    },
+    {
+      "id": "phrase-035023",
+      "source": "science-expansion-v3",
+      "text": "ЭКСПОНЕНЦИАЛЬНЫЙ РОСТ",
+      "type": "phrase",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "word-035027",
+      "source": "science-expansion-v3",
+      "text": "СУПЕРСИММЕТРИЯ",
+      "type": "word",
+      "difficulty": "hard",
+      "status": "review-required",
+      "note": "Слишком абстрактное понятие; кандидат на замену в следующем редакторском проходе"
+    },
+    {
+      "id": "idiom-036001",
+      "source": "idiom-expansion-v1",
+      "text": "КАК НА ИГОЛКАХ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036002",
+      "source": "idiom-expansion-v1",
+      "text": "ДЕРЖАТЬ СЕБЯ В РУКАХ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036003",
+      "source": "idiom-expansion-v1",
+      "text": "ЗАСУЧИВ РУКАВА",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036004",
+      "source": "idiom-expansion-v1",
+      "text": "НЕ СМЫКАТЬ ГЛАЗ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036005",
+      "source": "idiom-expansion-v1",
+      "text": "СЛОМАТЬ ГОЛОВУ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036006",
+      "source": "idiom-expansion-v1",
+      "text": "ЗАГОВАРИВАТЬ ЗУБЫ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036007",
+      "source": "idiom-expansion-v1",
+      "text": "ПОДНЯТЬ НА УШИ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036008",
+      "source": "idiom-expansion-v1",
+      "text": "ЯБЛОКУ НЕГДЕ УПАСТЬ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036009",
+      "source": "idiom-expansion-v1",
+      "text": "РАЗБЕГАЮТСЯ ГЛАЗА",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036010",
+      "source": "idiom-expansion-v1",
+      "text": "НИ ЖИВ НИ МЁРТВ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036011",
+      "source": "idiom-expansion-v1",
+      "text": "ПРИЙТИ В СЕБЯ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036012",
+      "source": "idiom-expansion-v1",
+      "text": "ВЫЙТИ ИЗ СЕБЯ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036013",
+      "source": "idiom-expansion-v1",
+      "text": "ПОТЕРЯТЬ ГОЛОВУ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036014",
+      "source": "idiom-expansion-v1",
+      "text": "РОДИТЬСЯ В РУБАШКЕ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036015",
+      "source": "idiom-expansion-v1",
+      "text": "ДОЙТИ ДО РУЧКИ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036016",
+      "source": "idiom-expansion-v1",
+      "text": "ИГРАТЬ В МОЛЧАНКУ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036017",
+      "source": "idiom-expansion-v1",
+      "text": "НА ОДНОМ ДЫХАНИИ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036018",
+      "source": "idiom-expansion-v1",
+      "text": "НАСТУПАТЬ НА ПЯТКИ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036019",
+      "source": "idiom-expansion-v1",
+      "text": "НЕ ПОКЛАДАЯ РУК",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036020",
+      "source": "idiom-expansion-v1",
+      "text": "ЛОВИТЬ НА СЛОВЕ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036021",
+      "source": "idiom-expansion-v1",
+      "text": "СПУСТИТЬ НА ТОРМОЗАХ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036022",
+      "source": "idiom-expansion-v1",
+      "text": "ОСТАВИТЬ С НОСОМ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036023",
+      "source": "idiom-expansion-v1",
+      "text": "НАЧАТЬ С ЧИСТОГО ЛИСТА",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036024",
+      "source": "idiom-expansion-v1",
+      "text": "ДЕРЖАТЬ В ЕЖОВЫХ РУКАВИЦАХ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036025",
+      "source": "idiom-expansion-v1",
+      "text": "КОМАР НОСА НЕ ПОДТОЧИТ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036026",
+      "source": "idiom-expansion-v1",
+      "text": "ИДТИ ПО ГОЛОВАМ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036027",
+      "source": "idiom-expansion-v1",
+      "text": "ЗАПУСТИТЬ УТКУ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036028",
+      "source": "idiom-expansion-v1",
+      "text": "ПОСТАВИТЬ НА КАРТУ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036029",
+      "source": "idiom-expansion-v1",
+      "text": "БРОСИТЬ ПЕРЧАТКУ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036030",
+      "source": "idiom-expansion-v1",
+      "text": "ПОЙМАТЬ НА ГОРЯЧЕМ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036031",
+      "source": "idiom-expansion-v1",
+      "text": "ПОСТАВИТЬ В ТУПИК",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036032",
+      "source": "idiom-expansion-v1",
+      "text": "НЕ УДАРИТЬ В ГРЯЗЬ ЛИЦОМ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036033",
+      "source": "idiom-expansion-v1",
+      "text": "ПОЙТИ ВА-БАНК",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036034",
+      "source": "idiom-expansion-v1",
+      "text": "СНИМАТЬ СЛИВКИ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036035",
+      "source": "idiom-expansion-v1",
+      "text": "ЗАТКНУТЬ ЗА ПОЯС",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036036",
+      "source": "idiom-expansion-v1",
+      "text": "СЕСТЬ НА ШЕЮ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036037",
+      "source": "idiom-expansion-v1",
+      "text": "НАСТУПИТЬ НА ГОРЛО СОБСТВЕННОЙ ПЕСНЕ",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "corrected"
+    },
+    {
+      "id": "idiom-036038",
+      "source": "idiom-expansion-v1",
+      "text": "ЧУЖИМИ РУКАМИ ЖАР ЗАГРЕБАТЬ",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "corrected"
+    },
+    {
+      "id": "idiom-036039",
+      "source": "idiom-expansion-v1",
+      "text": "ДОЙТИ ДО БЕЛОГО КАЛЕНИЯ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036040",
+      "source": "idiom-expansion-v1",
+      "text": "ОБВЕСТИ ВОКРУГ ПАЛЬЦА",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036041",
+      "source": "idiom-expansion-v1",
+      "text": "ЗАЛИВАТЬСЯ СОЛОВЬЁМ",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036042",
+      "source": "idiom-expansion-v1",
+      "text": "КРОКОДИЛОВЫ СЛЁЗЫ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "corrected"
+    },
+    {
+      "id": "idiom-036043",
+      "source": "idiom-expansion-v1",
+      "text": "СОБАКУ СЪЕЛ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "corrected"
+    },
+    {
+      "id": "idiom-036044",
+      "source": "idiom-expansion-v1",
+      "text": "КОЛОСС НА ГЛИНЯНЫХ НОГАХ",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036045",
+      "source": "idiom-expansion-v1",
+      "text": "КАНУТЬ В ЛЕТУ",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036046",
+      "source": "idiom-expansion-v1",
+      "text": "ПОЧИВАТЬ НА ЛАВРАХ",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036047",
+      "source": "idiom-expansion-v1",
+      "text": "ОТ ЛУКАВОГО",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036048",
+      "source": "idiom-expansion-v1",
+      "text": "ВОЗВРАЩАТЬСЯ К СВОИМ БАРАНАМ",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036049",
+      "source": "idiom-expansion-v1",
+      "text": "ТАНТАЛОВЫ МУКИ",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-036050",
+      "source": "idiom-expansion-v1",
+      "text": "ФИЛЬКИНА ГРАМОТА",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037001",
+      "source": "idiom-expansion-v2",
+      "text": "ДАВАТЬ ЗЕЛЁНЫЙ СВЕТ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037002",
+      "source": "idiom-expansion-v2",
+      "text": "ПРОПУСТИТЬ МИМО УШЕЙ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037003",
+      "source": "idiom-expansion-v2",
+      "text": "РАЗВЯЗАТЬ РУКИ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037004",
+      "source": "idiom-expansion-v2",
+      "text": "МОРОЧИТЬ ГОЛОВУ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037005",
+      "source": "idiom-expansion-v2",
+      "text": "СКВОЗЬ ЗЕМЛЮ ПРОВАЛИТЬСЯ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037006",
+      "source": "idiom-expansion-v2",
+      "text": "ПОПАСТЬ В ТОЧКУ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037007",
+      "source": "idiom-expansion-v2",
+      "text": "ЛОМАТЬ КОМЕДИЮ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037008",
+      "source": "idiom-expansion-v2",
+      "text": "СОРВАТЬСЯ С ЦЕПИ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037009",
+      "source": "idiom-expansion-v2",
+      "text": "НЕ ВИДЕТЬ ДАЛЬШЕ СВОЕГО НОСА",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037010",
+      "source": "idiom-expansion-v2",
+      "text": "ЗАТЯНУТЬ ПОЯС",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037011",
+      "source": "idiom-expansion-v2",
+      "text": "РУКИ ЧЕШУТСЯ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037012",
+      "source": "idiom-expansion-v2",
+      "text": "ВЫЙТИ ИЗ ТЕНИ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037013",
+      "source": "idiom-expansion-v2",
+      "text": "С ТРЕСКОМ ПРОВАЛИТЬСЯ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037014",
+      "source": "idiom-expansion-v2",
+      "text": "СМОТРЕТЬ В ОБА",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037015",
+      "source": "idiom-expansion-v2",
+      "text": "ВО ВСЕ ЛОПАТКИ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037016",
+      "source": "idiom-expansion-v2",
+      "text": "ПУСТИТЬ КОРНИ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037017",
+      "source": "idiom-expansion-v2",
+      "text": "ИДТИ РУКА ОБ РУКУ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037018",
+      "source": "idiom-expansion-v2",
+      "text": "ПРОЛИТЬ СВЕТ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037019",
+      "source": "idiom-expansion-v2",
+      "text": "ОТВОДИТЬ ГЛАЗА",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037020",
+      "source": "idiom-expansion-v2",
+      "text": "ПРОЩУПАТЬ ПОЧВУ",
+      "type": "idiom",
+      "difficulty": "easy",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037021",
+      "source": "idiom-expansion-v2",
+      "text": "ДАВАТЬ НАГОНЯЙ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037022",
+      "source": "idiom-expansion-v2",
+      "text": "МАЛО КАШИ ЕЛ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037023",
+      "source": "idiom-expansion-v2",
+      "text": "СТОЯТЬ ГОРОЙ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037024",
+      "source": "idiom-expansion-v2",
+      "text": "РАСПУСКАТЬ РУКИ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037025",
+      "source": "idiom-expansion-v2",
+      "text": "ПОДЛОЖИТЬ СВИНЬЮ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037026",
+      "source": "idiom-expansion-v2",
+      "text": "СЕДЬМАЯ ВОДА НА КИСЕЛЕ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037027",
+      "source": "idiom-expansion-v2",
+      "text": "ВСТАВИТЬ ПЯТЬ КОПЕЕК",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037028",
+      "source": "idiom-expansion-v2",
+      "text": "ПРОЙТИ ОГОНЬ И ВОДУ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037029",
+      "source": "idiom-expansion-v2",
+      "text": "НЕ НАЙТИ СЕБЕ МЕСТА",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037030",
+      "source": "idiom-expansion-v2",
+      "text": "ДЕРЖАТЬ ПАЛЕЦ НА ПУЛЬСЕ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037031",
+      "source": "idiom-expansion-v2",
+      "text": "КАК С ЛУНЫ СВАЛИЛСЯ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037032",
+      "source": "idiom-expansion-v2",
+      "text": "РУКИ КОРОТКИ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037033",
+      "source": "idiom-expansion-v2",
+      "text": "ПРИНЯТЬ ЗА ЧИСТУЮ МОНЕТУ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037034",
+      "source": "idiom-expansion-v2",
+      "text": "ПОСТАВИТЬ ВО ГЛАВУ УГЛА",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037035",
+      "source": "idiom-expansion-v2",
+      "text": "НАПУСКАТЬ ТУМАНУ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037036",
+      "source": "idiom-expansion-v2",
+      "text": "ЗАБРОСИТЬ УДОЧКУ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037037",
+      "source": "idiom-expansion-v2",
+      "text": "ЗАЖАТЬ В ТИСКИ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037038",
+      "source": "idiom-expansion-v2",
+      "text": "ОТКРЫТЬ ДУШУ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037039",
+      "source": "idiom-expansion-v2",
+      "text": "ДОЙТИ ДО ТОЧКИ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037040",
+      "source": "idiom-expansion-v2",
+      "text": "СКРЕСТИТЬ МЕЧИ",
+      "type": "idiom",
+      "difficulty": "medium",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037041",
+      "source": "idiom-expansion-v2",
+      "text": "ЛОЖКА ДЁГТЯ В БОЧКЕ МЁДА",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "review-required",
+      "note": "Фразеологизм может оказаться проще Hard"
+    },
+    {
+      "id": "idiom-037042",
+      "source": "idiom-expansion-v2",
+      "text": "БЕРЕЧЬ КАК ЗЕНИЦУ ОКА",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037043",
+      "source": "idiom-expansion-v2",
+      "text": "ПРИТЧА ВО ЯЗЫЦЕХ",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037044",
+      "source": "idiom-expansion-v2",
+      "text": "КРАЕУГОЛЬНЫЙ КАМЕНЬ",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037045",
+      "source": "idiom-expansion-v2",
+      "text": "СТРАУСИНАЯ ПОЛИТИКА",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037046",
+      "source": "idiom-expansion-v2",
+      "text": "ТАЙНА ЗА СЕМЬЮ ПЕЧАТЯМИ",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037047",
+      "source": "idiom-expansion-v2",
+      "text": "НИТЬ АРИАДНЫ",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037048",
+      "source": "idiom-expansion-v2",
+      "text": "АЛЬФА И ОМЕГА",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037049",
+      "source": "idiom-expansion-v2",
+      "text": "СОЛЬ ЗЕМЛИ",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "pass-preliminary"
+    },
+    {
+      "id": "idiom-037050",
+      "source": "idiom-expansion-v2",
+      "text": "ДЕРЖАТЬ СВЕЧКУ",
+      "type": "idiom",
+      "difficulty": "hard",
+      "status": "review-required",
+      "note": "Распространённое выражение; сложность Hard необходимо подтвердить игрой"
+    }
+  ]
+}

@@ -1,0 +1,502 @@
+[
+  {
+    "text": "ТЕПЛОВИЗОР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035001"
+  },
+  {
+    "text": "ИНГАЛЯТОР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035002"
+  },
+  {
+    "text": "ДИОД",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035003"
+  },
+  {
+    "text": "МИКРОСХЕМА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035004"
+  },
+  {
+    "text": "ТРАНЗИСТОР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035005"
+  },
+  {
+    "text": "РАДАР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035006"
+  },
+  {
+    "text": "СОНАР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035007"
+  },
+  {
+    "text": "ЛУНОХОД",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035008"
+  },
+  {
+    "text": "МАРСОХОД",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035009"
+  },
+  {
+    "text": "ПЕЧАТНАЯ ПЛАТА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035001"
+  },
+  {
+    "text": "ПРОВОДНИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035010"
+  },
+  {
+    "text": "ИЗОЛЯТОР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035011"
+  },
+  {
+    "text": "РАДИОСИГНАЛ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035012"
+  },
+  {
+    "text": "ЛАБОРАНТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035013"
+  },
+  {
+    "text": "АСТРОНАВТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035014"
+  },
+  {
+    "text": "НЕОН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035015"
+  },
+  {
+    "text": "ГЕЛИЕВЫЙ ШАРИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035002"
+  },
+  {
+    "text": "СТЕКЛЯННАЯ ПРИЗМА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035003"
+  },
+  {
+    "text": "ЛАЗЕРНАЯ УКАЗКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035004"
+  },
+  {
+    "text": "КРОВЯНОЕ ДАВЛЕНИЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035005"
+  },
+  {
+    "text": "ЦЕНТРОБЕЖНАЯ СИЛА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035006"
+  },
+  {
+    "text": "АЛЛЕРГИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035016"
+  },
+  {
+    "text": "АНТИГЕН",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035017"
+  },
+  {
+    "text": "СЕЙСМИЧЕСКАЯ ВОЛНА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035007"
+  },
+  {
+    "text": "УГЛЕРОДНЫЙ СЛЕД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035008"
+  },
+  {
+    "text": "БИОТОПЛИВО",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035018"
+  },
+  {
+    "text": "ЖИДКИЙ АЗОТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035009"
+  },
+  {
+    "text": "ПЛАЗМА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035019"
+  },
+  {
+    "text": "МАГНИТНЫЙ РЕЗОНАНС",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035010"
+  },
+  {
+    "text": "ФОТОЭЛЕМЕНТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035020"
+  },
+  {
+    "text": "ПЛАВУЧЕСТЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035021"
+  },
+  {
+    "text": "ЗАКОН ОМА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035011"
+  },
+  {
+    "text": "РАДИОЗОНД",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035022"
+  },
+  {
+    "text": "ИНКУБАЦИОННЫЙ ПЕРИОД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035012"
+  },
+  {
+    "text": "ИНФРАКРАСНОЕ ИЗЛУЧЕНИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035013"
+  },
+  {
+    "text": "ГИДРОЭЛЕКТРОСТАНЦИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035023"
+  },
+  {
+    "text": "КРУГОВОРОТ УГЛЕРОДА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035014"
+  },
+  {
+    "text": "СВЕТОВОЙ ГОД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035015"
+  },
+  {
+    "text": "ОРБИТАЛЬНАЯ СКОРОСТЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035016"
+  },
+  {
+    "text": "ГИДРОПОНИКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035024"
+  },
+  {
+    "text": "МАТЕМАТИЧЕСКАЯ ИНДУКЦИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035017"
+  },
+  {
+    "text": "ОБРАТНАЯ ТРАНСКРИПЦИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035018"
+  },
+  {
+    "text": "СИЛА КОРИОЛИСА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035019"
+  },
+  {
+    "text": "ПРИНЦИП ПАУЛИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035020"
+  },
+  {
+    "text": "АППАРАТ ГОЛЬДЖИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035021"
+  },
+  {
+    "text": "АДРОННЫЙ КОЛЛАЙДЕР",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035022"
+  },
+  {
+    "text": "БАРИЦЕНТР",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035025"
+  },
+  {
+    "text": "ИНТЕРФЕРОМЕТР",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035026"
+  },
+  {
+    "text": "ЭКСПОНЕНЦИАЛЬНЫЙ РОСТ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "phrase-035023"
+  },
+  {
+    "text": "СУПЕРСИММЕТРИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "science-expansion-v3",
+    "id": "word-035027"
+  }
+]

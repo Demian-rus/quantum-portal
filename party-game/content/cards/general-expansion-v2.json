@@ -1,0 +1,502 @@
+[
+  {
+    "id": "word-039001",
+    "text": "ПАУЭРБАНК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039002",
+    "text": "СКЕЙТБОРД",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "sport"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039003",
+    "text": "МАСЛЕНИЦА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039004",
+    "text": "ПОМОЛВКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039005",
+    "text": "ЛИСТОПАД",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039006",
+    "text": "ОРИГАМИ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039007",
+    "text": "ХАШТЕГ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039008",
+    "text": "ГАДЖЕТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039009",
+    "text": "ФЛОРИСТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039001",
+    "text": "КРАСНАЯ ДОРОЖКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039002",
+    "text": "КОЛЕСО ОБОЗРЕНИЯ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039003",
+    "text": "СПАСАТЕЛЬНЫЙ КРУГ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "marine"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039004",
+    "text": "МЫЛЬНЫЙ ПУЗЫРЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039005",
+    "text": "ШКОЛЬНАЯ ПЕРЕМЕНА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039006",
+    "text": "ПОДВОДНЫЙ МИР",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "marine"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039007",
+    "text": "СКРЫТАЯ КАМЕРА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039008",
+    "text": "КАРТОЧНЫЙ ДОМИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "person-039001",
+    "text": "КРАСНАЯ ШАПОЧКА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "literature"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "person-039002",
+    "text": "АЛАДДИН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "person-039003",
+    "text": "ИЛЬЯ МУРОМЕЦ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "mythology"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039010",
+    "text": "ПИНЬЯТА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039011",
+    "text": "ПАПАРАЦЦИ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039012",
+    "text": "МОНОКЛЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039013",
+    "text": "ФОТОБУДКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039014",
+    "text": "БУТАФОРИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039015",
+    "text": "АЖИОТАЖ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039016",
+    "text": "КОВОРКИНГ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039017",
+    "text": "ЗАКУЛИСЬЕ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039009",
+    "text": "РОБОТ-ДОСТАВЩИК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039010",
+    "text": "ТАЙНЫЙ ПОКУПАТЕЛЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039011",
+    "text": "ЛЕДОВОЕ ШОУ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039012",
+    "text": "ВИРТУАЛЬНЫЙ ТУР",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039013",
+    "text": "СЕМЕЙНОЕ ДРЕВО",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039014",
+    "text": "КНИЖНЫЙ КЛУБ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "literature"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039015",
+    "text": "ПАРАД ПЛАНЕТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "space"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039016",
+    "text": "МАСКАРАДНЫЙ КОСТЮМ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "person-039004",
+    "text": "РОБИНЗОН КРУЗО",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "literature"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "person-039005",
+    "text": "ТОМ СОЙЕР",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "literature"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "person-039006",
+    "text": "БРЮС ЛИ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "person-039007",
+    "text": "КОРОЛЬ АРТУР",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "mythology"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039018",
+    "text": "ЦЕЙТНОТ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039019",
+    "text": "АНАГРАММА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "language"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039020",
+    "text": "ВОДЕВИЛЬ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "word-039021",
+    "text": "МИНОТАВР",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "mythology"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039017",
+    "text": "ВЫХОД В ОТКРЫТЫЙ КОСМОС",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "space"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "phrase-039018",
+    "text": "СОВРЕМЕННОЕ ИСКУССТВО",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "person-039008",
+    "text": "РОККИ БАЛЬБОА",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "person-039009",
+    "text": "ХАЯО МИЯДЗАКИ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "person-039010",
+    "text": "УИНСТОН ЧЕРЧИЛЛЬ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-expansion-v2"
+  },
+  {
+    "id": "person-039011",
+    "text": "БЕНДЕР ИЗ ФУТУРАМЫ",
+    "type": "person",
+    "difficulty": "hard",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "general-expansion-v2"
+  }
+]
