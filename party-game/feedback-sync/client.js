@@ -73,17 +73,23 @@
     // Activation is a durable baseline, never an implicit upload of old ratings.
     const initial={version:1,endpoint,installId:crypto.randomUUID(),sequence:0,records:[...source.votes].map(([key,fingerprint])=>({key,fingerprint,remote:false,pending:null})),attempts:0,nextAttemptAt:0,lastAckAt:null,halted:false};write(raw,initial);return initial;
    }
-   const records=new Map(state.records.map(r=>[r.key,r]));let pending=state.records.filter(r=>r.pending).length;
+   const records=new Map(state.records.map(r=>[r.key,r])),sizes=new Map(state.records.map(r=>[r.key,P.bytes(JSON.stringify(r))]));
+   let pending=state.records.filter(r=>r.pending).length,recordBytes=[...sizes.values()].reduce((a,b)=>a+b,0);
+   // Reserve counter growth; empty records already includes the array brackets.
+   const envelopeBytes=P.bytes(JSON.stringify({...state,records:[]}))+32;
    for(const key of new Set([...records.keys(),...source.votes.keys()])){
     const r=records.get(key),fingerprint=source.votes.get(key)??null;
     if(r?.fingerprint===fingerprint)continue;
-    if(fingerprint===null&&!r.remote){records.delete(key);continue;}
+    if(fingerprint===null&&!r.remote){recordBytes-=sizes.get(key);records.delete(key);sizes.delete(key);continue;}
     // Admit incrementally; the archives retain deferred changes until slots drain.
     if(!r&&records.size>=MAX_RECORDS||!r?.pending&&pending>=MAX_PENDING)continue;
     if(state.sequence===Number.MAX_SAFE_INTEGER)throw Error('Outbox revision exhausted');
     const vote=fingerprint===null?{item:P.itemFromKey(key),rating:'deleted',reason:null,comment:null}:JSON.parse(fingerprint);
-    if(!r?.pending)pending++;
-    records.set(key,{key,fingerprint,remote:true,pending:P.makeEvent(state.installId,++state.sequence,vote)});
+    const next={key,fingerprint,remote:true,pending:P.makeEvent(state.installId,state.sequence+1,vote)},size=P.bytes(JSON.stringify(next));
+    const nextBytes=recordBytes-(sizes.get(key)||0)+size;
+    if(envelopeBytes+nextBytes+Math.max(0,records.size+(r?0:1)-1)>MAX_BYTES)continue;
+    if(!r?.pending)pending++;state.sequence++;
+    recordBytes=nextBytes;sizes.set(key,size);records.set(key,next);
    }
    state.records=[...records.values()];write(raw,state);return state;
   }

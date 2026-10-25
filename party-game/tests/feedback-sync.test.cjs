@@ -131,6 +131,16 @@ test('two tabs share identity and a sender lock; no duplicate revision or lost p
  const f=fixture(),a=f.create(),b=f.create();await Promise.all([a.reconcile(),b.reconcile()]);const id=getState(f).installId;f.approval(1);f.report(2);
  await Promise.all([a.flush(),b.flush()]);assert.equal(f.calls.length,2);assert.equal(getState(f).sequence,2);assert.ok(f.calls.every(c=>c.event.installId===id));assert.deepEqual(f.calls.map(c=>c.event.revision),[1,2]);
 });
+test('UTF-8 byte capacity also defers without blocking queue drainage',async()=>{
+ const f=fixture(),source={reports:{version:1,items:[]},approvals:{version:1,items:[]}},pack={id:'p'.repeat(160),version:Number.MAX_SAFE_INTEGER};
+ const row=(prefix,i,report)=>({itemKey:prefix+i,item:{...f.item(i),cardId:(prefix+'w'.repeat(160)).slice(0,156)+String(i).padStart(4,'0'),pack},createdAt:1,updatedAt:1,...(report?{reason:'other',comment:'🧩'.repeat(160)}:{})});
+ for(let i=0;i<500;i++){source.reports.items.push(row('r',i,true));source.approvals.items.push(row('a',i,false));}
+ const s=f.create({readArchives:()=>source});await s.reconcile();
+ source.reports.items.forEach(r=>r.comment='🔷'.repeat(160));await s.reconcile();
+ source.reports.items=source.reports.items.map((r,i)=>row('n',i,true));await s.reconcile();
+ const before=await s.status();assert.ok(before.deferred>0);assert.ok(P.bytes(f.storage.getItem(C.KEY))<=C.MAX_BYTES);assert.equal(source.reports.items.length,500);
+ await s.flush();await s.reconcile();assert.ok((await s.status()).deferred<before.deferred);assert.ok(P.bytes(f.storage.getItem(C.KEY))<=C.MAX_BYTES);
+});
 test('clear site data during a request never resurrects the old identity or silently replays journals',async()=>{
  const f=fixture();let release,arrived;const start=new Promise(r=>arrived=r),s=f.create({fetch:async(url,options)=>{arrived();await new Promise(r=>release=r);return response({...JSON.parse(options.body),status:'applied'});}});
  await s.reconcile();const id=getState(f).installId;f.approval(1);const sending=s.flush();await start;f.storage.removeItem(C.KEY);release();await sending;assert.equal(f.storage.getItem(C.KEY),null);
