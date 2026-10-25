@@ -1,0 +1,591 @@
+{
+  "version": 1,
+  "total": 648,
+  "withUnit": 611,
+  "files": [
+    {
+      "path": "questions/legacy-v1.json",
+      "questions": 60
+    },
+    {
+      "path": "questions/general-2026.json",
+      "questions": 30
+    },
+    {
+      "path": "questions/geography-v2.json",
+      "questions": 30
+    },
+    {
+      "path": "questions/science-v2.json",
+      "questions": 30
+    },
+    {
+      "path": "questions/estimation-v2.json",
+      "questions": 150
+    },
+    {
+      "path": "questions/estimation-revisions-v3.json",
+      "questions": 48
+    },
+    {
+      "path": "questions/estimation-v3-batch-1.json",
+      "questions": 100
+    },
+    {
+      "path": "questions/estimation-v3-batch-2.json",
+      "questions": 100
+    },
+    {
+      "path": "questions/estimation-v3-batch-3.json",
+      "questions": 100
+    }
+  ],
+  "unitCounts": {
+    "": 37,
+    "%": 8,
+    "°": 5,
+    "°C": 11,
+    "бактерий": 1,
+    "бар": 1,
+    "бит": 1,
+    "буквы": 1,
+    "вида": 1,
+    "Вт": 1,
+    "г": 16,
+    "га": 2,
+    "год": 16,
+    "года": 1,
+    "гПа": 1,
+    "Гц": 1,
+    "деталей": 1,
+    "деталь": 1,
+    "дней": 2,
+    "зажиганий": 1,
+    "звёзд": 1,
+    "зеркал": 1,
+    "игроков": 2,
+    "канала": 1,
+    "карты": 1,
+    "кг": 65,
+    "клеток": 1,
+    "км": 40,
+    "км/с": 2,
+    "км/ч": 16,
+    "км²": 9,
+    "км³": 2,
+    "костяшек": 1,
+    "крыла": 1,
+    "куска": 1,
+    "л": 13,
+    "ламп": 2,
+    "лет": 10,
+    "м": 150,
+    "м/с": 1,
+    "м²": 4,
+    "м³": 5,
+    "м³/с": 1,
+    "мг": 2,
+    "месяца": 1,
+    "месяцев": 5,
+    "метров": 1,
+    "минут": 10,
+    "мл": 1,
+    "млн °C": 1,
+    "млн заклёпок": 1,
+    "млн кирпичей": 1,
+    "млн км": 2,
+    "млн л": 1,
+    "млн м³": 1,
+    "млн соединений": 2,
+    "млрд клеток": 1,
+    "млрд км": 1,
+    "млрд нейронов": 1,
+    "млрд т": 1,
+    "мм": 18,
+    "моль⁻¹": 1,
+    "мс": 2,
+    "мышей": 1,
+    "насекомых": 1,
+    "нефронов": 1,
+    "нулей": 1,
+    "океанов": 1,
+    "окон": 2,
+    "острова": 1,
+    "островов": 1,
+    "отдела": 1,
+    "Па": 1,
+    "панелей": 1,
+    "пар": 1,
+    "пассажира": 2,
+    "пешек": 1,
+    "пикселей": 1,
+    "планета": 1,
+    "позвонков": 1,
+    "полушария": 1,
+    "полюса": 1,
+    "присосок": 1,
+    "провинций": 2,
+    "протона": 1,
+    "раз": 3,
+    "раза": 1,
+    "регионов": 2,
+    "с": 3,
+    "секунд": 5,
+    "см": 47,
+    "см²": 1,
+    "см³": 3,
+    "стороны": 1,
+    "ступеней": 2,
+    "суток": 12,
+    "т": 29,
+    "территории": 1,
+    "Тл": 1,
+    "тонн": 1,
+    "трлн клеток": 1,
+    "тромбоцитов": 1,
+    "тс": 1,
+    "тыс. кусочков": 1,
+    "тыс. мячей": 1,
+    "тыс. плиток": 1,
+    "ударов": 1,
+    "циклов": 1,
+    "часа": 2,
+    "часов": 3,
+    "штатов": 3,
+    "штуки": 1,
+    "яиц": 1
+  },
+  "empty": [
+    {
+      "id": "approx-0001",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько месяцев в календарном году?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0007",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько граней у куба?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0008",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько сторон у треугольника?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0009",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько ног у взрослого насекомого?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0010",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько ног у паука?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0011",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько сердец у осьминога?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0012",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько камер в сердце человека?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0013",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько костей обычно указывают в стандартном скелете взрослого человека?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0014",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько планет в Солнечной системе по классификации с 2006 года?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0015",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько всего атомов в одной молекуле воды H₂O?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0018",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько полутонов в октаве при равномерной двенадцатиступенной темперации?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0019",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько струн у стандартной классической гитары?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0020",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько клеток на стандартной шахматной доске?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0023",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько рёбер у куба?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0024",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько диагоналей у выпуклого шестиугольника?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0026",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько клавиш у стандартного современного фортепиано?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0027",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько белых клавиш на стандартной клавиатуре фортепиано из 88 клавиш?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0028",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько струн у стандартной скрипки?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0029",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько колец на олимпийском символе?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0031",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько химических элементов было официально названо к концу 2016 года?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0032",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько протонов в ядре атома углерода?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0033",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько протонов в ядре атома кислорода?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0034",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько хромосом в обычном диплоидном наборе ядерной клетки человека?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0035",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько зубов в полном постоянном наборе человека, включая все зубы мудрости?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0040",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько периодов в таблице химических элементов, завершённой элементом 118?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0042",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько различных двоичных последовательностей длиной 10 бит существует?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0044",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько периодов излучения перехода атома цезия-133 определяют секунду в СИ?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0049",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько астронавтов ходили по поверхности Луны в рамках программы «Аполлон»?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0050",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько костей в стандартном осевом скелете взрослого человека?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0051",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько костей в стандартном добавочном скелете взрослого человека?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0052",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько граней у правильного додекаэдра?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0053",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько вершин у правильного икосаэдра?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0054",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько диагоналей у выпуклого восьмиугольника?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0055",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколькими способами можно расставить пять разных книг в один ряд?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0056",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько различных значений можно закодировать восемью битами?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0057",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколько клавиш было у первого фортепиано Бартоломео Кристофори согласно истории инструмента Yamaha?",
+      "unit": ""
+    },
+    {
+      "id": "approx-0059",
+      "file": "questions/legacy-v1.json",
+      "question": "Сколькими способами можно выбрать двух человек из десяти, если порядок не важен?",
+      "unit": ""
+    }
+  ],
+  "manualCandidates": [
+    {
+      "id": "approx-0045",
+      "file": "questions/legacy-v1.json",
+      "question": "Чему равна постоянная Авогадро в обратных молях?",
+      "unit": "моль⁻¹",
+      "reasons": [
+        "specialized-abbreviation: consider an explanatory display label in a future editorial revision"
+      ]
+    },
+    {
+      "id": "approx-8226",
+      "file": "questions/science-v2.json",
+      "question": "Скольким паскалям точно равна одна стандартная физическая атмосфера?",
+      "unit": "Па",
+      "reasons": [
+        "specialized-abbreviation: consider an explanatory display label in a future editorial revision"
+      ]
+    },
+    {
+      "id": "approx-8228",
+      "file": "questions/science-v2.json",
+      "question": "Какова частота колебаний в герцах, если маятник совершил 5 полных колебаний за 10 секунд?",
+      "unit": "Гц",
+      "reasons": [
+        "specialized-abbreviation: consider an explanatory display label in a future editorial revision"
+      ]
+    },
+    {
+      "id": "approx-20009",
+      "file": "questions/estimation-v2.json",
+      "question": "Сколько миллионов кирпичей использовали в наружной конструкции Эмпайр-стейт-билдинг?",
+      "unit": "млн кирпичей",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-20014",
+      "file": "questions/estimation-v2.json",
+      "question": "Сколько миллионов заклёпок использовано в конструкции Эйфелевой башни?",
+      "unit": "млн заклёпок",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-20021",
+      "file": "questions/estimation-v2.json",
+      "question": "Сколько миллионов кубометров бетона содержится в самой плотине Гувера, округлённо до десятых?",
+      "unit": "млн м³",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-20022",
+      "file": "questions/estimation-v2.json",
+      "question": "Сколько тысяч керамических плиток покрывают крыши Сиднейского оперного театра, округлённо?",
+      "unit": "тыс. плиток",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-20047",
+      "file": "questions/estimation-v2.json",
+      "question": "Каков приблизительный диаметр Солнца в миллионах километров по справке NASA?",
+      "unit": "млн км",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-20048",
+      "file": "questions/estimation-v2.json",
+      "question": "Сколько миллионов градусов Цельсия составляет температура в ядре Солнца, по оценке NASA?",
+      "unit": "млн °C",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-20080",
+      "file": "questions/estimation-v2.json",
+      "question": "Сколько тысяч теннисных мячей в среднем использует Уимблдон по официальному справочнику 2018 года?",
+      "unit": "тыс. мячей",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-20082",
+      "file": "questions/estimation-v2.json",
+      "question": "Сколько миллионов литров воды вмещал один из временных 50-метровых бассейнов арены Paris La Défense на Олимпиаде-2024?",
+      "unit": "млн л",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-20085",
+      "file": "questions/estimation-v2.json",
+      "question": "Сколько миллионов вручную выполненных паяных соединений было в ENIAC по справке университета?",
+      "unit": "млн соединений",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-21032",
+      "file": "questions/estimation-revisions-v3.json",
+      "question": "Сколько миллионов паяных соединений сделали вручную при сборке ENIAC?",
+      "unit": "млн соединений",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-22072",
+      "file": "questions/estimation-v3-batch-1.json",
+      "question": "Каково среднее расстояние Марса от Солнца в миллионах километров?",
+      "unit": "млн км",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-22086",
+      "file": "questions/estimation-v3-batch-1.json",
+      "question": "Каково среднее расстояние от Нептуна до Солнца в миллиардах километров?",
+      "unit": "млрд км",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-22207",
+      "file": "questions/estimation-v3-batch-3.json",
+      "question": "Сколько миллиардов тонн весит надземная часть Улуру по оценке Parks Australia, до десятых?",
+      "unit": "млрд т",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-22216",
+      "file": "questions/estimation-v3-batch-3.json",
+      "question": "До скольких гектопаскалей упало давление в глазу тайфуна Тип в октябре 1979 года?",
+      "unit": "гПа",
+      "reasons": [
+        "specialized-abbreviation: consider an explanatory display label in a future editorial revision"
+      ]
+    },
+    {
+      "id": "approx-22217",
+      "file": "questions/estimation-v3-batch-3.json",
+      "question": "Сколько триллионов собственных клеток примерно в теле взрослого мужчины?",
+      "unit": "трлн клеток",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-22218",
+      "file": "questions/estimation-v3-batch-3.json",
+      "question": "Сколько миллиардов клеток в человеческом теле примерно отмирает и заменяется за день?",
+      "unit": "млрд клеток",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-22225",
+      "file": "questions/estimation-v3-batch-3.json",
+      "question": "Сколько миллиардов нейронов примерно содержит мозг взрослого человека?",
+      "unit": "млрд нейронов",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-22237",
+      "file": "questions/estimation-v3-batch-3.json",
+      "question": "На какую номинальную магнитную индукцию рассчитан соленоид детектора CMS?",
+      "unit": "Тл",
+      "reasons": [
+        "specialized-abbreviation: consider an explanatory display label in a future editorial revision"
+      ]
+    },
+    {
+      "id": "approx-22239",
+      "file": "questions/estimation-v3-batch-3.json",
+      "question": "Сколько тонн-силы тяги выдал GE9X на рекордном испытании в ноябре 2017 года, округлённо до целого?",
+      "unit": "тс",
+      "reasons": [
+        "specialized-abbreviation: consider an explanatory display label in a future editorial revision"
+      ]
+    },
+    {
+      "id": "approx-22252",
+      "file": "questions/estimation-v3-batch-3.json",
+      "question": "Сколько тысяч кусочков пепперони примерно положили на гигантскую пиццу Airrack в 2023 году?",
+      "unit": "тыс. кусочков",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    }
+  ]
+}

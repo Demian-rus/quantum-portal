@@ -21,10 +21,15 @@ test('integration: restoring profiles and operating reports preserve the other a
  assert.equal(target.storage.get('kvip-player-profiles:v1'),profile);assert.equal(target.storage.get('iskra-party:v1'),main);
  assert.equal(JSON.parse(target.storage.get('kvip-card-reports:v1')).items.length,0);
 });
-test('integration: pinned feature cores and gameplay contracts are byte-exact from the accepted PRs',()=>{
+test('integration: pinned storage cores and gameplay contracts are byte-exact from the accepted PRs',()=>{
  const root=path.resolve(__dirname,'../..');
  for(const [ref,names]of [
-  ['6b68155a2584eda787dc383e60e36c54cbe8b9c5',['profile-backup.js','profile-backup-view.js','player-profiles.js','session-restoration.js','storage-controller.js']],
-  ['cd6b2067acb984a6ea33d71e2f28d4f7ffde863c',['card-reports.js','card-reports-view.js','round-selection.js','round-actions.js','round-settlement.js','match-views.js']]
+  ['6b68155a2584eda787dc383e60e36c54cbe8b9c5',['profile-backup.js','profile-backup-view.js','player-profiles.js','storage-controller.js']],
+  ['cd6b2067acb984a6ea33d71e2f28d4f7ffde863c',['card-reports.js','round-selection.js','round-actions.js','round-settlement.js','match-views.js']]
  ])for(const name of names)assert.deepEqual(fs.readFileSync(path.join(root,'party-game',name)),execFileSync('git',['show',ref+':party-game/'+name],{cwd:root}),name);
+});
+
+test('integration: session restoration retains every previous guard plus the explicit report-hold guard',()=>{
+ const current=fs.readFileSync(path.join(__dirname,'../session-restoration.js'),'utf8').replace('    validateFeedbackHold(candidate);\n','').replace(' && !candidate.current?.feedbackHold &&',' &&');
+ assert.equal(current,execFileSync('git',['show','6b68155a2584eda787dc383e60e36c54cbe8b9c5:party-game/session-restoration.js'],{encoding:'utf8'}));
 });

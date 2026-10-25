@@ -78,6 +78,7 @@ function showTiebreak(){
   '<div class="approx-card'+(shown?' is-revealed':'')+'">'+
     (shown?'<div class="approx-answer"><span>ПРАВИЛЬНЫЙ ОТВЕТ</span><strong>'+
        escapeHTML(tie.question.answer)+' '+escapeHTML(tie.question.unit)+'</strong></div>':'')+
+    (!shown?approxUnitMarkup(tie.question):'')+
     '<div class="approx-copy" tabindex="0" aria-label="Решающий вопрос">'+
       '<p class="approx-question">'+escapeHTML(tie.question.question)+'</p>'+
       (shown&&tie.question.note?'<p class="approx-note">'+escapeHTML(tie.question.note)+'</p>':'')+

@@ -6,7 +6,7 @@ function stopTicking() {
 }
 
 function beginAutomaticRound() {
-  if(!game||!roundUsesTimer()||game.phase!=='countdown')return;
+  if(!game||!roundUsesTimer()||game.phase!=='countdown'||game.current.feedbackHold)return;
   const c=game.current;
   const startAt=c.autoStartAt || Date.now();
   c.deadline=startAt+c.seconds*1000;
@@ -24,7 +24,7 @@ function startTicking() {
 }
 
 function tick() {
-  if(!game||!roundUsesTimer())return;
+  if(!game||!roundUsesTimer()||game.current?.feedbackHold)return;
   if(game.phase==='countdown'){
     if(Date.now()>=game.current.autoStartAt)beginAutomaticRound();
     return;
@@ -41,7 +41,7 @@ function tick() {
 }
 
 function finishTimer(reason) {
-  if(!game||!roundUsesTimer()||game.phase!=='play')return;
+  if(!game||!roundUsesTimer()||game.phase!=='play'||game.current.feedbackHold)return;
   stopTicking();
   game.phase='judge';
   game.current.finishedReason=reason;
@@ -66,7 +66,7 @@ function startTimer() {
 }
 
 function pauseTimer() {
-  if(!game||!roundUsesTimer()||game.phase!=='play'||game.current.paused||!allowPause())return;
+  if(!game||!roundUsesTimer()||game.phase!=='play'||game.current.paused||game.current.feedbackHold||!allowPause())return;
   game.current.remainingMs=Math.max(0,game.current.deadline-Date.now());
   game.current.paused=true;
   game.current.deadline=null;
@@ -74,7 +74,7 @@ function pauseTimer() {
 }
 
 function resumeTimer() {
-  if(!game||!roundUsesTimer()||game.phase!=='play'||!game.current.paused||!allowPause())return;
+  if(!game||!roundUsesTimer()||game.phase!=='play'||!game.current.paused||game.current.feedbackHold||!allowPause())return;
   game.current.deadline=Date.now()+game.current.remainingMs;
   game.current.paused=false;
   persist();sfx('go');render();

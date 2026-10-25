@@ -107,7 +107,7 @@ function toast(message) {
 function continueGame() {
   if(!hasUnfinishedGame())return;
   if(game.phase==='rolling')game.phase=game.current?'task':'ready';
-  if(game.phase==='countdown'&&Date.now()>=game.current.autoStartAt)beginAutomaticRound();
+  if(game.phase==='countdown'&&!game.current.feedbackHold&&Date.now()>=game.current.autoStartAt)beginAutomaticRound();
   if(game.phase==='play'&&!game.current.paused&&game.current.deadline<=Date.now())
     finishTimer('timeout');
   render();
@@ -135,8 +135,9 @@ function render(keepCardFocus=taskCardHasKeyboardFocus()) {
   else if(game.phase==='judge')ROUND_INTERACTIONS[roundInteraction()].judge();
   else if(game.phase==='between')showBetween();
   else if(game.phase==='tiebreak')showTiebreak();
-  if(game.phase==='countdown'||(game.phase==='play'&&!game.current.paused))startTicking();
+  if(!game.current?.feedbackHold&&(game.phase==='countdown'||(game.phase==='play'&&!game.current.paused)))startTicking();
   else stopTicking();
+  refreshCardApproval();restoreFeedbackPanel();
   if(keepCardFocus)focusTaskCard();
 }
 function newGame() {
@@ -222,6 +223,7 @@ function backToMenu() {
   renderOptions();
 }
 function handleAction(action) {
+  if(game?.current?.feedbackHold)return;
   switch(action) {
     case 'roll':return roll();
     case 'reveal-approx':return revealApprox();
@@ -258,6 +260,7 @@ function setupEvents() {
   registerProfileControls();
   registerProfileBackupControls();
   registerCardReportControls();
+  registerCardFeedbackControls();
   $('new-game-menu').addEventListener('click',openGameType);
   $('game-type-back').addEventListener('click',()=>setScene('home'));
   $('standard-game').addEventListener('click',selectStandardGame);
