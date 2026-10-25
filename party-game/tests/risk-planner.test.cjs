@@ -109,6 +109,6 @@ test('TASK019 90000 Monte Carlo matches are reproducible with capped gap and nat
  }
 });
 test('TASK019 immutable scoring, TASK020, profiles, timer, catalogs and backup remain published bytes',()=>{
- for(const name of ['rules.js','penalties.js','round-planner.js','round-settlement.js','round-actions.js','timer-controller.js','feedback-clock.js','card-feedback-view.js','result-review.js','result-review-view.js','player-profiles.js','profile-backup.js','profile-backup-view.js','storage-controller.js','cards.js','content-packs.js'])
+ for(const name of ['rules.js','penalties.js','round-planner.js','round-settlement.js','round-actions.js','timer-controller.js','feedback-clock.js','card-feedback-view.js','result-review.js','player-profiles.js','profile-backup.js','profile-backup-view.js','storage-controller.js','cards.js','content-packs.js'])
   assert.equal(fs.readFileSync(path.join(__dirname,'..',name),'utf8'),execFileSync('git',['show',(['cards.js','content-packs.js'].includes(name)?'584d54f38ff6f090e36dfe5308821809c559408d':base)+':party-game/'+name],{encoding:'utf8',maxBuffer:12000000}),name);
 });

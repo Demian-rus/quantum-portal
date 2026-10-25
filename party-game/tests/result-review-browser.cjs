@@ -57,7 +57,7 @@ async function rectCheck(page,id){
    await start(page,'blitz');await page.locator('[data-action="roll"]').click();await page.locator('.challenge-card').click();await page.locator('[data-action="start-timer"]').click();await page.locator('[data-action="blitz-correct"]').click();
    await page.evaluate(()=>finishTimer('early'));await page.locator('[data-action="no"]').click();
    const blitz=await page.evaluate(()=>({words:game.history[0].blitzWords,ids:game.history[0].blitzCardIds,points:game.history[0].review.round.points}));
-   await page.locator('#match-team-a').click();assert.equal(await page.locator('[data-review-choice="1"]').getAttribute('aria-pressed'),'true');
+   await page.locator('#match-team-a').click();await page.locator('[data-review-expand="0"]').click();assert.equal(await page.locator('[data-review-choice="1"]').getAttribute('aria-pressed'),'true');
    await page.locator('[data-review-choice="3"]').click();await page.locator('#result-history-save').click();
    assert.equal(await page.evaluate(()=>game.scores[0]),blitz.points);assert.deepEqual(await page.evaluate(()=>game.history[0].blitzWords),blitz.words);assert.deepEqual(await page.evaluate(()=>game.history[0].blitzCardIds),blitz.ids);
    await start(page,'mime','hard',true,'guesser');await settle(page);await page.locator('[data-action="roll"]').click();await page.locator('.challenge-card').click();
@@ -86,7 +86,7 @@ async function rectCheck(page,id){
    await start(page,'approx','easy',false);await page.evaluate(()=>{game.rounds=2;persist()});
    for(const choice of ['a','none']){await page.locator('[data-action="roll"]').click();await page.locator('[data-action="reveal-approx"]').click();await page.locator('[data-action="award-'+choice+'"]').click();}
    assert.equal(await page.evaluate(()=>game.phase),'review');assert.equal(await page.evaluate(()=>profileStore.recent.length),0);
-   assert.equal(await page.locator('.pending-review-rows [data-review-turn="0"] .review-choice').count(),4);
+   await page.locator('.pending-review-rows [data-review-expand="0"]').click();assert.equal(await page.locator('.pending-review-rows [data-review-turn="0"] .review-choice').count(),4);
    await page.locator('.pending-review-rows [data-review-turn="0"] [data-review-choice="b"]').click();
    await page.locator('.is-result-review [data-review-tab="1"]').click();
    assert.equal(await page.locator('.pending-review-rows [data-review-turn="1"]').isVisible(),true);
