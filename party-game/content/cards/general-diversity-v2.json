@@ -1,7 +1,7 @@
 [
   {
     "id": "word-041001",
-    "text": "СУРОК",
+    "text": "КОРШУН",
     "type": "word",
     "difficulty": "easy",
     "categories": [
@@ -11,7 +11,7 @@
   },
   {
     "id": "word-041002",
-    "text": "ПЕЛИКАН",
+    "text": "КАКАДУ",
     "type": "word",
     "difficulty": "easy",
     "categories": [
@@ -21,7 +21,7 @@
   },
   {
     "id": "word-041003",
-    "text": "ИГУАНА",
+    "text": "ПЕРЕПЕЛ",
     "type": "word",
     "difficulty": "easy",
     "categories": [
@@ -41,7 +41,7 @@
   },
   {
     "id": "word-041005",
-    "text": "КЕГЛЯ",
+    "text": "РИНГ",
     "type": "word",
     "difficulty": "easy",
     "categories": [
@@ -91,7 +91,7 @@
   },
   {
     "id": "word-041010",
-    "text": "ОАЗИС",
+    "text": "УТЁС",
     "type": "word",
     "difficulty": "easy",
     "categories": [
@@ -201,7 +201,7 @@
   },
   {
     "id": "word-041017",
-    "text": "ГЕККОН",
+    "text": "САРАНЧА",
     "type": "word",
     "difficulty": "medium",
     "categories": [
@@ -211,7 +211,7 @@
   },
   {
     "id": "word-041018",
-    "text": "МАНГУСТ",
+    "text": "КАЙМАН",
     "type": "word",
     "difficulty": "medium",
     "categories": [
@@ -221,7 +221,7 @@
   },
   {
     "id": "word-041019",
-    "text": "САЛАМАНДРА",
+    "text": "ЦИКАДА",
     "type": "word",
     "difficulty": "medium",
     "categories": [
@@ -271,7 +271,7 @@
   },
   {
     "id": "word-041024",
-    "text": "НЕЙРОСЕТЬ",
+    "text": "ЧАТБОТ",
     "type": "word",
     "difficulty": "medium",
     "categories": [
@@ -301,7 +301,7 @@
   },
   {
     "id": "word-041027",
-    "text": "ШАЛФЕЙ",
+    "text": "ЧАБРЕЦ",
     "type": "word",
     "difficulty": "medium",
     "categories": [
@@ -311,7 +311,7 @@
   },
   {
     "id": "word-041028",
-    "text": "ПАСТИЛА",
+    "text": "МАРЦИПАН",
     "type": "word",
     "difficulty": "medium",
     "categories": [
@@ -351,7 +351,7 @@
   },
   {
     "id": "word-041032",
-    "text": "ЛАГУНА",
+    "text": "ПРЕРИЯ",
     "type": "word",
     "difficulty": "medium",
     "categories": [
@@ -381,11 +381,11 @@
   },
   {
     "id": "phrase-041007",
-    "text": "КРУГОВОРОТ ВОДЫ",
+    "text": "ВРЕМЕННАЯ ПЕТЛЯ",
     "type": "phrase",
     "difficulty": "medium",
     "categories": [
-      "science"
+      "culture"
     ],
     "pack": "general-diversity-v2"
   },
@@ -401,7 +401,7 @@
   },
   {
     "id": "word-041033",
-    "text": "КАРАКАТИЦА",
+    "text": "МАНТА",
     "type": "word",
     "difficulty": "hard",
     "categories": [
@@ -411,11 +411,11 @@
   },
   {
     "id": "word-041034",
-    "text": "ОПОССУМ",
+    "text": "СУЕВЕРИЕ",
     "type": "word",
     "difficulty": "hard",
     "categories": [
-      "animals"
+      "general"
     ],
     "pack": "general-diversity-v2"
   },
@@ -461,7 +461,7 @@
   },
   {
     "id": "word-041039",
-    "text": "ПАРФЕ",
+    "text": "ЧУРЧХЕЛА",
     "type": "word",
     "difficulty": "hard",
     "categories": [
