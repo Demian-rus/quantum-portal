@@ -14,6 +14,7 @@ function fits(g){
   const gap=g.viewport.w>g.viewport.h?g.card.x-b.right:g.card.y-b.bottom;assert.ok(gap>=11.9,'Header/card gap '+JSON.stringify({gap,g}));
  }
  if(g.timeText)assert.ok(g.timeText.w<=g.timer.w*.84,'Clock text must fit inside the ring '+JSON.stringify(g));
+ if(g.timer&&g.ratings.length===2)assert.ok(g.timer.x-g.ratings[0].right>=11.9&&g.ratings[1].x-g.timer.right>=11.9,'Rating/ring gutter must be at least 12px');
  if(g.condition){
   assert.ok(g.condition.y-g.card.bottom>=11.9,'Condition must be below card '+JSON.stringify(g));
   assert.ok(g.copy.y>=g.conditionRegion.y-1&&g.copy.bottom<=g.conditionRegion.bottom+1,'Ordinary condition clipped '+JSON.stringify(g));

@@ -2143,8 +2143,9 @@ button.match-team:focus-visible{outline:3px solid var(--lime);outline-offset:3px
 .scene--game .stable-round .round-top .play-timer{font-size:clamp(17px,4cqh,32px)}
 .scene--game .stable-round .round-top .game-eyebrow{letter-spacing:.04em;max-width:100%;text-align:center}
 .scene--game .stable-round .round-timer-stack{display:flex;flex-direction:column;align-items:center;gap:0;flex:0 0 auto}
+.scene--game .stable-round .round-top .timer-dial{gap:clamp(12px,4vw,24px)}
 .scene--game .stable-round .round-fixed-card{grid-column:1;grid-row:2;align-self:center}
-.scene--game .stable-round .round-fixed-card .challenge-card{box-shadow:0 2px 0 #080820c9,0 12px 24px #0603139c,0 0 20px #8c62fa35}
+.scene--game .stable-round .round-fixed-card .challenge-card{box-shadow:0 2px 0 #080820c9,0 12px 24px #0603139c,0 0 20px #8c62fa35;transition-property:background,border-color,box-shadow}
 .scene--game .stable-round .round-condition-slot{
  grid-column:1;grid-row:3;width:100%;height:100%;min-width:0;min-height:0;
  display:flex;flex-direction:column;align-items:center;justify-content:safe flex-start;gap:5px;
@@ -2201,6 +2202,7 @@ button.match-team:focus-visible{outline:3px solid var(--lime);outline-offset:3px
  .scene--game .stable-round .round-top--task>.score-note{grid-row:2;grid-column:1/-1}
  .scene--game .stable-round .round-top>.game-eyebrow,.scene--game .stable-round .round-top>.timer-dial{grid-column:auto;grid-row:auto}
  .scene--game .stable-round .round-top .game-eyebrow{font-size:9px;line-height:1.2}
+ .scene--game .stable-round .round-top .timer-dial{gap:12px}
  .scene--game .stable-round .round-top .timer-ring{width:56px;height:56px}
  .scene--game .stable-round .round-fixed-card{grid-column:2;grid-row:1;height:58px;max-height:none}
  .scene--game .stable-round .round-fixed-card .challenge-card{padding:6px 10px}

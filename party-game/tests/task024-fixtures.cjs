@@ -6,7 +6,7 @@ const scenarios=[{id:'sing',mode:'sing',modifier:null,word:'ОБЛАКА'},{id:'
  {id:'blitz',mode:'blitz',modifier:'v2-unique-nouns',risk:true},
  {id:'draw',mode:'draw',modifier:'v2-other-hand',word:'ПОДВОДНАЯ ЛОДКА'},
  {id:'yesno',mode:'yesno',awardTo:'guesser',modifier:'v2-no-names-search',word:'КАПИТАН'}];
-async function settled(p){await p.evaluate(()=>document.fonts.ready);await p.locator('#scene-game').evaluate(el=>Promise.all(el.getAnimations({subtree:true}).filter(a=>a.effect.getTiming().iterations!==Infinity).map(a=>a.finished.catch(()=>{}))));await p.locator('.mode-art').evaluateAll(imgs=>Promise.all(imgs.map(i=>i.decode().catch(()=>{}))));}
+async function settled(p){await p.evaluate(()=>document.fonts.ready);await p.locator('.mode-art').evaluateAll(imgs=>Promise.all(imgs.map(i=>i.decode().catch(()=>{}))));await p.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));await p.locator('#scene-game').evaluate(el=>Promise.all(el.getAnimations({subtree:true}).filter(a=>a.effect.getTiming().iterations!==Infinity).map(a=>a.finished.catch(()=>{}))));}
 async function fixture(p,scenario={mode:'sing',modifier:null}){
  await p.evaluate(s=>{
   if(!$('result-history-backdrop').hidden)closeResultHistory(false);if(!$('report-backdrop').hidden)closeReportPanel();
