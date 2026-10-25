@@ -73,7 +73,7 @@ async function success(page){await page.waitForFunction(()=>document.getElementB
    assert.equal(cached.length,45);assert.deepEqual(cached.filter(row=>!row.found),[],'Every runtime script must be precached');
    await sp.locator('#continue-game').click();assert.equal(await sp.evaluate(()=>JSON.stringify(game)),oldGame,'v75 paused game must remain exact');assert.equal((await snapshot(sp))[GAME],oldMain,'v75 main RAW must remain exact');
    await sp.locator('#exit-game').click();await sp.locator('#settings-menu').click();
-   console.log('v75 → v80 PWA upgrade / exact v75 profiles + paused game RAW / offline backup UI / precache 45/45 PASS');
+   console.log('v75 → v81 PWA upgrade / exact v75 profiles + paused game RAW / offline backup UI / precache 45/45 PASS');
   }finally{write(current);}
   const file=path.join(tmp,'profiles.json'),text=await download(sp,'#backup-export',file),payload=JSON.parse(text).payload;
   assert.equal(payload.recent.length,1);assert.equal(payload.totals[payload.profiles[0].id].matches,1);
