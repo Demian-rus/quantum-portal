@@ -58,8 +58,8 @@ test('TASK009 A screenshots require an explicit diagnostic flag',async()=>{
 
 test('V84 content integration adds exactly 500 reviewed cards without altering old pool revisions',()=>{
  const added=['geography-expansion-v1','geography-expansion-v2','science-expansion-v1','science-expansion-v2','science-expansion-v3','idiom-expansion-v1','idiom-expansion-v2','science-expansion-v4','general-expansion-v2'];
- const all=base.cards,existing=all.filter(c=>!added.includes(c.pack)),fresh=all.filter(c=>added.includes(c.pack));
- assert.equal(existing.length,4917);assert.equal(fresh.length,500);assert.equal(all.length,5417);
+ const all=base.cards,existing=all.filter(c=>!added.includes(c.pack)&&c.pack!=='general-diversity-v1'),fresh=all.filter(c=>added.includes(c.pack));
+ assert.equal(existing.length,4917);assert.equal(fresh.length,500);assert.equal(all.length,5467);
  assert.deepEqual(Object.fromEntries(added.map(name=>[name,fresh.filter(c=>c.pack===name).length])),{
   'geography-expansion-v1':50,'geography-expansion-v2':100,'science-expansion-v1':50,'science-expansion-v2':50,
   'science-expansion-v3':50,'idiom-expansion-v1':50,'idiom-expansion-v2':50,
@@ -88,4 +88,19 @@ test('V84 latest content declarations are pinned and older theme categories neve
  }
  const ledger=JSON.parse(fs.readFileSync(path.join(root,'content/editorial/content400-independent-audit-v1.json'),'utf8'));
  assert.equal(ledger.records.length,400);assert.equal(ledger.changes.length,9);
+});
+
+// G15 adds a distinct general revision; archived versions stay byte-stable.
+test('G15 40 individual words and 10 phrases; general@16 contains 5500 immutable IDs',()=>{
+ const data=api.readDataset(),newCards=data.cards.filter(c=>c.pack==='general-diversity-v1');
+ assert.equal(newCards.length,50);
+ assert.equal(newCards.filter(c=>c.type==='word').length,40);
+ assert.equal(newCards.filter(c=>c.type==='phrase').length,10);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(d=>[d,newCards.filter(c=>c.difficulty===d).length])),{easy:20,medium:20,hard:10});
+ const old=data.packs.find(p=>p.id==='general'&&p.version===15),next=data.packs.find(p=>p.id==='general'&&p.version===16);
+ assert.equal(old.criteria.cardIds.length,5450);
+ assert.equal(next.criteria.cardIds.length,5500);
+ assert.deepEqual(next.criteria.cardIds.slice(0,5450),old.criteria.cardIds);
+ assert.deepEqual(next.criteria.cardIds.slice(5450),newCards.map(c=>c.id));
+ assert.equal(api.validate(data).ok,true);
 });
