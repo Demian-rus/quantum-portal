@@ -37,6 +37,7 @@ test('Blitz uses real 0/partial/full and modifier outcomes; Approx awards neithe
  edit(b,0,'3');edit(b,0,'failed');assert.equal(b.eval('reviewChoice(game.history[0])'),'failed');assert.equal(b.eval('game.history[0].awarded'),0);
  edit(b,0,'0');assert.equal(b.eval('reviewChoices(game.history[0]).includes("failed")'),false,'No duplicate rejected outcome for zero/partial Blitz');
  const a=start({mode:'approx'});a.eval("roll();revealApprox();awardApprox('none')");
+ assert.match(a.eval('reviewedRowsMarkup(game,0,true)'),/Отвечали оба:/);assert.doesNotMatch(a.eval('reviewedRowsMarkup(game,0,true)'),/Загадывал:/);
  for(const [choice,scores]of [['a',[1,0]],['b',[0,1]],['both',[1,1]],['none',[0,0]]])assert.deepEqual(plain(edit(a,0,choice)),scores);
 });
 test('final answer enters durable review before lifetime totals; corrections change winner; confirmation is idempotent',()=>{

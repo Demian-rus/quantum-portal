@@ -29,7 +29,7 @@ function reviewedRowsMarkup(match,player,editable){
    return '<button type="button" class="review-choice review-choice--'+color+'" data-review-row="'+index+'" data-review-choice="'+choice+'" aria-pressed="'+(selected===choice)+'"><span class="review-choice-icon" aria-hidden="true">'+(color==='bad'?'×':color==='partial'?'✓−':'✓')+'</span><span>'+escapeHTML(reviewChoiceLabel(row,choice))+'</span><small>'+escapeHTML(reviewDeltaText(preview))+'</small></button>';
   }).join(''):'';
   return '<article class="review-row" data-review-turn="'+index+'"><h3>Ход '+(index+1)+' · '+escapeHTML(getMode(row.mode)?.title||row.mode)+'</h3><p class="review-word">'+escapeHTML(row.word)+'</p>'+
-   '<p class="profile-muted">Загадывал: '+escapeHTML(game.teams[setter])+' · Отгадывал: '+escapeHTML(game.teams[guesser])+'</p>'+
+   '<p class="profile-muted">'+(row.mode==='approx'?'Отвечали оба: '+game.teams.map(escapeHTML).join(' · '):'Загадывал: '+escapeHTML(game.teams[setter])+' · Отгадывал: '+escapeHTML(game.teams[guesser]))+'</p>'+
    '<p class="review-award">'+escapeHTML(reviewDeltaText(row))+(row.risk?' · РИСК: штраф '+(row.penalty??Math.max(0,-row.awarded)):'')+'</p>'+
    (editable?'<div class="review-choices">'+choices+'</div>':'<p>'+escapeHTML(row.outcome==='failed'||row.correct===false?'Не угадали':row.outcome==='base-only'?'Без усложнения':'Угадали')+'</p>')+'</article>';
  }).join('')||'<p class="profile-muted">Завершённых ходов пока нет.</p>';
