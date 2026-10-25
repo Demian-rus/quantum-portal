@@ -5409,7 +5409,7 @@ const PARTY_CARDS=Object.freeze([
   {"id":"phrase-039011","text":"ЛЕДОВОЕ ШОУ","type":"phrase","difficulty":"medium","categories":["arts"],"pack":"general-expansion-v2"},
   {"id":"phrase-039012","text":"ВИРТУАЛЬНЫЙ ТУР","type":"phrase","difficulty":"medium","categories":["technology"],"pack":"general-expansion-v2"},
   {"id":"phrase-039013","text":"СЕМЕЙНОЕ ДРЕВО","type":"phrase","difficulty":"medium","categories":["everyday"],"pack":"general-expansion-v2"},
-  {"id":"phrase-039014","text":"БЕГ С ПРЕПЯТСТВИЯМИ","type":"phrase","difficulty":"medium","categories":["sport"],"pack":"general-expansion-v2"},
+  {"id":"phrase-039014","text":"КНИЖНЫЙ КЛУБ","type":"phrase","difficulty":"medium","categories":["literature"],"pack":"general-expansion-v2"},
   {"id":"phrase-039015","text":"ПАРАД ПЛАНЕТ","type":"phrase","difficulty":"medium","categories":["space"],"pack":"general-expansion-v2"},
   {"id":"phrase-039016","text":"МАСКАРАДНЫЙ КОСТЮМ","type":"phrase","difficulty":"medium","categories":["arts"],"pack":"general-expansion-v2"},
   {"id":"person-039004","text":"РОБИНЗОН КРУЗО","type":"person","difficulty":"medium","categories":["literature"],"pack":"general-expansion-v2"},
