@@ -980,7 +980,7 @@ body[data-screen="preferences"]::after{background:#11082085}
  font-size:clamp(9px,calc(1.4 * var(--kvip-locked-vh, 1dvh)),12px);flex:0 0 auto;
 }
 .scene--game .stable-round .round-top--timer {
- padding:3px 3px 8px;
+ padding:3px 3px 12px;
  gap:8px;
 }
 .scene--game .stable-round .round-top--timer .timer-ring {

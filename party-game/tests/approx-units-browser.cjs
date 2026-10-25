@@ -1,7 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),{execFileSync}=require('node:child_process');
 const {chromium}=require('playwright-core'),{provisionProfiles}=require('./profile-fixtures.cjs');
-const URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/',parent='39b72c05a567be43db3f013319a1954a72632235',folder='artifacts/quip-approx-units';
+const URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/',parent='2872a233f97d70f84c5989eee653a233a72b7b44',folder='artifacts/quip-approx-units';
 const state=p=>p.evaluate(()=>({game:JSON.stringify(game),raw:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY)}));
 async function fixture(page,{tie=false,id='approx-20130',long=false}={}){
  await page.evaluate(({tie,id,long})=>{
