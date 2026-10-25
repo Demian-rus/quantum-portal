@@ -182,6 +182,7 @@ function newGame() {
     ...songPolicy,timerPolicyVersion:QUIP_TIMER_POLICY_VERSION,finishPolicyVersion:QUIP_FINISH_POLICY_VERSION,
     taskHistoryVersion:QUIP_TASK_HISTORY_VERSION,taskHistory:startedHistory.history,
     rounds:options.rounds,targetScore:options.targetScore,finishType:options.finishType,
+    riskPolicyVersion:QUIP_RISK_POLICY_VERSION,riskPlannerState:freshRiskPlan(),
     riskRounds:options.riskRounds,scoringVersion:2,rulesVersion:QUIP_RULE_VERSION,modeConfigVersion:QUIP_MODE_CONFIG_VERSION,
     awardPolicyVersion:QUIP_AWARD_POLICY_VERSION,awardTo:['setter','guesser'].includes(options.awardTo)?options.awardTo:'setter',
     modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION,

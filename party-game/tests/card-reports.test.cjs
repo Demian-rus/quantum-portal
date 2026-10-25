@@ -36,7 +36,7 @@ test('reports: selection metadata adds zero RNG calls and preserves every chosen
   const current=createSimulation(7),baseline=createSimulation(7);vm.runInContext(old,baseline.context);
   const configure=h=>{
    h.context.mode=mode;h.context.historical=historical;
-   h.eval("Object.assign(options,{modes:[mode],awardTo:'guesser',difficulty:'mixed',dice:false,complications:true});newGame();if(historical){delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierSelectionVersion;delete game.modifierCatalogVersion;delete game.modifierChance;delete game.modifierRecent;}");
+   h.eval("Object.assign(options,{modes:[mode],awardTo:'guesser',difficulty:'mixed',dice:false,complications:true});newGame();delete game.riskPolicyVersion;delete game.riskPlannerState;if(historical){delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierSelectionVersion;delete game.modifierCatalogVersion;delete game.modifierChance;delete game.modifierRecent;}");
    let calls=0;const random=seededRandom(781);h.context.Math.random=()=>{calls++;return random()};return()=>calls;
   };
   const ca=configure(current),cb=configure(baseline);

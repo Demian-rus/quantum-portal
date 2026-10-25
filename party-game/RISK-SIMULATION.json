@@ -1,0 +1,557 @@
+{
+  "version": 1,
+  "matchesPerScenario": 10000,
+  "seedRange": [
+    1,
+    10000
+  ],
+  "warmupTurns": 2,
+  "results": [
+    {
+      "scenario": "10 turns",
+      "policy": "legacy",
+      "matches": 10000,
+      "eligible": 80000,
+      "risks": 15840,
+      "recipients": [
+        7854,
+        7986
+      ],
+      "maxPrefixGap": 4,
+      "maxRiskOwnerStreak": 4,
+      "sameOwnerTransitions": 2919,
+      "transitions": 7538,
+      "zeroRiskMatches": 1698,
+      "tenToZero": 0,
+      "ratePercent": 19.8,
+      "meanFinalGap": 0.8292,
+      "p95FinalGap": 2,
+      "maxFinalGap": 4,
+      "sameOwnerPercent": 38.72,
+      "gapDistribution": {
+        "0": 3607,
+        "1": 4735,
+        "2": 1431,
+        "3": 213,
+        "4": 14
+      }
+    },
+    {
+      "scenario": "10 turns",
+      "policy": "balanced-v1",
+      "matches": 10000,
+      "eligible": 80000,
+      "risks": 15845,
+      "recipients": [
+        7637,
+        8208
+      ],
+      "maxPrefixGap": 2,
+      "maxRiskOwnerStreak": 3,
+      "sameOwnerTransitions": 1654,
+      "transitions": 7695,
+      "zeroRiskMatches": 1850,
+      "tenToZero": 0,
+      "ratePercent": 19.8062,
+      "meanFinalGap": 0.5843,
+      "p95FinalGap": 2,
+      "maxFinalGap": 2,
+      "sameOwnerPercent": 21.49,
+      "gapDistribution": {
+        "0": 4693,
+        "1": 4771,
+        "2": 536
+      }
+    },
+    {
+      "scenario": "20 turns",
+      "policy": "legacy",
+      "matches": 10000,
+      "eligible": 180000,
+      "risks": 35843,
+      "recipients": [
+        17859,
+        17984
+      ],
+      "maxPrefixGap": 6,
+      "maxRiskOwnerStreak": 6,
+      "sameOwnerTransitions": 11034,
+      "transitions": 26009,
+      "zeroRiskMatches": 166,
+      "tenToZero": 0,
+      "ratePercent": 19.9128,
+      "meanFinalGap": 1.3083,
+      "p95FinalGap": 3,
+      "maxFinalGap": 6,
+      "sameOwnerPercent": 42.42,
+      "gapDistribution": {
+        "0": 2354,
+        "1": 3970,
+        "2": 2351,
+        "3": 967,
+        "4": 288,
+        "5": 62,
+        "6": 8
+      }
+    },
+    {
+      "scenario": "20 turns",
+      "policy": "balanced-v1",
+      "matches": 10000,
+      "eligible": 180000,
+      "risks": 35841,
+      "recipients": [
+        17508,
+        18333
+      ],
+      "maxPrefixGap": 2,
+      "maxRiskOwnerStreak": 4,
+      "sameOwnerTransitions": 7097,
+      "transitions": 26051,
+      "zeroRiskMatches": 210,
+      "tenToZero": 0,
+      "ratePercent": 19.9117,
+      "meanFinalGap": 0.6641,
+      "p95FinalGap": 2,
+      "maxFinalGap": 2,
+      "sameOwnerPercent": 27.24,
+      "gapDistribution": {
+        "0": 4217,
+        "1": 4925,
+        "2": 858
+      }
+    },
+    {
+      "scenario": "40 turns",
+      "policy": "legacy",
+      "matches": 10000,
+      "eligible": 380000,
+      "risks": 75846,
+      "recipients": [
+        37862,
+        37984
+      ],
+      "maxPrefixGap": 9,
+      "maxRiskOwnerStreak": 10,
+      "sameOwnerTransitions": 28712,
+      "transitions": 65846,
+      "zeroRiskMatches": 0,
+      "tenToZero": 0,
+      "ratePercent": 19.9595,
+      "meanFinalGap": 1.9214,
+      "p95FinalGap": 5,
+      "maxFinalGap": 9,
+      "sameOwnerPercent": 43.6,
+      "gapDistribution": {
+        "0": 1596,
+        "1": 3016,
+        "2": 2448,
+        "3": 1449,
+        "4": 817,
+        "5": 459,
+        "6": 142,
+        "7": 49,
+        "8": 19,
+        "9": 5
+      }
+    },
+    {
+      "scenario": "40 turns",
+      "policy": "balanced-v1",
+      "matches": 10000,
+      "eligible": 380000,
+      "risks": 75985,
+      "recipients": [
+        37498,
+        38487
+      ],
+      "maxPrefixGap": 2,
+      "maxRiskOwnerStreak": 4,
+      "sameOwnerTransitions": 20161,
+      "transitions": 65986,
+      "zeroRiskMatches": 1,
+      "tenToZero": 0,
+      "ratePercent": 19.9961,
+      "meanFinalGap": 0.6793,
+      "p95FinalGap": 2,
+      "maxFinalGap": 2,
+      "sameOwnerPercent": 30.55,
+      "gapDistribution": {
+        "0": 4084,
+        "1": 5039,
+        "2": 877
+      }
+    },
+    {
+      "scenario": "100 turns",
+      "policy": "legacy",
+      "matches": 10000,
+      "eligible": 980000,
+      "risks": 195988,
+      "recipients": [
+        98049,
+        97939
+      ],
+      "maxPrefixGap": 17,
+      "maxRiskOwnerStreak": 14,
+      "sameOwnerTransitions": 82045,
+      "transitions": 185988,
+      "zeroRiskMatches": 0,
+      "tenToZero": 0,
+      "ratePercent": 19.9988,
+      "meanFinalGap": 3.1248,
+      "p95FinalGap": 8,
+      "maxFinalGap": 15,
+      "sameOwnerPercent": 44.11,
+      "gapDistribution": {
+        "0": 1071,
+        "1": 1924,
+        "2": 1737,
+        "3": 1498,
+        "4": 1238,
+        "5": 936,
+        "6": 635,
+        "7": 406,
+        "8": 240,
+        "9": 152,
+        "10": 79,
+        "11": 42,
+        "12": 23,
+        "13": 13,
+        "14": 3,
+        "15": 3
+      }
+    },
+    {
+      "scenario": "100 turns",
+      "policy": "balanced-v1",
+      "matches": 10000,
+      "eligible": 980000,
+      "risks": 196076,
+      "recipients": [
+        97521,
+        98555
+      ],
+      "maxPrefixGap": 2,
+      "maxRiskOwnerStreak": 4,
+      "sameOwnerTransitions": 59729,
+      "transitions": 186076,
+      "zeroRiskMatches": 0,
+      "tenToZero": 0,
+      "ratePercent": 20.0078,
+      "meanFinalGap": 0.6714,
+      "p95FinalGap": 2,
+      "maxFinalGap": 2,
+      "sameOwnerPercent": 32.1,
+      "gapDistribution": {
+        "0": 4162,
+        "1": 4962,
+        "2": 876
+      }
+    },
+    {
+      "scenario": "200 turns",
+      "policy": "legacy",
+      "matches": 10000,
+      "eligible": 1980000,
+      "risks": 396031,
+      "recipients": [
+        198059,
+        197972
+      ],
+      "maxPrefixGap": 22,
+      "maxRiskOwnerStreak": 14,
+      "sameOwnerTransitions": 171022,
+      "transitions": 386031,
+      "zeroRiskMatches": 0,
+      "tenToZero": 0,
+      "ratePercent": 20.0016,
+      "meanFinalGap": 4.4693,
+      "p95FinalGap": 11,
+      "maxFinalGap": 22,
+      "sameOwnerPercent": 44.3,
+      "gapDistribution": {
+        "0": 731,
+        "1": 1375,
+        "2": 1338,
+        "3": 1212,
+        "4": 1108,
+        "5": 945,
+        "6": 851,
+        "7": 628,
+        "8": 522,
+        "9": 378,
+        "10": 274,
+        "11": 238,
+        "12": 140,
+        "13": 107,
+        "14": 65,
+        "15": 33,
+        "16": 31,
+        "17": 8,
+        "18": 7,
+        "19": 5,
+        "20": 3,
+        "22": 1
+      }
+    },
+    {
+      "scenario": "200 turns",
+      "policy": "balanced-v1",
+      "matches": 10000,
+      "eligible": 1980000,
+      "risks": 396371,
+      "recipients": [
+        197694,
+        198677
+      ],
+      "maxPrefixGap": 2,
+      "maxRiskOwnerStreak": 4,
+      "sameOwnerTransitions": 125445,
+      "transitions": 386371,
+      "zeroRiskMatches": 0,
+      "tenToZero": 0,
+      "ratePercent": 20.0187,
+      "meanFinalGap": 0.6701,
+      "p95FinalGap": 2,
+      "maxFinalGap": 2,
+      "sameOwnerPercent": 32.47,
+      "gapDistribution": {
+        "0": 4192,
+        "1": 4915,
+        "2": 893
+      }
+    },
+    {
+      "scenario": "Mixed 40 / 25% Approx",
+      "policy": "legacy",
+      "matches": 10000,
+      "eligible": 285076,
+      "risks": 56939,
+      "recipients": [
+        28266,
+        28673
+      ],
+      "maxPrefixGap": 8,
+      "maxRiskOwnerStreak": 8,
+      "sameOwnerTransitions": 21127,
+      "transitions": 46960,
+      "zeroRiskMatches": 21,
+      "tenToZero": 0,
+      "ratePercent": 19.9733,
+      "meanFinalGap": 1.7069,
+      "p95FinalGap": 4,
+      "maxFinalGap": 8,
+      "sameOwnerPercent": 44.99,
+      "gapDistribution": {
+        "0": 1826,
+        "1": 3322,
+        "2": 2369,
+        "3": 1443,
+        "4": 668,
+        "5": 261,
+        "6": 79,
+        "7": 27,
+        "8": 5
+      }
+    },
+    {
+      "scenario": "Mixed 40 / 25% Approx",
+      "policy": "balanced-v1",
+      "matches": 10000,
+      "eligible": 285076,
+      "risks": 56435,
+      "recipients": [
+        27845,
+        28590
+      ],
+      "maxPrefixGap": 2,
+      "maxRiskOwnerStreak": 4,
+      "sameOwnerTransitions": 14428,
+      "transitions": 46464,
+      "zeroRiskMatches": 29,
+      "tenToZero": 0,
+      "ratePercent": 19.7965,
+      "meanFinalGap": 0.6867,
+      "p95FinalGap": 2,
+      "maxFinalGap": 2,
+      "sameOwnerPercent": 31.05,
+      "gapDistribution": {
+        "0": 4102,
+        "1": 4929,
+        "2": 969
+      }
+    },
+    {
+      "scenario": "Mixed 100 / 25% Approx",
+      "policy": "legacy",
+      "matches": 10000,
+      "eligible": 734991,
+      "risks": 146841,
+      "recipients": [
+        73272,
+        73569
+      ],
+      "maxPrefixGap": 13,
+      "maxRiskOwnerStreak": 12,
+      "sameOwnerTransitions": 62360,
+      "transitions": 136841,
+      "zeroRiskMatches": 0,
+      "tenToZero": 2,
+      "ratePercent": 19.9786,
+      "meanFinalGap": 2.8225,
+      "p95FinalGap": 7,
+      "maxFinalGap": 13,
+      "sameOwnerPercent": 45.57,
+      "gapDistribution": {
+        "0": 1126,
+        "1": 2114,
+        "2": 1953,
+        "3": 1551,
+        "4": 1214,
+        "5": 835,
+        "6": 542,
+        "7": 336,
+        "8": 168,
+        "9": 79,
+        "10": 51,
+        "11": 21,
+        "12": 9,
+        "13": 1
+      }
+    },
+    {
+      "scenario": "Mixed 100 / 25% Approx",
+      "policy": "balanced-v1",
+      "matches": 10000,
+      "eligible": 734991,
+      "risks": 145146,
+      "recipients": [
+        72201,
+        72945
+      ],
+      "maxPrefixGap": 2,
+      "maxRiskOwnerStreak": 4,
+      "sameOwnerTransitions": 44664,
+      "transitions": 135146,
+      "zeroRiskMatches": 0,
+      "tenToZero": 0,
+      "ratePercent": 19.748,
+      "meanFinalGap": 0.6962,
+      "p95FinalGap": 2,
+      "maxFinalGap": 2,
+      "sameOwnerPercent": 33.05,
+      "gapDistribution": {
+        "0": 4031,
+        "1": 4976,
+        "2": 993
+      }
+    },
+    {
+      "scenario": "unequal eligibility 100 / 50% Approx for recipient 1",
+      "policy": "legacy",
+      "matches": 10000,
+      "eligible": 734975,
+      "risks": 146891,
+      "recipients": [
+        98054,
+        48837
+      ],
+      "maxPrefixGap": 18,
+      "maxRiskOwnerStreak": 17,
+      "sameOwnerTransitions": 71431,
+      "transitions": 136891,
+      "zeroRiskMatches": 0,
+      "tenToZero": 36,
+      "ratePercent": 19.9858,
+      "meanFinalGap": 5.1621,
+      "p95FinalGap": 11,
+      "maxFinalGap": 18,
+      "sameOwnerPercent": 52.18,
+      "gapDistribution": {
+        "0": 426,
+        "1": 872,
+        "2": 938,
+        "3": 1123,
+        "4": 1123,
+        "5": 1184,
+        "6": 1089,
+        "7": 955,
+        "8": 771,
+        "9": 589,
+        "10": 389,
+        "11": 240,
+        "12": 154,
+        "13": 78,
+        "14": 43,
+        "15": 11,
+        "16": 11,
+        "17": 3,
+        "18": 1
+      }
+    },
+    {
+      "scenario": "unequal eligibility 100 / 50% Approx for recipient 1",
+      "policy": "balanced-v1",
+      "matches": 10000,
+      "eligible": 734975,
+      "risks": 130850,
+      "recipients": [
+        68647,
+        62203
+      ],
+      "maxPrefixGap": 2,
+      "maxRiskOwnerStreak": 4,
+      "sameOwnerTransitions": 38966,
+      "transitions": 120850,
+      "zeroRiskMatches": 0,
+      "tenToZero": 0,
+      "ratePercent": 17.8033,
+      "meanFinalGap": 0.8588,
+      "p95FinalGap": 2,
+      "maxFinalGap": 2,
+      "sameOwnerPercent": 32.24,
+      "gapDistribution": {
+        "0": 3169,
+        "1": 5074,
+        "2": 1757
+      }
+    }
+  ],
+  "scoreFinish": [
+    {
+      "scenario": "score target 20 / 65% success / 4 real modes",
+      "policy": "legacy",
+      "matches": 10000,
+      "eligible": 273995,
+      "risks": 54757,
+      "recipients": [
+        27043,
+        27714
+      ],
+      "ratePercent": 19.9847,
+      "meanTurns": 29.3995,
+      "p95FinalGap": 4,
+      "maxFinalGap": 8,
+      "maxPrefixGap": 8,
+      "ties": 245
+    },
+    {
+      "scenario": "score target 20 / 65% success / 4 real modes",
+      "policy": "balanced-v1",
+      "matches": 10000,
+      "eligible": 274757,
+      "risks": 54970,
+      "recipients": [
+        27502,
+        27468
+      ],
+      "ratePercent": 20.0068,
+      "meanTurns": 29.4757,
+      "p95FinalGap": 2,
+      "maxFinalGap": 2,
+      "maxPrefixGap": 2,
+      "ties": 256
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 'use strict';
+const {withoutRiskDispatch}=require('./selection-source.cjs');
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
 const {createSimulation}=require('../scripts/game-simulation.cjs');
 function simulation(){
@@ -26,10 +27,10 @@ test('integration: pinned storage cores and gameplay contracts are byte-exact fr
  for(const [ref,names]of [
   ['6b68155a2584eda787dc383e60e36c54cbe8b9c5',['profile-backup.js','profile-backup-view.js','storage-controller.js']],
   ['cd6b2067acb984a6ea33d71e2f28d4f7ffde863c',['card-reports.js','round-selection.js','round-actions.js']]
- ])for(const name of names)assert.deepEqual(fs.readFileSync(path.join(root,'party-game',name)),execFileSync('git',['show',ref+':party-game/'+name],{cwd:root}),name);
+ ])for(const name of names)assert.deepEqual(name==='round-selection.js'?Buffer.from(withoutRiskDispatch(fs.readFileSync(path.join(root,'party-game',name),'utf8'))):fs.readFileSync(path.join(root,'party-game',name)),execFileSync('git',['show',ref+':party-game/'+name],{cwd:root}),name);
 });
 
 test('integration: session restoration retains every previous guard plus the explicit report-hold guard',()=>{
- const current=fs.readFileSync(path.join(__dirname,'../session-restoration.js'),'utf8').replace('validatePlannedGame(reviewPlannerProjection(candidate))','validatePlannedGame(candidate)').replace('    validateResultReview(candidate);\n','').replace('    validateFeedbackHold(candidate);\n','').replace(' && !candidate.current?.feedbackHold &&',' &&');
+ const current=fs.readFileSync(path.join(__dirname,'../session-restoration.js'),'utf8').replace('validatePlannedGame(reviewPlannerProjection(candidate))','validatePlannedGame(candidate)').replace('    validateResultReview(candidate);\n','').replace('    validateGameRiskPlan(candidate);\n','').replace('    validateFeedbackHold(candidate);\n','').replace(' && !candidate.current?.feedbackHold &&',' &&');
  assert.equal(current,execFileSync('git',['show','6b68155a2584eda787dc383e60e36c54cbe8b9c5:party-game/session-restoration.js'],{encoding:'utf8'}));
 });

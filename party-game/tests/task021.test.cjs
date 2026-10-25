@@ -1,4 +1,5 @@
 'use strict';
+const {withoutRiskDispatch}=require('./selection-source.cjs');
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
 const {createSimulation}=require('../scripts/game-simulation.cjs'),{auditConditions}=require('../scripts/condition-audit.cjs');
 const root=path.resolve(__dirname,'..'),baseline='363b9aa1e33f47f5484d438d6fc49f57c7c12c0a';
@@ -40,6 +41,6 @@ test('TASK021: current-round flag is unavailable in every phase; deciding-questi
 test('TASK021: content, RNG, unchanged selection, clock, backup and storage modules are byte-exact from published v83',()=>{
  const files=execFileSync('git',['ls-tree','-r','--name-only',baseline,'party-game/content'],{encoding:'utf8'}).trim().split('\n');
  for(const name of [...files,...['cards.js','content-packs.js','modifiers.js','modifiers-v2.js','rules.js','penalties.js','round-planner.js','round-selection.js','round-actions.js','timer-controller.js','storage-controller.js','profile-backup.js','card-reports.js','card-feedback.js'].map(n=>'party-game/'+n)]){
-  assert.equal(fs.readFileSync(path.join(root,'..',name),'utf8'),execFileSync('git',['show',baseline+':'+name],{encoding:'utf8',maxBuffer:12e6}),name);
+  assert.equal((name==='party-game/round-selection.js'?withoutRiskDispatch(fs.readFileSync(path.join(root,'..',name),'utf8')):fs.readFileSync(path.join(root,'..',name),'utf8')),execFileSync('git',['show',baseline+':'+name],{encoding:'utf8',maxBuffer:12e6}),name);
  }
 });
