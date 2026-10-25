@@ -2,17 +2,19 @@
 const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs');
-const topics=[{id:'geography',version:4,source:'geography-v2',name:'География',prefix:'task008b'},{id:'science',version:4,source:'science-v2',name:'Наука',prefix:'task008c'}];
+const topics=[{id:'geography',name:'География',prefix:'task008b'},{id:'science',name:'Наука',prefix:'task008c'}];
 const devices=[{name:'narrow',width:320,height:568},{name:'phone',width:390,height:844},{name:'desktop',width:1440,height:900}];
 async function settleAnimations(page){await page.locator('.scene:not([hidden])').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))))}
 async function screenshot(page,topic,name){await settleAnimations(page);await capture(page,{path:'artifacts/quip-mobile-layout/'+topic.prefix+'-'+name+'.png'})}
 async function align(page,selector){await page.locator(selector).evaluate(el=>{const scroll=document.getElementById('advanced-scroll');scroll.scrollTop+=el.getBoundingClientRect().top-scroll.getBoundingClientRect().top-8})}
 async function chooseTopic(page,topic){await page.locator('#new-game-menu').click();await page.locator('#thematic-game').click();await page.locator('[data-theme="'+topic.id+'"]').click()}
-async function assertRoundSource(page,source){assert.equal(await page.evaluate(source=>{
- const c=game.current;if(c.question){const theme=source.replace(/-v2$/,'');return game.contentPack.id===theme&&c.question.categories.includes(theme)&&getPackQuestionPool(game.contentPack,c.difficulty).some(q=>q.id===c.question.id&&JSON.stringify(q)===JSON.stringify(c.question))}
+async function assertRoundSource(page,theme){assert.equal(await page.evaluate(theme=>{
+ const c=game.current,pack=getContentPack(game.contentPack);
+ if(pack.id!==theme||pack.version!==latestContentPackSelection(theme).version)return false;
+ if(c.question)return c.question.categories.includes(theme)&&getPackQuestionPool(game.contentPack,c.difficulty).some(q=>q.id===c.question.id&&JSON.stringify(q)===JSON.stringify(c.question));
  const kind=c.modeId==='blitz'?'blitz':getMode(c.methodId).kind,pool=getPackCardPool(game.contentPack,kind,c.difficulty,game.promptTypes);
- return pool.every(row=>row.pack===source)&&(c.blitzWords||[c.word]).every(text=>pool.some(row=>row.text===text));
-},source),true)}
+ return pool.length>0&&pool.every(row=>row.categories.includes(theme)&&pack.criteria.cardIds.includes(row.id))&&(c.blitzWords||[c.word]).every(text=>pool.some(row=>row.text===text));
+},theme),true)}
 module.exports=async function thematicUI(browser,url){
  fs.mkdirSync('artifacts/quip-mobile-layout',{recursive:true});
  for(const topic of topics)for(const device of devices){
@@ -36,15 +38,15 @@ module.exports=async function thematicUI(browser,url){
    await page.locator('#advanced-done').click();const awardTo=device.name==='phone'?'guesser':'setter';
    await page.locator('[data-setting="awardTo"] button[data-value="'+awardTo+'"]').click();
    await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.promptTypes=['word'];options.finishType='rounds';options.rounds=2;options.dice=false;options.modifierChance=100;options.complications=true;Math.random=()=>0;chooseStartingTeam=()=>0;renderOptions()});
-   await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();await assertRoundSource(page,topic.source);
+   await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();await assertRoundSource(page,topic.id);
    await page.locator('[data-action="toggle-word"]').click();if(device.name==='phone')await screenshot(page,topic,'phone-round');
    await page.locator('[data-action="start-timer"]').click();await page.locator('[data-action="base-now"]').click();
    assert.equal(await page.evaluate(()=>game.history[0].outcome),'base-only');assert.deepEqual(await page.evaluate(()=>game.scores),awardTo==='setter'?[1,0]:[0,1]);
-   assert.equal(await page.evaluate(()=>game.phase),'ready');await page.locator('[data-action="roll"]').click();await assertRoundSource(page,topic.source);await page.locator('[data-action="toggle-word"]').click();await page.locator('[data-action="start-timer"]').click();await page.locator('[data-action="correct-now"]').click();
+   assert.equal(await page.evaluate(()=>game.phase),'ready');await page.locator('[data-action="roll"]').click();await assertRoundSource(page,topic.id);await page.locator('[data-action="toggle-word"]').click();await page.locator('[data-action="start-timer"]').click();await page.locator('[data-action="correct-now"]').click();
    assert.equal(await page.evaluate(()=>game.phase),'results');assert.equal(await page.evaluate(()=>game.contentPack.id),topic.id);await page.locator('[data-action="again"]').click();assert.equal(await page.evaluate(()=>game.roundIndex),0);assert.equal(await page.evaluate(()=>game.contentPack.id),topic.id);
    if(device.name==='phone'){
     for(const mode of ['mime','draw','yesno','secret','blitz','approx']){
-     await page.evaluate(mode=>{options.modes=[mode];options.dice=false;options.complications=mode!=='secret';options.modifierChance=100;newGame();roll()},mode);await assertRoundSource(page,topic.source);
+     await page.evaluate(mode=>{options.modes=[mode];options.dice=false;options.complications=mode!=='secret';options.modifierChance=100;newGame();roll()},mode);await assertRoundSource(page,topic.id);
      if(mode==='secret')assert.notEqual(await page.evaluate(()=>game.current.methodId),'sing');
      if(mode==='blitz'){
       assert.equal(await page.evaluate(()=>new Set(game.current.blitzWords).size),3);await page.locator('[data-action="toggle-word"]').click();await page.locator('[data-action="start-timer"]').click();

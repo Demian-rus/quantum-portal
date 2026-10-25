@@ -54,6 +54,7 @@ function restoreSession() {
     if(candidate.contentPack)getContentPack(candidate.contentPack);
     songLanguagePolicy(candidate);
     timerPolicy(candidate);
+    validateFeedbackHold(candidate);
     finishPolicyVersion(candidate);
     validateTiebreakState(candidate);
   }catch{storageBlocked=true;return;}
@@ -64,7 +65,7 @@ function restoreSession() {
     }
   }
   if(candidate.phase==='rolling')candidate.phase=candidate.current?'task':'ready';
-  if(candidate.phase==='countdown' && (candidate.current?.autoStartAt||0)<=Date.now()){
+  if(candidate.phase==='countdown' && !candidate.current?.feedbackHold && (candidate.current?.autoStartAt||0)<=Date.now()){
     candidate.phase='play';
     candidate.current.deadline=candidate.current.autoStartAt+candidate.current.seconds*1000;
     candidate.current.autoStartAt=null;
