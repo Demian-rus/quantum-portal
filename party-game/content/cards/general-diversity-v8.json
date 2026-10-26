@@ -1,0 +1,502 @@
+[
+  {
+    "id": "word-047001",
+    "text": "ДРОЗД",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "animals"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047002",
+    "text": "ГАЛОША",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047003",
+    "text": "РЕСНИЦА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047004",
+    "text": "КОСИЧКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047005",
+    "text": "ПЕРРОН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "transport"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047006",
+    "text": "ПЛОТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "marine"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047007",
+    "text": "ТЮБИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047008",
+    "text": "ДРЕЛЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047009",
+    "text": "ЛУЖАЙКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047010",
+    "text": "МАРЛЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047011",
+    "text": "ГРУЗОВИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "transport"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047012",
+    "text": "РУЧЕЁК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047013",
+    "text": "ЗАПЛАТКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047014",
+    "text": "БУСИНА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047015",
+    "text": "НАПЁРСТОК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047016",
+    "text": "ЛЮК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "transport"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "phrase-047001",
+    "text": "ПАДАЮЩИЙ ЛИСТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "phrase-047002",
+    "text": "ГРЯЗНАЯ ПОСУДА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "phrase-047003",
+    "text": "МЕШОК КАРТОШКИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "food"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "phrase-047004",
+    "text": "СКРИПЯЩАЯ ЛЕСТНИЦА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047017",
+    "text": "ЗОДЧИЙ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047018",
+    "text": "ПАРОМЩИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047019",
+    "text": "ПАРТИТУРА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047020",
+    "text": "СЕРПАНТИН",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047021",
+    "text": "ШТОЛЬНЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047022",
+    "text": "ГРОТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047023",
+    "text": "МУШКЕТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047024",
+    "text": "ПЕРГАМЕНТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047025",
+    "text": "ШАРЛАТАН",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047026",
+    "text": "КОНЮХ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047027",
+    "text": "ФРЕСКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047028",
+    "text": "ПИКТОГРАММА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047029",
+    "text": "БАРРИКАДА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047030",
+    "text": "СВЕТОТЕНЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047031",
+    "text": "ИМПУЛЬС",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047032",
+    "text": "КОМЕНДАНТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "phrase-047005",
+    "text": "ПОДЗЕМНАЯ РЕКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "phrase-047006",
+    "text": "СКРЫТЫЙ МЕХАНИЗМ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "phrase-047007",
+    "text": "РАСТЕРЯННЫЙ ДИРИЖЁР",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "phrase-047008",
+    "text": "КРУШЕНИЕ ПОЕЗДА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "transport"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047033",
+    "text": "АВТОКРАТИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047034",
+    "text": "ЭФЕМЕРНОСТЬ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047035",
+    "text": "АГНОСТИЦИЗМ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047036",
+    "text": "КОММЮНИКЕ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047037",
+    "text": "АСКЕТИЗМ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047038",
+    "text": "МИЗАНТРОП",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047039",
+    "text": "ФАТАЛИЗМ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "word-047040",
+    "text": "ПЕРФЕКЦИОНИЗМ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "phrase-047009",
+    "text": "БУМАЖНЫЙ ТИГР",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v8"
+  },
+  {
+    "id": "phrase-047010",
+    "text": "ВЫНУЖДЕННОЕ ПЕРЕМИРИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v8"
+  }
+]

@@ -8,7 +8,7 @@ const snapshot=p=>p.evaluate(()=>({game:JSON.stringify(game),raw:localStorage.ge
  const files=historicalRuntimeFiles(git,base,['index.html','style.css','sw.js']);assert.equal(files.length,51);
  const current=new Map(files.map(n=>[n,fs.readFileSync(path.join(root,'party-game',n))])),previous=new Map(files.map(n=>[n,git(['show',base+':party-game/'+n])]));
  const write=m=>{for(const[n,bytes]of m)fs.writeFileSync(path.join(root,'party-game',n),bytes)};
- const cache=m=>m.get('sw.js').toString().match(/const CACHE='([^']+)'/)[1],oldCache=cache(previous),newCache=cache(current);assert.match(oldCache,/v87/);assert.match(newCache,/v88/);
+ const cache=m=>m.get('sw.js').toString().match(/const CACHE='([^']+)'/)[1],oldCache=cache(previous),newCache=cache(current);assert.match(oldCache,/v87/);assert.match(newCache,/v89/);
  const b=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
  try{for(const scenario of ['editor','pending']){
   const ctx=await b.newContext({viewport:{width:390,height:844},hasTouch:true}),p=await ctx.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));
@@ -37,15 +37,15 @@ const snapshot=p=>p.evaluate(()=>({game:JSON.stringify(game),raw:localStorage.ge
    if(scenario==='pending'){await p.evaluate(()=>document.fonts.ready);const fixedAfter=await p.evaluate(()=>{const c=$('play-content').getBoundingClientRect(),t=document.querySelector('.review-tabs').getBoundingClientRect(),b=document.querySelector('[data-action="confirm-results"]').getBoundingClientRect();return {tabs:t.y-c.y,bottom:b.bottom-c.bottom}});assert.ok(Math.abs(fixedAfter.tabs-fixedBefore.tabs)<1,'Published v87 tab anchor retained');assert.ok(Math.abs(fixedAfter.bottom-fixedBefore.bottom)<1,'Published v87 confirmation anchor retained');}
    const list=scenario==='editor'?'#result-history-rows':'.pending-review-rows';assert.equal(await p.locator(list+' [data-review-expand]').count(),scenario==='editor'?1:2);assert.equal(await p.locator(list+' [aria-expanded="true"]').count(),0);
    const cached=await p.evaluate(async name=>{const c=await caches.open(name);return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>!!await c.match(s.src)))},newCache);assert.equal(cached.length,48);assert.ok(cached.every(Boolean));
-   await p.screenshot({path:folder+'/'+scenario+'-after-v88-offline.png',animations:'disabled'});
-   await p.locator(list+' [data-review-expand="0"]').click();assert.deepEqual(await snapshot(p),before,'Expansion after upgrade is read-only');await p.screenshot({path:folder+'/'+scenario+'-expanded-v88-offline.png',animations:'disabled'});
+   await p.screenshot({path:folder+'/'+scenario+'-after-v89-offline.png',animations:'disabled'});
+   await p.locator(list+' [data-review-expand="0"]').click();assert.deepEqual(await snapshot(p),before,'Expansion after upgrade is read-only');await p.screenshot({path:folder+'/'+scenario+'-expanded-v89-offline.png',animations:'disabled'});
    if(scenario==='editor'){
     const remaining=await p.evaluate(()=>game.current.feedbackHold.remainingMs);await p.locator('#result-history-cancel').click();assert.equal(await p.evaluate(()=>game.current.paused),true);assert.equal(await p.evaluate(()=>game.current.remainingMs),remaining);assert.equal(await p.evaluate(()=>game.history[0].correct),true);
     assert.equal((await snapshot(p)).profiles,before.profiles);assert.equal((await snapshot(p)).reports,before.reports);
    }else{
     await p.locator('[data-action="confirm-results"]').click();assert.equal(await p.evaluate(()=>profileStore.recent.length),1);const profiles=(await snapshot(p)).profiles;await p.reload();assert.equal((await snapshot(p)).profiles,profiles);
    }
-   assert.deepEqual(errors,[]);console.log('v87 → v88',scenario,'real SW upgrade / cold offline / exact RAW + risk + profiles / 48 JS / disclosure / timer or exactly-once result PASS');
+   assert.deepEqual(errors,[]);console.log('v87 → v89',scenario,'real SW upgrade / cold offline / exact RAW + risk + profiles / 48 JS / disclosure / timer or exactly-once result PASS');
   }finally{write(current);await ctx.close();}
  }}finally{write(current);await b.close();}
 })().catch(e=>{console.error(e);process.exitCode=1});

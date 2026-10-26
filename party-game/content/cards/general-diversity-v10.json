@@ -1,0 +1,509 @@
+[
+  {
+    "id": "word-049001",
+    "text": "КОЧЕРЫЖКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "food"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049002",
+    "text": "КОЛТУН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "biology",
+      "everyday"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049003",
+    "text": "ЗАУСЕНЕЦ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049004",
+    "text": "РЯЖЕНКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "food"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049005",
+    "text": "МОРС",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "food"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049006",
+    "text": "ПОЧЕРК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "language"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049007",
+    "text": "ЗЕВОТА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049008",
+    "text": "СТРИЖ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "animals"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049009",
+    "text": "ОВРАГ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049010",
+    "text": "СПИЦА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049011",
+    "text": "НЕТЕРПЕНИЕ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049012",
+    "text": "КОЧЕРГА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049013",
+    "text": "ТОРШЕР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049014",
+    "text": "СЛЯКОТЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049015",
+    "text": "СОСУЛЬКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049016",
+    "text": "КАМБАЛА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "animals"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "phrase-049001",
+    "text": "ДРАКА ПОДУШКАМИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "phrase-049002",
+    "text": "ЗАБЫТАЯ ГОДОВЩИНА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "phrase-049003",
+    "text": "ПОСЛАНИЕ В БУТЫЛКЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "marine"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "phrase-049004",
+    "text": "ТИХИЙ ЧАС",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049017",
+    "text": "СТЕКОЛЬЩИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049018",
+    "text": "КОНТРАБАНДИСТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049019",
+    "text": "ПОЛКОВОДЕЦ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049020",
+    "text": "ВЕЛИКОДУШИЕ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049021",
+    "text": "ФУНИКУЛЁР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "transport"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049022",
+    "text": "ВЕРСТАК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049023",
+    "text": "ЛЕДОРУБ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "sport"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049024",
+    "text": "ГАНДБОЛ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "sport"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049025",
+    "text": "КЛАВЕСИН",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049026",
+    "text": "ПОДТЕКСТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "language",
+      "literature"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049027",
+    "text": "ПОПУРРИ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049028",
+    "text": "ТРЯСИНА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "nature",
+      "geography"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049029",
+    "text": "БУРЕЛОМ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049030",
+    "text": "ЗИМОРОДОК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "animals"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049031",
+    "text": "ФАЛЬЦЕТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049032",
+    "text": "ПЕРВООТКРЫВАТЕЛЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history",
+      "geography"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "phrase-049005",
+    "text": "ШТРАФНОЙ КРУГ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "sport"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "phrase-049006",
+    "text": "ПОЧЁТНЫЙ КАРАУЛ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "phrase-049007",
+    "text": "СОБРАНИЕ ЖИЛЬЦОВ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "phrase-049008",
+    "text": "ПРИЁМНАЯ КОМИССИЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049033",
+    "text": "КУМОВСТВО",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049034",
+    "text": "ПЕДАНТИЧНОСТЬ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049035",
+    "text": "НЕДОСКАЗАННОСТЬ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "language"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049036",
+    "text": "СОЛЬФЕДЖИО",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049037",
+    "text": "КЛИФФХЭНГЕР",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "cinema",
+      "literature"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049038",
+    "text": "ЗАЗЕМЛЕНИЕ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049039",
+    "text": "БАЛЛАСТ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "transport",
+      "marine"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "word-049040",
+    "text": "ЖИВИЦА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "phrase-049009",
+    "text": "КРУГОВАЯ ПОРУКА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v10"
+  },
+  {
+    "id": "phrase-049010",
+    "text": "КРЕДИТ ДОВЕРИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v10"
+  }
+]
