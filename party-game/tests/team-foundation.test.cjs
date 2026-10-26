@@ -136,7 +136,7 @@ test('partial primary write protects both the foreign RAW and pending journal fo
 });
 test('team runtime is a separate versioned shell and never replaces legacy controllers',()=>{
  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8'),sw=fs.readFileSync(path.join(__dirname,'../sw.js'),'utf8');
- for(const [name,version]of [['team-format',1],['team-storage',2],['team-engine',1],['team-controller',3]]){assert.ok(html.includes('./'+name+'.js?v='+version));assert.ok(sw.includes('./'+name+'.js?v='+version));}
+ for(const [name,version]of [['team-format',1],['team-storage',3],['team-engine',1],['team-controller',4]]){assert.ok(html.includes('./'+name+'.js?v='+version));assert.ok(sw.includes('./'+name+'.js?v='+version));}
  assert.match(fs.readFileSync(path.join(__dirname,'../setup-wizard.js'),'utf8'),/id="wizard-format-teams"[^>]*>2 НА 2/);
  assert.doesNotMatch(html,/feedback-sync/);
 });
@@ -161,4 +161,15 @@ test('a stale action reports conflict while a current action still requires expl
  await assert.rejects(s.commit({expectedRaw:before.raw,match:match(undefined,2)}),e=>e.code==='CONFLICT');
  await assert.rejects(s.commit({expectedRaw:h.map.get(S.KEY),match:match(undefined,2)}),e=>e.code==='RECOVERY_REQUIRED');
  assert.equal((await s.pending()).status,'pending');assert.equal((await s.load()).status,'blocked');
+});
+test('load and pending classification recheck RAW after asynchronous verification, without any recovery write',async()=>{
+ for(const operation of ['load','commit']){
+  const h=harness(),store=h.make(),before=await store.commit({expectedRaw:null,match:match()}),after=await store.commit({expectedRaw:before.raw,match:match(undefined,1)});
+  h.map.set(S.KEY,before.raw);h.map.set(S.JOURNAL_KEY,JSON.stringify({version:1,before:before.raw,after:after.raw}));let once=true;
+  const digest=async text=>{if(once){once=false;h.map.set(S.KEY,after.raw);h.map.delete(S.JOURNAL_KEY);}return crypto.createHash('sha256').update(text).digest('hex');};
+  const reading=h.make({digest}),writes=h.access.filter(x=>x[0]!=='get').length;
+  if(operation==='commit')await assert.rejects(reading.commit({expectedRaw:before.raw,match:match(undefined,2)}),e=>e.code==='CONFLICT');
+  else assert.equal((await reading.load()).reason,'CONFLICT');
+  assert.equal(h.access.filter(x=>x[0]!=='get').length,writes);assert.equal(h.map.get(S.KEY),after.raw);
+ }
 });

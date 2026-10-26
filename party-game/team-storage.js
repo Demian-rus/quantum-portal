@@ -54,9 +54,12 @@
   function load(){return exclusive(async()=>{
    let raw;try{
     raw=storage.getItem(KEY);
+    const value=raw===null?null:await decode(raw);
+    // Re-read after asynchronous verification. A receiving renderer may have
+    // queued storage notifications when its native Web Lock is first granted.
+    if(storage.getItem(KEY)!==raw)return {status:'blocked',reason:'CONFLICT',raw};
     if(storage.getItem(JOURNAL_KEY)!==null)return {status:'blocked',reason:'RECOVERY_REQUIRED',raw};
-    if(raw===null)return {status:'empty',raw:null,revision:0,match:null};
-    const value=await decode(raw);return {status:'ok',raw,revision:value.revision,match:value.match};
+    return value?{status:'ok',raw,revision:value.revision,match:value.match}:{status:'empty',raw:null,revision:0,match:null};
    }catch(e){return protectedResult(e,raw);}
   });}
   function commit({expectedRaw,match,replaceMatchId=null}={}){
@@ -66,11 +69,12 @@
    if(expectedRaw!==null&&typeof expectedRaw!=='string')return Promise.reject(error('EXPECTED_RAW_REQUIRED','Требуется точный исходный RAW.'));
    return exclusive(async()=>{
     const raw=storage.getItem(KEY);
-    // A stale action is a conflict even if another writer's journal is visible.
-    // This never authorizes a write: a matching RAW still requires no pending.
     if(raw!==expectedRaw)fail('CONFLICT','Командная партия уже изменена в другой вкладке.');
-    if(storage.getItem(JOURNAL_KEY)!==null)fail('RECOVERY_REQUIRED','Сначала восстановите прерванную командную запись.');
     const before=raw===null?null:await decode(raw),revision=(before?.revision||0)+1;
+    // Classify pending only after the async read is verified and rechecked.
+    // No pending journal is removed, ignored or repaired by this path.
+    if(storage.getItem(KEY)!==raw)fail('CONFLICT','Командная партия уже изменена в другой вкладке.');
+    if(storage.getItem(JOURNAL_KEY)!==null)fail('RECOVERY_REQUIRED','Сначала восстановите прерванную командную запись.');
     if(!Number.isSafeInteger(revision))fail('LIMIT','Исчерпаны ревизии.');
     const replacing=!!before&&before.match.teamFormat.id!==snapshot.teamFormat.id;
     if(replacing&&!(replaceMatchId===before.match.teamFormat.id&&validateReplacement?.(before.match,snapshot)===true)||!replacing&&replaceMatchId!==null)fail('MATCH_CHANGED','Нельзя заменить другую командную партию без явного сохранения её архива.');

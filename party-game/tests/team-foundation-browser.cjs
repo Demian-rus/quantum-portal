@@ -20,7 +20,10 @@ const URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/';
   }
   await install(a);await install(b);
   assert.equal(await a.evaluate(()=>navigator.locks!==undefined),true);
-  const old=await a.evaluate(()=>teamStore.commit({expectedRaw:null,match:{teamFormat:fixtureHeader,fixtureOnly:true,turn:0}}));
+  let old=await a.evaluate(()=>teamStore.commit({expectedRaw:null,match:{teamFormat:fixtureHeader,fixtureOnly:true,turn:0}}));
+  // Repeat native lock handoff: no concurrent writer may succeed twice or
+  // mistake a queued storage notification for an interrupted write.
+  for(let attempt=0;attempt<10;attempt++){
   // Hold A's real origin-wide Web Lock while B submits the same revision.
   await a.evaluate(()=>{
    window.lockAcquired=false;window.releaseTeamLock=null;
@@ -31,7 +34,10 @@ const URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/';
   await a.evaluate(()=>releaseTeamLock());const results=await Promise.all(writes);
   assert.equal(results.filter(r=>r.ok).length,1,JSON.stringify(results));assert.equal(results.find(r=>!r.ok).code,'CONFLICT',JSON.stringify(results));
   assert.equal(await a.evaluate(()=>localStorage.getItem(QuipTeamStorage.JOURNAL_KEY)),null,'winner must have cleared the journal');
-  const latest=await b.evaluate(()=>teamStore.load());assert.equal(latest.revision,2);assert.ok([1,2].includes(latest.match.turn));
+  const winner=results.find(r=>r.ok).value;await b.waitForFunction(raw=>localStorage.getItem(QuipTeamStorage.KEY)===raw&&localStorage.getItem(QuipTeamStorage.JOURNAL_KEY)===null,winner.raw);
+  const next=await b.evaluate(()=>teamStore.load());assert.equal(next.revision,old.revision+1);assert.ok([1,2].includes(next.match.turn));old=next;
+  }
+  const latest=old;
   await context.setOffline(true);
   // Fresh store after page restart, using actual localStorage and SHA-256.
   await b.reload();await install(b);assert.deepEqual(await b.evaluate(()=>teamStore.load()),latest);

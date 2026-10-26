@@ -12,14 +12,14 @@ async function update(p,cache){await p.evaluate(async()=>{const reg=await naviga
    write(current);await p.goto(URL+'?setup=wizard');await seedDuel(p);await start(p,{mode:'secret',rounds:8,complications:true},[1,1,0]);await answer(p);await select(p);await begin(p);await click(p,'#timer-pause-control');
    const protectedDuel=await p.evaluate(()=>({raw:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY)})),teamRaw=await raw(p),teamGame=await p.evaluate(()=>JSON.stringify(game));
    await p.evaluate(async()=>{await navigator.serviceWorker.ready});await p.waitForFunction(()=>!!navigator.serviceWorker.controller);
-   const cached=await p.evaluate(async()=>{const cache=await caches.open('kvip-pwa-v91-20261026-teams-candidate-r3');return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>!!await cache.match(s.src)));});assert.equal(cached.length,53);assert.ok(cached.every(Boolean));
+   const cached=await p.evaluate(async()=>{const cache=await caches.open('kvip-pwa-v91-20261026-teams-candidate-r4');return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>!!await cache.match(s.src)));});assert.equal(cached.length,53);assert.ok(cached.every(Boolean));
    await ctx.setOffline(true);await p.reload();await click(p,'#continue-teams');assert.equal(await raw(p),teamRaw);assert.equal(await p.evaluate(()=>JSON.stringify(game)),teamGame);await click(p,'#exit-game');
    // Serve the exact published v89 bytes; its worker and old code know nothing
    // about team sessions. Both slots must survive a real cold offline rollback.
    write(before);await ctx.setOffline(false);await update(p,'kvip-pwa-v89-20261026-general-content-release');await ctx.setOffline(true);await p.goto(URL+'?setup=legacy');assert.equal(await p.evaluate(()=>typeof QuipTeams),'undefined');await p.locator('#continue-game').click();
    assert.deepEqual(await p.evaluate(()=>({raw:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY)})),protectedDuel);assert.equal(await p.evaluate(()=>localStorage.getItem('kvip:teams-2x2:v1')),teamRaw);assert.equal(await p.evaluate(()=>game.current.paused),true);assert.equal(await p.evaluate(()=>game.roundIndex),1);
    // Returning to the new code resumes the same team task, roster and history.
-   write(current);await ctx.setOffline(false);await update(p,'kvip-pwa-v91-20261026-teams-candidate-r3');await ctx.setOffline(true);await p.goto(URL+'?setup=wizard');await click(p,'#continue-teams');assert.equal(await raw(p),teamRaw);assert.equal(await p.evaluate(()=>JSON.stringify(game)),teamGame);
+   write(current);await ctx.setOffline(false);await update(p,'kvip-pwa-v91-20261026-teams-candidate-r4');await ctx.setOffline(true);await p.goto(URL+'?setup=wizard');await click(p,'#continue-teams');assert.equal(await raw(p),teamRaw);assert.equal(await p.evaluate(()=>JSON.stringify(game)),teamGame);
    assert.deepEqual(await p.evaluate(()=>({raw:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY)})),protectedDuel);assert.deepEqual(errors,[]);console.log('TASK028 real SW PASS: 53 scripts offline / active team cold restore / exact v89 rollback resumes old duel / team RAW retained / upgrade back resumes exact team');
   }finally{write(current);await ctx.close();}
  }finally{write(current);await browser.close();}

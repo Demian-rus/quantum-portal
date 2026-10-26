@@ -24,7 +24,7 @@
  document.body.append(error);
  const dialog=document.createElement('div');dialog.id='team-data-backdrop';dialog.hidden=true;dialog.className='dialog-backdrop';
  dialog.innerHTML='<section class="team-data-dialog" role="dialog" aria-modal="true" aria-labelledby="team-data-title"><h2 id="team-data-title">ПАРТИИ 2 НА 2</h2><div id="team-data-body" tabindex="0"></div><p id="team-data-status" role="status"></p><div class="team-data-actions"><button id="team-export" type="button" class="button button-secondary">СКАЧАТЬ ПАРТИИ 2 НА 2</button><button id="team-recover-before" type="button" class="button button-secondary" hidden>ВЕРНУТЬ ПРЕДЫДУЩЕЕ СОСТОЯНИЕ</button><button id="team-recover-after" type="button" class="button button-primary" hidden>ПРИНЯТЬ НОВОЕ СОСТОЯНИЕ</button><button id="team-clear-archive" type="button" class="button button-secondary" hidden>УДАЛИТЬ ТОЛЬКО АРХИВ 2 НА 2</button><button id="team-data-close" type="button" class="button button-primary">ЗАКРЫТЬ</button></div></section>';
- document.body.append(dialog);let dataFocus=null,pendingJournal=null,dataURL=null,dataInert=false,revealToken=0;
+ document.body.append(dialog);const homeFootnote=$q('.home-footnote'),originalHomeFootnote=homeFootnote.textContent;let dataFocus=null,pendingJournal=null,dataURL=null,dataInert=false,revealToken=0;
  function setBusy(value){s.busy=value;busy.hidden=!value;document.body.setAttribute('aria-busy',String(value));}
  function fault(e){s.blocked=true;error.hidden=false;$('team-save-message').textContent='Изменение не подтверждено. Предыдущее состояние сохранено или защищено журналом восстановления. '+String(e?.message||e).replace(/^TEAM_(?:GAME|FORMAT):\s*/,'');stopTicking();}
  function root(){const base=s.tx?.proposal||s.record;if(!base||!E.isGame(game))throw Error('Нет активной командной партии.');return {...base,teamFormat:game.teamFormat,game,taskMemory};}
@@ -164,7 +164,7 @@
   for(const copy of panel.ownerDocument.querySelectorAll('#wizard-rule-list .wizard-rule-copy p'))copy.textContent=copy.textContent.replace(/Соперник/g,'Партнёр').replace(/соперник/g,'партнёр');
  }
  function paintHome(){
-  home.hidden=!s.record&&s.status!=='blocked';$('continue-teams').textContent=s.status==='blocked'?'ВОССТАНОВИТЬ 2 НА 2':s.record?.game.phase==='results'?'ИТОГИ 2 НА 2':'ПРОДОЛЖИТЬ 2 НА 2';
+  home.hidden=!s.record&&s.status!=='blocked';$('scene-home').classList.toggle('has-team-save',!home.hidden);homeFootnote.textContent=home.hidden?originalHomeFootnote:'1 НА 1 ИЛИ 2 НА 2 · ОДИН ТЕЛЕФОН';$('continue-teams').textContent=s.status==='blocked'?'ВОССТАНОВИТЬ 2 НА 2':s.record?.game.phase==='results'?'ИТОГИ 2 НА 2':'ПРОДОЛЖИТЬ 2 НА 2';
   $('team-archive-open').hidden=!s.record;paintSetup();
  }
  function rosterMarkup(){return game.teamFormat.teams.map((team,i)=>'<section><h3>'+escapeHTML(team.name)+' · '+game.scores[i]+'</h3><p>'+team.members.map(escapeHTML).join(' + ')+'</p></section>').join('');}

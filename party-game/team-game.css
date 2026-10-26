@@ -7,7 +7,9 @@
 .team-name-grid label{display:grid;gap:5px;margin:8px 0;font-size:13px}
 .team-name-grid input{width:100%;min-width:0;min-height:44px;box-sizing:border-box;padding:10px;border:1px solid #ffffff60;border-radius:8px;background:#152032;color:white;font:inherit;user-select:text;-webkit-user-select:text}
 #team-name-error{min-height:1.5em;font-size:13px;color:#ffeaa1}
-#team-home{display:grid;gap:8px;width:100%}
+#team-home{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%}
+#team-home .button{min-width:0;min-height:44px;padding:8px;font-size:11px;line-height:1.2;overflow-wrap:normal}
+.scene--home.has-team-save .home-menu{top:34%}
 #team-saving{position:fixed;z-index:2000;inset:auto 10px 10px;padding:12px 18px;border-radius:12px;background:#132a39;color:white;text-align:center;box-shadow:0 0 0 100vmax #0006;pointer-events:all}
 #team-save-error{position:fixed;z-index:2100;inset:auto 8px 8px;max-height:90dvh;overflow:auto;display:grid;gap:8px;padding:16px;border:2px solid #ffb369;border-radius:16px;background:#172331;color:white}
 #team-save-error p{margin:0 0 8px;overflow-wrap:anywhere}
