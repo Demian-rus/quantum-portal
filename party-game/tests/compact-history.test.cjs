@@ -58,10 +58,11 @@ test('TASK022 completed result screen uses the same read-only list and retains p
  const closed=h.eval('reviewedRowsMarkup(game,null,false,"results")');assert.equal((closed.match(/data-review-turn=/g)||[]).length,2);assert.doesNotMatch(closed,/data-review-choice=|data-report-history=/);
  h.eval('reviewPresentationFor("results",null).expanded="0"');const open=h.eval('reviewedRowsMarkup(game,null,false,"results")');assert.match(open,/data-report-history="0"/);assert.doesNotMatch(open,/data-review-choice=/);assert.match(open,/Загадывал:/);
 });
-test('TASK022 mathematical, storage, risk, catalog and gameplay cores remain exact published bytes',()=>{
+test('TASK022 mathematical, storage, risk and gameplay cores remain exact; catalogs preserve historical bytes',()=>{
  const root=path.resolve(__dirname,'../..'),git=args=>execFileSync('git',args,{cwd:root,encoding:'utf8',maxBuffer:12e6});
- for(const name of ['result-review.js','risk-planner.js','round-selection.js','round-settlement.js','rules.js','penalties.js','round-planner.js','round-actions.js','timer-controller.js','feedback-clock.js','player-profiles.js','storage-controller.js','session-restoration.js','profile-backup.js','profile-backup-view.js','card-feedback.js','cards.js','content-packs.js'])
+ for(const name of ['result-review.js','risk-planner.js','round-selection.js','round-settlement.js','rules.js','penalties.js','round-planner.js','round-actions.js','timer-controller.js','feedback-clock.js','player-profiles.js','storage-controller.js','session-restoration.js','profile-backup.js','profile-backup-view.js','card-feedback.js'])
   assert.equal(fs.readFileSync(path.join(root,'party-game',name),'utf8'),git(['show',base+':party-game/'+name]),name);
+ require('./catalog-source-guard.cjs')(base);
  const old=git(['show',base+':party-game/result-review-view.js']),view=fs.readFileSync(path.join(root,'party-game/result-review-view.js'),'utf8');
  const segment=(s,a,b)=>s.slice(s.indexOf(a),s.indexOf(b,s.indexOf(a)));
  assert.equal(segment(view,'function closeResultHistory(','function updateResultHistory('),segment(old,'function closeResultHistory(','function updateResultHistory('),'Save/cancel, rollback and profile protocol');
