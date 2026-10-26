@@ -40,6 +40,11 @@ const duel=p=>p.evaluate(()=>({raw:localStorage.getItem(STORAGE_KEY),profiles:lo
    // New party stores the exact previous unfinished team match in its archive.
    await click(p,'#exit-game');const previous=await p.evaluate(()=>QuipTeams.record());await start(p,{mode:'blitz',rounds:4},[1,1,1]);const record=await p.evaluate(()=>QuipTeams.record());assert.equal(record.archives.length,1);assert.deepEqual(record.archives[0],{version:1,teamFormat:previous.teamFormat,game:previous.game,options:previous.options,taskMemory:previous.taskMemory});
    await answer(p,{success:false});assert.equal(await p.evaluate(()=>game.history[0].review.result.blitzCorrect),2);assert.deepEqual(await duel(p),originalDuel);
+   const concurrent=await ctx.newPage();concurrent.on('pageerror',e=>errors.push(e.message));await concurrent.goto(URL+'?setup=wizard');await click(concurrent,'#continue-teams');
+   for(const page of [p,concurrent])await page.evaluate(()=>{window.draws=0;window.countedRandom=Math.random;Math.random=()=>{draws++;return countedRandom()};});
+   await Promise.all([p.locator('[data-action="roll"]').click(),concurrent.locator('[data-action="roll"]').click()]);await Promise.all([p.evaluate(()=>QuipTeams.whenIdle()),concurrent.evaluate(()=>QuipTeams.whenIdle())]);
+   const states=await Promise.all([p,concurrent].map(page=>page.evaluate(()=>({blocked:QuipTeams.blocked,draws}))));assert.equal(states.filter(x=>!x.blocked).length,1,'only one actual team controller selects the next task');assert.equal(states.find(x=>x.blocked).draws,0,'loser stops before RNG');
+   const winner=states[0].blocked?concurrent:p;await winner.waitForFunction(()=>game.phase==='task');await idle(winner);assert.equal(await winner.evaluate(()=>game.roundIndex),1);assert.equal(await winner.evaluate(()=>game.current.blitzWords.length),3);assert.deepEqual(await duel(winner),originalDuel);await concurrent.close();
    assert.deepEqual(errors,[]);console.log('TASK028 safety PASS: risk / live history + replay / report + held clock / unpaused offline timer + expiry / stale tabs + RNG / native lock / quota / pending recovery / exact archived match / duel+profiles');
   }finally{await ctx.close();}
   // Actual score finish, guaranteed reply and the shared numerical tie-break.

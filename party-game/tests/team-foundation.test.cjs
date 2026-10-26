@@ -136,7 +136,7 @@ test('partial primary write protects both the foreign RAW and pending journal fo
 });
 test('team runtime is a separate versioned shell and never replaces legacy controllers',()=>{
  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8'),sw=fs.readFileSync(path.join(__dirname,'../sw.js'),'utf8');
- for(const [name,version]of [['team-format',1],['team-storage',2],['team-engine',1],['team-controller',2]]){assert.ok(html.includes('./'+name+'.js?v='+version));assert.ok(sw.includes('./'+name+'.js?v='+version));}
+ for(const [name,version]of [['team-format',1],['team-storage',2],['team-engine',1],['team-controller',3]]){assert.ok(html.includes('./'+name+'.js?v='+version));assert.ok(sw.includes('./'+name+'.js?v='+version));}
  assert.match(fs.readFileSync(path.join(__dirname,'../setup-wizard.js'),'utf8'),/id="wizard-format-teams"[^>]*>2 НА 2/);
  assert.doesNotMatch(html,/feedback-sync/);
 });

@@ -22,9 +22,9 @@
  const error=document.createElement('aside');error.id='team-save-error';error.hidden=true;error.setAttribute('role','alert');
  error.innerHTML='<p id="team-save-message"></p><button id="team-reload" type="button" class="button button-primary">ОТКРЫТЬ СОХРАНЕНИЕ 2 НА 2</button><button id="team-safe-menu" type="button" class="button button-secondary">К ИГРЕ 1 НА 1</button>';
  document.body.append(error);
- const dialog=document.createElement('div');dialog.id='team-data-backdrop';dialog.hidden=true;dialog.className='modal-backdrop';
+ const dialog=document.createElement('div');dialog.id='team-data-backdrop';dialog.hidden=true;dialog.className='dialog-backdrop';
  dialog.innerHTML='<section class="team-data-dialog" role="dialog" aria-modal="true" aria-labelledby="team-data-title"><h2 id="team-data-title">ПАРТИИ 2 НА 2</h2><div id="team-data-body" tabindex="0"></div><p id="team-data-status" role="status"></p><div class="team-data-actions"><button id="team-export" type="button" class="button button-secondary">СКАЧАТЬ ПАРТИИ 2 НА 2</button><button id="team-recover-before" type="button" class="button button-secondary" hidden>ВЕРНУТЬ ПРЕДЫДУЩЕЕ СОСТОЯНИЕ</button><button id="team-recover-after" type="button" class="button button-primary" hidden>ПРИНЯТЬ НОВОЕ СОСТОЯНИЕ</button><button id="team-clear-archive" type="button" class="button button-secondary" hidden>УДАЛИТЬ ТОЛЬКО АРХИВ 2 НА 2</button><button id="team-data-close" type="button" class="button button-primary">ЗАКРЫТЬ</button></div></section>';
- document.body.append(dialog);let dataFocus=null,pendingJournal=null,dataURL=null,revealToken=0;
+ document.body.append(dialog);let dataFocus=null,pendingJournal=null,dataURL=null,dataInert=false,revealToken=0;
  function setBusy(value){s.busy=value;busy.hidden=!value;document.body.setAttribute('aria-busy',String(value));}
  function fault(e){s.blocked=true;error.hidden=false;$('team-save-message').textContent='Изменение не подтверждено. Предыдущее состояние сохранено или защищено журналом восстановления. '+String(e?.message||e).replace(/^TEAM_(?:GAME|FORMAT):\s*/,'');stopTicking();}
  function root(){const base=s.tx?.proposal||s.record;if(!base||!E.isGame(game))throw Error('Нет активной командной партии.');return {...base,teamFormat:game.teamFormat,game,taskMemory};}
@@ -112,7 +112,7 @@
  showResults=function(){if(s.context&&(s.tx||s.busy))return;old.showResults();if(s.context)paintResults();};
  reviewedRowDetailsMarkup=function(match,index,editable){
   let html=old.reviewedRowDetailsMarkup(match,index,editable);if(!s.context||!E.isGame(game))return html;
-  const row=match.history[index];if(row.mode==='approx')return html.replace('Отвечали оба:','Совместные ответы команд:');
+  const row=match.history[index];if(row.mode==='approx')return html.replace('Отвечали оба: '+game.teams.map(escapeHTML).join(' · '),'Совместные ответы команд: '+game.teamFormat.teams.map(t=>escapeHTML(t.name)+' ('+t.members.map(escapeHTML).join(' + ')+')').join(' · '));
   const r=E.roles(game,index),source='Загадывал: '+escapeHTML(game.teams[row.setterIndex])+' · Отгадывал: '+escapeHTML(game.teams[row.guesserIndex]);
   return html.replace(source,escapeHTML(r.teamName)+' · Загадывал: '+escapeHTML(r.setterName)+' · Отгадывал: '+escapeHTML(r.guesserName));
  };
@@ -154,6 +154,7 @@
   $('wizard-format-teams').disabled=s.status==='loading'||!s.store||s.busy;
   $('wizard-players').hidden=team;$('wizard-award').hidden=team;
   if(!team)return;
+  $('score-goal-caption').textContent=options.finishType==='score'?'У каждой команды будет ответный ход':'Одинаковое число ходов у обеих команд';
   const names=validNames();$('team-name-error').textContent=names?'':'Введите четыре разных, различимых имени — до 24 символов каждое.';
   const availability=checkContentPack(options.contentPack,{...options,...setupSongPolicy(options)});
   $('start-game').disabled=!names||!availability.available||s.blocked||s.busy;
@@ -184,7 +185,7 @@
   $('results-content').querySelector('.inline-actions').after(block);
  }
  function paintGame(){
-  if(!E.isGame(game))return;paintHeader();
+  if(!E.isGame(game))return;paintHeader();for(const tabs of document.querySelectorAll('.review-tabs'))tabs.setAttribute('aria-label','История команд');
   if(game.phase==='ready')teamReady();
   else if(game.phase==='results')paintResults();
   else if(game.phase==='tiebreak'){$('play-step').textContent='2 НА 2 · РЕШАЮЩИЙ ОБЩИЙ ВОПРОС';const p=$q('.is-tiebreak .play-subtitle');if(p)p.textContent=game.tiebreak.stage==='question'?'Каждая команда совместно называет одно число.':'Сравните совместные ответы команд.';}
@@ -227,9 +228,9 @@
    game=proposal.game;taskMemory=proposal.taskMemory;options=proposal.options;s.inSetup=false;document.body.classList.add('teams-active');persist();sfx('go');render();
   },{replace:!!s.record});
  }
- function closeData(){dialog.hidden=true;pendingJournal=null;dataFocus?.focus?.({preventScroll:true});}
+ function closeData(){dialog.hidden=true;pendingJournal=null;const shell=$q('.site-shell');if(shell)shell.inert=dataInert;dataFocus?.focus?.({preventScroll:true});}
  async function openData(){
-  dataFocus=document.activeElement;dataURL=location.href;dialog.hidden=false;pendingJournal=null;$('team-data-status').textContent='';$('team-recover-before').hidden=true;$('team-recover-after').hidden=true;$('team-clear-archive').hidden=true;
+  const shell=$q('.site-shell');if(dialog.hidden){dataFocus=document.activeElement;dataURL=location.href;dataInert=shell?.inert||false;}dialog.hidden=false;if(shell)shell.inert=true;pendingJournal=null;$('team-data-status').textContent='';$('team-recover-before').hidden=true;$('team-recover-after').hidden=true;$('team-clear-archive').hidden=true;
   try{
    const p=await s.store.pending();
    if(p.status==='pending'){

@@ -11,7 +11,7 @@
 #team-saving{position:fixed;z-index:2000;inset:auto 10px 10px;padding:12px 18px;border-radius:12px;background:#132a39;color:white;text-align:center;box-shadow:0 0 0 100vmax #0006;pointer-events:all}
 #team-save-error{position:fixed;z-index:2100;inset:auto 8px 8px;max-height:90dvh;overflow:auto;display:grid;gap:8px;padding:16px;border:2px solid #ffb369;border-radius:16px;background:#172331;color:white}
 #team-save-error p{margin:0 0 8px;overflow-wrap:anywhere}
-.team-data-dialog{display:flex;flex-direction:column;gap:12px;width:min(620px,100%);max-height:calc(100dvh - 24px);padding:18px;background:#172331;color:white;border-radius:18px;box-sizing:border-box;overflow:hidden}
+.team-data-dialog{display:flex;flex-direction:column;gap:12px;width:min(620px,100%);max-height:calc(100dvh - 40px);padding:18px;background:#172331;color:white;border-radius:18px;box-sizing:border-box;overflow:hidden}
 .team-data-dialog h2{margin:0;font-size:20px}
 #team-data-body{overflow:auto;overscroll-behavior:contain;min-height:0;overflow-wrap:anywhere}
 .team-data-actions{display:grid;gap:8px;overflow:auto;flex-shrink:0;max-height:52dvh}
