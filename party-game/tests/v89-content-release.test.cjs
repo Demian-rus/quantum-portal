@@ -1,10 +1,11 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
+const {normalizeWizardModeCopy,withoutWizardShell}=require('./wizard-contract.cjs');
 const api=require('../scripts/content.cjs'),root=path.resolve(__dirname,'../..'),base='ccbc52cb1142a9a169dd735d6dbfd3e94408fec1',editorial='c230c15b81c11468b24f3d486f6ce210dead4f7f';
 const old=(ref,file)=>cp.execFileSync('git',['show',ref+':'+file],{cwd:root,encoding:'utf8',maxBuffer:16e6});
 test('v89 retains every published runtime mechanism and every original editorial source',()=>{
  const html=old(base,'party-game/index.html');
- for(const[,name]of html.matchAll(/<script src="\.\/([^?]+\.js)\?/g))if(!['cards.js','content-packs.js'].includes(name))assert.equal(fs.readFileSync(path.join(root,'party-game',name),'utf8'),old(base,'party-game/'+name),name);
+ for(const[,name]of html.matchAll(/<script src="\.\/([^?]+\.js)\?/g))if(!['cards.js','content-packs.js'].includes(name))assert.equal(name==='mode-config.js'?normalizeWizardModeCopy(fs.readFileSync(path.join(root,'party-game',name),'utf8')):fs.readFileSync(path.join(root,'party-game',name),'utf8'),old(base,'party-game/'+name),name);
  assert.equal(fs.readFileSync(path.join(root,'party-game/style.css'),'utf8'),old(base,'party-game/style.css'));
  for(const ref of [base,editorial]){
   const manifest=JSON.parse(old(ref,'party-game/content/manifest.json'));
@@ -12,7 +13,7 @@ test('v89 retains every published runtime mechanism and every original editorial
    const file='party-game/content/'+source.path;assert.equal(fs.readFileSync(path.join(root,file),'utf8'),old(ref,file),ref+':'+file);
   }
  }
- const normalize=s=>s.replace('kvip-pwa-v89-20261026-general-content-release','kvip-pwa-v88-20261025-round-layout-candidate').replaceAll('cards.js?v=10','cards.js?v=9').replaceAll('content-packs.js?v=18','content-packs.js?v=17');
+ const normalize=s=>withoutWizardShell(s).replace('kvip-pwa-v89-20261026-general-content-release','kvip-pwa-v88-20261025-round-layout-candidate').replaceAll('cards.js?v=10','cards.js?v=9').replaceAll('content-packs.js?v=18','content-packs.js?v=17');
  for(const name of ['index.html','sw.js'])assert.equal(normalize(fs.readFileSync(path.join(root,'party-game',name),'utf8')),old(base,'party-game/'+name),name+' only changes cache/resource versions');
 });
 test('v89 exposes 6000 active IDs with nine explicit replacements and preserves all historical catalogs',()=>{

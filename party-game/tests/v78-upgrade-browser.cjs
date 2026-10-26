@@ -71,7 +71,7 @@ async function completedMatch(page){
   const cached=await page.evaluate(async name=>{
    const c=await caches.open(name);return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>({url:s.src,found:!!await c.match(s.src)})));
   },newCache);
-  assert.equal(cached.length,48);assert.deepEqual(cached.filter(row=>!row.found),[],'48 current scripts must load from the new worker offline');
+  assert.equal(cached.length,49);assert.deepEqual(cached.filter(row=>!row.found),[],'49 current scripts must load from the new worker offline');
   assert.equal(await page.locator('#timer-pause-control[data-action="resume"]').isVisible(),true);
   assert.equal(await page.locator('[data-feedback]').count(),2);
   await page.screenshot({path:folder+'/v78-paused-offline-v89.png',animations:'disabled'});
