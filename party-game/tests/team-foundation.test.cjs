@@ -134,7 +134,24 @@ test('partial primary write protects both the foreign RAW and pending journal fo
  await assert.rejects(s.recover({expectedJournal:journal,choice:'keep-before'}),e=>e.code==='CONFLICT');
  assert.equal(h.map.get(S.KEY),'PARTIAL_RAW');assert.equal(h.map.get(S.JOURNAL_KEY),journal);
 });
-test('foundation remains absent from public HTML/SW and does not enable unfinished team play',()=>{
- for(const file of ['index.html','sw.js'])assert.doesNotMatch(fs.readFileSync(path.join(__dirname,'..',file),'utf8'),/team-format|team-storage/);
- assert.match(fs.readFileSync(path.join(__dirname,'../setup-wizard.js'),'utf8'),/disabled>КОМАНДАМИ · СКОРО/);
+test('team runtime is a separate versioned shell and never replaces legacy controllers',()=>{
+ const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8'),sw=fs.readFileSync(path.join(__dirname,'../sw.js'),'utf8');
+ for(const name of ['team-format','team-storage','team-engine','team-controller']){assert.ok(html.includes('./'+name+'.js?v=1'));assert.ok(sw.includes('./'+name+'.js?v=1'));}
+ assert.match(fs.readFileSync(path.join(__dirname,'../setup-wizard.js'),'utf8'),/id="wizard-format-teams"[^>]*>2 НА 2/);
+ assert.doesNotMatch(html,/feedback-sync/);
+});
+test('replacement requires an explicit old ID and an exact archived previous party, including recovery',async()=>{
+ for(const choice of ['keep-before','keep-after']){
+  const h=harness(),old=match(),next={...match(),teamFormat:F.create(names,{id:'next-team-fixture-0001',random:()=>0}),previous:old};
+  const validateMatch=m=>validator(m)||m.previous&&Object.keys(m).length===4&&validator(m.previous);
+  const validateReplacement=(a,b)=>JSON.stringify(b.previous)===JSON.stringify(a);
+  const store=h.make({validateMatch,validateReplacement}),saved=await store.commit({expectedRaw:null,match:old});
+  await assert.rejects(store.commit({expectedRaw:saved.raw,match:next}),e=>e.code==='MATCH_CHANGED');
+  await assert.rejects(store.commit({expectedRaw:saved.raw,match:{...next,previous:{...old,turn:9}},replaceMatchId:id}),e=>e.code==='MATCH_CHANGED');
+  const remove=h.storage.removeItem;h.storage.removeItem=k=>{throw Error('journal cleanup failure');};
+  await assert.rejects(store.commit({expectedRaw:saved.raw,match:next,replaceMatchId:id}));h.storage.removeItem=remove;
+  const journal=await store.pending();assert.equal(journal.status,'pending');assert.equal(JSON.parse(journal.journal).version,2);
+  const restored=await store.recover({expectedJournal:journal.journal,choice});assert.deepEqual(restored.match,choice==='keep-before'?old:next);
+  assert.equal(h.map.get('iskra-party:v1'),'UNFINISHED_DUEL_RAW');
+ }
 });

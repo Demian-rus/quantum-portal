@@ -53,7 +53,7 @@ async function probeSelection(page){
    assert.deepEqual(await snapshot(p),before,'Actual v88 RAW, ledger, selected task, draft/pending review and profiles survive upgrade exactly');assert.equal(await p.evaluate(()=>JSON.stringify(game.riskPlannerState)),risk);
    if(scenario==='pending'){await p.evaluate(()=>document.fonts.ready);const fixedAfter=await p.evaluate(()=>{const c=$('play-content').getBoundingClientRect(),t=document.querySelector('.review-tabs').getBoundingClientRect(),b=document.querySelector('[data-action="confirm-results"]').getBoundingClientRect();return {tabs:t.y-c.y,bottom:b.bottom-c.bottom}});assert.ok(Math.abs(fixedAfter.tabs-fixedBefore.tabs)<1,'Published v88 tab anchor retained');assert.ok(Math.abs(fixedAfter.bottom-fixedBefore.bottom)<1,'Published v88 confirmation anchor retained');}
    const list=scenario==='editor'?'#result-history-rows':'.pending-review-rows';assert.equal(await p.locator(list+' [data-review-expand]').count(),scenario==='editor'?1:2);assert.equal(await p.locator(list+' [aria-expanded="true"]').count(),0);
-   const cached=await p.evaluate(async name=>{const c=await caches.open(name);return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>!!await c.match(s.src)))},newCache);assert.equal(cached.length,49);assert.ok(cached.every(Boolean));
+   const cached=await p.evaluate(async name=>{const c=await caches.open(name);return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>!!await c.match(s.src)))},newCache);assert.equal(cached.length,53);assert.ok(cached.every(Boolean));
    await p.locator(list+' [data-review-expand="0"]').click();assert.deepEqual(await snapshot(p),before,'Expansion after upgrade is read-only');
    if(scenario==='editor'){
     const remaining=await p.evaluate(()=>game.current.feedbackHold.remainingMs);await p.locator('#result-history-cancel').click();assert.equal(await p.evaluate(()=>game.current.paused),true);assert.equal(await p.evaluate(()=>game.current.remainingMs),remaining);assert.equal(await p.evaluate(()=>game.history[0].correct),true);
@@ -63,7 +63,7 @@ async function probeSelection(page){
    }
    await p.evaluate(()=>{backToMenu();newGame()});assert.equal(await p.evaluate(()=>game.contentPack.version),27);
    assert.equal(await p.evaluate(()=>getContentPack(game.contentPack).criteria.cardIds.length),6000);
-   assert.deepEqual(errors,[]);console.log('v88 → v89',scenario,'real SW upgrade / cold offline / exact RAW + risk + profiles / 49 JS / disclosure / timer or exactly-once result PASS');
+   assert.deepEqual(errors,[]);console.log('v88 → v89',scenario,'real SW upgrade / cold offline / exact RAW + risk + profiles / 53 JS / disclosure / timer or exactly-once result PASS');
   }finally{write(current);await ctx.close();}
  }}finally{write(current);await b.close();}
 })().catch(e=>{console.error(e);process.exitCode=1});

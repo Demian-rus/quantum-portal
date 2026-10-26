@@ -1,5 +1,5 @@
 'use strict';
-// TASK028 foundation only. No automatic load/migration or access to duel keys.
+// Isolated team slot. No automatic migration or access to duel keys.
 (function exposeTeamStorage(root,factory){
  if(typeof module==='object'&&module.exports)module.exports=factory(require('./team-format.js'));
  else root.QuipTeamStorage=factory(root.QuipTeamFormat);
@@ -16,8 +16,9 @@
   const hash=await globalThis.crypto.subtle.digest('SHA-256',new TextEncoder().encode(value));
   return Array.from(new Uint8Array(hash),n=>n.toString(16).padStart(2,'0')).join('');
  }
- function create({storage,validateMatch,exclusive,digest=sha256,maxBytes=MAX_BYTES}={}){
+ function create({storage,validateMatch,validateReplacement=null,exclusive,digest=sha256,maxBytes=MAX_BYTES}={}){
   if(!format||typeof validateMatch!=='function')fail('VALIDATOR_REQUIRED','Требуется полный валидатор командного матча.');
+  if(validateReplacement!==null&&typeof validateReplacement!=='function')fail('VALIDATOR_REQUIRED','Неверный валидатор сохранения предыдущей партии.');
   if(!storage||!['getItem','setItem','removeItem'].every(k=>typeof storage[k]==='function'))fail('STORAGE_REQUIRED','Командное хранилище недоступно.');
   if(!Number.isSafeInteger(maxBytes)||maxBytes<1024||maxBytes>MAX_BYTES)fail('LIMIT','Неверный предел размера.');
   if(!exclusive){
@@ -58,7 +59,7 @@
     const value=await decode(raw);return {status:'ok',raw,revision:value.revision,match:value.match};
    }catch(e){return protectedResult(e,raw);}
   });}
-  function commit({expectedRaw,match}={}){
+  function commit({expectedRaw,match,replaceMatchId=null}={}){
    // Snapshot synchronously: caller mutations while awaiting a lock/digest must
    // not change the action that is eventually committed.
    let snapshot;try{snapshot=JSON.parse(bounded(JSON.stringify(match)));checkMatch(snapshot);}catch(e){return Promise.reject(e);}
@@ -69,8 +70,9 @@
     if(raw!==expectedRaw)fail('CONFLICT','Командная партия уже изменена в другой вкладке.');
     const before=raw===null?null:await decode(raw),revision=(before?.revision||0)+1;
     if(!Number.isSafeInteger(revision))fail('LIMIT','Исчерпаны ревизии.');
-    if(before&&before.match.teamFormat.id!==snapshot.teamFormat.id)fail('MATCH_CHANGED','Нельзя молча заменить другую командную партию.');
-    const next=await encode(snapshot,revision),journal=bounded(JSON.stringify({version:1,before:raw,after:next}),maxBytes*3);
+    const replacing=!!before&&before.match.teamFormat.id!==snapshot.teamFormat.id;
+    if(replacing&&!(replaceMatchId===before.match.teamFormat.id&&validateReplacement?.(before.match,snapshot)===true)||!replacing&&replaceMatchId!==null)fail('MATCH_CHANGED','Нельзя заменить другую командную партию без явного сохранения её архива.');
+    const next=await encode(snapshot,revision),journal=bounded(JSON.stringify(replacing?{version:2,before:raw,after:next,replaceMatchId}:{version:1,before:raw,after:next}),maxBytes*3);
     if(storage.getItem(KEY)!==raw||storage.getItem(JOURNAL_KEY)!==null)fail('CONFLICT','Командное сохранение изменилось.');
     storage.setItem(JOURNAL_KEY,journal);
     if(storage.getItem(JOURNAL_KEY)!==journal||storage.getItem(KEY)!==raw)fail('WRITE_PENDING','Не удалось проверить журнал командной записи.');
@@ -91,10 +93,12 @@
   });}
   async function readJournal(raw){
    let value;try{value=JSON.parse(bounded(raw,maxBytes*3));}catch(e){if(e.code)throw e;fail('CORRUPT','Повреждён журнал командной записи.');}
-   exact(value,['version','before','after']);
-   if(value.version!==1)fail('INCOMPATIBLE','Неизвестная версия журнала.');
+   if(value?.version!==1&&value?.version!==2)fail('INCOMPATIBLE','Неизвестная версия журнала.');
+   exact(value,value.version===2?['version','before','after','replaceMatchId']:['version','before','after']);
    const before=value.before===null?null:await decode(value.before),after=await decode(value.after);
-   if(after.revision!==(before?.revision||0)+1||before&&before.match.teamFormat.id!==after.match.teamFormat.id)fail('CORRUPT','Непоследовательный журнал командной записи.');
+   if(after.revision!==(before?.revision||0)+1)fail('CORRUPT','Непоследовательный журнал командной записи.');
+   if(value.version===1){if(before&&before.match.teamFormat.id!==after.match.teamFormat.id)fail('CORRUPT','Изменена партия в обычном журнале.');}
+   else if(!before||value.replaceMatchId!==before.match.teamFormat.id||before.match.teamFormat.id===after.match.teamFormat.id||validateReplacement?.(before.match,after.match)!==true)fail('CORRUPT','Журнал не сохраняет предыдущую партию.');
    return value;
   }
   function recover({expectedJournal,choice}={}){return exclusive(async()=>{

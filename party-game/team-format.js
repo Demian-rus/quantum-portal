@@ -1,5 +1,5 @@
 'use strict';
-// TASK028 foundation only. Not loaded by index.html or the service worker.
+// Versioned TASK028 identity contract; independent of engine and storage.
 (function exposeTeamFormat(root,factory){
  const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;
  else root.QuipTeamFormat=api;

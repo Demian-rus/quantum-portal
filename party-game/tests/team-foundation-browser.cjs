@@ -1,6 +1,6 @@
 'use strict';
-// Tests isolated contracts, not a playable team engine. Production never loads
-// these modules; the deliberately small test validator only permits fixture data.
+// Storage contract fixtures use their own validator; playable games are covered
+// separately by team-game-browser.cjs with the full engine validator.
 const assert=require('node:assert/strict'),path=require('node:path'),{chromium}=require('playwright-core');
 const {provisionProfiles}=require('./profile-fixtures.cjs');
 const URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/';
@@ -12,7 +12,7 @@ const URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/';
   const original=await a.evaluate(()=>({duel:localStorage.getItem('iskra-party:v1'),profiles:localStorage.getItem('kvip-player-profiles:v1')}));
   const b=await context.newPage();await b.goto(URL);
   async function install(page){
-   for(const name of ['team-format.js','team-storage.js'])await page.addScriptTag({path:path.join(__dirname,'..',name)});
+   for(const name of ['team-format.js','team-storage.js'])if(await page.evaluate(key=>typeof globalThis[key]==='undefined',name==='team-format.js'?'QuipTeamFormat':'QuipTeamStorage'))await page.addScriptTag({path:path.join(__dirname,'..',name)});
    await page.evaluate(()=>{
     window.fixtureHeader=QuipTeamFormat.create([['ДС','ПА'],['Мама','Папа']],{id:'browser-team-fixture-0001',random:()=>0});
     window.teamStore=QuipTeamStorage.create({storage:localStorage,validateMatch:m=>m.fixtureOnly===true&&Number.isSafeInteger(m.turn)&&m.turn>=0&&Object.keys(m).length===3});
