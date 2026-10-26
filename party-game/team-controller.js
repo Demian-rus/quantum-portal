@@ -26,7 +26,7 @@
  dialog.innerHTML='<section class="team-data-dialog" role="dialog" aria-modal="true" aria-labelledby="team-data-title"><h2 id="team-data-title">ПАРТИИ 2 НА 2</h2><div id="team-data-body" tabindex="0"></div><p id="team-data-status" role="status"></p><div class="team-data-actions"><button id="team-export" type="button" class="button button-secondary">СКАЧАТЬ ПАРТИИ 2 НА 2</button><button id="team-recover-before" type="button" class="button button-secondary" hidden>ВЕРНУТЬ ПРЕДЫДУЩЕЕ СОСТОЯНИЕ</button><button id="team-recover-after" type="button" class="button button-primary" hidden>ПРИНЯТЬ НОВОЕ СОСТОЯНИЕ</button><button id="team-clear-archive" type="button" class="button button-secondary" hidden>УДАЛИТЬ ТОЛЬКО АРХИВ 2 НА 2</button><button id="team-data-close" type="button" class="button button-primary">ЗАКРЫТЬ</button></div></section>';
  document.body.append(dialog);const homeFootnote=$q('.home-footnote'),originalHomeFootnote=homeFootnote.textContent;let dataFocus=null,pendingJournal=null,dataURL=null,dataInert=false,revealToken=0;
  function setBusy(value){s.busy=value;busy.hidden=!value;document.body.setAttribute('aria-busy',String(value));}
- function fault(e){s.blocked=true;error.hidden=false;$('team-save-message').textContent='Изменение не подтверждено. Предыдущее состояние сохранено или защищено журналом восстановления. '+String(e?.message||e).replace(/^TEAM_(?:GAME|FORMAT):\s*/,'');stopTicking();}
+ function fault(e){s.blocked=true;error.hidden=false;$('team-save-message').textContent='Изменение не подтверждено. Игра остановлена; сохранённые данные защищены от дальнейшей записи. Откройте сохранение заново. '+String(e?.message||e).replace(/^TEAM_(?:GAME|FORMAT):\s*/,'');stopTicking();}
  function root(){const base=s.tx?.proposal||s.record;if(!base||!E.isGame(game))throw Error('Нет активной командной партии.');return {...base,teamFormat:game.teamFormat,game,taskMemory};}
  function snapshotDuel(){return {game,options,taskMemory,storageBlocked,storageProblem,loadedSaveRaw,profileResultProblem};}
  function useDuel(){
@@ -235,9 +235,9 @@
    const p=await s.store.pending();
    if(p.status==='pending'){
     pendingJournal=p.journal;$('team-data-body').textContent='Предыдущая запись прервалась. Обе проверенные версии сохранены. Скачайте копию и явно выберите, какое состояние использовать. Игра 1 на 1 не затрагивается.';$('team-recover-before').hidden=false;$('team-recover-after').hidden=false;
-   }else if(p.status==='blocked')$('team-data-body').textContent='Журнал повреждён или отличается от текущей записи. Автоматическое восстановление запрещено. Исходные данные сохранены; скачайте их для проверки.';
+   }else if(p.status==='blocked')$('team-data-body').textContent='Журнал повреждён или отличается от текущей записи. Автоматическое восстановление запрещено. Исходные данные сохранены; скачайте их для проверки. '+(p.message||'');
    else{
-    const loaded=await readStore();if(loaded.status==='blocked')$('team-data-body').textContent='Сохранение повреждено или создано другой версией. Оно защищено от перезаписи. Скачайте исходные данные для проверки.';
+    const loaded=await readStore();if(loaded.status==='blocked')$('team-data-body').textContent='Сохранение повреждено или создано другой версией. Оно защищено от перезаписи. Скачайте исходные данные для проверки. '+(loaded.message||'');
     else if(!s.record)$('team-data-body').textContent='Сохранённых партий 2 на 2 пока нет.';
     else{$('team-data-body').innerHTML='<p>Текущая партия: '+s.record.game.scores.join(' : ')+' · '+s.record.game.roundIndex+' ходов.</p><p>Личная статистика профилей не изменяется. Этот отдельный архив не входит в прежний JSON профилей.</p>'+s.record.archives.map((e,i)=>'<p>Партия '+(i+1)+': '+e.teamFormat.teams.map(t=>t.members.map(escapeHTML).join(' + ')).join(' / ')+' · '+e.game.scores.join(' : ')+' · '+e.game.roundIndex+' ходов.</p>').join('');$('team-clear-archive').hidden=!s.record.archives.length;}
    }
@@ -255,7 +255,7 @@
  $('continue-teams').addEventListener('click',continueTeam);$('team-archive-open').addEventListener('click',openData);
  $('team-reload').addEventListener('click',continueTeam);$('team-safe-menu').addEventListener('click',()=>{if(s.context)useDuel();error.hidden=true;old.setScene('home');});
  $('team-data-close').addEventListener('click',closeData);dialog.addEventListener('click',event=>{if(event.target===dialog)closeData();});
- $('team-export').addEventListener('click',()=>{try{downloadProfileBackup(JSON.stringify({format:'quip-teams-export',version:1,raw:localStorage.getItem(QuipTeamStorage.KEY),pending:localStorage.getItem(QuipTeamStorage.JOURNAL_KEY)},null,2),backupFileName('kvip-2x2'));}catch(e){$('team-data-status').textContent=e.message;}});
+ $('team-export').addEventListener('click',async()=>{try{const durable=await s.store.inspect().catch(e=>({unavailable:String(e.message||e)}));downloadProfileBackup(JSON.stringify({durable,format:'quip-teams-export',version:1,raw:localStorage.getItem(QuipTeamStorage.KEY),pending:localStorage.getItem(QuipTeamStorage.JOURNAL_KEY)},null,2),backupFileName('kvip-2x2'));}catch(e){$('team-data-status').textContent=e.message;}});
  $('team-recover-before').addEventListener('click',()=>recover('keep-before'));$('team-recover-after').addEventListener('click',()=>recover('keep-after'));
  $('team-clear-archive').addEventListener('click',async()=>{
   if(!s.record?.archives.length||!window.confirm('Удалить только архив прежних партий 2 на 2 с устройства? Сначала скачайте копию. Текущая партия и игра 1 на 1 останутся.'))return;

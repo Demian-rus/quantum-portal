@@ -136,7 +136,7 @@ test('partial primary write protects both the foreign RAW and pending journal fo
 });
 test('team runtime is a separate versioned shell and never replaces legacy controllers',()=>{
  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8'),sw=fs.readFileSync(path.join(__dirname,'../sw.js'),'utf8');
- for(const [name,version]of [['team-format',1],['team-storage',3],['team-engine',1],['team-controller',4]]){assert.ok(html.includes('./'+name+'.js?v='+version));assert.ok(sw.includes('./'+name+'.js?v='+version));}
+ for(const [name,version]of [['team-format',1],['team-storage',4],['team-engine',1],['team-controller',5]]){assert.ok(html.includes('./'+name+'.js?v='+version));assert.ok(sw.includes('./'+name+'.js?v='+version));}
  assert.match(fs.readFileSync(path.join(__dirname,'../setup-wizard.js'),'utf8'),/id="wizard-format-teams"[^>]*>2 НА 2/);
  assert.doesNotMatch(html,/feedback-sync/);
 });
@@ -171,5 +171,23 @@ test('load and pending classification recheck RAW after asynchronous verificatio
   if(operation==='commit')await assert.rejects(reading.commit({expectedRaw:before.raw,match:match(undefined,2)}),e=>e.code==='CONFLICT');
   else assert.equal((await reading.load()).reason,'CONFLICT');
   assert.equal(h.access.filter(x=>x[0]!=='get').length,writes);assert.equal(h.map.get(S.KEY),after.raw);
+ }
+});
+function receiptHarness(){let raw=null;return {get raw(){return raw},set raw(value){raw=value},read:async()=>raw,write:async(expected,next)=>{if(expected!==raw)throw Object.assign(Error('receipt conflict'),{code:'CONFLICT'});raw=next;}};}
+test('transactional receipt rejects a stale renderer even if both localStorage values still look old',async()=>{
+ const h=harness(),receipt=receiptHarness(),s=h.make({receipt}),before=await s.commit({expectedRaw:null,match:match()}),after=await s.commit({expectedRaw:before.raw,match:match(undefined,1)}),confirmed=receipt.raw;
+ h.map.set(S.KEY,before.raw);h.map.delete(S.JOURNAL_KEY);const writes=h.access.filter(x=>x[0]!=='get').length;
+ await assert.rejects(s.commit({expectedRaw:before.raw,match:match(undefined,2)}),e=>e.code==='CONFLICT');assert.equal(h.access.filter(x=>x[0]!=='get').length,writes);assert.equal(receipt.raw,confirmed);
+ assert.equal((await s.load()).reason,'MIRROR_MISMATCH');assert.equal(h.map.get(S.KEY),before.raw);assert.equal(JSON.parse(confirmed).committedRaw,after.raw);
+ for(const bad of ['{"version":99}',JSON.stringify({version:99,committedRaw:after.raw,pendingJournal:null})]){receipt.raw=bad;assert.equal((await s.load()).status,'blocked');await assert.rejects(s.commit({expectedRaw:before.raw,match:match()}));assert.equal((await s.inspect()).receipt,bad);assert.equal(h.map.get(S.KEY),before.raw);}
+});
+test('receipt intent/final acknowledgement failures never claim success; both versions survive explicit recovery',async()=>{
+ for(const fault of ['intent-throw','intent-silent','final-throw','final-silent'])for(const choice of ['keep-before','keep-after']){
+  const h=harness(),receipt=receiptHarness(),s=h.make({receipt}),before=await s.commit({expectedRaw:null,match:match()}),write=receipt.write;
+  receipt.write=async(expected,next)=>{const value=JSON.parse(next),selected=fault.startsWith('intent')?value.pendingJournal!==null:value.pendingJournal===null;if(selected){if(fault.endsWith('throw'))throw Error(fault);return;}return write(expected,next);};
+  await assert.rejects(s.commit({expectedRaw:before.raw,match:match(undefined,1)}));receipt.write=write;
+  if(fault.startsWith('intent')){assert.equal(h.map.get(S.KEY),before.raw);assert.equal((await s.load()).status,'ok');assert.equal((await s.pending()).status,'empty');}
+  else{assert.equal(h.map.has(S.JOURNAL_KEY),false,'the receipt retains the journal even after local cleanup');assert.equal((await s.load()).reason,'RECOVERY_REQUIRED');const pending=await s.pending();assert.equal(pending.status,'pending');assert.equal(pending.before,before.raw);const out=await s.recover({expectedJournal:pending.journal,choice});assert.equal(out.raw,choice==='keep-before'?before.raw:pending.after);assert.equal((await s.load()).status,'ok');assert.equal(JSON.parse(receipt.raw).pendingJournal,null);}
+  assert.equal(h.map.get('iskra-party:v1'),'UNFINISHED_DUEL_RAW');
  }
 });
