@@ -66,8 +66,10 @@
    if(expectedRaw!==null&&typeof expectedRaw!=='string')return Promise.reject(error('EXPECTED_RAW_REQUIRED','Требуется точный исходный RAW.'));
    return exclusive(async()=>{
     const raw=storage.getItem(KEY);
-    if(storage.getItem(JOURNAL_KEY)!==null)fail('RECOVERY_REQUIRED','Сначала восстановите прерванную командную запись.');
+    // A stale action is a conflict even if another writer's journal is visible.
+    // This never authorizes a write: a matching RAW still requires no pending.
     if(raw!==expectedRaw)fail('CONFLICT','Командная партия уже изменена в другой вкладке.');
+    if(storage.getItem(JOURNAL_KEY)!==null)fail('RECOVERY_REQUIRED','Сначала восстановите прерванную командную запись.');
     const before=raw===null?null:await decode(raw),revision=(before?.revision||0)+1;
     if(!Number.isSafeInteger(revision))fail('LIMIT','Исчерпаны ревизии.');
     const replacing=!!before&&before.match.teamFormat.id!==snapshot.teamFormat.id;

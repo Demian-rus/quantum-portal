@@ -57,6 +57,7 @@ if(require.main===module)(async()=>{fs.mkdirSync(folder,{recursive:true});const 
      else await answer(p,{success:i!==2});
     }
     assert.equal(await p.evaluate(()=>game.phase),'review');await click(p,'.is-result-review [data-review-tab="'+(index%2)+'"]');
+    if(index===2){const list=p.locator('.pending-review-rows');await list.evaluate(n=>n.scrollTop=n.scrollHeight);const scroll=await list.evaluate(n=>n.scrollTop);assert(scroll>0,'landscape history really overflows');await click(p,'.pending-review-rows [data-review-turn="10"] [data-review-choice="failed"]');assert.equal(await list.evaluate(n=>n.scrollTop),scroll,'editing a lower turn retains the bounded history scroll');await click(p,'.pending-review-rows [data-review-turn="10"] [data-review-choice="complete"]');}
     await click(p,'.pending-review-rows [data-review-turn="0"] [data-review-choice="failed"]');const corrected=await p.evaluate(()=>game.scores.slice());
     await click(p,'.pending-review-rows [data-review-turn="0"] [data-review-choice="complete"]');const final=await p.evaluate(()=>game.scores.slice());assert.equal(final[index%2],corrected[index%2]+1);
     await click(p,'[data-action="confirm-results"]');assert.equal(await p.evaluate(()=>game.phase),'results');assert.match(await p.locator('#team-result-roster').textContent(),/личную статистику/);

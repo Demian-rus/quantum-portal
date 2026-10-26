@@ -29,7 +29,8 @@ const URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/';
   await a.waitForFunction(()=>window.lockAcquired);
   const writes=[a.evaluate(async raw=>{try{return {ok:true,value:await teamStore.commit({expectedRaw:raw,match:{teamFormat:fixtureHeader,fixtureOnly:true,turn:1}})};}catch(e){return {ok:false,code:e.code};}},old.raw),b.evaluate(async raw=>{try{return {ok:true,value:await teamStore.commit({expectedRaw:raw,match:{teamFormat:fixtureHeader,fixtureOnly:true,turn:2}})};}catch(e){return {ok:false,code:e.code};}},old.raw)];
   await a.evaluate(()=>releaseTeamLock());const results=await Promise.all(writes);
-  assert.equal(results.filter(r=>r.ok).length,1);assert.equal(results.find(r=>!r.ok).code,'CONFLICT');
+  assert.equal(results.filter(r=>r.ok).length,1,JSON.stringify(results));assert.equal(results.find(r=>!r.ok).code,'CONFLICT',JSON.stringify(results));
+  assert.equal(await a.evaluate(()=>localStorage.getItem(QuipTeamStorage.JOURNAL_KEY)),null,'winner must have cleared the journal');
   const latest=await b.evaluate(()=>teamStore.load());assert.equal(latest.revision,2);assert.ok([1,2].includes(latest.match.turn));
   await context.setOffline(true);
   // Fresh store after page restart, using actual localStorage and SHA-256.

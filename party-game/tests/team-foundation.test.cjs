@@ -136,7 +136,7 @@ test('partial primary write protects both the foreign RAW and pending journal fo
 });
 test('team runtime is a separate versioned shell and never replaces legacy controllers',()=>{
  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8'),sw=fs.readFileSync(path.join(__dirname,'../sw.js'),'utf8');
- for(const name of ['team-format','team-storage','team-engine','team-controller']){assert.ok(html.includes('./'+name+'.js?v=1'));assert.ok(sw.includes('./'+name+'.js?v=1'));}
+ for(const [name,version]of [['team-format',1],['team-storage',2],['team-engine',1],['team-controller',2]]){assert.ok(html.includes('./'+name+'.js?v='+version));assert.ok(sw.includes('./'+name+'.js?v='+version));}
  assert.match(fs.readFileSync(path.join(__dirname,'../setup-wizard.js'),'utf8'),/id="wizard-format-teams"[^>]*>2 НА 2/);
  assert.doesNotMatch(html,/feedback-sync/);
 });
@@ -154,4 +154,11 @@ test('replacement requires an explicit old ID and an exact archived previous par
   const restored=await store.recover({expectedJournal:journal.journal,choice});assert.deepEqual(restored.match,choice==='keep-before'?old:next);
   assert.equal(h.map.get('iskra-party:v1'),'UNFINISHED_DUEL_RAW');
  }
+});
+test('a stale action reports conflict while a current action still requires explicit journal recovery',async()=>{
+ const h=harness(),s=h.make(),before=await s.commit({expectedRaw:null,match:match()});
+ const remove=h.storage.removeItem;h.storage.removeItem=()=>{throw Error('keep journal')};await assert.rejects(s.commit({expectedRaw:before.raw,match:match(undefined,1)}));h.storage.removeItem=remove;
+ await assert.rejects(s.commit({expectedRaw:before.raw,match:match(undefined,2)}),e=>e.code==='CONFLICT');
+ await assert.rejects(s.commit({expectedRaw:h.map.get(S.KEY),match:match(undefined,2)}),e=>e.code==='RECOVERY_REQUIRED');
+ assert.equal((await s.pending()).status,'pending');assert.equal((await s.load()).status,'blocked');
 });

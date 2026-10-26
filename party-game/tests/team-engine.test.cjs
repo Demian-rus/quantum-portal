@@ -94,3 +94,10 @@ test('installing team hooks leaves real 1-on-1 state, writes, cards and RNG sequ
   assert.equal(a.eval('JSON.stringify(game)'),b.eval('JSON.stringify(game)'));assert.equal(ca,cb);assert.deepEqual(a.storage,b.storage);
  }
 });
+test('mixed difficulty and all enabled modes retain paired planners and valid card replacement',()=>{
+ const h=start({modes:['talk','mime','draw','sing','yesno','secret','blitz','approx'],difficulty:'mixed',rounds:24,complications:true,modifierChance:100,riskRounds:true},[1,0,1],912);
+ for(let i=0;i<24;i++)answer(h,{success:i%3!==0,shared:i%2?'a':'both'});
+ h.eval('confirmReviewedResults()');assert.equal(h.eval('game.phase'),'results');check(h);
+ const replacement=start({modes:['talk'],complications:true,modifierChance:100});replacement.eval('roll()');const roles=replacement.eval('JSON.stringify(game.current.teamRoles)'),plans=replacement.eval('JSON.stringify([game.riskPlannerState,game.modePlannerState,game.plannerState])');
+ replacement.eval('replaceWord()');check(replacement);assert.equal(replacement.eval('JSON.stringify(game.current.teamRoles)'),roles);assert.equal(replacement.eval('JSON.stringify([game.riskPlannerState,game.modePlannerState,game.plannerState])'),plans);
+});

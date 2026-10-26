@@ -55,7 +55,7 @@
   if(s.tx?.executing)return action();
   if(s.busy||s.blocked)return Promise.resolve(false);
   const focused=document.activeElement,focusSelector=reviewFocusSelector(focused)||(focused?.id?'#'+CSS.escape(focused.id):focused?.dataset?.action?'[data-action="'+focused.dataset.action+'"]':null);
-  const before={inSetup:s.inSetup};setBusy(true);stopTicking();
+  const before={inSetup:s.inSetup,pending:game?.phase==='review'?{player:game.pendingReview.playerIndex??0,scroll:$q('.pending-review-rows')?.scrollTop||0}:null};setBusy(true);stopTicking();
   s.idle=(async()=>{
    let tx;
    try{
@@ -73,7 +73,7 @@
     });
     s.tx=null;setBusy(false);s.blocked=false;error.hidden=true;
     if(tx.leave){useDuel();old.setScene('home');}
-    else if(s.context&&!s.inSetup){old.render();paintGame();if(!$('result-history-backdrop').hidden)old.renderResultHistory();}
+    else if(s.context&&!s.inSetup){old.render();paintGame();if(before.pending&&game.phase==='review'&&(game.pendingReview.playerIndex??0)===before.pending.player){const list=$q('.pending-review-rows');if(list)list.scrollTop=before.pending.scroll;}if(!$('result-history-backdrop').hidden)old.renderResultHistory();}
     else old.renderOptions();
     for(const sound of tx.sounds)old.sfx(sound);if(tx.messages.length)old.toast(tx.messages.at(-1));paintHome();
     const active=document.activeElement;if(!active||active===document.body||!active.getClientRects().length){const target=focusSelector?$q(focusSelector):null;if(target?.getClientRects().length)target.focus({preventScroll:true});else if(focused?.id==='start-game')$q('#play-content [data-action="roll"]')?.focus({preventScroll:true});}
