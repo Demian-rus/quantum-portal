@@ -254,6 +254,11 @@
       "path": "cards/general-release-v89-revisions.json",
       "immutable": false,
       "review": "v89 release: nine versioned replacements for typo/semantic overlaps; original G15-G25 sources preserved, see CONTENT-RELEASE-V89.md"
+    },
+    {
+      "path": "cards/general-diversity-v12.json",
+      "immutable": false,
+      "review": "G26: 50 reviewed cards, 40 words / 10 phrases, following v89 general@27; editorial/general-diversity-v12-review.md"
     }
   ],
   "questions": [
@@ -438,6 +443,11 @@
       "path": "packs/general-release-v89.json",
       "immutable": false,
       "review": "v89 general@27: 6000 active IDs; nine replacements, all old catalog declarations unchanged"
+    },
+    {
+      "path": "packs/general-diversity-v12.json",
+      "immutable": false,
+      "review": "G26 general@28 pins 6050 IDs; v89 general@27 and all prior catalogs unchanged"
     }
   ],
   "legacyCollisions": [

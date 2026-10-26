@@ -23,7 +23,7 @@ test('v89 exposes 6000 active IDs with nine explicit replacements and preserves 
  assert.deepEqual(active.criteria.cardIds.slice(0,5450),published.criteria.cardIds);
  for(const c of revisions){const original=by.get(c.meta.replacesCardId);assert.ok(original);assert.equal(c.type,original.type);assert.equal(c.difficulty,original.difficulty);assert.ok(!active.criteria.cardIds.includes(original.id));assert.ok(prior.criteria.cardIds.includes(original.id));}
  for(let version=16;version<=26;version++)assert.equal(d.packs.find(p=>p.id==='general'&&p.version===version).criteria.cardIds.length,5450+(version-15)*50);
- const original=d.cards.filter(c=>/^general-diversity-v/.test(c.pack));assert.equal(original.length,550);assert.equal(original.filter(c=>c.type==='word').length,440);assert.equal(original.filter(c=>c.type==='phrase').length,110);
+ const original=d.cards.filter(c=>/^general-diversity-v(?:[1-9]|10|11)$/.test(c.pack));assert.equal(original.length,550);assert.equal(original.filter(c=>c.type==='word').length,440);assert.equal(original.filter(c=>c.type==='phrase').length,110);
  const selected=active.criteria.cardIds.filter(id=>!published.criteria.cardIds.includes(id)).map(id=>by.get(id));
  assert.equal(selected.length,550);assert.deepEqual(['easy','medium','hard'].map(l=>selected.filter(c=>c.difficulty===l).length),[220,220,110]);
  assert.equal(selected.filter(c=>c.type==='word').length,440);assert.equal(selected.filter(c=>c.type==='phrase').length,110);
