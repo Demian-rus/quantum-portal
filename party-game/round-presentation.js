@@ -196,6 +196,13 @@ function roundConditionMarkup(){
   const condition=displayedRoundCondition(game.current);
   return condition?'<div class="round-condition" tabindex="0" role="region" aria-label="Усложнение" title="'+escapeHTML(condition)+'"><strong>УСЛОЖНЕНИЕ: '+escapeHTML(condition)+'</strong></div>':'';
 }
+// Independent lower grid row: neither long text nor notes move the card/timer.
+function roundConditionSlotMarkup(){
+ const c=game.current,condition=roundConditionMarkup();
+ const notes=(c.modeId==='secret'?'<span class="secret-flag">СЕКРЕТКА · +'+c.points+' '+pointNoun(c.points)+'</span>':'')+
+  (c.risk?'<p class="risk-notice">⚡ РИСК: ПРОВАЛ — ДО −'+ruleSetForGame(game).risk.loss+' ОЧКОВ</p>':'');
+ return '<div class="round-condition-slot"'+(condition||notes?' tabindex="0" role="region" aria-label="Усложнение и награда"':' aria-hidden="true"')+'>'+condition+'<div class="round-notes">'+notes+'</div></div>';
+}
 // Keyboard focus follows the same card when a phase rebuilds its DOM.
 function taskCardHasKeyboardFocus(){
   return document.activeElement?.matches?.('.challenge-card[data-action="toggle-word"]:focus-visible')===true;

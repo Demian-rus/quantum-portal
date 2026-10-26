@@ -22,6 +22,6 @@ test('48 scripts match service-worker precache and inherited content URLs',()=>{
  const html=fs.readFileSync(path.join(root,'party-game/index.html'),'utf8'),sw=fs.readFileSync(path.join(root,'party-game/sw.js'),'utf8');
  const scripts=[...html.matchAll(/<script src="\.\/([^?"/]+\.js)\?v=(\d+)"/g)].map(x=>'./'+x[1]+'?v='+x[2]);
  assert.equal(scripts.length,48);for(const s of scripts)assert.ok(sw.includes("'"+s+"'"),s);
- assert.match(sw,/kvip-pwa-v87-20261025-compact-history-candidate/);
+ assert.match(sw,/kvip-pwa-v88-20261025-round-layout-candidate/);
  for(const x of ['cards.js?v=9','content-packs.js?v=17']){assert.ok(html.includes(x));assert.ok(sw.includes(x));}
 });

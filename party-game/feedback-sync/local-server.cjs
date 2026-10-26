@@ -52,7 +52,7 @@ function createService({database=':memory:',ownerToken,origin='http://127.0.0.1:
     reply(200,ownerExport());return;
    }
    if(req.url!=='/v1/feedback')throw new HttpError(404,'not-found');
-   if(req.headers.origin!==origin)throw new HttpError(403,'origin');headers['Access-Control-Allow-Origin']=origin;
+   if(req.headers.origin!==origin)throw new HttpError(403,'origin');headers['Access-Control-Allow-Origin']=origin;headers['Access-Control-Expose-Headers']='Retry-After';
    if(req.method==='OPTIONS'){
     if(req.headers['access-control-request-method']!=='POST'||(req.headers['access-control-request-headers']||'').toLowerCase().split(',').some(h=>h.trim()!=='content-type'))throw new HttpError(403,'preflight');
     reply(204,null,{'Access-Control-Allow-Methods':'POST','Access-Control-Allow-Headers':'Content-Type','Access-Control-Max-Age':'600'});return;

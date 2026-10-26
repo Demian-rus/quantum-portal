@@ -2121,3 +2121,98 @@ button.match-team:focus-visible{outline:3px solid var(--lime);outline-offset:3px
 /* Keep final-review tabs and confirmation anchored while only the list scrolls. */
 .scene--game .play-inner.is-result-review{display:grid;grid-template-columns:minmax(0,1fr);justify-content:normal;justify-items:center;align-items:stretch}
 .scene--game .is-result-review>.pending-review-rows{width:100%;min-width:0}
+
+/* TASK024: phase-independent header / card / condition / decisions.
+   The final decision track is inherited unchanged from v87. */
+.scene--game .play-inner.stable-round{
+ --round-slot-size:clamp(84px,20cqh,154px);
+ grid-template-rows:var(--round-slot-size) var(--round-card-size) minmax(0,1fr) calc(var(--decision-size) + var(--decision-label) + var(--decision-bottom) + 5px);
+ align-items:stretch;
+}
+.scene--game .stable-round .round-top{
+ grid-column:1;grid-row:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+ align-content:start;overflow:visible;padding:4px 3px;gap:6px;
+}
+.scene--game .stable-round .round-top--task:has(.timer-dial){gap:8px}
+.scene--game .stable-round .round-top--task:not(:has(.timer-dial)){row-gap:8px}
+.scene--game .stable-round .round-top .mode-symbol{margin:0;flex:0 0 auto}
+.scene--game .stable-round .round-top .timer-ring,
+.scene--game .stable-round .round-top:has(.blitz-status) .timer-ring{
+ width:clamp(56px,14cqh,112px);height:clamp(56px,14cqh,112px);min-height:0;margin:0;
+}
+.scene--game .stable-round .round-top .play-timer{font-size:clamp(17px,4cqh,32px)}
+.scene--game .stable-round .round-top .game-eyebrow{letter-spacing:.04em;max-width:100%;text-align:center}
+.scene--game .stable-round .round-timer-stack{display:flex;flex-direction:column;align-items:center;gap:0;flex:0 0 auto}
+.scene--game .stable-round .round-top .timer-dial{gap:clamp(12px,4vw,24px)}
+.scene--game .stable-round .round-fixed-card{grid-column:1;grid-row:2;align-self:center}
+.scene--game .stable-round .round-fixed-card .challenge-card{box-shadow:0 2px 0 #080820c9,0 12px 24px #0603139c,0 0 20px #8c62fa35;transition-property:background,border-color,box-shadow}
+.scene--game .stable-round .round-fixed-card .challenge-card:has(.challenge-word--long,.challenge-word--very-long){padding-block:6px}
+.scene--game .stable-round .round-condition-slot{
+ grid-column:1;grid-row:3;width:100%;height:100%;min-width:0;min-height:0;
+ display:flex;flex-direction:column;align-items:center;justify-content:safe flex-start;gap:5px;
+ overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;padding:0 3px 3px;
+}
+.scene--game .stable-round .round-condition-slot:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
+.scene--game .stable-round .round-condition{margin:0;flex:0 0 auto}
+.scene--game .stable-round .round-notes{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:4px 10px;max-width:100%;flex:0 0 auto}
+.scene--game .stable-round .round-notes:empty{display:none}
+.scene--game .stable-round .round-notes .secret-flag{margin:0;font-size:10px;line-height:1.2;padding:4px 8px}
+.scene--game .stable-round .round-notes .risk-notice{margin:0;padding:2px 6px;font-size:10px;line-height:1.2}
+.scene--game .stable-round .round-bottom{grid-column:1;grid-row:4}
+@container round-panel (max-height:560px){
+ .scene--game .play-inner.stable-round{--round-slot-size:76px;--round-gap:18px;--round-card-size:clamp(100px,21cqh,140px)}
+ .scene--game .stable-round .round-top{gap:4px;padding:2px 3px}
+ .scene--game .stable-round .round-top--task:not(:has(.timer-dial)){row-gap:6px}
+ .scene--game .stable-round .round-top .timer-ring{width:52px;height:52px}
+ .scene--game .stable-round .round-top:has(.blitz-status){gap:8px}
+ .scene--game .stable-round .round-top:has(.blitz-status) .timer-ring{width:44px;height:44px}
+ .scene--game .stable-round .round-top:has(.blitz-status) .card-rating{width:44px;height:44px}
+ .scene--game .stable-round .round-top .blitz-status{min-height:12px;line-height:1.2;padding:0}
+ .scene--game .stable-round .round-top .blitz-status b{font-size:9px}
+ .scene--game .stable-round .round-top .play-timer{font-size:17px}
+ .scene--game .stable-round .round-top:has(.blitz-status) .play-timer{font-size:14px}
+ .scene--game .stable-round .round-top .mode-symbol{width:28px;height:28px;min-height:0}
+ .scene--game .stable-round .round-top .mode-name{font-size:17px}
+ .scene--game .stable-round .round-condition-slot{gap:4px}
+ .scene--game .stable-round .round-condition{font-size:10px;line-height:1.3}
+ .scene--game .stable-round .round-notes .secret-flag{padding:2px 7px;font-size:9px}
+}
+@container round-panel (max-height:430px){
+ .scene--game .play-inner.stable-round{--round-gap:18px;--round-slot-size:76px}
+ .scene--game .stable-round .round-top .mode-symbol{width:28px;height:28px}
+ .scene--game .stable-round .round-top .mode-name{font-size:15px}
+ .scene--game .stable-round .round-top .timer-ring{width:48px;height:48px}
+ .scene--game .stable-round .round-top:has(.blitz-status) .timer-ring{width:44px;height:44px}
+ .scene--game .stable-round .round-top .play-timer{font-size:15px}
+ .scene--game .stable-round .round-top:has(.blitz-status) .play-timer{font-size:14px}
+ .scene--game .stable-round .round-condition{font-size:10px;line-height:1.3;padding:4px 7px}
+}
+@media(max-height:480px){
+ .scene--game .play-card:has(>.stable-round) .play-card-head{justify-content:flex-start;padding:0;gap:8px}
+ .scene--game .play-card:has(>.stable-round) #exit-game{position:static;transform:none;order:0}
+ .scene--game .play-card:has(>.stable-round) #timer-pause-control{position:static;transform:none;order:1}
+ .scene--game .play-inner.stable-round{
+  grid-template-columns:minmax(0,.75fr) minmax(0,1.6fr);
+  grid-template-rows:58px minmax(0,1fr) calc(var(--decision-size) + var(--decision-label) + var(--decision-bottom) + 5px);
+  gap:18px 28px;
+ }
+ .scene--game .stable-round .round-top{grid-column:1;grid-row:1/3;justify-content:flex-start;gap:6px;padding:2px 3px}
+ .scene--game .stable-round .round-top--task:not(:has(.timer-dial)){display:grid;grid-template-columns:30px minmax(0,1fr);align-content:start;align-items:center;gap:5px 8px}
+ .scene--game .stable-round .round-top--task>.mode-symbol{grid-row:1;grid-column:1;width:28px;height:28px}
+ .scene--game .stable-round .round-top--task>.mode-name{grid-row:1;grid-column:2;justify-self:start;font-size:15px}
+ .scene--game .stable-round .round-top--task>.score-note{grid-row:2;grid-column:1/-1}
+ .scene--game .stable-round .round-top>.game-eyebrow,.scene--game .stable-round .round-top>.timer-dial{grid-column:auto;grid-row:auto}
+ .scene--game .stable-round .round-top .game-eyebrow{font-size:9px;line-height:1.2}
+ .scene--game .stable-round .round-top .timer-dial{gap:12px}
+ .scene--game .stable-round .round-top .timer-ring{width:56px;height:56px}
+ .scene--game .stable-round .round-fixed-card{grid-column:2;grid-row:1;height:58px;max-height:none}
+ .scene--game .stable-round .round-fixed-card .challenge-card{padding:6px 10px}
+ .scene--game .stable-round .challenge-word{font-size:18px}
+ .scene--game .stable-round .challenge-word--long{font-size:16px}
+ .scene--game .stable-round .challenge-word--very-long{font-size:13px}
+ .scene--game .stable-round .challenge-word--hidden{font-size:15px}
+ .scene--game .stable-round .round-condition-slot{grid-column:2;grid-row:2;padding:0 3px;gap:3px}
+ .scene--game .stable-round .round-condition{font-size:10px;line-height:1.25;padding:2px 6px}
+ .scene--game .stable-round .round-notes .secret-flag{padding:1px 6px;font-size:9px}
+ .scene--game .stable-round .round-bottom{grid-column:1/-1;grid-row:3}
+}

@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),os=require('node:os'),{execFileSync}=require('node:child_process'),{webcrypto}=require('node:crypto');
 const P=require('../feedback-sync/protocol.js'),C=require('../feedback-sync/client.js'),{createService,serve}=require('../feedback-sync/local-server.cjs');
-const base='4bb6e67d8bed60f03459f31b14e6168ea996048b',root=path.resolve(__dirname,'../..'),token='local-test-owner-token-never-shipped-to-client';
+const base='ccbc52cb1142a9a169dd735d6dbfd3e94408fec1',root=path.resolve(__dirname,'../..'),token='local-test-owner-token-never-shipped-to-client';
 function mutex(){const tails=new Map();return async(name,fn)=>{const previous=tails.get(name)||Promise.resolve();let release;const gate=new Promise(resolve=>release=resolve);tails.set(name,previous.then(()=>gate));await previous;try{return await fn();}finally{release();}};}
 function fixture(){
  const values=new Map(),storage={getItem:k=>values.get(k)??null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k)};
@@ -40,6 +40,24 @@ test('automatic lifecycle reacts to online and detaches listeners/timer on stop'
  try{await s.start({events,document});f.approval(1);events.dispatchEvent(new Event('online'));await new Promise(resolve=>setImmediate(resolve));assert.equal(f.calls.length,1);assert.equal((await s.status()).pending,0);
   s.stop();f.approval(2);events.dispatchEvent(new Event('online'));document.dispatchEvent(new Event('visibilitychange'));await new Promise(resolve=>setImmediate(resolve));assert.equal(f.calls.length,1);
  }finally{s.stop();}
+});
+test('stop during startup never installs a new polling timer or listeners',async t=>{
+ const f=fixture();let release,arrived,subscriptions=0,intervals=0;
+ const entered=new Promise(resolve=>arrived=resolve),gate=new Promise(resolve=>release=resolve);
+ t.mock.method(globalThis,'setInterval',()=>{intervals++;return 1;});t.mock.method(globalThis,'clearInterval',()=>{});
+ const target={addEventListener(){subscriptions++;},removeEventListener(){}},s=f.create({fetch:async(url,options)=>{arrived();await gate;return response({...JSON.parse(options.body),status:'applied'});}});
+ try{await s.reconcile();f.approval(1);const starting=s.start({events:target,document:target});await entered;s.stop();release();await starting;
+  assert.equal(subscriptions,0);assert.equal(intervals,0);
+ }finally{s.stop();}
+});
+test('concurrent starts and repeated lifecycle signals keep one polling task',async t=>{
+ const f=fixture(),withLock=mutex();let tick,intervals=0,subscriptions=0,sendLocks=0,release,arrived;
+ t.mock.method(globalThis,'setInterval',fn=>{intervals++;tick=fn;return intervals;});t.mock.method(globalThis,'clearInterval',()=>{});
+ const target={addEventListener(){subscriptions++;},removeEventListener(){}},entered=new Promise(resolve=>arrived=resolve),gate=new Promise(resolve=>release=resolve);
+ const s=f.create({withLock:(name,fn)=>{if(name==='kvip-feedback-send-v1')sendLocks++;return withLock(name,fn);},fetch:async(url,options)=>{arrived();await gate;return response({...JSON.parse(options.body),status:'applied'});}});
+ try{await Promise.all([s.start({events:target,document:target}),s.start({events:target,document:target})]);assert.equal(intervals,1);assert.equal(subscriptions,3);
+  f.approval(1);const before=sendLocks;tick();await entered;for(let i=0;i<50;i++)tick();await new Promise(resolve=>setImmediate(resolve));assert.equal(sendLocks,before+1);release();await new Promise(resolve=>setImmediate(resolve));
+ }finally{release?.();s.stop();}
 });
 test('offline + process death between journal save and queue capture is repaired after reload',async()=>{
  const f=fixture();await f.create().reconcile();f.setOnline(false);f.report(1);const archived=f.run('createCardFeedbackText(localStorage,1)');
@@ -86,6 +104,26 @@ test('wrong/oversized/unknown ACKs and HTTP 204 never count as delivery',async()
    return new Response(JSON.stringify(ack),{headers:{'Content-Type':mode==='type'?'text/html':'application/json'}});}});
   await s.reconcile();f.approval(1);await s.flush();assert.equal((await s.status()).pending,1,mode);assert.equal((await s.status()).lastAckAt,null,mode);
  }
+});
+test('rejected responses release unread bodies and preserve pending feedback',async()=>{
+ for(const status of [200,429,503]){
+  const f=fixture();let cancelled=false;
+  const body=new ReadableStream({start(c){c.enqueue(new TextEncoder().encode('untrusted response'));},cancel(){cancelled=true;}});
+  const s=f.create({fetch:async()=>new Response(body,{status,headers:{'Content-Type':'text/plain'}})});
+  await s.reconcile();f.approval(1);await s.flush();
+  assert.equal(cancelled,true,'Unread response must be cancelled for status '+status);
+  assert.equal((await s.status()).pending,1);assert.equal((await s.status()).lastAckAt,null);
+ }
+});
+test('archive rollback while awaiting the sender lock blocks network delivery',async()=>{
+ const f=fixture(),withLock=mutex();let release,arrived,blocked=false;
+ const started=new Promise(resolve=>arrived=resolve),gate=new Promise(resolve=>release=resolve);
+ const s=f.create({readArchives:()=>{if(blocked)throw Error('Unconfirmed archive rollback');return f.readArchives();},
+  withLock:async(name,fn)=>{if(name==='kvip-feedback-send-v1'){arrived();await gate;}return withLock(name,fn);}});
+ await s.reconcile();f.approval(1);await s.reconcile();const raw=f.storage.getItem(C.KEY),archived=f.run('createCardFeedbackText(localStorage,1)');
+ const sending=s.flush();await started;blocked=true;release();
+ await assert.rejects(sending,/Unconfirmed archive rollback/);assert.equal(f.calls.length,0);assert.equal(f.storage.getItem(C.KEY),raw);
+ blocked=false;assert.equal(f.run('createCardFeedbackText(localStorage,1)'),archived);await s.flush();assert.equal((await s.status()).delivered,1);
 });
 test('outbox quota failure cannot roll back a successfully saved rating; catchup succeeds later',async()=>{
  const f=fixture(),s=f.create();await s.reconcile();f.report(1);const before=f.storage.getItem(C.KEY),archive=f.run('createCardFeedbackText(localStorage,1)'),set=f.storage.setItem;
@@ -170,16 +208,20 @@ test('real loopback HTTP validates origin, credentials, strict JSON, body limits
  const server=serve({ownerToken:token,port:0});await new Promise(resolve=>server.once('listening',resolve));const url='http://127.0.0.1:'+server.address().port;
  try{const event=wire(webcrypto.randomUUID(),1,1),headers={Origin:'http://127.0.0.1:8765','Content-Type':'application/json'};
   const post=(body=JSON.stringify(event),changes={})=>fetch(url+'/v1/feedback',{method:'POST',headers:{...headers,...changes},body});
-  let r=await post();assert.equal(r.status,200);P.validateAck(await r.json(),event);assert.equal((await post()).status,200);
+  let r=await post();assert.equal(r.status,200);assert.equal(r.headers.get('Access-Control-Expose-Headers'),'Retry-After');P.validateAck(await r.json(),event);assert.equal((await post()).status,200);
   assert.equal((await post(undefined,{Origin:'https://evil.example'})).status,403);assert.equal((await post(undefined,{Cookie:'test=1'})).status,400);
   assert.equal((await post(JSON.stringify({...event,team:'private'}))).status,400);assert.equal((await post('x'.repeat(2049))).status,413);assert.equal((await post('{bad')).status,400);assert.equal((await post(undefined,{'Content-Type':'text/plain'})).status,415);
   assert.equal((await fetch(url+'/owner/export')).status,401);assert.equal((await fetch(url+'/owner/export',{headers:{Authorization:'Bearer '+token,Origin:'http://127.0.0.1:8765'}})).status,403);
   r=await fetch(url+'/owner/export',{headers:{Authorization:'Bearer '+token}});assert.equal(r.status,200);const exported=await r.json();assert.equal(exported.aggregates[0].count,1);assert.ok(!JSON.stringify(exported).includes(event.installId));
  }finally{await new Promise(resolve=>server.close(resolve));}
 });
-test('TASK023A preserves every published runtime byte, catalogs, exports and TASK022',()=>{
+test('TASK025 preserves every published v88 runtime byte, catalogs, exports and TASK024/022',()=>{
  const changed=execFileSync('git',['diff','--name-only',base,'--','party-game'],{cwd:root,encoding:'utf8'}).trim().split('\n').filter(Boolean);
  assert.ok(changed.every(n=>n.startsWith('party-game/feedback-sync/')||n==='party-game/TASK023A-FEEDBACK-SYNC.md'||n.startsWith('party-game/tests/feedback-sync')),changed.join('\n'));
  const html=fs.readFileSync(path.join(root,'party-game/index.html'),'utf8');assert.ok(!html.includes('feedback-sync/'));
- for(const f of ['index.html','sw.js','style.css','card-reports.js','card-reports-view.js','card-feedback.js','card-feedback-view.js','result-review.js','result-review-view.js','match-views.js','risk-planner.js','player-profiles.js','profile-backup.js','storage-controller.js','cards.js','content-packs.js'])assert.deepEqual(fs.readFileSync(path.join(root,'party-game',f)),execFileSync('git',['show',base+':party-game/'+f],{cwd:root,maxBuffer:12e6}),f);
+ assert.ok(!fs.readFileSync(path.join(root,'party-game/sw.js'),'utf8').includes('feedback-sync/'));
+ const workflow=fs.readFileSync(path.join(root,'.github/workflows/quip-game.yml'),'utf8');
+ assert.equal(workflow.replace('      - run: node --test party-game/tests/feedback-sync.test.cjs\n','').replace('      - run: node party-game/tests/feedback-sync-browser.cjs\n',''),execFileSync('git',['show',base+':.github/workflows/quip-game.yml'],{cwd:root,encoding:'utf8'}),'All existing v88 CI steps and artifacts retained');
+ const runtime=[...html.matchAll(/<script src="\.\/([^?"/]+\.js)(?:\?[^" ]*)?" defer><\/script>/g)].map(m=>m[1]);assert.equal(runtime.length,48);
+ for(const f of ['index.html','sw.js','style.css',...runtime])assert.deepEqual(fs.readFileSync(path.join(root,'party-game',f)),execFileSync('git',['show',base+':party-game/'+f],{cwd:root,maxBuffer:12e6}),f);
 });

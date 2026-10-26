@@ -110,13 +110,13 @@
   }
   async function send(event){
    const controller=new AbortController();currentAbort=controller;
-   const timeout=setTimeout(()=>controller.abort(),10000);
+   const timeout=setTimeout(()=>controller.abort(),10000);let response;
    try{
-    const response=await fetcher(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(event),signal:controller.signal,credentials:'omit',redirect:'error',referrerPolicy:'no-referrer',cache:'no-store',mode:'cors'});
+    response=await fetcher(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(event),signal:controller.signal,credentials:'omit',redirect:'error',referrerPolicy:'no-referrer',cache:'no-store',mode:'cors'});
     if(response.status!==200){const e=Error('Server did not acknowledge feedback');e.permanent=response.status>=400&&response.status<500&&![408,425,429].includes(response.status);e.retryAfter=[429,503].includes(response.status)?Math.min(86400000,Math.max(0,Number(response.headers.get('Retry-After'))||0)*1000):0;throw e;}
     if(!/^application\/json(?:;|$)/i.test(response.headers.get('Content-Type')||''))throw Error('Invalid ACK content type');
     P.validateAck(await limitedAck(response),event);
-   }finally{clearTimeout(timeout);currentAbort=null;}
+   }finally{clearTimeout(timeout);currentAbort=null;controller.abort();if(response?.body&&!response.body.locked)await response.body.cancel().catch(()=>{});}
   }
   async function flush(){
    if(!enabled)return {mode:'disabled'};
@@ -124,7 +124,7 @@
     ready();await transact(capture);if(!online()||stopped)return await status();
     await lock('kvip-feedback-send-v1',async()=>{
      for(let i=0;i<10&&!stopped;i++){
-      const event=await transact(()=>{const {state}=read();return state&&!state.halted&&time()>=state.nextAttemptAt?copy(state.records.find(r=>r.pending)?.pending??null):null;});if(!event||!online())break;
+      const event=await transact(()=>{const {state}=read();if(state)snapshot(readArchives());return state&&!state.halted&&time()>=state.nextAttemptAt?copy(state.records.find(r=>r.pending)?.pending??null):null;});if(!event||!online())break;
       try{
        await send(event);
        await transact(()=>{const {raw,state}=read();if(!state||state.installId!==event.installId)return;const record=state.records.find(r=>r.key===P.itemKey(event.item));
@@ -143,7 +143,8 @@
   async function start({events=root,document=root.document}={}){
    if(!enabled)return {mode:'disabled'};ready();if(timer!==null)return status();stopped=false;
    const initial=await flush();
-   const tick=()=>{flush().catch(()=>{});};
+   if(stopped||timer!==null)return initial;
+   let running=false;const tick=()=>{if(running||stopped)return;running=true;flush().catch(()=>{}).finally(()=>{running=false;});};
    for(const [target,name]of [[events,'online'],[events,'storage'],[document,'visibilitychange']])if(target?.addEventListener){target.addEventListener(name,tick);unlisten.push(()=>target.removeEventListener(name,tick));}
    timer=setInterval(tick,15000);return initial;
   }

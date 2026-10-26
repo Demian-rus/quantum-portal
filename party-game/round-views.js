@@ -24,14 +24,12 @@ function showTask() {
   const c=game.current;
   $('play-content').innerHTML=
     '<div class="round-top round-top--task" tabindex="0" role="region" aria-label="Условия раунда">'+
-      symbol(mode.id)+
+      (c.visible?roundTimerSlotMarkup(c.seconds*1000):symbol(mode.id)+
       '<h2 class="play-title mode-name">'+escapeHTML(name)+'</h2>'+
-      roundConditionMarkup()+
-      (secret?'<span class="secret-flag">СЕКРЕТКА · +'+c.points+' '+pointNoun(c.points)+'</span>':
-        '<span class="score-note">ЗА ВЕРНЫЙ ОТВЕТ: +'+(c.modeId==='blitz'?(game.scoringVersion===2?c.points+' ЗА ВСЕ '+c.blitzWords.length+' СЛОВ':'1 ЗА СЛОВО'):c.points)+'</span>')+
-    (c.risk?'<p class="risk-notice">⚡ РИСК-РАУНД: ПРОВАЛ — ДО −'+ruleSetForGame(game).risk.loss+' ОЧКОВ</p>':'')+
+      (!secret?'<span class="score-note">ЗА ВЕРНЫЙ ОТВЕТ: +'+(c.modeId==='blitz'?(game.scoringVersion===2?c.points+' ЗА ВСЕ '+c.blitzWords.length+' СЛОВ':'1 ЗА СЛОВО'):c.points)+'</span>':''))+
     '</div>'+
     '<div class="round-fixed-card">'+taskMarkup(!c.visible)+'</div>'+
+    roundConditionSlotMarkup()+
     '<div class="round-bottom round-bottom--task">'+taskControls(c)+'</div>';
 }
 

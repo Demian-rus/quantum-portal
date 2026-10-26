@@ -2385,7 +2385,7 @@ test('TASK013 B new Mixed countdown restores its original start and rejects unkn
 test('TASK013 B round views remove duplicate setup copy but retain actual conditions in task countdown and play',()=>{
  const h=harness();h.eval('soundOn=false;Object.assign(options,{modes:["mime"],difficulty:"easy",dice:false,complications:false});newGame()');
  assert.ok(!h.elements.get('play-content').innerHTML.includes('game-eyebrow'));assert.equal(h.elements.get('round-now').textContent,1);
- h.eval('roll()');assert.ok(!h.elements.get('play-content').innerHTML.includes('Только жесты'));assert.ok(!h.elements.get('play-content').innerHTML.includes('round-condition'));
+ h.eval('roll()');assert.ok(!h.elements.get('play-content').innerHTML.includes('Только жесты'));assert.ok(!h.elements.get('play-content').innerHTML.includes('class="round-condition"'));
  h.eval('game.current.complication="Не рисуй <линии> & точки";render();toggleWord()');
  for(const phase of ['task','countdown','play']){
   h.context.phase=phase;h.eval('game.phase=phase;if(phase==="play")game.current.deadline=Date.now()+60000;render()');
