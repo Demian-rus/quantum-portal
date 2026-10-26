@@ -1,6 +1,19 @@
 'use strict';
 // Timer display only; clock control, state and helpers remain in the existing scripts.
 
+// The same slot is used after Easy reveal, during auto-start, and while running.
+function roundTimerSlotMarkup(shown,countdown=false,active=false){
+ const c=game.current;
+ return '<span class="game-eyebrow"'+(countdown?' aria-label="'+escapeHTML(modeInformation().name)+': старт через одну секунду"':'')+'>'+
+  (countdown?'СТАРТ ЧЕРЕЗ 1 СЕКУНДУ':escapeHTML(modeInformation().name)+' · '+c.seconds+' СЕКУНД')+'</span>'+
+  (c.modeId==='blitz'?'<div class="round-timer-stack">':'')+'<div class="timer-dial">'+feedbackButtonMarkup(false)+
+  '<div class="timer-ring'+(shown<=10000?' warning':'')+'" aria-label="Таймер">'+
+   '<svg viewBox="0 0 200 200" class="ring-svg" aria-hidden="true"><circle class="ring-bg" cx="100" cy="100" r="88" />'+
+   '<circle id="'+(active?'timer-progress':'preview-timer-progress')+'" class="ring-progress" cx="100" cy="100" r="88" /></svg>'+
+   '<div id="'+(active?'active-timer':'preview-timer')+'" class="play-timer'+(shown<=10000?' warning':'')+'" role="timer" aria-label="Оставшееся время">'+timerMarkup(shown)+'</div></div>'+
+  feedbackButtonMarkup(true)+'</div>'+(c.modeId==='blitz'?blitzStatus()+'</div>':'');
+}
+
 function showTimer() {
   $('play-content').className='play-inner is-play stable-round';
   $('play-step').textContent=game.scoringVersion===2?'ОТГАДЫВАЕТ '+guessingTeam():'ВРЕМЯ ПОШЛО';
@@ -8,22 +21,10 @@ function showTimer() {
   const shown=Math.max(0,remaining),blitz=c.modeId==='blitz';
   $('play-content').innerHTML=
     '<div class="round-top round-top--timer" tabindex="0" role="region" aria-label="Таймер и условия раунда">'+
-      '<span class="game-eyebrow">'+escapeHTML(modeInformation().name)+' · '+c.seconds+' СЕКУНД</span>'+
-      roundConditionMarkup()+
-      '<div class="timer-dial">'+feedbackButtonMarkup(false)+
-      '<div class="timer-ring'+(shown<=10000?' warning':'')+'" aria-label="Таймер">'+
-        '<svg viewBox="0 0 200 200" class="ring-svg" aria-hidden="true">'+
-          '<circle class="ring-bg" cx="100" cy="100" r="88" />'+
-          '<circle id="timer-progress" class="ring-progress" cx="100" cy="100" r="88" />'+
-        '</svg>'+
-        '<div id="active-timer" class="play-timer'+(shown<=10000?' warning':'')+'" role="timer" aria-label="Оставшееся время">'+timerMarkup(shown)+'</div>'+
-      '</div>'+
-      feedbackButtonMarkup(true)+
-      '</div>'+
-      (blitz?blitzStatus():'')+
-      (c.risk?'<p class="risk-notice">⚡ РИСК: ПРОВАЛ −'+ruleSetForGame(game).risk.loss+' ОЧКА</p>':'')+
+      roundTimerSlotMarkup(shown,false,true)+
     '</div>'+
     '<div class="round-fixed-card">'+taskMarkup(!c.visible)+'</div>'+
+    roundConditionSlotMarkup()+
     '<div class="round-bottom round-bottom--play">'+
       (blitz?'<div class="three-answer-actions blitz-actions">'+
         '<div class="blitz-control">'+iconButton('x','blitz-skip','Пропустить слово','danger prominent')+
@@ -42,11 +43,10 @@ function showCountdown() {
   $('play-step').textContent='ПРИГОТОВЬТЕСЬ';
   $('play-content').innerHTML=
     '<div class="round-top round-top--timer" tabindex="0" role="region" aria-label="Таймер и условия раунда">'+
-      '<span class="game-eyebrow">'+escapeHTML(modeInformation().name)+'</span>'+
-      roundConditionMarkup()+
-      '<h2 class="play-title">СТАРТ ЧЕРЕЗ <em>1 СЕКУНДУ</em></h2>'+
+      roundTimerSlotMarkup(game.current.seconds*1000,true)+
     '</div>'+
     '<div class="round-fixed-card">'+taskMarkup(!game.current.visible)+'</div>'+
+    roundConditionSlotMarkup()+
     '<div class="round-bottom"><p class="play-subtitle">Таймер запускается автоматически</p></div>';
 }
 

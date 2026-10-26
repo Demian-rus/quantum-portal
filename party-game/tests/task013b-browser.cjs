@@ -10,17 +10,17 @@ async function setup(page){await page.locator('#new-game-menu').click();await pa
 const cardBox=page=>page.locator('.round-fixed-card').boundingBox();
 function sameBox(a,b,label){for(const k of ['x','y','width','height'])assert.ok(Math.abs(a[k]-b[k])<=2,label+': '+JSON.stringify({a,b}))}
 async function fullCondition(page,expected){
- const area=page.locator('.round-condition'),outer=page.locator('.round-top');
+ const area=page.locator('.round-condition'),outer=area.locator('..');
  assert.equal(await area.textContent(),'УСЛОЖНЕНИЕ: '+expected);
  // #95 moves only the exceptional-long-text fallback to the complete upper
  // region. Keep the original requirement: both ends must be keyboard reachable.
  await outer.focus();await outer.press('Home');
- const first=await area.evaluate(el=>{const node=el.querySelector('strong').firstChild,r=document.createRange();r.setStart(node,0);r.setEnd(node,1);const b=r.getBoundingClientRect(),p=el.closest('.round-top').getBoundingClientRect();return{top:b.top,bottom:b.bottom,parentTop:p.top,parentBottom:p.bottom}});
+ const first=await area.evaluate(el=>{const node=el.querySelector('strong').firstChild,r=document.createRange();r.setStart(node,0);r.setEnd(node,1);const b=r.getBoundingClientRect(),p=el.closest('.round-condition-slot,.round-top').getBoundingClientRect();return{top:b.top,bottom:b.bottom,parentTop:p.top,parentBottom:p.bottom}});
  assert.ok(first.top>=first.parentTop-1&&first.bottom<=first.parentBottom+1,'Condition beginning is inaccessible: '+JSON.stringify(first));
  await outer.press('End');
- await page.waitForFunction(()=>{const e=document.querySelector('.round-top');return e.scrollTop+e.clientHeight>=e.scrollHeight-2});
+ await page.waitForFunction(()=>{const e=document.querySelector('.round-condition').closest('.round-condition-slot,.round-top');return e.scrollTop+e.clientHeight>=e.scrollHeight-2});
  const g=await page.evaluate(()=>{
-  const condition=document.querySelector('.round-condition'),parent=condition.closest('.round-top'),node=condition.querySelector('strong').firstChild;
+  const condition=document.querySelector('.round-condition'),parent=condition.closest('.round-condition-slot,.round-top'),node=condition.querySelector('strong').firstChild;
   const range=document.createRange();range.setStart(node,node.length-1);range.setEnd(node,node.length);
   const tail=range.getBoundingClientRect(),p=parent.getBoundingClientRect();
   return {overflow:getComputedStyle(parent).overflowY,bar:getComputedStyle(parent).scrollbarWidth,
@@ -76,7 +76,7 @@ async function upgrade(browser,url){
   const remaining=await page.evaluate(()=>game.current.remainingMs);await page.locator('[data-action="resume"]').click();
   assert.equal(await page.evaluate(()=>game.current.paused),false);assert.ok(Math.abs(await page.evaluate(()=>game.current.deadline-Date.now())-remaining)<1500);
   await page.evaluate(condition=>{game.phase='task';game.current.visible=false;game.current.complication=condition;render()},LONG);await settle(page);
-  const after=await fullCondition(page,LONG);await page.locator('.round-top,.round-condition').evaluateAll(elements=>elements.forEach(el=>el.scrollTop=0));
+  const after=await fullCondition(page,LONG);await page.locator('.round-top,.round-condition-slot,.round-condition').evaluateAll(elements=>elements.forEach(el=>el.scrollTop=0));
   await page.screenshot({path:ART+'condition-after.png'});
   assert.deepEqual(errors,[]);console.log('TASK013 B v71 → v72 offline update PASS: paused Mixed / song V1 / exact RAW game options history / usable resume',JSON.stringify({before,after}));
  }finally{write(current);await context.close()}
@@ -135,7 +135,7 @@ async function ui(browser,url,width,height){
    game.current.complication=condition;game.current.risk=true;render();
   },LONG);await settle(page);
   const fixed=await cardBox(page);const conditionGeometry=await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Scrolling moved card');
-  if(width===320){await page.locator('.round-top,.round-condition').evaluateAll(elements=>elements.forEach(el=>el.scrollTop=0));await page.screenshot({path:ART+'narrow-condition-after.png'})}
+  if(width===320){await page.locator('.round-top,.round-condition-slot,.round-condition').evaluateAll(elements=>elements.forEach(el=>el.scrollTop=0));await page.screenshot({path:ART+'narrow-condition-after.png'})}
   await page.locator('.challenge-card[data-action="toggle-word"]').click();await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Reveal moved card');
   await page.locator('[data-action="start-timer"]').click();await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Timer moved card');
   await page.locator('#exit-game').click();await setup(page);
