@@ -62,7 +62,9 @@
    row.classList.toggle('wizard-rule--off',!active);
    row.querySelector('.wizard-mode-state').textContent=active?'Активен':availability.available?'Выключен':availability.reason;
    row.querySelector('.wizard-reward').textContent=guide.reward;
-   row.querySelector('.wizard-mode-time').textContent=config.usesTimer?(mode.id==='secret'?'Время: '+options.duration+' или '+(options.duration+30)+' с, по выбранному способу':'Время: '+(options.duration+config.durationBonus)+' с'):'Без таймера';
+   const timedConfigs=mode.id==='secret'?MODE_LIST.map(m=>getModeConfig(m.id)).filter(m=>m.secretMethod):[config];
+   const durations=[...new Set(timedConfigs.map(m=>options.duration+m.durationBonus))].sort((a,b)=>a-b);
+   row.querySelector('.wizard-mode-time').textContent=config.usesTimer?'Время: '+durations.join(' или ')+' с'+(mode.id==='secret'?', по выбранному способу':''):'Без таймера';
    row.querySelector('.wizard-rule-copy').innerHTML=guide.blocks.filter(([title])=>title!=='Время').map(([title,copy])=>'<h3>'+escapeHTML(title)+'</h3><p>'+escapeHTML(copy)+'</p>').join('');
   }
   $('mode-options-backdrop').dataset.mode='sing';renderModeSettings();

@@ -5,7 +5,11 @@ const base='507c3d24f270a7d26b1562ffc6837c819a15aa5b',root=path.resolve(__dirnam
 const git=a=>execFileSync('git',a,{cwd:root,maxBuffer:15e6});
 const files=historicalRuntimeFiles(git,base,['index.html','style.css','sw.js']);
 const before=new Map(files.map(f=>[f,git(['show',base+':party-game/'+f])])),current=new Map(files.map(f=>[f,fs.readFileSync(path.join(root,'party-game',f))]));
-const write=m=>{for(const [f,b] of m)fs.writeFileSync(path.join(root,'party-game',f),b);};
+// SimpleHTTPServer's Last-Modified has one-second precision. Advancing each
+// served bundle explicitly prevents a false 304 when a fast upgrade/rollback
+// rewrites different SW bytes in the same second. Never sleep or bypass the SW.
+let fixtureStamp=Date.UTC(2026,0,1);
+const write=m=>{fixtureStamp+=2000;for(const [f,b] of m){const file=path.join(root,'party-game',f);fs.writeFileSync(file,b);fs.utimesSync(file,new Date(fixtureStamp),new Date(fixtureStamp));}};
 const snapshot=p=>p.evaluate(()=>({raw:localStorage.getItem(STORAGE_KEY),game:JSON.stringify(game),profiles:localStorage.getItem(QUIP_PROFILES_KEY),memory:JSON.stringify(taskMemory)}));
 async function update(p,name){await p.evaluate(async()=>{const registration=await navigator.serviceWorker.getRegistration();const change=new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));await registration.update();await Promise.race([change,new Promise((_,reject)=>setTimeout(()=>reject(Error('PWA change timeout')),20000))]);});await p.waitForFunction(async name=>await caches.has(name),name);}
 (async()=>{const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',args:['--no-sandbox']});
