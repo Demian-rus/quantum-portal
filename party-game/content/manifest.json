@@ -234,6 +234,11 @@
       "path": "cards/general-diversity-v8.json",
       "immutable": false,
       "review": "G22: 50 general cards, 40 words / 10 phrases; see editorial/general-diversity-v8-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v9.json",
+      "immutable": false,
+      "review": "G23: 50 reviewed general cards, 40 words / 10 phrases; see editorial/general-diversity-v9-review.md"
     }
   ],
   "questions": [
@@ -398,6 +403,11 @@
       "path": "packs/general-diversity-v8.json",
       "immutable": false,
       "review": "G22 general@23 = 5850 pinned IDs, historical snapshots unchanged"
+    },
+    {
+      "path": "packs/general-diversity-v9.json",
+      "immutable": false,
+      "review": "G23 general@24 pins 5900 IDs; all earlier general versions stay frozen"
     }
   ],
   "legacyCollisions": [
