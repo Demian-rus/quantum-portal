@@ -7,12 +7,14 @@
 
 | Что | Статус на дату обновления | Источник |
 | --- | --- | --- |
-| Опубликованная игра | **PWA v88**, merge `0d9ee9503dfe87a20fc5f7690bb0342a76710179`, Pages SUCCESS. Новый стабильный экран опубликован; риск v86, история v87 и словари сохранены | [Приложение](https://demian-rus.github.io/quantum-portal/party-game/), [main](https://github.com/Demian-rus/quantum-portal/commits/main) |
+| Версия выпуска | **PWA v89**, общий каталог **6000** (`general@27`), G15–G25 +550 заданий. Поведение v88 сохранено; публикацию подтверждает Pages на main | [Приложение](https://demian-rus.github.io/quantum-portal/party-game/), [main](https://github.com/Demian-rus/quantum-portal/commits/main) |
 | Профили, локальная статистика, резервные копии | Опубликованы | [PR #90](https://github.com/Demian-rus/quantum-portal/pull/90), [PR #108](https://github.com/Demian-rus/quantum-portal/pull/108) |
 | Одобрения и жалобы на задания | Опубликованы, но **только локальное хранение и ручной JSON/Web Share** | [PR #103](https://github.com/Demian-rus/quantum-portal/pull/103) |
 | Изменение исходов через плашки игроков и предфинальная проверка результатов | Опубликованы для **новых партий**; старые завершённые партии не редактируются | [PR #108](https://github.com/Demian-rus/quantum-portal/pull/108), [контракт](TASK020-RESULT-REVIEW.md) |
 | Умный баланс риск-раундов | **Опубликовано в v86 / PR #119**. Новые партии балансируют риск по получателю очков с расхождением ≤2, исторические сохраняют прежний RNG | [Issue #100](https://github.com/Demian-rus/quantum-portal/issues/100) |
 | Новые 500 текстовых карточек | **Включены в опубликованную v86**: версии `cards.js?v=9`, `content-packs.js?v=17` и precache; применение обновления на каждом физическом Android проверяется отдельно | [PR #111](https://github.com/Demian-rus/quantum-portal/pull/111) |
+
+Выпуск общего словаря v89: [контракт, девять версионных редакций и проверки](CONTENT-RELEASE-V89.md). Источники G15–G25 сохранены, новые партии получают 6000 заданий, исторические сохраняют свою версию. Следующая редакторская партия — G26.
 
 Не путать номер PR, TASK и PWA-версию. Draft PR, зелёный CI и созданная ветка сами по себе **не означают публикацию**. Только объединение в `main` и успешное развёртывание Pages подтверждают релиз.
 

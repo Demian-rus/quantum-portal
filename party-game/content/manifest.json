@@ -194,6 +194,66 @@
       "path": "cards/general-expansion-v2.json",
       "immutable": false,
       "review": "G14: 50 individually reviewed general playable cards; categories varied; compare with all 5367 previous entries and candidate rejects in editorial/general-expansion-v2-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v1.json",
+      "immutable": false,
+      "review": "G15: 50 general cards (40 words and 10 phrases); editorial/general-diversity-v1-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v2.json",
+      "immutable": false,
+      "review": "G16 editorial batch: 50 new playable cards (40 words, 10 phrases), 13 themes; see editorial/general-diversity-v2-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v3.json",
+      "immutable": false,
+      "review": "G17: 50 general cards, 40 single words / 10 phrases, editorial/general-diversity-v3-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v4.json",
+      "immutable": false,
+      "review": "G18: 50 reviewed general cards (40 words, 10 phrases); editorial/general-diversity-v4-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v5.json",
+      "immutable": false,
+      "review": "G19: 50 reviewed diverse general tasks, 40 words and 10 phrases; see editorial/general-diversity-v5-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v6.json",
+      "immutable": false,
+      "review": "G20: 50 general cards (40 words and 10 phrases), manually screened across 5667 prior cards; editorial/general-diversity-v6-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v7.json",
+      "immutable": false,
+      "review": "G21: 50 reviewed general tasks, 40 words and 10 phrases; editorial/general-diversity-v7-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v8.json",
+      "immutable": false,
+      "review": "G22: 50 general cards, 40 words / 10 phrases; see editorial/general-diversity-v8-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v9.json",
+      "immutable": false,
+      "review": "G23: 50 reviewed general cards, 40 words / 10 phrases; see editorial/general-diversity-v9-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v10.json",
+      "immutable": false,
+      "review": "G24: 50 reviewed general cards, 40 words / 10 phrases, checked against 5867 prior text cards; editorial/general-diversity-v10-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v11.json",
+      "immutable": false,
+      "review": "G25: 50 reviewed general cards, 40 words / 10 phrases, screened against 5917 prior text cards; editorial/general-diversity-v11-review.md"
+    },
+    {
+      "path": "cards/general-release-v89-revisions.json",
+      "immutable": false,
+      "review": "v89 release: nine versioned replacements for typo/semantic overlaps; original G15-G25 sources preserved, see CONTENT-RELEASE-V89.md"
     }
   ],
   "questions": [
@@ -318,6 +378,66 @@
       "path": "packs/general-expansion-v2.json",
       "immutable": false,
       "review": "G14 pins new general@15=5450; all prior catalog versions and card IDs retained"
+    },
+    {
+      "path": "packs/general-diversity-v1.json",
+      "immutable": false,
+      "review": "G15: new version general@16 pins 5500 IDs, historical versions unchanged"
+    },
+    {
+      "path": "packs/general-diversity-v2.json",
+      "immutable": false,
+      "review": "G16 general@17 pins 5550 IDs, retains general@16 and all earlier pack versions"
+    },
+    {
+      "path": "packs/general-diversity-v3.json",
+      "immutable": false,
+      "review": "G17 general@18 pins 5600 tasks, all historical pack versions unchanged"
+    },
+    {
+      "path": "packs/general-diversity-v4.json",
+      "immutable": false,
+      "review": "G18 pins general@19 at 5650 IDs; preserves all prior versions and IDs"
+    },
+    {
+      "path": "packs/general-diversity-v5.json",
+      "immutable": false,
+      "review": "G19 general@20 pins 5700 explicit IDs; all previous snapshots preserved"
+    },
+    {
+      "path": "packs/general-diversity-v6.json",
+      "immutable": false,
+      "review": "G20 general@21 pins 5750 IDs; all older general versions remain frozen"
+    },
+    {
+      "path": "packs/general-diversity-v7.json",
+      "immutable": false,
+      "review": "G21 general@22 pins 5800 IDs, preserves all prior snapshots"
+    },
+    {
+      "path": "packs/general-diversity-v8.json",
+      "immutable": false,
+      "review": "G22 general@23 = 5850 pinned IDs, historical snapshots unchanged"
+    },
+    {
+      "path": "packs/general-diversity-v9.json",
+      "immutable": false,
+      "review": "G23 general@24 pins 5900 IDs; all earlier general versions stay frozen"
+    },
+    {
+      "path": "packs/general-diversity-v10.json",
+      "immutable": false,
+      "review": "G24 general@25 pins 5950 IDs; all previous snapshots preserved"
+    },
+    {
+      "path": "packs/general-diversity-v11.json",
+      "immutable": false,
+      "review": "G25 general@26 pins 6000 IDs; all previous snapshots preserved"
+    },
+    {
+      "path": "packs/general-release-v89.json",
+      "immutable": false,
+      "review": "v89 general@27: 6000 active IDs; nine replacements, all old catalog declarations unchanged"
     }
   ],
   "legacyCollisions": [

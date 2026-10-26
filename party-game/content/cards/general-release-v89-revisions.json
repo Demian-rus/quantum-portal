@@ -1,0 +1,129 @@
+[
+  {
+    "id": "word-900001",
+    "text": "ПЕЛЁНКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-release-v89-revisions",
+    "meta": {
+      "replacesCardId": "word-040015",
+      "reviewReason": "Синоним существующего ПОЛОВНИК"
+    }
+  },
+  {
+    "id": "word-900002",
+    "text": "ОГРЫЗОК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "food"
+    ],
+    "pack": "general-release-v89-revisions",
+    "meta": {
+      "replacesCardId": "word-043006",
+      "reviewReason": "Уменьшительная форма БОЧКА из G15"
+    }
+  },
+  {
+    "id": "word-900003",
+    "text": "ШЕЛУХА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "food"
+    ],
+    "pack": "general-release-v89-revisions",
+    "meta": {
+      "replacesCardId": "word-044006",
+      "reviewReason": "Пересечение с ПУГАЛО из G15"
+    }
+  },
+  {
+    "id": "word-900004",
+    "text": "ЛИВРЕЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-release-v89-revisions",
+    "meta": {
+      "replacesCardId": "word-044019",
+      "reviewReason": "Опечатка КОНТРБАС; правильный КОНТРАБАС уже есть в G25"
+    }
+  },
+  {
+    "id": "word-900005",
+    "text": "РАСПАШОНКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-release-v89-revisions",
+    "meta": {
+      "replacesCardId": "word-048011",
+      "reviewReason": "Синоним РУКАВИЦА из G21"
+    }
+  },
+  {
+    "id": "word-900006",
+    "text": "ЗАКВАСКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "food"
+    ],
+    "pack": "general-release-v89-revisions",
+    "meta": {
+      "replacesCardId": "word-041020",
+      "reviewReason": "Синоним существующего ВРАТАРЬ"
+    }
+  },
+  {
+    "id": "word-900007",
+    "text": "ПОЛОВИЦА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-release-v89-revisions",
+    "meta": {
+      "replacesCardId": "word-047017",
+      "reviewReason": "Синоним существующего АРХИТЕКТОР"
+    }
+  },
+  {
+    "id": "word-900008",
+    "text": "ПОЛЗУНКИ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-release-v89-revisions",
+    "meta": {
+      "replacesCardId": "word-042010",
+      "reviewReason": "Синоним существующего ЭКСКУРСОВОД"
+    }
+  },
+  {
+    "id": "phrase-900001",
+    "text": "ПОДВОДНАЯ ОХОТА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "sport",
+      "marine"
+    ],
+    "pack": "general-release-v89-revisions",
+    "meta": {
+      "replacesCardId": "phrase-041007",
+      "reviewReason": "Тот же сюжет, что существующая ПЕТЛЯ ВРЕМЕНИ"
+    }
+  }
+]
