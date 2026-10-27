@@ -2,7 +2,7 @@
 // Diagnosis only. Acceptance still uses the unmodified exact TASK024 assertions.
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),crypto=require('node:crypto'),{execFileSync}=require('node:child_process'),{chromium}=require('playwright-core');
 const F=require('../../party-game/tests/task024-fixtures.cjs'),{historicalRuntimeFiles}=require('../../party-game/tests/profile-fixtures.cjs');
-const root=path.resolve(__dirname,'../..'),BASE='c4220005d43e2a86d448466617698b2ed069455a',URL='http://127.0.0.1:8765/party-game/',out='artifacts/task030-raster',N=12;
+const root=path.resolve(__dirname,'../..'),BASE='c4220005d43e2a86d448466617698b2ed069455a',URL='http://127.0.0.1:8765/party-game/',out='artifacts/task030-raster',N=8;
 const git=a=>execFileSync('git',a,{cwd:root,maxBuffer:15e6}),files=historicalRuntimeFiles(git,BASE,['index.html','style.css','sw.js']),old=new Map(files.map(n=>[n,git(['show',BASE+':party-game/'+n])]));
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 async function meta(p){
@@ -11,8 +11,8 @@ async function meta(p){
  return {fonts,geometry:await F.geometry(p),text:await p.evaluate(()=>({fonts:[...document.fonts].map(f=>({family:f.family,status:f.status,weight:f.weight})),scores:['score-a','score-b'].map(id=>{const n=$(id),r=n.getBoundingClientRect(),s=getComputedStyle(n);return {id,text:n.textContent,box:{x:r.x,y:r.y,w:r.width,h:r.height},font:s.font,family:s.fontFamily,weight:s.fontWeight,variation:s.fontVariationSettings,kerning:s.fontKerning,transform:s.transform,color:s.color,rendering:s.textRendering,smoothing:s.webkitFontSmoothing};})}))};
 }
 (async()=>{
- fs.mkdirSync(out,{recursive:true});const report={head:git(['rev-parse','HEAD']).toString().trim(),base:BASE,n:N,physicalAndroid:false,note:'Exact failing TASK024 geometry harness: desktop Chromium viewport390x844/touch/reducedMotion, NOT the Android performance profile. No runtime edits, masks or pixel tolerances. Default and no-LCD use the same runner; all raw PNGs and font/geometry data retained for every mismatch.',hardware:{cpu:os.cpus()[0].model,cores:os.cpus().length},variants:[]};
- try{for(const [name,args]of [['default',[]],['no-lcd',['--disable-lcd-text']]]){
+ fs.mkdirSync(out,{recursive:true});const report={head:git(['rev-parse','HEAD']).toString().trim(),base:BASE,n:N,physicalAndroid:false,note:'Exact failing TASK024 geometry harness: desktop Chromium viewport390x844/touch/reducedMotion, NOT the Android performance profile. No runtime edits, masks or pixel tolerances. Scalar Skia and integer-glyph controls, with/without LCD, use the same runner; all raw PNGs and font/geometry data retained for every mismatch.',hardware:{cpu:os.cpus()[0].model,cores:os.cpus().length},variants:[]};
+ try{for(const [name,args]of [['scalar',['--disable-skia-runtime-opts']],['scalar-no-lcd',['--disable-skia-runtime-opts','--disable-lcd-text']],['integer-glyph',['--disable-font-subpixel-positioning']],['integer-glyph-no-lcd',['--disable-font-subpixel-positioning','--disable-lcd-text']]]){
   const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',args:['--no-sandbox',...args]}),variant={name,args,version:browser.version(),pairs:[]};report.variants.push(variant);
   try{const cdp=await browser.newBrowserCDPSession();variant.gpu=(await cdp.send('SystemInfo.getInfo')).gpu;await cdp.detach();
    for(let i=0;i<N;i++){
