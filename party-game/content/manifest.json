@@ -304,6 +304,11 @@
       "path": "cards/general-diversity-v21.json",
       "immutable": false,
       "review": "G35: 50 manually curated prompts, 40 words and 10 phrases; see editorial/general-diversity-v21-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v22.json",
+      "immutable": false,
+      "review": "G36: 50 curated Cyrillic prompts; see editorial/general-diversity-v22-review.md"
     }
   ],
   "questions": [
@@ -538,6 +543,11 @@
       "path": "packs/general-diversity-v21.json",
       "immutable": false,
       "review": "G35 general@37 has 6500 pinned IDs with unchanged general@36 prefix and historical sources"
+    },
+    {
+      "path": "packs/general-diversity-v22.json",
+      "immutable": false,
+      "review": "G36 general@38 pins 6550 IDs; unchanged general@37 prefix and historical sources"
     }
   ],
   "legacyCollisions": [

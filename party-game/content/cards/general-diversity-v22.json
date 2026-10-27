@@ -1,0 +1,502 @@
+[
+  {
+    "id": "word-061001",
+    "text": "ФОНАРИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061002",
+    "text": "САЖЕНЕЦ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061003",
+    "text": "РЫБАК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061004",
+    "text": "ВИХРЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061005",
+    "text": "ФИТИЛЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061006",
+    "text": "ПЕРЕПЁЛКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "animals"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061007",
+    "text": "ОБМОРОК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061008",
+    "text": "БУРЬЯН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061009",
+    "text": "ТРОСТНИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061010",
+    "text": "КАЛОША",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061011",
+    "text": "БАРАБАНЩИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061012",
+    "text": "РЮКЗАЧОК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061013",
+    "text": "ЗЕВАКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061014",
+    "text": "ГРИБНИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061015",
+    "text": "ПАНАМКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061016",
+    "text": "БУБЕНЧИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "phrase-061001",
+    "text": "КРАСНАЯ ЛЕНТА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "phrase-061002",
+    "text": "ДОЖДЛИВОЕ УТРО",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "phrase-061003",
+    "text": "ПУСТАЯ КОРЗИНА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "phrase-061004",
+    "text": "ПОСЛЕДНЯЯ СПИЧКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061017",
+    "text": "КЛАРНЕТИСТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061018",
+    "text": "МЕЛЬНИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061019",
+    "text": "ЗАДВИЖКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061020",
+    "text": "ШАНСОНЬЕ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061021",
+    "text": "ЧЕЛНОК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061022",
+    "text": "ВАРГАН",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061023",
+    "text": "СНЕГОСТУПЫ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "sport"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061024",
+    "text": "КОЧЕВНИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061025",
+    "text": "КАПЕЛЬМЕЙСТЕР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061026",
+    "text": "РУКОЯТКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061027",
+    "text": "КОРМИЛЕЦ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061028",
+    "text": "ЛОБЗИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061029",
+    "text": "ВОДОСБРОС",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061030",
+    "text": "ПАРУСИНА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "marine"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061031",
+    "text": "ЗОЛОТОИСКАТЕЛЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061032",
+    "text": "КРАСКОПУЛЬТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "phrase-061005",
+    "text": "ПОЧТОВЫЙ ГОЛУБЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "animals"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "phrase-061006",
+    "text": "ЖИВАЯ ОЧЕРЕДЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "phrase-061007",
+    "text": "БЕЛЫЙ ШУМ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "phrase-061008",
+    "text": "ПОДВЕСНОЙ МОСТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061033",
+    "text": "ТРАНСЛИТЕРАЦИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "language"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061034",
+    "text": "НУМИЗМАТИКА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061035",
+    "text": "АКРОСТИХ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "literature"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061036",
+    "text": "ПУАНТИЛИЗМ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061037",
+    "text": "ИЗОБАРА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061038",
+    "text": "ТРИЛОБИТ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061039",
+    "text": "СТЕРЕОСКОП",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "word-061040",
+    "text": "ПОЛИРИТМИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "phrase-061009",
+    "text": "ПЕТЛЯ МОЁБИУСА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v22"
+  },
+  {
+    "id": "phrase-061010",
+    "text": "ПРИНЦИП ДОМИНО",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v22"
+  }
+]
