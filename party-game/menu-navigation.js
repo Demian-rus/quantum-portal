@@ -85,7 +85,16 @@ function gameTypeCountSnapshot(){
   gameTypeCountCache={cards:PARTY_CARDS,questions:QUIP_APPROX_QUESTIONS,packs:QUIP_CONTENT_PACKS,entries:new Map()};
  const cache=gameTypeCountCache.entries;
  if(!cache.has(key)){
-  const general=getContentPack(latestGeneralPackSelection()),themes=listThematicPacks(options);
+  const general=getContentPack(latestGeneralPackSelection()),selectPool=getPackCardPool,pools=new Map();let themes;
+  // Like TASK029: share only identical read-only pools inside this synchronous
+  // preview calculation. START and every later selector see the original API.
+  getPackCardPool=function(selection,kind,level,types,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACKS){
+   if(cards!==PARTY_CARDS||registry!==QUIP_CONTENT_PACKS)return selectPool.apply(this,arguments);
+   const poolKey=JSON.stringify([selection,kind,level,types]);
+   if(!pools.has(poolKey))pools.set(poolKey,selectPool.apply(this,arguments));
+   return pools.get(poolKey);
+  };
+  try{themes=listThematicPacks(options);}finally{getPackCardPool=selectPool;}
   const active=themes.filter(entry=>entry.available&&entry.pack.enabled);
   const snapshot={general:contentPackCount(general),thematic:active.reduce((sum,entry)=>sum+contentPackCount(entry.pack),0),themes};
   if(cache.size>=8)cache.delete(cache.keys().next().value);
