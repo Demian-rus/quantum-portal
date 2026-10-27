@@ -15,6 +15,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - run: npm install --no-save playwright-core@1.55.0
+      - run: npx playwright-core install --with-deps chromium
       - run: |
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/quip-raster-http.log 2>&1 &
       - run: node diagnostics/task030/raster-probe.cjs
