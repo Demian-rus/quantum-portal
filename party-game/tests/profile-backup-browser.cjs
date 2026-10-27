@@ -1,4 +1,5 @@
 'use strict';
+const {setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path');
 const {chromium}=require('playwright-core');
 const {chooseNamedProfile,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
@@ -19,15 +20,15 @@ async function download(page,button,file){
 async function startApprox(page){
  await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();
  await chooseNamedProfile(page,0,'ДС','violet');await chooseNamedProfile(page,1,'ПА','green');
- await page.locator('#go-advanced').click();await page.locator('#finish-rounds').check({force:true});
+ await setupRules(page);await page.locator('#finish-rounds').check({force:true});
  await page.locator('#custom-rounds').focus();await page.locator('#custom-rounds').press('Home');
- await page.locator('#mode-settings > summary').click();
+ await setupFold(page,'mode-settings');
  if(!await page.locator('#mode-toggles input[value="approx"]').isChecked())await page.locator('#mode-toggles label:has(input[value="approx"])').click();
  for(const id of ['talk','mime','draw','sing','yesno','blitz','secret']){
   const input=page.locator('#mode-toggles input[value="'+id+'"]');
   if(await input.isChecked())await page.locator('#mode-toggles label:has(input[value="'+id+'"])').click();
  }
- await page.locator('#advanced-done').click();await page.locator('#start-game').click();await page.evaluate(()=>{game.dice=false});
+ await setupPlayers(page);await startFromSetup(page);await page.evaluate(()=>{game.dice=false});
 }
 async function answer(page,choice){
  await page.locator('[data-action="roll"]').click();await page.locator('[data-action="reveal-approx"]').click();
@@ -125,7 +126,7 @@ async function success(page){await page.waitForFunction(()=>document.getElementB
    await upload(page,file);await page.locator('#backup-apply').click();await success(page);
    assert.equal((await snapshot(page))[KEY],offline);await page.locator('#backup-close').click();
    await page.reload();await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();
-   await chooseNamedProfile(page,0,'ДС');await chooseNamedProfile(page,1,'ПА');await page.locator('#start-game').click();
+   await chooseNamedProfile(page,0,'ДС');await chooseNamedProfile(page,1,'ПА');await startFromSetup(page);
    assert.equal(await page.locator('#scene-game').isVisible(),true);assert.deepEqual(await page.evaluate(()=>game.profileMatch.participants.map(p=>p.id)),payload.profiles.map(p=>p.id));
    await page.locator('#exit-game').click();await page.locator('#settings-menu').click();
    // A genuinely different archive is blocked while a game is paused/active.

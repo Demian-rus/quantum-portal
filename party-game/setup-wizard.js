@@ -1,13 +1,11 @@
 'use strict';
-// TASK027: reversible presentation adapter. All controls, validation, writes,
+// TASK030: sole setup presentation. All controls, validation, writes,
 // profiles and START remain owned by the existing production controllers.
 (function installSetupWizard(){
  if(typeof document.createElement!=='function')return;
  const titles=['Игра','Кто играет?','Правила','Старт'];
- let enabled=new URLSearchParams(location.search).get('setup')==='wizard';
  let step=1,themes=false,ruleCenter=false,installed=false;
- const slots=[],positions=new Map();
- let originalModeChildren;
+ const positions=new Map();
  const legacy={setScene,backWithinKvip,renderOptions};
  function viewStamp(){
   // Pack preference history is not read by the settings renderer or validator.
@@ -39,7 +37,7 @@
  const scene=document.createElement('section');
  scene.id='scene-wizard';scene.className='scene setup-wizard';scene.hidden=true;
  scene.setAttribute('aria-labelledby','wizard-title');
- scene.innerHTML='<header class="wizard-header"><button type="button" id="wizard-back">‹ НАЗАД</button><span>КВИП</span><button type="button" id="wizard-legacy">ПРЕЖНИЙ ВИД</button></header>'+
+ scene.innerHTML='<header class="wizard-header"><button type="button" id="wizard-back">‹ НАЗАД</button><span>КВИП</span></header>'+
   '<nav class="wizard-steps" aria-label="Этапы создания партии">'+titles.map((t,i)=>'<button type="button" data-wizard-step="'+(i+1)+'"><b>'+(i+1)+'</b><span>'+t+'</span></button>').join('')+'</nav>'+
   '<div id="wizard-scroll" class="wizard-scroll"><div class="wizard-page"><p id="wizard-kicker" class="section-kicker"></p><h1 id="wizard-title" tabindex="-1"></h1>'+
   '<section data-wizard-page="1"><div id="wizard-catalog"></div><div id="wizard-themes" hidden><div id="wizard-theme-copy"></div><div id="wizard-theme-list"></div></div><p id="wizard-pack-current"></p></section>'+
@@ -49,12 +47,9 @@
   '<section id="wizard-rules" hidden><p>Действующие правила. Очки и время — справочные сведения. Источники «Напой» можно изменить.</p><div id="wizard-rule-list"></div><button type="button" id="wizard-rules-done" class="button button-primary">ГОТОВО · ВЕРНУТЬСЯ</button></section>'+
   '</div></div><footer class="wizard-footer"><span id="wizard-footer-caption"></span><button type="button" id="wizard-next" class="button button-primary">ДАЛЕЕ →</button><div id="wizard-start"></div></footer>';
  $('app').append(scene);
- const preference=document.createElement('button');
- preference.id='setup-interface-toggle';preference.type='button';preference.className='preferences-rules';
- $('preferences-rules').before(preference);
  function remember(){if(activeScene==='wizard')positions.set(ruleCenter?'rules':step+':'+themes,{scroll:$('wizard-scroll').scrollTop,focus:document.activeElement?.id});}
  function move(node,target){
-  const marker=document.createComment('TASK027 control return slot');node.before(marker);slots.push({node,marker});$(target).append(node);
+  $(target).append(node);
  }
  function attach(){
   if(installed)return;installed=true;
@@ -71,8 +66,6 @@
    const label=input.closest('label');return [input.value,{checked:input.checked,disabled:input.disabled,title:label.title,
     art:label.querySelector('img').getAttribute('src'),copy:label.querySelector('b').textContent}];
   }));
-  originalModeChildren=document.createDocumentFragment();
-  while($('mode-toggles').firstChild)originalModeChildren.append($('mode-toggles').firstChild);
   // The same delegated checkbox handler works for every entry in the registry.
   $('mode-toggles').innerHTML=MODE_LIST.map(mode=>'<div class="mode-choice"><label><input type="checkbox" value="'+mode.id+'" aria-label="'+escapeHTML(mode.title)+'"><span class="mode-tile"><img class="mode-tile-art" alt="" draggable="false"><span class="mode-tile-copy"><strong>'+escapeHTML(mode.title)+'</strong><b></b></span></span></label></div>').join('');
   for(const input of $('mode-toggles').querySelectorAll('input')){
@@ -82,12 +75,6 @@
   }
   $('wizard-rule-list').innerHTML=MODE_LIST.map(mode=>'<section class="wizard-rule" data-wizard-rule="'+mode.id+'"><header><img src="'+MODE_ASSETS[mode.id]+'" alt=""><div><h2>'+escapeHTML(mode.title)+'</h2><p class="wizard-mode-state"></p></div><strong class="wizard-reward"></strong></header><p class="wizard-mode-time"></p><div class="wizard-rule-copy"></div>'+(mode.id==='sing'?'<div id="wizard-song"></div>':'')+'</section>').join('');
   move($('mode-song-sources'),'wizard-song');
- }
- function detach(){
-  if(!installed)return;
-  $('mode-toggles').replaceChildren(originalModeChildren);
-  for(const {node,marker} of slots.reverse()){marker.replaceWith(node);}slots.length=0;
-  $('wizard-rule-list').replaceChildren();installed=false;
  }
  function modeRules(){
   if(!installed)return;
@@ -108,8 +95,6 @@
   $('mode-options-backdrop').dataset.mode='sing';renderModeSettings();
  }
  function renderMeta(){
-  preference.textContent=enabled?'Новая игра: Мастер · вернуть прежний вид':'Новая игра: попробовать Мастер';
-  preference.setAttribute('aria-pressed',String(enabled));
   if(!installed)return;
   let pack;try{pack=getContentPack(options.contentPack);}catch{}
   $('wizard-pack-current').textContent='Выбрано: '+(pack?.name||'Набор недоступен');
@@ -142,39 +127,24 @@
   setScene('home');$('new-game-menu').focus({preventScroll:true});
  }
  function syncURL(){
-  const url=new URL(location.href);url.searchParams.set('setup',enabled?'wizard':'legacy');
+  const url=new URL(location.href);
+  if(!url.searchParams.has('setup'))return;
+  url.searchParams.delete('setup');
   history.replaceState(history.state,'',url);
  }
- function setEnabled(value){
-  const wasWizard=activeScene==='wizard',previousStep=step,previousThemes=themes;
-  enabled=value;
-  syncURL();
-  if(!value){detach();scene.hidden=true;document.body.classList.remove('wizard-screen');}
-  renderOptions();
-  if(wasWizard){
-   if(value)show(previousStep,previousThemes);
-   else if(previousStep===1){if(previousThemes)openThemes();else openGameType();}
-   else if(previousStep===3)openAdvanced();else openSetup(setupReturn);
-  }
- }
  setScene=function(which){
-  if(enabled&&['game-type','themes','setup','advanced'].includes(which)){
+  if(['game-type','themes','setup','advanced'].includes(which)){
    show(which==='setup'?2:which==='advanced'?3:1,which==='themes');return;
   }
   remember();scene.hidden=true;document.body.classList.remove('wizard-screen');legacy.setScene(which);
  };
- renderOptions=function(){
-  if(enabled)refreshOptions();
-  else{legacy.renderOptions();renderedStamp=viewStamp();renderMeta();}
- };
+ renderOptions=refreshOptions;
  backWithinKvip=function(){
   const modal=['result-history-backdrop','backup-backdrop','report-backdrop','profile-backdrop','mode-options-backdrop','rules-backdrop'].some(id=>!$(id).hidden);
   if(activeScene==='wizard'&&!modal){navigateBack();return;}
   legacy.backWithinKvip();
  };
  $('wizard-back').addEventListener('click',navigateBack);
- $('wizard-legacy').addEventListener('click',()=>setEnabled(false));
- preference.addEventListener('click',()=>setEnabled(!enabled));
  scene.querySelector('.wizard-steps').addEventListener('click',event=>{const button=event.target.closest('[data-wizard-step]');if(button)show(Number(button.dataset.wizardStep));});
  $('wizard-next').addEventListener('click',()=>show(Math.min(4,step+1)));
  $('wizard-mode-settings').addEventListener('click',()=>show(3,false,true));
@@ -183,8 +153,9 @@
  document.addEventListener('keydown',event=>{
   if(event.key==='Escape'&&activeScene==='wizard'&&!event.defaultPrevented){event.preventDefault();navigateBack();}
  });
- // The old Back guard can revisit an earlier URL. Preserve the selected UI
- // parameter after it handles the page transition, without adding history entries.
+ // The Back guard can revisit a bookmarked URL. Remove obsolete UI parameters
+ // without changing its history state or introducing another setup route.
  window.addEventListener('popstate',syncURL);
+ syncURL();
  renderMeta();
 })();

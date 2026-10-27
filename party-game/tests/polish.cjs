@@ -1,4 +1,5 @@
 'use strict';
+const {setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const {provisionProfiles,chooseNamedProfile}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
@@ -65,8 +66,9 @@ async function restoreClock(page){await page.evaluate(()=>{Date.now=window.__pol
       await page.locator('#standard-game').click();
    const setupArt=await art('setup');
    assert.ok(setupArt.bg.includes('bg-setup.webp?v=3'),'Party setup art mismatch');
+   await setupStep(page,3);
    const chosen=await page.locator('.choices .is-chosen').first().evaluate(el=>getComputedStyle(el).backgroundImage);
-   assert.match(chosen,/gradient/,'Old flat lime selection still active');
+   assert.equal(chosen,'none','Wizard uses its accepted flat selection');
    if(device.name==='phone')await capture(page,{path:'artifacts/quip-polish/phone-kvip-setup.png'});
    const selection=await page.evaluate(()=>{
      const label=document.querySelector('.choices[data-setting="difficulty"] [data-value="medium"]');
@@ -78,11 +80,11 @@ async function restoreClock(page){await page.evaluate(()=>{Date.now=window.__pol
    });
    assert.deepEqual(selection,{style:'none',selectCanceled:true,menuCanceled:true},
      'Settings are selectable: '+JSON.stringify(selection));
-   await chooseNamedProfile(page,0,'Тестовая команда');
+   await setupPlayers(page);await chooseNamedProfile(page,0,'Тестовая команда');
    assert.equal(await page.locator('#team-a').locator('span').nth(1).textContent(),'Тестовая команда',
      'Disabling selection must not block typing a team name');
    await page.evaluate(()=>{options.modes=['talk'];options.dice=false;options.difficulty='easy';});
-   await page.locator('#start-game').click();
+   await startFromSetup(page);
    assert.ok((await art('game')).bg.includes('bg-game.webp?v=3'),'Game background mismatch');
    await page.waitForSelector('[data-action="roll"]');
    if(device.name==='phone')await capture(page,{path:'artifacts/quip-polish/phone-kvip-game-ready.png'});
@@ -194,7 +196,7 @@ async function restoreClock(page){await page.evaluate(()=>{Date.now=window.__pol
    await page.locator('#exit-game').click();
    await page.locator('#new-game-menu').click();
       await page.locator('#standard-game').click();
-   await page.locator('#start-game').click();
+   await startFromSetup(page);
    assert.deepEqual(dialogs,[],'Unexpected native browser confirmations');
    await page.evaluate(()=>{options.modes=['talk'];options.dice=false;options.difficulty='easy';});
    await page.locator('[data-action="roll"]').click();
@@ -238,7 +240,7 @@ async function restoreClock(page){await page.evaluate(()=>{Date.now=window.__pol
   await medium.locator('#new-game-menu').click();
       await medium.locator('#standard-game').click();
   await medium.evaluate(difficulty=>{options.modes=['talk'];options.dice=false;options.difficulty=difficulty;},difficulty);
-  await medium.locator('#start-game').click();
+  await startFromSetup(medium);
   await medium.locator('[data-action="roll"]').click();
   const cardTop=()=>medium.locator('.round-fixed-card .challenge-card').evaluate(el=>el.getBoundingClientRect().top);
   const taskTop=await cardTop();
@@ -279,7 +281,7 @@ async function restoreClock(page){await page.evaluate(()=>{Date.now=window.__pol
   await blitz.locator('#new-game-menu').click();
       await blitz.locator('#standard-game').click();
   await blitz.evaluate(()=>{options.modes=['blitz'];options.difficulty='easy';});
-  await blitz.locator('#start-game').click();
+  await startFromSetup(blitz);
   await blitz.locator('[data-action="roll"]').click();
   await blitz.waitForSelector('.is-task [data-action="toggle-word"]',{timeout:4500});
   await blitz.locator('.is-task [data-action="toggle-word"]').click();

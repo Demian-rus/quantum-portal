@@ -9,6 +9,9 @@ permissions:
   contents: read
 jobs:
   profile:
+    # Historical paired wizard/legacy diagnosis is scoped to its TASK029 branch.
+    # TASK030 has no legacy route; strict Android CPU4 performance guards run in quip-game.
+    if: startsWith(github.head_ref || github.ref_name, 'feat/quip-task029-')
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:

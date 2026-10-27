@@ -1,4 +1,5 @@
 'use strict';
+const {setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {capture}=require('./screenshots.cjs');
@@ -7,11 +8,7 @@ const language=id=>ledger.find(row=>row.id===id)?.language;
 const devices=[{name:'narrow',width:320,height:568},{name:'phone',width:390,height:844},
  {name:'desktop',width:1280,height:800},{name:'landscape',width:640,height:360}];
 async function setup(page){await page.locator('#new-game-menu').click();await page.locator('#standard-game').click()}
-async function openMode(page,id='sing'){
- if(!await page.locator('#scene-advanced').isVisible())await page.locator('#go-advanced').click();
- if(!await page.locator('#mode-toggles').isVisible())await page.locator('#mode-settings summary').click();
- await page.locator('[data-mode-settings="'+id+'"]').click();
-}
+async function openMode(page,id='sing'){await modeCenter(page,id);}
 async function sources(page,languages){
  for(const value of languages){const button=page.locator('[data-song-language="'+value+'"]');if(await button.getAttribute('aria-pressed')!=='true')await button.click()}
  for(const value of ['ru','en'].filter(value=>!languages.includes(value))){const button=page.locator('[data-song-language="'+value+'"]');if(await button.getAttribute('aria-pressed')==='true')await button.click()}
@@ -23,90 +20,63 @@ async function ui(browser,url,device){
  try{
   await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await setup(page);
   await page.evaluate(()=>{soundOn=false;Object.assign(options,{modes:['sing'],difficulty:'hard',dice:false,complications:false,riskRounds:false});renderOptions()});
-  await page.locator('#go-advanced').click();await page.locator('#mode-settings summary').click();
-  await page.locator('#scene-advanced').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(animation=>animation.finished.catch(()=>{}))));
+  await setupRules(page);await setupFold(page,'mode-settings');
+  await page.locator('#scene-wizard').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(animation=>animation.finished.catch(()=>{}))));
   await page.locator('#mode-toggles img').evaluateAll(images=>Promise.all(images.map(image=>image.decode())));
-  const rects=()=>page.locator('#mode-toggles').evaluate(grid=>[...grid.querySelectorAll('.mode-choice')].map(tile=>{
-   const rect=selector=>{const r=tile.querySelector(selector).getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height}};
-   return {name:rect('strong'),reward:rect('b'),gear:rect('button'),icon:rect('button svg'),tile:rect('label')};
-  }));
-  const visible=await rects();
-  await page.locator('.mode-gear').evaluateAll(buttons=>buttons.forEach(button=>button.hidden=true));
-  const hidden=await rects();
-  await page.locator('.mode-gear').evaluateAll(buttons=>buttons.forEach(button=>button.hidden=false));
-  assert.equal(visible.length,8);
-  for(let index=0;index<8;index++){
-   const row=visible[index];assert.deepEqual(row.name,hidden[index].name);assert.deepEqual(row.reward,hidden[index].reward);
-   assert.ok(row.gear.w>=36&&row.gear.h>=36,'Gear touch target');
-   assert.ok(row.gear.x>=row.tile.x&&row.gear.x+row.gear.w<=row.tile.x+row.tile.w+1);
-   for(const text of [row.name,row.reward])assert.ok(row.icon.x+row.icon.w<=text.x||row.icon.x>=text.x+text.w||row.icon.y+row.icon.h<=text.y||row.icon.y>=text.y+text.h,'Gear icon overlaps text: '+JSON.stringify(row));
-  }
-  if(device.name==='desktop'){
-   await page.evaluate(()=>document.body.style.zoom='1.25');
-   const zoomed=await rects();
-   await page.locator('.mode-gear').evaluateAll(buttons=>buttons.forEach(button=>button.hidden=true));
-   const zoomedHidden=await rects();
-   await page.locator('.mode-gear').evaluateAll(buttons=>buttons.forEach(button=>button.hidden=false));
-   for(let index=0;index<8;index++){
-    const row=zoomed[index];assert.deepEqual(row.name,zoomedHidden[index].name);assert.deepEqual(row.reward,zoomedHidden[index].reward);
-    for(const text of [row.name,row.reward])assert.ok(row.icon.x+row.icon.w<=text.x||row.icon.x>=text.x+text.w||row.icon.y+row.icon.h<=text.y||row.icon.y>=text.y+text.h,'Gear overlaps at 125% CSS zoom');
-   }
-   await page.evaluate(()=>document.body.style.zoom='');
-  }
-  if(device.name==='phone'||device.name==='narrow')await capture(page,{path:'artifacts/quip-mobile-layout/task012c-'+device.name+'-gears.png'});
+  assert.equal(await page.locator('#mode-toggles .mode-gear').count(),0,'No per-mode gear survives in the sole UI');
+  const rects=await page.locator('#mode-toggles label').evaluateAll(nodes=>nodes.map(n=>{const r=n.getBoundingClientRect();return {w:r.width,h:r.height,sw:n.scrollWidth,cw:n.clientWidth}}));
+  assert.equal(rects.length,8);assert(rects.every(r=>r.w>=44&&r.h>=44&&r.sw<=r.cw+1),'All eight touch tiles fit');
+  if(device.name==='phone'||device.name==='narrow')await capture(page,{path:'artifacts/quip-mobile-layout/task012c-'+device.name+'-tiles.png'});
   const modes=await page.evaluate(()=>JSON.stringify(options.modes));
+  await openMode(page);
   for(const id of ['talk','mime','draw','yesno','secret','blitz','approx']){
-   await openMode(page,id);assert.equal(await page.locator('#mode-options-placeholder').isVisible(),true);
-   assert.equal(await page.locator('#mode-song-sources').isVisible(),false);
-   await page.locator('#close-mode-options').click();
-   assert.equal(await page.evaluate(()=>JSON.stringify(options.modes)),modes,'Gear toggled a mode');
+   assert.equal(await page.locator('[data-wizard-rule="'+id+'"] .wizard-rule-copy').isVisible(),true);
+   assert.equal(await page.evaluate(()=>JSON.stringify(options.modes)),modes,'Opening read-only rules must not toggle a mode');
   }
+  await closeModeCenter(page);
   const talk=page.locator('#mode-toggles label:has(input[value="talk"])');
   await talk.click();assert.equal(await page.locator('#mode-toggles input[value="talk"]').isChecked(),true);
   await talk.click();assert.equal(await page.locator('#mode-toggles input[value="talk"]').isChecked(),false);
-  const gear=page.locator('[data-mode-settings="sing"]');
-  if(device.width<500)await gear.tap();else await gear.click();
+  await openMode(page);
   assert.equal(await page.locator('[data-song-language="ru"]').getAttribute('aria-pressed'),'true');
   assert.equal(await page.locator('[data-song-language="en"]').getAttribute('aria-pressed'),'false');
   await page.locator('[data-song-language="ru"]').click();assert.match(await page.locator('#mode-source-status').textContent(),/хотя бы один/);
   await page.locator('[data-song-language="en"]').click();
   assert.deepEqual(await page.evaluate(()=>options.modeSettings.sing.songLanguages),['ru','en']);
   if(device.name==='phone'||device.name==='narrow')await capture(page,{path:'artifacts/quip-mobile-layout/task012c-'+device.name+'-sources.png'});
-  await page.locator('#close-mode-options').press('Shift+Tab');assert.equal(await page.evaluate(()=>document.activeElement.id),'mode-options-done');
-  await page.locator('#mode-options-done').press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.id),'close-mode-options');
-  await page.locator('#close-mode-options').press('Escape');
-  assert.equal(await page.evaluate(()=>document.activeElement.dataset.modeSettings),'sing');
-  await openMode(page);await page.evaluate(()=>history.back());await page.waitForFunction(()=>document.getElementById('mode-options-backdrop').hidden);
-  assert.equal(await page.locator('#scene-advanced').isVisible(),true,'Back left advanced settings instead of closing the panel');
-  await openMode(page);await page.mouse.click(2,2);assert.equal(await page.locator('#mode-options-backdrop').isVisible(),false);
+  await page.locator('#wizard-rules-done').press('Escape');
+  assert.equal(await page.evaluate(()=>document.activeElement.id),'wizard-mode-settings');
+  await openMode(page);await page.goBack();await page.locator('#wizard-rules').waitFor({state:'hidden'});
+  assert.equal(await page.locator('[data-wizard-page="3"]').isVisible(),true,'Back closes center without leaving Rules');
+  assert.equal(await page.evaluate(()=>document.activeElement.id),'wizard-mode-settings');
   await openMode(page);await sources(page,['en']);await page.locator('[data-song-language="en"]').click();
   assert.deepEqual(await page.evaluate(()=>options.modeSettings.sing.songLanguages),['en']);
-  await page.locator('#mode-options-done').click();await page.locator('#advanced-done').click();
-  await page.locator('.choices[data-setting="difficulty"] [data-value="easy"]').click();
+  await closeModeCenter(page);await setupPlayers(page);
+  await setupStep(page,3);await page.locator('.choices[data-setting="difficulty"] [data-value="easy"]').click();
   assert.equal(await page.locator('#start-game').isDisabled(),true);assert.match(await page.locator('#setup-mode-notice').textContent(),/источники или сложность/);
-  await page.locator('.choices[data-setting="difficulty"] [data-value="hard"]').click();assert.equal(await page.locator('#start-game').isEnabled(),true);
+  await setupStep(page,3);await page.locator('.choices[data-setting="difficulty"] [data-value="hard"]').click();assert.equal(await page.locator('#start-game').isEnabled(),true);
   // Preferences belong to the mode, and survive visiting a theme without songs.
-  await page.locator('#setup-back').click();await page.locator('#thematic-game').click();await page.locator('[data-theme="geography"]:enabled').click();await openMode(page);
+  await setupPlayers(page);await setupBack(page,'setup-back');await page.locator('#thematic-game').click();await page.locator('[data-theme="geography"]:enabled').click();await openMode(page);
   assert.equal(await page.locator('#mode-source-availability').isVisible(),true);
   assert.equal(await page.locator('#mode-toggles input[value="sing"]').isDisabled(),true);
   assert.deepEqual(await page.evaluate(()=>options.modeSettings.sing.songLanguages),['en']);
-  await page.locator('#mode-options-done').click();await page.locator('#advanced-done').click();await page.locator('#setup-back').click();await page.locator('#themes-standard').click();
+  await closeModeCenter(page);await setupPlayers(page);await setupBack(page,'setup-back');await page.locator('#standard-game').click();
   assert.deepEqual(await page.evaluate(()=>options.modeSettings.sing.songLanguages),['en']);
   // Return to the same single-mode fixture after the theme's mode preferences.
   await page.evaluate(()=>{options.modes=['sing'];options.difficulty='hard';renderOptions()});
   await page.reload({waitUntil:'load'});await setup(page);await openMode(page);
   assert.equal(await page.locator('[data-song-language="en"]').getAttribute('aria-pressed'),'true');
   assert.equal(await page.locator('[data-song-language="ru"]').getAttribute('aria-pressed'),'false');
-  await sources(page,['ru','en']);await page.locator('#mode-options-done').click();await page.locator('#advanced-done').click();
-  await page.evaluate(()=>{options.dice=false;Math.random=()=>0});await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();
+  await sources(page,['ru','en']);await closeModeCenter(page);await setupPlayers(page);
+  await page.evaluate(()=>{options.dice=false;Math.random=()=>0});await startFromSetup(page);await page.locator('[data-action="roll"]').click();
   assert.equal(language(await selected(page)),'ru');
   await page.evaluate(()=>{game.phase='judge';judge(false);Math.random=()=>.999999;roll()});assert.equal(language(await selected(page)),'en');
   await provisionProfiles(page);
   await page.locator('#exit-game').click();await setup(page);await openMode(page);await sources(page,['en']);
   const active=await page.evaluate(()=>JSON.stringify(game));
   await sources(page,['ru']);assert.equal(await page.evaluate(()=>JSON.stringify(game)),active,'Menu changed active party');
-  await sources(page,['en']);await page.locator('#mode-options-done').click();await page.locator('#advanced-done').click();
-  await page.evaluate(()=>options.dice=false);await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();
+  await sources(page,['en']);await closeModeCenter(page);await setupPlayers(page);
+  await page.evaluate(()=>options.dice=false);await startFromSetup(page);await page.locator('[data-action="roll"]').click();
   assert.equal(language(await selected(page)),'en');
   await page.evaluate(()=>{game.dice=true;options.dice=true;persist()});
   const snapshot=await page.evaluate(()=>({game:JSON.stringify(game),raw:localStorage.getItem(STORAGE_KEY)}));
@@ -148,7 +118,7 @@ async function upgrade(browser,url){
   await provisionProfiles(page);
   await page.locator('#exit-game').click();await setup(page);await openMode(page);await sources(page,['en']);
   assert.equal(await page.evaluate(()=>JSON.stringify(game)),snapshot.game);
-  await page.locator('#mode-options-done').click();await page.locator('#advanced-done').click();await page.locator('#setup-back').click();await page.locator('#game-type-back').click();
+  await closeModeCenter(page);await setupPlayers(page);await setupBack(page,'setup-back');await setupBack(page,'game-type-back');
   await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();assert.equal(await page.evaluate(()=>JSON.stringify(game)),snapshot.game);
   assert.deepEqual(await page.evaluate(()=>options.modeSettings.sing.songLanguages),['en']);
   assert.deepEqual(errors,[]);console.log('TASK012 C offline worker update PASS',oldCache,'→',newCache,'v69 ru snapshot/RAW preserved; future en preference survives offline reload independently');

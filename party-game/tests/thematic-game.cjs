@@ -1,4 +1,5 @@
 'use strict';
+const {setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs');
@@ -6,7 +7,7 @@ const topics=[{id:'geography',version:4,source:'geography-v2',name:'Геогра
 const devices=[{name:'narrow',width:320,height:568},{name:'phone',width:390,height:844},{name:'desktop',width:1440,height:900}];
 async function settleAnimations(page){await page.locator('.scene:not([hidden])').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))))}
 async function screenshot(page,topic,name){await settleAnimations(page);await capture(page,{path:'artifacts/quip-mobile-layout/'+topic.prefix+'-'+name+'.png'})}
-async function align(page,selector){await page.locator(selector).evaluate(el=>{const scroll=document.getElementById('advanced-scroll');scroll.scrollTop+=el.getBoundingClientRect().top-scroll.getBoundingClientRect().top-8})}
+async function align(page,selector){await page.locator(selector).evaluate(el=>{const scroll=document.getElementById('wizard-scroll');scroll.scrollTop+=el.getBoundingClientRect().top-scroll.getBoundingClientRect().top-8})}
 async function chooseTopic(page,topic){await page.locator('#new-game-menu').click();await page.locator('#thematic-game').click();await page.locator('[data-theme="'+topic.id+'"]').click()}
 async function assertRoundSource(page,source){assert.equal(await page.evaluate(source=>{
  const c=game.current;if(c.question){const theme=source.replace(/-v2$/,'');return game.contentPack.id===theme&&c.question.categories.includes(theme)&&getPackQuestionPool(game.contentPack,c.difficulty).some(q=>q.id===c.question.id&&JSON.stringify(q)===JSON.stringify(c.question))}
@@ -28,18 +29,18 @@ module.exports=async function thematicUI(browser,url){
    if(device.name==='phone')await screenshot(page,topic,'phone-picker');
    await page.locator('[data-theme="'+topic.id+'"]').click();assert.equal(await page.locator('#setup-pack-caption').textContent(),topic.name);
    if(device.name==='phone')await screenshot(page,topic,'phone-setup');
-   await page.locator('[data-setting="awardTo"] button[data-value="guesser"]').click();await page.locator('#go-advanced').click();await page.locator('#mode-settings > summary').click();
+   await page.locator('[data-setting="awardTo"] button[data-value="guesser"]').click();await setupRules(page);await setupFold(page,'mode-settings');
    assert.equal(await page.locator('#mode-toggles input[value="sing"]').isDisabled(),true);
    assert.match(await page.locator('#mode-toggles input[value="sing"]').evaluate(el=>el.closest('label').title),/нет песен/);
    assert.equal(await page.locator('#content-toggles input[value="idiom"]').isDisabled(),true);
-   await page.locator('#mode-toggles input[value="yesno"]').check();await align(page,'#mode-settings');
+   await page.locator('#mode-toggles input[value="yesno"]').check();await align(page,'#mode-toggles');
    if(device.name==='phone')await screenshot(page,topic,'phone-modes');
    const width=await page.evaluate(()=>({w:innerWidth,scroll:document.documentElement.scrollWidth,tiles:[...document.querySelectorAll('#mode-toggles .mode-tile')].map(el=>{const r=el.getBoundingClientRect();return{x:r.x,y:r.y,right:r.right}})}));
-   assert.ok(width.scroll<=width.w+1);assert.ok(Math.abs(width.tiles[0].y-width.tiles[1].y)<1);assert.ok(width.tiles[2].y>width.tiles[0].y);assert.ok(width.tiles.every(r=>r.x>=0&&r.right<=width.w+1));
-   await page.locator('#advanced-done').click();const awardTo=device.name==='phone'?'guesser':'setter';
+   assert.ok(width.scroll<=width.w+1);assert.ok(Math.abs(width.tiles[0].y-width.tiles[1].y)<1);assert.ok(width.tiles[4].y>width.tiles[0].y);assert.ok(width.tiles.every(r=>r.x>=0&&r.right<=width.w+1));
+   await setupPlayers(page);const awardTo=device.name==='phone'?'guesser':'setter';
    await page.locator('[data-setting="awardTo"] button[data-value="'+awardTo+'"]').click();
    await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.promptTypes=['word'];options.finishType='rounds';options.rounds=2;options.dice=false;options.modifierChance=100;options.complications=true;Math.random=()=>0;chooseStartingTeam=()=>0;renderOptions()});
-   await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();await assertRoundSource(page,topic.source);
+   await startFromSetup(page);await page.locator('[data-action="roll"]').click();await assertRoundSource(page,topic.source);
    await page.locator('[data-action="toggle-word"]').click();if(device.name==='phone')await screenshot(page,topic,'phone-round');
    await page.locator('[data-action="start-timer"]').click();await page.locator('[data-action="base-now"]').click();
    assert.equal(await page.evaluate(()=>game.history[0].outcome),'base-only');assert.deepEqual(await page.evaluate(()=>game.scores),awardTo==='setter'?[1,0]:[0,1]);
@@ -63,8 +64,8 @@ module.exports=async function thematicUI(browser,url){
    }
    await page.evaluate(()=>{options.modes=['talk'];options.dice=false;newGame();roll();options.dice=true;game.dice=true;persist()});const snapshot=await page.evaluate(()=>JSON.stringify(game));
    await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();assert.equal(await page.evaluate(()=>JSON.stringify(game)),snapshot);
-   await page.locator('#exit-game').click();await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();assert.equal(await page.evaluate(()=>JSON.stringify({modes:options.modes,promptTypes:options.promptTypes})),standard);await page.locator('#go-advanced').click();assert.equal(await page.locator('#mode-toggles input[value="sing"]').isDisabled(),false);assert.equal(await page.locator('#content-toggles input[value="idiom"]').isDisabled(),false);
-   await page.locator('#advanced-done').click();await page.evaluate(()=>{options.modes=['talk'];options.dice=false;Math.random=()=>0;chooseStartingTeam=()=>0});await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();assert.equal(await page.evaluate(()=>game.contentPack.id),'general');assert.equal(await page.evaluate(()=>game.current.word),'КАРАНДАШ');
+   await page.locator('#exit-game').click();await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();assert.equal(await page.evaluate(()=>JSON.stringify({modes:options.modes,promptTypes:options.promptTypes})),standard);await setupRules(page);assert.equal(await page.locator('#mode-toggles input[value="sing"]').isDisabled(),false);assert.equal(await page.locator('#content-toggles input[value="idiom"]').isDisabled(),false);
+   await setupPlayers(page);await page.evaluate(()=>{options.modes=['talk'];options.dice=false;Math.random=()=>0;chooseStartingTeam=()=>0});await startFromSetup(page);await page.locator('[data-action="roll"]').click();assert.equal(await page.evaluate(()=>game.contentPack.id),'general');assert.equal(await page.evaluate(()=>game.current.word),'КАРАНДАШ');
    if(device.name==='phone'){
     const other=topics.find(t=>t.id!==topic.id);await page.evaluate(()=>{game.dice=true;persist()});const activeSnapshot=await page.evaluate(()=>JSON.stringify(game));
     await page.locator('#exit-game').click();await chooseTopic(page,other);

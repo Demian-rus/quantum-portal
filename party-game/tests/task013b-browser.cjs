@@ -1,4 +1,5 @@
 'use strict';
+const {setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const BASELINE='007abb864aa727fcdf4249662af732df819bf73b';
@@ -84,7 +85,7 @@ async function upgrade(browser,url){
 async function settingsOrder(page){
  const g=await page.evaluate(()=>{
   const el=selector=>document.querySelector(selector),before=(a,b)=>Boolean(el(a).compareDocumentPosition(el(b))&Node.DOCUMENT_POSITION_FOLLOWING);
-  return {order:[before('#finish-score-settings','#base-duration'),before('#base-duration','#mode-settings'),before('#mode-settings','#content-settings'),before('#content-settings','.extra-rules'),before('.extra-rules','#advanced-done')],
+  return {order:[before('#finish-score-settings','#base-duration'),before('#base-duration','#wizard-mode-settings'),before('#wizard-mode-settings','#mode-toggles'),before('#mode-toggles','.extra-rules'),before('.extra-rules','#content-toggles')],
    ids:['toggle-risk','toggle-complications','modifier-chance'].map(id=>document.querySelectorAll('#'+id).length),
    grouped:['toggle-risk','toggle-complications','modifier-chance'].every(id=>el('.extra-rules').contains(document.getElementById(id))),
    page:{w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight},w:innerWidth,h:innerHeight};
@@ -92,17 +93,17 @@ async function settingsOrder(page){
  assert.deepEqual(g.order,[true,true,true,true,true]);assert.deepEqual(g.ids,[1,1,1]);assert.equal(g.grouped,true);assert.ok(g.page.w<=g.w+1&&g.page.h<=g.h+1);
 }
 async function languageSources(page,languages){
- await page.locator('[data-mode-settings="sing"]').click();
+ await modeCenter(page,'sing');
  for(const lang of languages){const b=page.locator('[data-song-language="'+lang+'"]');if(await b.getAttribute('aria-pressed')!=='true')await b.click()}
  for(const lang of ['ru','en'].filter(v=>!languages.includes(v))){const b=page.locator('[data-song-language="'+lang+'"]');if(await b.getAttribute('aria-pressed')==='true')await b.click()}
- await page.locator('#mode-options-done').click();
+ await closeModeCenter(page);
 }
 async function ui(browser,url,width,height){
  const context=await browser.newContext({viewport:{width,height},hasTouch:true,reducedMotion:'reduce'}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
  try{
-  await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await setup(page);await page.locator('.choices[data-setting="difficulty"] [data-value="hard"]').click();await page.locator('#go-advanced').click();
+  await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await setup(page);await setupStep(page,3);await page.locator('.choices[data-setting="difficulty"] [data-value="hard"]').click();await setupRules(page);
   await settingsOrder(page);
-  await page.locator('#mode-settings summary').click();await page.locator('#content-settings summary').click();await settingsOrder(page);
+  await setupFold(page,'mode-settings');await setupFold(page,'content-settings');await settingsOrder(page);
   await page.locator('#toggle-risk').uncheck();assert.equal(await page.evaluate(()=>options.riskRounds),false);
   await page.locator('#toggle-complications').uncheck();assert.equal(await page.locator('#modifier-chance-settings').isVisible(),false);
   await page.locator('#toggle-complications').check();await page.locator('#modifier-chance').evaluate(el=>{el.value='35';el.dispatchEvent(new Event('input',{bubbles:true}))});assert.equal(await page.evaluate(()=>options.modifierChance),35);
@@ -112,10 +113,10 @@ async function ui(browser,url,width,height){
   for(let i=0;i<await inputs.count();i++){const input=inputs.nth(i),value=await input.getAttribute('value');if(value!=='secret'&&await input.isChecked())await page.locator('#mode-toggles label:has(input[value="'+value+'"])').click()}
   assert.deepEqual(await page.evaluate(()=>options.modes),['secret']);
   for(const languages of [['ru'],['en'],['ru','en']]){
-   if(!await page.locator('#scene-advanced').isVisible()){await setup(page);await page.locator('#go-advanced').click()}
-   if(!await page.locator('#mode-toggles').isVisible())await page.locator('#mode-settings summary').click();
-   await languageSources(page,languages);await page.locator('#advanced-done').click();
-   await page.evaluate(()=>{soundOn=false;Math.random=()=>.999999});await page.locator('#start-game').click();
+   if(!await page.locator('[data-wizard-page="3"]').isVisible()){await setup(page);await setupRules(page)}
+   if(!await page.locator('#mode-toggles').isVisible())await setupFold(page,'mode-settings');
+   await languageSources(page,languages);await setupPlayers(page);
+   await page.evaluate(()=>{soundOn=false;Math.random=()=>.999999});await startFromSetup(page);
    assert.equal(await page.locator('.ready-content .game-eyebrow').count(),0);assert.equal(await page.locator('#round-now').textContent(),'1');assert.match(await page.locator('#match-center-label').textContent(),/ЦЕЛЬ/);
    await page.locator('[data-action="roll"]').click();await page.locator('.is-task').waitFor();
    const selected=await page.evaluate(()=>({mode:game.current.modeId,method:game.current.methodId,policy:game.songLanguagePolicyVersion,languages:game.songLanguages,card:getPackCardPool(game.contentPack,'songs',game.current.difficulty).find(row=>row.text===game.current.word).id}));
@@ -139,13 +140,13 @@ async function ui(browser,url,width,height){
   await page.locator('.challenge-card[data-action="toggle-word"]').click();await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Reveal moved card');
   await page.locator('[data-action="start-timer"]').click();await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Timer moved card');
   await page.locator('#exit-game').click();await setup(page);
-  await page.locator('.choices[data-setting="difficulty"] [data-value="mixed"]').click();
+  await setupStep(page,3);await page.locator('.choices[data-setting="difficulty"] [data-value="mixed"]').click();
   await page.evaluate(()=>{
    Object.assign(options,{modes:['mime'],dice:false,complications:false});Math.random=()=>.999999;
    window.__clock=Date.now();Date.now=()=>window.__clock;
    const nativeInterval=window.setInterval;window.setInterval=(fn,...args)=>nativeInterval(()=>{if(!document.hidden)fn()},...args);
   });
-  await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();
+  await startFromSetup(page);await page.locator('[data-action="roll"]').click();
   assert.equal(await page.evaluate(()=>game.current.difficulty),'easy');assert.equal(await page.evaluate(()=>game.current.points),1);
   await settle(page);const mixedBox=await cardBox(page);await page.locator('.challenge-card[data-action="toggle-word"]').click();assert.equal(await page.evaluate(()=>game.phase),'countdown');
   assert.equal(await page.locator('[data-action="start-timer"]').count(),0);sameBox(await cardBox(page),mixedBox,'Countdown moved card');

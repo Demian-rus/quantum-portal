@@ -1,4 +1,5 @@
 'use strict';
+const {setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const assert=require('node:assert/strict');
 module.exports=async function taskHistoryBrowser(browser,url){
@@ -8,7 +9,7 @@ module.exports=async function taskHistoryBrowser(browser,url){
   await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);
   await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();
   await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.complications=false;options.dice=false});
-  await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();
+  await startFromSetup(page);await page.locator('[data-action="roll"]').click();
   const first=await page.evaluate(()=>game.current.word);await page.evaluate(()=>replaceWord());
   const replaced=await page.evaluate(()=>game.current.word);assert.notEqual(first,replaced);
   await page.evaluate(()=>persist());const history=await page.evaluate(()=>JSON.stringify(game.taskHistory));
