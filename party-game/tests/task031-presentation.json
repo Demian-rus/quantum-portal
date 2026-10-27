@@ -1,0 +1,97 @@
+[
+  {
+    "file": "setup-wizard.css",
+    "before": "",
+    "after": "/* TASK031: the Android highlight must not paint the larger label rectangle. */\n.setup-wizard .finish-choices label{-webkit-tap-highlight-color:transparent}\n.setup-wizard .finish-choices label:active>span{filter:brightness(1.15)}\n"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": "<section id=\"wizard-rules\" hidden><p>Действующие правила. Очки и время — справочные сведения. Источники «Напой» можно изменить.</p>",
+    "after": "<section id=\"wizard-rules\" hidden><p>Откройте правила нужного режима. Настройки под ними действуют для этой партии.</p>"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": "  $('mode-toggles').innerHTML=MODE_LIST.map(mode=>'<div class=\"mode-choice\"><label><input type=\"checkbox\" value=\"'+mode.id+'\" aria-label=\"'+escapeHTML(mode.title)+'\"><span class=\"mode-tile\"><img class=\"mode-tile-art\" alt=\"\" draggable=\"false\"><span class=\"mode-tile-copy\"><strong>'+escapeHTML(mode.title)+'</strong><b></b></span></span></label></div>').join('');",
+    "after": "  $('mode-toggles').innerHTML=MODE_LIST.map(mode=>'<div class=\"mode-choice\"><section class=\"wizard-rule\" data-wizard-rule=\"'+mode.id+'\"><header><img src=\"'+MODE_ASSETS[mode.id]+'\" alt=\"\"><div><h2>'+escapeHTML(mode.title)+'</h2><p class=\"wizard-mode-state\"></p></div><strong class=\"wizard-reward\"></strong></header><details class=\"wizard-rule-details\"><summary>Правила</summary><p class=\"wizard-mode-time\"></p><div class=\"wizard-rule-copy\"></div></details><div class=\"wizard-mode-settings\"><h3>Настройки режима</h3><label><input type=\"checkbox\" value=\"'+mode.id+'\" aria-label=\"'+escapeHTML(mode.title)+'\"><span class=\"mode-tile\"><img class=\"mode-tile-art\" alt=\"\" draggable=\"false\"><span class=\"mode-tile-copy\"><strong>'+escapeHTML(mode.title)+'</strong><b></b></span></span><span class=\"wizard-mode-enabled\">Включить режим</span></label>'+(mode.id==='sing'?'<div id=\"wizard-song\"></div>':'')+'</div></section></div>').join('');"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": "  $('wizard-rule-list').innerHTML=MODE_LIST.map(mode=>'<section class=\"wizard-rule\" data-wizard-rule=\"'+mode.id+'\"><header><img src=\"'+MODE_ASSETS[mode.id]+'\" alt=\"\"><div><h2>'+escapeHTML(mode.title)+'</h2><p class=\"wizard-mode-state\"></p></div><strong class=\"wizard-reward\"></strong></header><p class=\"wizard-mode-time\"></p><div class=\"wizard-rule-copy\"></div>'+(mode.id==='sing'?'<div id=\"wizard-song\"></div>':'')+'</section>').join('');\n  move($('mode-song-sources'),'wizard-song');\n",
+    "after": "  move($('mode-song-sources'),'wizard-song');\n"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": "guide.blocks.filter(([title])=>title!=='Время').map",
+    "after": "guide.blocks.map"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": "  $('mode-options-backdrop').dataset.mode='sing';renderModeSettings();",
+    "after": "  // Reuse the eligibility already painted by the real settings validator.\n  const sing=$('mode-toggles').querySelector('input[value=\"sing\"]');\n  $('mode-options-backdrop').dataset.mode='sing';renderModeSettings(sing?!sing.disabled:undefined);"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": "  remember();attach();step=next;themes=showThemes;ruleCenter=showRules;",
+    "after": "  const enteringRules=showRules&&!ruleCenter;\n  remember();attach();step=next;themes=showThemes;ruleCenter=showRules;\n  scene.classList.toggle('wizard-mode-center',showRules);\n  move($('mode-toggles'),showRules?'wizard-rule-list':'wizard-modes');\n  if(enteringRules)scene.querySelectorAll('.wizard-rule-details').forEach(node=>{node.open=false;});"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": "showRules?'Правила режимов':themes",
+    "after": "showRules?'Настройки режимов':themes"
+  },
+  {
+    "file": "setup-view.js",
+    "before": "function renderModeSettings(){",
+    "after": "function renderModeSettings(validatedAvailability){"
+  },
+  {
+    "file": "setup-view.js",
+    "before": "  let available=false;\n  try{available=checkContentPack(options.contentPack,{...settings,...setupSongPolicy(settings)}).available;}catch{}",
+    "after": "  let available=validatedAvailability;\n  if(typeof available!=='boolean'){\n    available=false;\n    try{available=checkContentPack(options.contentPack,{...settings,...setupSongPolicy(settings)}).available;}catch{}\n  }"
+  },
+  {
+    "file": "setup-wizard.css",
+    "before": "",
+    "after": "/* One set of mode controls moves between the grid and its settings page. */\n.setup-wizard:not(.wizard-mode-center) .wizard-rule{padding:0;border:0}\n.setup-wizard:not(.wizard-mode-center) .wizard-rule>header,\n.setup-wizard:not(.wizard-mode-center) .wizard-rule-details,\n.setup-wizard:not(.wizard-mode-center) .wizard-mode-settings>h3,\n.setup-wizard:not(.wizard-mode-center) .wizard-mode-enabled,\n.setup-wizard:not(.wizard-mode-center) #wizard-song{display:none}\n.setup-wizard.wizard-mode-center #mode-toggles{grid-template-columns:minmax(0,1fr);gap:0}\n.setup-wizard.wizard-mode-center #mode-toggles label>.mode-tile{display:none}\n.setup-wizard.wizard-mode-center #mode-toggles .mode-choice label{display:flex;align-items:center;gap:12px;min-height:48px;height:auto;padding:10px 0}\n.setup-wizard.wizard-mode-center #mode-toggles input{position:static;opacity:1;width:22px;height:22px;flex:0 0 auto;margin:0}\n.setup-wizard.wizard-mode-center .wizard-mode-enabled{font-size:13px}\n.setup-wizard.wizard-mode-center input:disabled~.wizard-mode-enabled{color:var(--soft);opacity:.65}\n.setup-wizard .wizard-rule-details{margin-top:12px}\n.setup-wizard .wizard-rule-details>summary{min-height:48px;padding:12px 0;color:var(--cyan);font-size:13px;font-weight:700;cursor:pointer}\n.setup-wizard .wizard-rule-details>summary:focus-visible,\n.setup-wizard #wizard-extra>summary:focus-visible{outline:3px solid var(--lime);outline-offset:2px;border-radius:3px}\n.setup-wizard .wizard-mode-settings>h3{font-size:12px;margin:16px 0 4px;color:var(--soft)}\n.setup-wizard #wizard-song{margin-top:8px}\n"
+  },
+  {
+    "file": "setup-wizard.css",
+    "before": "",
+    "after": "/* Additional rules share the page surface, with quiet row separators. */\n.setup-wizard #wizard-extra .modifier-toggle,\n.setup-wizard #wizard-extra .modifier-frequency{background:none;border:0;border-radius:0;box-shadow:none;padding:14px 0;margin:0;border-bottom:1px solid #af98ff30}\n.setup-wizard #wizard-extra .modifier-toggle>span{min-width:0}\n.setup-wizard #wizard-extra .modifier-toggle strong{font-size:13px;line-height:1.5}\n.setup-wizard #wizard-extra .modifier-toggle small{display:block;margin-top:4px;font-size:12px;line-height:1.65}\n"
+  },
+  {
+    "file": "index.html",
+    "before": "setup-wizard.js?v=7",
+    "after": "setup-wizard.js?v=8"
+  },
+  {
+    "file": "index.html",
+    "before": "setup-wizard.css?v=3",
+    "after": "setup-wizard.css?v=4"
+  },
+  {
+    "file": "index.html",
+    "before": "setup-view.js?v=4",
+    "after": "setup-view.js?v=5"
+  },
+  {
+    "file": "sw.js",
+    "before": "setup-wizard.js?v=7",
+    "after": "setup-wizard.js?v=8"
+  },
+  {
+    "file": "sw.js",
+    "before": "setup-wizard.css?v=3",
+    "after": "setup-wizard.css?v=4"
+  },
+  {
+    "file": "sw.js",
+    "before": "setup-view.js?v=4",
+    "after": "setup-view.js?v=5"
+  },
+  {
+    "file": "sw.js",
+    "before": "kvip-pwa-v95-20261027-teams-counts-ready-candidate",
+    "after": "kvip-pwa-v96-20261027-wizard-polish-candidate"
+  }
+]
