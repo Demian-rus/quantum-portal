@@ -39,7 +39,7 @@ module.exports=async function profileUpgrade(browser,url){
    const cache=await caches.open(cacheName),scripts=Array.from(document.querySelectorAll('script[src]'),el=>el.src);
    return Promise.all(scripts.map(async url=>!!await cache.match(url)));
   },newCache);
-  assert.equal(coverage.length,48);assert.ok(coverage.every(Boolean));
+  assert.equal(coverage.length,49);assert.ok(coverage.every(Boolean));
   assert.deepEqual(errors,[]);console.log('v72 → current candidate offline upgrade PASS: exact legacy RAW, paused Mixed / Secret song V1, no automatic profiles; precache 48/48');
  }finally{write(current);await context.close()}
 };

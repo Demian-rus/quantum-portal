@@ -1,0 +1,101 @@
+/* TASK027, opt-in setup only. The accepted game scene and legacy CSS stay exact. */
+.setup-wizard{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto;max-width:850px;margin:auto;padding-top:env(safe-area-inset-top);background:#130c26b8;backdrop-filter:blur(8px);animation:none}
+.wizard-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;border-bottom:1px solid #af98ff30;min-width:0}
+.wizard-header>span{font:800 15px var(--font-title)}
+.wizard-header button{border:0;background:none;color:var(--cyan);font-weight:800;font-size:11px;min-width:44px;min-height:44px;padding:8px 0;line-height:1.4}
+.wizard-header button:last-child{font-size:10px;text-align:right;max-width:104px;color:var(--soft)}
+.wizard-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding:8px 16px 0}
+.wizard-steps button{display:flex;align-items:center;justify-content:center;gap:5px;min-height:44px;padding:6px 0;border:0;border-bottom:2px solid #af98ff30;background:transparent;color:var(--soft);font-size:10px}
+.wizard-steps b{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#38274c;font-size:10px;flex-shrink:0}
+.wizard-steps [aria-current=step]{color:var(--lime);border-color:var(--lime)}
+.wizard-steps [aria-current=step] b{background:var(--lime);color:#202519}
+.wizard-scroll{min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scroll-padding:18px}
+.wizard-page{padding:24px 18px 28px;max-width:740px;margin:auto;min-width:0}
+.wizard-page h1{font:700 clamp(22px,6vw,34px)/1.3 var(--font-title);letter-spacing:-.04em;margin:10px 0 28px;overflow-wrap:anywhere}
+.wizard-page h2,.wizard-page h3{font:700 13px/1.5 var(--font-body);letter-spacing:.05em;margin:22px 0 12px}
+.wizard-page p,.wizard-page small{font-size:12px;line-height:1.65;color:var(--soft)}
+.wizard-page .game-type-choices{display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.wizard-page .game-type-choice{border:0;border-top:1px solid #af98ff50;border-radius:0;box-shadow:none;background:none;padding:24px 0;min-height:120px;display:grid;grid-template-columns:34px minmax(0,1fr) 22px;gap:6px 12px;text-align:left;align-items:center;width:100%}
+.wizard-page .game-type-choice::after{display:none}
+.wizard-page .game-type-choice .choice-number{grid-row:1/3;align-self:start;font-size:13px;display:flex;flex-direction:column;color:var(--coral)}
+.wizard-page .choice-count{display:none}
+.wizard-page .game-type-choice strong{font:600 clamp(16px,4.5vw,22px)/1.4 var(--font-title);grid-row:1;grid-column:2;letter-spacing:-.04em}
+.wizard-page .game-type-choice>span:not(.choice-number):not(.choice-next){font-size:12px;grid-column:2;grid-row:2}
+.wizard-page .game-type-choice .choice-next{position:static;grid-column:3;grid-row:1/3;font-size:24px;color:var(--lime)}
+.wizard-page .theme-list{display:grid;grid-template-columns:1fr;gap:0}
+.wizard-page .theme-choice{min-height:72px;border:0;border-radius:0;border-bottom:1px solid #af98ff40;background:none;padding:12px 0}
+.wizard-formats{display:flex;gap:8px;margin-bottom:24px}
+.wizard-formats button{flex:1;min-height:46px;border:1px solid #af98ff50;border-radius:9px;background:#291c3c;color:var(--soft);font-size:11px;font-weight:800;padding:8px}
+.wizard-formats [aria-pressed=true]{background:var(--lime);color:#26331e}
+.wizard-page .setup-grid{margin:0;gap:16px}
+.wizard-page .team-input-wrap{background:none;border:0;border-bottom:2px solid var(--coral);border-radius:0;padding:8px 0;min-width:0;gap:8px}
+.wizard-page .team-input-wrap:nth-child(2){border-color:var(--cyan)}
+.wizard-page .profile-selector{min-height:48px;padding:6px;font-size:15px;background:#241832;border-radius:6px;line-height:1.3;overflow-wrap:anywhere}
+.wizard-page .profile-selector .profile-chevron{margin-left:auto}
+.wizard-page .profile-selector>span:not(.profile-dot):not(.profile-chevron){white-space:normal;overflow-wrap:anywhere}
+.wizard-page .option-set,.wizard-page .advanced-section{border:0;border-radius:0;padding:0;background:none;margin:24px 0;min-width:0}
+.wizard-page legend{font-size:11px;color:#d7c5e8;font-weight:800;letter-spacing:.08em;margin:0 0 12px;padding:0}
+.wizard-page .choices{background:none;border:0;padding:0;gap:6px;border-radius:0;display:flex;flex-wrap:wrap}
+.wizard-page .choices button{min-height:46px;border:1px solid #af98ff50;border-radius:8px;font-size:12px;padding:8px 5px;background:#291c3b;line-height:1.4}
+.wizard-page .choices .is-chosen{background:var(--lime);border-color:var(--lime);color:#26331e}
+.wizard-page .finish-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.wizard-page .finish-choices label{min-height:48px;padding:10px 8px;display:flex;align-items:center;gap:8px;border-radius:8px}
+.wizard-page .finish-choices span{font-size:12px}
+.wizard-page .finish-choices input{width:18px;height:18px;flex-shrink:0}
+.wizard-page .slider-option{margin:22px 0;padding:0}
+.wizard-page .slider-title{font-size:13px;gap:10px}
+.wizard-page .slider-title output{font-size:14px;color:var(--lime);white-space:nowrap}
+.wizard-page input[type=range]{min-height:44px;margin:5px 0}
+.wizard-page .slider-extremes{font-size:10px}
+.wizard-mode-heading{margin-top:28px;border-top:1px solid #af98ff30;padding-top:20px}
+#wizard-mode-settings{width:100%;min-height:48px;border:1px solid #9aeee680;background:#9aeee610;color:var(--cyan);border-radius:10px;font-weight:800;font-size:12px;padding:12px 8px}
+.wizard-page #mode-toggles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 8px}
+.wizard-page .mode-choice{display:block;position:relative;min-width:0;padding:0}
+.wizard-page .mode-choice label{display:block;padding:0}
+.wizard-page .mode-tile{height:auto;min-height:102px;border:1px solid transparent;border-radius:10px;padding:6px 1px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;opacity:.4;background:#ffffff03;box-shadow:none}
+.wizard-page .mode-tile-art{position:static;width:52px;height:52px;object-fit:contain;filter:grayscale(1)}
+.wizard-page .mode-tile-copy{position:static;display:flex;flex-direction:column;gap:2px;text-align:center}
+.wizard-page .mode-tile-copy strong{font-size:10px;letter-spacing:0;line-height:1.4}
+.wizard-page .mode-tile-copy b{font-size:9px;font-weight:600}
+.wizard-page .mode-choice input:checked+.mode-tile{opacity:1;background:#af98ff15;border-color:#af98ff50}
+.wizard-page .mode-choice input:checked+.mode-tile img{filter:none}
+.wizard-page .mode-choice input:disabled+.mode-tile{opacity:.22}
+.wizard-page .mode-choice input:focus-visible+.mode-tile{outline:3px solid var(--lime);outline-offset:2px}
+#wizard-extra{border-top:1px solid #af98ff40;margin-top:26px;padding-top:16px}
+#wizard-extra>summary{min-height:48px;font-size:12px;font-weight:800;color:var(--cyan);cursor:pointer;padding:10px 0;line-height:1.5}
+.wizard-page .modifier-toggle{padding:14px 0;min-height:64px;gap:12px}
+.wizard-page .modifier-toggle input{flex:0 0 auto;width:22px;height:22px}
+.wizard-page #content-toggles{grid-template-columns:1fr}
+.wizard-page #content-toggles label>span{min-height:48px;padding:12px;font-size:13px}
+.wizard-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px calc(env(safe-area-inset-bottom) + 10px);border-top:1px solid #af98ff40;background:#171027f5}
+.wizard-footer>span{color:var(--soft);font-size:11px;min-width:0;max-width:34%}
+.wizard-footer #wizard-start{max-width:66%}
+.wizard-footer .button{min-height:50px;font-size:12px;padding:12px 18px;white-space:normal;border-radius:11px;line-height:1.4}
+#wizard-summary{margin:0}
+#wizard-summary>div{padding:14px 0;border-bottom:1px solid #af98ff30}
+#wizard-summary dt{color:var(--soft);font-size:11px;margin-bottom:5px}
+#wizard-summary dd{font-size:14px;margin:0;font-weight:700;overflow-wrap:anywhere}
+.wizard-rule{padding:24px 0;border-bottom:1px solid #af98ff40}
+.wizard-rule>header{display:flex;align-items:center;gap:12px}
+.wizard-rule header img{width:46px;height:46px;object-fit:contain;flex-shrink:0}
+.wizard-rule header>div{flex:1;min-width:0}
+.wizard-rule header h2{margin:0;font-size:14px}
+.wizard-rule header p{font-size:11px;margin:4px 0 0;color:var(--cyan)}
+.wizard-rule .wizard-reward{color:var(--lime);font-size:12px;max-width:38%;text-align:right}
+.wizard-rule-copy h3{font-size:11px;margin-top:16px;color:var(--violet)}
+.wizard-rule-copy p{margin:6px 0;font-size:13px;line-height:1.65}
+.wizard-rule--off header img{opacity:.4;filter:grayscale(1)}
+.wizard-rule--off header h2{color:var(--soft)}
+.wizard-page .song-source-options{gap:8px;display:grid;grid-template-columns:1fr 1fr}
+.wizard-page .song-source{min-height:48px;font-size:12px;padding:10px}
+#wizard-rules-done{width:100%;min-height:48px;margin-top:24px}
+@media(max-width:359px){.wizard-page{padding-inline:14px}.wizard-header,.wizard-footer{padding-inline:12px}.wizard-steps{padding-inline:10px}.wizard-steps button{font-size:9px;gap:3px}.wizard-steps b{width:17px;height:17px}.wizard-page .mode-tile-art{width:44px;height:44px}.wizard-page .mode-tile{min-height:94px}.wizard-footer .button{padding-inline:12px;font-size:11px}.wizard-page .song-source-options{grid-template-columns:1fr}.wizard-rule header{gap:8px}}
+@media(max-height:480px){.setup-wizard{padding-top:0}.wizard-header{padding-block:0}.wizard-steps{padding-top:0}.wizard-page{padding-top:12px}.wizard-footer{padding-block:6px}.wizard-footer .button{min-height:44px}.wizard-page h1{margin-bottom:18px}}
+/* Override the legacy ID selectors only inside the experimental scene. */
+.setup-wizard #mode-toggles label>.mode-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:108px;padding:6px 1px;border-radius:10px}
+.setup-wizard #mode-toggles .mode-tile-art{width:52px;height:52px;aspect-ratio:1;flex:0 0 auto;object-fit:contain}
+.setup-wizard #mode-toggles .mode-tile-copy{align-items:center;justify-content:center;gap:3px;text-align:center}
+.setup-wizard #mode-toggles .mode-tile-copy strong{font-size:10px;line-height:1.4;letter-spacing:0;hyphens:none;overflow-wrap:normal}
+.setup-wizard #mode-toggles .mode-tile-copy b{font-size:9px;line-height:1.4}
+.setup-wizard .slider-option{background:none;border:0;border-radius:0;box-shadow:none}
+@media(max-width:359px){.setup-wizard #mode-toggles .mode-tile-art{width:44px;height:44px}.setup-wizard #mode-toggles label>.mode-tile{min-height:100px}}
