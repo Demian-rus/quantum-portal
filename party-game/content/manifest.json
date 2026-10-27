@@ -319,6 +319,11 @@
       "path": "cards/general-diversity-v24.json",
       "immutable": false,
       "review": "G38: 50 manually curated words and phrases; see editorial/general-diversity-v24-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v25.json",
+      "immutable": false,
+      "review": "G39: curated Cyrillic 40 words + 10 phrases; editorial/general-diversity-v25-review.md"
     }
   ],
   "questions": [
@@ -568,6 +573,11 @@
       "path": "packs/general-diversity-v24.json",
       "immutable": false,
       "review": "G38 general@40 adds 50 IDs and preserves all 6600 from general@39"
+    },
+    {
+      "path": "packs/general-diversity-v25.json",
+      "immutable": false,
+      "review": "G39 general@41 preserves 6650 old IDs and appends 50"
     }
   ],
   "legacyCollisions": [

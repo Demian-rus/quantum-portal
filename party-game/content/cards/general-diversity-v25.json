@@ -1,0 +1,502 @@
+[
+  {
+    "id": "word-064001",
+    "text": "ЛЕДЯНКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064002",
+    "text": "БОСОНОЖКИ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064003",
+    "text": "БАБУШКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064004",
+    "text": "УЗЕЛОК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064005",
+    "text": "ЯГОДНИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064006",
+    "text": "СЛЮНЯВЧИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064007",
+    "text": "РАКУШКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "marine"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064008",
+    "text": "КРЫЛЕЧКО",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064009",
+    "text": "ЛАДОШКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064010",
+    "text": "УМЫВАЛЬНИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064011",
+    "text": "СТЕКЛЯШКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064012",
+    "text": "ЖМУРКИ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064013",
+    "text": "СТЁЖКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064014",
+    "text": "БЕЗДЕЛУШКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064015",
+    "text": "ПРОСТОКВАША",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "food"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064016",
+    "text": "БАРХАТЦЫ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "phrase-064001",
+    "text": "ЗАПОТЕВШЕЕ ОКНО",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "phrase-064002",
+    "text": "РЕЗИНОВЫЕ САПОГИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "phrase-064003",
+    "text": "БАБУШКИНЫ ПИРОЖКИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "food"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "phrase-064004",
+    "text": "ВЕТКА СИРЕНИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064017",
+    "text": "РАПСОДИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064018",
+    "text": "РЕГИСТРАТУРА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064019",
+    "text": "ЖАТКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064020",
+    "text": "БАГОР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064021",
+    "text": "ПОДМОСТКИ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064022",
+    "text": "БРОШЮРА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064023",
+    "text": "ИЗГОРОДЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064024",
+    "text": "СТРОПИЛО",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064025",
+    "text": "СБРУЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "animals"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064026",
+    "text": "ВЫМПЕЛ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064027",
+    "text": "ОФОРТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064028",
+    "text": "ТИСНЕНИЕ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064029",
+    "text": "МУФЕЛЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064030",
+    "text": "КАТЕТЕР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064031",
+    "text": "КОЛОКОЛЬНЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064032",
+    "text": "КАДКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "phrase-064005",
+    "text": "РУЧНОЙ ЖЁРНОВ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "phrase-064006",
+    "text": "КАРМАННЫЙ КОМПАС",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "phrase-064007",
+    "text": "ПОЧТОВЫЙ ДИЛИЖАНС",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "transport"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "phrase-064008",
+    "text": "ПОЛЕВОЙ ГОСПИТАЛЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064033",
+    "text": "ПАРЕЙДОЛИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064034",
+    "text": "КАТАХРЕЗА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "language"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064035",
+    "text": "АРХИТРАВ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064036",
+    "text": "АПЕРТУРА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064037",
+    "text": "КОАРТИКУЛЯЦИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "language"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064038",
+    "text": "АНТРОПОГЕНЕЗ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064039",
+    "text": "СПЕКТРОГРАММА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "word-064040",
+    "text": "ХИРОМАНТИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "phrase-064009",
+    "text": "ПРАВИЛО ПАРЕТО",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v25"
+  },
+  {
+    "id": "phrase-064010",
+    "text": "ПРОБЛЕМА ВАГОНЕТКИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v25"
+  }
+]
