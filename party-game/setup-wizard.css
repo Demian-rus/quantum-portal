@@ -99,3 +99,6 @@
 .setup-wizard .slider-option{background:none;border:0;border-radius:0;box-shadow:none}
 @media(max-width:359px){.setup-wizard #mode-toggles .mode-tile-art{width:44px;height:44px}.setup-wizard #mode-toggles label>.mode-tile{min-height:100px}}
 @media(max-height:480px){.wizard-page .game-type-choices{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.wizard-page .game-type-choice{min-height:104px;padding-block:12px}}
+/* TASK031: the Android highlight must not paint the larger label rectangle. */
+.setup-wizard .finish-choices label{-webkit-tap-highlight-color:transparent}
+.setup-wizard .finish-choices label:active>span{filter:brightness(1.15)}
