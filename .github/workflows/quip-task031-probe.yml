@@ -1,0 +1,22 @@
+name: КВИП TASK031 touch diagnosis
+on:
+  push:
+    branches: ['feat/quip-task031-*']
+    paths: ['diagnostics/task031/**', '.github/workflows/quip-task031-probe.yml']
+permissions: {contents: read}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm install --no-save playwright-core@1.55.0 pngjs@7.0.0
+      - run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/quip-task031-probe.log 2>&1 &
+      - run: node diagnostics/task031/tap-probe.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: task031-touch-diagnosis, path: artifacts/quip-task031-probe, if-no-files-found: error}
