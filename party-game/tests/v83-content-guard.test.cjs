@@ -18,10 +18,10 @@ test('original v85 runtime untouched; content-only additions are explicitly vers
   const file='party-game/'+name;assert.equal((name==='round-selection.js'?withoutRiskDispatch(fs.readFileSync(path.join(root,file),'utf8')):fs.readFileSync(path.join(root,file),'utf8')),git(['show',base+':'+file]));
  }
 });
-test('49 scripts match service-worker precache and inherited content URLs',()=>{
+test('53 scripts match service-worker precache and inherited content URLs',()=>{
  const html=fs.readFileSync(path.join(root,'party-game/index.html'),'utf8'),sw=fs.readFileSync(path.join(root,'party-game/sw.js'),'utf8');
  const scripts=[...html.matchAll(/<script src="\.\/([^?"/]+\.js)\?v=(\d+)"/g)].map(x=>'./'+x[1]+'?v='+x[2]);
- assert.equal(scripts.length,49);for(const s of scripts)assert.ok(sw.includes("'"+s+"'"),s);
- assert.match(sw,/kvip-pwa-v90-20261026-wizard-candidate/);
+ assert.equal(scripts.length,53);for(const s of scripts)assert.ok(sw.includes("'"+s+"'"),s);
+ assert.match(sw,/kvip-pwa-v91-20261026-teams-focus-candidate/);
  for(const x of ['cards.js?v=10','content-packs.js?v=18']){assert.ok(html.includes(x));assert.ok(sw.includes(x));}
 });
