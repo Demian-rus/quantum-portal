@@ -62,7 +62,7 @@ async function probeSelection(page){
     await p.locator('[data-action="confirm-results"]').click();assert.equal(await p.evaluate(()=>profileStore.recent.length),1);const profiles=(await snapshot(p)).profiles;await p.reload();assert.equal((await snapshot(p)).profiles,profiles);
    }
    await p.evaluate(()=>{backToMenu();newGame()});assert.equal(await p.evaluate(()=>game.contentPack.version),40);
-   assert.equal(await p.evaluate(()=>getContentPack(game.contentPack).criteria.cardIds.length),6650);
+   assert.equal(await p.evaluate(()=>getContentPack(game.contentPack).criteria.cardIds.length),6700);
    assert.deepEqual(errors,[]);console.log('v88 → v89',scenario,'real SW upgrade / cold offline / exact RAW + risk + profiles / 49 JS / disclosure / timer or exactly-once result PASS');
   }finally{write(current);await ctx.close();}
  }}finally{write(current);await b.close();}
