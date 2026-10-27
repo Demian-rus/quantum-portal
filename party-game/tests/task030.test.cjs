@@ -6,7 +6,7 @@ test('TASK030 keeps all engine scripts, scene v88 and catalog/data code byte-exa
  for(const f of scripts.filter(f=>f!=='setup-wizard.js'))assert.equal(read(f),old(f),f);
  assert.equal(read('style.css'),old('style.css'));
  assert.equal(read('index.html').replace('setup-wizard.js?v=4','setup-wizard.js?v=2').replace('setup-wizard.css?v=2','setup-wizard.css?v=1'),old('index.html'));
- assert.equal(read('sw.js').replace('kvip-pwa-v91-20261027-wizard-only-candidate-r2','kvip-pwa-v90-20261027-wizard-performance-candidate').replace('setup-wizard.js?v=4','setup-wizard.js?v=2').replace('setup-wizard.css?v=2','setup-wizard.css?v=1'),old('sw.js'));
+ assert.equal(read('sw.js').replace('kvip-pwa-v91-20261027-wizard-only-candidate-guard','kvip-pwa-v90-20261027-wizard-performance-candidate').replace('setup-wizard.js?v=4','setup-wizard.js?v=2').replace('setup-wizard.css?v=2','setup-wizard.css?v=1'),old('sw.js'));
 });
 test('TASK030 preserves the exact TASK029 validation stamp and scoped memo',()=>{
  const cost=s=>s.slice(s.indexOf(' function viewStamp(){'),s.indexOf(" const scene=document.createElement"));assert.equal(cost(read('setup-wizard.js')),cost(old('setup-wizard.js')));
