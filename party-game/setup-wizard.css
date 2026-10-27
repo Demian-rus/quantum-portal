@@ -101,7 +101,8 @@
 @media(max-height:480px){.wizard-page .game-type-choices{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.wizard-page .game-type-choice{min-height:104px;padding-block:12px}}
 /* TASK031: the Android highlight must not paint the larger label rectangle. */
 .setup-wizard .finish-choices label{-webkit-tap-highlight-color:transparent}
-.setup-wizard .finish-choices label:active>span{filter:brightness(1.15)}
+.setup-wizard .finish-choices label:active>span,
+.setup-wizard .finish-choices label.is-pressed>span{filter:brightness(1.15)}
 /* One set of mode controls moves between the grid and its settings page. */
 .setup-wizard:not(.wizard-mode-center) .wizard-rule{padding:0;border:0}
 .setup-wizard:not(.wizard-mode-center) .wizard-rule>header,

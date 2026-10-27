@@ -159,6 +159,17 @@
   if(activeScene==='wizard'&&!modal){navigateBack();return;}
   legacy.backWithinKvip();
  };
+ // Press feedback is presentation-only; native radio click/change owns selection.
+ let pressedFinish=null;
+ function releaseFinish(){pressedFinish?.classList.remove('is-pressed');pressedFinish=null;}
+ $('wizard-finish').addEventListener('pointerdown',event=>{
+  if(!event.isPrimary||event.button!==0)return;
+  const label=event.target.closest('.finish-choices label');
+  if(label){releaseFinish();pressedFinish=label;label.classList.add('is-pressed');}
+ });
+ document.addEventListener('pointerup',releaseFinish,true);
+ document.addEventListener('pointercancel',releaseFinish,true);
+ window.addEventListener('blur',releaseFinish);
  $('wizard-back').addEventListener('click',navigateBack);
  scene.querySelector('.wizard-steps').addEventListener('click',event=>{const button=event.target.closest('[data-wizard-step]');if(button)show(Number(button.dataset.wizardStep));});
  $('wizard-next').addEventListener('click',()=>show(Math.min(4,step+1)));

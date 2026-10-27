@@ -2,7 +2,7 @@
   {
     "file": "setup-wizard.css",
     "before": "",
-    "after": "/* TASK031: the Android highlight must not paint the larger label rectangle. */\n.setup-wizard .finish-choices label{-webkit-tap-highlight-color:transparent}\n.setup-wizard .finish-choices label:active>span{filter:brightness(1.15)}\n"
+    "after": "/* TASK031: the Android highlight must not paint the larger label rectangle. */\n.setup-wizard .finish-choices label{-webkit-tap-highlight-color:transparent}\n.setup-wizard .finish-choices label:active>span,\n.setup-wizard .finish-choices label.is-pressed>span{filter:brightness(1.15)}\n"
   },
   {
     "file": "setup-wizard.js",
@@ -93,5 +93,10 @@
     "file": "sw.js",
     "before": "kvip-pwa-v95-20261027-teams-counts-ready-candidate",
     "after": "kvip-pwa-v96-20261027-wizard-polish-candidate"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": " $('wizard-back').addEventListener('click',navigateBack);",
+    "after": " // Press feedback is presentation-only; native radio click/change owns selection.\n let pressedFinish=null;\n function releaseFinish(){pressedFinish?.classList.remove('is-pressed');pressedFinish=null;}\n $('wizard-finish').addEventListener('pointerdown',event=>{\n  if(!event.isPrimary||event.button!==0)return;\n  const label=event.target.closest('.finish-choices label');\n  if(label){releaseFinish();pressedFinish=label;label.classList.add('is-pressed');}\n });\n document.addEventListener('pointerup',releaseFinish,true);\n document.addEventListener('pointercancel',releaseFinish,true);\n window.addEventListener('blur',releaseFinish);\n $('wizard-back').addEventListener('click',navigateBack);"
   }
 ]
