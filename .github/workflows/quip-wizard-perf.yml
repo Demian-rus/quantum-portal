@@ -1,0 +1,47 @@
+name: КВИП Android wizard performance
+on:
+  push:
+    branches: ['feat/quip-task029-*']
+    paths: ['diagnostics/task029/**', 'party-game/setup-wizard.js', 'party-game/setup-wizard.css', '.github/workflows/quip-wizard-perf.yml']
+  pull_request:
+    paths: ['diagnostics/task029/**', 'party-game/setup-wizard.js', 'party-game/setup-wizard.css', '.github/workflows/quip-wizard-perf.yml']
+permissions:
+  contents: read
+jobs:
+  profile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm install --no-save playwright-core@1.55.0
+      - run: node diagnostics/task029/mobile-perf.cjs
+        env: {PERF_PILOT: '1', PERF_WIDTH: '390', PERF_REPEATS: '20'}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: android-wizard-profile, path: artifacts/task029, if-no-files-found: error}
+  measurements:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix: {width: [320, 390, 412, 844]}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm install --no-save playwright-core@1.55.0
+      - run: node diagnostics/task029/mobile-perf.cjs
+        env:
+          PERF_WIDTH: ${{ matrix.width }}
+          PERF_REPEATS: '20'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: android-wizard-${{ matrix.width }}
+          path: artifacts/task029
+          if-no-files-found: error
