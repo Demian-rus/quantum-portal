@@ -17,7 +17,7 @@
  const unavailable=document.createElement('p');unavailable.id='team-format-unavailable';unavailable.className='profile-muted';unavailable.hidden=true;$q('.wizard-formats').after(unavailable);
  const home=document.createElement('div');home.id='team-home';home.hidden=true;
  home.innerHTML='<button id="continue-teams" type="button" class="button button-secondary">ПРОДОЛЖИТЬ 2 НА 2</button><button id="team-archive-open" type="button" class="button button-secondary">ПАРТИИ 2 НА 2</button>';
- $('continue-game').after(home);
+ const continueTeamsButton=home.querySelector('#continue-teams'),archiveTeamsButton=home.querySelector('#team-archive-open');
  const busy=document.createElement('div');busy.id='team-saving';busy.hidden=true;busy.setAttribute('role','status');busy.setAttribute('aria-live','polite');busy.textContent='СОХРАНЯЕМ 2 НА 2…';document.body.append(busy);
  const error=document.createElement('aside');error.id='team-save-error';error.hidden=true;error.setAttribute('role','alert');
  error.innerHTML='<p id="team-save-message"></p><button id="team-reload" type="button" class="button button-primary">ОТКРЫТЬ СОХРАНЕНИЕ 2 НА 2</button><button id="team-safe-menu" type="button" class="button button-secondary">К ИГРЕ 1 НА 1</button>';
@@ -51,18 +51,19 @@
   else{game=null;taskMemory=freshTaskMemory();}
   document.body.classList.toggle('teams-active',!s.inSetup);
  }
+ function focusHint(node){if(node?.dataset?.reportHistory!=null)return '[data-report-history="'+node.dataset.reportHistory+'"]'+(node.dataset.reportBlitz!=null?'[data-report-blitz="'+node.dataset.reportBlitz+'"]':'');return reviewFocusSelector(node)||(node?.id?'#'+CSS.escape(node.id):node?.dataset?.action?'[data-action="'+node.dataset.action+'"]':node?.dataset?.feedback?'[data-feedback="'+node.dataset.feedback+'"]':null);}
  function run(action,{replace=false}={}){
   if(s.tx?.executing)return action();
   if(s.busy||s.blocked)return Promise.resolve(false);
-  const focused=document.activeElement,focusSelector=reviewFocusSelector(focused)||(focused?.id?'#'+CSS.escape(focused.id):focused?.dataset?.action?'[data-action="'+focused.dataset.action+'"]':null);
-  const before={inSetup:s.inSetup,pending:game?.phase==='review'?{player:game.pendingReview.playerIndex??0,scroll:$q('.pending-review-rows')?.scrollTop||0}:null};setBusy(true);stopTicking();
+  const focused=document.activeElement,focusSelector=focusHint(focused);
+  const before={inSetup:s.inSetup,report:!$('report-backdrop').hidden,history:!$('result-history-backdrop').hidden,returnFocus:!$('report-backdrop').hidden?focusHint(reportView.focus):!$('result-history-backdrop').hidden?focusHint(resultHistoryFocus):null,pending:game?.phase==='review'?{player:game.pendingReview.playerIndex??0,scroll:$q('.pending-review-rows')?.scrollTop||0}:null};setBusy(true);stopTicking();
   s.idle=(async()=>{
    let tx;
    try{
     await exclusive(async()=>{
      tx={lock:true,executing:false,messages:[],sounds:[],dirty:false,leave:false};s.tx=tx;
      const loaded=await s.store.load();if(!['empty','ok'].includes(loaded.status)||loaded.raw!==s.raw)throw Error('Сохранение изменилось в другой вкладке или требует восстановления. Откройте его заново.');
-     tx.executing=true;try{action();}finally{tx.executing=false;}if(tx.failure)throw tx.failure;
+     tx.executing=true;try{action();const modalClosed=before.report&&$('report-backdrop').hidden||before.history&&$('result-history-backdrop').hidden;tx.focus=modalClosed&&before.returnFocus?before.returnFocus:focusHint(document.activeElement);}finally{tx.executing=false;}if(tx.failure)throw tx.failure;
      if(s.context&&E.isGame(game)){
       const next=root();E.validateRecord(next);
       if(!same(next,s.record)){
@@ -76,7 +77,7 @@
     else if(s.context&&!s.inSetup){old.render();paintGame();if(before.pending&&game.phase==='review'&&(game.pendingReview.playerIndex??0)===before.pending.player){const list=$q('.pending-review-rows');if(list)list.scrollTop=before.pending.scroll;}if(!$('result-history-backdrop').hidden)old.renderResultHistory();}
     else old.renderOptions();
     for(const sound of tx.sounds)old.sfx(sound);if(tx.messages.length)old.toast(tx.messages.at(-1));paintHome();
-    const active=document.activeElement;if(!active||active===document.body||!active.getClientRects().length){const target=focusSelector?$q(focusSelector):null;if(target?.getClientRects().length)target.focus({preventScroll:true});else if(focused?.id==='start-game')$q('#play-content [data-action="roll"]')?.focus({preventScroll:true});}
+    const active=document.activeElement;if(!active||active===document.body||!active.getClientRects().length){const hint=tx.focus||focusSelector,surface=!$('result-history-backdrop').hidden?$('result-history-backdrop'):!$('report-backdrop').hidden?$('report-backdrop'):document,target=hint?surface.querySelector(hint):null;if(target?.getClientRects().length&&!target.closest('[inert]'))target.focus({preventScroll:true});else if(focused?.id==='start-game')$q('#play-content [data-action="roll"]')?.focus({preventScroll:true});}
     if(s.context&&!s.inSetup&&game?.phase==='rolling')scheduleReveal();return true;
    }catch(e){
     s.tx=null;restoreDurable(before);setBusy(false);fault(e);
@@ -164,8 +165,8 @@
   for(const copy of panel.ownerDocument.querySelectorAll('#wizard-rule-list .wizard-rule-copy p'))copy.textContent=copy.textContent.replace(/Соперник/g,'Партнёр').replace(/соперник/g,'партнёр');
  }
  function paintHome(){
-  home.hidden=!s.record&&s.status!=='blocked';$('scene-home').classList.toggle('has-team-save',!home.hidden);homeFootnote.textContent=home.hidden?originalHomeFootnote:'1 НА 1 ИЛИ 2 НА 2 · ОДИН ТЕЛЕФОН';$('continue-teams').textContent=s.status==='blocked'?'ВОССТАНОВИТЬ 2 НА 2':s.record?.game.phase==='results'?'ИТОГИ 2 НА 2':'ПРОДОЛЖИТЬ 2 НА 2';
-  $('team-archive-open').hidden=!s.record;paintSetup();
+  home.hidden=!s.record&&s.status!=='blocked';if(home.hidden)home.remove();else if(!home.isConnected)$('continue-game').after(home);$('scene-home').classList.toggle('has-team-save',!home.hidden);homeFootnote.textContent=home.hidden?originalHomeFootnote:'1 НА 1 ИЛИ 2 НА 2 · ОДИН ТЕЛЕФОН';continueTeamsButton.textContent=s.status==='blocked'?'ВОССТАНОВИТЬ 2 НА 2':s.record?.game.phase==='results'?'ИТОГИ 2 НА 2':'ПРОДОЛЖИТЬ 2 НА 2';
+  archiveTeamsButton.hidden=!s.record;paintSetup();
  }
  function rosterMarkup(){return game.teamFormat.teams.map((team,i)=>'<section><h3>'+escapeHTML(team.name)+' · '+game.scores[i]+'</h3><p>'+team.members.map(escapeHTML).join(' + ')+'</p></section>').join('');}
  function paintHeader(){
@@ -252,7 +253,7 @@
  $('wizard-format-duel').addEventListener('click',()=>{if(s.context){useDuel();old.renderOptions();}});
  panel.addEventListener('input',event=>{const key=event.target.dataset.teamName;if(!key)return;const [t,p]=key.split(':').map(Number);s.names[t][p]=event.target.value;paintSetup();});
  for(const type of ['selectstart','contextmenu'])panel.addEventListener(type,event=>{if(event.target.matches('[data-team-name]'))event.stopPropagation();});
- $('continue-teams').addEventListener('click',continueTeam);$('team-archive-open').addEventListener('click',openData);
+ continueTeamsButton.addEventListener('click',continueTeam);archiveTeamsButton.addEventListener('click',openData);
  $('team-reload').addEventListener('click',continueTeam);$('team-safe-menu').addEventListener('click',()=>{if(s.context)useDuel();error.hidden=true;old.setScene('home');});
  $('team-data-close').addEventListener('click',closeData);dialog.addEventListener('click',event=>{if(event.target===dialog)closeData();});
  $('team-export').addEventListener('click',async()=>{try{const durable=await s.store.inspect().catch(e=>({unavailable:String(e.message||e)}));downloadProfileBackup(JSON.stringify({durable,format:'quip-teams-export',version:1,raw:localStorage.getItem(QuipTeamStorage.KEY),pending:localStorage.getItem(QuipTeamStorage.JOURNAL_KEY)},null,2),backupFileName('kvip-2x2'));}catch(e){$('team-data-status').textContent=e.message;}});
