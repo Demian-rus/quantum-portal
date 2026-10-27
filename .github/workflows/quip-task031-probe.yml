@@ -15,7 +15,9 @@ jobs:
         with: {node-version: '22'}
       - run: npm install --no-save playwright-core@1.55.0 pngjs@7.0.0
       - run: |
-          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/quip-task031-probe.log 2>&1 &
+          mkdir -p /tmp/quip031-published
+          git archive 47a7266b48818b3ebc94e1e37e1f5c3f769ee812 party-game | tar -x -C /tmp/quip031-published
+          python3 -m http.server 8765 --bind 127.0.0.1 --directory /tmp/quip031-published > /tmp/quip-task031-probe.log 2>&1 &
       - run: node diagnostics/task031/tap-probe.cjs
       - uses: actions/upload-artifact@v4
         if: always()
