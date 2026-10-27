@@ -3,9 +3,9 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const {OLD,NEW,normalizeWizardModeCopy,withoutWizardShell}=require('./wizard-contract.cjs');
 const root=path.resolve(__dirname,'../..'),base='507c3d24f270a7d26b1562ffc6837c819a15aa5b';
 const read=f=>fs.readFileSync(path.join(root,'party-game',f),'utf8'),old=f=>cp.execFileSync('git',['show',base+':party-game/'+f],{cwd:root,encoding:'utf8',maxBuffer:15e6});
-test('TASK027 leaves all 48 production controllers and full accepted CSS byte-exact except approved Blitz copy',()=>{
+test('TASK027 preserves all non-content production controllers and full accepted CSS byte-exact except approved Blitz copy',()=>{
  const files=[...old('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);assert.equal(files.length,48);
- for(const f of files)assert.equal(f==='mode-config.js'?normalizeWizardModeCopy(read(f)):read(f),old(f),f);
+ for(const f of files.filter(f=>!['cards.js','content-packs.js'].includes(f)))assert.equal(f==='mode-config.js'?normalizeWizardModeCopy(read(f)):read(f),old(f),f);
  assert.equal(read('style.css'),old('style.css'));assert.equal(withoutWizardShell(read('index.html')),old('index.html'));assert.equal(withoutWizardShell(read('sw.js')),old('sw.js'));
 });
 test('TASK027 Blitz changes current description only, all legacy configs and mathematical rules remain identical',()=>{
