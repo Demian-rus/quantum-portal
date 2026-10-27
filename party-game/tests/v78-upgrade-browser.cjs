@@ -40,7 +40,7 @@ async function completedMatch(page){
  const write=sources=>{for(const[name,content]of sources)fs.writeFileSync(path.join(root,'party-game',name),content)};
  const cache=bytes=>bytes.toString().match(/const CACHE='([^']+)'/)[1];
  const oldCache=cache(previous.get('sw.js')),newCache=cache(current.get('sw.js'));
- assert.match(oldCache,/v78/);assert.match(newCache,/^kvip-pwa-v91-20261027-wizard-only-candidate$/);assert.notEqual(oldCache,newCache);
+ assert.match(oldCache,/v78/);assert.match(newCache,/^kvip-pwa-v91-20261027-wizard-only-candidate-r2$/);assert.notEqual(oldCache,newCache);
  const browser=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
  const ctx=await browser.newContext({viewport:{width:390,height:844},hasTouch:true}),page=await ctx.newPage(),errors=[];
  page.on('pageerror',e=>errors.push(e.message));

@@ -38,7 +38,7 @@ module.exports=async function awardPolicy(browser,url){
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   try{
    await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await setup(page);await page.setViewportSize({width:device.width,height:device.height});
-   assert.equal(await setupPlayers(page);await choose(page,'setter').getAttribute('aria-pressed'),'true');assert.equal(await yesno(page).isChecked(),false);
+   await setupPlayers(page);assert.equal(await choose(page,'setter').getAttribute('aria-pressed'),'true');assert.equal(await yesno(page).isChecked(),false);
    await geometry(page);
    if(device.name==='phone')await shot(page,'phone-setter');
    await setupPlayers(page);await choose(page,'guesser').click();await geometry(page);
@@ -52,10 +52,10 @@ module.exports=async function awardPolicy(browser,url){
    assert.match(await yesno(page).evaluate(el=>el.closest('label').title),/Доступно, когда очки получает отгадывающий/);
    await yesno(page).evaluate(el=>{el.checked=true;el.dispatchEvent(new Event('change',{bubbles:true}))});
    assert.equal(await yesno(page).isChecked(),false);assert.equal(await page.evaluate(()=>options.modes.includes('yesno')),false);
-   await setupPlayers(page);await setupPlayers(page);await choose(page,'guesser').click();
+   await setupPlayers(page);await choose(page,'guesser').click();
    await setupRules(page);await setupFold(page,'mode-settings');assert.equal(await yesno(page).isDisabled(),false);assert.equal(await yesno(page).isChecked(),false);
    await enableMode(page,'yesno');await setupPlayers(page);
-   await page.reload({waitUntil:'load'});await setup(page);assert.equal(await setupPlayers(page);await choose(page,'guesser').getAttribute('aria-pressed'),'true');
+   await page.reload({waitUntil:'load'});await setup(page);await setupPlayers(page);assert.equal(await choose(page,'guesser').getAttribute('aria-pressed'),'true');
    await setupRules(page);await setupFold(page,'mode-settings');assert.equal(await yesno(page).isChecked(),true);await setupPlayers(page);
    await page.evaluate(()=>{options.modes=['yesno'];persist();renderOptions()});await setupPlayers(page);await choose(page,'setter').click();
    assert.deepEqual(await page.evaluate(()=>options.modes),[]);assert.equal(await page.locator('#start-game').isDisabled(),true);assert.match(await page.locator('#setup-mode-notice').textContent(),/Выберите/);

@@ -32,5 +32,5 @@ test('TASK024 published mechanisms, history and all unrelated runtime scripts re
 test('TASK024 views remain intact with v89 content resource versions and no sync',()=>{
  const html=fs.readFileSync(path.join(root,'party-game/index.html'),'utf8'),sw=fs.readFileSync(path.join(root,'party-game/sw.js'),'utf8');
  const scripts=[...html.matchAll(/<script src="\.\/([^"?]+\.js\?v=\d+)"/g)].map(m=>m[1]);assert.equal(scripts.length,49);for(const name of scripts)assert.ok(sw.includes("'./"+name+"'"),name);
- assert.match(sw,/kvip-pwa-v91-20261027-wizard-only-candidate/);assert.ok(!html.includes('feedback-sync'));assert.ok(html.includes('cards.js?v=10')&&html.includes('content-packs.js?v=18'));
+ assert.match(sw,/kvip-pwa-v91-20261027-wizard-only-candidate-r2/);assert.ok(!html.includes('feedback-sync'));assert.ok(html.includes('cards.js?v=10')&&html.includes('content-packs.js?v=18'));
 });

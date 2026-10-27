@@ -138,7 +138,14 @@
   }
   remember();scene.hidden=true;document.body.classList.remove('wizard-screen');legacy.setScene(which);
  };
- renderOptions=refreshOptions;
+ renderOptions=function(){
+  refreshOptions();
+  // A rejected checkbox action leaves options unchanged, so the render stamp
+  // correctly stays cached. Restore its live UI projection without revalidating
+  // catalogs (last-mode and unavailable-mode guards belong to the controller).
+  for(const input of $('mode-toggles').querySelectorAll('input'))
+   input.checked=options.modes.includes(input.value);
+ };
  backWithinKvip=function(){
   const modal=['result-history-backdrop','backup-backdrop','report-backdrop','profile-backdrop','mode-options-backdrop','rules-backdrop'].some(id=>!$(id).hidden);
   if(activeScene==='wizard'&&!modal){navigateBack();return;}

@@ -1,5 +1,7 @@
 # TASK029 — Android wizard responsiveness
 
+> Исторический отчёт: описанное ниже переключение интерфейсов относится к указанным в отчёте прежним SHA. В кандидате [TASK030](../../party-game/TASK030-WIZARD-ONLY.md) переключатели и маршрут `setup=legacy` удалены. Публикация TASK030 требует отдельного разрешения.
+
 Issue [#153](https://github.com/Demian-rus/quantum-portal/issues/153). Baseline: published main `8dd989f4017fa48d4279f243d13012ade1710a63`. TASK027 is already accepted. TASK028 PR #152 is a separate Draft and is not modified by this task. This branch is a candidate: no merge or PWA publication is authorized.
 
 ## Measurement protocol

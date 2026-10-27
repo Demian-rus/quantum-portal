@@ -28,6 +28,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - run: for file in party-game/tests/*.cjs; do node --check "$file"; done
       - run: node party-game/scripts/content.cjs check
       - run: node party-game/scripts/approx-unit-audit.cjs check
       - run: node party-game/scripts/condition-audit.cjs check

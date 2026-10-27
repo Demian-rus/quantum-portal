@@ -20,6 +20,15 @@ const controls=p=>p.evaluate(()=>[...document.querySelectorAll('#mode-toggles in
    const actual=await controls(p),expected=await p.evaluate(()=>DEFAULT_MODES.map(id=>({id,available:packModeAvailability(options.contentPack,{...options,...setupSongPolicy(options)},id).available})));assert.deepEqual(actual.map(x=>({id:x.id,available:!x.disabled})),expected);
    await p.locator('#wizard-back').tap();await p.locator('#team-a').tap();await p.locator('#profile-create-open').tap();await p.locator('#profile-name').fill('Новый участник');await p.locator('#profile-create-save').tap();assert.match(await p.locator('#team-a').textContent(),/Новый участник/);
    await p.locator('#wizard-next').tap();await p.locator('#wizard-mode-settings').tap();await p.locator('[data-song-language="en"]').tap();assert.deepEqual(await p.evaluate(()=>sanitizeModeSettings(options.modeSettings).sing.songLanguages),['ru','en']);await p.locator('#wizard-rules-done').tap();
+   // The real controller rejects removing the last mode. Cached settings must
+   // still restore the browser-mutated checkbox, without another catalog scan.
+   const talk=p.locator('#mode-toggles input[value="talk"]');if(!await talk.isChecked())await talk.locator('..').tap();
+   for(const input of await p.locator('#mode-toggles input').all())if(await input.inputValue()!=='talk'&&await input.isChecked())await input.locator('..').tap();
+   const guarded=await protectedState(p);await p.evaluate(()=>{__checks29=0;__pools29=0;});await talk.locator('..').tap();
+   assert.equal(await talk.isChecked(),true,'last-mode guard must restore the actual checkbox');assert.deepEqual(await protectedState(p),guarded,'rejected action writes no data');
+   const blocked=p.locator('#mode-toggles input[value="yesno"]');assert.equal(await blocked.isDisabled(),true);
+   await blocked.evaluate(n=>{n.checked=true;n.dispatchEvent(new Event('change',{bubbles:true}));});assert.equal(await blocked.isChecked(),false,'ineligible-mode guard restores checkbox');assert.deepEqual(await protectedState(p),guarded);
+   assert.deepEqual(await p.evaluate(()=>[__checks29,__pools29]),[0,0],'rejected input reconciles presentation without repeating catalog validation');
    await p.evaluate(()=>{window.__modes29=options.modes.slice();options.modes=[];renderOptions();});assert.equal(await p.locator('#start-game').isDisabled(),true,'changed invalid state must block START');await p.evaluate(()=>{options.modes=__modes29;renderOptions();});
    const state=await protectedState(p),beforeControls=await controls(p);assert.equal(await p.locator('#wizard-legacy,#setup-interface-toggle').count(),0);await p.locator('#wizard-back').tap();await p.locator('#wizard-next').tap();assert.deepEqual(await protectedState(p),state,'navigation preserves exact data');assert.deepEqual(await controls(p),beforeControls,'controls retain real availability/checked/points');
    // A real START never uses the UI's temporary pool memo. It validates afresh.
