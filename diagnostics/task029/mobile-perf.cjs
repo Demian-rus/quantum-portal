@@ -6,7 +6,6 @@ const {chromium,devices}=require('playwright-core');
 const BASE='8dd989f4017fa48d4279f243d13012ade1710a63',ROOT=path.resolve(__dirname,'../..');
 const N=Number(process.env.PERF_REPEATS||20),PILOT=process.env.PERF_PILOT==='1',WIDTH=Number(process.env.PERF_WIDTH||390);
 const heights={320:568,390:844,412:915,844:390},out=path.resolve('artifacts/task029',PILOT?'pilot':String(WIDTH));
-fs.mkdirSync(out,{recursive:true});
 const git=(...args)=>execFileSync('git',args,{cwd:ROOT});
 const quant=(a,p)=>a.slice().sort((x,y)=>x-y)[Math.min(a.length-1,Math.ceil(a.length*p)-1)];
 function summary(rows,key){const v=rows.map(r=>r[key]);return {n:v.length,median:+quant(v,.5).toFixed(2),p95:+quant(v,.95).toFixed(2),max:+Math.max(...v).toFixed(2)};}
@@ -56,7 +55,7 @@ function installProbe(){
  },true);
 }
 const wizard=[['home_catalog','#new-game-menu','catalog'],['catalog_players','#standard-game','players'],['players_rules','#wizard-next','rules'],['rules_modes','#wizard-mode-settings','center'],['modes_rules','#wizard-rules-done','rules'],['rules_start','#wizard-next','start'],['start_rules_back','#wizard-back','rules'],['rules_players_back','#wizard-back','players'],['players_catalog_back','#wizard-back','catalog'],['catalog_themes','#thematic-game','themes'],['themes_players','#theme-list [data-theme="geography"]:enabled','players'],['theme_players_catalog_back','#wizard-back','catalog'],['catalog_themes_again','#thematic-game','themes'],['themes_catalog_back','#wizard-back','catalog'],['catalog_standard_switch','#standard-game','players'],['standard_players_catalog_back','#wizard-back','catalog'],['catalog_home_back','#wizard-back','home']];
-const legacy=[['home_catalog','#new-game-menu','catalog'],['catalog_players','#standard-game','players'],['players_rules','#go-advanced','rules'],['rules_expand','#mode-settings > summary','expanded'],['rules_modes','[data-mode-settings="sing"]','center'],['modes_rules','#mode-options-done','rules'],['rules_players_back','#advanced-back','players'],['players_catalog_back','#setup-back','catalog'],['catalog_themes','#thematic-game','themes'],['themes_players','#theme-list [data-theme="geography"]:enabled','players'],['theme_players_themes_back','#setup-back','themes'],['themes_catalog_back','#themes-back','catalog'],['catalog_home_back','#game-type-back','home']];
+const legacy=[['home_catalog','#new-game-menu','catalog'],['catalog_players','#standard-game','players'],['players_rules','#go-advanced','rules'],['rules_expand','#mode-settings > summary','expanded'],['rules_modes','[data-mode-settings="sing"]','center'],['modes_rules','#mode-options-done','rules'],['rules_players_back','#advanced-back','players'],['players_catalog_back','#setup-back','catalog'],['catalog_themes','#thematic-game','themes'],['themes_players','#theme-list [data-theme="geography"]:enabled','players'],['theme_players_themes_back','#setup-back','themes'],['themes_catalog_back','#themes-back','catalog'],['catalog_standard_switch','#standard-game','players'],['standard_players_catalog_back','#setup-back','catalog'],['catalog_home_back','#game-type-back','home']];
 async function metrics(cdp){return Object.fromEntries((await cdp.send('Performance.getMetrics')).metrics.map(x=>[x.name,x.value]));}
 async function cycle(page,cdp,route,rows,meta){
  for(const [label,selector,target]of route==='wizard'?wizard:legacy){
@@ -90,6 +89,7 @@ async function attribution(page,cdp,file,route){
  return {...costs,rows,cpuInclusive:[...hits].sort((a,b)=>b[1]-a[1]).slice(0,30)};
 }
 async function main(){
+ fs.mkdirSync(out,{recursive:true});
  const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'kvip29-')),archive=path.join(tmp,'baseline.tar');git('archive','--format=tar','--output='+archive,BASE,'party-game');execFileSync('tar',['-xf',archive,'-C',tmp]);fs.unlinkSync(archive);
  const before=await serve(tmp),candidate=await serve(ROOT),changed=git('diff','--name-only',BASE,'HEAD','--','party-game').toString().trim();
  const variants=changed?[{name:'before',...before},{name:'after',...candidate}]:[{name:'before',...before}];
@@ -100,7 +100,7 @@ async function main(){
   try{const session=await browser.newBrowserCDPSession();const info=await session.send('SystemInfo.getInfo');report.gpu={devices:info.gpu.devices,auxAttributes:info.gpu.auxAttributes};await session.detach();}catch(e){report.gpu={unavailable:e.message};}
   let seed;
   {const ctx=await browser.newContext({...devices['Pixel 7'],userAgent:ua,isMobile:true,hasTouch:true,serviceWorkers:'allow'});const p=await ctx.newPage();await p.goto(before.origin+'/party-game/?setup=wizard');await require('../../party-game/tests/profile-fixtures.cjs').provisionProfiles(p);seed=(await ctx.storageState()).origins[0].localStorage;await ctx.close();}
-  const configs=PILOT?[{cpu:4,cache:'network',heat:'warm',route:'wizard'},{cpu:4,cache:'network',heat:'warm',route:'legacy'}]:[1,4].flatMap(cpu=>['network','pwa-offline'].flatMap(cache=>['cold','warm'].flatMap(heat=>['wizard','legacy'].map(route=>({cpu,cache,heat,route})))));
+  const configs=PILOT?[{cpu:4,cache:'network',heat:'warm',route:'wizard'},{cpu:4,cache:'network',heat:'warm',route:'legacy'}]:[1,4].flatMap(cpu=>['network','pwa-offline'].flatMap(cache=>['cold','warm'].flatMap(heat=>['wizard','legacy'].map(route=>({cpu,cache,heat,route}))))).filter(c=>(!process.env.PERF_CPU||c.cpu===Number(process.env.PERF_CPU))&&(!process.env.PERF_CACHE||c.cache===process.env.PERF_CACHE));
   for(const config of configs)for(const variant of variants){
    const tag=[variant.name,WIDTH,config.cpu,config.cache,config.heat,config.route].join('-'),ctx=await browser.newContext({...devices['Pixel 7'],viewport:{width:WIDTH,height:heights[WIDTH]},screen:{width:WIDTH,height:heights[WIDTH]},deviceScaleFactor:2.625,userAgent:ua,isMobile:true,hasTouch:true,serviceWorkers:'allow',storageState:{cookies:[],origins:[{origin:variant.origin,localStorage:seed}]}});
    const page=await ctx.newPage();page.setDefaultTimeout(30000);const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.addInitScript(installProbe);
@@ -110,6 +110,7 @@ async function main(){
    try{
     await page.goto(url);await page.waitForFunction(()=>typeof activeScene!=='undefined'&&activeScene==='home');
     if(config.cache==='pwa-offline'){await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>!!navigator.serviceWorker.controller);await ctx.setOffline(true);await page.reload();}
+    const initialStartup=await page.evaluate(()=>({ready:performance.now(),navigation:performance.getEntriesByType('navigation')[0].toJSON(),paint:performance.getEntriesByType('paint').map(e=>e.toJSON())}));
     const environment=await page.evaluate(()=>({innerWidth,innerHeight,visualViewport:{width:visualViewport.width,height:visualViewport.height,scale:visualViewport.scale},devicePixelRatio,ua:navigator.userAgent,maxTouchPoints:navigator.maxTouchPoints,coarse:matchMedia('(pointer: coarse)').matches,hoverNone:matchMedia('(hover: none)').matches,mobileLayout:matchMedia('(max-width: 779px)').matches,shortLandscape:matchMedia('(max-height: 480px)').matches,screen:{width:screen.width,height:screen.height,orientation:screen.orientation.type},worker:!!navigator.serviceWorker.controller,backdrop:getComputedStyle(document.getElementById('scene-wizard')).backdropFilter}));
     assert.equal(environment.innerWidth,WIDTH);assert.equal(environment.innerHeight,heights[WIDTH]);assert.equal(environment.devicePixelRatio,2.625);assert(environment.coarse&&environment.hoverNone&&environment.maxTouchPoints>0&&/Android/.test(environment.ua));
     fs.writeFileSync(path.join(out,tag+'-environment.json'),JSON.stringify({...environment,...config,isMobile:true,hasTouch:true},null,2));await page.screenshot({path:path.join(out,tag+'-before.png')});
@@ -117,7 +118,7 @@ async function main(){
     if(config.heat==='warm')await cycle(page,cdp,config.route,[],{warmup:true});
     for(let repeat=0;repeat<N;repeat++){
      if(config.heat==='cold'){await page.reload();await page.waitForFunction(()=>typeof activeScene!=='undefined'&&activeScene==='home');}
-     startups.push(await page.evaluate(()=>({ready:performance.now(),navigation:performance.getEntriesByType('navigation')[0].toJSON(),paint:performance.getEntriesByType('paint').map(e=>e.toJSON())})));
+     if(config.heat==='warm'){if(repeat===0)startups.push(initialStartup);}else startups.push(await page.evaluate(()=>({ready:performance.now(),navigation:performance.getEntriesByType('navigation')[0].toJSON(),paint:performance.getEntriesByType('paint').map(e=>e.toJSON())})));
      await cycle(page,cdp,config.route,rows,{repeat});
     }
     const representative=[];await traceStart(cdp);await cycle(page,cdp,config.route,representative,{representative:true});await traceStop(cdp,path.join(out,tag+'.trace.json'),representative);
@@ -131,4 +132,5 @@ async function main(){
   }
  }finally{await browser.close();await Promise.all([before.server,candidate.server].map(s=>new Promise(r=>s.close(r))));fs.rmSync(tmp,{recursive:true,force:true});}
 }
-main().catch(e=>{console.error(e);process.exitCode=1;});
+module.exports={installProbe,summary};
+if(require.main===module)main().catch(e=>{console.error(e);process.exitCode=1;});

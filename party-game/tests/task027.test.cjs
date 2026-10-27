@@ -17,5 +17,5 @@ test('TASK027 Blitz changes current description only, all legacy configs and mat
 test('TASK027 uses existing controls, no separate save, mocked player, RNG or storage API',()=>{
  const script=read('setup-wizard.js');assert.match(script,/searchParams\.set\('setup'/);assert.match(script,/selectedPlayerProfiles\(\)/);assert.match(script,/rulesGuidePage\(mode.id\)/);assert.match(script,/move\(\$\('start-game'\)/);assert.match(script,/MODE_LIST\.map/);
  assert.doesNotMatch(script,/Math\.random|localStorage|sessionStorage|indexedDB|fetch\(|newGame\s*=|persist\s*=|game\s*=|options\s*=/);
- assert.match(read('sw.js'),/'\.\/setup-wizard.js\?v=1'/);assert.match(read('sw.js'),/'\.\/setup-wizard.css\?v=1'/);
+ assert.match(read('sw.js'),/'\.\/setup-wizard.js\?v=2'/);assert.match(read('sw.js'),/'\.\/setup-wizard.css\?v=1'/);
 });
