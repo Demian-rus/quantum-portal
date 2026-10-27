@@ -324,6 +324,11 @@
       "path": "cards/general-diversity-v25.json",
       "immutable": false,
       "review": "G39: curated Cyrillic 40 words + 10 phrases; editorial/general-diversity-v25-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v26.json",
+      "immutable": false,
+      "review": "G40: hand-selected 40 Russian words and 10 phrases; see editorial/general-diversity-v26-review.md"
     }
   ],
   "questions": [
@@ -578,6 +583,11 @@
       "path": "packs/general-diversity-v25.json",
       "immutable": false,
       "review": "G39 general@41 preserves 6650 old IDs and appends 50"
+    },
+    {
+      "path": "packs/general-diversity-v26.json",
+      "immutable": false,
+      "review": "G40 general@42 adds 50 IDs after unchanged 6700-ID general@41 prefix"
     }
   ],
   "legacyCollisions": [
