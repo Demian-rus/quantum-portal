@@ -9,6 +9,33 @@
  const slots=[],positions=new Map();
  let originalModeChildren;
  const legacy={setScene,backWithinKvip,renderOptions};
+ function viewStamp(){
+  // Pack preference history is not read by the settings renderer or validator.
+  const {packPreferences,...settings}=options;
+  return {key:JSON.stringify([settings,selectedProfileIds,profileStoreProblem]),profiles:profileStore,
+   cards:PARTY_CARDS,questions:QUIP_APPROX_QUESTIONS,packs:QUIP_CONTENT_PACKS,config:getModeConfig,validate:checkContentPack};
+ }
+ // app.boot has already rendered/validated the original controls before this
+ // adapter loads. Moving them must not discard that work or their live state.
+ let renderedStamp=viewStamp();
+ function refreshOptions(){
+  const next=viewStamp();
+  if(!renderedStamp||Object.keys(next).some(key=>next[key]!==renderedStamp[key])){
+   // Validation is still real. Only duplicate, read-only pool construction
+   // within this single synchronous UI render is shared. START/game selectors
+   // always see the original function, restored before renderMeta/event hooks.
+   const selectPool=getPackCardPool,pools=new Map();
+   getPackCardPool=function(selection,kind,level,types,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACKS){
+    if(cards!==PARTY_CARDS||registry!==QUIP_CONTENT_PACKS)return selectPool.apply(this,arguments);
+    const key=JSON.stringify([selection,kind,level,types]);
+    if(!pools.has(key))pools.set(key,selectPool.apply(this,arguments));
+    return pools.get(key);
+   };
+   try{legacy.renderOptions();}finally{getPackCardPool=selectPool;}
+   renderedStamp=viewStamp();
+  }
+  renderMeta();
+ }
  const scene=document.createElement('section');
  scene.id='scene-wizard';scene.className='scene setup-wizard';scene.hidden=true;
  scene.setAttribute('aria-labelledby','wizard-title');
@@ -40,10 +67,19 @@
   move($('mode-toggles'),'wizard-modes');move($('content-toggles'),'wizard-content');
   move(document.querySelector('.extra-rules'),'wizard-extra-rules');
   move($('setup-mode-notice'),'wizard-start-notice');move($('start-game'),'wizard-start');
+  const tileStates=new Map([...$('mode-toggles').querySelectorAll('input')].map(input=>{
+   const label=input.closest('label');return [input.value,{checked:input.checked,disabled:input.disabled,title:label.title,
+    art:label.querySelector('img').getAttribute('src'),copy:label.querySelector('b').textContent}];
+  }));
   originalModeChildren=document.createDocumentFragment();
   while($('mode-toggles').firstChild)originalModeChildren.append($('mode-toggles').firstChild);
   // The same delegated checkbox handler works for every entry in the registry.
   $('mode-toggles').innerHTML=MODE_LIST.map(mode=>'<div class="mode-choice"><label><input type="checkbox" value="'+mode.id+'" aria-label="'+escapeHTML(mode.title)+'"><span class="mode-tile"><img class="mode-tile-art" alt="" draggable="false"><span class="mode-tile-copy"><strong>'+escapeHTML(mode.title)+'</strong><b></b></span></span></label></div>').join('');
+  for(const input of $('mode-toggles').querySelectorAll('input')){
+   const saved=tileStates.get(input.value);if(!saved){renderedStamp=null;continue;}
+   input.checked=saved.checked;input.disabled=saved.disabled;const label=input.closest('label');label.title=saved.title;
+   if(saved.art)label.querySelector('img').setAttribute('src',saved.art);label.querySelector('b').textContent=saved.copy;
+  }
   $('wizard-rule-list').innerHTML=MODE_LIST.map(mode=>'<section class="wizard-rule" data-wizard-rule="'+mode.id+'"><header><img src="'+MODE_ASSETS[mode.id]+'" alt=""><div><h2>'+escapeHTML(mode.title)+'</h2><p class="wizard-mode-state"></p></div><strong class="wizard-reward"></strong></header><p class="wizard-mode-time"></p><div class="wizard-rule-copy"></div>'+(mode.id==='sing'?'<div id="wizard-song"></div>':'')+'</section>').join('');
   move($('mode-song-sources'),'wizard-song');
  }
@@ -57,7 +93,9 @@
   if(!installed)return;
   for(const mode of MODE_LIST){
    const row=scene.querySelector('[data-wizard-rule="'+mode.id+'"]'),config=getModeConfig(mode.id),guide=rulesGuidePage(mode.id);
-   const availability=packModeAvailability(options.contentPack,{...options,...setupSongPolicy(options)},mode.id);
+   const input=[...$('mode-toggles').querySelectorAll('input')].find(node=>node.value===mode.id);
+   const availability=input?{available:!input.disabled,reason:input.closest('label').title}:
+    packModeAvailability(options.contentPack,{...options,...setupSongPolicy(options)},mode.id);
    const active=options.modes.includes(mode.id)&&availability.available;
    row.classList.toggle('wizard-rule--off',!active);
    row.querySelector('.wizard-mode-state').textContent=active?'Активен':availability.available?'Выключен':availability.reason;
@@ -85,7 +123,7 @@
   remember();attach();step=next;themes=showThemes;ruleCenter=showRules;
   legacy.setScene('home');$('scene-home').hidden=true;
   activeScene='wizard';document.body.dataset.screen='setup';document.body.classList.add('wizard-screen');scene.hidden=false;
-  legacy.renderOptions();renderMeta();
+  refreshOptions();
   $('wizard-kicker').textContent=showRules?'ОБЩИЙ ЦЕНТР':('ШАГ '+step+' ИЗ 4');
   $('wizard-title').textContent=showRules?'Правила режимов':themes?'Выберите тему':['Во что сыграем?','Кто играет?','Поймайте свой ритм','Всё готово?'][step-1];
   scene.querySelectorAll('[data-wizard-page]').forEach(node=>{node.hidden=showRules||Number(node.dataset.wizardPage)!==step;});
@@ -95,7 +133,6 @@
   $('wizard-footer-caption').hidden=showRules;
   const previous=restore&&positions.get(showRules?'rules':step+':'+themes);
   $('wizard-scroll').scrollTop=previous?.scroll||0;
-  if(showRules)modeRules();
   (previous?.focus&&$(previous.focus)&&!$(previous.focus).closest('[hidden]')?$(previous.focus):$('wizard-title')).focus({preventScroll:true});
  }
  function navigateBack(){
@@ -126,7 +163,10 @@
   }
   remember();scene.hidden=true;document.body.classList.remove('wizard-screen');legacy.setScene(which);
  };
- renderOptions=function(){legacy.renderOptions();renderMeta();};
+ renderOptions=function(){
+  if(enabled)refreshOptions();
+  else{legacy.renderOptions();renderedStamp=viewStamp();renderMeta();}
+ };
  backWithinKvip=function(){
   const modal=['result-history-backdrop','backup-backdrop','report-backdrop','profile-backdrop','mode-options-backdrop','rules-backdrop'].some(id=>!$(id).hidden);
   if(activeScene==='wizard'&&!modal){navigateBack();return;}

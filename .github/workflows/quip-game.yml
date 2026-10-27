@@ -47,6 +47,8 @@ jobs:
       - run: npm install --no-save playwright-core@1.55.0
       - run: |
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/quip-http.log 2>&1 &
+      - run: node party-game/tests/task029-browser.cjs
+      - run: node party-game/tests/task029-upgrade-browser.cjs
       - run: node party-game/tests/task027-browser.cjs
       - run: node party-game/tests/task027-upgrade-browser.cjs
       - run: node party-game/tests/v88-upgrade-browser.cjs
@@ -94,6 +96,7 @@ jobs:
             artifacts/quip-v84-upgrade
             artifacts/quip-task021
             artifacts/quip-task027
+            artifacts/quip-task029
             artifacts/quip-task024
             artifacts/quip-v87-upgrade
             artifacts/quip-feedback
