@@ -1,8 +1,9 @@
 'use strict';
+const {normalizeCatalogNavigation}=require('./catalog-count-contract.cjs');
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process'),vm=require('node:vm');
 const {OLD,NEW,normalizeWizardModeCopy,withoutWizardShell}=require('./wizard-contract.cjs');
 const root=path.resolve(__dirname,'../..'),base='507c3d24f270a7d26b1562ffc6837c819a15aa5b';
-const read=f=>fs.readFileSync(path.join(root,'party-game',f),'utf8'),old=f=>cp.execFileSync('git',['show',base+':party-game/'+f],{cwd:root,encoding:'utf8',maxBuffer:15e6});
+const read=f=>normalizeCatalogNavigation(fs.readFileSync(path.join(root,'party-game',f),'utf8')),old=f=>cp.execFileSync('git',['show',base+':party-game/'+f],{cwd:root,encoding:'utf8',maxBuffer:15e6});
 test('TASK027 preserves all non-content production controllers and full accepted CSS byte-exact except approved Blitz copy',()=>{
  const files=[...old('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);assert.equal(files.length,48);
  for(const f of files.filter(f=>!['cards.js','content-packs.js'].includes(f)))assert.equal(f==='mode-config.js'?normalizeWizardModeCopy(read(f)):read(f),old(f),f);
@@ -17,5 +18,5 @@ test('TASK027 Blitz changes current description only, all legacy configs and mat
 test('TASK027 uses existing controls, no separate save, mocked player, RNG or storage API',()=>{
  const script=read('setup-wizard.js');assert.match(script,/searchParams\.delete\('setup'/);assert.match(script,/selectedPlayerProfiles\(\)/);assert.match(script,/rulesGuidePage\(mode.id\)/);assert.match(script,/move\(\$\('start-game'\)/);assert.match(script,/MODE_LIST\.map/);
  assert.doesNotMatch(script,/Math\.random|localStorage|sessionStorage|indexedDB|fetch\(|newGame\s*=|persist\s*=|game\s*=|options\s*=/);
- assert.match(read('sw.js'),/'\.\/setup-wizard.js\?v=4'/);assert.match(read('sw.js'),/'\.\/setup-wizard.css\?v=2'/);
+ assert.match(read('sw.js'),/'\.\/setup-wizard.js\?v=7'/);assert.match(read('sw.js'),/'\.\/setup-wizard.css\?v=3'/);
 });

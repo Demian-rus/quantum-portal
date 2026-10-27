@@ -34,10 +34,16 @@ jobs:
       - run: node party-game/scripts/condition-audit.cjs check
       - run: node party-game/scripts/modifiers-v2.cjs check
       - run: node --test party-game/tests/task027.test.cjs party-game/tests/task030.test.cjs
+      - run: node --test party-game/tests/team-foundation.test.cjs party-game/tests/team-engine.test.cjs party-game/tests/team-integration.test.cjs party-game/tests/catalog-counts.test.cjs
       - run: node --test party-game/tests/task024.test.cjs party-game/tests/v89-content-release.test.cjs party-game/tests/g27-content.test.cjs party-game/tests/g28-content.test.cjs party-game/tests/g29-content.test.cjs party-game/tests/g30-content.test.cjs party-game/tests/g31-content.test.cjs party-game/tests/g32-content.test.cjs party-game/tests/g33-content.test.cjs party-game/tests/g34-content.test.cjs party-game/tests/g35-content.test.cjs party-game/tests/g36-content.test.cjs
       - run: node --test party-game/tests/logic.test.cjs party-game/tests/content-foundation.test.cjs party-game/tests/task-history.test.cjs party-game/tests/modifiers-v2.test.cjs party-game/tests/dictionary.test.cjs party-game/tests/music-themes.test.cjs party-game/tests/estimation.test.cjs party-game/tests/estimation-editorial.test.cjs party-game/tests/mode-compatibility.test.cjs party-game/tests/mode-planner.test.cjs party-game/tests/player-profiles.test.cjs party-game/tests/card-visibility.test.cjs party-game/tests/profile-backup.test.cjs party-game/tests/card-reports.test.cjs party-game/tests/backup-reports-integration.test.cjs party-game/tests/card-feedback.test.cjs party-game/tests/approx-units.test.cjs party-game/tests/v83-content-guard.test.cjs party-game/tests/task021.test.cjs party-game/tests/result-review.test.cjs party-game/tests/risk-planner.test.cjs party-game/tests/compact-history.test.cjs
   browser:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 7
+      matrix:
+        suite: [teams, catalog, android, raster, pwa, profiles, layout]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -47,80 +53,93 @@ jobs:
           node-version: '22'
       - run: npm install --no-save playwright-core@1.55.0
       # Only TASK024 exact PNGs use the pinned browser; mobile/PWA/perf retain native Chrome.
-      - run: npx playwright-core install chromium
+      - if: matrix.suite == 'raster'
+        run: npx playwright-core install chromium
         timeout-minutes: 4
       - run: |
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/quip-http.log 2>&1 &
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'teams' }}
+        run: node party-game/tests/team-foundation-browser.cjs
+      - if: ${{ !cancelled() && matrix.suite == 'teams' }}
+        run: node party-game/tests/team-game-browser.cjs
+      - if: ${{ !cancelled() && matrix.suite == 'teams' }}
+        run: node party-game/tests/team-safety-browser.cjs
+      - if: ${{ !cancelled() && matrix.suite == 'teams' }}
+        run: node party-game/tests/team-upgrade-browser.cjs
+      - if: ${{ !cancelled() && matrix.suite == 'catalog' }}
+        run: node party-game/tests/catalog-counts-browser.cjs
+      - if: ${{ !cancelled() && matrix.suite == 'android' }}
+        run: node party-game/tests/team-mobile-browser.cjs
+      - if: ${{ !cancelled() && matrix.suite == 'android' }}
         run: node party-game/tests/task030-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'pwa' }}
         run: node party-game/tests/task030-upgrade-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'android' }}
         run: node party-game/tests/task029-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'pwa' }}
         run: node party-game/tests/task029-upgrade-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'raster' }}
         run: node party-game/tests/task027-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'pwa' }}
         run: node party-game/tests/task027-upgrade-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'pwa' }}
         run: node party-game/tests/v88-upgrade-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'raster' }}
         run: node party-game/tests/task024-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'raster' }}
         run: node party-game/tests/task024-interactions-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'pwa' }}
         run: node party-game/tests/v87-upgrade-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'profiles' }}
         run: node party-game/tests/compact-history-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'pwa' }}
         run: node party-game/tests/v86-upgrade-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'profiles' }}
         run: node party-game/tests/risk-planner-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'pwa' }}
         run: node party-game/tests/v85-upgrade-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'profiles' }}
         run: node party-game/tests/result-review-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'pwa' }}
         run: node party-game/tests/v84-upgrade-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'profiles' }}
         run: node party-game/tests/task021-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'profiles' }}
         run: node party-game/tests/ux-feedback-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'profiles' }}
         run: node party-game/tests/approx-units-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'profiles' }}
         run: node party-game/tests/profile-backup-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'pwa' }}
         run: node party-game/tests/v78-upgrade-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'pwa' }}
         run: node party-game/tests/v83-upgrade-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'profiles' }}
         run: node party-game/tests/card-reports-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'profiles' }}
         run: node party-game/tests/backup-reports-integration-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'profiles' }}
         run: node party-game/tests/card-visibility-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'profiles' }}
         run: node party-game/tests/player-profiles-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'raster' }}
         run: node party-game/tests/refactor-guardrails.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'layout' }}
         run: node party-game/tests/mobile-layout.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'layout' }}
         run: node party-game/tests/browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'layout' }}
         run: node party-game/tests/v2-browser.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'layout' }}
         run: node party-game/tests/immersive.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'layout' }}
         run: node party-game/tests/polish.cjs
-      - if: ${{ !cancelled() }}
+      - if: ${{ !cancelled() && matrix.suite == 'layout' }}
         run: node party-game/tests/duel-browser.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: quip-browser-screenshots
+          name: quip-browser-${{ matrix.suite }}
           path: |
             artifacts/quip
             artifacts/quip-v2
@@ -135,6 +154,7 @@ jobs:
             artifacts/quip-v84-upgrade
             artifacts/quip-task021
             artifacts/quip-task027
+            artifacts/quip-teams
             artifacts/quip-task030
             artifacts/quip-task029
             artifacts/quip-task024

@@ -40,7 +40,7 @@ async function completedMatch(page){
  const write=sources=>{for(const[name,content]of sources)fs.writeFileSync(path.join(root,'party-game',name),content)};
  const cache=bytes=>bytes.toString().match(/const CACHE='([^']+)'/)[1];
  const oldCache=cache(previous.get('sw.js')),newCache=cache(current.get('sw.js'));
- assert.match(oldCache,/v83/);assert.match(newCache,/^kvip-pwa-v91-20261027-wizard-only-candidate-guard$/);assert.notEqual(oldCache,newCache);
+ assert.match(oldCache,/v83/);assert.match(newCache,/^kvip-pwa-v95-20261027-teams-counts-ready-candidate$/);assert.notEqual(oldCache,newCache);
  const browser=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
  const ctx=await browser.newContext({viewport:{width:390,height:844},hasTouch:true}),page=await ctx.newPage(),errors=[];
  page.on('pageerror',e=>errors.push(e.message));
@@ -74,7 +74,7 @@ async function completedMatch(page){
   const cached=await page.evaluate(async name=>{
    const c=await caches.open(name);return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>({url:s.src,found:!!await c.match(s.src)})));
   },newCache);
-  assert.equal(cached.length,49);assert.deepEqual(cached.filter(row=>!row.found),[],'49 current scripts must load from the new worker offline');
+  assert.equal(cached.length,53);assert.deepEqual(cached.filter(row=>!row.found),[],'53 current scripts must load from the new worker offline');
   assert.equal(await page.locator('#timer-pause-control[data-action="resume"]').isVisible(),true);
   assert.equal(await page.locator('[data-feedback]').count(),2);
   await page.screenshot({path:folder+'/v83-paused-offline-v89.png',animations:'disabled'});
