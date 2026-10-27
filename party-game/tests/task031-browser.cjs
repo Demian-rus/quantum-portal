@@ -1,4 +1,5 @@
 'use strict';
+// TASK031: the complete matrix is mandatory for the final branch head.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),http=require('node:http'),{execFileSync}=require('node:child_process');
 const {chromium,devices}=require('playwright-core'),{PNG}=require('pngjs');
 const {provisionProfiles}=require('./profile-fixtures.cjs'),{installProbe,summary}=require('../../diagnostics/task029/mobile-perf.cjs');

@@ -3,12 +3,37 @@ on:
   push:
     branches: ['feat/quip-task031-*']
     paths: ['diagnostics/task031/**', '.github/workflows/quip-task031-probe.yml']
-permissions: {contents: read}
+permissions: {contents: read, actions: write}
 jobs:
   probe:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
+      # Temporary housekeeping of this task's own superseded runs only.
+      - name: Cancel superseded TASK031 branch runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          GH_SHA: ${{ github.sha }}
+        run: |
+          python3 - <<'PYCODE'
+          import json,os,urllib.request,urllib.parse
+          repo=os.environ['GH_REPO'];sha=os.environ['GH_SHA'];branch='feat/quip-task031-wizard-polish-20261027'
+          base='https://api.github.com/repos/'+repo
+          headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}
+          def request(path,method='GET'):
+              req=urllib.request.Request(base+path,headers=headers,method=method)
+              with urllib.request.urlopen(req) as r:return json.loads(r.read() or '{}')
+          current=request('/git/ref/heads/'+branch)['object']['sha']
+          if current!=sha:
+              print('No cancellation: a newer branch head exists')
+          else:
+              runs=request('/actions/runs?branch='+urllib.parse.quote(branch,safe='')+'&per_page=100')['workflow_runs']
+              for run in runs:
+                  if run['head_branch']==branch and run['head_sha']!=sha and run['status'] in ('queued','in_progress'):
+                      request('/actions/runs/'+str(run['id'])+'/cancel','POST')
+                      print('Cancelled superseded branch run',run['id'],run['head_sha'])
+          PYCODE
       - uses: actions/checkout@v4
         with: {fetch-depth: 0}
       - uses: actions/setup-node@v4
