@@ -1,0 +1,23 @@
+name: КВИП TASK030 raster diagnosis
+on:
+  push:
+    branches: ['feat/quip-task030-*']
+    paths: ['diagnostics/task030/**', '.github/workflows/quip-task030-raster.yml']
+permissions:
+  contents: read
+jobs:
+  diagnosis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm install --no-save playwright-core@1.55.0
+      - run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/quip-raster-http.log 2>&1 &
+      - run: node diagnostics/task030/raster-probe.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: task030-raster-diagnosis, path: artifacts/task030-raster, if-no-files-found: error}
