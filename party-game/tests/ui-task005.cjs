@@ -20,7 +20,7 @@ async function scrollFold(page,id){
   p.scrollTop+=el.getBoundingClientRect().top-p.getBoundingClientRect().top-8;},id);
 }
 async function checkGrid(page){
- await page.locator('#mode-toggles img').evaluateAll(async images=>{
+ await page.locator('#mode-toggles .mode-tile img').evaluateAll(async images=>{
   await Promise.all(images.map(image=>image.decode()));
   await new Promise(requestAnimationFrame);await new Promise(requestAnimationFrame);
  });
@@ -37,7 +37,8 @@ async function checkGrid(page){
   if(row)assert.ok(a.y>=grid.tiles[(row-1)*4].y+grid.tiles[(row-1)*4].h+5,'Rows overlap');
  }
  assert.ok(grid.tiles.every(t=>t.sw<=t.cw+1&&t.copy<=t.copyWidth+1),'Tile text overflows: '+JSON.stringify(grid));
- const icons=await page.locator('#mode-toggles img').evaluateAll(els=>els.map(el=>({src:el.src,ok:el.complete,w:el.naturalWidth,h:el.naturalHeight})));
+ const icons=await page.locator('#mode-toggles .mode-tile img').evaluateAll(els=>els.map(el=>({src:el.src,ok:el.complete,w:el.naturalWidth,h:el.naturalHeight})));
+ assert.equal(icons.length,8,'Exactly one icon per original mode tile');
  assert.equal(new Set(icons.map(i=>i.src)).size,8);
  icons.forEach((icon,index)=>assert.ok(icon.ok&&icon.w===512&&icon.h===512&&new URL(icon.src).pathname.endsWith('/'+modeIds[index]+'.webp'),JSON.stringify(icon)));
  const actual=await page.locator('#mode-toggles b').allTextContents();

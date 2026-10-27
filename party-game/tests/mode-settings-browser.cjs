@@ -35,9 +35,17 @@ async function ui(browser,url,device){
   if(device.name==='phone'||device.name==='narrow')await capture(page,{path:'artifacts/quip-mobile-layout/task012c-'+device.name+'-tiles.png'});
   const modes=await page.evaluate(()=>JSON.stringify(options.modes));
   await openMode(page);
-  for(const id of ['talk','mime','draw','yesno','secret','blitz','approx']){
-   assert.equal(await page.locator('[data-wizard-rule="'+id+'"] .wizard-rule-copy').isVisible(),true);
+  const beforeRules=await page.evaluate(()=>localStorage.getItem(STORAGE_KEY));
+  for(const id of ['talk','mime','draw','sing','yesno','secret','blitz','approx']){
+   const row=page.locator('[data-wizard-rule="'+id+'"]'),details=row.locator('.wizard-rule-details');
+   assert.equal(await details.evaluate(node=>node.open),false,'Every rule is closed on entry');
+   assert.equal(await row.locator('.wizard-rule-copy').isVisible(),false);
+   await details.locator('summary').click();
+   assert.equal(await row.locator('.wizard-rule-copy').isVisible(),true);
    assert.equal(await page.evaluate(()=>JSON.stringify(options.modes)),modes,'Opening read-only rules must not toggle a mode');
+   await details.locator('summary').press('Space');
+   assert.equal(await row.locator('.wizard-rule-copy').isVisible(),false,'Native keyboard disclosure closes rules');
+   assert.equal(await page.evaluate(()=>localStorage.getItem(STORAGE_KEY)),beforeRules,'Reading rules does not save settings');
   }
   await closeModeCenter(page);
   const talk=page.locator('#mode-toggles label:has(input[value="talk"])');
