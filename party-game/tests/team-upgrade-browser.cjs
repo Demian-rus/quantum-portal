@@ -25,8 +25,14 @@ const browser=await chromium.launch({headless:true,executablePath:process.env.CH
    await ctx.setOffline(true);await p.reload();await click(p,'#continue-teams');assert.equal(await raw(p),teamRaw);assert.equal(await p.evaluate(()=>JSON.stringify(game)),teamGame);await click(p,'#exit-game');
    // Serve the exact published v89 bytes; its worker and old code know nothing
    // about team sessions. Both slots must survive a real cold offline rollback.
-   write(before);await ctx.setOffline(false);await update(p,before.get('sw.js').toString().match(/const CACHE='([^']+)'/)[1]);await ctx.setOffline(true);await p.goto(URL+'?setup=legacy');assert.equal(await p.evaluate(()=>typeof QuipTeams),'undefined');await p.locator('#continue-game').click();
+   write(before);await ctx.setOffline(false);await update(p,before.get('sw.js').toString().match(/const CACHE='([^']+)'/)[1]);await ctx.setOffline(true);await p.goto(URL+'?setup=legacy');assert.equal(await p.evaluate(()=>typeof QuipTeams),before.has('team-controller.js')?'object':'undefined');await p.locator('#continue-game').click();
    assert.deepEqual(await p.evaluate(()=>({raw:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY)})),protectedDuel);assert.equal(await p.evaluate(()=>localStorage.getItem('kvip:teams-2x2:v1')),teamRaw);assert.equal(await p.evaluate(()=>game.current.paused),true);assert.equal(await p.evaluate(()=>game.roundIndex),1);assert.equal(await receipt(p),receiptRaw,'exact v89 leaves the transactional team receipt untouched');
+   if(before.has('team-controller.js')){
+    await p.locator('#exit-game').click();await click(p,'#continue-teams');
+    assert.equal(await raw(p),teamRaw,'published main restores exact team RAW');
+    assert.equal(await p.evaluate(()=>JSON.stringify(game)),teamGame,'published main restores exact team task/history/roster');
+    assert.equal(await receipt(p),receiptRaw,'published main preserves exact native IndexedDB receipt');
+   }
    // Returning to the new code resumes the same team task, roster and history.
    write(current);await ctx.setOffline(false);await update(p,'kvip-pwa-v96-20261027-wizard-polish-candidate');await ctx.setOffline(true);await p.goto(URL+'?setup=wizard');await click(p,'#continue-teams');assert.equal(await raw(p),teamRaw);assert.equal(await p.evaluate(()=>JSON.stringify(game)),teamGame);
    assert.deepEqual(await p.evaluate(()=>({raw:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY)})),protectedDuel);assert.equal(await receipt(p),receiptRaw,'upgrade back preserves the exact transactional receipt');assert.deepEqual(errors,[]);console.log(label,'TASK028 real SW PASS: 53 scripts offline / active team cold restore / exact v89 rollback resumes old duel / team RAW retained / upgrade back resumes exact team');

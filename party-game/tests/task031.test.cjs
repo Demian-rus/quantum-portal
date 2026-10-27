@@ -20,7 +20,7 @@ test('TASK031 retains exact TASK029 validation/memo and real mode settings contr
 test('TASK031 scopes touch/flat/disclosure styles to wizard and retains native controls',()=>{
  const s=read('setup-wizard.css'),added=hunks.filter(h=>h.file==='setup-wizard.css').map(h=>h.after).join('');
  assert.match(s,/\.setup-wizard \.finish-choices label\{-webkit-tap-highlight-color:transparent\}/);
- assert.match(s,/label.is-pressed>span\{filter:brightness\(1\.15\)\}/);
+ assert.match(s,/label.is-pressed>span\{background:#284866\}/);
  assert.match(s,/\.setup-wizard #wizard-extra \.modifier-toggle,/);
  assert.match(s,/\.wizard-rule-details>summary:focus-visible/);
  assert.doesNotMatch(added,/outline\s*:\s*(?:none|0)|pointer-events\s*:\s*none/);
