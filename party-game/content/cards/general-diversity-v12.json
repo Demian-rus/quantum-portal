@@ -1,0 +1,504 @@
+[
+  {
+    "id": "word-051001",
+    "text": "ОРЕШНИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051002",
+    "text": "ГРОХОТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051003",
+    "text": "СОЙКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "animals"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051004",
+    "text": "КЛЁН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051005",
+    "text": "ФАНФАРЫ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051006",
+    "text": "БЕЙСБОЛ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "sport"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051007",
+    "text": "ГУСЛИ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051008",
+    "text": "БАСНЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "literature"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051009",
+    "text": "ПОХОДКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051010",
+    "text": "ЧИХАНИЕ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051011",
+    "text": "ЩЕДРОСТЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051012",
+    "text": "КАПРИЗ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051013",
+    "text": "ЗАВАРКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "food"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051014",
+    "text": "КОРЖ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "food"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051015",
+    "text": "ШТОПКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051016",
+    "text": "ШАЛОСТЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "phrase-051001",
+    "text": "МИНУТА МОЛЧАНИЯ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "phrase-051002",
+    "text": "СБЕЖАВШИЙ ЖЕНИХ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "phrase-051003",
+    "text": "УТЕЧКА ГАЗА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "phrase-051004",
+    "text": "БОЙ КУРАНТОВ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051017",
+    "text": "ПЛОДОНОЖКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051018",
+    "text": "ПРОТАЛИНА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051019",
+    "text": "ПОПОЛЗЕНЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "animals"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051020",
+    "text": "САЛАКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "food",
+      "animals"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051021",
+    "text": "МОЛОТИЛКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051022",
+    "text": "СКУПЩИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051023",
+    "text": "КИБИТКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "transport",
+      "history"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051024",
+    "text": "БАРКАС",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "marine"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051025",
+    "text": "БОЙКОТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051026",
+    "text": "РИТУАЛ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051027",
+    "text": "РАССЕЯННОСТЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051028",
+    "text": "СМЕКАЛКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051029",
+    "text": "МАРАКАСЫ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051030",
+    "text": "КАСТАНЬЕТЫ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051031",
+    "text": "НЕКТАР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051032",
+    "text": "ПЯТИБОРЬЕ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "sport"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "phrase-051005",
+    "text": "ПРОВЕРКА ДОКУМЕНТОВ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "phrase-051006",
+    "text": "КОНТРОЛЬНАЯ ЗАКУПКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "phrase-051007",
+    "text": "ЧЁРНЫЙ СПИСОК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "phrase-051008",
+    "text": "СПОР ЗА НАСЛЕДСТВО",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051033",
+    "text": "САМООБЛАДАНИЕ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051034",
+    "text": "БРЕЗГЛИВОСТЬ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051035",
+    "text": "КАПИТЕЛЬ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051036",
+    "text": "ВОКАЛИЗ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051037",
+    "text": "ПОДВОЙ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051038",
+    "text": "ПРОТИВОВЕС",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051039",
+    "text": "МУСКУС",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "word-051040",
+    "text": "СУРДИНА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "phrase-051009",
+    "text": "ОТМЫВАНИЕ ДЕНЕГ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v12"
+  },
+  {
+    "id": "phrase-051010",
+    "text": "ЭФФЕКТ ДОМИНО",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-diversity-v12"
+  }
+]
