@@ -90,7 +90,7 @@ async function attribution(page,cdp,file,route){
  return {...costs,rows,cpuInclusive:[...hits].sort((a,b)=>b[1]-a[1]).slice(0,30)};
 }
 async function main(){
- const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'kvip29-'));execFileSync('tar',['-xf','-','-C',tmp],{input:git('archive','--format=tar',BASE,'party-game')});
+ const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'kvip29-')),archive=path.join(tmp,'baseline.tar');git('archive','--format=tar','--output='+archive,BASE,'party-game');execFileSync('tar',['-xf',archive,'-C',tmp]);fs.unlinkSync(archive);
  const before=await serve(tmp),candidate=await serve(ROOT),changed=git('diff','--name-only',BASE,'HEAD','--','party-game').toString().trim();
  const variants=changed?[{name:'before',...before},{name:'after',...candidate}]:[{name:'before',...before}];
  const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',args:['--no-sandbox']});
