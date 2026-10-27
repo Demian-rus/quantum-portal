@@ -24,4 +24,7 @@ async function modeCenter(p,id='sing'){
  else{if(!await p.locator('#scene-advanced').isVisible())await setupRules(p);await setupFold(p,'mode-settings');await p.locator('[data-mode-settings="'+id+'"]').click();}
 }
 async function closeModeCenter(p){await p.locator(await wizard(p)?'#wizard-rules-done':'#mode-options-done').click();}
-module.exports={setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter};
+async function setupRange(p,id,value){
+ const n=p.locator('#'+id);await n.focus();await n.press('Home');const min=Number(await n.getAttribute('min')),step=Number(await n.getAttribute('step'))||1;for(let x=min;x<value;x+=step)await n.press('ArrowRight');
+}
+module.exports={setupRange,setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter};

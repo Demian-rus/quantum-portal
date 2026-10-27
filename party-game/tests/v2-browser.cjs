@@ -34,7 +34,7 @@ async function configureOnly(page,id) {
       await page.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
       await page.locator('#new-game-menu').click();
       await page.locator('#standard-game').click();
-      await page.locator('[data-setting="difficulty"] [data-value="hard"]').click();
+      await setupStep(page,3);await page.locator('[data-setting="difficulty"] [data-value="hard"]').click();
       await configureOnly(page,'yesno');
       assert.equal(await page.locator('[data-setting="dice"]').count(),0,'Old dice choice must be removed');
       await page.locator('#finish-rounds').check({force:true});

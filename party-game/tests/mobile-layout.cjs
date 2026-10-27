@@ -56,21 +56,11 @@ function fitsViewport(g,device,stage) {
     headless:true,args:['--no-sandbox']
   });
   try{
-    await require('./task013b-browser.cjs')(browser,URL);
-    await require('./round-layout.cjs')(browser,URL);
-    await require('./storage-protection.cjs')(browser,URL);
-    await require('./task-history-browser.cjs')(browser,URL);
-    await require('./modifiers-v2-browser.cjs')(browser,URL);
-    await require('./mode-compatibility-browser.cjs')(browser,URL);
-    await require('./dictionary-browser.cjs')(browser,URL);
-    await require('./estimation-browser.cjs')(browser,URL);
-    await require('./thematic-game.cjs')(browser,URL);
-    await require('./modifier-frequency.cjs')(browser,URL);
-    await require('./mode-settings-browser.cjs')(browser,URL);
-    await require('./round-outcomes.cjs')(browser,URL);
-    await require('./award-policy.cjs')(browser,URL);
-    await require('./rules-guide.cjs')(browser,URL);
-    await require('./ui-task005.cjs')(browser,URL);
+    const moduleErrors=[];
+    // Collect every strict subsystem result; any failure still fails the suite.
+    for(const name of ['task013b-browser.cjs', 'round-layout.cjs', 'storage-protection.cjs', 'task-history-browser.cjs', 'modifiers-v2-browser.cjs', 'mode-compatibility-browser.cjs', 'dictionary-browser.cjs', 'estimation-browser.cjs', 'thematic-game.cjs', 'modifier-frequency.cjs', 'mode-settings-browser.cjs', 'round-outcomes.cjs', 'award-policy.cjs', 'rules-guide.cjs', 'ui-task005.cjs']){
+      try{await require('./'+name)(browser,URL);}catch(error){moduleErrors.push({name,error});console.error('MOBILE MODULE FAILURE',name,error);}
+    }
     for(const device of devices) {
       const page=await browser.newPage({
         viewport:{width:device.width,height:device.height},
@@ -230,5 +220,6 @@ function fitsViewport(g,device,stage) {
           carouselIconWidth:art.width,carouselWidth:reel.width}));
       await page.close();
     }
+    assert.deepEqual(moduleErrors.map(({name,error})=>name+': '+error.message),[],'Every mobile subsystem must pass');
   }finally {await browser.close()}
 })().catch(error=>{console.error(error);process.exitCode=1});

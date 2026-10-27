@@ -33,7 +33,7 @@ module.exports=async function thematicUI(browser,url){
    assert.equal(await page.locator('#mode-toggles input[value="sing"]').isDisabled(),true);
    assert.match(await page.locator('#mode-toggles input[value="sing"]').evaluate(el=>el.closest('label').title),/нет песен/);
    assert.equal(await page.locator('#content-toggles input[value="idiom"]').isDisabled(),true);
-   await page.locator('#mode-toggles input[value="yesno"]').check();await align(page,'#mode-toggles');
+   if(!await page.locator('#mode-toggles input[value="yesno"]').isChecked())await page.locator('#mode-toggles label:has(input[value="yesno"])').click();await align(page,'#mode-toggles');
    if(device.name==='phone')await screenshot(page,topic,'phone-modes');
    const width=await page.evaluate(()=>({w:innerWidth,scroll:document.documentElement.scrollWidth,tiles:[...document.querySelectorAll('#mode-toggles .mode-tile')].map(el=>{const r=el.getBoundingClientRect();return{x:r.x,y:r.y,right:r.right}})}));
    assert.ok(width.scroll<=width.w+1);assert.ok(Math.abs(width.tiles[0].y-width.tiles[1].y)<1);assert.ok(width.tiles[4].y>width.tiles[0].y);assert.ok(width.tiles.every(r=>r.x>=0&&r.right<=width.w+1));

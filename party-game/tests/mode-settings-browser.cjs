@@ -26,6 +26,12 @@ async function ui(browser,url,device){
   assert.equal(await page.locator('#mode-toggles .mode-gear').count(),0,'No per-mode gear survives in the sole UI');
   const rects=await page.locator('#mode-toggles label').evaluateAll(nodes=>nodes.map(n=>{const r=n.getBoundingClientRect();return {w:r.width,h:r.height,sw:n.scrollWidth,cw:n.clientWidth}}));
   assert.equal(rects.length,8);assert(rects.every(r=>r.w>=44&&r.h>=44&&r.sw<=r.cw+1),'All eight touch tiles fit');
+  if(device.name==='desktop'){
+   await page.evaluate(()=>document.body.style.zoom='1.25');
+   const zoomed=await page.locator('#mode-toggles label').evaluateAll(nodes=>nodes.map(n=>({w:n.getBoundingClientRect().width,h:n.getBoundingClientRect().height,sw:n.scrollWidth,cw:n.clientWidth})));
+   assert.equal(zoomed.length,8);assert(zoomed.every(r=>r.w>=44&&r.h>=44&&r.sw<=r.cw+1),'125% zoom retains all touch tiles and complete text');
+   await page.evaluate(()=>document.body.style.zoom='');
+  }
   if(device.name==='phone'||device.name==='narrow')await capture(page,{path:'artifacts/quip-mobile-layout/task012c-'+device.name+'-tiles.png'});
   const modes=await page.evaluate(()=>JSON.stringify(options.modes));
   await openMode(page);

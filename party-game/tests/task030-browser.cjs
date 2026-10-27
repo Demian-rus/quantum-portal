@@ -37,7 +37,7 @@ async function geometry(p){
    for(const offline of [false,true]){
     await ctx.setOffline(offline);await p.goto(URL+'?setup=legacy');await sole(p);await p.locator('#new-game-menu').tap();await p.locator('#standard-game').tap();
     const env=await p.evaluate(()=>({innerWidth,innerHeight,visualViewport:{width:visualViewport.width,height:visualViewport.height,scale:visualViewport.scale},dpr:devicePixelRatio,ua:navigator.userAgent,coarse:matchMedia('(pointer: coarse)').matches,noHover:matchMedia('(hover: none)').matches,touches:navigator.maxTouchPoints,worker:!!navigator.serviceWorker.controller}));
-    assert.equal(env.innerWidth,width);assert.equal(env.innerHeight,height);assert.equal(env.dpr,2.625);assert(/Android/.test(env.ua)&&env.coarse&&env.noHover&&env.touches>0);if(offline)assert(env.worker);
+    env.browserVersion=browser.version();env.isMobile=true;env.hasTouch=true;assert.equal(env.innerWidth,width);assert.equal(env.innerHeight,height);assert.equal(env.dpr,2.625);assert(/Android/.test(env.ua)&&env.coarse&&env.noHover&&env.touches>0);if(offline)assert(env.worker);
     await p.screenshot({path:folder+'/'+width+'-'+(offline?'offline':'network')+'.png'});
     await p.evaluate(()=>{window.__original030=checkContentPack;window.__calls030=0;checkContentPack=function(...a){__calls030++;return __original030(...a)};renderOptions();__calls030=0;});
     const transitions=[['players_rules','#wizard-next','rules'],['rules_start','#wizard-next','start'],['start_rules','#wizard-back','rules'],['rules_players','#wizard-back','players'],['players_catalog','#wizard-back','catalog'],['catalog_players','#standard-game','players']],rows=[];

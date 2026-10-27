@@ -67,7 +67,7 @@ async function restoreClock(page){await page.evaluate(()=>{Date.now=window.__pol
    const setupArt=await art('setup');
    assert.ok(setupArt.bg.includes('bg-setup.webp?v=3'),'Party setup art mismatch');
    await setupStep(page,3);
-   const chosen=await page.locator('.choices .is-chosen').first().evaluate(el=>getComputedStyle(el).backgroundImage);
+   const chosen=await page.locator('.choices[data-setting="difficulty"] .is-chosen').first().evaluate(el=>getComputedStyle(el).backgroundImage);
    assert.equal(chosen,'none','Wizard uses its accepted flat selection');
    if(device.name==='phone')await capture(page,{path:'artifacts/quip-polish/phone-kvip-setup.png'});
    const selection=await page.evaluate(()=>{

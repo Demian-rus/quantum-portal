@@ -1,5 +1,5 @@
 'use strict';
-const {setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
+const {setupRange,setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
@@ -55,7 +55,7 @@ async function settingsUI(browser,url,device){
   await setupRules(page);
   for(const [id,field,values] of [['target-score','targetScore',[15,30,60,100]],['base-duration','duration',[30,45,60]]]){
    const control=page.locator('#'+id);
-   for(const value of values){await control.fill(String(value));assert.equal(await page.evaluate(field=>options[field],field),value);}
+   for(const value of values){await setupRange(page,id,value);assert.equal(await page.evaluate(field=>options[field],field),value);}
    const size=await control.boundingBox();assert(size.width>=44&&size.height>=44,'Slider has a real touch target');
   }
   assert.equal(await page.locator('#target-score').inputValue(),'100');assert.equal(await page.locator('#base-duration').inputValue(),'60');

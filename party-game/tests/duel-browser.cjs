@@ -1,5 +1,5 @@
 'use strict';
-const {setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
+const {setupRange,setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const {provisionProfiles,chooseNamedProfile}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
@@ -19,7 +19,7 @@ const URL='http://127.0.0.1:8765/party-game/';
       await page.locator('#standard-game').click();
    await chooseNamedProfile(page,0,'Молнии');
    await chooseNamedProfile(page,1,'Кометы');
-   await setupRules(page);await page.locator('#target-score').fill('30');await page.locator('#base-duration').fill('45');
+   await setupRules(page);await setupRange(page,'target-score',30);await setupRange(page,'base-duration',45);
    await setupRules(page);
    assert.equal(await page.locator('#target-score').inputValue(),'30');
    assert.equal(await page.locator('#base-duration').inputValue(),'45');
