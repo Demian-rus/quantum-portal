@@ -314,6 +314,11 @@
       "path": "cards/general-diversity-v23.json",
       "immutable": false,
       "review": "G37: 50 manually reviewed general prompts; see editorial/general-diversity-v23-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v24.json",
+      "immutable": false,
+      "review": "G38: 50 manually curated words and phrases; see editorial/general-diversity-v24-review.md"
     }
   ],
   "questions": [
@@ -558,6 +563,11 @@
       "path": "packs/general-diversity-v23.json",
       "immutable": false,
       "review": "G37 general@39 pins 6600 IDs, preserving general@38 and all historic snapshots"
+    },
+    {
+      "path": "packs/general-diversity-v24.json",
+      "immutable": false,
+      "review": "G38 general@40 adds 50 IDs and preserves all 6600 from general@39"
     }
   ],
   "legacyCollisions": [
