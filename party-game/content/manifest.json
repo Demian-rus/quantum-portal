@@ -264,6 +264,11 @@
       "path": "cards/general-diversity-v13.json",
       "immutable": false,
       "review": "G27: 50 reviewed general cards, 40 words / 10 phrases; editorial/general-diversity-v13-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v14.json",
+      "immutable": false,
+      "review": "G28: 40 words and 10 phrases, 20/20/10, editorial/general-diversity-v14-review.md"
     }
   ],
   "questions": [
@@ -458,6 +463,11 @@
       "path": "packs/general-diversity-v13.json",
       "immutable": false,
       "review": "G27 general@29 pins 6100 IDs; general@28 and all published historical versions unchanged"
+    },
+    {
+      "path": "packs/general-diversity-v14.json",
+      "immutable": false,
+      "review": "G28 general@30 = 6150 pinned IDs; all previous catalogs preserved"
     }
   ],
   "legacyCollisions": [
