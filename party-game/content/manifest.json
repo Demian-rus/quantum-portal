@@ -254,6 +254,61 @@
       "path": "cards/general-release-v89-revisions.json",
       "immutable": false,
       "review": "v89 release: nine versioned replacements for typo/semantic overlaps; original G15-G25 sources preserved, see CONTENT-RELEASE-V89.md"
+    },
+    {
+      "path": "cards/general-diversity-v12.json",
+      "immutable": false,
+      "review": "G26: 50 reviewed cards, 40 words / 10 phrases, following v89 general@27; editorial/general-diversity-v12-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v13.json",
+      "immutable": false,
+      "review": "G27: 50 reviewed general cards, 40 words / 10 phrases; editorial/general-diversity-v13-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v14.json",
+      "immutable": false,
+      "review": "G28: 40 words and 10 phrases, 20/20/10, editorial/general-diversity-v14-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v15.json",
+      "immutable": false,
+      "review": "G29: 50 screened cards (40 words, 10 phrases) across 16 categories; editorial/general-diversity-v15-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v16.json",
+      "immutable": false,
+      "review": "G30: 50 curated cards (40 words, 10 phrases); see editorial/general-diversity-v16-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v17.json",
+      "immutable": false,
+      "review": "G31: 50 reviewed cards, 40 words / 10 phrases; see editorial/general-diversity-v17-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v18.json",
+      "immutable": false,
+      "review": "G32: 50 curated general tasks, 40 words and 10 phrases; see editorial/general-diversity-v18-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v19.json",
+      "immutable": false,
+      "review": "G33: 50 curated general cards (40 words, 10 phrases); see editorial/general-diversity-v19-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v20.json",
+      "immutable": false,
+      "review": "G34: 50 curated general tasks, 40 words and 10 phrases; see editorial/general-diversity-v20-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v21.json",
+      "immutable": false,
+      "review": "G35: 50 manually curated prompts, 40 words and 10 phrases; see editorial/general-diversity-v21-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v22.json",
+      "immutable": false,
+      "review": "G36: 50 curated Cyrillic prompts; see editorial/general-diversity-v22-review.md"
     }
   ],
   "questions": [
@@ -438,6 +493,61 @@
       "path": "packs/general-release-v89.json",
       "immutable": false,
       "review": "v89 general@27: 6000 active IDs; nine replacements, all old catalog declarations unchanged"
+    },
+    {
+      "path": "packs/general-diversity-v12.json",
+      "immutable": false,
+      "review": "G26 general@28 pins 6050 IDs; v89 general@27 and all prior catalogs unchanged"
+    },
+    {
+      "path": "packs/general-diversity-v13.json",
+      "immutable": false,
+      "review": "G27 general@29 pins 6100 IDs; general@28 and all published historical versions unchanged"
+    },
+    {
+      "path": "packs/general-diversity-v14.json",
+      "immutable": false,
+      "review": "G28 general@30 = 6150 pinned IDs; all previous catalogs preserved"
+    },
+    {
+      "path": "packs/general-diversity-v15.json",
+      "immutable": false,
+      "review": "G29 general@31 = 6200 pinned IDs; all old pack versions unchanged"
+    },
+    {
+      "path": "packs/general-diversity-v16.json",
+      "immutable": false,
+      "review": "G30 general@32 = 6250 pinned IDs; all prior snapshots preserved"
+    },
+    {
+      "path": "packs/general-diversity-v17.json",
+      "immutable": false,
+      "review": "G31 general@33 pins 6300 IDs; general@32 and earlier versions unchanged"
+    },
+    {
+      "path": "packs/general-diversity-v18.json",
+      "immutable": false,
+      "review": "G32 general@34 pins 6350 IDs, all earlier versions and original sources retained"
+    },
+    {
+      "path": "packs/general-diversity-v19.json",
+      "immutable": false,
+      "review": "G33 general@35 pins 6400 IDs; all earlier snapshots preserved"
+    },
+    {
+      "path": "packs/general-diversity-v20.json",
+      "immutable": false,
+      "review": "G34 general@36 pins 6450 IDs; previous general@35 and historic snapshots retained"
+    },
+    {
+      "path": "packs/general-diversity-v21.json",
+      "immutable": false,
+      "review": "G35 general@37 has 6500 pinned IDs with unchanged general@36 prefix and historical sources"
+    },
+    {
+      "path": "packs/general-diversity-v22.json",
+      "immutable": false,
+      "review": "G36 general@38 pins 6550 IDs; unchanged general@37 prefix and historical sources"
     }
   ],
   "legacyCollisions": [
