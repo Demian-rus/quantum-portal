@@ -46,6 +46,9 @@ jobs:
         with:
           node-version: '22'
       - run: npm install --no-save playwright-core@1.55.0
+      # Only TASK024 exact PNGs use the pinned browser; mobile/PWA/perf retain native Chrome.
+      - run: npx playwright-core install chromium
+        timeout-minutes: 4
       - run: |
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/quip-http.log 2>&1 &
       - if: ${{ !cancelled() }}

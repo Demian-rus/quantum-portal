@@ -27,7 +27,11 @@ function fits(g){
 (async()=>{
  fs.rmSync(folder,{recursive:true,force:true});fs.mkdirSync(folder,{recursive:true});const git=a=>execFileSync('git',a,{cwd:path.resolve(__dirname,'../..'),maxBuffer:12e6});
  const files=historicalRuntimeFiles(git,BASE,['index.html','style.css','sw.js']),oldFiles=new Map(files.map(n=>[n,git(['show',BASE+':party-game/'+n])]));
- const browser=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
+ // Pin the exact-raster harness to Playwright's matching Chromium revision.
+ // Android performance/functional suites retain the runner's native Chrome.
+ // https://playwright.dev/docs/api/class-browsertype#browser-type-launch-option-executable-path
+ const browser=await chromium.launch({executablePath:chromium.executablePath(),headless:true,args:['--no-sandbox']});
+ console.log('TASK024 exact raster environment',JSON.stringify({playwright:require('playwright-core/package.json').version,chromium:browser.version()}));
  try{for(const[w,h]of devices){
   const contexts=[];try{
    const old=await browser.newContext({viewport:{width:w,height:h},hasTouch:true,reducedMotion:'reduce',serviceWorkers:'block'});contexts.push(old);const before=await old.newPage();
