@@ -1,5 +1,6 @@
 'use strict';
-function renderModeSettings(validatedAvailability){
+let modeSettingsSnapshot=null;
+function renderModeSettings(useSnapshot=false){
   const id=$('mode-options-backdrop').dataset.mode;
   if(!DEFAULT_MODES.includes(id))return;
   $('mode-options-title').textContent=getMode(id).title;
@@ -13,13 +14,20 @@ function renderModeSettings(validatedAvailability){
     button.setAttribute('aria-pressed',String(selected));button.classList.toggle('is-selected',selected);
   });
   const settings={...options,modes:['sing']};
-  let available=validatedAvailability;
-  if(typeof available!=='boolean'){
+  // Presentation cache only: always derive eligibility from the real checker.
+  const {packPreferences,...stableSettings}=settings;
+  const stamp={key:JSON.stringify({...stableSettings,...setupSongPolicy(settings)}),cards:PARTY_CARDS,
+    questions:QUIP_APPROX_QUESTIONS,packs:QUIP_CONTENT_PACKS,config:getModeConfig,validate:checkContentPack};
+  let available;
+  if(useSnapshot&&modeSettingsSnapshot&&Object.keys(stamp).every(key=>stamp[key]===modeSettingsSnapshot[key]))available=modeSettingsSnapshot.available;
+  else{
     available=false;
     try{available=checkContentPack(options.contentPack,{...settings,...setupSongPolicy(settings)}).available;}catch{}
+    modeSettingsSnapshot={...stamp,available};
   }
   $('mode-source-availability').hidden=available;
   $('mode-source-availability').textContent=available?'':'Для «Напой» нет заданий с этими источниками на выбранной сложности. В «Секретке» песенный способ будет исключён, если доступны другие способы. Для прямого «Напой» измените источники, сложность или набор.';
+  return available;
 }
 // DOM-only rendering of new-game and advanced settings; original behavior preserved.
 function renderOptions() {

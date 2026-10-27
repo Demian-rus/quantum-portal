@@ -27,7 +27,7 @@
   {
     "file": "setup-wizard.js",
     "before": "  $('mode-options-backdrop').dataset.mode='sing';renderModeSettings();",
-    "after": "  // Reuse the eligibility already painted by the real settings validator.\n  const sing=$('mode-toggles').querySelector('input[value=\"sing\"]');\n  $('mode-options-backdrop').dataset.mode='sing';renderModeSettings(sing?!sing.disabled:undefined);"
+    "after": "  // Source controls and their real eligibility were rendered above."
   },
   {
     "file": "setup-wizard.js",
@@ -42,12 +42,12 @@
   {
     "file": "setup-view.js",
     "before": "function renderModeSettings(){",
-    "after": "function renderModeSettings(validatedAvailability){"
+    "after": "let modeSettingsSnapshot=null;\nfunction renderModeSettings(useSnapshot=false){"
   },
   {
     "file": "setup-view.js",
     "before": "  let available=false;\n  try{available=checkContentPack(options.contentPack,{...settings,...setupSongPolicy(settings)}).available;}catch{}",
-    "after": "  let available=validatedAvailability;\n  if(typeof available!=='boolean'){\n    available=false;\n    try{available=checkContentPack(options.contentPack,{...settings,...setupSongPolicy(settings)}).available;}catch{}\n  }"
+    "after": "  // Presentation cache only: always derive eligibility from the real checker.\n  const {packPreferences,...stableSettings}=settings;\n  const stamp={key:JSON.stringify({...stableSettings,...setupSongPolicy(settings)}),cards:PARTY_CARDS,\n    questions:QUIP_APPROX_QUESTIONS,packs:QUIP_CONTENT_PACKS,config:getModeConfig,validate:checkContentPack};\n  let available;\n  if(useSnapshot&&modeSettingsSnapshot&&Object.keys(stamp).every(key=>stamp[key]===modeSettingsSnapshot[key]))available=modeSettingsSnapshot.available;\n  else{\n    available=false;\n    try{available=checkContentPack(options.contentPack,{...settings,...setupSongPolicy(settings)}).available;}catch{}\n    modeSettingsSnapshot={...stamp,available};\n  }"
   },
   {
     "file": "setup-wizard.css",
@@ -98,5 +98,25 @@
     "file": "setup-wizard.js",
     "before": " $('wizard-back').addEventListener('click',navigateBack);",
     "after": " // Press feedback is presentation-only; native radio click/change owns selection.\n let pressedFinish=null;\n function releaseFinish(){pressedFinish?.classList.remove('is-pressed');pressedFinish=null;}\n $('wizard-finish').addEventListener('pointerdown',event=>{\n  if(!event.isPrimary||event.button!==0)return;\n  const label=event.target.closest('.finish-choices label');\n  if(label){releaseFinish();pressedFinish=label;label.classList.add('is-pressed');}\n });\n document.addEventListener('pointerup',releaseFinish,true);\n document.addEventListener('pointercancel',releaseFinish,true);\n window.addEventListener('blur',releaseFinish);\n $('wizard-back').addEventListener('click',navigateBack);"
+  },
+  {
+    "file": "setup-view.js",
+    "before": "  $('mode-source-availability').textContent=available?'':'Для «Напой» нет заданий с этими источниками на выбранной сложности. В «Секретке» песенный способ будет исключён, если доступны другие способы. Для прямого «Напой» измените источники, сложность или набор.';",
+    "after": "  $('mode-source-availability').textContent=available?'':'Для «Напой» нет заданий с этими источниками на выбранной сложности. В «Секретке» песенный способ будет исключён, если доступны другие способы. Для прямого «Напой» измените источники, сложность или набор.';\n  return available;"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": " function modeRules(){\n  if(!installed)return;",
+    "after": " function modeRules(){\n  if(!installed)return;\n  $('mode-options-backdrop').dataset.mode='sing';\n  const songAvailable=renderModeSettings(true);"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": "   const active=options.modes.includes(mode.id)&&availability.available;",
+    "after": "   const missingSource=mode.id==='sing'&&!songAvailable;\n   const active=options.modes.includes(mode.id)&&availability.available&&!missingSource;"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": "   row.querySelector('.wizard-mode-state').textContent=active?'Активен':availability.available?'Выключен':availability.reason;",
+    "after": "   row.querySelector('.wizard-mode-state').textContent=!availability.available?availability.reason:missingSource?'Нет заданий с выбранными источниками':active?'Активен':'Выключен';"
   }
 ]

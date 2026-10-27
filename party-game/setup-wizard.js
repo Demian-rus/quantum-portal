@@ -78,23 +78,24 @@
  }
  function modeRules(){
   if(!installed)return;
+  $('mode-options-backdrop').dataset.mode='sing';
+  const songAvailable=renderModeSettings(true);
   for(const mode of MODE_LIST){
    const row=scene.querySelector('[data-wizard-rule="'+mode.id+'"]'),config=getModeConfig(mode.id),guide=rulesGuidePage(mode.id);
    const input=[...$('mode-toggles').querySelectorAll('input')].find(node=>node.value===mode.id);
    const availability=input?{available:!input.disabled,reason:input.closest('label').title}:
     packModeAvailability(options.contentPack,{...options,...setupSongPolicy(options)},mode.id);
-   const active=options.modes.includes(mode.id)&&availability.available;
+   const missingSource=mode.id==='sing'&&!songAvailable;
+   const active=options.modes.includes(mode.id)&&availability.available&&!missingSource;
    row.classList.toggle('wizard-rule--off',!active);
-   row.querySelector('.wizard-mode-state').textContent=active?'Активен':availability.available?'Выключен':availability.reason;
+   row.querySelector('.wizard-mode-state').textContent=!availability.available?availability.reason:missingSource?'Нет заданий с выбранными источниками':active?'Активен':'Выключен';
    row.querySelector('.wizard-reward').textContent=guide.reward;
    const timedConfigs=mode.id==='secret'?MODE_LIST.map(m=>getModeConfig(m.id)).filter(m=>m.secretMethod):[config];
    const durations=[...new Set(timedConfigs.map(m=>options.duration+m.durationBonus))].sort((a,b)=>a-b);
    row.querySelector('.wizard-mode-time').textContent=config.usesTimer?'Время: '+durations.join(' или ')+' с'+(mode.id==='secret'?', по выбранному способу':''):'Без таймера';
    row.querySelector('.wizard-rule-copy').innerHTML=guide.blocks.map(([title,copy])=>'<h3>'+escapeHTML(title)+'</h3><p>'+escapeHTML(copy)+'</p>').join('');
   }
-  // Reuse the eligibility already painted by the real settings validator.
-  const sing=$('mode-toggles').querySelector('input[value="sing"]');
-  $('mode-options-backdrop').dataset.mode='sing';renderModeSettings(sing?!sing.disabled:undefined);
+  // Source controls and their real eligibility were rendered above.
  }
  function renderMeta(){
   if(!installed)return;
