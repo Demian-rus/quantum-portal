@@ -1,4 +1,5 @@
 'use strict';
+const {setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os');
 const {execFileSync}=require('node:child_process'),{chromium}=require('playwright-core');
 const {chooseNamedProfile,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
@@ -17,12 +18,12 @@ async function download(page,selector,name){
 async function completedMatch(page){
  await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();
  await chooseNamedProfile(page,0,'Исторический','violet');await chooseNamedProfile(page,1,'Соперник','green');
- await page.locator('#go-advanced').click();await page.locator('#finish-rounds').check({force:true});
+ await setupRules(page);await page.locator('#finish-rounds').check({force:true});
  await page.locator('#custom-rounds').focus();await page.locator('#custom-rounds').press('Home');
- await page.locator('#mode-settings > summary').click();
+ await setupFold(page,'mode-settings');
  if(!await page.locator('#mode-toggles input[value="approx"]').isChecked())await page.locator('#mode-toggles label:has(input[value="approx"])').click();
  for(const id of ['talk','mime','draw','sing','yesno','blitz','secret'])if(await page.locator('#mode-toggles input[value="'+id+'"]').isChecked())await page.locator('#mode-toggles label:has(input[value="'+id+'"])').click();
- await page.locator('#advanced-done').click();await page.locator('#start-game').click();await page.evaluate(()=>{game.dice=false});
+ await setupPlayers(page);await startFromSetup(page);await page.evaluate(()=>{game.dice=false});
  for(const recipient of ['a','none']){
   await page.locator('[data-action="roll"]').click();await page.locator('[data-action="reveal-approx"]').click();await page.locator('[data-action="award-'+recipient+'"]').click();
  }
@@ -39,7 +40,7 @@ async function completedMatch(page){
  const write=sources=>{for(const[name,content]of sources)fs.writeFileSync(path.join(root,'party-game',name),content)};
  const cache=bytes=>bytes.toString().match(/const CACHE='([^']+)'/)[1];
  const oldCache=cache(previous.get('sw.js')),newCache=cache(current.get('sw.js'));
- assert.match(oldCache,/v83/);assert.match(newCache,/^kvip-pwa-v90-20261027-wizard-performance-candidate$/);assert.notEqual(oldCache,newCache);
+ assert.match(oldCache,/v83/);assert.match(newCache,/^kvip-pwa-v91-20261027-wizard-only-candidate-guard$/);assert.notEqual(oldCache,newCache);
  const browser=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
  const ctx=await browser.newContext({viewport:{width:390,height:844},hasTouch:true}),page=await ctx.newPage(),errors=[];
  page.on('pageerror',e=>errors.push(e.message));

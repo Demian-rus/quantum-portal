@@ -1,4 +1,5 @@
 'use strict';
+const {setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const {provisionProfiles,chooseNamedProfile}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
@@ -55,21 +56,11 @@ function fitsViewport(g,device,stage) {
     headless:true,args:['--no-sandbox']
   });
   try{
-    await require('./task013b-browser.cjs')(browser,URL);
-    await require('./round-layout.cjs')(browser,URL);
-    await require('./storage-protection.cjs')(browser,URL);
-    await require('./task-history-browser.cjs')(browser,URL);
-    await require('./modifiers-v2-browser.cjs')(browser,URL);
-    await require('./mode-compatibility-browser.cjs')(browser,URL);
-    await require('./dictionary-browser.cjs')(browser,URL);
-    await require('./estimation-browser.cjs')(browser,URL);
-    await require('./thematic-game.cjs')(browser,URL);
-    await require('./modifier-frequency.cjs')(browser,URL);
-    await require('./mode-settings-browser.cjs')(browser,URL);
-    await require('./round-outcomes.cjs')(browser,URL);
-    await require('./award-policy.cjs')(browser,URL);
-    await require('./rules-guide.cjs')(browser,URL);
-    await require('./ui-task005.cjs')(browser,URL);
+    const moduleErrors=[];
+    // Collect every strict subsystem result; any failure still fails the suite.
+    for(const name of ['task013b-browser.cjs', 'round-layout.cjs', 'storage-protection.cjs', 'task-history-browser.cjs', 'modifiers-v2-browser.cjs', 'mode-compatibility-browser.cjs', 'dictionary-browser.cjs', 'estimation-browser.cjs', 'thematic-game.cjs', 'modifier-frequency.cjs', 'mode-settings-browser.cjs', 'round-outcomes.cjs', 'award-policy.cjs', 'rules-guide.cjs', 'ui-task005.cjs']){
+      try{await require('./'+name)(browser,URL);}catch(error){moduleErrors.push({name,error});console.error('MOBILE MODULE FAILURE',name,error);}
+    }
     for(const device of devices) {
       const page=await browser.newPage({
         viewport:{width:device.width,height:device.height},
@@ -106,15 +97,15 @@ function fitsViewport(g,device,stage) {
       await page.locator('#other-games-back').click();
       await page.locator('#scene-home').waitFor({state:'visible'});
       await page.locator('#new-game-menu').click();
-      assert.equal(await page.locator('#scene-game-type').isVisible(),true);
+      assert.equal(await page.locator('#wizard-catalog').isVisible(),true);
       for(const id of ['standard-game','thematic-game']){
         const box=await page.locator('#'+id).boundingBox();
         assert.ok(box&&box.width>=44&&box.height>=44,'Game-type touch target too small');
       }
-      await page.locator('#scene-game-type').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
+      await page.locator('#wizard-catalog').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
       await capture(page,{path:'artifacts/quip-mobile-layout/'+device.name+'-game-type.png'});
       await page.locator('#thematic-game').click();
-      assert.equal(await page.locator('#scene-themes').isVisible(),true);
+      assert.equal(await page.locator('#wizard-themes').isVisible(),true);
       assert.equal(await page.locator('#theme-list button:disabled').count(),3);
       assert.equal(await page.locator('#theme-list button:not(:disabled)').count(),3);
       assert.equal(await page.locator('[data-theme="geography"]:enabled').count(),1);
@@ -124,31 +115,23 @@ function fitsViewport(g,device,stage) {
         cards:[...document.querySelectorAll('.theme-choice')].map(el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right}})}));
       assert.ok(themeLayout.w<=device.width+2&&themeLayout.h<=device.height+2,JSON.stringify(themeLayout));
       assert.ok(themeLayout.cards.every(r=>r.left>=0&&r.right<=device.width+1),'Theme card outside viewport');
-      await page.locator('#scene-themes').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
+      await page.locator('#wizard-themes').evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
       await capture(page,{path:'artifacts/quip-mobile-layout/'+device.name+'-themes.png'});
-      await page.locator('#themes-back').click();
-      await page.locator('#game-type-back').click();
+      await setupBack(page,'themes-back');
+      await setupBack(page,'game-type-back');
       assert.equal(await page.locator('#scene-home').isVisible(),true);
       await page.locator('#new-game-menu').click();
       await page.locator('#standard-game').click();
       if(device.width>=780){
-        const setup=await page.evaluate(()=>({
-          viewport:innerWidth,
-          panel:document.getElementById('setup-panel').getBoundingClientRect().width,
-          bgTitle:getComputedStyle(document.getElementById('scene-setup'),'::before').display,
-          cols:getComputedStyle(document.querySelector('.settings-grid--compact')).gridTemplateColumns
-        }));
-        assert.ok(setup.panel>=device.width*.78,
-          'Wide setup form remains a tiny central card: '+JSON.stringify(setup));
-        assert.equal(setup.bgTitle,'none','Unwanted ghost title appears above setup on wide screens');
-        assert.ok(setup.cols.split(' ').length>=2,
-          'Wide settings fail to use multiple columns: '+JSON.stringify(setup));
+        const setup=await page.locator('#scene-wizard').evaluate(n=>({width:n.getBoundingClientRect().width,viewport:innerWidth,columns:getComputedStyle(document.querySelector('.wizard-steps')).gridTemplateColumns}));
+        assert.ok(setup.width>=Math.min(device.width,850)-2,'Wizard uses its accepted readable width: '+JSON.stringify(setup));
+        assert.equal(setup.columns.split(' ').length,4,'All four steps remain in one row');
         await capture(page,{path:'artifacts/quip-mobile-layout/'+device.name+'-setup.png'});
       }
       await chooseNamedProfile(page,0,'ПЕРВЫЙСУПЕРДЛИННЫЙИГРОК');
       await chooseNamedProfile(page,1,'ВТОРОЙСУПЕРДЛИННЫЙИГРОК');
       await page.evaluate(()=>{options.modes=['talk'];soundOn=false;persist()});
-      await page.locator('#start-game').click();
+      await startFromSetup(page);
       // The scene enters with a 7px translateY animation. Compare settled
       // coordinates, not a transient animation frame immediately after start.
       await page.locator('#scene-game').evaluate(el=>Promise.all(
@@ -237,5 +220,6 @@ function fitsViewport(g,device,stage) {
           carouselIconWidth:art.width,carouselWidth:reel.width}));
       await page.close();
     }
+    assert.deepEqual(moduleErrors.map(({name,error})=>name+': '+error.message),[],'Every mobile subsystem must pass');
   }finally {await browser.close()}
 })().catch(error=>{console.error(error);process.exitCode=1});

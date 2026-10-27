@@ -1,20 +1,21 @@
 'use strict';
+const {setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs');
 const {chromium}=require('playwright-core');
 const {chooseNamedProfile}=require('./profile-fixtures.cjs');
 const URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/';
 async function setup(page){await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();}
 async function approxParty(page){
- await page.locator('#go-advanced').click();await page.locator('#finish-rounds').check({force:true});
+ await setupRules(page);await page.locator('#finish-rounds').check({force:true});
  await page.locator('#custom-rounds').focus();await page.locator('#custom-rounds').press('Home');
- await page.locator('#mode-settings > summary').click();
+ await setupFold(page,'mode-settings');
  const input=page.locator('#mode-toggles input[value="approx"]');
  if(!await input.isChecked())await page.locator('#mode-toggles label:has(input[value="approx"])').click();
  for(const mode of ['talk','mime','draw','sing','yesno','secret','blitz']){
   const input=page.locator('#mode-toggles input[value="'+mode+'"]');
   if(await input.isChecked())await page.locator('#mode-toggles label:has(input[value="'+mode+'"])').click();
  }
- await page.locator('#advanced-done').click();await page.locator('#start-game').click();
+ await setupPlayers(page);await startFromSetup(page);
  // Skip the cosmetic reel in settlement fixtures; the real controls still
  // select the production question and commit its unchanged award semantics.
  await page.evaluate(()=>{game.dice=false});
@@ -45,7 +46,7 @@ async function geometry(page){
    await page.locator('#team-a').click();assert.equal(await page.locator('#profile-empty').isVisible(),true);
    await page.locator('#profile-create-open').click();await page.locator('#profile-name').fill('Отмена');
    await page.goBack();await page.locator('#profile-list-area').waitFor({state:'visible'});
-   assert.equal(await store(page),null);assert.equal(await page.locator('#scene-setup').isVisible(),true);
+   assert.equal(await store(page),null);assert.equal(await page.locator('[data-wizard-page="2"]').isVisible(),true);
    await page.goBack();await page.locator('#profile-backdrop').waitFor({state:'hidden'});
    await chooseNamedProfile(page,0,'ДС','violet');await chooseNamedProfile(page,1,'ПА','green');
    await page.locator('#team-b').click();assert.equal(await page.locator('#profile-list button').filter({hasText:'ДС'}).isDisabled(),true);
@@ -71,7 +72,7 @@ async function geometry(page){
    await page.goBack();await page.locator('#scene-home').waitFor({state:'visible'});
    await setup(page);await chooseNamedProfile(page,0,'Третий');await chooseNamedProfile(page,1,'ДС');await chooseNamedProfile(page,0,'ПА');
    assert.match(await page.locator('#team-a').textContent(),/ПА/);assert.match(await page.locator('#team-b').textContent(),/ДС/);
-   await page.locator('#start-game').click();assert.deepEqual(await page.evaluate(()=>game.profileMatch.participants.map(p=>p.color)),['green','violet']);
+   await startFromSetup(page);assert.deepEqual(await page.evaluate(()=>game.profileMatch.participants.map(p=>p.color)),['green','violet']);
    await page.locator('#exit-game').click();await page.reload({waitUntil:'load'});await setup(page);
    assert.match(await page.locator('#team-a').textContent(),/ПА/);assert.match(await page.locator('#team-b').textContent(),/ДС/);
    await page.evaluate(async()=>{await navigator.serviceWorker.ready});await context.setOffline(true);await page.reload({waitUntil:'load'});
@@ -79,7 +80,7 @@ async function geometry(page){
    await page.locator('#exit-game').click();await page.locator('#statistics-menu').click();assert.equal((await store(page)).recent.length,1);
    if(width===320){
     await context.setOffline(false);await page.locator('#statistics-back').click();await setup(page);
-    await chooseNamedProfile(page,0,'Я'.repeat(24),'pink');await page.locator('#start-game').click();await page.evaluate(()=>{game.dice=false});
+    await chooseNamedProfile(page,0,'Я'.repeat(24),'pink');await startFromSetup(page);await page.evaluate(()=>{game.dice=false});
     await answer(page,'a');await answer(page,'none');
     assert.match(await page.locator('.match-finished').textContent(),/Я{24}/);
     assert.equal(await page.locator('.match-finished').evaluate(el=>el.scrollWidth<=el.clientWidth+1),true,'Long winner name must wrap completely');
@@ -105,7 +106,7 @@ async function geometry(page){
     const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage(),errors=[];
     page.on('pageerror',e=>errors.push(e.message));await page.goto(URL);
     await setup(page);await chooseNamedProfile(page,0,'ДС');await chooseNamedProfile(page,1,'ПА');
-    await page.locator('#start-game').click();
+    await startFromSetup(page);
     await page.evaluate(()=>{
       delete game.riskPolicyVersion;delete game.riskPlannerState;delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;
       game.finishType='score';game.targetScore=15;game.roundIndex=30;game.scores=[15,15];

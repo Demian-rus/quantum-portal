@@ -1,4 +1,5 @@
 'use strict';
+const {setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const {provisionProfiles,chooseNamedProfile}=require('./profile-fixtures.cjs');
 // Browser contracts across subsystem boundaries. Drive the shipped HTML and UI;
 // evaluate only reads snapshots or installs a transparent observation probe.
@@ -19,15 +20,13 @@ function observe(){
   };
  }
 }
-async function scene(page,name){await page.locator('#scene-'+name).waitFor({state:'visible'});}
+async function scene(page,name){const target={setup:'[data-wizard-page="2"]',advanced:'[data-wizard-page="3"]','game-type':'#wizard-catalog',themes:'#wizard-themes'};await page.locator(target[name]||'#scene-'+name).waitFor({state:'visible'});}
 async function standard(page){
  await page.locator('#new-game-menu').click();await scene(page,'game-type');
  await page.locator('#standard-game').click();await scene(page,'setup');
 }
-async function advanced(page){await page.locator('#go-advanced').click();await scene(page,'advanced');}
-async function fold(page,id){
- if(!await page.locator('#'+id).evaluate(el=>el.open))await page.locator('#'+id+' > summary').click();
-}
+async function advanced(page){await setupRules(page);await scene(page,'advanced');}
+async function fold(page,id){await setupFold(page,id);}
 async function selection(page,container,values){
  const input=id=>page.locator('#'+container+' input[value="'+id+'"]');
  const toggle=id=>page.locator('#'+container+' label:has(input[value="'+id+'"])').click();
@@ -68,7 +67,7 @@ async function menuDetour(page){
  await chooseNamedProfile(page,0,'Первый игрок');await chooseNamedProfile(page,1,'Второй игрок');
  await advanced(page);await page.locator('#toggle-complications').uncheck();
  await fold(page,'mode-settings');await selection(page,'mode-toggles',['talk']);
- await page.locator('#advanced-done').click();await page.locator('#start-game').click();await scene(page,'game');
+ await setupPlayers(page);await startFromSetup(page);await scene(page,'game');
  // Earn points through the real controls, then select the reply's task.
  await page.locator('[data-action="roll"]').click();
  await page.locator('[data-action="toggle-word"]').waitFor({timeout:6500});
@@ -87,23 +86,22 @@ async function menuDetour(page){
  await unchangedMatch(page,before,'App preferences');
  // App preferences and next-party settings are distinct existing screens.
  await standard(page);
- await page.locator('.choices[data-setting="difficulty"] [data-value="hard"]').click();
- await page.locator('#award-policy-choices [data-value="guesser"]').click();
+ await setupStep(page,3);await page.locator('.choices[data-setting="difficulty"] [data-value="hard"]').click();
+ await setupStep(page,2);await page.locator('#award-policy-choices [data-value="guesser"]').click();
  await advanced(page);await range(page,'base-duration',75);await page.locator('#toggle-complications').check();
  await fold(page,'mode-settings');await selection(page,'mode-toggles',['draw','yesno']);
  await fold(page,'content-settings');await selection(page,'content-toggles',['phrase']);
- await page.locator('#advanced-back').click();await scene(page,'setup');
- await page.locator('#setup-back').click();await scene(page,'game-type');
- await page.locator('#game-type-back').click();await scene(page,'home');
+ await setupPlayers(page);await scene(page,'setup');
+ await setupBack(page,'setup-back');await scene(page,'game-type');
+ await setupBack(page,'game-type-back');await scene(page,'home');
  await unchangedMatch(page,before,'Edited next-party settings');
  assert.notDeepEqual((await snapshot(page)).options,before.options,'The detour must really edit future settings');
  // Thematic Back has a different return target; protect a live match there too.
  await page.locator('#new-game-menu').click();await page.locator('#thematic-game').click();
  await scene(page,'themes');await page.locator('[data-theme="geography"]:enabled').click();await scene(page,'setup');
  await unchangedMatch(page,before,'Selecting a future theme');
- await page.goBack();await scene(page,'themes');
- await page.locator('#themes-back').click();await scene(page,'game-type');
- await page.locator('#game-type-back').click();await scene(page,'home');
+ await page.goBack();await scene(page,'game-type');
+ await setupBack(page,'game-type-back');await scene(page,'home');
  await unchangedMatch(page,before,'Thematic return / Android Back');
  await page.locator('#continue-game').click();await scene(page,'game');
  await unchangedMatch(page,before,'Continue after all detours');
@@ -111,15 +109,15 @@ async function menuDetour(page){
 }
 async function settingsReload(page){
  await silence(page);await standard(page);
- await page.locator('.choices[data-setting="difficulty"] [data-value="hard"]').click();
- await page.locator('#award-policy-choices [data-value="guesser"]').click();await advanced(page);
+ await setupStep(page,3);await page.locator('.choices[data-setting="difficulty"] [data-value="hard"]').click();
+ await setupStep(page,2);await page.locator('#award-policy-choices [data-value="guesser"]').click();await advanced(page);
  await range(page,'base-duration',75);await range(page,'target-score',35);
  await range(page,'modifier-chance',65);await page.locator('#toggle-complications').uncheck();
  await page.locator('#toggle-risk').uncheck();
  await fold(page,'mode-settings');await selection(page,'mode-toggles',['talk','yesno','secret']);
  await fold(page,'content-settings');await selection(page,'content-toggles',['word','phrase']);
- await page.locator('#advanced-done').click();
- await page.locator('#award-policy-choices [data-value="setter"]').click();
+ await setupPlayers(page);
+ await setupStep(page,2);await page.locator('#award-policy-choices [data-value="setter"]').click();
  const setter=await snapshot(page);
  const expected={difficulty:'hard',duration:75,targetScore:35,promptTypes:['word','phrase'],
   complications:false,modifierChance:65,riskRounds:false,awardTo:'setter',modes:['talk','secret']};
@@ -138,12 +136,12 @@ async function settingsReload(page){
  assert.equal(await page.locator('#base-duration').inputValue(),'75');
  assert.equal(await page.locator('#toggle-complications').isChecked(),false);
  assert.equal(await page.locator('#toggle-risk').isChecked(),false);
- await page.locator('#advanced-done').click();
+ await setupPlayers(page);
  assert.equal(await page.locator('.choices[data-setting="difficulty"] [data-value="hard"]').getAttribute('aria-pressed'),'true');
  assert.equal(await page.locator('#award-policy-choices [data-value="setter"]').getAttribute('aria-pressed'),'true');
- await page.locator('#award-policy-choices [data-value="guesser"]').click();await advanced(page);await fold(page,'mode-settings');
+ await setupStep(page,2);await page.locator('#award-policy-choices [data-value="guesser"]').click();await advanced(page);await fold(page,'mode-settings');
  assert.equal(await danetki.isDisabled(),false);assert.equal(await danetki.isChecked(),false,'Changing recipient must not silently reselect Danetki');
- await selection(page,'mode-toggles',['talk','yesno','secret']);await page.locator('#advanced-done').click();
+ await selection(page,'mode-toggles',['talk','yesno','secret']);await setupPlayers(page);
  const guesser=await snapshot(page);
  for(const [field,value]of Object.entries({...expected,awardTo:'guesser',modes:['talk','yesno','secret']}))
   assert.deepEqual(guesser.options[field],value,'Explicit recipient/mode change must store '+field);
@@ -153,7 +151,7 @@ async function settingsReload(page){
  await provisionProfiles(page);
  await standard(page);await advanced(page);await fold(page,'mode-settings');
  assert.equal(await danetki.isDisabled(),false);assert.equal(await danetki.isChecked(),true);
- await page.locator('#advanced-done').click();await page.locator('#start-game').click();await scene(page,'game');
+ await setupPlayers(page);await startFromSetup(page);await scene(page,'game');
  const started=await snapshot(page);
  for(const field of ['difficulty','duration','awardTo','modes','promptTypes','complications','modifierChance','riskRounds','targetScore','contentPack'])
   assert.deepEqual(started.game[field],guesser.options[field],'Start uses restored '+field);
@@ -166,12 +164,12 @@ async function protectedMenus(page,raw){
  await page.reload({waitUntil:'load'});await scene(page,'home');
  assert.equal(await page.locator('#continue-game').isDisabled(),true);
  await page.locator('#settings-menu').click();await page.locator('#preferences-back').click();
- await standard(page);await page.locator('.choices[data-setting="difficulty"] [data-value="hard"]').click();
+ await standard(page);await setupStep(page,3);await page.locator('.choices[data-setting="difficulty"] [data-value="hard"]').click();
  await advanced(page);await range(page,'base-duration',75);
- await page.locator('#advanced-back').click();await page.locator('#setup-back').click();
- await page.locator('#game-type-back').click();
+ await setupPlayers(page);await setupBack(page,'setup-back');
+ await setupBack(page,'game-type-back');
  await page.locator('#new-game-menu').click();await page.locator('#thematic-game').click();
- await page.locator('#themes-back').click();await page.locator('#game-type-back').click();
+ await setupBack(page,'themes-back');await setupBack(page,'game-type-back');
  const state=await snapshot(page);
  assert.equal(state.raw,raw,'Menu transitions must leave unknown/corrupt data byte-for-byte intact');
  assert.deepEqual(state.probe.writes,[],'Protected data must not be set, removed, cleared or silently backed up');

@@ -1,4 +1,5 @@
 'use strict';
+const {setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const {provisionProfiles,chooseNamedProfile}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert = require('node:assert/strict');
@@ -6,8 +7,8 @@ const fs = require('node:fs');
 const {chromium} = require('playwright-core');
 const URL='http://127.0.0.1:8765/party-game/';
 async function configureOnly(page,id) {
-  await page.locator('#go-advanced').click();
-  await page.locator('#mode-settings > summary').click();
+  await setupRules(page);
+  await setupFold(page,'mode-settings');
   const selected=page.locator('#mode-toggles input[value="'+id+'"]');
   if(!await selected.isChecked())await page.locator('#mode-toggles label:has(input[value="'+id+'"])').click();
   const inputs=page.locator('#mode-toggles input');
@@ -33,7 +34,7 @@ async function configureOnly(page,id) {
       await page.evaluate(()=>{chooseStartingTeam=()=>0;options.awardTo='guesser';options.complications=false});
       await page.locator('#new-game-menu').click();
       await page.locator('#standard-game').click();
-      await page.locator('[data-setting="difficulty"] [data-value="hard"]').click();
+      await setupStep(page,3);await page.locator('[data-setting="difficulty"] [data-value="hard"]').click();
       await configureOnly(page,'yesno');
       assert.equal(await page.locator('[data-setting="dice"]').count(),0,'Old dice choice must be removed');
       await page.locator('#finish-rounds').check({force:true});
@@ -41,8 +42,8 @@ async function configureOnly(page,id) {
       await page.locator('#base-duration').evaluate(el=>{el.value='60';el.dispatchEvent(new Event('input',{bubbles:true}))});
       assert.equal(await page.locator('#base-duration').inputValue(),'60');
       await capture(page,{path:'artifacts/quip-v2/'+device.name+'-settings.png',fullPage:true});
-      await page.locator('#advanced-done').click();
-      await page.locator('#start-game').click();
+      await setupPlayers(page);
+      await startFromSetup(page);
       assert.equal(await page.locator('#round-total').textContent(),'4');
       await page.locator('[data-action="roll"]').click();
       await page.waitForSelector('[data-action="toggle-word"]',{timeout:5500});
@@ -90,8 +91,8 @@ async function configureOnly(page,id) {
     await blitz.locator('#new-game-menu').click();
       await blitz.locator('#standard-game').click();
     await configureOnly(blitz,'blitz');
-    await blitz.locator('#advanced-done').click();
-    await blitz.locator('#start-game').click();
+    await setupPlayers(blitz);
+    await startFromSetup(blitz);
     await blitz.locator('[data-action="roll"]').click();
     await blitz.waitForSelector('[data-action="toggle-word"]');
     await blitz.locator('[data-action="toggle-word"]').click();

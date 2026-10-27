@@ -1,17 +1,18 @@
 'use strict';
+const {setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const devices=[{name:'narrow',width:320,height:568},{name:'phone',width:390,height:844},{name:'desktop',width:1440,height:900}];
 async function openSetup(page){await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();}
-async function advanced(page){await page.locator('#go-advanced').click();}
+async function advanced(page){await setupRules(page);}
 async function frequency(page,value){await page.locator('#modifier-chance').evaluate((el,v)=>{el.value=v;el.dispatchEvent(new Event('input',{bubbles:true}))},String(value));}
 async function align(page){
- await page.locator('.modifier-settings').evaluate(el=>{const scroller=document.getElementById('advanced-scroll');scroller.scrollTop+=el.getBoundingClientRect().top-scroller.getBoundingClientRect().top-10});
+ await page.locator('.modifier-settings').evaluate(el=>{const scroller=document.getElementById('wizard-scroll');scroller.scrollTop+=el.getBoundingClientRect().top-scroller.getBoundingClientRect().top-10});
 }
 async function shot(page,name){
- await align(page);await page.locator('#scene-advanced').evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{}))));
+ await align(page);await page.locator('[data-wizard-page="3"]').evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{}))));
  await capture(page,{path:'artifacts/quip-mobile-layout/task007c-'+name+'.png'});
 }
 async function offlineUpgrade(browser,url){
@@ -140,7 +141,7 @@ module.exports=async function frequencyUI(browser,url){
    await checkbox.uncheck();assert.equal(await slider.isVisible(),false);assert.equal(await page.evaluate(()=>options.modifierChance),100);
    if(device.name==='phone')await shot(page,'phone-off');
    await checkbox.check();assert.equal(await slider.inputValue(),'100');
-   await frequency(page,35);await page.locator('#advanced-done').click();await advanced(page);assert.equal(await slider.inputValue(),'35');
+   await frequency(page,35);await setupPlayers(page);await advanced(page);assert.equal(await slider.inputValue(),'35');
    await page.reload({waitUntil:'load'});await openSetup(page);await advanced(page);assert.equal(await slider.inputValue(),'35');
    await align(page);
    const g=await page.evaluate(()=>{
@@ -148,13 +149,13 @@ module.exports=async function frequencyUI(browser,url){
     return {box:rect('.modifier-settings .modifier-toggle'),frequency:rect('#modifier-chance-settings'),range:rect('#modifier-chance'),w:innerWidth,sw:document.documentElement.scrollWidth,sh:document.documentElement.scrollHeight,h:innerHeight};
    });
    assert.ok(g.frequency.top>=g.box.bottom+5&&g.range.left>=0&&g.range.right<=g.w&&g.sw<=g.w+1&&g.sh<=g.h+1,JSON.stringify(g));
-   await frequency(page,100);await page.locator('#advanced-done').click();
+   await frequency(page,100);await setupPlayers(page);
    await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.dice=false;chooseStartingTeam=()=>0;Math.random=()=>.9999});
-   await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();
+   await startFromSetup(page);await page.locator('[data-action="roll"]').click();
    assert.equal(await page.evaluate(()=>game.modifierChance),100);assert.equal(await page.evaluate(()=>game.modifierSelectionVersion),2);assert.ok(await page.evaluate(()=>game.current.complication));
    await page.evaluate(()=>{game.dice=true;options.dice=true;persist()});
    const snapshot=await page.evaluate(()=>({game:JSON.stringify(game),round:JSON.stringify(game.current),recent:JSON.stringify(game.modifierRecent)}));
-   await page.locator('#exit-game').click();await openSetup(page);await advanced(page);await frequency(page,20);await checkbox.uncheck();await page.locator('#advanced-done').click();
+   await page.locator('#exit-game').click();await openSetup(page);await advanced(page);await frequency(page,20);await checkbox.uncheck();await setupPlayers(page);
    assert.equal(await page.evaluate(()=>JSON.stringify(game)),snapshot.game,'Future frequency changed active party');
    await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
    await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();

@@ -1,9 +1,8 @@
-/* TASK027, opt-in setup only. The accepted game scene and legacy CSS stay exact. */
+/* Sole setup presentation. The accepted game scene and engine CSS stay exact. */
 .setup-wizard{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto;max-width:850px;margin:auto;padding-top:env(safe-area-inset-top);background:#130c26b8;backdrop-filter:blur(8px);animation:none}
 .wizard-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;border-bottom:1px solid #af98ff30;min-width:0}
 .wizard-header>span{font:800 15px var(--font-title)}
 .wizard-header button{border:0;background:none;color:var(--cyan);font-weight:800;font-size:11px;min-width:44px;min-height:44px;padding:8px 0;line-height:1.4}
-.wizard-header button:last-child{font-size:10px;text-align:right;max-width:104px;color:var(--soft)}
 .wizard-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding:8px 16px 0}
 .wizard-steps button{display:flex;align-items:center;justify-content:center;gap:5px;min-height:44px;padding:6px 0;border:0;border-bottom:2px solid #af98ff30;background:transparent;color:var(--soft);font-size:10px}
 .wizard-steps b{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#38274c;font-size:10px;flex-shrink:0}
@@ -91,7 +90,7 @@
 #wizard-rules-done{width:100%;min-height:48px;margin-top:24px}
 @media(max-width:359px){.wizard-page{padding-inline:14px}.wizard-header,.wizard-footer{padding-inline:12px}.wizard-steps{padding-inline:10px}.wizard-steps button{font-size:9px;gap:3px}.wizard-steps b{width:17px;height:17px}.wizard-page .mode-tile-art{width:44px;height:44px}.wizard-page .mode-tile{min-height:94px}.wizard-footer .button{padding-inline:12px;font-size:11px}.wizard-page .song-source-options{grid-template-columns:1fr}.wizard-rule header{gap:8px}}
 @media(max-height:480px){.setup-wizard{padding-top:0}.wizard-header{padding-block:0}.wizard-steps{padding-top:0}.wizard-page{padding-top:12px}.wizard-footer{padding-block:6px}.wizard-footer .button{min-height:44px}.wizard-page h1{margin-bottom:18px}}
-/* Override the legacy ID selectors only inside the experimental scene. */
+/* Override the legacy ID selectors only inside the wizard scene. */
 .setup-wizard #mode-toggles label>.mode-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:108px;padding:6px 1px;border-radius:10px}
 .setup-wizard #mode-toggles .mode-tile-art{width:52px;height:52px;aspect-ratio:1;flex:0 0 auto;object-fit:contain}
 .setup-wizard #mode-toggles .mode-tile-copy{align-items:center;justify-content:center;gap:3px;text-align:center}

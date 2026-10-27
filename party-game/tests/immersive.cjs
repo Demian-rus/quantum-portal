@@ -1,4 +1,5 @@
 'use strict';
+const {setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const {provisionProfiles,chooseNamedProfile}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
@@ -35,34 +36,34 @@ const URL='http://127.0.0.1:8765/party-game/';
       await capture(page,{path:'artifacts/quip-immersive/'+device.name+'-home.png',fullPage:true});
       await page.locator('#new-game-menu').click();
       await page.locator('#standard-game').click();
-      await page.locator('[data-setting="difficulty"] [data-value="medium"]').click();
-      assert.equal(await page.locator('#scene-setup').isVisible(),true);
+      await setupStep(page,3);await page.locator('[data-setting="difficulty"] [data-value="medium"]').click();
+      assert.equal(await page.locator('[data-wizard-page="3"]').isVisible(),true);
       const setup=await page.evaluate(()=>({
         bg:getComputedStyle(document.body,'::before').backgroundImage,
         viewport:innerHeight,pageScroll:document.documentElement.scrollHeight,
-        scroller:document.getElementById('setup-scroll').scrollHeight,
-        viewHeight:document.getElementById('setup-scroll').clientHeight
+        scroller:document.getElementById('wizard-scroll').scrollHeight,
+        viewHeight:document.getElementById('wizard-scroll').clientHeight
       }));
       assert.ok(setup.bg.includes('bg-setup.webp'),JSON.stringify(setup));
       assert.ok(setup.pageScroll<=setup.viewport+2,'Setup scrolls whole document');
       if(device.width<500 && setup.scroller>setup.viewHeight){
-        const scrolled=await page.locator('#setup-scroll').evaluate(el=>{
+        const scrolled=await page.locator('#wizard-scroll').evaluate(el=>{
           el.scrollTop=el.scrollHeight;
           return el.scrollTop>0;
         });
         assert.ok(scrolled,'Long setup form must scroll inside its own pane');
-        await page.locator('#setup-scroll').evaluate(el=>el.scrollTop=0);
+        await page.locator('#wizard-scroll').evaluate(el=>el.scrollTop=0);
       }
       await capture(page,{path:'artifacts/quip-immersive/'+device.name+'-setup.png',fullPage:true});
-      await page.locator('#go-advanced').click();
-      assert.equal(await page.locator('#scene-advanced').isVisible(),true);
+      await setupRules(page);
+      assert.equal(await page.locator('[data-wizard-page="3"]').isVisible(),true);
       const before=await page.evaluate(()=>getComputedStyle(document.body,'::before').backgroundImage);
-      await page.locator('#advanced-scroll').evaluate(el=>el.scrollTop=el.scrollHeight);
+      await page.locator('#wizard-scroll').evaluate(el=>el.scrollTop=el.scrollHeight);
       const after=await page.evaluate(()=>getComputedStyle(document.body,'::before').backgroundImage);
       assert.equal(before,after,'Backdrop should stay fixed behind scrolling options');
       await capture(page,{path:'artifacts/quip-immersive/'+device.name+'-advanced.png',fullPage:true});
-      await page.locator('#advanced-done').click();
-      await page.locator('#start-game').click();
+      await setupPlayers(page);
+      await startFromSetup(page);
       assert.equal(await page.locator('#scene-game').isVisible(),true);
       const ready=await page.evaluate(()=>({
         viewport:innerHeight,scroll:document.documentElement.scrollHeight,
@@ -151,7 +152,7 @@ const URL='http://127.0.0.1:8765/party-game/';
     await stablePage.locator('#standard-game').click();
     const geometry=()=>stablePage.evaluate(()=>{
       const shell=document.querySelector('.site-shell');
-      const scroller=document.getElementById('setup-scroll');
+      const scroller=document.getElementById('wizard-scroll');
       const panel=document.getElementById('setup-panel');
       return {height:shell.getBoundingClientRect().height,
         scrollerHeight:scroller.getBoundingClientRect().height,

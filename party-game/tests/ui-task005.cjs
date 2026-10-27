@@ -1,4 +1,5 @@
 'use strict';
+const {setupRange,setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const {capture}=require('./screenshots.cjs');
 const assert=require('node:assert/strict');
@@ -6,7 +7,7 @@ const fs=require('node:fs');
 const devices=[{name:'narrow',width:320,height:568},{name:'phone',width:390,height:844},
  {name:'desktop',width:1440,height:900},{name:'landscape',width:844,height:390},{name:'low-landscape',width:640,height:360}];
 const modeIds=['talk','mime','draw','sing','yesno','secret','blitz','approx'];
-const settle=(page,id)=>page.locator('#'+id).evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
+const settle=(page,id)=>page.locator('#'+(id==='scene-advanced'?'scene-wizard':id)).evaluate(el=>Promise.all(el.getAnimations({subtree:false}).map(a=>a.finished.catch(()=>{}))));
 async function openSetup(page){
  await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();
 }
@@ -15,7 +16,7 @@ async function fitPage(page){
  assert.ok(g.sw<=g.w+2&&g.sh<=g.h+2,'Page overflow: '+JSON.stringify(g));
 }
 async function scrollFold(page,id){
- await page.evaluate(id=>{const p=document.getElementById('advanced-scroll'),el=document.getElementById(id);
+ await page.evaluate(id=>{const p=document.getElementById('wizard-scroll'),el=document.getElementById(id==='mode-settings'?'mode-toggles':id==='content-settings'?'content-toggles':id);
   p.scrollTop+=el.getBoundingClientRect().top-p.getBoundingClientRect().top-8;},id);
 }
 async function checkGrid(page){
@@ -27,13 +28,13 @@ async function checkGrid(page){
   tiles:[...el.querySelectorAll('label')].map(label=>{const r=label.getBoundingClientRect(),tile=label.querySelector('.mode-tile');
    return {x:r.x,y:r.y,w:r.width,h:r.height,sw:tile.scrollWidth,cw:tile.clientWidth,
     copy:label.querySelector('.mode-tile-copy').scrollWidth,copyWidth:label.querySelector('.mode-tile-copy').clientWidth};})}));
- assert.equal(grid.columns.split(' ').length,2,'Expected exactly two columns');
+ assert.equal(grid.columns.split(' ').length,4,'Wizard keeps four mode columns');
  assert.equal(grid.tiles.length,8);
- for(let row=0;row<4;row++){
-  const a=grid.tiles[row*2],b=grid.tiles[row*2+1];
+ for(let row=0;row<2;row++){
+  const a=grid.tiles[row*4],b=grid.tiles[row*4+1];
   assert.ok(Math.abs(a.y-b.y)<=1&&a.x<b.x,'Incorrect row '+row);
   assert.ok(Math.abs(a.x-grid.tiles[0].x)<=1&&Math.abs(b.x-grid.tiles[1].x)<=1,'Column drift');
-  if(row)assert.ok(a.y>=grid.tiles[(row-1)*2].y+grid.tiles[(row-1)*2].h+5,'Rows overlap');
+  if(row)assert.ok(a.y>=grid.tiles[(row-1)*4].y+grid.tiles[(row-1)*4].h+5,'Rows overlap');
  }
  assert.ok(grid.tiles.every(t=>t.sw<=t.cw+1&&t.copy<=t.copyWidth+1),'Tile text overflows: '+JSON.stringify(grid));
  const icons=await page.locator('#mode-toggles img').evaluateAll(els=>els.map(el=>({src:el.src,ok:el.complete,w:el.naturalWidth,h:el.naturalHeight})));
@@ -51,37 +52,30 @@ async function settingsUI(browser,url,device){
  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
  try{
   await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await page.evaluate(()=>{options.awardTo='guesser';options.modes=DEFAULT_MODES.slice()});await openSetup(page);
-  assert.equal(await page.locator('#scene-setup input[type="range"]').count(),0,'Basic setup must use buttons');
-  for(const [field,values] of [['targetScore',[15,30,60,100]],['duration',[30,45,60]]]){
-   const group=page.locator('.quick-choices[data-setting="'+field+'"]');
-   assert.deepEqual(await group.locator('button').evaluateAll(els=>els.map(el=>Number(el.dataset.value))),values);
-   for(const value of values){
-    const button=group.locator('[data-value="'+value+'"]');await button.click();
-    assert.equal(await page.evaluate(field=>options[field],field),value);
-    assert.equal(await button.getAttribute('aria-pressed'),'true');
-   }
-   const sizes=await group.locator('button').evaluateAll(els=>els.map(el=>{const r=el.getBoundingClientRect();return {w:r.width,h:r.height}}));
-   assert.ok(sizes.every(s=>s.h>=44&&s.w>=40),JSON.stringify(sizes));
+  await setupRules(page);
+  for(const [id,field,values] of [['target-score','targetScore',[15,30,60,100]],['base-duration','duration',[30,45,60]]]){
+   const control=page.locator('#'+id);
+   for(const value of values){await setupRange(page,id,value);assert.equal(await page.evaluate(field=>options[field],field),value);}
+   const size=await control.boundingBox();assert(size.width>=44&&size.height>=44,'Slider has a real touch target');
   }
-  await page.locator('#go-advanced').click();
   assert.equal(await page.locator('#target-score').inputValue(),'100');assert.equal(await page.locator('#base-duration').inputValue(),'60');
-  await page.locator('#finish-rounds').check();await page.locator('#advanced-done').click();
-  assert.equal(await page.locator('#quick-score-choices').isVisible(),false);
-  await page.locator('#go-advanced').click();await page.locator('#finish-score').check();
+  await page.locator('#finish-rounds').check();await setupPlayers(page);
+  assert.equal(await page.locator('#finish-score-settings').isVisible(),false);
+  await setupRules(page);await page.locator('#finish-score').check();
   for(const [id,value] of [['target-score','35'],['base-duration','75']])await page.locator('#'+id).evaluate((el,value)=>{el.value=value;el.dispatchEvent(new Event('input',{bubbles:true}))},value);
-  await page.locator('#advanced-done').click();
+  await setupPlayers(page);
   assert.equal(await page.locator('#score-goal-preview').textContent(),'35 очков');assert.equal(await page.locator('#base-duration-value').textContent(),'75 с');
-  assert.equal(await page.locator('.quick-choices .is-chosen').count(),0,'Custom slider values must not be rounded to quick options');
-  await page.locator('#go-advanced').click();await settle(page,'scene-advanced');
-  for(const id of ['mode-settings','content-settings'])assert.equal(await page.locator('#'+id).evaluate(el=>el.open),false);
+  assert.equal(await page.locator('#target-score').inputValue(),'35');assert.equal(await page.locator('#base-duration').inputValue(),'75','Custom values must not be rounded');
+  await setupRules(page);await settle(page,'scene-advanced');
+  assert.equal(await page.locator('#mode-toggles').isVisible(),true);assert.equal(await page.locator('#content-toggles').isVisible(),true);
   assert.equal(await page.locator('#mode-selection-count').textContent(),'8 ИЗ 8');assert.equal(await page.locator('#content-selection-count').textContent(),'3 ИЗ 3');
   const saved=await page.evaluate(()=>localStorage.getItem(STORAGE_KEY));
-  await page.locator('#mode-settings > summary').click();await page.locator('#mode-settings > summary').click();
+  await page.locator('#wizard-extra > summary').click();await page.locator('#wizard-extra > summary').click();
   assert.equal(await page.evaluate(()=>localStorage.getItem(STORAGE_KEY)),saved,'Folding must not alter stored settings');
-  await page.locator('#mode-settings > summary').click();await scrollFold(page,'mode-settings');await checkGrid(page);await fitPage(page);
+  await setupFold(page,'mode-settings');await scrollFold(page,'mode-settings');await checkGrid(page);await fitPage(page);
   if(device.name==='phone')await capture(page,{path:'artifacts/quip-mobile-layout/task005-phone-modes-all.png'});
   const visuals=()=>tile(page,'talk').evaluate(el=>{const s=getComputedStyle(el.querySelector('.mode-tile')),i=getComputedStyle(el.querySelector('img'));
-   return {border:s.borderColor,shadow:s.boxShadow,opacity:i.opacity,filter:i.filter};});
+   return {border:s.borderColor,shadow:s.boxShadow,opacity:s.opacity,filter:i.filter};});
   const selected=await visuals();
   for(const id of modeIds){
    await tile(page,id).click();assert.equal(await modeInput(page,id).isChecked(),false);
@@ -97,7 +91,7 @@ async function settingsUI(browser,url,device){
   await tile(page,'approx').click();assert.equal(await modeInput(page,'approx').isChecked(),true);
   assert.equal(await page.locator('#mode-selection-count').textContent(),'1 ИЗ 8');
   for(const id of ['talk','mime','secret'])await tile(page,id).click();
-  await page.locator('#mode-settings > summary').click();await page.locator('#content-settings > summary').click();
+  await setupFold(page,'mode-settings');await setupFold(page,'content-settings');
   for(const id of ['word','phrase','idiom']){
    await typeTile(page,id).click();assert.equal(await page.locator('#content-selection-count').textContent(),'2 ИЗ 3');
    await typeTile(page,id).click();assert.equal(await page.locator('#content-selection-count').textContent(),'3 ИЗ 3');
@@ -105,20 +99,20 @@ async function settingsUI(browser,url,device){
   await typeTile(page,'word').click();await typeTile(page,'phrase').click();await typeTile(page,'idiom').click();
   assert.equal(await page.locator('#content-toggles input[value="idiom"]').isChecked(),true);
   assert.equal(await page.locator('#content-selection-count').textContent(),'1 ИЗ 3');
-  await typeTile(page,'word').click();await page.locator('#content-settings > summary').click();
+  await typeTile(page,'word').click();await setupFold(page,'content-settings');
   const expected=await page.evaluate(()=>({modes:options.modes,types:options.promptTypes,duration:options.duration,target:options.targetScore}));
-  await page.locator('#advanced-done').click();await page.locator('#go-advanced').click();
-  for(const id of ['mode-settings','content-settings'])assert.equal(await page.locator('#'+id).evaluate(el=>el.open),false);
-  await page.reload({waitUntil:'load'});await openSetup(page);await page.locator('#go-advanced').click();
+  await setupPlayers(page);await setupRules(page);
+  assert.equal(await page.locator('#mode-toggles').isVisible(),true);assert.equal(await page.locator('#content-toggles').isVisible(),true);
+  await page.reload({waitUntil:'load'});await openSetup(page);await setupRules(page);
   assert.deepEqual(await page.evaluate(()=>({modes:options.modes,types:options.promptTypes,duration:options.duration,target:options.targetScore})),expected);
   assert.equal(await page.locator('#mode-selection-count').textContent(),'4 ИЗ 8');assert.equal(await page.locator('#content-selection-count').textContent(),'2 ИЗ 3');
-  for(const id of ['mode-settings','content-settings'])assert.equal(await page.locator('#'+id).evaluate(el=>el.open),false);
-  await page.locator('#mode-settings > summary').click();await scrollFold(page,'mode-settings');await checkGrid(page);
+  assert.equal(await page.locator('#mode-toggles').isVisible(),true);assert.equal(await page.locator('#content-toggles').isVisible(),true);
+  await setupFold(page,'mode-settings');await scrollFold(page,'mode-settings');await checkGrid(page);
   if(device.name==='phone'){await settle(page,'scene-advanced');await capture(page,{path:'artifacts/quip-mobile-layout/task005-phone-modes-mixed.png'});}
   await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
-  await context.setOffline(true);await page.reload({waitUntil:'load'});await openSetup(page);await page.locator('#go-advanced').click();
+  await context.setOffline(true);await page.reload({waitUntil:'load'});await openSetup(page);await setupRules(page);
   assert.deepEqual(await page.evaluate(()=>({modes:options.modes,types:options.promptTypes,duration:options.duration,target:options.targetScore})),expected);
-  await page.locator('#mode-settings > summary').click();await checkGrid(page);await fitPage(page);
+  await setupFold(page,'mode-settings');await checkGrid(page);await fitPage(page);
   assert.deepEqual(errors,[]);console.log('task005 settings PASS',device.name);
  }finally{await context.close();}
 }

@@ -1,4 +1,5 @@
 'use strict';
+const {setupStep,setupRules,setupPlayers,startFromSetup,setupBack,setupFold,modeCenter,closeModeCenter}=require('./wizard-ui.cjs');
 const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const assert=require('node:assert/strict');
 module.exports=async function dictionaryBrowser(browser,url){
@@ -6,7 +7,7 @@ module.exports=async function dictionaryBrowser(browser,url){
  try{
   await page.goto(url,{waitUntil:'load'});await provisionProfiles(page);await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();
   await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.promptTypes=['word'];options.complications=false;options.dice=false;options.difficulty='easy';Math.random=()=>.99999});
-  await page.locator('#start-game').click();await page.locator('[data-action="roll"]').click();
+  await startFromSetup(page);await page.locator('[data-action="roll"]').click();
   assert.equal(await page.evaluate(()=>game.contentPack.version),await page.evaluate(()=>latestGeneralPackSelection().version));
   // This deterministic random value selects the last eligible Easy word. As catalogs grow,
   // verify the selected card comes from the pinned pool instead of locking an obsolete label.
