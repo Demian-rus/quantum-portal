@@ -58,8 +58,8 @@ test('TASK009 A screenshots require an explicit diagnostic flag',async()=>{
 
 test('V84 content integration adds exactly 500 reviewed cards without altering old pool revisions',()=>{
  const added=['geography-expansion-v1','geography-expansion-v2','science-expansion-v1','science-expansion-v2','science-expansion-v3','idiom-expansion-v1','idiom-expansion-v2','science-expansion-v4','general-expansion-v2'];
- const all=base.cards,existing=all.filter(c=>!added.includes(c.pack)&&c.pack!=='general-release-v89-revisions'&&!['general-diversity-v1','general-diversity-v2','general-diversity-v3','general-diversity-v4','general-diversity-v5','general-diversity-v6','general-diversity-v7','general-diversity-v8','general-diversity-v9','general-diversity-v10','general-diversity-v11','general-diversity-v12','general-diversity-v13','general-diversity-v14','general-diversity-v15','general-diversity-v16','general-diversity-v17','general-diversity-v18'].includes(c.pack)),fresh=all.filter(c=>added.includes(c.pack));
- assert.equal(existing.length,4917);assert.equal(fresh.length,500);assert.equal(all.length,6326);
+ const all=base.cards,existing=all.filter(c=>!added.includes(c.pack)&&c.pack!=='general-release-v89-revisions'&&!['general-diversity-v1','general-diversity-v2','general-diversity-v3','general-diversity-v4','general-diversity-v5','general-diversity-v6','general-diversity-v7','general-diversity-v8','general-diversity-v9','general-diversity-v10','general-diversity-v11','general-diversity-v12','general-diversity-v13','general-diversity-v14','general-diversity-v15','general-diversity-v16','general-diversity-v17','general-diversity-v18','general-diversity-v19'].includes(c.pack)),fresh=all.filter(c=>added.includes(c.pack));
+ assert.equal(existing.length,4917);assert.equal(fresh.length,500);assert.equal(all.length,6376);
  assert.deepEqual(Object.fromEntries(added.map(name=>[name,fresh.filter(c=>c.pack===name).length])),{
   'geography-expansion-v1':50,'geography-expansion-v2':100,'science-expansion-v1':50,'science-expansion-v2':50,
   'science-expansion-v3':50,'idiom-expansion-v1':50,'idiom-expansion-v2':50,
