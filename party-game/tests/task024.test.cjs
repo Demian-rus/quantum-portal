@@ -1,4 +1,5 @@
 'use strict';
+const {normalizeCatalogNavigation}=require('./catalog-count-contract.cjs');
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
 const {normalizeWizardModeCopy}=require('./wizard-contract.cjs');
 const {createSimulation}=require('../scripts/game-simulation.cjs'),base='c4220005d43e2a86d448466617698b2ed069455a',root=path.resolve(__dirname,'../..');
@@ -19,7 +20,7 @@ test('TASK024 render-only views keep state, RAW, profiles, source conditions and
 });
 test('TASK024 published mechanisms, history and all unrelated runtime scripts remain byte-exact',()=>{
  const html=git('show',base+':party-game/index.html'),allowed=['round-views.js','timer-view.js','round-presentation.js','cards.js','content-packs.js'];
- for(const [,name]of html.matchAll(/<script src="\.\/([^?]+\.js)\?/g))if(!allowed.includes(name))assert.equal(name==='mode-config.js'?normalizeWizardModeCopy(fs.readFileSync(path.join(root,'party-game',name),'utf8')):fs.readFileSync(path.join(root,'party-game',name),'utf8'),git('show',base+':party-game/'+name),name);
+ for(const [,name]of html.matchAll(/<script src="\.\/([^?]+\.js)\?/g))if(!allowed.includes(name))assert.equal(name==='mode-config.js'?normalizeWizardModeCopy(normalizeCatalogNavigation(fs.readFileSync(path.join(root,'party-game',name),'utf8'))):normalizeCatalogNavigation(fs.readFileSync(path.join(root,'party-game',name),'utf8')),git('show',base+':party-game/'+name),name);
  const read=n=>fs.readFileSync(path.join(root,'party-game',n),'utf8'),segment=(s,a,b)=>s.slice(s.indexOf(a),s.indexOf(b,s.indexOf(a)));
  for(const [name,a,b]of [['round-presentation.js','function showApprox()','function blitzStatus()'],['round-presentation.js','function displayedRoundCondition(','// Independent lower grid row'],['timer-view.js','function updateTimerVisual(','\u0000'],['round-views.js','function showJudge()','\u0000']]){
   const current=read(name),old=git('show',base+':party-game/'+name);
@@ -32,5 +33,5 @@ test('TASK024 published mechanisms, history and all unrelated runtime scripts re
 test('TASK024 views remain intact with v89 content resource versions and no sync',()=>{
  const html=fs.readFileSync(path.join(root,'party-game/index.html'),'utf8'),sw=fs.readFileSync(path.join(root,'party-game/sw.js'),'utf8');
  const scripts=[...html.matchAll(/<script src="\.\/([^"?]+\.js\?v=\d+)"/g)].map(m=>m[1]);assert.equal(scripts.length,53);for(const name of scripts)assert.ok(sw.includes("'./"+name+"'"),name);
- assert.match(sw,/kvip-pwa-v92-20261027-teams-integration-candidate/);assert.ok(!html.includes('feedback-sync'));assert.ok(html.includes('cards.js?v=10')&&html.includes('content-packs.js?v=18'));
+ assert.match(sw,/kvip-pwa-v93-20261027-teams-counters-candidate/);assert.ok(!html.includes('feedback-sync'));assert.ok(html.includes('cards.js?v=11')&&html.includes('content-packs.js?v=19'));
 });

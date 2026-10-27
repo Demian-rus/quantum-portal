@@ -74,15 +74,33 @@ function openPreferences() {
   renderReportsCount();
   setScene('preferences');
 }
-// Counts come from the current versioned packs, never from a hard-coded UI total.
-function contentCountLabel(n){return '('+n.toLocaleString('ru-RU')+' заданий)';}
+// Counts come from the installed versioned catalogs, independent of user saves.
+// This preview cache never authorizes START; the game performs full validation.
+let gameTypeCountCache=null;
+function contentCountLabel(n){return n.toLocaleString('ru-RU')+' заданий';}
 function contentPackCount(pack){return new Set(pack.criteria.cardIds).size;}
+function gameTypeCountSnapshot(){
+ const key=JSON.stringify(options);
+ if(!gameTypeCountCache||gameTypeCountCache.cards!==PARTY_CARDS||gameTypeCountCache.questions!==QUIP_APPROX_QUESTIONS||gameTypeCountCache.packs!==QUIP_CONTENT_PACKS)
+  gameTypeCountCache={cards:PARTY_CARDS,questions:QUIP_APPROX_QUESTIONS,packs:QUIP_CONTENT_PACKS,entries:new Map()};
+ const cache=gameTypeCountCache.entries;
+ if(!cache.has(key)){
+  const general=getContentPack(latestGeneralPackSelection()),themes=listThematicPacks(options);
+  const active=themes.filter(entry=>entry.available&&entry.pack.enabled);
+  const snapshot={general:contentPackCount(general),thematic:active.reduce((sum,entry)=>sum+contentPackCount(entry.pack),0),themes};
+  if(cache.size>=8)cache.delete(cache.keys().next().value);
+  cache.set(key,snapshot);
+ }
+ return cache.get(key);
+}
 function renderGameTypeCounts(){
- const general=getContentPack(latestGeneralPackSelection());
- const activeThemes=listThematicPacks(options).filter(entry=>entry.pack.enabled&&entry.pack.criteria.cardIds.length);
- const thematicIds=new Set(activeThemes.flatMap(entry=>entry.pack.criteria.cardIds));
- $('standard-content-count').textContent=contentCountLabel(contentPackCount(general));
- $('thematic-content-count').textContent=contentCountLabel(thematicIds.size);
+ try{const counts=gameTypeCountSnapshot();
+  $('standard-content-count').textContent=contentCountLabel(counts.general);
+  $('thematic-content-count').textContent=contentCountLabel(counts.thematic);
+ }catch{
+  $('standard-content-count').textContent='Количество недоступно';
+  $('thematic-content-count').textContent='Количество недоступно';
+ }
 }
 function openGameType(){renderGameTypeCounts();setScene('game-type');}
 function rememberPackSettings(){
@@ -96,7 +114,7 @@ function changeSetupPack(selection,from){
 }
 function selectStandardGame(){changeSetupPack(latestGeneralPackSelection(),'game-type');}
 function renderThemes(){
- const entries=listThematicPacks(options);
+ const entries=gameTypeCountSnapshot().themes;
  $('theme-list').innerHTML=entries.map(({pack,available})=>
   '<button type="button" class="theme-choice" data-theme="'+pack.id+'" data-version="'+pack.version+'"'+
   (available?'':' disabled aria-disabled="true"')+'><strong>'+escapeHTML(pack.name)+'</strong><span>'+

@@ -54,6 +54,7 @@
  function attach(){
   if(installed)return;installed=true;
   move(document.querySelector('.game-type-choices'),'wizard-catalog');
+  for(const id of ['standard','thematic'])$(id+'-game').insertBefore($(id+'-content-count'),$(id+'-game').querySelector('strong').nextSibling);
   move($('themes-caption'),'wizard-theme-copy');move($('theme-list'),'wizard-theme-list');
   move(document.querySelector('#setup-panel .setup-grid'),'wizard-players');move($('setup-profile-notice'),'wizard-players');
   move(document.querySelector('#setup-panel .award-policy'),'wizard-award');
@@ -96,6 +97,7 @@
  }
  function renderMeta(){
   if(!installed)return;
+  renderGameTypeCounts();
   let pack;try{pack=getContentPack(options.contentPack);}catch{}
   $('wizard-pack-current').textContent='Выбрано: '+(pack?.name||'Набор недоступен');
   const profiles=selectedPlayerProfiles();
