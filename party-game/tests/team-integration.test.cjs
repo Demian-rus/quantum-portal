@@ -15,7 +15,7 @@ test('integration imports original team contracts without changing engine, roles
  for(const f of ['team-format.js','team-storage.js','team-engine.js','team-game.css','tests/team-engine.test.cjs','tests/team-foundation-browser.cjs','tests/team-safety-browser.cjs'])assert.equal(read(f),old(source,f),f);
 });
 test('published engine controllers and accepted game CSS remain exact; catalog expansion is independently guarded',()=>{
- const scripts=[...old(published,'index.html').matchAll(/<script src="\\.\\/([^?]+\\.js)\\?/g)].map(m=>m[1]);assert.equal(scripts.length,49);
+ const scripts=[...old(published,'index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);assert.equal(scripts.length,49);
  for(const f of [...scripts.filter(f=>!['setup-wizard.js','cards.js','content-packs.js'].includes(f)),'style.css'])assert.equal(read(f),old(published,f),f);
  const api=require('../scripts/content.cjs'),dataset=api.readDataset(),rendered=api.render(dataset);
  for(const f of ['cards.js','content-packs.js'])assert.equal(read(f),rendered[f],f+' is exact generator output');
