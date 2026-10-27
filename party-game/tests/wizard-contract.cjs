@@ -4,7 +4,7 @@
 const OLD='Отгадай все 5 слов за отведённое время! За 5 из 5 получи 3 очка. За неполный результат — 0.';
 const NEW='Отгадайте все 3 слова за один таймер. За 3 из 3 — 2 базовых очка, за неполный результат — 0.';
 function normalizeWizardModeCopy(s){return s.replace(NEW,OLD).replace("rule:mode.id==='blitz'?'"+OLD+"':mode.rule,",'');}
-function withoutCounterShell(s){return s.replaceAll('setup-wizard.js?v=6','setup-wizard.js?v=5').replaceAll('setup-wizard.css?v=3','setup-wizard.css?v=2').replaceAll('menu-navigation.js?v=9','menu-navigation.js?v=7').replaceAll('cards.js?v=11','cards.js?v=10').replaceAll('content-packs.js?v=19','content-packs.js?v=18').replace('kvip-pwa-v94-20261027-teams-counts-fast-candidate','kvip-pwa-v92-20261027-teams-integration-candidate');}
+function withoutCounterShell(s){return s.replaceAll('setup-wizard.js?v=7','setup-wizard.js?v=5').replaceAll('setup-wizard.css?v=3','setup-wizard.css?v=2').replaceAll('menu-navigation.js?v=9','menu-navigation.js?v=7').replaceAll('cards.js?v=11','cards.js?v=10').replaceAll('content-packs.js?v=19','content-packs.js?v=18').replace('kvip-pwa-v95-20261027-teams-counts-ready-candidate','kvip-pwa-v92-20261027-teams-integration-candidate');}
 function withoutTeamShell(s){
  s=withoutCounterShell(s);
  for(const [name,version] of [['team-format',1],['team-storage',4],['team-engine',1],['team-controller',7]])s=s.replace('  <script src="./'+name+'.js?v='+version+'" defer></script>\n','').replace(",'./"+name+".js?v="+version+"'",'');

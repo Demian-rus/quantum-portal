@@ -167,5 +167,7 @@
  // without changing its history state or introducing another setup route.
  window.addEventListener('popstate',syncURL);
  syncURL();
+ // Prepare installed catalog counts during boot, before the first trusted tap.
+ renderGameTypeCounts();
  renderMeta();
 })();

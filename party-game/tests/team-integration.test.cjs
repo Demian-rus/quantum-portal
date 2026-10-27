@@ -7,7 +7,7 @@ const read=f=>normalizeCatalogNavigation(fs.readFileSync(path.join(root,'party-g
 test('integration keeps published TASK030 runtime and sole wizard except exact format hooks',()=>{
  for(const f of ['index.html','sw.js'])assert.equal(withoutTeamShell(read(f)),old(published,f),f);
  const wizard=read('setup-wizard.js').replace('<button id="wizard-format-duel" type="button" aria-pressed="true">1 НА 1</button><button id="wizard-format-teams" type="button" aria-pressed="false" disabled>2 НА 2</button>','<button type="button" aria-pressed="true">1 НА 1</button><button type="button" disabled>КОМАНДАМИ · СКОРО</button>').replace("  scene.dispatchEvent(new CustomEvent('quip:setup-rendered'));\n",'');
- assert.equal(wizard.replace("  for(const id of ['standard','thematic'])$(id+'-game').insertBefore($(id+'-content-count'),$(id+'-game').querySelector('strong').nextSibling);\n",'').replace('  renderGameTypeCounts();\n',''),old(published,'setup-wizard.js'));
+ assert.equal(wizard.replace("  for(const id of ['standard','thematic'])$(id+'-game').insertBefore($(id+'-content-count'),$(id+'-game').querySelector('strong').nextSibling);\n",'').replace('  renderGameTypeCounts();\n','').replace(' // Prepare installed catalog counts during boot, before the first trusted tap.\n renderGameTypeCounts();\n',''),old(published,'setup-wizard.js'));
  assert.equal(normalizeWizardCountCSS(read('setup-wizard.css')),old(published,'setup-wizard.css'));
  assert.doesNotMatch(read('team-controller.js'),/wizard-legacy|setup-interface-toggle|setEnabled|function detach/);
 });
