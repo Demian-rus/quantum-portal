@@ -44,7 +44,7 @@
   '<section data-wizard-page="2"><div class="wizard-formats" role="group" aria-label="Формат партии"><button id="wizard-format-duel" type="button" aria-pressed="true">1 НА 1</button><button id="wizard-format-teams" type="button" aria-pressed="false" disabled>2 НА 2</button></div><div id="wizard-players"></div><div id="wizard-award"></div></section>'+
   '<section data-wizard-page="3"><div id="wizard-difficulty"></div><div id="wizard-finish"></div><div id="wizard-time"></div><div class="wizard-mode-heading"><button type="button" id="wizard-mode-settings">НАСТРОЙКИ РЕЖИМОВ ↗</button></div><h2>АКТИВНЫЕ РЕЖИМЫ</h2><div id="wizard-modes"></div><details id="wizard-extra"><summary>ДОПОЛНИТЕЛЬНЫЕ ПРАВИЛА</summary><div id="wizard-extra-rules"></div><h3>ЧТО ЗАГАДЫВАТЬ</h3><div id="wizard-content"></div></details></section>'+
   '<section data-wizard-page="4"><p>Проверьте настройки. Кнопка ниже начнёт настоящую партию.</p><dl id="wizard-summary"></dl><div id="wizard-start-notice"></div></section>'+
-  '<section id="wizard-rules" hidden><p>Действующие правила. Очки и время — справочные сведения. Источники «Напой» можно изменить.</p><div id="wizard-rule-list"></div><button type="button" id="wizard-rules-done" class="button button-primary">ГОТОВО · ВЕРНУТЬСЯ</button></section>'+
+  '<section id="wizard-rules" hidden><p>Откройте правила нужного режима. Настройки под ними действуют для этой партии.</p><div id="wizard-rule-list"></div><button type="button" id="wizard-rules-done" class="button button-primary">ГОТОВО · ВЕРНУТЬСЯ</button></section>'+
   '</div></div><footer class="wizard-footer"><span id="wizard-footer-caption"></span><button type="button" id="wizard-next" class="button button-primary">ДАЛЕЕ →</button><div id="wizard-start"></div></footer>';
  $('app').append(scene);
  function remember(){if(activeScene==='wizard')positions.set(ruleCenter?'rules':step+':'+themes,{scroll:$('wizard-scroll').scrollTop,focus:document.activeElement?.id});}
@@ -68,13 +68,12 @@
     art:label.querySelector('img').getAttribute('src'),copy:label.querySelector('b').textContent}];
   }));
   // The same delegated checkbox handler works for every entry in the registry.
-  $('mode-toggles').innerHTML=MODE_LIST.map(mode=>'<div class="mode-choice"><label><input type="checkbox" value="'+mode.id+'" aria-label="'+escapeHTML(mode.title)+'"><span class="mode-tile"><img class="mode-tile-art" alt="" draggable="false"><span class="mode-tile-copy"><strong>'+escapeHTML(mode.title)+'</strong><b></b></span></span></label></div>').join('');
+  $('mode-toggles').innerHTML=MODE_LIST.map(mode=>'<div class="mode-choice"><section class="wizard-rule" data-wizard-rule="'+mode.id+'"><header><img src="'+MODE_ASSETS[mode.id]+'" alt=""><div><h2>'+escapeHTML(mode.title)+'</h2><p class="wizard-mode-state"></p></div><strong class="wizard-reward"></strong></header><details class="wizard-rule-details"><summary>Правила</summary><p class="wizard-mode-time"></p><div class="wizard-rule-copy"></div></details><div class="wizard-mode-settings"><h3>Настройки режима</h3><label><input type="checkbox" value="'+mode.id+'" aria-label="'+escapeHTML(mode.title)+'"><span class="mode-tile"><img class="mode-tile-art" alt="" draggable="false"><span class="mode-tile-copy"><strong>'+escapeHTML(mode.title)+'</strong><b></b></span></span><span class="wizard-mode-enabled">Включить режим</span></label>'+(mode.id==='sing'?'<div id="wizard-song"></div>':'')+'</div></section></div>').join('');
   for(const input of $('mode-toggles').querySelectorAll('input')){
    const saved=tileStates.get(input.value);if(!saved){renderedStamp=null;continue;}
    input.checked=saved.checked;input.disabled=saved.disabled;const label=input.closest('label');label.title=saved.title;
    if(saved.art)label.querySelector('img').setAttribute('src',saved.art);label.querySelector('b').textContent=saved.copy;
   }
-  $('wizard-rule-list').innerHTML=MODE_LIST.map(mode=>'<section class="wizard-rule" data-wizard-rule="'+mode.id+'"><header><img src="'+MODE_ASSETS[mode.id]+'" alt=""><div><h2>'+escapeHTML(mode.title)+'</h2><p class="wizard-mode-state"></p></div><strong class="wizard-reward"></strong></header><p class="wizard-mode-time"></p><div class="wizard-rule-copy"></div>'+(mode.id==='sing'?'<div id="wizard-song"></div>':'')+'</section>').join('');
   move($('mode-song-sources'),'wizard-song');
  }
  function modeRules(){
@@ -91,9 +90,11 @@
    const timedConfigs=mode.id==='secret'?MODE_LIST.map(m=>getModeConfig(m.id)).filter(m=>m.secretMethod):[config];
    const durations=[...new Set(timedConfigs.map(m=>options.duration+m.durationBonus))].sort((a,b)=>a-b);
    row.querySelector('.wizard-mode-time').textContent=config.usesTimer?'Время: '+durations.join(' или ')+' с'+(mode.id==='secret'?', по выбранному способу':''):'Без таймера';
-   row.querySelector('.wizard-rule-copy').innerHTML=guide.blocks.filter(([title])=>title!=='Время').map(([title,copy])=>'<h3>'+escapeHTML(title)+'</h3><p>'+escapeHTML(copy)+'</p>').join('');
+   row.querySelector('.wizard-rule-copy').innerHTML=guide.blocks.map(([title,copy])=>'<h3>'+escapeHTML(title)+'</h3><p>'+escapeHTML(copy)+'</p>').join('');
   }
-  $('mode-options-backdrop').dataset.mode='sing';renderModeSettings();
+  // Reuse the eligibility already painted by the real settings validator.
+  const sing=$('mode-toggles').querySelector('input[value="sing"]');
+  $('mode-options-backdrop').dataset.mode='sing';renderModeSettings(sing?!sing.disabled:undefined);
  }
  function renderMeta(){
   if(!installed)return;
@@ -108,12 +109,16 @@
   scene.dispatchEvent(new CustomEvent('quip:setup-rendered'));
  }
  function show(next=step,showThemes=false,showRules=false,restore=false){
+  const enteringRules=showRules&&!ruleCenter;
   remember();attach();step=next;themes=showThemes;ruleCenter=showRules;
+  scene.classList.toggle('wizard-mode-center',showRules);
+  move($('mode-toggles'),showRules?'wizard-rule-list':'wizard-modes');
+  if(enteringRules)scene.querySelectorAll('.wizard-rule-details').forEach(node=>{node.open=false;});
   legacy.setScene('home');$('scene-home').hidden=true;
   activeScene='wizard';document.body.dataset.screen='setup';document.body.classList.add('wizard-screen');scene.hidden=false;
   refreshOptions();
   $('wizard-kicker').textContent=showRules?'ОБЩИЙ ЦЕНТР':('ШАГ '+step+' ИЗ 4');
-  $('wizard-title').textContent=showRules?'Правила режимов':themes?'Выберите тему':['Во что сыграем?','Кто играет?','Поймайте свой ритм','Всё готово?'][step-1];
+  $('wizard-title').textContent=showRules?'Настройки режимов':themes?'Выберите тему':['Во что сыграем?','Кто играет?','Поймайте свой ритм','Всё готово?'][step-1];
   scene.querySelectorAll('[data-wizard-page]').forEach(node=>{node.hidden=showRules||Number(node.dataset.wizardPage)!==step;});
   scene.querySelectorAll('[data-wizard-step]').forEach(node=>{if(Number(node.dataset.wizardStep)===step)node.setAttribute('aria-current','step');else node.removeAttribute('aria-current');});
   $('wizard-catalog').hidden=themes;$('wizard-themes').hidden=!themes;$('wizard-rules').hidden=!showRules;

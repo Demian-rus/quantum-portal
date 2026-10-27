@@ -1,5 +1,5 @@
 'use strict';
-function renderModeSettings(){
+function renderModeSettings(validatedAvailability){
   const id=$('mode-options-backdrop').dataset.mode;
   if(!DEFAULT_MODES.includes(id))return;
   $('mode-options-title').textContent=getMode(id).title;
@@ -13,8 +13,11 @@ function renderModeSettings(){
     button.setAttribute('aria-pressed',String(selected));button.classList.toggle('is-selected',selected);
   });
   const settings={...options,modes:['sing']};
-  let available=false;
-  try{available=checkContentPack(options.contentPack,{...settings,...setupSongPolicy(settings)}).available;}catch{}
+  let available=validatedAvailability;
+  if(typeof available!=='boolean'){
+    available=false;
+    try{available=checkContentPack(options.contentPack,{...settings,...setupSongPolicy(settings)}).available;}catch{}
+  }
   $('mode-source-availability').hidden=available;
   $('mode-source-availability').textContent=available?'':'Для «Напой» нет заданий с этими источниками на выбранной сложности. В «Секретке» песенный способ будет исключён, если доступны другие способы. Для прямого «Напой» измените источники, сложность или набор.';
 }
