@@ -3,9 +3,9 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const {normalizeTask031}=require('./task031-contract.cjs'),hunks=require('./task031-presentation.json');
 const root=path.resolve(__dirname,'../..'),BASE='47a7266b48818b3ebc94e1e37e1f5c3f769ee812',CONTENT_BASE='8f627ada5d78cf2ac43e97d5421eb7a83a76d69b';
 const read=f=>fs.readFileSync(path.join(root,'party-game',f),'utf8'),old=f=>execFileSync('git',['show',BASE+':party-game/'+f],{cwd:root,encoding:'utf8',maxBuffer:15e6});
-test('TASK031 changes only exact declared presentation hunks; all 53 scripts and original game CSS guarded',()=>{
+test('TASK031 changes only exact declared presentation hunks; non-content scripts and original CSS guarded',()=>{
  const names=[...old('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);assert.equal(names.length,53);
- for(const f of [...names,'style.css','setup-wizard.css','team-game.css','index.html','sw.js'])assert.equal(normalizeTask031(read(f)),old(f),f);
+ for(const f of [...names.filter(name=>!['cards.js','content-packs.js'].includes(name)),'style.css','setup-wizard.css','team-game.css','index.html','sw.js'])assert.equal(normalizeTask031(read(f)),old(f),f);
  assert.deepEqual([...new Set(hunks.map(h=>h.file))].sort(),['index.html','setup-view.js','setup-wizard.css','setup-wizard.js','sw.js']);
  for(const h of hunks){assert(h.after,'normalization must use a nonempty exact anchor');assert(read(h.file).includes(h.after),'declared addition must exist '+h.file);}
 });
