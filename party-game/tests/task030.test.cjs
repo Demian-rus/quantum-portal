@@ -15,16 +15,16 @@ test('TASK030 preserves the exact TASK029 validation stamp and scoped memo',()=>
  const s=read('setup-wizard.js');assert.doesNotMatch(s,/wizard-legacy|setup-interface-toggle|setEnabled|function detach|let enabled/);assert.match(s,/searchParams\.delete\('setup'\)/);assert.match(s,/renderOptions=function/);
 });
 
-// Intentional G26–G41 catalog expansion: exact generated output and immutable historic selections remain mandatory.
+// Intentional G26–G42 catalog expansion: exact generated output and immutable historic selections remain mandatory.
 test('TASK027/TASK030 allow only generated content expansion while guarding exact 6000 published IDs',()=>{
  const api=require('../scripts/content.cjs'),data=api.readDataset(),output=api.render(data);
  for(const file of ['cards.js','content-packs.js'])assert.equal(read(file),output[file],file+' must match deterministic generator');
  const published=data.packs.find(p=>p.id==='general'&&p.version===27);
- const latest=data.packs.find(p=>p.id==='general'&&p.version===43);
+ const latest=data.packs.find(p=>p.id==='general'&&p.version===44);
  assert.ok(published&&latest);
  assert.equal(published.criteria.cardIds.length,6000);
- assert.equal(latest.criteria.cardIds.length,6800);
+ assert.equal(latest.criteria.cardIds.length,6850);
  assert.deepEqual(latest.criteria.cardIds.slice(0,6000),published.criteria.cardIds);
- assert.equal(new Set(latest.criteria.cardIds).size,6800);
+ assert.equal(new Set(latest.criteria.cardIds).size,6850);
  assert.ok(api.validate(data).ok,'Full catalog validator remains mandatory');
 });
