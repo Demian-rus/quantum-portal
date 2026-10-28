@@ -1608,5 +1608,15 @@
       "science"
     ],
     "pack": "general-editorial-v1"
+  },
+  {
+    "id": "word-071001",
+    "text": "РОБОТ-ДОСТАВЩИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-editorial-v1"
   }
 ]
