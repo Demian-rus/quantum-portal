@@ -66,7 +66,13 @@ test('unreviewed tracked payload is excluded; an allowlist attempting private de
  function syntheticCommit(entries){const env={...process.env,GIT_INDEX_FILE:path.join(dir,'index'),GIT_AUTHOR_NAME:'Synthetic test',GIT_AUTHOR_EMAIL:'test@example.invalid',GIT_COMMITTER_NAME:'Synthetic test',GIT_COMMITTER_EMAIL:'test@example.invalid'},run=(args,input)=>execFileSync('git',args,{cwd:ROOT,env,input}).toString().trim();run(['read-tree',head()]);for(const [name,text]of entries){const blob=run(['hash-object','-w','--stdin'],text);run(['update-index','--add','--cacheinfo','100644,'+blob+','+name]);}return run(['commit-tree',run(['write-tree']),'-p',head(),'-m','Synthetic local isolation fixture']);}
  try{
   const s=syntheticCommit([['party-game/assets/fictional-unreviewed.json','{"text":"FICTIONAL ONLY"}']]),r=build({sha:s,out:path.join(dir,'isolated')});assert(!r.files.some(f=>f.path.includes('fictional-unreviewed')));
+  const html=git('show',head()+':party-game/index.html').toString().replace('</head>','<link rel="stylesheet" href="./assets/fictional-free.css?v=1"></head>'),withReference=syntheticCommit([['party-game/index.html',html],['party-game/assets/fictional-free.css','/* FICTIONAL FREE TEST ONLY */']]);assert.throws(()=>build({sha:withReference,out:path.join(dir,'missing-reviewed-resource')}),/Unreviewed public resource/);
   const allow=JSON.parse(git('show',head()+':commercial/build/public-files.json'));allow.files.push('premium/fictional.json');const bad=syntheticCommit([['commercial/build/public-files.json',JSON.stringify(allow)]]);assert.throws(()=>build({sha:bad,out:path.join(dir,'bad')}),/Non-public resource/);
   for(const variant of ['debug-preview','future-android-wrapper','future-ios-wrapper']){const output=path.join(dir,variant),b=build({sha:head(),out:output,variant});assert.equal(b.variant,variant);assert.equal(b.apkProduced,false);assert.equal(b.ipaProduced,false);assert.equal(fs.existsSync(path.join(output,'DEBUG-ONLY.txt')),variant==='debug-preview');}
  }finally{fs.rmSync(dir,{recursive:true,force:true});}
+});
+test('future protected API has a separate origin; existing PWA worker cannot cache that origin',()=>{
+ const caddy=fs.readFileSync(path.join(ROOT,'commercial/deploy/Caddyfile.example'),'utf8'),publicSite=caddy.slice(caddy.indexOf(':8080 {'),caddy.indexOf(':8081 {'));
+ assert(!publicSite.includes('reverse_proxy'));assert.match(caddy,/:8081 \{[\s\S]*Cache-Control "no-store"[\s\S]*reverse_proxy backend:8787/);
+ const worker=fs.readFileSync(path.join(ROOT,'party-game/sw.js'),'utf8');assert.match(worker,/new URL\(request.url\).origin!==self.location.origin\)return/);
 });

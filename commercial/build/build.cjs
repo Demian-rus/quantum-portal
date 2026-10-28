@@ -1,8 +1,19 @@
 'use strict';
-const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),{execFileSync}=require('node:child_process');
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),vm=require('node:vm'),{execFileSync}=require('node:child_process');
 const {fromPublicPacks}=require('../contracts/catalog.cjs');
 const ROOT=path.resolve(__dirname,'../..');
 function git(args){return execFileSync('git',args,{cwd:ROOT,maxBuffer:32*1024*1024});}
+function verifyResourceClosure(sha,allowed){
+ const html=git(['show',sha+':party-game/index.html']).toString(),sw=git(['show',sha+':party-game/sw.js']).toString(),core=sw.slice(sw.indexOf('const CORE='),sw.indexOf("self.addEventListener('install'"));
+ // Evaluate only the reviewed build-time CORE declaration (including its mode
+ // map), not worker lifecycle handlers. This is not an untrusted-code sandbox.
+ const resources=vm.runInNewContext(core+';CORE',Object.create(null),{timeout:100});if(!Array.isArray(resources)||resources.some(x=>typeof x!=='string'||!x.startsWith('./')))throw Error('Unsupported precache declaration');
+ const cached=new Set(resources);
+ function required(ref,file,precache=false){if(!ref.startsWith('./')&&!ref.startsWith('../'))return;const u=new URL(ref,'https://build.invalid/party-game/'+file),p=decodeURIComponent(u.pathname).replace(/^\/party-game\//,'');if(!u.pathname.startsWith('/party-game/')||!allowed.has(p))throw Error('Unreviewed public resource: '+ref);if(precache&&!cached.has('./'+p+u.search))throw Error('Missing offline resource: '+ref);}
+ for(const ref of resources)if(ref!=='./')required(ref,'index.html');
+ for(const m of html.matchAll(/(?:src|href)="(\.\/[^"#]+)"/g))required(m[1],'index.html',/\.(?:css|js)(?:\?|$)/.test(m[1]));
+ for(const file of allowed)if(file.endsWith('.css'))for(const m of git(['show',sha+':party-game/'+file]).toString().matchAll(/url\(['"]?(\.\.?\/[^'"\s)]+)['"]?\)/g))required(m[1],file);
+}
 function build({sha,out,variant='public-web'}){
  if(!/^[a-f0-9]{40}$/.test(sha)||git(['rev-parse',sha+'^{commit}']).toString().trim()!==sha)throw Error('Exact commit SHA required');
  if(!['public-web','debug-preview','future-android-wrapper','future-ios-wrapper'].includes(variant))throw Error('Unknown build target');
@@ -11,6 +22,7 @@ function build({sha,out,variant='public-web'}){
  // Read the reviewed allowlist from the SAME commit, never a dirty worktree.
  const allow=JSON.parse(git(['show',sha+':commercial/build/public-files.json']));
  if(allow.schemaVersion!==1||!Array.isArray(allow.files)||new Set(allow.files).size!==allow.files.length||!allow.files.length)throw Error('Unsupported public allowlist');
+ verifyResourceClosure(sha,new Set(allow.files));
  const files=[];for(const file of allow.files){
   if(!/^[a-zA-Z0-9_./-]+$/.test(file)||file.split('/').includes('..')||file.startsWith('/')||/(?:^|\/)(commercial|debug|private|premium|content|tests|scripts)(?:\/|$)/i.test(file))throw Error('Non-public resource in allowlist');
   const bytes=git(['show',sha+':party-game/'+file]);const target=path.join(output,'party-game',file);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,bytes);files.push({path:'party-game/'+file,bytes:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex')});
