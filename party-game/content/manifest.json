@@ -359,6 +359,11 @@
       "path": "cards/general-editorial-v1.json",
       "immutable": false,
       "review": "G46 editorial: eliminate active plural words, all exact duplicate prompts and multi-word word classification without changing historical IDs"
+    },
+    {
+      "path": "cards/general-editorial-v2.json",
+      "immutable": false,
+      "review": "G47: 3 exact semantic duplicate prompts replaced with three distinct singular word concepts; no historical changes"
     }
   ],
   "questions": [
@@ -648,6 +653,11 @@
       "path": "packs/general-editorial-v1.json",
       "immutable": false,
       "review": "G46 editorial general@48: exactly 7000 unique active prompts, 162 replaced, historical catalogs retained"
+    },
+    {
+      "path": "packs/general-editorial-v2.json",
+      "immutable": false,
+      "review": "G47 general@49: preserve 7000 active IDs after removing three verified semantic duplicates and appending three authored words"
     }
   ],
   "legacyCollisions": [

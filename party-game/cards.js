@@ -7146,7 +7146,10 @@ const PARTY_CARDS=Object.freeze([
   {"id":"phrase-071159","text":"ФУНКЦИОНАЛЬНАЯ АСИММЕТРИЯ","type":"phrase","difficulty":"hard","categories":["science"],"pack":"general-editorial-v1"},
   {"id":"phrase-071160","text":"ТЕКТОНИЧЕСКАЯ ПЛИТА","type":"phrase","difficulty":"hard","categories":["science"],"pack":"general-editorial-v1"},
   {"id":"phrase-071161","text":"МЕТАМОРФИЧЕСКАЯ ПОРОДА","type":"phrase","difficulty":"hard","categories":["science"],"pack":"general-editorial-v1"},
-  {"id":"word-071001","text":"РОБОТ-ДОСТАВЩИК","type":"word","difficulty":"medium","categories":["technology"],"pack":"general-editorial-v1"}
+  {"id":"word-071001","text":"РОБОТ-ДОСТАВЩИК","type":"word","difficulty":"medium","categories":["technology"],"pack":"general-editorial-v1"},
+  {"id":"word-072001","text":"КРАТОН","type":"word","difficulty":"hard","categories":["science","geography"],"pack":"general-editorial-v2"},
+  {"id":"word-072002","text":"ЛИБРАЦИЯ","type":"word","difficulty":"hard","categories":["science","space"],"pack":"general-editorial-v2"},
+  {"id":"word-072003","text":"ВОЛЧОК","type":"word","difficulty":"easy","categories":["everyday"],"pack":"general-editorial-v2"}
 ].map(card=>Object.freeze({...card,
   categories:Object.freeze(card.categories),
   ...(card.meta?{meta:Object.freeze(card.meta)}:{})
