@@ -7,8 +7,19 @@ test('TASK032 exact delta preserves every inherited script, all game CSS, dictio
  const {execFileSync}=require('node:child_process'),{normalizeTask032,normalizeTask033}=require('./task032-contract.cjs'),hunks=require('./task032-presentation.json');
  const before=f=>execFileSync('git',['show','7852bfe05cfa193b8084860a7c4faa0f01ae5786:party-game/'+f],{encoding:'utf8',maxBuffer:15e6}),read=f=>fs.readFileSync('party-game/'+f,'utf8');
  const scripts=[...before('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);assert.equal(scripts.length,53);
- const inherited=f=>['cards.js','content-packs.js'].includes(f)?execFileSync('git',['show','6fe42c0e676a066a66660e1617f2144c9615a570:party-game/'+f],{encoding:'utf8',maxBuffer:15e6}):before(f);
- for(const f of [...scripts,'style.css','setup-wizard.css','team-game.css','index.html','sw.js'])assert.equal(normalizeTask032(read(f)),inherited(f),f);
+ // G46 generated catalogs are versioned and editor-reviewed, not part of TASK032's
+ // immutable game-engine surface. Validate exact reproducibility instead.
+ const generatedFiles=new Set(['cards.js','content-packs.js']);
+ for(const f of [...scripts.filter(name=>!generatedFiles.has(name)),'style.css','setup-wizard.css','team-game.css','index.html','sw.js'])
+  assert.equal(normalizeTask032(read(f)),before(f),f);
+ const api=require('../scripts/content.cjs'),dataset=api.readDataset(),rendered=api.render(dataset);
+ for(const f of generatedFiles)assert.equal(read(f),rendered[f],f+' must match deterministic generated source');
+ const g45=dataset.packs.find(p=>p.id==='general'&&p.version===47),g46=dataset.packs.find(p=>p.id==='general'&&p.version===48);
+ assert.ok(g45&&g46,'Both the G45 and G46 revisions must remain available');
+ assert.equal(g45.criteria.cardIds.length,7000);
+ assert.equal(g46.criteria.cardIds.length,7000);
+ assert.equal(g46.criteria.cardIds.filter(id=>id.startsWith('song-')).length,224,'Preserve all 224 song prompts');
+ assert.match(read('sw.js'),/G46 2026-10-28: refresh the installed PWA catalog/);
  for(const h of hunks){assert(h.after);assert(normalizeTask033(read(h.file)).includes(h.after),'exact addition must still exist: '+h.file);}
  const current=[...read('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);same(current.slice().sort(),[...scripts,'team-statistics.js'].sort());
  assert.equal(read('sw.js').slice(read('sw.js').indexOf("self.addEventListener('install'")),before('sw.js').slice(before('sw.js').indexOf("self.addEventListener('install'")));
@@ -128,7 +139,6 @@ test('TASK032 one versioned profile backup preserves IDs, duel values and team r
  target.context.QuipTeams={results:()=>record.profileResults,validateProfileImport:store=>T.merge(record.profileResults,store.teamStatistics?.results||[])};const second=JSON.parse(await target.eval('createProfileBackupText(profileStore)'));assert.equal(second.payload.teamStatistics.results.length,1);assert.equal(target.eval('profileTeamResults().length'),1);
  const original=target.map.get('kvip-player-profiles:v1'),wrong=plain(doc);wrong.payload.teamStatistics.results[0].profileIds[0]='f'.repeat(32);target.context.wrong=JSON.stringify(wrong);await assert.rejects(target.eval('restoreProfileBackupText(localStorage,wrong,{allowReplace:true})'));assert.equal(target.map.get('kvip-player-profiles:v1'),original);
 });
-
 test('TASK033 profile-picker touch closes without a container rectangle and preserves keyboard focus',()=>{
  const read=f=>fs.readFileSync('party-game/'+f,'utf8');
  const css=read('setup-wizard.css'),globalCss=read('style.css'),profiles=read('profile-views.js');
