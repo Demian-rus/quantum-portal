@@ -647,7 +647,7 @@
     {
       "path": "packs/general-editorial-v1.json",
       "immutable": false,
-      "review": "G46 editorial general@48: exactly 7000 unique active prompts, 161 replaced, historical catalogs retained"
+      "review": "G46 editorial general@48: exactly 7000 unique active prompts, 162 replaced, historical catalogs retained"
     }
   ],
   "legacyCollisions": [
