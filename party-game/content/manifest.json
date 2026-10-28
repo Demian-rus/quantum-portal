@@ -309,6 +309,11 @@
       "path": "cards/general-diversity-v22.json",
       "immutable": false,
       "review": "G36: 50 curated Cyrillic prompts; see editorial/general-diversity-v22-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v23.json",
+      "immutable": false,
+      "review": "G37: 50 manually reviewed general prompts; see editorial/general-diversity-v23-review.md"
     }
   ],
   "questions": [
@@ -548,6 +553,11 @@
       "path": "packs/general-diversity-v22.json",
       "immutable": false,
       "review": "G36 general@38 pins 6550 IDs; unchanged general@37 prefix and historical sources"
+    },
+    {
+      "path": "packs/general-diversity-v23.json",
+      "immutable": false,
+      "review": "G37 general@39 pins 6600 IDs, preserving general@38 and all historic snapshots"
     }
   ],
   "legacyCollisions": [
