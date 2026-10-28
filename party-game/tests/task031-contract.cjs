@@ -2,7 +2,9 @@
 // Exact, reviewed presentation hunks only. Historical engine/data guards still
 // compare every byte after reversing these explicit TASK031 UI additions.
 const hunks=require('./task031-presentation.json');
+const {normalizeTask032}=require('./task032-contract.cjs');
 function normalizeTask031(s){
+ s=normalizeTask032(s);
  const file=s.includes('(function installSetupWizard(){')?'setup-wizard.js':
   s.startsWith('/* Sole setup presentation.')?'setup-wizard.css':
   s.includes('function renderModeSettings(')?'setup-view.js':null;

@@ -1,4 +1,14 @@
 'use strict';
+// Presentation-only Russian count forms. Genitive contexts use their own forms.
+function ruCountText(value,forms){
+  const n=Math.abs(Number(value)),last=n%10,teen=n%100;
+  const form=!Number.isInteger(n)||teen>=11&&teen<=14?2:last===1?0:last>=2&&last<=4?1:2;
+  return String(value)+' '+forms[form];
+}
+function ruTurns(value){return ruCountText(value,['ход','хода','ходов']);}
+function ruPoints(value){return ruCountText(value,['очко','очка','очков']);}
+function ruAfterTurns(value){return 'После '+ruCountText(value,['хода','ходов','ходов']);}
+
 let modeSettingsSnapshot=null;
 function renderModeSettings(useSnapshot=false){
   const id=$('mode-options-backdrop').dataset.mode;
@@ -43,13 +53,13 @@ function renderOptions() {
   }
   const numbers={'base-duration':options.duration,'target-score':options.targetScore,'custom-rounds':options.rounds,'modifier-chance':options.modifierChance};
   $('base-duration-value').textContent=options.duration+' с';
-  $('target-score-value').textContent=options.targetScore+' очков';
-  $('rounds-value').textContent=options.rounds+' ходов';
+  $('target-score-value').textContent=ruPoints(options.targetScore);
+  $('rounds-value').textContent=ruTurns(options.rounds);
   $('base-duration-value-advanced').textContent=options.duration+' с';
   $('finish-score').checked=options.finishType==='score';
   $('finish-rounds').checked=options.finishType==='rounds';
   $('toggle-risk').checked=options.riskRounds;
-  $('score-goal-preview').textContent=options.finishType==='score'?options.targetScore+' очков':'После '+options.rounds+' ходов';
+  $('score-goal-preview').textContent=options.finishType==='score'?ruPoints(options.targetScore):ruAfterTurns(options.rounds);
   $('score-goal-caption').textContent=options.finishType==='score'?'У каждого игрока будет ответный ход':'Одинаковое число ходов у обоих игроков';
   $('setup-finish-label').textContent=options.finishType==='score'?'МАКСИМУМ ОЧКОВ':'КОЛИЧЕСТВО ХОДОВ';
   $('quick-score-choices').hidden=options.finishType!=='score';
@@ -87,3 +97,5 @@ function renderOptions() {
   $('setup-mode-notice').hidden=!problems.length;
   $('setup-mode-notice').textContent=problems[0]?.startsWith('sing/')?'Для «Напой» нет заданий с выбранными источниками на этой сложности. Измените источники или сложность в тонкой настройке.':problems[0]||'';
 }
+
+if(typeof module==='object'&&module.exports)module.exports={ruCountText,ruTurns,ruPoints,ruAfterTurns};

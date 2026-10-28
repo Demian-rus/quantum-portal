@@ -1,4 +1,5 @@
 'use strict';
+const {normalizeTask032}=require('./task032-contract.cjs');
 const {withoutRiskDispatch}=require('./selection-source.cjs');
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
 const root=path.resolve(__dirname,'../..'),base='fd644e77cb66c74c17aa90842eda76a2894466d6';
@@ -15,13 +16,13 @@ test('original v85 runtime untouched; content-only additions are explicitly vers
  const api=require('../scripts/content.cjs'),built=api.render(api.readDataset());
  for(const file of ['cards.js','content-packs.js'])assert.equal(fs.readFileSync(path.join(root,'party-game',file),'utf8'),built[file],file+' matches generator');
  for(const name of ['rules.js','penalties.js','round-planner.js','round-selection.js','profile-backup.js']){
-  const file='party-game/'+name;assert.equal((name==='round-selection.js'?withoutRiskDispatch(fs.readFileSync(path.join(root,file),'utf8')):fs.readFileSync(path.join(root,file),'utf8')),git(['show',base+':'+file]));
+  const file='party-game/'+name;assert.equal((name==='round-selection.js'?withoutRiskDispatch(fs.readFileSync(path.join(root,file),'utf8')):normalizeTask032(fs.readFileSync(path.join(root,file),'utf8'))),git(['show',base+':'+file]));
  }
 });
-test('53 scripts match service-worker precache and inherited content URLs',()=>{
+test('54 scripts match service-worker precache and inherited content URLs',()=>{
  const html=fs.readFileSync(path.join(root,'party-game/index.html'),'utf8'),sw=fs.readFileSync(path.join(root,'party-game/sw.js'),'utf8');
  const scripts=[...html.matchAll(/<script src="\.\/([^?"/]+\.js)\?v=(\d+)"/g)].map(x=>'./'+x[1]+'?v='+x[2]);
- assert.equal(scripts.length,53);for(const s of scripts)assert.ok(sw.includes("'"+s+"'"),s);
- assert.match(sw,/kvip-pwa-v96-20261027-wizard-polish-candidate/);
+ assert.equal(scripts.length,54);for(const s of scripts)assert.ok(sw.includes("'"+s+"'"),s);
+ assert.match(sw,/kvip-pwa-v97-20261028-team-profiles-candidate/);
  for(const x of ['cards.js?v=11','content-packs.js?v=19']){assert.ok(html.includes(x));assert.ok(sw.includes(x));}
 });

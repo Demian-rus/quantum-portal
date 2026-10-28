@@ -35,8 +35,9 @@
   const hash=await globalThis.crypto.subtle.digest('SHA-256',new TextEncoder().encode(value));
   return Array.from(new Uint8Array(hash),n=>n.toString(16).padStart(2,'0')).join('');
  }
- function create({storage,validateMatch,validateReplacement=null,exclusive,digest=sha256,maxBytes=MAX_BYTES,receipt}={}){
+ function create({storage,validateMatch,validateReplacement=null,validateTransition=null,exclusive,digest=sha256,maxBytes=MAX_BYTES,receipt}={}){
   if(!format||typeof validateMatch!=='function')fail('VALIDATOR_REQUIRED','Требуется полный валидатор командного матча.');
+  if(validateTransition!==null&&typeof validateTransition!=='function')fail('VALIDATOR_REQUIRED','Неверный валидатор перехода.');
   if(validateReplacement!==null&&typeof validateReplacement!=='function')fail('VALIDATOR_REQUIRED','Неверный валидатор сохранения предыдущей партии.');
   if(!storage||!['getItem','setItem','removeItem'].every(k=>typeof storage[k]==='function'))fail('STORAGE_REQUIRED','Командное хранилище недоступно.');
   if(!Number.isSafeInteger(maxBytes)||maxBytes<1024||maxBytes>MAX_BYTES)fail('LIMIT','Неверный предел размера.');
@@ -118,6 +119,7 @@
     if(!Number.isSafeInteger(revision))fail('LIMIT','Исчерпаны ревизии.');
     const replacing=!!before&&before.match.teamFormat.id!==snapshot.teamFormat.id;
     if(replacing&&!(replaceMatchId===before.match.teamFormat.id&&validateReplacement?.(before.match,snapshot)===true)||!replacing&&replaceMatchId!==null)fail('MATCH_CHANGED','Нельзя заменить другую командную партию без явного сохранения её архива.');
+    if(before&&validateTransition&&validateTransition(before.match,snapshot)!==true)fail('RESULT_CONFLICT','Подтверждённая привязка или статистика партии изменена.');
     const next=await encode(snapshot,revision),journal=bounded(JSON.stringify(replacing?{version:2,before:raw,after:next,replaceMatchId}:{version:1,before:raw,after:next}),maxBytes*3);
     if(storage.getItem(KEY)!==raw||storage.getItem(JOURNAL_KEY)!==null)fail('CONFLICT','Командное сохранение изменилось.');
     const pendingReceipt=receipt?await writeReceipt(state.raw,raw,journal):null;
@@ -148,6 +150,7 @@
    exact(value,value.version===2?['version','before','after','replaceMatchId']:['version','before','after']);
    const before=value.before===null?null:await decode(value.before),after=await decode(value.after);
    if(after.revision!==(before?.revision||0)+1)fail('CORRUPT','Непоследовательный журнал командной записи.');
+   if(before&&validateTransition&&validateTransition(before.match,after.match)!==true)fail('RESULT_CONFLICT','Журнал изменяет подтверждённые профили или статистику.');
    if(value.version===1){if(before&&before.match.teamFormat.id!==after.match.teamFormat.id)fail('CORRUPT','Изменена партия в обычном журнале.');}
    else if(!before||value.replaceMatchId!==before.match.teamFormat.id||before.match.teamFormat.id===after.match.teamFormat.id||validateReplacement?.(before.match,after.match)!==true)fail('CORRUPT','Журнал не сохраняет предыдущую партию.');
    return value;

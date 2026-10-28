@@ -4,7 +4,7 @@
  const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;
  else root.QuipTeamFormat=api;
 })(globalThis,function teamFormat(){
- const VERSION=1,FORMAT='teams-2x2',STATS_POLICY='excluded-from-duel-profiles';
+ const VERSION=1,PROFILE_VERSION=2,FORMAT='teams-2x2',STATS_POLICY='excluded-from-duel-profiles',PROFILE_STATS_POLICY='separate-team-profiles-v1';
  const fail=message=>{throw Error('TEAM_FORMAT: '+message);};
  const record=value=>value&&typeof value==='object'&&!Array.isArray(value);
  function keys(value,expected){
@@ -32,21 +32,23 @@
  function identity(id){if(typeof id!=='string'||!/^[-A-Za-z0-9_]{16,80}$/.test(id))fail('invalid match ID');return id;}
  function bit(value){if(value!==0&&value!==1)fail('invalid opening position');return value;}
  function validate(header){
-  keys(header,['version','format','id','teams','opening','statsPolicy']);
-  if(header.version!==VERSION||header.format!==FORMAT||header.statsPolicy!==STATS_POLICY)fail('unsupported version or statistics policy');
+  const bound=header?.version===PROFILE_VERSION;
+  keys(header,['version','format','id','teams','opening','statsPolicy',...(bound?['profileBinding']:[])]);
+  if(![VERSION,PROFILE_VERSION].includes(header.version)||header.format!==FORMAT||header.statsPolicy!==(bound?PROFILE_STATS_POLICY:STATS_POLICY))fail('unsupported version or statistics policy');
+  const binding=bound?statistics().binding(header.profileBinding):null;
   identity(header.id);keys(header.opening,['teamIndex','setterPlayerIndices']);
   bit(header.opening.teamIndex);
   if(!Array.isArray(header.opening.setterPlayerIndices)||header.opening.setterPlayerIndices.length!==2)fail('two opening setters required');
   bit(header.opening.setterPlayerIndices[0]);bit(header.opening.setterPlayerIndices[1]);
   if(!Array.isArray(header.teams)||header.teams.length!==2)fail('two teams required');
   header.teams.forEach(team=>keys(team,['name','members']));
-  const names=members(header.teams.map(team=>team.members));
+  const names=bound?binding.participants.map(team=>team.map(p=>p.name)):members(header.teams.map(team=>team.members));
   for(let i=0;i<2;i++){
-   if(header.teams[i].name!=='Команда '+(i+1)||names[i].some((n,j)=>n!==header.teams[i].members[j]))fail('noncanonical team names');
+   if(header.teams[i].name!=='Команда '+(i+1)||!Array.isArray(header.teams[i].members)||header.teams[i].members.length!==2||names[i].some((n,j)=>n!==header.teams[i].members[j]))fail('noncanonical team names');
   }
-  return deepFreeze({version:VERSION,format:FORMAT,id:header.id,
+  return deepFreeze({version:header.version,format:FORMAT,id:header.id,
    teams:names.map((list,i)=>({name:'Команда '+(i+1),members:list})),
-   opening:{teamIndex:header.opening.teamIndex,setterPlayerIndices:header.opening.setterPlayerIndices.slice()},statsPolicy:STATS_POLICY});
+   opening:{teamIndex:header.opening.teamIndex,setterPlayerIndices:header.opening.setterPlayerIndices.slice()},statsPolicy:header.statsPolicy,...(bound?{profileBinding:binding}:{})});
  }
  function create(input,{id,random=Math.random}={}){
   const names=members(input);identity(id);
@@ -55,6 +57,13 @@
   return validate({version:VERSION,format:FORMAT,id,
    teams:names.map((list,i)=>({name:'Команда '+(i+1),members:list})),
    opening:{teamIndex:draw(),setterPlayerIndices:[draw(),draw()]},statsPolicy:STATS_POLICY});
+ }
+ function statistics(){return typeof module==='object'&&module.exports?require('./team-statistics.js'):globalThis.QuipTeamStatistics;}
+ function createBound(binding,options={}){
+  const b=statistics().binding(binding);
+  // Reuse the exact three opening draws; identities do not consume gameplay RNG.
+  const legacy=create([['profile-slot-a','profile-slot-b'],['profile-slot-c','profile-slot-d']],options);
+  return validate({...legacy,version:PROFILE_VERSION,statsPolicy:PROFILE_STATS_POLICY,profileBinding:b,teams:b.participants.map((team,i)=>({name:'Команда '+(i+1),members:team.map(p=>p.name)}))});
  }
  function roles(header,turnIndex){
   const h=validate(header);
@@ -74,5 +83,5 @@
   for(const key of Object.keys(expected))if(value[key]!==expected[key])fail('inconsistent '+key);
   return expected;
  }
- return Object.freeze({VERSION,FORMAT,STATS_POLICY,name,nameKey,members,create,validate,roles,turnIdentity,validateTurnIdentity});
+ return Object.freeze({VERSION,PROFILE_VERSION,FORMAT,STATS_POLICY,PROFILE_STATS_POLICY,createBound,name,nameKey,members,create,validate,roles,turnIdentity,validateTurnIdentity});
 });

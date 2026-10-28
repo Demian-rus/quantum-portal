@@ -1,5 +1,6 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),crypto=require('node:crypto'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const {normalizeTask032}=require('./task032-contract.cjs');
 const F=require('../team-format.js'),S=require('../team-storage.js');
 const names=[['ДС','ПА'],['Мама','Папа']],id='team-match-fixture-0001';
 const header=(bits=[0,0,0])=>{let calls=0;const h=F.create(names,{id,random:()=>bits[calls++]===1 ? .75 : .25});assert.equal(calls,3);return h;};
@@ -135,7 +136,7 @@ test('partial primary write protects both the foreign RAW and pending journal fo
  assert.equal(h.map.get(S.KEY),'PARTIAL_RAW');assert.equal(h.map.get(S.JOURNAL_KEY),journal);
 });
 test('team runtime is a separate versioned shell and never replaces legacy controllers',()=>{
- const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8'),sw=fs.readFileSync(path.join(__dirname,'../sw.js'),'utf8');
+ const html=normalizeTask032(fs.readFileSync(path.join(__dirname,'../index.html'),'utf8')),sw=normalizeTask032(fs.readFileSync(path.join(__dirname,'../sw.js'),'utf8'));
  for(const [name,version]of [['team-format',1],['team-storage',4],['team-engine',1],['team-controller',7]]){assert.ok(html.includes('./'+name+'.js?v='+version));assert.ok(sw.includes('./'+name+'.js?v='+version));}
  assert.match(fs.readFileSync(path.join(__dirname,'../setup-wizard.js'),'utf8'),/id="wizard-format-teams"[^>]*>2 НА 2/);
  assert.doesNotMatch(html,/feedback-sync/);

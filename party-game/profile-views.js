@@ -31,14 +31,15 @@ function renderProfilePanel(){
   if(creating){
     $('profile-name').value='';profilePanelColor='coral';renderProfilePalette();$('profile-name').focus({preventScroll:true});return;
   }
-  const profiles=profileStore?.profiles||[],selected=profilePanelTarget==='statistics'?statisticsProfileId:selectedProfileIds[profilePanelTarget];
+  const profiles=profileStore?.profiles||[],teamTarget=typeof QuipTeams!=='undefined'&&QuipTeams.isProfileTarget(profilePanelTarget),selected=profilePanelTarget==='statistics'?statisticsProfileId:teamTarget?QuipTeams.selectedProfileId(profilePanelTarget):selectedProfileIds[profilePanelTarget];
   $('profile-list').innerHTML=profiles.map(profile=>{
-    const unavailable=profilePanelTarget!=='statistics'&&selectedProfileIds[1-profilePanelTarget]===profile.id;
+    const unavailable=teamTarget?QuipTeams.profileUnavailable(profilePanelTarget,profile.id):profilePanelTarget!=='statistics'&&selectedProfileIds[1-profilePanelTarget]===profile.id;
     return '<button type="button" class="profile-choice" data-profile-id="'+profile.id+'" aria-pressed="'+(profile.id===selected)+'"'+
       (unavailable?' disabled':'')+'>'+profileLabel(profile)+(unavailable?'<small>Уже выбран</small>':profile.id===selected?'<span aria-hidden="true">✓</span>':'')+'</button>';
   }).join('');
   $('profile-empty').hidden=profiles.length>0||!!profileStoreProblem;
   $('profile-create-open').disabled=!!profileStoreProblem;
+  $('profile-team-clear').hidden=!(teamTarget&&selected);
 }
 function renderProfilePalette(){
   $('profile-palette').innerHTML=Object.entries(QUIP_PROFILE_COLORS).map(([id,color])=>
@@ -47,6 +48,7 @@ function renderProfilePalette(){
 function chooseProfile(id){
   if(!profileStore?.profiles.some(p=>p.id===id))return;
   if(profilePanelTarget==='statistics'){statisticsProfileId=id;renderStatistics();}
+  else if(typeof QuipTeams!=='undefined'&&QuipTeams.isProfileTarget(profilePanelTarget)){if(!QuipTeams.chooseProfile(profilePanelTarget,id))return;}
   else{
     if(selectedProfileIds[1-profilePanelTarget]===id)return;
     selectedProfileIds[profilePanelTarget]=id;renderOptions();
@@ -71,10 +73,24 @@ function renderStatistics(){
   $('statistics-empty').hidden=!!profile;$('statistics-details').hidden=!profile;
   $('statistics-notice').textContent=profileStoreProblem||'Учитываются только завершённые партии. Данные сохраняются на этом устройстве.';
   if(!profile)return;
+  renderTeamProfileStatistics(profile);
   const percent=(success,count)=>count?Math.round(success/count*100)+'%':'0%';
   const metrics=[['Заданий',total.turns],['Игр',total.matches],['Побед',total.wins],['Поражений',total.losses],['Ничьих',total.draws],['Побед',percent(total.wins,total.matches)],['Всего очков',total.points],['Тай-брейков',total.tiebreaks??0],['Побед в тай-брейке',total.tiebreakWins??0]];
   $('statistics-metrics').innerHTML=metrics.map(([title,value])=>'<div class="stat-metric"><b>'+value+'</b><span>'+title+'</span></div>').join('');
-  $('statistics-modes').innerHTML=Object.entries(total.modes).map(([id,stats])=>'<div class="stat-mode"><strong>'+escapeHTML(getMode(id)?.title||id)+'</strong><span>'+'Заданий: '+stats.rounds+' · '+(id==='approx'?'Верно: ':'Отгадано: ')+stats.success+' · '+(id==='approx'?'Неверно: ':'Не отгадано: ')+(stats.rounds-stats.success)+'</span><b>'+stats.points+' очков</b></div>').join('')||'<p class="profile-muted">Пока нет данных</p>';
+  $('statistics-modes').innerHTML=Object.entries(total.modes).map(([id,stats])=>'<div class="stat-mode"><strong>'+escapeHTML(getMode(id)?.title||id)+'</strong><span>'+'Заданий: '+stats.rounds+' · '+(id==='approx'?'Верно: ':'Отгадано: ')+stats.success+' · '+(id==='approx'?'Неверно: ':'Не отгадано: ')+(stats.rounds-stats.success)+'</span><b>'+ruPoints(stats.points)+'</b></div>').join('')||'<p class="profile-muted">Пока нет данных</p>';
+}
+function renderTeamProfileStatistics(profile){
+  try{
+    const total=QuipTeamStatistics.forProfile(profileTeamResults(),profileStore.storeId,profile.id);
+    $('statistics-teams-notice').textContent='Только подтверждённые завершённые партии. Старые партии по именам не приписываются профилям.';
+    const rows=[['Игр',total.matches],['Побед',total.wins],['Поражений',total.losses],['Ничьих',total.draws],['Загадывал',total.setter],['Отгадывал',total.guesser],['Совместных вопросов',total.shared],['Командных тай-брейков',total.tiebreaks]];
+    $('statistics-teams-metrics').innerHTML=rows.map(([title,value])=>'<div class="stat-metric"><b>'+value+'</b><span>'+title+'</span></div>').join('');
+    $('statistics-teams-modes').innerHTML=Object.entries(total.modes).map(([id,s])=>'<div class="stat-mode"><strong>'+escapeHTML(getMode(id)?.title||id)+'</strong><span>'+(id==='approx'?'Совместных вопросов: '+s.shared:'Загадывал: '+s.setter+' · Отгадывал: '+s.guesser+'<br>Командных успехов в этих ролях: '+s.setterSuccess+' / '+s.guesserSuccess)+'</span></div>').join('')||'<p class="profile-muted">Пока нет данных</p>';
+    $('statistics-teams-recent').innerHTML=total.recent.slice().reverse().map(row=>'<p class="profile-muted">Команда '+row.team+' · командный счёт '+row.scores.join(' : ')+' · '+({wins:'Победа',losses:'Поражение',draws:'Ничья'})[row.outcome]+'</p>').join('')||'<p class="profile-muted">Пока нет завершённых партий</p>';
+  }catch(error){
+    $('statistics-teams-notice').textContent=error.message;
+    for(const id of ['statistics-teams-metrics','statistics-teams-modes','statistics-teams-recent'])$(id).textContent='';
+  }
 }
 function profilePanelKeydown(event){
   if($('profile-backdrop').hidden)return;
@@ -97,6 +113,7 @@ function registerProfileControls(){
   $('profile-close').addEventListener('click',closeProfilePanel);
   $('profile-backdrop').addEventListener('click',event=>{if(event.target.id==='profile-backdrop')closeProfilePanel();});
   $('profile-list').addEventListener('click',event=>{const button=event.target.closest('[data-profile-id]');if(button&&!button.disabled)chooseProfile(button.dataset.profileId);});
+  $('profile-team-clear').addEventListener('click',()=>{if(typeof QuipTeams!=='undefined'&&QuipTeams.clearProfile(profilePanelTarget))closeProfilePanel();});
   $('profile-create-open').addEventListener('click',()=>{profilePanelMode='create';renderProfilePanel();});
   $('profile-palette').addEventListener('click',event=>{
     const button=event.target.closest('[data-profile-color]');if(button){profilePanelColor=button.dataset.profileColor;renderProfilePalette();$('profile-palette').querySelector('[data-profile-color="'+profilePanelColor+'"]').focus({preventScroll:true});}

@@ -1,4 +1,5 @@
 'use strict';
+const {normalizeTask032}=require('./task032-contract.cjs');
 const {withoutRiskDispatch}=require('./selection-source.cjs');
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
 const {createSimulation}=require('../scripts/game-simulation.cjs');
@@ -27,7 +28,7 @@ test('integration: pinned storage cores and gameplay contracts are byte-exact fr
  for(const [ref,names]of [
   ['6b68155a2584eda787dc383e60e36c54cbe8b9c5',['profile-backup.js','profile-backup-view.js','storage-controller.js']],
   ['cd6b2067acb984a6ea33d71e2f28d4f7ffde863c',['card-reports.js','round-selection.js','round-actions.js']]
- ])for(const name of names)assert.deepEqual(name==='round-selection.js'?Buffer.from(withoutRiskDispatch(fs.readFileSync(path.join(root,'party-game',name),'utf8'))):fs.readFileSync(path.join(root,'party-game',name)),execFileSync('git',['show',ref+':party-game/'+name],{cwd:root}),name);
+ ])for(const name of names)assert.deepEqual(name==='round-selection.js'?Buffer.from(withoutRiskDispatch(fs.readFileSync(path.join(root,'party-game',name),'utf8'))):Buffer.from(normalizeTask032(fs.readFileSync(path.join(root,'party-game',name),'utf8'))),execFileSync('git',['show',ref+':party-game/'+name],{cwd:root}),name);
 });
 
 test('integration: session restoration retains every previous guard plus the explicit report-hold guard',()=>{

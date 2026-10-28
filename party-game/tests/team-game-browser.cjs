@@ -1,6 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),{chromium}=require('playwright-core');
 const {provisionProfiles}=require('./profile-fixtures.cjs');
+const {provisionTeamProfiles,chooseTeamProfiles,duplicateTeamProfileRejected}=require('./team-profile-fixtures.cjs');
 const {settled}=require('./task024-fixtures.cjs');
 const URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/',folder='artifacts/quip-teams';
 const names=[['ДС','ПА'],['Мама','Папа']];
@@ -17,9 +18,9 @@ async function config(p,{mode='talk',rounds=12,goal=null,complications=false,ris
  await p.locator('[data-wizard-step="4"]').click();assert.match(await p.locator('#wizard-summary').textContent(),/2 НА 2/);
 }
 async function start(p,settings={},bits=[0,0,0]){
- await p.locator('#new-game-menu').click();await p.locator('#standard-game').click();const protectedBefore=await protectedRaw(p);await p.locator('#wizard-format-teams').click();
- for(let t=0;t<2;t++)for(let n=0;n<2;n++)await p.locator('#team-name-'+t+'-'+n).fill(names[t][n]);
- await p.locator('#team-name-1-1').fill('ДС');await p.locator('[data-wizard-step="4"]').click();assert.equal(await p.locator('#start-game').isDisabled(),true,'indistinguishable names block real START');await p.locator('[data-wizard-step="2"]').click();await p.locator('#team-name-1-1').fill(names[1][1]);await p.locator('#wizard-format-duel').click();await p.locator('#wizard-format-teams').click();assert.equal(await p.locator('#team-name-0-0').inputValue(),names[0][0],'format toggle retains team name draft');
+ await provisionTeamProfiles(p,names);await p.locator('#new-game-menu').click();await p.locator('#standard-game').click();const protectedBefore=await protectedRaw(p);await p.locator('#wizard-format-teams').click();
+ await chooseTeamProfiles(p,names);await duplicateTeamProfileRejected(p);
+ await p.locator('#wizard-format-duel').click();await p.locator('#wizard-format-teams').click();assert.match(await p.locator('#team-profile-0-0').textContent(),new RegExp(names[0][0]),'format toggle retains profile draft');
  await config(p,settings);await p.evaluate(bits=>{window.originalRandom=Math.random;window.openingDraws=0;Math.random=()=>bits[openingDraws++]===1 ? .75 : .25;},bits);
  await click(p,'#start-game');assert.equal(await p.evaluate(()=>openingDraws),3,'three opening draws only');await p.evaluate(()=>{Math.random=originalRandom;soundOn=false;});
  assert.equal(await p.evaluate(()=>activeScene),'game');assert.equal(await p.evaluate(()=>game.awardTo),'setter');return protectedBefore;
@@ -60,7 +61,7 @@ if(require.main===module)(async()=>{fs.mkdirSync(folder,{recursive:true});const 
     if(index===2){const list=p.locator('.pending-review-rows');await list.evaluate(n=>n.scrollTop=n.scrollHeight);const scroll=await list.evaluate(n=>n.scrollTop);assert(scroll>0,'landscape history really overflows');await click(p,'.pending-review-rows [data-review-turn="10"] [data-review-choice="failed"]');assert.equal(await list.evaluate(n=>n.scrollTop),scroll,'editing a lower turn retains the bounded history scroll');await click(p,'.pending-review-rows [data-review-turn="10"] [data-review-choice="complete"]');}
     await click(p,'.pending-review-rows [data-review-turn="0"] [data-review-choice="failed"]');const corrected=await p.evaluate(()=>game.scores.slice());
     await click(p,'.pending-review-rows [data-review-turn="0"] [data-review-choice="complete"]');const final=await p.evaluate(()=>game.scores.slice());assert.equal(final[index%2],corrected[index%2]+1);
-    await click(p,'[data-action="confirm-results"]');assert.equal(await p.evaluate(()=>game.phase),'results');assert.match(await p.locator('#team-result-roster').textContent(),/личную статистику/);
+    await click(p,'[data-action="confirm-results"]');assert.equal(await p.evaluate(()=>game.phase),'results');assert.match(await p.locator('#team-result-roster').textContent(),/статистика четырёх профилей/);
     const saved=await raw(p);await p.locator('#results-content [data-review-expand="0"]').click();assert.match(await p.locator('#review-details-results-0').textContent(),/Загадывал:.*Отгадывал:/);assert.equal(await p.locator('#results-content [data-review-choice]').count(),0);assert.equal(await raw(p),saved,'completed disclosure is read-only');
     await click(p,'[data-action="menu"]');const homeTargets=await p.locator('#scene-home button').evaluateAll(nodes=>nodes.filter(n=>n.getClientRects().length).map(n=>{const r=n.getBoundingClientRect();return {id:n.id,x:r.x,y:r.y,right:r.right,bottom:r.bottom,w:r.width,h:r.height};}));
     for(const a of homeTargets){assert(a.x>=0&&a.y>=0&&a.right<=viewport.width+1&&a.bottom<=viewport.height+1,'home target inside viewport '+a.id);assert(a.w>=44&&a.h>=44,'home touch target '+a.id);for(const b of homeTargets)if(a!==b)assert(!(a.x<b.right-.5&&a.right>b.x+.5&&a.y<b.bottom-.5&&a.bottom>b.y+.5),'home buttons overlap '+a.id+'/'+b.id);}

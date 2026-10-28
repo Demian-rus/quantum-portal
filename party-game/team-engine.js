@@ -108,19 +108,24 @@ const QuipTeamsEngine=(function teamEngine(){
   assert(equal(value.options,optionsFor(value.options)),'неверные сохранённые настройки');return validateGame(value.game,value.taskMemory);
  }
  function validateRecord(record){
-  exact(record,['version','teamFormat','game','options','taskMemory','archives']);assert(record.version===1,'неизвестная версия сохранения');validateEntry(entry(record));
+  exact(record,['version','teamFormat','game','options','taskMemory','archives',...(record?.version===2?['profileResults']:[])]);assert([1,2].includes(record.version),'неизвестная версия сохранения');validateEntry(entry(record));
+  const results=record.version===2?QuipTeamStatistics.ledger(record.profileResults):[];
+  if(record.version===1)assert(record.teamFormat.version===1&&record.archives.every(e=>e.teamFormat.version===1),'привязка профилей требует конверт v2');
+  for(const value of [record,...record.archives])if(value.teamFormat.version===2&&value.game.phase==='results'){
+   const expected=QuipTeamStatistics.result(value.game),saved=results.find(r=>r.id===value.teamFormat.id);assert(saved&&QuipTeamStatistics.same(saved,expected),'нет единственного подтверждённого результата профилей');
+  }
   assert(Array.isArray(record.archives)&&record.archives.length<=100,'неверный архив командных партий');record.archives.forEach(validateEntry);
   assert(new Set([record.teamFormat.id,...record.archives.map(e=>e.teamFormat.id)]).size===record.archives.length+1,'повторная партия в архиве');return true;
  }
  function validateReplacement(before,after){
   validateRecord(before);validateRecord(after);
-  return after.archives.some(e=>equal(e,entry(before)))&&before.archives.every(e=>after.archives.some(n=>equal(n,e)));
+  return after.archives.some(e=>equal(e,entry(before)))&&before.archives.every(e=>after.archives.some(n=>equal(n,e)))&&preservesResults(before,after);
  }
- function createRecord(settings,names,{id,random=Math.random,previous=null}={}){
+ function createRecord(settings,names,{id,random=Math.random,previous=null,profileBinding=null}={}){
   assert(installed,'командный движок не подключён');if(previous)validateRecord(previous);
   const o=optionsFor(settings),songPolicy=setupSongPolicy(o),pack=latestContentPackSelection(o.contentPack.id),available=checkContentPack(pack,{...o,...songPolicy});
   assert(available.available,available.problems[0]||'набор недоступен');
-  const header=QuipTeamFormat.create(names,{id,random});let memory=previous?archiveTaskHistory(copy(previous.taskMemory),previous.game.taskHistory):freshTaskMemory();
+  const header=profileBinding?QuipTeamFormat.createBound(profileBinding,{id,random}):QuipTeamFormat.create(names,{id,random});let memory=previous?archiveTaskHistory(copy(previous.taskMemory),previous.game.taskHistory):freshTaskMemory();
   const started=startTaskHistory(memory);memory=started.memory;
   const match={matchId:header.id,teamFormat:header,teamPolicyVersion:VERSION,teams:header.teams.map(t=>t.name),scores:[0,0],roundIndex:0,startingTeamIndex:header.opening.teamIndex,
    resultReviewVersion:1,reviewRevision:0,reviewConfirmed:false,...songPolicy,timerPolicyVersion:1,finishPolicyVersion:1,taskHistoryVersion:1,taskHistory:started.history,
@@ -128,7 +133,30 @@ const QuipTeamsEngine=(function teamEngine(){
    awardPolicyVersion:1,awardTo:'setter',modeCompatibilityVersion:1,modifierCatalogVersion:2,modifierSelectionVersion:2,modifierChance:o.modifierChance,modifierRecent:[],
    plannerVersion:1,plannerState:freshRoundPlan(),modePlannerVersion:1,modePlannerState:freshModePlan(),duration:o.duration,difficulty:o.difficulty,contentPack:{...pack},preset:null,
    modes:o.modes.slice(),promptTypes:o.promptTypes.slice(),dice:o.dice,complications:o.complications,blitzCount:3,current:null,modeHistory:[],used:{},history:[],phase:'ready'};
-  const record={version:1,teamFormat:header,game:match,options:o,taskMemory:memory,archives:previous?[...copy(previous.archives),entry(previous)]:[]};validateRecord(record);return record;
+  const withProfiles=!!profileBinding||previous?.version===2;
+  const record={version:withProfiles?2:1,teamFormat:header,game:match,options:o,taskMemory:memory,archives:previous?[...copy(previous.archives),entry(previous)]:[],...(withProfiles?{profileResults:copy(previous?.profileResults||[])}:{})};validateRecord(record);return record;
+ }
+ function finalizeRecord(record){
+  if(record.version!==2)return record;
+  const results=QuipTeamStatistics.ledger(record.profileResults);
+  if(record.teamFormat.version===2&&record.game.phase==='results'){
+   // Full replay validation precedes any statistics projection. Both are then
+   // committed as ONE team RAW by the existing journal + IndexedDB receipt.
+   validateEntry(entry(record));return {...record,profileResults:QuipTeamStatistics.merge(results,[QuipTeamStatistics.result(record.game)])};
+  }
+  return record;
+ }
+ function preservesResults(before,after){
+  const prior=before.profileResults||[],next=after.profileResults||[];
+  return !(before.version===2&&after.version!==2)&&prior.every(r=>next.some(n=>QuipTeamStatistics.same(r,n)))&&next.every(r=>prior.some(n=>QuipTeamStatistics.same(r,n))||r.id===after.teamFormat.id&&after.teamFormat.version===2&&after.game.phase==='results'&&QuipTeamStatistics.same(r,QuipTeamStatistics.result(after.game)));
+ }
+ function validateTransition(before,after){
+  validateRecord(before);validateRecord(after);
+  if(!preservesResults(before,after))return false;
+  if(before.teamFormat.id!==after.teamFormat.id)return validateReplacement(before,after);
+  if(!equal(before.teamFormat,after.teamFormat))return false;
+  if(before.profileResults?.some(r=>r.id===before.teamFormat.id)&&after.game.phase!=='results')return false;
+  return true;
  }
  function install(){
   if(installed)return;installed=true;
@@ -158,5 +186,5 @@ const QuipTeamsEngine=(function teamEngine(){
    c.word=card.text;c.cardId=card.id;c.visible=false;c.replaced=true;persist();sfx('button');render();
   };
  }
- return Object.freeze({VERSION,FORMAT,isGame,isSettings,roles,optionsFor,createRecord,validateGame,validateRecord,validateReplacement,entry,replay,install});
+ return Object.freeze({VERSION,FORMAT,isGame,isSettings,roles,optionsFor,createRecord,validateGame,validateRecord,validateReplacement,validateTransition,finalizeRecord,entry,replay,install});
 })();

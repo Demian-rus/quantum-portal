@@ -128,3 +128,20 @@
 .setup-wizard #wizard-extra .modifier-toggle>span{min-width:0}
 .setup-wizard #wizard-extra .modifier-toggle strong{font-size:13px;line-height:1.5}
 .setup-wizard #wizard-extra .modifier-toggle small{display:block;margin-top:4px;font-size:12px;line-height:1.65}
+
+/* TASK032: flat source rows and clearer list rhythm, scoped to the wizard. */
+.setup-wizard.wizard-mode-center .wizard-rule{padding:28px 0;border-bottom:1px solid #9aeee680}
+.setup-wizard.wizard-mode-center .wizard-rule+.wizard-rule{padding-top:32px}
+.setup-wizard #mode-song-sources .song-source-options{display:grid;grid-template-columns:1fr;gap:0}
+.setup-wizard #mode-song-sources .song-source,
+.setup-wizard #mode-song-sources .song-source.is-selected{min-height:52px;padding:14px 0;border:0;border-bottom:1px solid #af98ff60;border-radius:0;background:transparent;box-shadow:none}
+.setup-wizard #mode-song-sources .song-source.is-selected{color:var(--cyan)}
+.setup-wizard #mode-song-sources .song-source:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+.setup-wizard .team-profile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;min-width:0}
+.setup-wizard .team-profile-grid fieldset{min-width:0;padding:0;margin:0;border:0}
+.setup-wizard .team-profile-grid legend{padding:0 0 10px;font-weight:800;color:var(--cyan)}
+.setup-wizard .team-profile-slot{display:grid;gap:6px;margin:12px 0;min-width:0}
+.setup-wizard .team-profile-slot>span{font-size:12px;color:var(--soft)}
+.setup-wizard .team-profile-slot .profile-selector{min-width:0;min-height:48px;width:100%;padding:10px;font-size:12px;white-space:normal;overflow-wrap:anywhere}
+@media(max-width:359px){.setup-wizard .team-profile-grid{grid-template-columns:1fr;gap:16px}}
+#statistics-teams{margin-top:28px;padding-top:22px;border-top:1px solid #9aeee680}
