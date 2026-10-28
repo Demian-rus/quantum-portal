@@ -5,7 +5,7 @@ const F=require('../team-format.js'),S=require('../team-storage.js'),T=require('
 const plain=v=>JSON.parse(JSON.stringify(v)),same=(a,b)=>assert.deepEqual(plain(a),plain(b));
 test('TASK032 exact delta preserves every inherited script, all game CSS, dictionaries and PWA lifecycle outside the reviewed additions',()=>{
  const {execFileSync}=require('node:child_process'),{normalizeTask032}=require('./task032-contract.cjs'),hunks=require('./task032-presentation.json');
- const before=f=>execFileSync('git',['show','b91a0b82c0e673650e57f9718e6a1139bfc78fe7:party-game/'+f],{encoding:'utf8',maxBuffer:15e6}),read=f=>fs.readFileSync('party-game/'+f,'utf8');
+ const before=f=>execFileSync('git',['show','7852bfe05cfa193b8084860a7c4faa0f01ae5786:party-game/'+f],{encoding:'utf8',maxBuffer:15e6}),read=f=>fs.readFileSync('party-game/'+f,'utf8');
  const scripts=[...before('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);assert.equal(scripts.length,53);
  for(const f of [...scripts,'style.css','setup-wizard.css','team-game.css','index.html','sw.js'])assert.equal(normalizeTask032(read(f)),before(f),f);
  for(const h of hunks){assert(h.after);assert(read(h.file).includes(h.after),'exact addition must still exist: '+h.file);}

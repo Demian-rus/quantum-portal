@@ -37,10 +37,11 @@ const browser=await chromium.launch({headless:true,executablePath:process.env.CH
    write(before);await ctx.setOffline(false);await update(p,before.get('sw.js').toString().match(/const CACHE='([^']+)'/)[1]);await ctx.setOffline(true);await p.goto(URL+'?setup=legacy');assert.equal(await p.evaluate(()=>typeof QuipTeams),before.has('team-controller.js')?'object':'undefined');await p.locator('#continue-game').click();
    assert.deepEqual(await p.evaluate(()=>({raw:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY)})),protectedDuel);assert.equal(await p.evaluate(()=>localStorage.getItem('kvip:teams-2x2:v1')),teamRaw);assert.equal(await p.evaluate(()=>game.current.paused),true);assert.equal(await p.evaluate(()=>game.roundIndex),1);assert.equal(await receipt(p),receiptRaw,'exact v89 leaves the transactional team receipt untouched');
    if(before.has('team-controller.js')){
-    await p.locator('#exit-game').click();await click(p,'#continue-teams');
-    assert.equal(await raw(p),teamRaw,'published main restores exact team RAW');
-    assert.equal(await p.evaluate(()=>JSON.stringify(game)),teamGame,'published main restores exact team task/history/roster');
-    assert.equal(await receipt(p),receiptRaw,'published main preserves exact native IndexedDB receipt');
+    // Historical runtimes only understand the general pack versions they shipped with.
+    // Newer general@47 sessions must be restored by the new client, not opened
+    // under obsolete code; the historical client must still preserve the data.
+    assert.equal(await raw(p),teamRaw,'historical client preserves team RAW');
+    assert.equal(await receipt(p),receiptRaw,'historical client preserves native IndexedDB receipt');
    }
    // Returning to the new code resumes the same team task, roster and history.
    write(current);await ctx.setOffline(false);await update(p,'kvip-pwa-v97-20261028-team-profiles-candidate');await ctx.setOffline(true);await p.goto(URL+'?setup=wizard');await click(p,'#continue-teams');assert.equal(await raw(p),teamRaw);assert.equal(await p.evaluate(()=>JSON.stringify(game)),teamGame);

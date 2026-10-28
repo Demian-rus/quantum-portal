@@ -2,11 +2,11 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
 const {normalizeTask032}=require('./task032-contract.cjs');
 const {normalizeTask031}=require('./task031-contract.cjs'),hunks=require('./task031-presentation.json');
-const root=path.resolve(__dirname,'../..'),BASE='47a7266b48818b3ebc94e1e37e1f5c3f769ee812';
+const root=path.resolve(__dirname,'../..'),BASE='47a7266b48818b3ebc94e1e37e1f5c3f769ee812',CONTENT_BASE='8f627ada5d78cf2ac43e97d5421eb7a83a76d69b';
 const read=f=>normalizeTask032(fs.readFileSync(path.join(root,'party-game',f),'utf8')),old=f=>execFileSync('git',['show',BASE+':party-game/'+f],{cwd:root,encoding:'utf8',maxBuffer:15e6});
-test('TASK031 changes only exact declared presentation hunks; all 53 scripts and original game CSS guarded',()=>{
+test('TASK031 changes only exact declared presentation hunks; non-content scripts and original CSS guarded',()=>{
  const names=[...old('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);assert.equal(names.length,53);
- for(const f of [...names,'style.css','setup-wizard.css','team-game.css','index.html','sw.js'])assert.equal(normalizeTask031(read(f)),old(f),f);
+ for(const f of [...names.filter(name=>!['cards.js','content-packs.js'].includes(name)),'style.css','setup-wizard.css','team-game.css','index.html','sw.js'])assert.equal(normalizeTask031(read(f)),old(f),f);
  assert.deepEqual([...new Set(hunks.map(h=>h.file))].sort(),['index.html','setup-view.js','setup-wizard.css','setup-wizard.js','sw.js']);
  for(const h of hunks){assert(h.after,'normalization must use a nonempty exact anchor');assert(read(h.file).includes(h.after),'declared addition must exist '+h.file);}
 });
@@ -27,8 +27,8 @@ test('TASK031 scopes touch/flat/disclosure styles to wizard and retains native c
  assert.doesNotMatch(added,/outline\s*:\s*(?:none|0)|pointer-events\s*:\s*none/);
  const w=read('setup-wizard.js');assert.match(w,/<details class="wizard-rule-details"><summary>Правила<\/summary>/);assert.match(w,/guide\.blocks\.map/);assert.doesNotMatch(w,/guide\.blocks\.filter/);assert.match(w,/if\(enteringRules\).*node.open=false/);
 });
-test('TASK031 retains every catalog and editorial source byte-exact',()=>{
- assert.equal(execFileSync('git',['diff',BASE,'--','party-game/content','party-game/cards.js','party-game/content-packs.js','party-game/approx-questions.js'],{cwd:root,encoding:'utf8',maxBuffer:15e6}),'');
+test('TASK031 plus G45 retain every G45 catalog and editorial source byte-exact',()=>{
+ assert.equal(execFileSync('git',['diff',CONTENT_BASE,'--','party-game/content','party-game/cards.js','party-game/content-packs.js','party-game/approx-questions.js'],{cwd:root,encoding:'utf8',maxBuffer:15e6}),'');
 });
 test('TASK031 shell and worker use the same new resources without changing PWA lifecycle',()=>{
  const html=read('index.html'),sw=read('sw.js');for(const file of ['setup-wizard.js?v=8','setup-wizard.css?v=4','setup-view.js?v=5']){assert(html.includes('./'+file));assert(sw.includes('./'+file));}

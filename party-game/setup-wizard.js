@@ -11,25 +11,40 @@
   // Pack preference history is not read by the settings renderer or validator.
   const {packPreferences,...settings}=options;
   return {key:JSON.stringify([settings,selectedProfileIds,profileStoreProblem]),profiles:profileStore,
-   cards:PARTY_CARDS,questions:QUIP_APPROX_QUESTIONS,packs:QUIP_CONTENT_PACKS,config:getModeConfig,validate:checkContentPack};
+   cards:PARTY_CARDS,questions:QUIP_APPROX_QUESTIONS,packs:QUIP_CONTENT_PACKS,config:getModeConfig,validate:checkContentPack,pool:getPackCardPool};
  }
  // app.boot has already rendered/validated the original controls before this
  // adapter loads. Moving them must not discard that work or their live state.
  let renderedStamp=viewStamp();
+ const projectionCache=new Map();
  function refreshOptions(){
   const next=viewStamp();
   if(!renderedStamp||Object.keys(next).some(key=>next[key]!==renderedStamp[key])){
-   // Validation is still real. Only duplicate, read-only pool construction
-   // within this single synchronous UI render is shared. START/game selectors
-   // always see the original function, restored before renderMeta/event hooks.
-   const selectPool=getPackCardPool,pools=new Map();
+   // Cache only read-only results of the real renderer APIs, per exact
+   // settings/profile/catalog/function stamp. All native controls still render.
+   // The wrappers exist only during this synchronous projection; START and
+   // gameplay always receive the original full validators and selectors.
+   let cached=projectionCache.get(next.key);
+   if(!cached||Object.keys(next).some(key=>next[key]!==cached.stamp[key])){
+    cached={stamp:next,pools:new Map(),checks:new Map()};
+    if(projectionCache.size>=8)projectionCache.delete(projectionCache.keys().next().value);
+    projectionCache.set(next.key,cached);
+   }
+   const selectPool=getPackCardPool,check=checkContentPack;
    getPackCardPool=function(selection,kind,level,types,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACKS){
     if(cards!==PARTY_CARDS||registry!==QUIP_CONTENT_PACKS)return selectPool.apply(this,arguments);
     const key=JSON.stringify([selection,kind,level,types]);
-    if(!pools.has(key))pools.set(key,selectPool.apply(this,arguments));
-    return pools.get(key);
+    if(!cached.pools.has(key))cached.pools.set(key,selectPool.apply(this,arguments));
+    return cached.pools.get(key);
    };
-   try{legacy.renderOptions();}finally{getPackCardPool=selectPool;}
+   checkContentPack=function(...args){
+    // Nonstandard explicit catalogs are not eligible for this UI snapshot.
+    if(args.length>2)return check.apply(this,args);
+    const key=JSON.stringify(args);
+    if(!cached.checks.has(key))cached.checks.set(key,check.apply(this,args));
+    return cached.checks.get(key);
+   };
+   try{legacy.renderOptions();}finally{getPackCardPool=selectPool;checkContentPack=check;}
    renderedStamp=viewStamp();
   }
   renderMeta();

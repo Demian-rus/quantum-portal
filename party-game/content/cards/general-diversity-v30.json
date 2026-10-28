@@ -1,0 +1,502 @@
+[
+  {
+    "id": "word-069001",
+    "text": "ГОРЛЫШКО",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069002",
+    "text": "ОТРЕЗОК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069003",
+    "text": "ПРОРЕЗЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069004",
+    "text": "ЖЕЛОБ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069005",
+    "text": "РУКОМОЙНИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069006",
+    "text": "ПОДПЯТНИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069007",
+    "text": "ШКАТУЛКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069008",
+    "text": "КАБИНЕТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069009",
+    "text": "БРЫЗГАЛКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069010",
+    "text": "КРОМКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069011",
+    "text": "ЛАПНИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069012",
+    "text": "БУКЛЕТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "language"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069013",
+    "text": "МЕШКОВИНА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069014",
+    "text": "УКАЗАТЕЛЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "transport"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069015",
+    "text": "БАНДАНА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069016",
+    "text": "ЧАСТОКОЛ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "phrase-069001",
+    "text": "ЛЕДЯНАЯ ГОРКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "phrase-069002",
+    "text": "ДОМАШНИЙ ХАЛАТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "phrase-069003",
+    "text": "ДЕРЕВЯННЫЙ ЯЩИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "phrase-069004",
+    "text": "ТЁПЛЫЕ ВАРЕЖКИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069017",
+    "text": "КЮВЕТА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069018",
+    "text": "КОБАЛЬТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069019",
+    "text": "ГЛОССАРИЙ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069020",
+    "text": "СПИРТОВКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069021",
+    "text": "ФЛИГЕЛЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069022",
+    "text": "КОСОГОР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "geography"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069023",
+    "text": "ОРГАНЗА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069024",
+    "text": "АРБАЛЕТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069025",
+    "text": "КОМПАРАТОР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069026",
+    "text": "ЛАЗАРЕТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069027",
+    "text": "РОНДЕЛЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069028",
+    "text": "ФОТОМЕТР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069029",
+    "text": "КОКЛЮШКИ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069030",
+    "text": "КАРТЕЧЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069031",
+    "text": "ФИБУЛА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069032",
+    "text": "ГОРГУЛЬЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "phrase-069005",
+    "text": "БУЛЫЖНАЯ МОСТОВАЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "phrase-069006",
+    "text": "ПОСЕВНАЯ КАМПАНИЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "phrase-069007",
+    "text": "ПАРУСНАЯ РЕГАТА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "sport"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "phrase-069008",
+    "text": "ЗУБЧАТАЯ ПЕРЕДАЧА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069033",
+    "text": "СИМПЛЕКС",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069034",
+    "text": "НЕОТЕНИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069035",
+    "text": "АДИАБАТА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069036",
+    "text": "КСЕРОФИТ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069037",
+    "text": "СОЛИПСИЗМ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069038",
+    "text": "ПСЕВДОМОРФОЗ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069039",
+    "text": "АВТОПОЭЗИС",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "word-069040",
+    "text": "ТРИБОЛОГИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "phrase-069009",
+    "text": "ПРОБЛЕМА ОСТАНОВКИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v30"
+  },
+  {
+    "id": "phrase-069010",
+    "text": "НЕРАВЕНСТВО БЕЛЛА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v30"
+  }
+]
