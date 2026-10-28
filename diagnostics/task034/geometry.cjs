@@ -16,9 +16,9 @@ function collect(){
   const w=Math.min(a.visible.right,b.visible.right)-Math.max(a.visible.x,b.visible.x),h=Math.min(a.visible.bottom,b.visible.bottom)-Math.max(a.visible.y,b.visible.y);if(w>1&&h>1)overlaps.push({a:a.id,b:b.id,width:w,height:h,area:w*h});
  }
  const small=targets.filter(t=>t.rect.width<43.5||t.rect.height<43.5).map(t=>({id:t.id,width:t.rect.width,height:t.rect.height}));
- const clipped=targets.filter(t=>t.clientWidth>0&&t.scrollWidth>t.clientWidth+2).map(t=>({id:t.id,client:t.clientWidth,scroll:t.scrollWidth}));
+ const clipped=targets.filter(t=>!t.node.matches('input,textarea')&&t.clientWidth>0&&t.scrollWidth>t.clientWidth+2).map(t=>({id:t.id,client:t.clientWidth,scroll:t.scrollWidth}));
  const cards=[...document.querySelectorAll('.challenge-card,.round-fixed-card,.approx-question-card')].filter(live).map(n=>({class:n.className,...rect(n)}));
  const scrollers=[...scope.querySelectorAll('*')].filter(n=>live(n)&&/auto|scroll/.test(getComputedStyle(n).overflowY)&&n.scrollHeight>n.clientHeight+2).map(n=>({id:label(n),rect:rect(n),client:n.clientHeight,scroll:n.scrollHeight}));
- return {viewport:{width:innerWidth,height:innerHeight,visualHeight:visualViewport?.height},document:{width:document.documentElement.scrollWidth,height:document.documentElement.scrollHeight},active:document.activeElement?.id,inputFocused:document.activeElement?.matches('input,textarea'),overlaps,small,clipped,cards,scrollers,targets:targets.map(({node,...t})=>t)};
+ return {viewport:{width:innerWidth,height:innerHeight,visualHeight:visualViewport?.height},document:{width:document.documentElement.scrollWidth,height:document.documentElement.scrollHeight},active:document.activeElement?.id,inputFocused:document.activeElement?.matches('input,textarea'),overlaps,small,clipped,cards,scrollers,targets:targets.map(({node,...t})=>({...t,fontSize:getComputedStyle(node).fontSize}))};
 }
 module.exports={intersection,collect};
