@@ -46,14 +46,21 @@ async function rules(p,format,measurements){
  await geometry(p,format+' rules closed',measurements);await shot(p,format+'-rules-closed');
  const expected=await p.evaluate(()=>MODE_LIST.map(m=>({id:m.id,title:m.title,guide:rulesGuidePage(m.id),status:packModeAvailability(options.contentPack,{...options,...setupSongPolicy(options)},m.id)})));
  await p.evaluate(()=>{__checks031=0;}); // Exclude only the test's explicit expected-value catalog queries.
+ const ruleEvidence=[];
  for(const mode of expected){const row=p.locator('[data-wizard-rule="'+mode.id+'"]'),details=row.locator('details'),summaryNode=details.locator('summary'),before=await protectedState(p);
   assert.equal(await row.locator('header h2').textContent(),mode.title);assert.equal(await row.locator('.wizard-reward').textContent(),mode.guide.reward);assert.equal(await row.locator('input').isDisabled(),!mode.status.available);assert.equal(await row.locator('.wizard-mode-settings').locator('details').count(),0,'settings outside disclosure');assert.equal(await row.locator('.wizard-mode-settings input').count(),1);assert.equal(await details.locator('input,button').count(),0,'rules are read only');
+  const closedBefore=await details.evaluate(n=>!n.open);
   await summaryNode.scrollIntoViewIfNeeded();await summaryNode.focus();await p.keyboard.press('Enter');assert.equal(await details.evaluate(n=>n.open),true);assert.equal(await summaryNode.evaluate(n=>n.matches(':focus-visible')&&getComputedStyle(n).outlineStyle!=='none'),true);
   const blocks=await row.locator('.wizard-rule-copy').evaluate(n=>[...n.querySelectorAll('h3')].map(h=>[h.textContent,h.nextElementSibling.textContent]));
   const guide=mode.guide.blocks.map(([title,body])=>[title,format==='teams'?body.replaceAll('Соперник','Партнёр').replaceAll('соперник','партнёр'):body]);assert.deepEqual(blocks,guide,'exact live rulesGuidePage content '+mode.id);
+  ruleEvidence.push({id:mode.id,title:mode.title,closedBefore,sourceGuide:mode.guide,renderedBlocks:blocks,expectedBlocks:guide,state:await row.locator('.wizard-mode-state').textContent(),reward:await row.locator('.wizard-reward').textContent(),checked:await row.locator('input').isChecked(),disabled:await row.locator('input').isDisabled()});
+  if(width===390){await row.evaluate(n=>n.scrollIntoView({block:'start'}));await shot(p,format+'-mode-'+mode.id+'-open');}
   assert.deepEqual(await protectedState(p),before,'opening rules does not save');if(mode.id==='sing'){await row.evaluate(n=>n.scrollIntoView({block:'start'}));await geometry(p,format+' sing open',measurements);await shot(p,format+'-rules-open-sing');}
   await p.keyboard.press('Space');assert.equal(await details.evaluate(n=>n.open),false);assert.deepEqual(await protectedState(p),before,'closing rules does not save');
+  ruleEvidence.at(-1).closedAfter=await details.evaluate(n=>!n.open);
+  if(width===390){await row.evaluate(n=>n.scrollIntoView({block:'start'}));await shot(p,format+'-mode-'+mode.id+'-closed');}
  }
+ fs.writeFileSync(folder+'/'+format+'-rules-evidence.json',JSON.stringify({head:execFileSync('git',['rev-parse','HEAD'],{cwd:ROOT}).toString().trim(),width,height,format,rules:ruleEvidence},null,2));
  assert.equal(await p.evaluate(()=>__checks031),0,'reading eight accordions does not revalidate catalog');
  const sing=p.locator('[data-wizard-rule="sing"]');assert.equal(await sing.locator('.wizard-mode-settings [data-song-language]').count(),2);assert.equal(await sing.locator('details').evaluate(n=>n.open),false);
  await sing.scrollIntoViewIfNeeded();await shot(p,format+'-rules-closed-sing');
