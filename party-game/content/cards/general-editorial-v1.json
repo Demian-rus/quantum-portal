@@ -1,0 +1,1622 @@
+[
+  {
+    "id": "phrase-071001",
+    "text": "МОРСКОЙ КОТИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071002",
+    "text": "КОНТИНЕНТАЛЬНЫЙ ШЕЛЬФ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071003",
+    "text": "ПОДЗОРНАЯ ТРУБА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071004",
+    "text": "ЛОЖНАЯ ДИЛЕММА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071005",
+    "text": "ЭФФЕКТ ДАННИНГА-КРЮГЕРА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071006",
+    "text": "СИНДРОМ САМОЗВАНЦА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071007",
+    "text": "ЭФФЕКТ ПЛАЦЕБО",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071008",
+    "text": "ТЕОРИЯ ПРИВЯЗАННОСТИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071009",
+    "text": "ТЕОРИЯ ХАОСА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071010",
+    "text": "КУХОННАЯ ВЫТЯЖКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071011",
+    "text": "БУМАЖНАЯ ГИРЛЯНДА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071012",
+    "text": "ДВЕРНОЙ ГЛАЗОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071013",
+    "text": "СТЕКЛЯННЫЙ ГРАФИН",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071014",
+    "text": "ПОЧТОВЫЙ ШТАМП",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071015",
+    "text": "САДОВАЯ ТАЧКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071016",
+    "text": "РЕЗИНОВАЯ КАЛОША",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071017",
+    "text": "СТАРЫЙ ПРИЁМНИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071018",
+    "text": "КОЖАНЫЙ ПОРТФЕЛЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071019",
+    "text": "ГОРОДСКОЙ ТРАМВАЙ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071020",
+    "text": "ПРОЗРАЧНАЯ ПАПКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071021",
+    "text": "ПЕСОЧНАЯ ФОРМОЧКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071022",
+    "text": "ДОМОВОЙ ЗВОНОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071023",
+    "text": "МЕТАЛЛИЧЕСКАЯ КНОПКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071024",
+    "text": "КОНСЕРВНАЯ БАНКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071025",
+    "text": "ЗИМНИЙ ШАРФ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071026",
+    "text": "СОЛОМЕННАЯ ШЛЯПА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071027",
+    "text": "БАРХАТНАЯ ЛЕНТА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071028",
+    "text": "СОЛЁНЫЙ ОРЕШЕК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071029",
+    "text": "ПРОЛИВНОЙ ДОЖДЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071030",
+    "text": "ШОКОЛАДНЫЙ ПУДИНГ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071031",
+    "text": "КАРМАННАЯ ЗАЖИГАЛКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071032",
+    "text": "ДЕРЕВЯННАЯ ЛОПАТКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071033",
+    "text": "ГЛИНЯНЫЙ КУВШИН",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071034",
+    "text": "КРУЖЕВНАЯ САЛФЕТКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071035",
+    "text": "СИНИЙ ФЛАЖОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071036",
+    "text": "КРАСНЫЙ МАЯЧОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071037",
+    "text": "ЗЕЛЁНЫЙ СВЕТОФОР",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071038",
+    "text": "НАСТОЛЬНАЯ ПОДСТАВКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071039",
+    "text": "ОСЕННИЙ ЛИСТОПАД",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071040",
+    "text": "ЖАРЕНЫЙ КАШТАН",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071041",
+    "text": "ПУХОВЫЙ ПЛАТОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071042",
+    "text": "ЛЕДЯНАЯ СОСУЛЬКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071043",
+    "text": "ЦВЕТНОЙ КАРАНДАШ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071044",
+    "text": "ПОЛОСАТЫЙ ЗОНТИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071045",
+    "text": "ЧУГУННЫЙ КОТЕЛОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071046",
+    "text": "КЕРАМИЧЕСКАЯ КРУЖКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071047",
+    "text": "СЕРЕБРЯНАЯ ЦЕПОЧКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071048",
+    "text": "ЗОЛОТОЙ КУЛОН",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071049",
+    "text": "ПЛАСТИКОВЫЙ КОНТЕЙНЕР",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071050",
+    "text": "ШКОЛЬНЫЙ ДНЕВНИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071051",
+    "text": "КНИЖНАЯ ОБЛОЖКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071052",
+    "text": "ПУХЛЫЙ КОТЁНОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071053",
+    "text": "МЯГКИЙ ПОДЛОКОТНИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071054",
+    "text": "КАМЕННЫЙ ПОРОГ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071055",
+    "text": "ДОРОЖНЫЙ УКАЗАТЕЛЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071056",
+    "text": "СЛИВОЧНЫЙ ПЛОМБИР",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071057",
+    "text": "ЯБЛОЧНЫЙ ПИРОГ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071058",
+    "text": "ГОРОХОВЫЙ СУП",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071059",
+    "text": "ДЕТСКИЙ САМОКАТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071060",
+    "text": "ПАРУСНЫЙ КОРАБЛИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071061",
+    "text": "ВЕЛОСИПЕДНЫЙ ЗАМОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071062",
+    "text": "ВЕРЁВОЧНЫЙ МОСТИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071063",
+    "text": "ВЯЗАНАЯ ШАПОЧКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071064",
+    "text": "КУКОЛЬНАЯ КОЛЯСКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071065",
+    "text": "ДОМАШНИЙ КАМИН",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071066",
+    "text": "ЗАВОДНОЙ БУДИЛЬНИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071067",
+    "text": "ПЫШНЫЙ БУКЕТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071068",
+    "text": "ДОЖДЕВОЙ ПЛАЩ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071069",
+    "text": "ОБЕДЕННЫЙ СТОЛ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071070",
+    "text": "ПЛЕТЁНАЯ КОРЗИНА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071071",
+    "text": "БЕРЕСТЯНАЯ КОРОБКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071072",
+    "text": "КОФЕЙНАЯ ЧАШКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071073",
+    "text": "ЗЕМЛЯНИЧНОЕ ВАРЕНЬЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071074",
+    "text": "ШЕРСТЯНОЙ НОСОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071075",
+    "text": "ВАТНАЯ ПАЛОЧКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071076",
+    "text": "РАЗДВИЖНАЯ ДВЕРЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071077",
+    "text": "ФАРФОРОВАЯ СТАТУЭТКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071078",
+    "text": "ВОДЯНОЙ ПИСТОЛЕТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071079",
+    "text": "БУМАЖНЫЙ КОРАБЛИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071080",
+    "text": "СОЛНЕЧНЫЙ ХРОНОМЕТР",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071081",
+    "text": "МУЗЫКАЛЬНЫЙ КАМЕРТОН",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071082",
+    "text": "БЕЗЗВУЧНАЯ АЗБУКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071083",
+    "text": "ТЕАТРАЛЬНЫЙ БИНОКЛЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071084",
+    "text": "ГИДРАВЛИЧЕСКИЙ ДОМКРАТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071085",
+    "text": "РЕАКТИВНАЯ ТУРБИНА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071086",
+    "text": "ТРАМВАЙНЫЙ ТОКОПРИЁМНИК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071087",
+    "text": "КУЗНЕЧНЫЙ МЕХ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071088",
+    "text": "АЛЬПИНИСТСКИЙ КАРАБИН",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071089",
+    "text": "КАМЕННАЯ АРКАДА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071090",
+    "text": "МОРСКОЙ ФАРВАТЕР",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071091",
+    "text": "КОРАБЕЛЬНЫЙ КОМПАС",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071092",
+    "text": "ПОДВОДНЫЙ БАТИСКАФ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071093",
+    "text": "ЗАПОЛЯРНАЯ СТАНЦИЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071094",
+    "text": "СУХОЙ ДОК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071095",
+    "text": "САМОВАРНАЯ ТРУБА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071096",
+    "text": "МУЗЕЙНЫЙ ЭКСПОНАТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071097",
+    "text": "АРХИВНАЯ ПАПКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071098",
+    "text": "КНИЖНЫЙ ЭКСЛИБРИС",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071099",
+    "text": "ТЕЛЕСКОПИЧЕСКАЯ АНТЕННА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071100",
+    "text": "СИГНАЛЬНЫЙ ОГОНЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071101",
+    "text": "ПОЖАРНЫЙ ГИДРАНТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071102",
+    "text": "ЛАТУННЫЙ ПОДСВЕЧНИК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071103",
+    "text": "ТКАЦКИЙ СТАНОК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071104",
+    "text": "ПОЛЕВОЙ БИНОКЛЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071105",
+    "text": "СТРОИТЕЛЬНЫЙ ОТВЕС",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071106",
+    "text": "ЛЕСОПИЛЬНЫЙ ЦЕХ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071107",
+    "text": "ШАХТНЫЙ ЛИФТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071108",
+    "text": "БОЛОТНЫЙ ГАЗ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071109",
+    "text": "ГОРНЫЙ КАРЬЕР",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071110",
+    "text": "МЕТЕОРОЛОГИЧЕСКИЙ ЗОНД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071111",
+    "text": "АТМОСФЕРНЫЙ ФРОНТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071112",
+    "text": "ЛАЗЕРНЫЙ ДАЛЬНОМЕР",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071113",
+    "text": "КАРТОГРАФИЧЕСКАЯ СЕТКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071114",
+    "text": "МЕДИЦИНСКИЙ ЖГУТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071115",
+    "text": "ПАРОВОЙ КЛАПАН",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071116",
+    "text": "ВОЗДУШНЫЙ ШЛЮЗ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071117",
+    "text": "ПОЛОСТНАЯ ОПЕРАЦИЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071118",
+    "text": "СТЕКЛЯННАЯ РЕТОРТА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071119",
+    "text": "ЧАСОВОЙ МЕХАНИЗМ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071120",
+    "text": "СВЕТОВОЙ СИГНАЛ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071121",
+    "text": "АНТЕННЫЙ КАБЕЛЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071122",
+    "text": "ЛАБОРАТОРНАЯ ПРОБИРКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071123",
+    "text": "ПИЩЕВАЯ ДОБАВКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071124",
+    "text": "ЛЕГКОВОЙ ПРИЦЕП",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071125",
+    "text": "СЛЕСАРНЫЙ ВЕРСТАК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071126",
+    "text": "СВАРОЧНАЯ МАСКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071127",
+    "text": "ХИРУРГИЧЕСКИЙ СКАЛЬПЕЛЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071128",
+    "text": "ПРАВОВОЙ ПРЕЦЕДЕНТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071129",
+    "text": "КУРСОВОЙ ПРОЕКТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071130",
+    "text": "ЖЕЛЕЗНОДОРОЖНЫЙ СЕМАФОР",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071131",
+    "text": "РЕЧНОЙ ПОРТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071132",
+    "text": "ОКЕАНСКОЕ ТЕЧЕНИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071133",
+    "text": "ЗЕРКАЛЬНЫЙ ТЕЛЕСКОП",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071134",
+    "text": "СТАРИННЫЙ ГЛОБУС",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071135",
+    "text": "КУЛИНАРНЫЙ РЕЦЕПТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071136",
+    "text": "РИТУАЛЬНАЯ МАСКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "general"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071137",
+    "text": "КВАНТОВАЯ СУПЕРПОЗИЦИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071138",
+    "text": "ГЕОДЕЗИЧЕСКИЙ ЭЛЛИПСОИД",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071139",
+    "text": "ЗАПРЕТ ПАУЛИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071140",
+    "text": "ПОЛЯРИЗАЦИЯ СВЕТА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071141",
+    "text": "НЕЙРОННАЯ ПЛАСТИЧНОСТЬ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071142",
+    "text": "ГЕНЕТИЧЕСКИЙ ДРЕЙФ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071143",
+    "text": "СПЕКТРАЛЬНЫЙ АНАЛИЗ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071144",
+    "text": "ГЕОЛОГИЧЕСКИЙ РАЗЛОМ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071145",
+    "text": "ПЛОТНОСТЬ ВЕРОЯТНОСТИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071146",
+    "text": "ТРАНЗИСТОРНЫЙ КЛЮЧ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071147",
+    "text": "БИНАРНОЕ ДЕРЕВО",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071148",
+    "text": "СЛУЧАЙНЫЙ ПРОЦЕСС",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071149",
+    "text": "ДИНАМИЧЕСКОЕ ПРОГРАММИРОВАНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071150",
+    "text": "ЗАКОН БОЙЛЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071151",
+    "text": "КОНСТАНТА ПЛАНКА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071152",
+    "text": "ПРИНЦИП АРХИМЕДА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071153",
+    "text": "ТЕОРЕМА ПИФАГОРА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071154",
+    "text": "ПАРАДОКС БЕРТРАНА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071155",
+    "text": "ГИПОТЕЗА РИМАНА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071156",
+    "text": "КРИСТАЛЛИЧЕСКАЯ РЕШЁТКА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071157",
+    "text": "КЛЕТОЧНАЯ МЕМБРАНА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071158",
+    "text": "СИНТЕЗ БЕЛКА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071159",
+    "text": "ФУНКЦИОНАЛЬНАЯ АСИММЕТРИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071160",
+    "text": "ТЕКТОНИЧЕСКАЯ ПЛИТА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "phrase-071161",
+    "text": "МЕТАМОРФИЧЕСКАЯ ПОРОДА",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-editorial-v1"
+  },
+  {
+    "id": "word-071001",
+    "text": "РОБОТ-ДОСТАВЩИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-editorial-v1"
+  }
+]

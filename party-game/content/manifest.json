@@ -354,6 +354,11 @@
       "path": "cards/general-diversity-v31.json",
       "immutable": false,
       "review": "G45: 40 reviewed Cyrillic words and 10 phrases; see editorial/general-diversity-v31-review.md"
+    },
+    {
+      "path": "cards/general-editorial-v1.json",
+      "immutable": false,
+      "review": "G46 editorial: eliminate active plural words, all exact duplicate prompts and multi-word word classification without changing historical IDs"
     }
   ],
   "questions": [
@@ -638,6 +643,11 @@
       "path": "packs/general-diversity-v31.json",
       "immutable": false,
       "review": "G45 general@47 adds 50 IDs after unchanged 6950-ID general@46 prefix"
+    },
+    {
+      "path": "packs/general-editorial-v1.json",
+      "immutable": false,
+      "review": "G46 editorial general@48: exactly 7000 unique active prompts, 162 replaced, historical catalogs retained"
     }
   ],
   "legacyCollisions": [
@@ -1008,6 +1018,86 @@
         "song-020042"
       ],
       "reason": "Одна и та же лексическая тема в обычной карточке и Напой; общий prompt:text ключ истории намеренно исключает повтор между режимами."
+    },
+    {
+      "text": "морской котик",
+      "ids": [
+        "word-000070",
+        "phrase-071001"
+      ],
+      "reason": "Историческая карточка типа word оставлена ради прежних сохранений; с general@48 пользователь видит только новую phrase-карточку с отдельным постоянным ID."
+    },
+    {
+      "text": "континентальный шельф",
+      "ids": [
+        "word-001329",
+        "phrase-071002"
+      ],
+      "reason": "Историческая карточка типа word оставлена ради прежних сохранений; с general@48 пользователь видит только новую phrase-карточку с отдельным постоянным ID."
+    },
+    {
+      "text": "подзорная труба",
+      "ids": [
+        "word-001330",
+        "phrase-071003"
+      ],
+      "reason": "Историческая карточка типа word оставлена ради прежних сохранений; с general@48 пользователь видит только новую phrase-карточку с отдельным постоянным ID."
+    },
+    {
+      "text": "ложная дилемма",
+      "ids": [
+        "word-001404",
+        "phrase-071004"
+      ],
+      "reason": "Историческая карточка типа word оставлена ради прежних сохранений; с general@48 пользователь видит только новую phrase-карточку с отдельным постоянным ID."
+    },
+    {
+      "text": "эффект даннинга крюгера",
+      "ids": [
+        "word-001406",
+        "phrase-071005"
+      ],
+      "reason": "Историческая карточка типа word оставлена ради прежних сохранений; с general@48 пользователь видит только новую phrase-карточку с отдельным постоянным ID."
+    },
+    {
+      "text": "синдром самозванца",
+      "ids": [
+        "word-001407",
+        "phrase-071006"
+      ],
+      "reason": "Историческая карточка типа word оставлена ради прежних сохранений; с general@48 пользователь видит только новую phrase-карточку с отдельным постоянным ID."
+    },
+    {
+      "text": "эффект плацебо",
+      "ids": [
+        "word-001408",
+        "phrase-071007"
+      ],
+      "reason": "Историческая карточка типа word оставлена ради прежних сохранений; с general@48 пользователь видит только новую phrase-карточку с отдельным постоянным ID."
+    },
+    {
+      "text": "теория привязанности",
+      "ids": [
+        "word-001409",
+        "phrase-071008"
+      ],
+      "reason": "Историческая карточка типа word оставлена ради прежних сохранений; с general@48 пользователь видит только новую phrase-карточку с отдельным постоянным ID."
+    },
+    {
+      "text": "теория хаоса",
+      "ids": [
+        "word-001411",
+        "phrase-071009"
+      ],
+      "reason": "Историческая карточка типа word оставлена ради прежних сохранений; с general@48 пользователь видит только новую phrase-карточку с отдельным постоянным ID."
+    },
+    {
+      "text": "робот доставщик",
+      "ids": [
+        "phrase-039009",
+        "word-071001"
+      ],
+      "reason": "Историческая запись phrase-039009 сохранена для старых партий; с general@48 составное слово через дефис доступно только в правильном типе word."
     }
   ]
 }
