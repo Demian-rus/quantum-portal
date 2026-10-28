@@ -11,6 +11,9 @@ test('G46: 162 reviewed replacements, exact 7000 active IDs, clean word and phra
  assert.equal(additions.filter(c=>c.type==='phrase'&&/\s/.test(c.text)).length,161);assert.equal(additions.filter(c=>c.id==='word-071001'&&c.text==='РОБОТ-ДОСТАВЩИК'&&c.type==='word').length,1);
  assert.ok(additions.every(c=>/^[А-ЯЁ —-]+$/u.test(c.text)));
  assert.deepEqual(additions.map(c=>c.id),current.criteria.cardIds.slice(-162));
+ const previousSongs=previous.criteria.cardIds.filter(id=>id.startsWith('song-'));
+ assert.equal(previousSongs.length,224,'The music mode must keep all 224 authored song prompts');
+ assert.deepEqual(current.criteria.cardIds.filter(id=>id.startsWith('song-')),previousSongs,'No song may be removed to resolve cross-type duplicates');
  const removed=previous.criteria.cardIds.filter(id=>!current.criteria.cardIds.includes(id));
  assert.equal(removed.length,162);
  assert.deepEqual(current.criteria.cardIds.slice(0,-162),previous.criteria.cardIds.filter(id=>!removed.includes(id)));

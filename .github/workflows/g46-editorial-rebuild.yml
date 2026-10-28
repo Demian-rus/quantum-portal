@@ -1,0 +1,34 @@
+name: G46 one-time deterministic content rebuild
+on:
+  push:
+    branches: [content/general-editorial-dedup-20261028]
+permissions:
+  contents: write
+jobs:
+  rebuild:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Deterministic content generation and focused validation
+        run: |
+          node party-game/scripts/content.cjs build
+          node party-game/scripts/content.cjs check
+          node --test party-game/tests/g46-editorial.test.cjs
+      - name: Verify scope and commit generated catalog
+        run: |
+          changed="$(git diff --name-only)"
+          if [ "$changed" != "party-game/content-packs.js" ]; then
+            echo "Unexpected generated changes: $changed"
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add party-game/content-packs.js
+          git commit -m "build(g46): preserve all reviewed songs in the deduplicated catalog"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
