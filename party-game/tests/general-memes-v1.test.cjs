@@ -6,7 +6,7 @@ test('M1 memes are independently categorized inside latest general pack, no new 
  const rows=data.cards.filter(c=>c.pack==='general-memes-v1'),ids=rows.map(c=>c.id);
  assert.equal(rows.length,20);assert.equal(rows.filter(c=>c.type==='word').length,6);assert.equal(rows.filter(c=>c.type==='phrase').length,14);
  assert.ok(rows.every(c=>c.categories.length===1&&c.categories[0]==='memes'));
- assert.ok(rows.every(c=>c.type==='word'?!/\\s/u.test(c.text):/\\s/u.test(c.text)));
+ assert.ok(rows.every(c=>c.type==='word'?!/\s/u.test(c.text):/\s/u.test(c.text)));
  assert.equal(new Set(rows.map(c=>c.id)).size,20);assert.equal(new Set(rows.map(c=>api.normalize(c.text))).size,20);
  assert.equal(before.criteria.cardIds.length,7000);assert.equal(after.criteria.cardIds.length,7020);
  assert.deepEqual(after.criteria.cardIds.slice(0,7000),before.criteria.cardIds);
