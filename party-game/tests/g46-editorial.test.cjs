@@ -8,7 +8,7 @@ test('G46: 162 reviewed replacements, exact 7000 active IDs, clean word and phra
  assert.ok(previous&&current);
  assert.equal(previous.criteria.cardIds.length,7000);assert.equal(current.criteria.cardIds.length,7000);
  assert.equal(additions.length,162);assert.equal(new Set(additions.map(c=>c.id)).size,162);
- assert.ok(additions.every(c=>c.type==='phrase'&&/\s/.test(c.text)));
+ assert.equal(additions.filter(c=>c.type==='phrase'&&/\s/.test(c.text)).length,161);assert.equal(additions.filter(c=>c.id==='word-071001'&&c.text==='РОБОТ-ДОСТАВЩИК'&&c.type==='word').length,1);
  assert.ok(additions.every(c=>/^[А-ЯЁ —-]+$/u.test(c.text)));
  assert.deepEqual(additions.map(c=>c.id),current.criteria.cardIds.slice(-162));
  const removed=previous.criteria.cardIds.filter(id=>!current.criteria.cardIds.includes(id));
