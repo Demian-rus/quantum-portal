@@ -26,6 +26,11 @@ jobs:
       - run: node diagnostics/task034/mobile.cjs
         env:
           QUIP034_GROUP: ${{ matrix.group }}
+      - run: node diagnostics/task034/evidence.cjs
+        if: always()
+        env:
+          QUIP034_GROUP: ${{ matrix.group }}
+          QUIP034_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
