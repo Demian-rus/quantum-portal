@@ -1,11 +1,11 @@
 [
   {
     "id": "word-067001",
-    "text": "КАРНИЗ",
+    "text": "КРАХМАЛ",
     "type": "word",
     "difficulty": "easy",
     "categories": [
-      "everyday"
+      "food"
     ],
     "pack": "general-diversity-v28"
   },
@@ -31,7 +31,7 @@
   },
   {
     "id": "word-067004",
-    "text": "СТУПКА",
+    "text": "МЕЛОК",
     "type": "word",
     "difficulty": "easy",
     "categories": [
@@ -61,7 +61,7 @@
   },
   {
     "id": "word-067007",
-    "text": "ПОДКОВА",
+    "text": "ВЕДЁРКО",
     "type": "word",
     "difficulty": "easy",
     "categories": [
@@ -201,11 +201,11 @@
   },
   {
     "id": "word-067017",
-    "text": "ТРЕЛЬЯЖ",
+    "text": "КОНВЕЙЕР",
     "type": "word",
     "difficulty": "medium",
     "categories": [
-      "everyday"
+      "technology"
     ],
     "pack": "general-diversity-v28"
   },
@@ -271,11 +271,11 @@
   },
   {
     "id": "word-067024",
-    "text": "АНТРЕСОЛЬ",
+    "text": "КУБРИК",
     "type": "word",
     "difficulty": "medium",
     "categories": [
-      "everyday"
+      "marine"
     ],
     "pack": "general-diversity-v28"
   },
@@ -291,7 +291,7 @@
   },
   {
     "id": "word-067026",
-    "text": "КАРТУШ",
+    "text": "КЛИШЕ",
     "type": "word",
     "difficulty": "medium",
     "categories": [
@@ -301,7 +301,7 @@
   },
   {
     "id": "word-067027",
-    "text": "АНФИЛАДА",
+    "text": "ОБЕЛИСК",
     "type": "word",
     "difficulty": "medium",
     "categories": [
@@ -331,11 +331,11 @@
   },
   {
     "id": "word-067030",
-    "text": "КАМЕРТОН",
+    "text": "ВИНЬЕТКА",
     "type": "word",
     "difficulty": "medium",
     "categories": [
-      "music"
+      "arts"
     ],
     "pack": "general-diversity-v28"
   },
@@ -371,11 +371,11 @@
   },
   {
     "id": "phrase-067006",
-    "text": "КОРАЛЛОВЫЙ РИФ",
+    "text": "КАМЕННЫЙ СВОД",
     "type": "phrase",
     "difficulty": "medium",
     "categories": [
-      "nature"
+      "history"
     ],
     "pack": "general-diversity-v28"
   },
