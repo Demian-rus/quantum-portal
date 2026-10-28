@@ -92,6 +92,10 @@
     {
       "id": "everyday",
       "name": "Повседневная жизнь"
+    },
+    {
+      "id": "memes",
+      "name": "Мемы"
     }
   ],
   "cards": [
@@ -364,6 +368,11 @@
       "path": "cards/general-editorial-v2.json",
       "immutable": false,
       "review": "G47: 3 exact semantic duplicate prompts replaced with three distinct singular word concepts; no historical changes"
+    },
+    {
+      "path": "cards/general-memes-v1.json",
+      "immutable": false,
+      "review": "M1: 20 independently editable internet meme words/phrases; editorial/general-memes-v1-review.md"
     }
   ],
   "questions": [
@@ -658,6 +667,11 @@
       "path": "packs/general-editorial-v2.json",
       "immutable": false,
       "review": "G47 general@49: preserve 7000 active IDs after removing three verified semantic duplicates and appending three authored words"
+    },
+    {
+      "path": "packs/general-memes-v1.json",
+      "immutable": false,
+      "review": "M1: general@50 includes meme tagged prompts, historical general@49 untouched"
     }
   ],
   "legacyCollisions": [
