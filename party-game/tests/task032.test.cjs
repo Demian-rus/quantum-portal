@@ -7,7 +7,19 @@ test('TASK032 exact delta preserves every inherited script, all game CSS, dictio
  const {execFileSync}=require('node:child_process'),{normalizeTask032}=require('./task032-contract.cjs'),hunks=require('./task032-presentation.json');
  const before=f=>execFileSync('git',['show','7852bfe05cfa193b8084860a7c4faa0f01ae5786:party-game/'+f],{encoding:'utf8',maxBuffer:15e6}),read=f=>fs.readFileSync('party-game/'+f,'utf8');
  const scripts=[...before('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);assert.equal(scripts.length,53);
- for(const f of [...scripts,'style.css','setup-wizard.css','team-game.css','index.html','sw.js'])assert.equal(normalizeTask032(read(f)),before(f),f);
+ // G46 generated catalogs are versioned and editor-reviewed, not part of TASK032's
+ // immutable game-engine surface. Validate exact reproducibility instead.
+ const generatedFiles=new Set(['cards.js','content-packs.js']);
+ for(const f of [...scripts.filter(name=>!generatedFiles.has(name)),'style.css','setup-wizard.css','team-game.css','index.html','sw.js'])
+  assert.equal(normalizeTask032(read(f)),before(f),f);
+ const api=require('../scripts/content.cjs'),dataset=api.readDataset(),rendered=api.render(dataset);
+ for(const f of generatedFiles)assert.equal(read(f),rendered[f],f+' must match deterministic generated source');
+ const g45=dataset.packs.find(p=>p.id==='general'&&p.version===47),g46=dataset.packs.find(p=>p.id==='general'&&p.version===48);
+ assert.ok(g45&&g46,'Both the G45 and G46 revisions must remain available');
+ assert.equal(g45.criteria.cardIds.length,7000);
+ assert.equal(g46.criteria.cardIds.length,7000);
+ assert.equal(g46.criteria.cardIds.filter(id=>id.startsWith('song-')).length,224,'Preserve all 224 song prompts');
+ assert.match(read('sw.js'),/G46 2026-10-28: refresh the installed PWA catalog/);
  for(const h of hunks){assert(h.after);assert(read(h.file).includes(h.after),'exact addition must still exist: '+h.file);}
  const current=[...read('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);same(current.slice().sort(),[...scripts,'team-statistics.js'].sort());
  assert.equal(read('sw.js').slice(read('sw.js').indexOf("self.addEventListener('install'")),before('sw.js').slice(before('sw.js').indexOf("self.addEventListener('install'")));
