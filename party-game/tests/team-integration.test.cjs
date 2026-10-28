@@ -22,7 +22,7 @@ test('published engine controllers and accepted game CSS remain exact; catalog e
  assert.ok(api.validate(dataset).ok,'Full content validation must remain enabled');
 });
 
-test('published G26-G36 source JSON remains byte-exact; only G37-G42 additions and generated artifacts can differ',()=>{
+test('published G26-G36 source JSON remains byte-exact; only G37-G43 additions and generated artifacts can differ',()=>{
  const api=require('../scripts/content.cjs'),data=api.readDataset(),previous=JSON.parse(old(published,'content/manifest.json'));
  const priorSources=[...previous.cards,...previous.questions,...previous.packs];
  const currentSources=new Set([...data.manifest.cards,...data.manifest.questions,...data.manifest.packs].map(x=>x.path));
@@ -41,7 +41,9 @@ test('published G26-G36 source JSON remains byte-exact; only G37-G42 additions a
  'party-game/content/cards/general-diversity-v27.json','party-game/content/packs/general-diversity-v27.json',
  'party-game/content/editorial/general-diversity-v27-review.md',
  'party-game/content/cards/general-diversity-v28.json','party-game/content/packs/general-diversity-v28.json',
- 'party-game/content/editorial/general-diversity-v28-review.md']);
+ 'party-game/content/editorial/general-diversity-v28-review.md',
+ 'party-game/content/cards/general-diversity-v29.json','party-game/content/packs/general-diversity-v29.json',
+ 'party-game/content/editorial/general-diversity-v29-review.md']);
  for(const f of diff)assert.ok(allowed.has(f),'Unexpected published content change '+f);
  assert.equal(data.packs.find(p=>p.id==='general'&&p.version===38).criteria.cardIds.length,6550);
  assert.equal(data.packs.find(p=>p.id==='general'&&p.version===39).criteria.cardIds.length,6600);

@@ -339,6 +339,11 @@
       "path": "cards/general-diversity-v28.json",
       "immutable": false,
       "review": "G42: 40 curated Cyrillic words + 10 phrases; see editorial/general-diversity-v28-review.md"
+    },
+    {
+      "path": "cards/general-diversity-v29.json",
+      "immutable": false,
+      "review": "G43 curated words and phrases; editorial/general-diversity-v29-review.md"
     }
   ],
   "questions": [
@@ -608,6 +613,11 @@
       "path": "packs/general-diversity-v28.json",
       "immutable": false,
       "review": "G42 general@44 appends 50 IDs after unchanged 6800-ID general@43 prefix"
+    },
+    {
+      "path": "packs/general-diversity-v29.json",
+      "immutable": false,
+      "review": "G43 general@45 appends 50 after unchanged 6850-ID general@44 prefix"
     }
   ],
   "legacyCollisions": [
