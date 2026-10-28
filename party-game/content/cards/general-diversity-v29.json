@@ -1,0 +1,502 @@
+[
+  {
+    "id": "word-068001",
+    "text": "НАВЕС",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068002",
+    "text": "КЛАПАН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068003",
+    "text": "ВЕРАНДА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068004",
+    "text": "ОПАХАЛО",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068005",
+    "text": "КАНАВА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "geography"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068006",
+    "text": "ЗАМАЗКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068007",
+    "text": "ПУЛОВЕР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068008",
+    "text": "ТАТУИРОВКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068009",
+    "text": "СПАЛЬНИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068010",
+    "text": "КОНФОРКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068011",
+    "text": "КОЛОСОК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068012",
+    "text": "ГАЗОН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "nature"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068013",
+    "text": "ЗАПИСКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068014",
+    "text": "ПРИПРАВА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "food"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068015",
+    "text": "ЛЮЛЬКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068016",
+    "text": "ТКАНЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "phrase-068001",
+    "text": "ВИШНЁВЫЙ ПИРОГ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "food"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "phrase-068002",
+    "text": "ХРУСТЯЩАЯ КОРОЧКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "food"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "phrase-068003",
+    "text": "ПРОМОКШИЕ БОТИНКИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "phrase-068004",
+    "text": "ДЫМ ИЗ ТРУБЫ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068017",
+    "text": "ПАНОРАМА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068018",
+    "text": "ЗУБИЛО",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068019",
+    "text": "ЛАКЕЙ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068020",
+    "text": "КОНФЕРАНСЬЕ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068021",
+    "text": "САКВОЯЖ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068022",
+    "text": "АББАТСТВО",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068023",
+    "text": "КИВЕР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068024",
+    "text": "КНЕХТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "marine"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068025",
+    "text": "СКИПИДАР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068026",
+    "text": "ВАЛТОРНА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068027",
+    "text": "БАТИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068028",
+    "text": "ДИАПОЗИТИВ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068029",
+    "text": "ДВУТАВР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068030",
+    "text": "КАРИЛЬОН",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "music"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068031",
+    "text": "ПОЛИСПАСТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068032",
+    "text": "ПРОКОНСУЛ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "phrase-068005",
+    "text": "ЧУГУННАЯ РЕШЁТКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "phrase-068006",
+    "text": "ПЕЧАТНЫЙ СТАНОК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "phrase-068007",
+    "text": "СТЕКЛЯННАЯ МОЗАИКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "arts"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "phrase-068008",
+    "text": "ЖЕЛЕЗНОДОРОЖНАЯ СТАНЦИЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "transport"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068033",
+    "text": "МЕТАГЕНОМИКА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068034",
+    "text": "АЛЛОМЕТРИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068035",
+    "text": "НУКЛЕОСИНТЕЗ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068036",
+    "text": "ТАВТОМЕРИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068037",
+    "text": "МЕРЕОЛОГИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "culture"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068038",
+    "text": "ИДЕМПОТЕНТНОСТЬ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "technology"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068039",
+    "text": "ЭКЗАПТАЦИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "biology"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "word-068040",
+    "text": "ИЗОСТАЗИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "geography"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "phrase-068009",
+    "text": "ПАРАДОКС ДНЯ РОЖДЕНИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v29"
+  },
+  {
+    "id": "phrase-068010",
+    "text": "ДЕМОГРАФИЧЕСКИЙ ПЕРЕХОД",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "science"
+    ],
+    "pack": "general-diversity-v29"
+  }
+]
