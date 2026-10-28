@@ -1,0 +1,34 @@
+[
+  {
+    "id": "word-072001",
+    "text": "КРАТОН",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "science",
+      "geography"
+    ],
+    "pack": "general-editorial-v2"
+  },
+  {
+    "id": "word-072002",
+    "text": "ЛИБРАЦИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "science",
+      "astronomy"
+    ],
+    "pack": "general-editorial-v2"
+  },
+  {
+    "id": "word-072003",
+    "text": "ВОЛЧОК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "general-editorial-v2"
+  }
+]
