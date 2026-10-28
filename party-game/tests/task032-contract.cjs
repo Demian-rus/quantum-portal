@@ -2,10 +2,11 @@
 // Reverse only the exact TASK032 additions for historical byte guards.
 // New bindings/statistics are exercised by task032.test.cjs and native browser tests.
 const hunks=require('./task032-presentation.json');
+const {normalizeTask034}=require('../../diagnostics/task034/source-contract.cjs');
 // TASK033 reverses the precise new focus rule and two PWA version literals.
 // G46 release marker and all historical byte comparisons remain guarded.
 function normalizeTask033(source){
- return source.replace('.wizard-page .team-input-wrap:focus-within{box-shadow:none}\n','')
+ return normalizeTask034(source).replace('.wizard-page .team-input-wrap:focus-within{box-shadow:none}\n','')
   .replaceAll('setup-wizard.css?v=6','setup-wizard.css?v=5')
   .replaceAll('kvip-pwa-v98-20261028-profile-focus-fix','kvip-pwa-v97-20261028-team-profiles-candidate');
 }

@@ -11,12 +11,13 @@ async function provisionProfiles(page){
     renderOptions();
   });
 }
-// A historical deployment must serve every script its own HTML references.
+// A historical deployment must serve every script/style its own HTML references.
 // Partial file lists would mix new profile-aware views with a pre-profile app.
 function historicalRuntimeFiles(git,reference,files){
   const html=git(['show',reference+':party-game/index.html']).toString();
   const scripts=Array.from(html.matchAll(/<script src="\.\/([^?"/]+\.js)(?:\?[^" ]*)?" defer><\/script>/g),match=>match[1]);
-  return [...new Set([...files,...scripts])];
+  const styles=Array.from(html.matchAll(/<link rel="stylesheet" href="\.\/([^?"/]+\.css)(?:\?[^" ]*)?">/g),match=>match[1]);
+  return [...new Set([...files,...scripts,...styles])];
 }
 async function chooseNamedProfile(page,slot,name,color='violet'){
   await page.locator(slot===0?'#team-a':'#team-b').click();

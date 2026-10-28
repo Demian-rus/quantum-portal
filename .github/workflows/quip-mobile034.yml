@@ -7,22 +7,6 @@ on:
     paths: ['diagnostics/task034/**', 'party-game/**', '.github/workflows/quip-mobile034.yml']
 permissions: {contents: read}
 jobs:
-  diagnostic-browser-tooling:
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-    timeout-minutes: 8
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: {node-version: '22'}
-      - run: npm install --no-save playwright-core@1.55.0
-      - run: npx playwright-core install chromium
-      - run: tar -czf "$RUNNER_TEMP/quip034-chromium-tooling.tgz" -C "$HOME/.cache" ms-playwright -C "$GITHUB_WORKSPACE" node_modules/playwright-core
-      - uses: actions/upload-artifact@v4
-        with:
-          name: quip-task034-diagnostic-browser-tooling
-          path: ${{ runner.temp }}/quip034-chromium-tooling.tgz
-          retention-days: 3
   mobile:
     runs-on: ubuntu-latest
     timeout-minutes: 35
@@ -42,10 +26,25 @@ jobs:
       - run: node diagnostics/task034/mobile.cjs
         env:
           QUIP034_GROUP: ${{ matrix.group }}
-          QUIP034_BASELINE_ONLY: '1'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: quip-task034-mobile-${{ matrix.group }}
           path: artifacts/quip-task034
+          if-no-files-found: error
+  installed-pwa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm install --no-save playwright-core@1.55.0
+      - run: node diagnostics/task034/installed-pwa.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quip-task034-installed-pwa
+          path: artifacts/quip-task034/installed-pwa
           if-no-files-found: error

@@ -4,7 +4,7 @@ const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs
 const base='507c3d24f270a7d26b1562ffc6837c819a15aa5b',root=path.resolve(__dirname,'../..'),URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/';
 const git=a=>execFileSync('git',a,{cwd:root,maxBuffer:15e6});
 const files=historicalRuntimeFiles(git,base,['index.html','style.css','sw.js']);
-const before=new Map(files.map(f=>[f,git(['show',base+':party-game/'+f])])),current=new Map(files.map(f=>[f,fs.readFileSync(path.join(root,'party-game',f))]));
+const before=new Map(files.map(f=>[f,git(['show',base+':party-game/'+f])])),current=new Map([...files,'responsive-layout.css'].map(f=>[f,fs.readFileSync(path.join(root,'party-game',f))]));
 // SimpleHTTPServer's Last-Modified has one-second precision. Advancing each
 // served bundle explicitly prevents a false 304 when a fast upgrade/rollback
 // rewrites different SW bytes in the same second. Never sleep or bypass the SW.
@@ -18,7 +18,7 @@ async function update(p,name){await p.evaluate(async()=>{const registration=awai
    write(before);await p.goto(URL);await provisionProfiles(p);await p.evaluate(()=>{soundOn=false;Math.random=()=>0;Object.assign(options,{modes:['talk'],difficulty:'easy',dice:true,complications:false,riskRounds:false,finishType:'rounds',rounds:8});newGame();game.dice=false;roll();game.phase='judge';recordAnswer(true);roll();toggleWord();startTimer();pauseTimer();game.dice=true;options.dice=true;persist();});
    const protectedState=await snapshot(p);assert.equal(await p.evaluate(()=>game.roundIndex),1);assert.equal(await p.evaluate(()=>game.current.paused),true);
    await p.evaluate(async()=>{await navigator.serviceWorker.ready});await p.waitForFunction(()=>!!navigator.serviceWorker.controller);
-   write(current);await update(p,'kvip-pwa-v98-20261028-profile-focus-fix');await ctx.setOffline(true);await p.goto(URL+'?setup=wizard');await p.locator('#continue-game').click();assert.deepEqual(await snapshot(p),protectedState,'v89 actual paused task and earned history survive upgrade exactly');
+   write(current);await update(p,'kvip-pwa-v99-20261028-responsive-candidate');await ctx.setOffline(true);await p.goto(URL+'?setup=wizard');await p.locator('#continue-game').click();assert.deepEqual(await snapshot(p),protectedState,'v89 actual paused task and earned history survive upgrade exactly');
    await p.locator('#exit-game').click();await p.locator('#new-game-menu').click();await p.locator('#standard-game').click();await p.locator('[data-wizard-step="3"]').click();
    const beforeToggle=await snapshot(p);assert.equal(await p.locator('#wizard-legacy,#setup-interface-toggle').count(),0);await p.goto(URL+'?setup=legacy');await p.locator('#continue-game').click();assert.deepEqual(await snapshot(p),beforeToggle,'Obsolete URL and offline reload write no data');await p.locator('#exit-game').click();await p.locator('#new-game-menu').click();await p.locator('#scene-wizard:visible').waitFor();
    // Serve the exact old v89 bundle, let its real SW take control, then cold offline.

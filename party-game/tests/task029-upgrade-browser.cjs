@@ -3,7 +3,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const {provisionProfiles,historicalRuntimeFiles}=require('./profile-fixtures.cjs');
 const base='8dd989f4017fa48d4279f243d13012ade1710a63',root=path.resolve(__dirname,'../..'),URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/';
 const git=a=>execFileSync('git',a,{cwd:root,maxBuffer:15e6}),files=historicalRuntimeFiles(git,base,['index.html','style.css','setup-wizard.css','sw.js']);
-const old=new Map(files.map(f=>[f,git(['show',base+':party-game/'+f])])),current=new Map(files.map(f=>[f,fs.readFileSync(path.join(root,'party-game',f))]));
+const old=new Map(files.map(f=>[f,git(['show',base+':party-game/'+f])])),current=new Map([...files,'responsive-layout.css'].map(f=>[f,fs.readFileSync(path.join(root,'party-game',f))]));
 const cache=m=>m.get('sw.js').toString().match(/const CACHE='([^']+)'/)[1];assert.notEqual(cache(old),cache(current));
 let stamp=Date.UTC(2026,0,1);function write(m){stamp+=2000;for(const [f,b]of m){const file=path.join(root,'party-game',f);fs.writeFileSync(file,b);fs.utimesSync(file,new Date(stamp),new Date(stamp));}}
 const snap=p=>p.evaluate(()=>({raw:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY),game:JSON.stringify(game),memory:JSON.stringify(taskMemory)}));
