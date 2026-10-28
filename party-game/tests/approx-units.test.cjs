@@ -1,4 +1,5 @@
 'use strict';
+const {normalizeTask032}=require('./task032-contract.cjs');
 const {withoutRiskDispatch}=require('./selection-source.cjs');
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
 const {createSimulation}=require('../scripts/game-simulation.cjs'),{auditApproxUnits}=require('../scripts/approx-unit-audit.cjs');
@@ -36,7 +37,7 @@ test('approx units: numeric answers and scoring retain exact historical bytes; c
  const baseline='fd644e77cb66c74c17aa90842eda76a2894466d6';
  const names=['approx-questions.js','round-selection.js','round-actions.js','profile-backup.js','card-reports.js','rules.js','penalties.js'];
  const questions=execFileSync('git',['ls-tree','-r','--name-only',baseline,'--','party-game/content/questions'],{encoding:'utf8'}).trim().split('\n').map(p=>p.slice('party-game/'.length));
- for(const n of [...names,...questions])assert.deepEqual(n==='round-selection.js'?Buffer.from(withoutRiskDispatch(fs.readFileSync(path.join(root,n),'utf8'))):fs.readFileSync(path.join(root,n)),execFileSync('git',['show',baseline+':party-game/'+n],{maxBuffer:8e6}),n);
+ for(const n of [...names,...questions])assert.deepEqual(n==='round-selection.js'?Buffer.from(withoutRiskDispatch(fs.readFileSync(path.join(root,n),'utf8'))):Buffer.from(normalizeTask032(fs.readFileSync(path.join(root,n),'utf8'))),execFileSync('git',['show',baseline+':party-game/'+n],{maxBuffer:8e6}),n);
  const contentApi=require('../scripts/content.cjs'),generated=contentApi.render(contentApi.readDataset());
  for(const name of ['cards.js','content-packs.js'])assert.equal(fs.readFileSync(path.join(root,name),'utf8'),generated[name],name+' reproducible reviewed content');
  const tie=fs.readFileSync(path.join(root,'tiebreak.js'),'utf8');

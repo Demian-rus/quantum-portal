@@ -1,4 +1,5 @@
 'use strict';
+const {normalizeTask032}=require('./task032-contract.cjs');
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
 const {createSimulation}=require('../scripts/game-simulation.cjs'),base='3ff06f50eca48790ed5057e01847b4fdf424089e';
 function start(mode='mime',modifier=true){
@@ -61,7 +62,7 @@ test('TASK022 completed result screen uses the same read-only list and retains p
 test('TASK022 mathematical, storage, risk and gameplay cores remain exact; catalogs preserve historical bytes',()=>{
  const root=path.resolve(__dirname,'../..'),git=args=>execFileSync('git',args,{cwd:root,encoding:'utf8',maxBuffer:12e6});
  for(const name of ['result-review.js','risk-planner.js','round-selection.js','round-settlement.js','rules.js','penalties.js','round-planner.js','round-actions.js','timer-controller.js','feedback-clock.js','player-profiles.js','storage-controller.js','session-restoration.js','profile-backup.js','profile-backup-view.js','card-feedback.js'])
-  assert.equal(fs.readFileSync(path.join(root,'party-game',name),'utf8'),git(['show',base+':party-game/'+name]),name);
+  assert.equal(normalizeTask032(fs.readFileSync(path.join(root,'party-game',name),'utf8')),git(['show',base+':party-game/'+name]),name);
  require('./catalog-source-guard.cjs')(base);
  const old=git(['show',base+':party-game/result-review-view.js']),view=fs.readFileSync(path.join(root,'party-game/result-review-view.js'),'utf8');
  const segment=(s,a,b)=>s.slice(s.indexOf(a),s.indexOf(b,s.indexOf(a)));

@@ -130,7 +130,7 @@
           <button id="backup-export" class="button button-primary" type="button">СОЗДАТЬ РЕЗЕРВНУЮ КОПИЮ</button>
           <button id="backup-import" class="button button-secondary" type="button">ВОССТАНОВИТЬ ИЗ ФАЙЛА</button>
           <input id="backup-file" type="file" accept=".json,application/json" hidden>
-          <p class="profile-muted">Сохраните профили и статистику в файл, чтобы перенести их на другое устройство или восстановить после переустановки.</p>
+          <p class="profile-muted">Сохраните профили и статистику 1 НА 1 и 2 НА 2 в файл, чтобы перенести их на другое устройство или восстановить после переустановки.</p>
           <p class="profile-muted">Текущая незавершённая партия и настройки игры в копию не входят. Файл сохраняется только на ваше устройство.</p>
           <div id="backup-recovery" hidden>
             <p class="profile-muted">На устройстве сохранена статистика до предыдущего импорта. Чтобы освободить защитную копию, сначала сохраните её в файл.</p>
@@ -317,7 +317,7 @@
 <div class="dialog-backdrop" id="profile-backdrop" hidden>
   <section class="dialog profile-dialog" role="dialog" aria-modal="true" aria-labelledby="profile-panel-title">
     <header class="profile-dialog-header"><button id="profile-panel-back" type="button" class="dialog-close" aria-label="Назад">‹</button><h2 id="profile-panel-title">ВЫБРАТЬ ПРОФИЛЬ</h2><button id="profile-close" type="button" class="dialog-close" aria-label="Закрыть">×</button></header>
-    <div id="profile-list-area"><p id="profile-empty" class="profile-muted">Профилей пока нет. Создайте первый.</p><div id="profile-list"></div><button id="profile-create-open" class="button button-primary button-big" type="button">+ СОЗДАТЬ ПРОФИЛЬ</button></div>
+    <div id="profile-list-area"><p id="profile-empty" class="profile-muted">Профилей пока нет. Создайте первый.</p><div id="profile-list"></div><button id="profile-team-clear" class="button button-secondary" type="button" hidden>СНЯТЬ ВЫБОР В ЭТОМ СЛОТЕ</button><button id="profile-create-open" class="button button-primary button-big" type="button">+ СОЗДАТЬ ПРОФИЛЬ</button></div>
     <form id="profile-create-form" hidden>
       <label for="profile-name">ИМЯ ПРОФИЛЯ</label><input id="profile-name" type="text" autocomplete="off" spellcheck="false" placeholder="Например, ДС" required aria-describedby="profile-name-hint"><small id="profile-name-hint">До 24 символов</small>
       <fieldset><legend>ПЕРСОНАЛЬНЫЙ ЦВЕТ</legend><div id="profile-palette" role="group" aria-label="Цвет профиля"></div></fieldset>

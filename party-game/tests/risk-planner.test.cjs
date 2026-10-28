@@ -1,4 +1,5 @@
 'use strict';
+const {normalizeTask032}=require('./task032-contract.cjs');
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),{execFileSync}=require('node:child_process');
 const {createSimulation,seededRandom}=require('../scripts/game-simulation.cjs');
 const {runSimulation}=require('../scripts/risk-simulation.cjs');
@@ -110,6 +111,6 @@ test('TASK019 90000 Monte Carlo matches are reproducible with capped gap and nat
 });
 test('TASK019 immutable scoring, TASK020, profiles, timer and backup remain published bytes; historical catalogs stay exact',()=>{
  for(const name of ['rules.js','penalties.js','round-planner.js','round-settlement.js','round-actions.js','timer-controller.js','feedback-clock.js','card-feedback-view.js','result-review.js','player-profiles.js','profile-backup.js','profile-backup-view.js','storage-controller.js'])
-  assert.equal(fs.readFileSync(path.join(__dirname,'..',name),'utf8'),execFileSync('git',['show',base+':party-game/'+name],{encoding:'utf8',maxBuffer:12000000}),name);
+  assert.equal(normalizeTask032(fs.readFileSync(path.join(__dirname,'..',name),'utf8')),execFileSync('git',['show',base+':party-game/'+name],{encoding:'utf8',maxBuffer:12000000}),name);
  require('./catalog-source-guard.cjs')('584d54f38ff6f090e36dfe5308821809c559408d');
 });

@@ -57,6 +57,18 @@ test('TASK032 legacy v1 remains strict and receives no inferred profiles or stat
  const h=game();const legacy=plain(h.eval("QuipTeamsEngine.createRecord(options,[['A','B'],['C','D']],{id:'legacy-profile-match-002',random:()=>0})"));assert.equal(legacy.version,1);assert(!Object.hasOwn(legacy,'profileResults'));assert.equal(validate(h,legacy),true);
  assert.throws(()=>validate(h,{...legacy,profileResults:[]}));
 });
+test('TASK032 all 24 permutations attribute results to permanent IDs and never to names or the duel pair',()=>{
+ const h=game(),profiles=h.profiles.profiles,results=[];
+ const permutations=list=>list.length?list.flatMap((p,i)=>permutations(list.filter((_,j)=>i!==j)).map(t=>[p,...t])):[[]];
+ for(const [i,order]of permutations([0,1,2,3]).entries()){
+  h.context.reordered={version:1,storeId:h.profiles.storeId,participants:[order.slice(0,2),order.slice(2)].map(team=>team.map(i=>{const {id,name,color}=profiles[i];return {id,name,color};}))};h.context.newId='permutation-profile-match-'+i;
+  h.eval('teamRecord=QuipTeamsEngine.createRecord(options,null,{id:newId,profileBinding:reordered,random:()=>0});game=teamRecord.game;game.dice=false;taskMemory=teamRecord.taskMemory;options=teamRecord.options');
+  const record=finish(h);assert.equal(validate(h,record),true);results.push(record.profileResults[0]);
+  for(const [position,index]of order.entries()){const t=T.forProfile(record.profileResults,h.profiles.storeId,profiles[index].id);assert.equal(t.wins,position<2?1:0);assert.equal(t.losses,position<2?0:1);}
+ }
+ for(const p of profiles){const t=T.forProfile(results,h.profiles.storeId,p.id);assert.equal(t.matches,24);assert.equal(t.wins,12);assert.equal(t.losses,12);assert.equal(t.setter,24);assert.equal(t.guesser,24);}
+ assert.deepEqual(h.storage,h.before);
+});
 test('TASK032 new party and unfinished exits do not count, final win/loss applies once to all four and never changes duel totals',()=>{
  const h=game(),start=plain(h.eval('teamRecord'));assert.equal(start.version,2);same(start.profileResults,[]);
  turn(h);same(h.eval('QuipTeamsEngine.finalizeRecord({...teamRecord,game,taskMemory}).profileResults'),[]);[false,true,false].forEach(v=>turn(h,v));

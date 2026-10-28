@@ -12,7 +12,7 @@
  const clone=value=>JSON.parse(JSON.stringify(value)),same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
  const $q=selector=>document.querySelector(selector);
  const panel=document.createElement('section');panel.id='team-setup';panel.hidden=true;
- panel.innerHTML='<div class="team-profile-grid">'+[0,1].map(t=>'<fieldset><legend>КОМАНДА '+(t+1)+'</legend>'+[0,1].map(p=>'<div class="team-profile-slot"><span id="team-profile-label-'+t+'-'+p+'">Игрок '+(p+1)+'</span><button id="team-profile-'+t+'-'+p+'" data-team-profile="'+(t*2+p)+'" type="button" class="profile-selector" aria-labelledby="team-profile-label-'+t+'-'+p+' team-profile-'+t+'-'+p+'">ВЫБРАТЬ ПРОФИЛЬ</button></div>').join('')+'</fieldset>').join('')+'</div><p id="team-name-error" role="status"></p><p class="profile-muted">Выберите четыре разных постоянных профиля. Результаты 2 НА 2 учитываются отдельно от дуэлей. Настройки сохранятся при старте.</p>';
+ panel.innerHTML='<div class="team-profile-grid">'+[0,1].map(t=>'<fieldset><legend>КОМАНДА '+(t+1)+'</legend>'+[0,1].map(p=>'<div class="team-profile-slot"><span id="team-profile-label-'+t+'-'+p+'">Игрок '+(p+1)+'</span><button id="team-profile-'+t+'-'+p+'" data-team-profile="'+(t*2+p)+'" type="button" class="profile-selector" aria-haspopup="dialog" aria-labelledby="team-profile-label-'+t+'-'+p+' team-profile-'+t+'-'+p+'">ВЫБРАТЬ ПРОФИЛЬ</button></div>').join('')+'</fieldset>').join('')+'</div><p id="team-name-error" role="status"></p><p class="profile-muted">Выберите четыре разных постоянных профиля. Результаты 2 НА 2 учитываются отдельно от дуэлей. Настройки сохранятся при старте.</p>';
  $('wizard-players').after(panel);
  const unavailable=document.createElement('p');unavailable.id='team-format-unavailable';unavailable.className='profile-muted';unavailable.hidden=true;$q('.wizard-formats').after(unavailable);
  const home=document.createElement('div');home.id='team-home';home.hidden=true;
@@ -178,6 +178,10 @@
   if(!isProfileTarget(target)||!s.context||!s.inSetup||!profileStore?.profiles.some(p=>p.id===id)||s.profileIds.some((p,i)=>i!==target.slot&&p===id))return false;
   s.profileIds[target.slot]=id;old.renderOptions();paintSetup();return true;
  }
+ function clearTeamProfile(target){
+  if(!isProfileTarget(target)||!s.context||!s.inSetup||s.profileIds[target.slot]===null)return false;
+  s.profileIds[target.slot]=null;old.renderOptions();paintSetup();return true;
+ }
  function paintSetup(){
   const team=s.context&&s.inSetup;panel.hidden=!team;
   $('wizard-format-duel').setAttribute('aria-pressed',String(!team));$('wizard-format-teams').setAttribute('aria-pressed',String(team));
@@ -215,7 +219,7 @@
  }
  function paintResults(){
   if(!E.isGame(game)||$('team-result-roster'))return;
-  const block=document.createElement('div');block.id='team-result-roster';block.innerHTML='<p class="profile-muted">'+(game.teamFormat.version===2?'2 НА 2. Командный результат и статистика четырёх профилей сохранены одной подтверждённой записью.':'2 НА 2. Историческая партия без привязки профилей; личная статистика не меняется.')+'</p><div class="team-roster">'+rosterMarkup()+'</div>';
+  const block=document.createElement('div');block.id='team-result-roster';block.innerHTML='<p class="profile-muted">'+(game.teamFormat.version===2?'2 НА 2: статистика четырёх профилей обновлена. Дуэльные показатели учитываются отдельно.':'2 НА 2. Историческая партия без привязки профилей; личная статистика не меняется.')+'</p><div class="team-roster">'+rosterMarkup()+'</div>';
   $('results-content').querySelector('.inline-actions').after(block);
  }
  function paintGame(){
@@ -277,7 +281,7 @@
    else{
     const loaded=await readStore();if(loaded.status==='blocked')$('team-data-body').textContent='Сохранение повреждено или создано другой версией. Оно защищено от перезаписи. Скачайте исходные данные для проверки. '+(loaded.message||'');
     else if(!s.record)$('team-data-body').textContent='Сохранённых партий 2 на 2 пока нет.';
-    else{$('team-data-body').innerHTML='<p>Текущая партия: '+s.record.game.scores.join(' : ')+' · '+ruTurns(s.record.game.roundIndex)+'.</p><p>Командные результаты учитываются отдельно от дуэлей. Экспорт профилей включает записанную статистику обоих форматов; этот файл партий также содержит игровой архив.</p>'+s.record.archives.map((e,i)=>'<p>Партия '+(i+1)+': '+e.teamFormat.teams.map(t=>t.members.map(escapeHTML).join(' + ')).join(' / ')+' · '+e.game.scores.join(' : ')+' · '+ruTurns(e.game.roundIndex)+'.</p>').join('');$('team-clear-archive').hidden=!s.record.archives.length;}
+    else{$('team-data-body').innerHTML='<p>Текущая партия: '+s.record.game.scores.join(' : ')+' · '+ruTurns(s.record.game.roundIndex)+'.</p><p>'+(s.record.teamFormat.version===2?'Участники выбраны из профилей. Итоги учитываются в разделе «2 НА 2».':'Партия создана по именам. Её результаты не приписываются профилям.')+'</p><p>Командные результаты учитываются отдельно от дуэлей. Экспорт профилей включает записанную статистику обоих форматов; этот файл партий также содержит игровой архив.</p>'+s.record.archives.map((e,i)=>'<p>Партия '+(i+1)+': '+e.teamFormat.teams.map(t=>t.members.map(escapeHTML).join(' + ')).join(' / ')+' · '+e.game.scores.join(' : ')+' · '+ruTurns(e.game.roundIndex)+'.</p>').join('');$('team-clear-archive').hidden=!s.record.archives.length;}
    }
   }catch(e){$('team-data-status').textContent=e.message;}
   $('team-data-close').focus();
@@ -320,7 +324,7 @@
  },true);
  // The existing Android Back guard must close this separate data dialog first.
  window.addEventListener('storage',event=>{if(!s.context&&[QuipTeamStorage.KEY,QuipTeamStorage.JOURNAL_KEY].includes(event.key)&&s.store)readStore().catch(()=>{});});
- window.QuipTeams=Object.freeze({get busy(){return s.busy;},get active(){return s.context;},get blocked(){return s.blocked;},whenIdle:()=>s.idle,whenReady:()=>s.ready,continue:continueTeam,record:()=>s.record?clone(s.record):null,isProfileTarget,selectedProfileId:target=>isProfileTarget(target)?s.profileIds[target.slot]:null,profileUnavailable:(target,id)=>s.profileIds.some((p,i)=>i!==target.slot&&p===id),chooseProfile:chooseTeamProfile,results:resultLedger,validateProfileImport});
+ window.QuipTeams=Object.freeze({get busy(){return s.busy;},get active(){return s.context;},get blocked(){return s.blocked;},whenIdle:()=>s.idle,whenReady:()=>s.ready,continue:continueTeam,record:()=>s.record?clone(s.record):null,isProfileTarget,selectedProfileId:target=>isProfileTarget(target)?s.profileIds[target.slot]:null,profileUnavailable:(target,id)=>s.profileIds.some((p,i)=>i!==target.slot&&p===id),chooseProfile:chooseTeamProfile,clearProfile:clearTeamProfile,results:resultLedger,validateProfileImport});
  try{
   if(!navigator.locks?.request)throw Error('Этот браузер не поддерживает безопасное сохранение 2 на 2. Игра 1 на 1 остаётся доступной.');
   s.store=QuipTeamStorage.create({storage:localStorage,validateMatch:E.validateRecord,validateReplacement:E.validateReplacement,validateTransition:E.validateTransition,exclusive});

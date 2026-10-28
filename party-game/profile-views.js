@@ -39,6 +39,7 @@ function renderProfilePanel(){
   }).join('');
   $('profile-empty').hidden=profiles.length>0||!!profileStoreProblem;
   $('profile-create-open').disabled=!!profileStoreProblem;
+  $('profile-team-clear').hidden=!(teamTarget&&selected);
 }
 function renderProfilePalette(){
   $('profile-palette').innerHTML=Object.entries(QUIP_PROFILE_COLORS).map(([id,color])=>
@@ -112,6 +113,7 @@ function registerProfileControls(){
   $('profile-close').addEventListener('click',closeProfilePanel);
   $('profile-backdrop').addEventListener('click',event=>{if(event.target.id==='profile-backdrop')closeProfilePanel();});
   $('profile-list').addEventListener('click',event=>{const button=event.target.closest('[data-profile-id]');if(button&&!button.disabled)chooseProfile(button.dataset.profileId);});
+  $('profile-team-clear').addEventListener('click',()=>{if(typeof QuipTeams!=='undefined'&&QuipTeams.clearProfile(profilePanelTarget))closeProfilePanel();});
   $('profile-create-open').addEventListener('click',()=>{profilePanelMode='create';renderProfilePanel();});
   $('profile-palette').addEventListener('click',event=>{
     const button=event.target.closest('[data-profile-color]');if(button){profilePanelColor=button.dataset.profileColor;renderProfilePalette();$('profile-palette').querySelector('[data-profile-color="'+profilePanelColor+'"]').focus({preventScroll:true});}

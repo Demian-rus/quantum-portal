@@ -14,19 +14,21 @@ const browser=await chromium.launch({headless:true,executablePath:process.env.CH
  try{const ctx=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,reducedMotion:'reduce'}),p=await ctx.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));
   try{
    write(before);await p.goto(URL);await seedDuel(p);
-   const original=await p.evaluate(()=>JSON.stringify([game,taskMemory,localStorage.getItem(STORAGE_KEY),localStorage.getItem(QUIP_PROFILES_KEY)]));
+   let original=await p.evaluate(()=>JSON.stringify([game,taskMemory,localStorage.getItem(STORAGE_KEY),localStorage.getItem(QUIP_PROFILES_KEY)]));
    await p.evaluate(async()=>{await navigator.serviceWorker.ready});await p.waitForFunction(()=>!!navigator.serviceWorker.controller);
    let legacyTeam=false;
    if(before.has('team-controller.js')){
     // Seed a real names-only v1 party under the exact historical UI BEFORE
     // upgrading. New v2 parties intentionally cannot be opened by old code.
     await p.locator('#new-game-menu').click();await p.locator('#standard-game').click();await p.locator('#wizard-format-teams').click();
-    for(let t=0;t<2;t++)for(let n=0;n<2;n++)await p.locator('#team-name-'+t+'-'+n).fill(names[t][n]);
+    const legacyNames=await p.evaluate(()=>[selectedPlayerProfiles().map(p=>p.name),['Мама','Папа']]);
+    for(let t=0;t<2;t++)for(let n=0;n<2;n++)await p.locator('#team-name-'+t+'-'+n).fill(legacyNames[t][n]);
     await config(p,{mode:'secret',rounds:8,complications:true});await click(p,'#start-game');await answer(p);await select(p);await begin(p);await click(p,'#timer-pause-control');await click(p,'#exit-game');legacyTeam=true;
    }
+   const observed=await p.evaluate(()=>[game,taskMemory,localStorage.getItem(STORAGE_KEY),localStorage.getItem(QUIP_PROFILES_KEY)]),prior=JSON.parse(original);for(const i of [0,1,3])assert.deepEqual(observed[i],prior[i],'historical team setup preserves duel game, memory and profiles');original=JSON.stringify(observed);
    write(current);await update(p,'kvip-pwa-v97-20261028-team-profiles-candidate');await ctx.setOffline(true);await p.reload();await click(p,'#continue-game');
    assert.equal(await p.evaluate(()=>JSON.stringify([game,taskMemory,localStorage.getItem(STORAGE_KEY),localStorage.getItem(QUIP_PROFILES_KEY)])),original,label+' initial upgrade preserves exact duel');await click(p,'#exit-game');
-   if(legacyTeam){await click(p,'#continue-teams');assert.equal(await p.evaluate(()=>game.teamFormat.version),1,'legacy party must never acquire profiles by name');}
+   if(legacyTeam){await click(p,'#continue-teams');assert.equal(await p.evaluate(()=>game.teamFormat.version),1,'legacy party must never acquire profiles by name');assert.equal(await p.evaluate(()=>game.teamFormat.profileBinding),undefined,'even matching profile names cannot create an association');}
    else{await start(p,{mode:'secret',rounds:8,complications:true},[1,1,0]);await answer(p);await select(p);await begin(p);await click(p,'#timer-pause-control');}
    const protectedDuel=await p.evaluate(()=>({raw:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY)})),teamRaw=await raw(p),teamGame=await p.evaluate(()=>JSON.stringify(game)),receiptRaw=await receipt(p);assert.equal(typeof receiptRaw,'string');
    await p.evaluate(async()=>{await navigator.serviceWorker.ready});await p.waitForFunction(()=>!!navigator.serviceWorker.controller);
