@@ -1,0 +1,1 @@
+{"schemaVersion":1,"status":"template-only-no-ipa","webTarget":"public-web","engineCopies":1,"auth":"future-server-account","embeddedPaidPayload":false,"requiresBeforeBuild":["macOS/Xcode and signing","wrapper selection","physical iOS PWA and safe-area testing","distribution account","separate owner release approval"]}

@@ -1,0 +1,14 @@
+# Documentation template only: NOT under .github/workflows, NOT executable now.
+name: Future manually approved release
+on:
+  workflow_dispatch:
+    inputs:
+      sha: {description: Exact reviewed 40-character SHA, required: true}
+permissions: {contents: read}
+jobs:
+  release:
+    if: ${{ false }}
+    environment: quip-production-requires-owner-approval
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Release transport deliberately not implemented'

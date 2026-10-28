@@ -1,0 +1,39 @@
+name: quip-future-local-scaffold
+services:
+  proxy:
+    profiles: [future-deployment]
+    image: ${CADDY_IMAGE:?set a reviewed digest before any future run}
+    ports: ["127.0.0.1:8080:8080"]
+    volumes:
+      - ./Caddyfile.example:/etc/caddy/Caddyfile:ro
+      - ${QUIP_REVIEWED_BUILD:?path to a reviewed public-web bundle}:/srv/public:ro
+    read_only: true
+    tmpfs: [/data, /config, /tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+  backend:
+    profiles: [future-deployment]
+    image: ${NODE_IMAGE:?set a reviewed digest before any future run}
+    command: [node, commercial/server/main.cjs]
+    working_dir: /app
+    environment: {QUIP_STUB_HOST: "0.0.0.0", QUIP_STUB_PORT: "8787"}
+    volumes: ["../..:/app:ro"]
+    user: "1000:1000"
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+  database:
+    profiles: [future-deployment]
+    image: ${POSTGRES_IMAGE:?set a reviewed digest before any future run}
+    environment:
+      POSTGRES_DB: quip_commerce
+      POSTGRES_USER: quip_placeholder
+      POSTGRES_PASSWORD_FILE: /run/secrets/database_password
+    secrets: [database_password]
+    volumes: ["database:/var/lib/postgresql/data"]
+secrets:
+  database_password:
+    file: ${QUIP_DATABASE_PASSWORD_FILE:?provision outside git only after approval}
+volumes:
+  database:
