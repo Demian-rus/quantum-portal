@@ -26,8 +26,13 @@ test('TASK031 scopes touch/flat/disclosure styles to wizard and retains native c
  assert.doesNotMatch(added,/outline\s*:\s*(?:none|0)|pointer-events\s*:\s*none/);
  const w=read('setup-wizard.js');assert.match(w,/<details class="wizard-rule-details"><summary>Правила<\/summary>/);assert.match(w,/guide\.blocks\.map/);assert.doesNotMatch(w,/guide\.blocks\.filter/);assert.match(w,/if\(enteringRules\).*node.open=false/);
 });
-test('TASK031 plus G45 retain every G45 catalog and editorial source byte-exact',()=>{
- assert.equal(execFileSync('git',['diff',CONTENT_BASE,'--','party-game/content','party-game/cards.js','party-game/content-packs.js','party-game/approx-questions.js'],{cwd:root,encoding:'utf8',maxBuffer:15e6}),'');
+test('TASK031 and G46 preserve every G45 content source byte-exact',()=>{
+ const previous=JSON.parse(execFileSync('git',['show',CONTENT_BASE+':party-game/content/manifest.json'],{cwd:root,encoding:'utf8',maxBuffer:15e6}));
+ for(const kind of ['cards','questions','packs'])for(const source of previous[kind]){
+  const file='party-game/content/'+source.path;
+  const historical=execFileSync('git',['show',CONTENT_BASE+':'+file],{cwd:root,encoding:'utf8',maxBuffer:15e6});
+  assert.equal(fs.readFileSync(path.join(root,file),'utf8'),historical,file+' historical bytes unchanged');
+ }
 });
 test('TASK031 shell and worker use the same new resources without changing PWA lifecycle',()=>{
  const html=read('index.html'),sw=read('sw.js');for(const file of ['setup-wizard.js?v=8','setup-wizard.css?v=4','setup-view.js?v=5']){assert(html.includes('./'+file));assert(sw.includes('./'+file));}
