@@ -1,8 +1,9 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
+const {normalizeTask032}=require('./task032-contract.cjs');
 const {normalizeTask031}=require('./task031-contract.cjs'),hunks=require('./task031-presentation.json');
 const root=path.resolve(__dirname,'../..'),BASE='47a7266b48818b3ebc94e1e37e1f5c3f769ee812';
-const read=f=>fs.readFileSync(path.join(root,'party-game',f),'utf8'),old=f=>execFileSync('git',['show',BASE+':party-game/'+f],{cwd:root,encoding:'utf8',maxBuffer:15e6});
+const read=f=>normalizeTask032(fs.readFileSync(path.join(root,'party-game',f),'utf8')),old=f=>execFileSync('git',['show',BASE+':party-game/'+f],{cwd:root,encoding:'utf8',maxBuffer:15e6});
 test('TASK031 changes only exact declared presentation hunks; all 53 scripts and original game CSS guarded',()=>{
  const names=[...old('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);assert.equal(names.length,53);
  for(const f of [...names,'style.css','setup-wizard.css','team-game.css','index.html','sw.js'])assert.equal(normalizeTask031(read(f)),old(f),f);

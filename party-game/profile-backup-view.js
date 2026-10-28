@@ -23,10 +23,10 @@ async function exportProfileBackup(recovery=false){
       store=readProfileStore();
       if(!store)throw backupError('профилей пока нет. Сначала создайте профиль.');
     }
-    const text=await createProfileBackupText(store);
+    const text=await createProfileBackupText(store,Date.now(),{includeTeams:!recovery});
     // After asynchronous hashing the download uses the immutable checked snapshot.
     downloadProfileBackup(text,backupFileName(recovery?'kvip-profiles-previous':'kvip-profiles'));
-    backupMessage('Файл подготовлен к сохранению. В нём только профили и уже записанная статистика; текущая партия не входит.');
+    backupMessage(recovery?'Файл подготовлен. Это точная защитная копия прежних профилей и сохранённых в ней показателей.':'Файл подготовлен к сохранению. В нём профили и записанная статистика 1 НА 1 и 2 НА 2; текущие партии не входят.');
     if(recovery){$('backup-recovery-saved-label').hidden=false;$('backup-recovery-saved').checked=false;$('backup-recovery-clear').disabled=true;}
   }catch(error){backupMessage(error.message);}
   finally{button.disabled=false;}
@@ -52,7 +52,7 @@ function closeBackupPanel(){
 function backupSummaryMarkup(summary){
   if(!summary)return '<p class="profile-muted">Профилей пока нет</p>';
   return '<p class="profile-muted">Профилей: '+summary.profiles.length+'</p><ul class="backup-profiles">'+summary.profiles.map(p=>
-    '<li><strong>'+profileDot(p.color)+escapeHTML(p.name)+'</strong><span>Игр: '+p.games+' · Побед: '+p.wins+' · Поражений: '+p.losses+' · Ничьих: '+p.draws+'</span></li>').join('')+'</ul>';
+    '<li><strong>'+profileDot(p.color)+escapeHTML(p.name)+'</strong><span>Игр: '+p.games+' · Побед: '+p.wins+' · Поражений: '+p.losses+' · Ничьих: '+p.draws+(p.teamGames!=null?' · Игр 2 НА 2: '+p.teamGames:'')+'</span></li>').join('')+'</ul>';
 }
 function backupGameNotice(raw){
   if(storageBlocked)return 'Основное сохранение повреждено или недоступно. Восстановление профилей заблокировано; исходные данные сохранены.';
@@ -73,6 +73,7 @@ async function previewProfileBackup(file){
     if(file.size>QUIP_PROFILE_BACKUP_MAX_CHARS)throw backupError('слишком большой архив. Максимум — 4 МБ.');
     const expectedRaw=localStorage.getItem(QUIP_PROFILES_KEY),expectedGameRaw=localStorage.getItem(QUIP_PROFILE_BACKUP_GAME_KEY);
     const text=await file.text(),preview=await inspectProfileBackupText(text,expectedRaw);
+    validateTeamProfileImport(JSON.parse(preview.sourceRaw));
     if(token!==backupView.token)return;
     backupView={...backupView,text,preview,expectedRaw,expectedGameRaw};
     $('backup-title').textContent='АРХИВ НАЙДЕН';

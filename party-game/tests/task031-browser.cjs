@@ -1,4 +1,5 @@
 'use strict';
+const {provisionTeamProfiles,chooseTeamProfiles}=require('./team-profile-fixtures.cjs');
 // TASK031: the complete matrix is mandatory for the final branch head.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),http=require('node:http'),{execFileSync}=require('node:child_process');
 const {chromium,devices}=require('playwright-core'),{PNG}=require('pngjs');
@@ -98,7 +99,7 @@ async function baseline(browser){
 }
 (async()=>{const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',args:['--no-sandbox']}),measurements=[],taps=[],performance=[];
  try{await baseline(browser);for(const format of ['duel','teams']){const ctx=await browser.newContext(mobile),p=await ctx.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.addInitScript(installProbe);
-  try{const cdp=await ctx.newCDPSession(p);await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});await p.goto(URL);await provisionProfiles(p);await p.locator('#new-game-menu').tap();const counts=await p.locator('#standard-content-count,#thematic-content-count').allTextContents();assert.deepEqual(counts.map(s=>s.replace(/\s/g,'')),['6550заданий','1445заданий']);await p.locator('#standard-game').tap();if(format==='teams'){await p.locator('#wizard-format-teams').tap();for(let t=0;t<2;t++)for(let n=0;n<2;n++)await p.locator('#team-name-'+t+'-'+n).fill('Игрок '+t+n);}await step(p,3);
+  try{const cdp=await ctx.newCDPSession(p);await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});await p.goto(URL);await provisionProfiles(p);await provisionTeamProfiles(p);await p.locator('#new-game-menu').tap();const counts=await p.locator('#standard-content-count,#thematic-content-count').allTextContents();assert.deepEqual(counts.map(s=>s.replace(/\s/g,'')),['6550заданий','1445заданий']);await p.locator('#standard-game').tap();if(format==='teams'){await p.locator('#wizard-format-teams').tap();await chooseTeamProfiles(p);}await step(p,3);
    const environment=await p.evaluate(()=>({width:innerWidth,height:innerHeight,dpr:devicePixelRatio,ua:navigator.userAgent,coarse:matchMedia('(pointer:coarse)').matches,touch:navigator.maxTouchPoints}));assert.equal(environment.width,width);assert.equal(environment.height,height);assert.equal(environment.dpr,2.625);assert(/Android/.test(environment.ua)&&environment.coarse&&environment.touch>0);await p.evaluate(()=>{window.__touch031=[];document.addEventListener('pointerdown',e=>__touch031.push({trusted:e.isTrusted,pointer:e.pointerType}),true);});
    await geometry(p,format+' step3',measurements);await touchFrames(p,cdp,format,taps);await rules(p,format,measurements);const settings=await extras(p,format,measurements);await perf(p,format,performance);
    // TASK028 deliberately commits team setup only at real START. Keep that

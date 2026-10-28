@@ -1,6 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process'),{chromium}=require('playwright-core');
-const {historicalRuntimeFiles}=require('./profile-fixtures.cjs'),{URL,idle,click,start,select,begin,answer,raw,seedDuel}=require('./team-game-browser.cjs');
+const {historicalRuntimeFiles}=require('./profile-fixtures.cjs'),{URL,idle,click,start,select,begin,answer,raw,seedDuel,config,names}=require('./team-game-browser.cjs');
 const root=path.resolve(__dirname,'../..'),git=args=>execFileSync('git',args,{cwd:root,maxBuffer:15e6});
 async function run(base,label){
 const oldNames=historicalRuntimeFiles(git,base,['index.html','style.css','sw.js']),newNames=[...new Set([...oldNames,'setup-wizard.js','setup-wizard.css','team-format.js','team-storage.js','team-engine.js','team-controller.js','team-game.css'])];
@@ -16,12 +16,21 @@ const browser=await chromium.launch({headless:true,executablePath:process.env.CH
    write(before);await p.goto(URL);await seedDuel(p);
    const original=await p.evaluate(()=>JSON.stringify([game,taskMemory,localStorage.getItem(STORAGE_KEY),localStorage.getItem(QUIP_PROFILES_KEY)]));
    await p.evaluate(async()=>{await navigator.serviceWorker.ready});await p.waitForFunction(()=>!!navigator.serviceWorker.controller);
-   write(current);await update(p,'kvip-pwa-v96-20261027-wizard-polish-candidate');await ctx.setOffline(true);await p.reload();await click(p,'#continue-game');
+   let legacyTeam=false;
+   if(before.has('team-controller.js')){
+    // Seed a real names-only v1 party under the exact historical UI BEFORE
+    // upgrading. New v2 parties intentionally cannot be opened by old code.
+    await p.locator('#new-game-menu').click();await p.locator('#standard-game').click();await p.locator('#wizard-format-teams').click();
+    for(let t=0;t<2;t++)for(let n=0;n<2;n++)await p.locator('#team-name-'+t+'-'+n).fill(names[t][n]);
+    await config(p,{mode:'secret',rounds:8,complications:true});await click(p,'#start-game');await answer(p);await select(p);await begin(p);await click(p,'#timer-pause-control');await click(p,'#exit-game');legacyTeam=true;
+   }
+   write(current);await update(p,'kvip-pwa-v97-20261028-team-profiles-candidate');await ctx.setOffline(true);await p.reload();await click(p,'#continue-game');
    assert.equal(await p.evaluate(()=>JSON.stringify([game,taskMemory,localStorage.getItem(STORAGE_KEY),localStorage.getItem(QUIP_PROFILES_KEY)])),original,label+' initial upgrade preserves exact duel');await click(p,'#exit-game');
-   await start(p,{mode:'secret',rounds:8,complications:true},[1,1,0]);await answer(p);await select(p);await begin(p);await click(p,'#timer-pause-control');
+   if(legacyTeam){await click(p,'#continue-teams');assert.equal(await p.evaluate(()=>game.teamFormat.version),1,'legacy party must never acquire profiles by name');}
+   else{await start(p,{mode:'secret',rounds:8,complications:true},[1,1,0]);await answer(p);await select(p);await begin(p);await click(p,'#timer-pause-control');}
    const protectedDuel=await p.evaluate(()=>({raw:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY)})),teamRaw=await raw(p),teamGame=await p.evaluate(()=>JSON.stringify(game)),receiptRaw=await receipt(p);assert.equal(typeof receiptRaw,'string');
    await p.evaluate(async()=>{await navigator.serviceWorker.ready});await p.waitForFunction(()=>!!navigator.serviceWorker.controller);
-   const cached=await p.evaluate(async()=>{const cache=await caches.open('kvip-pwa-v96-20261027-wizard-polish-candidate');return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>!!await cache.match(s.src)));});assert.equal(cached.length,53);assert.ok(cached.every(Boolean));
+   const cached=await p.evaluate(async()=>{const cache=await caches.open('kvip-pwa-v97-20261028-team-profiles-candidate');return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>!!await cache.match(s.src)));});assert.equal(cached.length,54);assert.ok(cached.every(Boolean));
    await ctx.setOffline(true);await p.reload();await click(p,'#continue-teams');assert.equal(await raw(p),teamRaw);assert.equal(await p.evaluate(()=>JSON.stringify(game)),teamGame);await click(p,'#exit-game');
    // Serve the exact published v89 bytes; its worker and old code know nothing
    // about team sessions. Both slots must survive a real cold offline rollback.
@@ -34,8 +43,8 @@ const browser=await chromium.launch({headless:true,executablePath:process.env.CH
     assert.equal(await receipt(p),receiptRaw,'published main preserves exact native IndexedDB receipt');
    }
    // Returning to the new code resumes the same team task, roster and history.
-   write(current);await ctx.setOffline(false);await update(p,'kvip-pwa-v96-20261027-wizard-polish-candidate');await ctx.setOffline(true);await p.goto(URL+'?setup=wizard');await click(p,'#continue-teams');assert.equal(await raw(p),teamRaw);assert.equal(await p.evaluate(()=>JSON.stringify(game)),teamGame);
-   assert.deepEqual(await p.evaluate(()=>({raw:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY)})),protectedDuel);assert.equal(await receipt(p),receiptRaw,'upgrade back preserves the exact transactional receipt');assert.deepEqual(errors,[]);console.log(label,'TASK028 real SW PASS: 53 scripts offline / active team cold restore / exact v89 rollback resumes old duel / team RAW retained / upgrade back resumes exact team');
+   write(current);await ctx.setOffline(false);await update(p,'kvip-pwa-v97-20261028-team-profiles-candidate');await ctx.setOffline(true);await p.goto(URL+'?setup=wizard');await click(p,'#continue-teams');assert.equal(await raw(p),teamRaw);assert.equal(await p.evaluate(()=>JSON.stringify(game)),teamGame);
+   assert.deepEqual(await p.evaluate(()=>({raw:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY)})),protectedDuel);assert.equal(await receipt(p),receiptRaw,'upgrade back preserves the exact transactional receipt');assert.deepEqual(errors,[]);console.log(label,'TASK028 real SW PASS: 54 scripts offline / active team cold restore / exact v89 rollback resumes old duel / team RAW retained / upgrade back resumes exact team');
   }finally{write(current);await ctx.close();}
  }finally{write(current);await browser.close();}
 }

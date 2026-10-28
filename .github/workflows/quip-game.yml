@@ -33,7 +33,7 @@ jobs:
       - run: node party-game/scripts/approx-unit-audit.cjs check
       - run: node party-game/scripts/condition-audit.cjs check
       - run: node party-game/scripts/modifiers-v2.cjs check
-      - run: node --test party-game/tests/task027.test.cjs party-game/tests/task030.test.cjs party-game/tests/task031.test.cjs
+      - run: node --test party-game/tests/task027.test.cjs party-game/tests/task030.test.cjs party-game/tests/task031.test.cjs party-game/tests/task032.test.cjs
       - run: node --test party-game/tests/team-foundation.test.cjs party-game/tests/team-engine.test.cjs party-game/tests/team-integration.test.cjs party-game/tests/catalog-counts.test.cjs
       - run: node --test party-game/tests/task024.test.cjs party-game/tests/v89-content-release.test.cjs party-game/tests/g27-content.test.cjs party-game/tests/g28-content.test.cjs party-game/tests/g29-content.test.cjs party-game/tests/g30-content.test.cjs party-game/tests/g31-content.test.cjs party-game/tests/g32-content.test.cjs party-game/tests/g33-content.test.cjs party-game/tests/g34-content.test.cjs party-game/tests/g35-content.test.cjs party-game/tests/g36-content.test.cjs
       - run: node --test party-game/tests/logic.test.cjs party-game/tests/content-foundation.test.cjs party-game/tests/task-history.test.cjs party-game/tests/modifiers-v2.test.cjs party-game/tests/dictionary.test.cjs party-game/tests/music-themes.test.cjs party-game/tests/estimation.test.cjs party-game/tests/estimation-editorial.test.cjs party-game/tests/mode-compatibility.test.cjs party-game/tests/mode-planner.test.cjs party-game/tests/player-profiles.test.cjs party-game/tests/card-visibility.test.cjs party-game/tests/profile-backup.test.cjs party-game/tests/card-reports.test.cjs party-game/tests/backup-reports-integration.test.cjs party-game/tests/card-feedback.test.cjs party-game/tests/approx-units.test.cjs party-game/tests/v83-content-guard.test.cjs party-game/tests/task021.test.cjs party-game/tests/result-review.test.cjs party-game/tests/risk-planner.test.cjs party-game/tests/compact-history.test.cjs
@@ -195,4 +195,29 @@ jobs:
         with:
           name: quip-task031-${{ matrix.width }}
           path: artifacts/quip-task031
+          if-no-files-found: error
+
+  task032:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        width: [320, 390, 412, 844]
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm install --no-save playwright-core@1.55.0
+      - run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/quip-task032-http.log 2>&1 &
+      - run: node party-game/tests/task032-browser.cjs
+        env:
+          QUIP032_WIDTH: ${{ matrix.width }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quip-task032-${{ matrix.width }}
+          path: artifacts/quip-task032
           if-no-files-found: error

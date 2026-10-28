@@ -24,7 +24,7 @@ function validProfileId(id){return typeof id==='string'&&/^[a-f0-9]{32}$/.test(i
 function profileCount(value,signed=false){return Number.isSafeInteger(value)&&(signed||value>=0);}
 function validateProfileStore(data){
   const fail=()=>{throw Error('Данные профилей повреждены или имеют неизвестную версию. Исходные данные сохранены.');};
-  if(!data||data.version!==1||!validProfileId(data.storeId)||!profileCount(data.nextSequence)||data.nextSequence<1||
+  if(!data||![1,2].includes(data.version)||!validProfileId(data.storeId)||!profileCount(data.nextSequence)||data.nextSequence<1||
      !profileCount(data.settledThrough)||data.settledThrough>=data.nextSequence||!Array.isArray(data.profiles)||
      !data.totals||typeof data.totals!=='object'||Array.isArray(data.totals)||!Array.isArray(data.recent)||data.recent.length>QUIP_RECENT_MATCH_LIMIT||!Array.isArray(data.lastPair))fail();
   const ids=new Set(),names=new Set();
@@ -57,13 +57,19 @@ function validateProfileStore(data){
        !Array.isArray(row.scores)||row.scores.length!==2||row.scores.some(score=>!profileCount(score))||!profileCount(row.turns))fail();
     previous=row.sequence;
   }
+  if(data.version===2){
+    if(!data.teamStatistics||data.teamStatistics.version!==1||Object.keys(data.teamStatistics).sort().join('|')!=='results|version')fail();
+    const results=QuipTeamStatistics.ledger(data.teamStatistics.results);
+    if(results.some(row=>row.storeId!==data.storeId||row.profileIds.some(id=>!ids.has(id))))fail();
+  }else if(Object.hasOwn(data,'teamStatistics'))fail();
   return data;
 }
 function readProfileStore(){
   try{
     if(typeof assertProfileBackupWritable==='function')assertProfileBackupWritable();
     const raw=localStorage.getItem(QUIP_PROFILES_KEY);
-    profileStore=raw===null?null:validateProfileStore(JSON.parse(raw));profileStoreProblem=null;
+    const validated=raw===null?null:validateProfileStore(JSON.parse(raw));
+    profileStore=profileStore&&JSON.stringify(profileStore)===raw?profileStore:validated;profileStoreProblem=null;
     return profileStore;
   }catch(error){profileStore=null;profileStoreProblem='Не удалось открыть профили. Данные сохранены; проверьте доступ к памяти и версию приложения.';throw error;}
 }
@@ -224,4 +230,21 @@ function saveCompletedProfileResult(){
     }
     commitProfileResult(game);profileResultProblem=null;return true;
   }catch{profileResultProblem='Результат пока не сохранён в статистику. Освободите память и нажмите «Повторить запись». Результат остаётся на экране для повторной попытки.';return false;}
+}
+
+// The team RAW is authoritative. Imported result contributions remain in the
+// profile archive, and are joined with the live ledger by immutable match ID.
+function profileTeamResults(store=profileStore){
+  if(!store)return [];
+  const live=typeof QuipTeams!=='undefined'?QuipTeams.results():[];
+  const imported=store.teamStatistics?.results||[];if(!imported.length&&!live.length)return [];
+  return QuipTeamStatistics.forStore(QuipTeamStatistics.merge(imported,live),store);
+}
+function exportProfileStoreSnapshot(store){
+  validateProfileStore(store);const next=JSON.parse(JSON.stringify(store)),results=profileTeamResults(store);
+  if(results.length||next.version===2){next.version=2;next.teamStatistics={version:1,results};}
+  validateProfileStore(next);return next;
+}
+function validateTeamProfileImport(store){
+  if(typeof QuipTeams!=='undefined')QuipTeams.validateProfileImport(store);
 }

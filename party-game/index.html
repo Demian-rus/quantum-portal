@@ -11,7 +11,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="stylesheet" href="./style.css?v=45">
-  <link rel="stylesheet" href="./setup-wizard.css?v=4">
+  <link rel="stylesheet" href="./setup-wizard.css?v=5">
   <link rel="stylesheet" href="./team-game.css?v=3">
   <script src="./words.js?v=2" defer></script>
   <script src="./extra-words.js?v=1" defer></script>
@@ -35,7 +35,7 @@
   <script src="./immersive-viewport.js?v=1" defer></script>
   <script src="./rules-guide.js?v=1" defer></script>
   <script src="./menu-navigation.js?v=9" defer></script>
-  <script src="./setup-view.js?v=5" defer></script>
+  <script src="./setup-view.js?v=6" defer></script>
   <script src="./setup-controls.js?v=3" defer></script>
   <script src="./audio.js?v=1" defer></script>
   <script src="./round-views.js?v=3" defer></script>
@@ -49,10 +49,11 @@
   <script src="./round-actions.js?v=3" defer></script>
   <script src="./storage-controller.js?v=2" defer></script>
   <script src="./session-restoration.js?v=12" defer></script>
-  <script src="./player-profiles.js?v=7" defer></script>
-  <script src="./profile-views.js?v=3" defer></script>
-  <script src="./profile-backup.js?v=1" defer></script>
-  <script src="./profile-backup-view.js?v=1" defer></script>
+  <script src="./team-statistics.js?v=1" defer></script>
+  <script src="./player-profiles.js?v=8" defer></script>
+  <script src="./profile-views.js?v=4" defer></script>
+  <script src="./profile-backup.js?v=2" defer></script>
+  <script src="./profile-backup-view.js?v=2" defer></script>
   <script src="./card-reports.js?v=1" defer></script>
   <script src="./card-reports-view.js?v=4" defer></script>
   <script src="./card-feedback.js?v=1" defer></script>
@@ -61,11 +62,11 @@
   <script src="./result-review.js?v=3" defer></script>
   <script src="./result-review-view.js?v=6" defer></script>
   <script src="./app.js?v=65" defer></script>
-  <script src="./setup-wizard.js?v=8" defer></script>
-  <script src="./team-format.js?v=1" defer></script>
-  <script src="./team-storage.js?v=4" defer></script>
-  <script src="./team-engine.js?v=1" defer></script>
-  <script src="./team-controller.js?v=7" defer></script>
+  <script src="./setup-wizard.js?v=9" defer></script>
+  <script src="./team-format.js?v=2" defer></script>
+  <script src="./team-storage.js?v=5" defer></script>
+  <script src="./team-engine.js?v=2" defer></script>
+  <script src="./team-controller.js?v=8" defer></script>
 </head>
 <body>
 
@@ -106,9 +107,11 @@
         <p id="statistics-notice" class="profile-muted" role="status"></p>
         <div id="statistics-empty"><p>Создайте первый профиль — КВИП запомнит результаты ваших партий.</p><button id="statistics-create" class="button button-primary button-big" type="button">СОЗДАТЬ ПРОФИЛЬ</button></div>
         <div id="statistics-details" hidden>
+          <h2>1 НА 1</h2>
           <div id="statistics-metrics" class="statistics-metrics"></div>
           <h2>ПО ИГРОВЫМ РЕЖИМАМ</h2><p class="profile-muted">Обычное задание засчитывается профилю загадывающего, а «Примерно» — обоим профилям. У каждого свой результат числового ответа. Очки всегда принадлежат фактическому получателю.</p>
           <div id="statistics-modes"></div>
+          <section id="statistics-teams" aria-labelledby="statistics-teams-title"><h2 id="statistics-teams-title">2 НА 2</h2><p class="profile-muted">Командные очки — результат всей команды. Загадывание и отгадывание учитываются по реальным ролям. «Примерно» и тай-брейк — совместные действия без выдуманных личных очков.</p><p id="statistics-teams-notice" class="profile-muted" role="status"></p><div id="statistics-teams-metrics" class="statistics-metrics"></div><div id="statistics-teams-modes"></div><h3>ПОСЛЕДНИЕ КОМАНДНЫЕ РЕЗУЛЬТАТЫ</h3><div id="statistics-teams-recent"></div></section>
         </div>
       </div></div>
     </section>

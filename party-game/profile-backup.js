@@ -44,17 +44,19 @@ function backupPayloadSummary(store){
       games:store.totals[p.id].matches,
       wins:store.totals[p.id].wins,
       losses:store.totals[p.id].losses,
-      draws:store.totals[p.id].draws
+      draws:store.totals[p.id].draws,
+      ...(store.version===2?{teamGames:QuipTeamStatistics.forProfile(store.teamStatistics.results,store.storeId,p.id).matches}:{})
     }))
   };
 }
-async function createProfileBackupText(store,exportedAt=Date.now()){
+async function createProfileBackupText(store,exportedAt=Date.now(),{includeTeams=true}={}){
+  if(includeTeams&&typeof QuipTeams!=='undefined'&&QuipTeams.whenReady)await QuipTeams.whenReady();
   if(!Number.isSafeInteger(exportedAt)||exportedAt<0)throw backupError('некорректная дата экспорта.');
-  const raw=backupCanonicalStore(store);
+  const snapshot=includeTeams?exportProfileStoreSnapshot(store):store,raw=backupCanonicalStore(snapshot);
   const sha256=await backupDigest(raw);
   const text=JSON.stringify({
     kind:QUIP_PROFILE_BACKUP_KIND,
-    version:QUIP_PROFILE_BACKUP_VERSION,
+    version:snapshot.version===2?2:QUIP_PROFILE_BACKUP_VERSION,
     exportedAt,sha256,
     payload:JSON.parse(raw)
   },null,2);
@@ -79,12 +81,12 @@ async function inspectProfileBackupText(text,currentRaw=null){
   if(!backupPlainObject(doc)||Object.keys(doc).sort().join('|')!==
      'exportedAt|kind|payload|sha256|version'||
      doc.kind!==QUIP_PROFILE_BACKUP_KIND||
-     doc.version!==QUIP_PROFILE_BACKUP_VERSION||
+     ![QUIP_PROFILE_BACKUP_VERSION,2].includes(doc.version)||
      !Number.isSafeInteger(doc.exportedAt)||doc.exportedAt<0||
      typeof doc.sha256!=='string'||!/^[0-9a-f]{64}$/.test(doc.sha256))
     throw backupError('неизвестный формат или версия.');
   let sourceRaw;
-  try{sourceRaw=backupCanonicalStore(doc.payload);}
+  try{sourceRaw=backupCanonicalStore(doc.payload);if((doc.payload.version===2?2:1)!==doc.version)throw Error('version mismatch');}
   catch{throw backupError('данные профилей повреждены или несовместимы.');}
   if(await backupDigest(sourceRaw)!==doc.sha256)throw backupError('контрольная сумма не совпадает.');
   let current=null;
@@ -120,6 +122,7 @@ function backupCheckNoGame(raw){
 // The UI binds confirmation to the exact RAWs displayed in its preview.
 // All mutations after the asynchronous checksum check are synchronous.
 async function restoreProfileBackupText(storage,text,options={}){
+  if(typeof QuipTeams!=='undefined'&&QuipTeams.whenReady)await QuipTeams.whenReady();
   const {allowReplace=false}=options;
   if(!storage||typeof storage.getItem!=='function'||typeof storage.setItem!=='function'||
      typeof storage.removeItem!=='function')throw backupError('нет доступного локального хранилища.');
@@ -133,6 +136,7 @@ async function restoreProfileBackupText(storage,text,options={}){
        Object.hasOwn(options,'expectedGameRaw')&&options.expectedGameRaw!==originalGameRaw)
       throw backupError('данные изменились после предпросмотра; выберите файл повторно.');
     const preview=await inspectProfileBackupText(text,originalRaw);
+    validateTeamProfileImport(JSON.parse(preview.sourceRaw));
     const checkOriginal=()=>{
       if(storage.getItem(QUIP_PROFILES_KEY)!==originalRaw||
          storage.getItem(QUIP_PROFILE_BACKUP_GAME_KEY)!==originalGameRaw)
