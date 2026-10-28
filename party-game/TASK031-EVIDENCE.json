@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "task": "TASK031",
+  "purpose": "Index of test evidence; not the PWA manifest",
+  "publishedProduction": {
+    "sha": "47a7266b48818b3ebc94e1e37e1f5c3f769ee812",
+    "changedByThisTask": false,
+    "postmergeCI": "https://github.com/Demian-rus/quantum-portal/actions/runs/40533451068"
+  },
+  "originalDiagnosis": {
+    "runtimeSha": "47a7266b48818b3ebc94e1e37e1f5c3f769ee812",
+    "probeCommitSha": "7fd61c9dbccdac077d00417d8df49c716820ed80",
+    "runId": 40553923993,
+    "url": "https://github.com/Demian-rus/quantum-portal/actions/runs/40553923993",
+    "artifactId": 12756088196,
+    "artifactName": "task031-touch-diagnosis",
+    "artifactSha256": "0d12c7dc8687f8c796917056cc50213facf45201b1d5ba4b33acdca66b6fca3d",
+    "variants": [
+      "published",
+      "transparent",
+      "bright-positive"
+    ]
+  },
+  "verifiedImplementation": {
+    "sha": "9ce2192d627042f8920c49d7217d148d20d07142",
+    "logicTests": 485,
+    "gameChecksPush": "https://github.com/Demian-rus/quantum-portal/actions/runs/40561754970",
+    "gameChecksPR": "https://github.com/Demian-rus/quantum-portal/actions/runs/40561763364",
+    "smokePush": "https://github.com/Demian-rus/quantum-portal/actions/runs/40561754776",
+    "smokePR": "https://github.com/Demian-rus/quantum-portal/actions/runs/40561763244",
+    "mobile": {
+      "head": "9ce2192d627042f8920c49d7217d148d20d07142",
+      "browsers": [
+        "156.0.8078.47",
+        "155.0.8059.39"
+      ],
+      "rows": [
+        {
+          "width": 320,
+          "height": 568,
+          "format": "duel",
+          "median": 50.5,
+          "p95": 59.2,
+          "center": {
+            "n": 20,
+            "median": 46.9,
+            "p95": 59.2,
+            "max": 69
+          }
+        },
+        {
+          "width": 320,
+          "height": 568,
+          "format": "teams",
+          "median": 47.7,
+          "p95": 51.9,
+          "center": {
+            "n": 20,
+            "median": 47.3,
+            "p95": 51.9,
+            "max": 65.4
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "format": "duel",
+          "median": 58.9,
+          "p95": 64.3,
+          "center": {
+            "n": 20,
+            "median": 58.9,
+            "p95": 64.3,
+            "max": 82.1
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "format": "teams",
+          "median": 59.9,
+          "p95": 65.2,
+          "center": {
+            "n": 20,
+            "median": 59.9,
+            "p95": 65.2,
+            "max": 87.9
+          }
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "format": "duel",
+          "median": 57.4,
+          "p95": 63.2,
+          "center": {
+            "n": 20,
+            "median": 56.4,
+            "p95": 63.2,
+            "max": 63.5
+          }
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "format": "teams",
+          "median": 58.4,
+          "p95": 64.3,
+          "center": {
+            "n": 20,
+            "median": 58.2,
+            "p95": 64.3,
+            "max": 64.3
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "format": "duel",
+          "median": 52.7,
+          "p95": 56.5,
+          "center": {
+            "n": 20,
+            "median": 51.9,
+            "p95": 56.4,
+            "max": 73.9
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "format": "teams",
+          "median": 53.7,
+          "p95": 60.6,
+          "center": {
+            "n": 20,
+            "median": 51.1,
+            "p95": 60.6,
+            "max": 75.4
+          }
+        }
+      ],
+      "heldAndReleasedFrames": 240,
+      "rapidFrames": 247,
+      "allFrames": 487,
+      "maxMedian": 59.9,
+      "maxP95": 65.2,
+      "existingAndroid": {
+        "cases": 116,
+        "maxMedian": 109.2,
+        "maxP95": 118.7
+      }
+    },
+    "artifacts": [
+      {
+        "id": 12762056316,
+        "name": "quip-browser-teams",
+        "sha256": "bd479f6820c29e98f3aa7240f90f5b831f6974f927706d0938bc07388f6fe364",
+        "url": "https://github.com/Demian-rus/quantum-portal/actions/runs/40561754970/artifacts/12762056316"
+      },
+      {
+        "id": 12762006428,
+        "name": "quip-browser-pwa",
+        "sha256": "372d246cda02e6ffc683514eb640faa702100477e64c2e7b377d7224a1324010",
+        "url": "https://github.com/Demian-rus/quantum-portal/actions/runs/40561754970/artifacts/12762006428"
+      },
+      {
+        "id": 12761816645,
+        "name": "quip-browser-raster",
+        "sha256": "3956fc66d17b67339464e8808d73fb0cd340e8c31ed9370db228b50721873f61",
+        "url": "https://github.com/Demian-rus/quantum-portal/actions/runs/40561754970/artifacts/12761816645"
+      },
+      {
+        "id": 12761452541,
+        "name": "quip-browser-profiles",
+        "sha256": "b368ac64ce8e4d1c35c2fcca2219969c59a72f542b09a01bc42a652006a90a4f",
+        "url": "https://github.com/Demian-rus/quantum-portal/actions/runs/40561754970/artifacts/12761452541"
+      },
+      {
+        "id": 12761392936,
+        "name": "quip-browser-layout",
+        "sha256": "d77f287531b8da44c2b9a7c75a623bd43aa42d92099217c402f5ecca3767b555",
+        "url": "https://github.com/Demian-rus/quantum-portal/actions/runs/40561754970/artifacts/12761392936"
+      },
+      {
+        "id": 12761356309,
+        "name": "quip-task031-390",
+        "sha256": "9ad57dc4194e2b219161a369006d520da8b0054e996cfe479da21b7830446f5c",
+        "url": "https://github.com/Demian-rus/quantum-portal/actions/runs/40561754970/artifacts/12761356309"
+      },
+      {
+        "id": 12760772904,
+        "name": "quip-task031-320",
+        "sha256": "67f291346e277e673c3a833c6976c84f1190cafdc52a54c9a04f267c5bebaac8",
+        "url": "https://github.com/Demian-rus/quantum-portal/actions/runs/40561754970/artifacts/12760772904"
+      },
+      {
+        "id": 12760498179,
+        "name": "quip-task031-412",
+        "sha256": "59f4b025313288fad90dc4935b1f3750eeb00484d711c56b1194fa5003a0590e",
+        "url": "https://github.com/Demian-rus/quantum-portal/actions/runs/40561754970/artifacts/12760498179"
+      },
+      {
+        "id": 12760474345,
+        "name": "quip-browser-android",
+        "sha256": "cf9aeb58541f74048aded516b6336b805c6b8243807f08038f3957b3f53d5bc9",
+        "url": "https://github.com/Demian-rus/quantum-portal/actions/runs/40561754970/artifacts/12760474345"
+      },
+      {
+        "id": 12760388751,
+        "name": "quip-browser-catalog",
+        "sha256": "ea6b61b18c80e2d7e1ff175778d6991b8ded0d00d323c9b4bef6e881e8f0e58f",
+        "url": "https://github.com/Demian-rus/quantum-portal/actions/runs/40561754970/artifacts/12760388751"
+      },
+      {
+        "id": 12760103368,
+        "name": "quip-task031-844",
+        "sha256": "f9e214907cbd5f1d7dc8b62af5ec82ab35e279f46d1a9a9219ea19b73615bbb1",
+        "url": "https://github.com/Demian-rus/quantum-portal/actions/runs/40561754970/artifacts/12760103368"
+      }
+    ]
+  },
+  "acceptanceHead": {
+    "ref": "feat/quip-task031-wizard-polish-20261027",
+    "authoritativeSha": "Current head.sha of Draft PR #171; explicitly recorded in PR description after all checks",
+    "pr": "https://github.com/Demian-rus/quantum-portal/pull/171",
+    "checks": "https://github.com/Demian-rus/quantum-portal/pull/171/checks",
+    "actions": "https://github.com/Demian-rus/quantum-portal/actions?query=branch%3Afeat/quip-task031-wizard-polish-20261027",
+    "note": "Historical 9ce2192 measurements are not claimed as checks of a later documentation commit. That commit must pass CI separately."
+  },
+  "newEvidenceFiles": {
+    "artifacts": [
+      "quip-task031-320",
+      "quip-task031-390",
+      "quip-task031-412",
+      "quip-task031-844"
+    ],
+    "allViewports": [
+      "320x568",
+      "390x844",
+      "412x915",
+      "844x390"
+    ],
+    "perViewport": [
+      "evidence.json",
+      "duel-rules-evidence.json",
+      "teams-rules-evidence.json"
+    ],
+    "at390": [
+      "{format}-mode-{id}-closed.png",
+      "{format}-mode-{id}-open.png"
+    ],
+    "formats": [
+      "duel",
+      "teams"
+    ],
+    "modeIds": [
+      "talk",
+      "mime",
+      "draw",
+      "sing",
+      "yesno",
+      "secret",
+      "blitz",
+      "approx"
+    ],
+    "note": "New rule captures extend evidence only; existing assertions and production files are unchanged."
+  },
+  "frozenBundle": {
+    "fileName": "TASK031-evidence-9ce2192.zip",
+    "bytes": 158308781,
+    "sha256": "9c0ffbd04007e043a44451cd967054e585c7c0049b9e3a45531ddc5605185487",
+    "head": "9ce2192d627042f8920c49d7217d148d20d07142",
+    "files": 678,
+    "status": "Validated ZIP CRCs and all 677 manifest entry hashes; delivery link supplied with final report."
+  },
+  "productionFiles": [
+    {
+      "path": "party-game/setup-wizard.js",
+      "sha256": "c4904d8b8755993e006763c6af159c5f6ae7facf0aef5a40e9c6f507ae49dbb8",
+      "url": "https://github.com/Demian-rus/quantum-portal/blob/9ce2192d627042f8920c49d7217d148d20d07142/party-game/setup-wizard.js"
+    },
+    {
+      "path": "party-game/setup-wizard.css",
+      "sha256": "003c898f005534befbb5618eee8ceb5ca8c1be65b2ef3ffd474466ca61432389",
+      "url": "https://github.com/Demian-rus/quantum-portal/blob/9ce2192d627042f8920c49d7217d148d20d07142/party-game/setup-wizard.css"
+    },
+    {
+      "path": "party-game/setup-view.js",
+      "sha256": "a51fbb7e4984f82c4958989535ae89a88482b2ee2becd76960cbe7858988a67a",
+      "url": "https://github.com/Demian-rus/quantum-portal/blob/9ce2192d627042f8920c49d7217d148d20d07142/party-game/setup-view.js"
+    },
+    {
+      "path": "party-game/index.html",
+      "sha256": "aeff48f74b17c5ee30c7d1d1481709f5bb5a62f644b9f690e5d5fe7e788b07bd",
+      "url": "https://github.com/Demian-rus/quantum-portal/blob/9ce2192d627042f8920c49d7217d148d20d07142/party-game/index.html"
+    },
+    {
+      "path": "party-game/sw.js",
+      "sha256": "121f36d346744e5f81698c71b25c1c53a10e7956ae3eb9ebacafcad6e0368fcb",
+      "url": "https://github.com/Demian-rus/quantum-portal/blob/9ce2192d627042f8920c49d7217d148d20d07142/party-game/sw.js"
+    }
+  ],
+  "limits": [
+    "Android emulator only; no physical Android test",
+    "A details disclosure never persists settings",
+    "2x2 drafts become durable at real START, as in TASK028",
+    "Actions artifacts have retention limits; frozen bundle preserves the historical evidence"
+  ]
+}

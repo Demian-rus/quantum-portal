@@ -99,3 +99,32 @@
 .setup-wizard .slider-option{background:none;border:0;border-radius:0;box-shadow:none}
 @media(max-width:359px){.setup-wizard #mode-toggles .mode-tile-art{width:44px;height:44px}.setup-wizard #mode-toggles label>.mode-tile{min-height:100px}}
 @media(max-height:480px){.wizard-page .game-type-choices{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.wizard-page .game-type-choice{min-height:104px;padding-block:12px}}
+/* TASK031: the Android highlight must not paint the larger label rectangle. */
+.setup-wizard .finish-choices label{-webkit-tap-highlight-color:transparent}
+.setup-wizard .finish-choices label:active>span,
+.setup-wizard .finish-choices label.is-pressed>span{background:#284866}
+/* One set of mode controls moves between the grid and its settings page. */
+.setup-wizard:not(.wizard-mode-center) .wizard-rule{padding:0;border:0}
+.setup-wizard:not(.wizard-mode-center) .wizard-rule>header,
+.setup-wizard:not(.wizard-mode-center) .wizard-rule-details,
+.setup-wizard:not(.wizard-mode-center) .wizard-mode-settings>h3,
+.setup-wizard:not(.wizard-mode-center) .wizard-mode-enabled,
+.setup-wizard:not(.wizard-mode-center) #wizard-song{display:none}
+.setup-wizard.wizard-mode-center #mode-toggles{grid-template-columns:minmax(0,1fr);gap:0}
+.setup-wizard.wizard-mode-center #mode-toggles label>.mode-tile{display:none}
+.setup-wizard.wizard-mode-center #mode-toggles .mode-choice label{display:flex;align-items:center;gap:12px;min-height:48px;height:auto;padding:10px 0}
+.setup-wizard.wizard-mode-center #mode-toggles input{position:static;opacity:1;width:22px;height:22px;flex:0 0 auto;margin:0}
+.setup-wizard.wizard-mode-center #mode-toggles label>.wizard-mode-enabled{display:block;min-height:0;padding:0;background:none;border:0;border-radius:0;font-size:13px}
+.setup-wizard.wizard-mode-center input:disabled~.wizard-mode-enabled{color:var(--soft);opacity:.65}
+.setup-wizard .wizard-rule-details{margin-top:12px}
+.setup-wizard .wizard-rule-details>summary{min-height:48px;padding:12px 0;color:var(--cyan);font-size:13px;font-weight:700;cursor:pointer}
+.setup-wizard .wizard-rule-details>summary:focus-visible,
+.setup-wizard #wizard-extra>summary:focus-visible{outline:3px solid var(--lime);outline-offset:2px;border-radius:3px}
+.setup-wizard .wizard-mode-settings>h3{font-size:12px;margin:16px 0 4px;color:var(--soft)}
+.setup-wizard #wizard-song{margin-top:8px}
+/* Additional rules share the page surface, with quiet row separators. */
+.setup-wizard #wizard-extra .modifier-toggle,
+.setup-wizard #wizard-extra .modifier-frequency{background:none;border:0;border-radius:0;box-shadow:none;padding:14px 0;margin:0;border-bottom:1px solid #af98ff30}
+.setup-wizard #wizard-extra .modifier-toggle>span{min-width:0}
+.setup-wizard #wizard-extra .modifier-toggle strong{font-size:13px;line-height:1.5}
+.setup-wizard #wizard-extra .modifier-toggle small{display:block;margin-top:4px;font-size:12px;line-height:1.65}
