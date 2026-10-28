@@ -4,7 +4,7 @@ const {createSimulation}=require('../scripts/game-simulation.cjs');
 const F=require('../team-format.js'),S=require('../team-storage.js'),T=require('../team-statistics.js'),{ruTurns,ruPoints,ruAfterTurns}=require('../setup-view.js');
 const plain=v=>JSON.parse(JSON.stringify(v)),same=(a,b)=>assert.deepEqual(plain(a),plain(b));
 test('TASK032 exact delta preserves every inherited script, all game CSS, dictionaries and PWA lifecycle outside the reviewed additions',()=>{
- const {execFileSync}=require('node:child_process'),{normalizeTask032}=require('./task032-contract.cjs'),hunks=require('./task032-presentation.json');
+ const {execFileSync}=require('node:child_process'),{normalizeTask032,normalizeTask033}=require('./task032-contract.cjs'),hunks=require('./task032-presentation.json');
  const before=f=>execFileSync('git',['show','7852bfe05cfa193b8084860a7c4faa0f01ae5786:party-game/'+f],{encoding:'utf8',maxBuffer:15e6}),read=f=>fs.readFileSync('party-game/'+f,'utf8');
  const scripts=[...before('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);assert.equal(scripts.length,53);
  // G46 generated catalogs are versioned and editor-reviewed, not part of TASK032's
@@ -20,7 +20,7 @@ test('TASK032 exact delta preserves every inherited script, all game CSS, dictio
  assert.equal(g46.criteria.cardIds.length,7000);
  assert.equal(g46.criteria.cardIds.filter(id=>id.startsWith('song-')).length,224,'Preserve all 224 song prompts');
  assert.match(read('sw.js'),/G46 2026-10-28: refresh the installed PWA catalog/);
- for(const h of hunks){assert(h.after);assert(read(h.file).includes(h.after),'exact addition must still exist: '+h.file);}
+ for(const h of hunks){assert(h.after);assert(normalizeTask033(read(h.file)).includes(h.after),'exact addition must still exist: '+h.file);}
  const current=[...read('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);same(current.slice().sort(),[...scripts,'team-statistics.js'].sort());
  assert.equal(read('sw.js').slice(read('sw.js').indexOf("self.addEventListener('install'")),before('sw.js').slice(before('sw.js').indexOf("self.addEventListener('install'")));
  assert.doesNotMatch(read('team-statistics.js'),/localStorage|indexedDB|Math\.random/);
@@ -138,4 +138,16 @@ test('TASK032 one versioned profile backup preserves IDs, duel values and team r
  const target=backupHarness();target.context.text=text;await target.eval('restoreProfileBackupText(localStorage,text)');target.eval('restoreProfiles()');same(target.eval('profileStore.totals'),h.profiles.totals);same(target.eval('profileStore.profiles'),h.profiles.profiles);assert.equal(target.eval('profileTeamResults().length'),1);
  target.context.QuipTeams={results:()=>record.profileResults,validateProfileImport:store=>T.merge(record.profileResults,store.teamStatistics?.results||[])};const second=JSON.parse(await target.eval('createProfileBackupText(profileStore)'));assert.equal(second.payload.teamStatistics.results.length,1);assert.equal(target.eval('profileTeamResults().length'),1);
  const original=target.map.get('kvip-player-profiles:v1'),wrong=plain(doc);wrong.payload.teamStatistics.results[0].profileIds[0]='f'.repeat(32);target.context.wrong=JSON.stringify(wrong);await assert.rejects(target.eval('restoreProfileBackupText(localStorage,wrong,{allowReplace:true})'));assert.equal(target.map.get('kvip-player-profiles:v1'),original);
+});
+test('TASK033 profile-picker touch closes without a container rectangle and preserves keyboard focus',()=>{
+ const read=f=>fs.readFileSync('party-game/'+f,'utf8');
+ const css=read('setup-wizard.css'),globalCss=read('style.css'),profiles=read('profile-views.js');
+ assert.match(globalCss,/\.team-input-wrap:focus-within,[\s\S]*?box-shadow:0 0 0 1px #6cddff75/);
+ assert.match(css,/\.wizard-page \.team-input-wrap:focus-within\{box-shadow:none\}/);
+ assert.match(globalCss,/button:focus-visible,input:focus-visible/);
+ assert.match(profiles,/profilePanelFocus\?\.focus\(\{preventScroll:true\}\)/);
+ const html=read('index.html'),sw=read('sw.js');
+ assert.match(html,/setup-wizard\.css\?v=6/);
+ assert.match(sw,/setup-wizard\.css\?v=6/);
+ assert.match(sw,/kvip-pwa-v98-20261028-profile-focus-fix/);
 });
