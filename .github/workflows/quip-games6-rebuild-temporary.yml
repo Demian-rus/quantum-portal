@@ -1,0 +1,35 @@
+name: Temporary VG6 audience curation rebuild
+on:
+  push:
+    branches:
+      - content/general-games-audience-review-20261029
+    paths:
+      - .github/workflows/quip-games6-rebuild-temporary.yml
+      - party-game/content/**
+permissions:
+  contents: write
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build and check data and historical versions
+        run: |
+          node party-game/scripts/content.cjs build
+          node party-game/scripts/content.cjs check
+          node --test party-game/tests/general-games-audience-v1.test.cjs party-game/tests/general-games-v5.test.cjs party-game/tests/general-games-v4.test.cjs party-game/tests/general-games-v3.test.cjs party-game/tests/general-games-v2.test.cjs party-game/tests/general-games-v1.test.cjs party-game/tests/general-memes-v1.test.cjs party-game/tests/g47-editorial.test.cjs party-game/tests/g46-editorial.test.cjs
+      - name: Commit generated runtime catalogs
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add party-game/content-packs.js party-game/cards.js party-game/approx-questions.js
+          if ! git diff --cached --quiet; then
+            git commit -m "build(VG6): audience selection general@56"
+            git push origin HEAD:content/general-games-audience-review-20261029
+          fi
