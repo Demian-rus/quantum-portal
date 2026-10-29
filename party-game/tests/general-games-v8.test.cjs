@@ -1,0 +1,21 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const api=require('../scripts/content.cjs');
+const review=JSON.parse(fs.readFileSync(path.join(__dirname,'../content/editorial/general-games-audience-v1-decisions.json'),'utf8'));
+test('VG8 broad 50 gaming tasks: append-only snapshot, no historical duplicates and VG6 reserves excluded',()=>{
+ const d=api.readDataset();const previous=d.packs.find(x=>x.id==='general'&&x.version===57),next=d.packs.find(x=>x.id==='general'&&x.version===58);
+ assert.ok(previous&&next);const rows=d.cards.filter(x=>x.pack==='general-games-v8'),ids=rows.map(x=>x.id);
+ assert.equal(rows.length,50);assert.equal(rows.filter(x=>x.type==='word').length,40);assert.equal(rows.filter(x=>x.type==='phrase').length,10);
+ assert.equal(rows.filter(x=>x.difficulty==='easy').length,43);assert.equal(rows.filter(x=>x.difficulty==='medium').length,7);assert.equal(rows.filter(x=>x.difficulty==='hard').length,0);
+ assert.ok(rows.every(x=>x.categories.length===1&&x.categories[0]==='videogames'&&x.meta?.recognition==='broad'));
+ assert.ok(rows.every(x=>/^[А-ЯЁ -]+$/u.test(x.text)&&/^[А-ЯЁ -]+$/u.test(x.meta.game)));
+ assert.ok(rows.every(x=>x.type==='word'?!/\s/u.test(x.text):/\s/u.test(x.text)));
+ const existing=new Set(d.cards.filter(x=>x.pack!=='general-games-v8').map(x=>api.normalize(x.text)));
+ assert.equal(new Set(ids).size,50);assert.equal(new Set(rows.map(x=>api.normalize(x.text))).size,50);
+ for(const row of rows)assert.ok(!existing.has(api.normalize(row.text)),'Historical duplicate '+row.text);
+ assert.equal(previous.criteria.cardIds.length,7169);assert.equal(next.criteria.cardIds.length,7219);
+ assert.deepEqual(next.criteria.cardIds.slice(0,7169),previous.criteria.cardIds);assert.deepEqual(next.criteria.cardIds.slice(7169),ids);
+ const reserved=review.entries.filter(x=>x.decision==='reserve-for-theme');assert.equal(reserved.length,151);
+ assert.ok(reserved.every(x=>!next.criteria.cardIds.includes(x.id)));
+ assert.ok(api.validate(d).ok,'Content and historical integrity');
+});
