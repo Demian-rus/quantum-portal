@@ -1,0 +1,39 @@
+name: КВИП TASK037 participant cards acceptance
+on:
+  push:
+    branches: ['feat/quip-task037-*']
+    paths: ['party-game/**', 'diagnostics/task037/**', '.github/workflows/quip-task037.yml']
+  pull_request:
+    paths: ['party-game/**', 'diagnostics/task037/**', '.github/workflows/quip-task037.yml']
+permissions: {contents: read}
+jobs:
+  profiles:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [android-compact, android-tall, landscape, iphone-webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - if: matrix.group != 'iphone-webkit'
+        run: npm install --no-save playwright-core@1.55.0
+      - if: matrix.group == 'iphone-webkit'
+        run: npm install --no-save playwright-core@1.64.0
+      - if: matrix.group == 'iphone-webkit'
+        run: npx playwright-core install --with-deps webkit
+        timeout-minutes: 8
+      - run: node diagnostics/task037/profiles.cjs
+        env:
+          QUIP037_GROUP: ${{ matrix.group }}
+          QUIP037_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+          CHROME_BIN: /usr/bin/google-chrome
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quip-task037-${{ matrix.group }}
+          path: artifacts/quip-task037
+          if-no-files-found: error
