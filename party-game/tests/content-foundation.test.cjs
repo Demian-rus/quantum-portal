@@ -1,6 +1,8 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
 const api=require('../scripts/content.cjs'),{createSimulation}=require('../scripts/game-simulation.cjs');
+// Include VG8's exact historical/dedup and pinned snapshot assertions in the established logic CI.
+require('./general-games-v8.test.cjs');
 function selectRecoveryProfiles(h){h.eval("createPlayerProfile('Первый','coral');createPlayerProfile('Второй','cyan');selectedProfileIds=profileStore.profiles.map(p=>p.id)");}
 const root=path.resolve(__dirname,'..'),base=api.readDataset(),copy=()=>structuredClone(base);
 function hasError(data,code){return api.validate(data,{locks:false}).errors.some(e=>e.code===code)}
