@@ -1,0 +1,29 @@
+name: VG9 temporary catalogs regeneration
+on:
+  push:
+    branches:
+      - content/general-games-v9-familiar-20261029
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate sources, regenerate exact catalogs and publish artifact
+        run: |
+          node party-game/scripts/content.cjs build
+          node party-game/scripts/content.cjs check
+          if git diff --quiet -- party-game/cards.js party-game/content-packs.js; then
+            echo "Catalogs are already up to date"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add party-game/cards.js party-game/content-packs.js
+          git commit -m "build(content): regenerate general@59 VG9 catalogs"
+          git push origin HEAD:content/general-games-v9-familiar-20261029
