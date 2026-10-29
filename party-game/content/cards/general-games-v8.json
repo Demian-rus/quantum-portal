@@ -197,7 +197,7 @@
   },
   {
     "id": "word-080015",
-    "text": "ПАТРОН",
+    "text": "ВЫСТРЕЛ",
     "type": "word",
     "difficulty": "easy",
     "categories": [
@@ -205,13 +205,13 @@
     ],
     "pack": "general-games-v8",
     "meta": {
-      "game": "ДУМ",
+      "game": "КОНТР-СТРАЙК",
       "recognition": "broad"
     }
   },
   {
     "id": "word-080016",
-    "text": "РОБОТ",
+    "text": "РАЗРАБОТЧИК",
     "type": "word",
     "difficulty": "easy",
     "categories": [
@@ -219,7 +219,7 @@
     ],
     "pack": "general-games-v8",
     "meta": {
-      "game": "СОНИК",
+      "game": "СИМС",
       "recognition": "broad"
     }
   },
@@ -435,7 +435,7 @@
   },
   {
     "id": "word-080032",
-    "text": "КРИСТАЛЛ",
+    "text": "ПРОГРЕСС",
     "type": "word",
     "difficulty": "easy",
     "categories": [
@@ -533,7 +533,7 @@
   },
   {
     "id": "word-080039",
-    "text": "ДИСК",
+    "text": "ПЕРЕЗАПУСК",
     "type": "word",
     "difficulty": "easy",
     "categories": [
@@ -541,7 +541,7 @@
     ],
     "pack": "general-games-v8",
     "meta": {
-      "game": "ПЛЕЙСТЕЙШЕН",
+      "game": "ТЕТРИС",
       "recognition": "broad"
     }
   },
