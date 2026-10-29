@@ -6,7 +6,7 @@ module.exports=async function profileUpgrade(browser,url){
  const git=args=>execFileSync('git',args,{cwd:root,timeout:30000,maxBuffer:8*1024*1024,stdio:['ignore','pipe','pipe']});
  try{git(['cat-file','-e',baseline+'^{commit}'])}catch{git(['fetch','--depth=1','origin',baseline])}
  const files=historicalRuntimeFiles(git,baseline,['sw.js','index.html','style.css']);
- const current=new Map(files.map(name=>[name,fs.readFileSync(path.join(root,'party-game',name))]));
+ const current=new Map([...files,'responsive-layout.css'].map(name=>[name,fs.readFileSync(path.join(root,'party-game',name))]));
  const previous=new Map(files.map(name=>[name,git(['show',baseline+':party-game/'+name])]));
  const cache=source=>source.toString().match(/const CACHE='([^']+)'/)[1],oldCache=cache(previous.get('sw.js')),newCache=cache(current.get('sw.js'));
  const write=sources=>{for(const [name,source]of sources)fs.writeFileSync(path.join(root,'party-game',name),source)};

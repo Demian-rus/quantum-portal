@@ -6,9 +6,9 @@ const snapshot=p=>p.evaluate(()=>({game:JSON.stringify(game),raw:localStorage.ge
 (async()=>{
  fs.mkdirSync(folder,{recursive:true});const git=a=>execFileSync('git',a,{cwd:root,maxBuffer:12e6});try{git(['cat-file','-e',base+'^{commit}'])}catch{git(['fetch','--depth=1','origin',base])}
  const files=historicalRuntimeFiles(git,base,['index.html','style.css','sw.js']);assert.equal(files.length,51);
- const current=new Map(files.map(n=>[n,fs.readFileSync(path.join(root,'party-game',n))])),previous=new Map(files.map(n=>[n,git(['show',base+':party-game/'+n])]));
+ const current=new Map([...files,'responsive-layout.css'].map(n=>[n,fs.readFileSync(path.join(root,'party-game',n))])),previous=new Map(files.map(n=>[n,git(['show',base+':party-game/'+n])]));
  const write=m=>{for(const[n,bytes]of m)fs.writeFileSync(path.join(root,'party-game',n),bytes)};
- const cache=m=>m.get('sw.js').toString().match(/const CACHE='([^']+)'/)[1],oldCache=cache(previous),newCache=cache(current);assert.match(oldCache,/v87/);assert.match(newCache,/^kvip-pwa-v98-20261028-profile-focus-fix$/);
+ const cache=m=>m.get('sw.js').toString().match(/const CACHE='([^']+)'/)[1],oldCache=cache(previous),newCache=cache(current);assert.match(oldCache,/v87/);assert.match(newCache,/^kvip-pwa-v99-20261028-responsive-candidate$/);
  const b=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
  try{for(const scenario of ['editor','pending']){
   const ctx=await b.newContext({viewport:{width:390,height:844},hasTouch:true}),p=await ctx.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));

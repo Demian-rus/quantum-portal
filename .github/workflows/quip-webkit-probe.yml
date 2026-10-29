@@ -1,0 +1,43 @@
+name: КВИП TASK034 WebKit offline diagnosis
+on:
+  push:
+    branches: ['feat/quip-task034-mobile-*']
+    paths: ['diagnostics/task034-offline-probe.cjs', 'diagnostics/task034-timer-probe.cjs', '.github/workflows/quip-webkit-probe.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  timer-layout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm install --no-save playwright-core@1.55.0
+      - run: node diagnostics/task034-timer-probe.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quip-task034-timer-layout-diagnosis
+          path: artifacts/quip-task034-timer-probe
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ['1.55.0', '1.64.0']
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm install --no-save playwright-core@${{ matrix.version }}
+      - run: npx playwright-core install --with-deps webkit
+      - run: xvfb-run -a node diagnostics/task034-offline-probe.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quip-task034-webkit-offline-diagnosis-${{ matrix.version }}
+          path: artifacts/quip-task034-webkit-probe
