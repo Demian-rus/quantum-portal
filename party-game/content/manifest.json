@@ -418,6 +418,11 @@
       "path": "cards/general-games-v10.json",
       "immutable": false,
       "review": "VG10: 40 accessible game/fantasy action words and 10 familiar videogame phrases; editorial/general-games-v10-review.md"
+    },
+    {
+      "path": "cards/general-games-v11.json",
+      "immutable": false,
+      "review": "VG11: 40 widely recognizable solo game concepts and 10 everyday game phrases; editorial/general-games-v11-review.md"
     }
   ],
   "questions": [
@@ -767,6 +772,11 @@
       "path": "packs/general-games-v10.json",
       "immutable": false,
       "review": "VG10: general@60 appends 50 audited prompts to general@59 while preserving all 7269 IDs and 151 reserved VG6 cards"
+    },
+    {
+      "path": "packs/general-games-v11.json",
+      "immutable": false,
+      "review": "VG11: general@61 adds 50 validated game prompts over general@60; preserves previous 7319 IDs and 151 VG6 reserves"
     }
   ],
   "legacyCollisions": [
