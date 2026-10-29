@@ -1,0 +1,702 @@
+[
+  {
+    "id": "word-081001",
+    "text": "КУРСОР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "СИМС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081002",
+    "text": "НАУШНИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ФОРТНАЙТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081003",
+    "text": "ГАРНИТУРА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "КОНТР-СТРАЙК",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081004",
+    "text": "ПРОБЕЛ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081005",
+    "text": "МЕТКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ГТА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081006",
+    "text": "ФЛАГ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ФОРТНАЙТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081007",
+    "text": "КОРОНА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ФОРТНАЙТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081008",
+    "text": "ПРИШЕЛЕЦ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "КОСМИЧЕСКИЙ ЗАХВАТЧИК",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081009",
+    "text": "ЧУДОВИЩЕ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081010",
+    "text": "ВАМПИР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "КАСЛВАНИЯ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081011",
+    "text": "КОРОЛЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "СУПЕР МАРИО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081012",
+    "text": "КОРОЛЕВА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ШАХМАТЫ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081013",
+    "text": "ПРИНЦ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ПРИНЦ ПЕРСИИ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081014",
+    "text": "УСКОРЕНИЕ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "МАРИО КАРТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081015",
+    "text": "УПРАВЛЕНИЕ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "МАРИО КАРТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081016",
+    "text": "ПЕРЕСТРЕЛКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "КОНТР-СТРАЙК",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081017",
+    "text": "ПОЕДИНОК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "МОРТАЛ КОМБАТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081018",
+    "text": "ПОЛЁТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "СИМУЛЯТОР ПОЛЁТА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081019",
+    "text": "ПАДЕНИЕ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ФОЛ ГАЙС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081020",
+    "text": "ТАЙМЕР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ТЕТРИС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081021",
+    "text": "ЛИДЕР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ФИФА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081022",
+    "text": "ТОПОР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081023",
+    "text": "ПУЛЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "КОНТР-СТРАЙК",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081024",
+    "text": "МИНА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "САПЁР",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081025",
+    "text": "БОМБА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "КОНТР-СТРАЙК",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081026",
+    "text": "ПУШКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "МИР ТАНКОВ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081027",
+    "text": "ТАНК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "МИР ТАНКОВ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081028",
+    "text": "ЭТАП",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ТЕТРИС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081029",
+    "text": "КОД",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ГТА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081030",
+    "text": "ШИФР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ГОЛОВОЛОМКА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081031",
+    "text": "КОСТЮМ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "СИМС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081032",
+    "text": "КОЛЛЕКЦИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ПОКЕМОН",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081033",
+    "text": "ТИТРЫ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "СОНИК",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081034",
+    "text": "СОРЕВНОВАНИЕ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ФИФА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081035",
+    "text": "ОБЗОР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ГТА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081036",
+    "text": "ОБНОВЛЕНИЕ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081037",
+    "text": "УСТАНОВКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "СИМС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081038",
+    "text": "НАСТРОЙКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ФИФА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081039",
+    "text": "ОЗВУЧКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ВЕДЬМАК",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-081040",
+    "text": "ЧАТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "РОБЛОКС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-081001",
+    "text": "ИГРОВАЯ ПРИСТАВКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "МАРИО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-081002",
+    "text": "ЗАГРУЗОЧНЫЙ ЭКРАН",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "СИМС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-081003",
+    "text": "ОТКРЫТЫЙ МИР",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ГТА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-081004",
+    "text": "ПОСЛЕДНЯЯ ЖИЗНЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "СУПЕР МАРИО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-081005",
+    "text": "ГЛАВНЫЙ ЗЛОДЕЙ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "СУПЕР МАРИО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-081006",
+    "text": "СОБРАТЬ МОНЕТЫ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "СУПЕР МАРИО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-081007",
+    "text": "СОХРАНИТЬ ИГРУ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "СИМС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-081008",
+    "text": "СЛЕДУЮЩИЙ РАУНД",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "ФИФА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-081009",
+    "text": "ПОСТРОИТЬ ДОМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-081010",
+    "text": "МЕНЮ НАСТРОЕК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v9",
+    "meta": {
+      "game": "СИМС",
+      "recognition": "broad"
+    }
+  }
+]
