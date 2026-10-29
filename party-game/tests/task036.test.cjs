@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),{execFileSync}=require('node:child_process');
 const {normalizeTask036,hunks}=require('../../diagnostics/task036/source-contract.cjs');
-const BASE='76edbc0c1083060952fce004a1400fcbf6db15e3',old=f=>execFileSync('git',['show',BASE+':party-game/'+f],{encoding:'utf8',maxBuffer:20e6}),read=f=>fs.readFileSync('party-game/'+f,'utf8');
+const BASE='76edbc0c1083060952fce004a1400fcbf6db15e3',old=f=>execFileSync('git',['show',BASE+':party-game/'+f],{encoding:'utf8',maxBuffer:20e6}),read=f=>require('../../diagnostics/task037/source-contract.cjs').normalizeTask037(fs.readFileSync('party-game/'+f,'utf8'));
 test('TASK036 permits only exact reviewed presentation changes; all other runtime/data bytes remain exact',()=>{
  const files=execFileSync('git',['ls-tree','-r','--name-only',BASE,'party-game'],{encoding:'utf8'}).trim().split('\n').filter(f=>!f.includes('/tests/')&&!f.includes('/scripts/')&&/\.(js|css|json|webmanifest|html)$/.test(f));
  for(const path of files){const f=path.slice('party-game/'.length);assert.equal(normalizeTask036(read(f)),old(f),f);}

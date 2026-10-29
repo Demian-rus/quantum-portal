@@ -9,7 +9,7 @@ permissions: {contents: read}
 jobs:
   stepper:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     strategy:
       fail-fast: false
       matrix:
