@@ -256,7 +256,7 @@
     "difficulty": "easy",
     "question": "Сколько часов продлился рекордный марафон в Dance Dance Revolution, зафиксированный Guinness в октябре 2024 года?",
     "answer": "144",
-    "unit": "часов",
+    "unit": "ч",
     "categories": [
       "videogames"
     ],
