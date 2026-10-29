@@ -19,7 +19,12 @@ jobs:
         with: {fetch-depth: 0}
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
-      - run: npm install --no-save playwright-core@1.55.0
+      # WebKit 1.55.0 on this runner loses CacheStorage writes, including on
+      # baseline main. Keep Chromium/raster tooling pinned; update only WebKit.
+      - if: matrix.group != 'iphone-webkit'
+        run: npm install --no-save playwright-core@1.55.0
+      - if: matrix.group == 'iphone-webkit'
+        run: npm install --no-save playwright-core@1.64.0
       - if: matrix.group == 'iphone-webkit'
         run: npx playwright-core install --with-deps webkit
         timeout-minutes: 8
