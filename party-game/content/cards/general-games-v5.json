@@ -9,7 +9,7 @@
     ],
     "pack": "general-games-v5",
     "meta": {
-      "game": "ИГРОВАЯ ПРИСТАВКА",
+      "game": "СУПЕР МАРИО",
       "recognition": "broad"
     }
   },
@@ -23,7 +23,7 @@
     ],
     "pack": "general-games-v5",
     "meta": {
-      "game": "ДЕНДИ",
+      "game": "СУПЕР МАРИО",
       "recognition": "broad"
     }
   },
@@ -275,7 +275,7 @@
     ],
     "pack": "general-games-v5",
     "meta": {
-      "game": "КОНТР-СТРАЙК",
+      "game": "ХАЛФ-ЛАЙФ",
       "recognition": "broad"
     }
   },
@@ -331,7 +331,7 @@
     ],
     "pack": "general-games-v5",
     "meta": {
-      "game": "ТЕТРИС",
+      "game": "СУПЕР МАРИО",
       "recognition": "broad"
     }
   },
@@ -443,7 +443,7 @@
     ],
     "pack": "general-games-v5",
     "meta": {
-      "game": "ДЕНДИ",
+      "game": "ТАНЧИКИ",
       "recognition": "broad"
     }
   },
@@ -457,7 +457,7 @@
     ],
     "pack": "general-games-v5",
     "meta": {
-      "game": "СЕГА",
+      "game": "СОНИК",
       "recognition": "broad"
     }
   },
@@ -471,7 +471,7 @@
     ],
     "pack": "general-games-v5",
     "meta": {
-      "game": "НИНТЕНДО",
+      "game": "МАРИО КАРТ",
       "recognition": "broad"
     }
   },
@@ -485,7 +485,7 @@
     ],
     "pack": "general-games-v5",
     "meta": {
-      "game": "ИКСБОКС",
+      "game": "ХАЛО",
       "recognition": "broad"
     }
   },
@@ -499,7 +499,7 @@
     ],
     "pack": "general-games-v5",
     "meta": {
-      "game": "ПЛЕЙСТЕЙШЕН",
+      "game": "КРАШ БАНДИКУТ",
       "recognition": "broad"
     }
   },
