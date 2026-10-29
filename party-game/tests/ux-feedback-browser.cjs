@@ -26,7 +26,7 @@ const geometry=page=>page.evaluate(()=>{
  const condition=document.querySelector('.round-condition');let copy=null;if(condition){const r=document.createRange();r.selectNodeContents(condition.querySelector('strong'));const b=r.getBoundingClientRect();copy={y:b.y,bottom:b.bottom};}
  return {card:box('.challenge-card'),top:box('.round-condition-slot')||box('.round-top'),condition:box('.round-condition'),copy,timer:box('.timer-ring'),down:box('[data-feedback="report"]'),up:box('[data-feedback="approve"]'),
   actions:[...document.querySelectorAll('.round-bottom--play .round-action')].map(el=>{const r=el.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom}}),
-  header:[...document.querySelectorAll('#report-card,#timer-pause-control,#exit-game')].filter(e=>!e.hidden).map(e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom}}),
+  header:[...document.querySelectorAll('#report-card,.timer-ring[role="button"],#exit-game')].filter(e=>!e.hidden).map(e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom}}),
   page:{w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight},w:innerWidth,h:innerHeight};
 });
 function fits(g){
@@ -44,7 +44,7 @@ async function start(page,difficulty='hard',mode='talk'){
   Object.assign(options,{modes:[mode],difficulty,complications:false,dice:false});newGame();game.dice=false;roll();game.dice=true;options.dice=true;persist();render();
  },{difficulty,mode});
  await page.locator('.challenge-card').tap();
- if(difficulty==='easy')await page.locator('[data-action="start-timer"]').click();
+ if(difficulty==='easy')await page.locator('button[data-action="start-timer"]').click();
  else await page.evaluate(()=>{window.__now+=1001;tick()});
  await page.locator('[data-feedback="report"]').waitFor();
 }

@@ -138,7 +138,7 @@ async function ui(browser,url,width,height){
   const fixed=await cardBox(page);const conditionGeometry=await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Scrolling moved card');
   if(width===320){await page.locator('.round-top,.round-condition-slot,.round-condition').evaluateAll(elements=>elements.forEach(el=>el.scrollTop=0));await page.screenshot({path:ART+'narrow-condition-after.png'})}
   await page.locator('.challenge-card[data-action="toggle-word"]').click();await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Reveal moved card');
-  await page.locator('[data-action="start-timer"]').click();await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Timer moved card');
+  await page.locator('button[data-action="start-timer"]').click();await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Timer moved card');
   await page.locator('#exit-game').click();await setup(page);
   await setupStep(page,3);await page.locator('.choices[data-setting="difficulty"] [data-value="mixed"]').click();
   await page.evaluate(()=>{

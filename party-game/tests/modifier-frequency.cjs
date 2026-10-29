@@ -160,7 +160,7 @@ module.exports=async function frequencyUI(browser,url){
    await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);
    await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
    assert.equal(await page.evaluate(()=>JSON.stringify(game.current)),snapshot.round);assert.equal(await page.evaluate(()=>JSON.stringify(game.modifierRecent)),snapshot.recent);assert.equal(await page.evaluate(()=>game.modifierChance),100);
-   await page.locator('[data-action="toggle-word"]').click();await page.locator('[data-action="start-timer"]').click();await page.locator('[data-action="base-now"]').click();
+   await page.locator('[data-action="toggle-word"]').click();await page.locator('button[data-action="start-timer"]').click();await page.locator('[data-action="base-now"]').click();
    assert.deepEqual(await page.evaluate(()=>game.scores),[1,0]);
    // The special modes keep their conditions even offline and with opposite flags.
    await page.evaluate(()=>{options.modes=['secret'];options.complications=false;options.modifierChance=10;options.dice=false;newGame();roll()});

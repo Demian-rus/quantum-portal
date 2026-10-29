@@ -14,7 +14,7 @@ async function fixture(page,{modifier=true,policy='setter',mode='talk',long=fals
   newGame();game.rulesVersion=version;roll();game.dice=true;options.dice=true;persist();render();
  },{modifier,policy,mode,long,version});
  await page.locator('#scene-game').evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{}))));
- await page.locator('[data-action="toggle-word"]').click();await page.locator('[data-action="start-timer"]').click();
+ await page.locator('[data-action="toggle-word"]').click();await page.locator('button[data-action="start-timer"]').click();
 }
 async function controls(page,phase,modified){
  const root=page.locator('.verdict-actions');

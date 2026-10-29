@@ -20,12 +20,12 @@ async function roundInvariant(page){
  });
 }
 async function pauseAndRatingsGeometry(page,allowed){
- const pause=page.locator('#timer-pause-control');
+ const pause=page.locator('.timer-ring[role="button"]');
  assert.equal(await pause.isVisible(),allowed,'Ordinary pause eligibility');
  assert.equal(await page.locator('[data-action="pause"],[data-action="resume"]').count(),allowed?1:0);
- if(allowed){assert.equal(await pause.isEnabled(),true);assert.equal(await pause.getAttribute('aria-label'),'Пауза');}
+ if(allowed){assert.equal(await pause.isEnabled(),true);assert.equal(await pause.getAttribute('aria-label'),'Поставить таймер на паузу');}
  const {boxes,width,height}=await page.evaluate(()=>{
-  const elements=[...document.querySelectorAll('#timer-pause-control,#exit-game,[data-feedback],.round-bottom--play .round-action')].filter(el=>!el.hidden);
+  const elements=[...document.querySelectorAll('.timer-ring[role="button"],#exit-game,[data-feedback],.round-bottom--play .round-action')].filter(el=>!el.hidden);
   return {width:innerWidth,height:innerHeight,boxes:elements.map(el=>{const r=el.getBoundingClientRect();return {name:el.id||el.dataset.feedback||el.dataset.action,x:r.x,y:r.y,right:r.right,bottom:r.bottom,w:r.width,h:r.height};})};
  });
  for(const box of boxes)assert.ok(box.w>=44&&box.h>=44&&box.x>=0&&box.y>=0&&box.right<=width&&box.bottom<=height,'Unreachable control '+JSON.stringify(box));
@@ -144,13 +144,13 @@ async function restoreClock(page){await page.evaluate(()=>{Date.now=window.__pol
    await capture(page,{path:'artifacts/quip-polish/'+device.name+'-russian-hyphen.png'});
    await page.evaluate(()=>{game.current.word='ПОТЕРЯННЫЙ ТЕЛЕФОН';render();});
    await capture(page,{path:'artifacts/quip-polish/'+device.name+'-task-controls.png'});
-   await page.locator('.is-task [data-action="start-timer"]').click();
+   await page.locator('.is-task button[data-action="start-timer"]').click();
    assert.equal(await page.locator('.is-play [data-action="correct-now"]').count(),1);
    await pauseAndRatingsGeometry(page,true);
    const invariant=await roundInvariant(page);
    await freezeClock(page);
    const remaining=await page.evaluate(()=>game.current.deadline-Date.now());
-   await page.locator('#timer-pause-control[data-action="pause"]').click();
+   await page.locator('.timer-ring[role="button"][data-action="pause"]').click();
    assert.equal(await page.evaluate(()=>game.current.paused),true);
    assert.equal(await page.evaluate(()=>game.current.deadline),null);
    assert.equal(await page.evaluate(()=>game.current.remainingMs),remaining);
@@ -162,7 +162,7 @@ async function restoreClock(page){await page.evaluate(()=>{Date.now=window.__pol
    await page.keyboard.press('Escape');
    assert.equal(await page.evaluate(()=>game.current.paused),true);
    assert.equal(await page.evaluate(()=>game.current.remainingMs),remaining);
-   await page.locator('#timer-pause-control[data-action="resume"]').click();
+   await page.locator('.timer-ring[role="button"][data-action="resume"]').click();
    assert.equal(await page.evaluate(()=>game.current.paused),false);
    assert.equal(await page.evaluate(()=>game.current.deadline-Date.now()),remaining);
    assert.deepEqual(await roundInvariant(page),invariant,'Pause/report changed non-timer match data');
@@ -201,7 +201,7 @@ async function restoreClock(page){await page.evaluate(()=>{Date.now=window.__pol
    await page.evaluate(()=>{options.modes=['talk'];options.dice=false;options.difficulty='easy';});
    await page.locator('[data-action="roll"]').click();
    await page.locator('[data-action="toggle-word"]').click();
-   await page.locator('[data-action="start-timer"]').click();
+   await page.locator('button[data-action="start-timer"]').click();
    // Immediate red X rejects an invalid answer and passes the turn with no points.
    await page.locator('[data-action="wrong-now"]').click();
    assert.equal(await page.locator('#score-a').textContent(),'0');
@@ -209,7 +209,7 @@ async function restoreClock(page){await page.evaluate(()=>{Date.now=window.__pol
    await page.evaluate(()=>{options.modes=['talk'];options.dice=false;options.difficulty='easy';});
    await page.locator('[data-action="roll"]').click();
    await page.locator('[data-action="toggle-word"]').click();
-   await page.locator('[data-action="start-timer"]').click();
+   await page.locator('button[data-action="start-timer"]').click();
    await page.evaluate(()=>{game.current.deadline=Date.now()-10;tick()});
    await page.waitForSelector('.is-judge .judgement-grid');
    const align=await page.locator('.judgement-option').evaluateAll(options=>options.map(e=>{
@@ -285,7 +285,7 @@ async function restoreClock(page){await page.evaluate(()=>{Date.now=window.__pol
   await blitz.locator('[data-action="roll"]').click();
   await blitz.waitForSelector('.is-task [data-action="toggle-word"]',{timeout:4500});
   await blitz.locator('.is-task [data-action="toggle-word"]').click();
-  await blitz.locator('[data-action="start-timer"]').click();
+  await blitz.locator('button[data-action="start-timer"]').click();
   const blitzActions=await blitz.locator('.blitz-actions .round-action').evaluateAll(nodes=>nodes.map(node=>{
     const box=node.getBoundingClientRect();
     return {action:node.dataset.action,centerX:(box.left+box.right)/2,centerY:(box.top+box.bottom)/2,

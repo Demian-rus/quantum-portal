@@ -71,7 +71,7 @@ async function menuDetour(page){
  // Earn points through the real controls, then select the reply's task.
  await page.locator('[data-action="roll"]').click();
  await page.locator('[data-action="toggle-word"]').waitFor({timeout:6500});
- await page.locator('[data-action="toggle-word"]').click();await page.locator('[data-action="start-timer"]').click();
+ await page.locator('[data-action="toggle-word"]').click();await page.locator('button[data-action="start-timer"]').click();
  await page.locator('[data-action="correct-now"]').click();
  await page.locator('[data-action="roll"]').click();
  await page.locator('[data-action="toggle-word"]').waitFor({timeout:6500});

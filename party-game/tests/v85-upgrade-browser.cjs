@@ -90,7 +90,7 @@ async function completedMatch(page){
    const c=await caches.open(name);return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>({url:s.src,found:!!await c.match(s.src)})));
   },newCache);
   assert.equal(cached.length,54);assert.deepEqual(cached.filter(row=>!row.found),[],'54 current scripts must load from the new worker offline');
-  assert.equal(await page.locator('#timer-pause-control[data-action="resume"]').isVisible(),true);
+  assert.equal(await page.locator('.timer-ring[role="button"][data-action="resume"]').isVisible(),true);
   assert.equal(await page.locator('[data-feedback]').count(),2);
   await page.screenshot({path:folder+'/v85-paused-offline-v89.png',animations:'disabled'});
   // Opening and closing a report on an already paused historical party keeps it paused.
@@ -101,11 +101,11 @@ async function completedMatch(page){
   // RAW byte, so no value or historical game field can be hidden by that order.
   assert.deepEqual(JSON.parse(cancelled.raw),JSON.parse(before.raw),'Report cancellation must preserve every root value');
   assert.deepEqual({...cancelled,raw:null},{...before,raw:null},'Report cancellation must preserve the exact v85 party and journal/profile bytes');
-  await page.locator('#timer-pause-control[data-action="resume"]').click();
+  await page.locator('.timer-ring[role="button"][data-action="resume"]').click();
   const resumed=await page.evaluate(()=>({left:game.current.deadline-Date.now(),paused:game.current.paused,history:game.history}));
   assert.equal(resumed.paused,false);assert.ok(resumed.left<=remaining&&resumed.left>remaining-1000,'Header Resume must retain the v85 remaining time');
   assert.deepEqual(resumed.history,oldGame.history);
-  await page.locator('#timer-pause-control[data-action="pause"]').click();
+  await page.locator('.timer-ring[role="button"][data-action="pause"]').click();
   await page.locator('#exit-game').click();await page.locator('#settings-menu').click();
   const protectedState=await snapshot(page);
   const backup=await download(page,'#backup-export','profiles.json');assert.equal(backup.kind,'kvip-profile-backup');

@@ -14,7 +14,7 @@ async function geometry(p,label,measurements){
  for(const target of row.activeTargets)assert(target.width>=44&&target.height>=44,label+' touch area '+JSON.stringify(target));measurements.push({label,...row});
 }
 async function standard(p){await p.locator('#new-game-menu').click();await scene(p,'wizard');await p.locator('#standard-game').click();await p.locator('[data-wizard-page="2"]:visible').waitFor();}
-async function settle(p,yes){await p.locator('[data-action="roll"]').click();await p.locator('[data-action="toggle-word"]').waitFor({timeout:7000});await p.locator('[data-action="toggle-word"]').click();await p.locator('[data-action="start-timer"]').click();await p.locator('[data-action="'+(yes?'correct-now':'wrong-now')+'"]').click();}
+async function settle(p,yes){await p.locator('[data-action="roll"]').click();await p.locator('[data-action="toggle-word"]').waitFor({timeout:7000});await p.locator('[data-action="toggle-word"]').click();await p.locator('button[data-action="start-timer"]').click();await p.locator('[data-action="'+(yes?'correct-now':'wrong-now')+'"]').click();}
 (async()=>{fs.mkdirSync(folder,{recursive:true});const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',args:['--no-sandbox']}),measurements=[];
  try{for(const viewport of [{width:320,height:568},{width:390,height:844},{width:844,height:390}]){
   const ctx=await browser.newContext({...devices['Pixel 7'],viewport,deviceScaleFactor:2.625,isMobile:true,hasTouch:true}),p=await ctx.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));
