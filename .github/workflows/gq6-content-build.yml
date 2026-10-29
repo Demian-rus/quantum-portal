@@ -1,0 +1,35 @@
+name: GQ6 deterministic content build (temporary)
+on:
+  push:
+    branches:
+      - content/approx-events-v6-20261029
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate exact numeric catalog and unit audit
+        run: |
+          node party-game/scripts/content.cjs build
+          node party-game/scripts/approx-unit-audit.cjs > party-game/APPROX-UNIT-AUDIT.json
+          node party-game/scripts/content.cjs check
+          node party-game/scripts/approx-unit-audit.cjs check
+          node --test party-game/tests/approx-games-v6.test.cjs
+      - name: Commit exact deterministic artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add party-game/approx-questions.js party-game/content-packs.js party-game/APPROX-UNIT-AUDIT.json
+          if ! git diff --cached --quiet; then
+            git commit -m "build(GQ6): generate exact numeric catalogs and unit audit"
+            git push
+          fi
