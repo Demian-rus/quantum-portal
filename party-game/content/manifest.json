@@ -413,6 +413,11 @@
       "path": "cards/general-games-v9.json",
       "immutable": false,
       "review": "VG9: 40 singular familiar gaming words and 10 intuitive phrases; editorial/general-games-v9-review.md"
+    },
+    {
+      "path": "cards/general-games-v10.json",
+      "immutable": false,
+      "review": "VG10: 40 accessible game/fantasy action words and 10 familiar videogame phrases; editorial/general-games-v10-review.md"
     }
   ],
   "questions": [
@@ -757,6 +762,11 @@
       "path": "packs/general-games-v9.json",
       "immutable": false,
       "review": "VG9: general@59 appends 50 familiar game prompts after 7219 pinned general@58, retaining all historical snapshots and 151 VG6 reserves"
+    },
+    {
+      "path": "packs/general-games-v10.json",
+      "immutable": false,
+      "review": "VG10: general@60 appends 50 audited prompts to general@59 while preserving all 7269 IDs and 151 reserved VG6 cards"
     }
   ],
   "legacyCollisions": [
