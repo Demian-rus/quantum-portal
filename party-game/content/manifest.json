@@ -398,6 +398,11 @@
       "path": "cards/general-games-v5.json",
       "immutable": false,
       "review": "VG5 broad recognition: 50 familiar videogame terms and titles without jargon; editorial/general-games-v5-review.md"
+    },
+    {
+      "path": "cards/general-games-v7.json",
+      "immutable": false,
+      "review": "VG7: 50 accessible Russian-language game prompts, after exact 60-source dedup; editorial/general-games-v7-review.md"
     }
   ],
   "questions": [
@@ -727,6 +732,11 @@
       "path": "packs/general-games-audience-v1.json",
       "immutable": false,
       "review": "VG6 audience curation: filter 151 of 200 VG1–VG4 cards from general@56; preserve source cards, previous snapshots, and all VG5 IDs"
+    },
+    {
+      "path": "packs/general-games-v7.json",
+      "immutable": false,
+      "review": "VG7 general@57 adds 50 broad-audience videogame prompts after 7119 pinned general@56, keeping all previous snapshots"
     }
   ],
   "legacyCollisions": [

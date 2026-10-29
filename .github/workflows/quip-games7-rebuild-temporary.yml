@@ -1,0 +1,35 @@
+name: Temporary VG7 deterministic content rebuild
+on:
+  push:
+    branches:
+      - content/general-games-v7-accessible-20261029
+    paths:
+      - .github/workflows/quip-games7-rebuild-temporary.yml
+      - party-game/content/**
+permissions:
+  contents: write
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Rebuild source and verify history and VG7 broad audience
+        run: |
+          node party-game/scripts/content.cjs build
+          node party-game/scripts/content.cjs check
+          node --test party-game/tests/general-games-v7.test.cjs party-game/tests/general-games-audience-v1.test.cjs party-game/tests/general-games-v5.test.cjs party-game/tests/general-games-v4.test.cjs party-game/tests/general-games-v3.test.cjs party-game/tests/general-games-v2.test.cjs party-game/tests/general-games-v1.test.cjs party-game/tests/general-memes-v1.test.cjs party-game/tests/g47-editorial.test.cjs party-game/tests/g46-editorial.test.cjs
+      - name: Commit exact generated modules
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add party-game/content-packs.js party-game/cards.js party-game/approx-questions.js
+          if ! git diff --cached --quiet; then
+            git commit -m "build(VG7): deterministic general@57 generated catalog"
+            git push origin HEAD:content/general-games-v7-accessible-20261029
+          fi
