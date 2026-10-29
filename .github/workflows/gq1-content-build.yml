@@ -1,0 +1,29 @@
+name: GQ1 temporary numeric content generation
+on:
+  push:
+    branches:
+      - content/approx-games-v1-20261029
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate and validate new numerical questions
+        run: |
+          node party-game/scripts/content.cjs build
+          node party-game/scripts/content.cjs check
+          if git diff --quiet -- party-game/approx-questions.js party-game/content-packs.js; then
+            echo "Numerical catalogs already synchronized"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add party-game/approx-questions.js party-game/content-packs.js
+          git commit -m "build(content): regenerate GQ1 approx questions and general@62"
+          git push origin HEAD:content/approx-games-v1-20261029

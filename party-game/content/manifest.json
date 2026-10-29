@@ -470,6 +470,11 @@
       "path": "questions/estimation-v3-batch-3.json",
       "immutable": false,
       "review": "TASK009 F: recovered editorial material; checked sources, independent measurements, rounding and active/legacy review in editorial/estimation-*-v3.json."
+    },
+    {
+      "path": "questions/approx-games-v1.json",
+      "immutable": false,
+      "review": "GQ1: 16 numerical videogame estimates, verified publisher/platform/Guinness sources; editorial/approx-games-v1-review.md"
     }
   ],
   "packs": [
@@ -777,6 +782,11 @@
       "path": "packs/general-games-v11.json",
       "immutable": false,
       "review": "VG11: general@61 adds 50 validated game prompts over general@60; preserves previous 7319 IDs and 151 VG6 reserves"
+    },
+    {
+      "path": "packs/approx-games-v1.json",
+      "immutable": false,
+      "review": "GQ1: general@62 appends 16 videogame estimates to general@61; all 7369 previously selected IDs pinned"
     }
   ],
   "legacyCollisions": [
