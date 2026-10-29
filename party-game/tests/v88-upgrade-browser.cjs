@@ -48,7 +48,7 @@ async function probeSelection(page){
    await p.waitForFunction(async({oldCache,newCache})=>await caches.has(newCache)&&!await caches.has(oldCache),{oldCache,newCache});await ctx.setOffline(true);await p.reload();await p.locator('#continue-game').click();
    assert.deepEqual(await probeSelection(p),expectedSelection,'Pinned v88 next selections and RNG stay identical');
    assert.equal(await p.evaluate(()=>game.contentPack.version),15);
-   assert.equal(await p.evaluate(()=>latestGeneralPackSelection().version),57);
+   assert.equal(await p.evaluate(()=>latestGeneralPackSelection().version),58);
    assert.equal(await p.evaluate(()=>getContentPack({id:'general',version:27}).criteria.cardIds.length),6000);
    assert.deepEqual(await snapshot(p),before,'Actual v88 RAW, ledger, selected task, draft/pending review and profiles survive upgrade exactly');assert.equal(await p.evaluate(()=>JSON.stringify(game.riskPlannerState)),risk);
    if(scenario==='pending'){await p.evaluate(()=>document.fonts.ready);const fixedAfter=await p.evaluate(()=>{const c=$('play-content').getBoundingClientRect(),t=document.querySelector('.review-tabs').getBoundingClientRect(),b=document.querySelector('[data-action="confirm-results"]').getBoundingClientRect();return {tabs:t.y-c.y,bottom:b.bottom-c.bottom}});assert.ok(Math.abs(fixedAfter.tabs-fixedBefore.tabs)<1,'Published v88 tab anchor retained');assert.ok(Math.abs(fixedAfter.bottom-fixedBefore.bottom)<1,'Published v88 confirmation anchor retained');}
