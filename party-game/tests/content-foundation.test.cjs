@@ -11,6 +11,7 @@ require('./approx-games-v2.test.cjs');
 require('./approx-games-v3.test.cjs');
 require('./approx-games-v4.test.cjs');
 require('./approx-games-v5.test.cjs');
+require('./approx-games-v6.test.cjs');
 function selectRecoveryProfiles(h){h.eval("createPlayerProfile('Первый','coral');createPlayerProfile('Второй','cyan');selectedProfileIds=profileStore.profiles.map(p=>p.id)");}
 const root=path.resolve(__dirname,'..'),base=api.readDataset(),copy=()=>structuredClone(base);
 function hasError(data,code){return api.validate(data,{locks:false}).errors.some(e=>e.code===code)}

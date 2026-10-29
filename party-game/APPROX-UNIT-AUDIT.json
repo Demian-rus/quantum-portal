@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "total": 724,
-  "withUnit": 687,
+  "total": 739,
+  "withUnit": 702,
   "files": [
     {
       "path": "questions/legacy-v1.json",
@@ -58,6 +58,10 @@
     {
       "path": "questions/approx-games-v5.json",
       "questions": 15
+    },
+    {
+      "path": "questions/approx-games-v6.json",
+      "questions": 15
     }
   ],
   "unitCounts": {
@@ -78,6 +82,7 @@
     "год": 16,
     "года": 1,
     "големов": 1,
+    "голов": 1,
     "гПа": 1,
     "Гц": 1,
     "деталей": 1,
@@ -88,8 +93,10 @@
     "зажиганий": 1,
     "запусков": 1,
     "звёзд": 1,
+    "звёздных систем": 1,
     "зеркал": 1,
-    "игроков": 3,
+    "игровых лет": 1,
+    "игроков": 4,
     "канала": 1,
     "карты": 1,
     "кг": 65,
@@ -115,14 +122,14 @@
     "мг": 2,
     "месяца": 1,
     "месяцев": 5,
-    "метров": 1,
-    "минут": 12,
+    "метров": 2,
+    "минут": 13,
     "минуты": 2,
     "мл": 1,
     "млн °C": 1,
-    "млн аккаунтов": 1,
+    "млн аккаунтов": 2,
     "млн блоков": 3,
-    "млн долларов США": 2,
+    "млн долларов США": 4,
     "млн загрузок": 1,
     "млн заклёпок": 1,
     "млн запусков": 2,
@@ -136,6 +143,7 @@
     "млн м³": 1,
     "млн отметок": 2,
     "млн пользователей": 1,
+    "млн попыток": 1,
     "млн скачиваний": 2,
     "млн соединений": 2,
     "млн творений": 1,
@@ -179,6 +187,7 @@
     "раз": 3,
     "раза": 1,
     "регионов": 2,
+    "рекордов скорости": 1,
     "с": 3,
     "секунд": 6,
     "см": 47,
@@ -186,7 +195,7 @@
     "см³": 3,
     "стороны": 1,
     "строителей": 1,
-    "ступеней": 2,
+    "ступеней": 3,
     "суток": 12,
     "т": 29,
     "территории": 1,
@@ -200,6 +209,7 @@
     "тыс. блоков": 3,
     "тыс. воинов": 1,
     "тыс. долларов США": 1,
+    "тыс. кадров": 1,
     "тыс. км": 1,
     "тыс. кусочков": 1,
     "тыс. мячей": 1,
@@ -209,11 +219,12 @@
     "тыс. прохождений": 1,
     "тыс. участников": 1,
     "тыс. часов": 1,
+    "удар": 1,
     "ударов": 1,
     "циклов": 1,
     "ч": 1,
     "часа": 2,
-    "часов": 7,
+    "часов": 8,
     "человек": 1,
     "штатов": 3,
     "штуки": 1,
@@ -1043,6 +1054,51 @@
       "file": "questions/approx-games-v5.json",
       "question": "Сколько миллионов пользовательских творений разместили игроки Spore в Sporepedia к июлю 2011 года?",
       "unit": "млн творений",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23501",
+      "file": "questions/approx-games-v6.json",
+      "question": "Сколько миллионов уникальных игроков побывало на серверной сети Hypixel в Minecraft к августу 2017 года?",
+      "unit": "млн аккаунтов",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23502",
+      "file": "questions/approx-games-v6.json",
+      "question": "Сколько миллионов попыток прохождения набрал почти непроходимый уровень Lucky Draw в Super Mario Maker к февралю 2020 года?",
+      "unit": "млн попыток",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23507",
+      "file": "questions/approx-games-v6.json",
+      "question": "Сколько тысяч вручную нарисованных кадров анимации вошло в Cuphead вместе с дополнением The Delicious Last Course к июню 2022 года?",
+      "unit": "тыс. кадров",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23513",
+      "file": "questions/approx-games-v6.json",
+      "question": "Сколько миллионов долларов призовых получила команда OG в турнирах по Dota 2 к январю 2025 года?",
+      "unit": "млн долларов США",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23514",
+      "file": "questions/approx-games-v6.json",
+      "question": "Во сколько миллионов долларов оценивались внутриигровые сделки пользователей Second Life за 2009 год?",
+      "unit": "млн долларов США",
       "reasons": [
         "scaled-unit: review explicit scale in the question; not an established defect"
       ]

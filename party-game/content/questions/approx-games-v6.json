@@ -1,0 +1,332 @@
+[
+  {
+    "id": "approx-23501",
+    "difficulty": "easy",
+    "question": "Сколько миллионов уникальных игроков побывало на серверной сети Hypixel в Minecraft к августу 2017 года?",
+    "answer": "11,98",
+    "unit": "млн аккаунтов",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Округление из 11 982 298 уникальных учётных записей.",
+    "source": "https://www.guinnessworldrecords.com/world-records/490149-most-unique-players-logged-into-a-minecraft-server",
+    "pack": "approx-games-v6",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq6-1",
+      "checkedAt": "2026-10-29",
+      "asOf": "2017-08-24",
+      "batch": 6,
+      "measurementKey": "minecraft-hypixel-2017-unique-accounts",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23502",
+    "difficulty": "medium",
+    "question": "Сколько миллионов попыток прохождения набрал почти непроходимый уровень Lucky Draw в Super Mario Maker к февралю 2020 года?",
+    "answer": "19,57",
+    "unit": "млн попыток",
+    "categories": [
+      "videogames"
+    ],
+    "note": "В источнике 19 569 423 попытки уровня; округлено до сотых миллиона. Число побед не включено в условие.",
+    "source": "https://www.guinnessworldrecords.com/world-records/610946-least-cleared-super-mario-maker-course",
+    "pack": "approx-games-v6",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq6-2",
+      "checkedAt": "2026-10-29",
+      "asOf": "2020-02-28",
+      "batch": 6,
+      "measurementKey": "mariomaker-luckydraw-2020-attempts",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23503",
+    "difficulty": "easy",
+    "question": "Сколько игровых лет длилась рекордная карьера одного менеджера в Football Manager к июню 2025 года?",
+    "answer": "535",
+    "unit": "игровых лет",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Карьера игрока Sepp Hedel в одном сохранении, а не его реальный возраст.",
+    "source": "https://www.guinnessworldrecords.com/world-records/397246-longest-single-game-of-football-manager",
+    "pack": "approx-games-v6",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq6-3",
+      "checkedAt": "2026-10-29",
+      "asOf": "2025-06-13",
+      "batch": 6,
+      "measurementKey": "footballmanager-hedel-2025-ingame-years",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23504",
+    "difficulty": "medium",
+    "question": "Сколько гонщиков участвовало в массовом онлайн-заезде на время в TrackMania, отмеченном Guinness за 2007 год?",
+    "answer": "132",
+    "unit": "игроков",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Рекорд одновременных участников одного заезда на время, не вместимость сервера.",
+    "source": "https://www.guinnessworldrecords.com/world-records/86567-most-players-in-an-online-race",
+    "pack": "approx-games-v6",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq6-4",
+      "checkedAt": "2026-10-29",
+      "asOf": "2007-12-31",
+      "batch": 6,
+      "measurementKey": "trackmania-2007-time-trial-racers",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23505",
+    "difficulty": "medium",
+    "question": "Сколько часов заняла самая продолжительная спасательная экспедиция команды Fuel Rats в космической игре Elite Dangerous по обзору 2018 года?",
+    "answer": "75",
+    "unit": "часов",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Игроки добровольно доставляли топливо застрявшему пилоту; показатель опубликован в Guinness Gamer's Edition 2019.",
+    "source": "https://www.guinnessworldrecords.com/news/2018/8/fortnite-minecraft-and-monster-hunter-world-10-records-you-can-find-in-gamer-533569",
+    "pack": "approx-games-v6",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq6-5",
+      "checkedAt": "2026-10-29",
+      "asOf": "2018-08-28",
+      "batch": 6,
+      "measurementKey": "elite-fuelrats-2018-rescue-hours",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23506",
+    "difficulty": "medium",
+    "question": "Сколько ударов подряд смог провести одной рукой игрок в Dragon Ball FighterZ, установив рекорд в 2018 году?",
+    "answer": "441",
+    "unit": "удар",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Демонстрация desk в тренировочном режиме PS4, отражённая в Guinness.",
+    "source": "https://www.guinnessworldrecords.com/world-records/516095-highest-hit-point-combo-with-one-hand-in-dragon-ball-fighterz",
+    "pack": "approx-games-v6",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq6-6",
+      "checkedAt": "2026-10-29",
+      "asOf": "2018-03-04",
+      "batch": 6,
+      "measurementKey": "fighterz-desk-2018-singlehand-combo-hits",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23507",
+    "difficulty": "medium",
+    "question": "Сколько тысяч вручную нарисованных кадров анимации вошло в Cuphead вместе с дополнением The Delicious Last Course к июню 2022 года?",
+    "answer": "72",
+    "unit": "тыс. кадров",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Общий объём рисованной анимации базовой игры и DLC; измерение производства игровых сцен, не частота кадров.",
+    "source": "https://www.guinnessworldrecords.com/world-records/508061-most-hand-drawn-frames-of-animation-in-a-videogame",
+    "pack": "approx-games-v6",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq6-7",
+      "checkedAt": "2026-10-29",
+      "asOf": "2022-06-30",
+      "batch": 6,
+      "measurementKey": "cuphead-2022-handdrawn-frames-thousands",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23508",
+    "difficulty": "hard",
+    "question": "Сколько звёздных систем исследовал пилот Katia Sae в EVE Online, не потеряв ни одного корабля в бою, к марту 2019 года?",
+    "answer": "7805",
+    "unit": "звёздных систем",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Полный обход доступных систем Нового Эдема с декабря 2009 до марта 2019 года.",
+    "source": "https://www.guinnessworldrecords.com/news/2020/10/eve-onlines-record-breaking-fury-at-fwst-8",
+    "pack": "approx-games-v6",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq6-8",
+      "checkedAt": "2026-10-29",
+      "asOf": "2019-03-09",
+      "batch": 6,
+      "measurementKey": "eve-katiasae-2019-systems-explored",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23509",
+    "difficulty": "medium",
+    "question": "Сколько рекордов скорости прохождения разных пользовательских уровней собрал один игрок в Super Mario Maker к февралю 2018 года?",
+    "answer": "27511",
+    "unit": "рекордов скорости",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Внутриигровые world records игрока SlipStream, рекорд закреплён датой 22 февраля 2018 года.",
+    "source": "https://www.guinnessworldrecords.com/world-records/422219-most-world-records-in-super-mario-maker",
+    "pack": "approx-games-v6",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq6-9",
+      "checkedAt": "2026-10-29",
+      "asOf": "2018-02-22",
+      "batch": 6,
+      "measurementKey": "mariomaker-slipstream-2018-records",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23510",
+    "difficulty": "medium",
+    "question": "Сколько метров отделяло игрока от экрана при рекордном устранении противника в Fortnite через настоящий телескоп в 2024 году?",
+    "answer": "1161,31",
+    "unit": "метров",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Реальное расстояние между игроком с телескопом и монитором; физический эксперимент MrSavage, а не внутриигровая дистанция выстрела.",
+    "source": "https://www.guinnessworldrecords.com/world-records/773856-longest-distance-elimination-in-fortnite-using-a-telescope",
+    "pack": "approx-games-v6",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq6-10",
+      "checkedAt": "2026-10-29",
+      "asOf": "2024-11-27",
+      "batch": 6,
+      "measurementKey": "fortnite-mrsavage-2024-physical-telescope-meters",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23511",
+    "difficulty": "easy",
+    "question": "Сколько ступеней игрок успел построить в Minecraft за одну минуту, установив рекорд с мышью и клавиатурой в 2022 году?",
+    "answer": "79",
+    "unit": "ступеней",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Рекорд самого высокого лестничного сооружения за одну минуту, условия мышь и клавиатура.",
+    "source": "https://www.guinnessworldrecords.com/world-records/398742-tallest-staircase-built-in-one-minute-in-minecraft-pc",
+    "pack": "approx-games-v6",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq6-11",
+      "checkedAt": "2026-10-29",
+      "asOf": "2022-08-27",
+      "batch": 6,
+      "measurementKey": "minecraft-2022-one-minute-staircase",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23512",
+    "difficulty": "medium",
+    "question": "Сколько голов сумел забить один игрок за матч Rocket League в рекордном испытании сентября 2021 года?",
+    "answer": "150",
+    "unit": "голов",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Рекорд одного игрока за матч, а не профессиональный турнир; источник Guinness.",
+    "source": "https://www.guinnessworldrecords.com/world-records/436524-most-goals-scored-in-a-game-of-rocket-league",
+    "pack": "approx-games-v6",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq6-12",
+      "checkedAt": "2026-10-29",
+      "asOf": "2021-09-12",
+      "batch": 6,
+      "measurementKey": "rocketleague-balocca-2021-goals",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23513",
+    "difficulty": "hard",
+    "question": "Сколько миллионов долларов призовых получила команда OG в турнирах по Dota 2 к январю 2025 года?",
+    "answer": "37,33",
+    "unit": "млн долларов США",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Округлено из 37 326 145 долларов призовых команды OG по Guinness, не общий доход спонсорских контрактов.",
+    "source": "https://www.guinnessworldrecords.com/world-records/778101-highest-earning-esports-team-from-a-single-title",
+    "pack": "approx-games-v6",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq6-13",
+      "checkedAt": "2026-10-29",
+      "asOf": "2025-01-08",
+      "batch": 6,
+      "measurementKey": "dota2-og-2025-prize-money-millions",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23514",
+    "difficulty": "medium",
+    "question": "Во сколько миллионов долларов оценивались внутриигровые сделки пользователей Second Life за 2009 год?",
+    "answer": "567",
+    "unit": "млн долларов США",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Совокупный объём внутриигровых транзакций, а не выручка разработчика.",
+    "source": "https://www.guinnessworldrecords.com/world-records/largest-user-generated-virtual-economy",
+    "pack": "approx-games-v6",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq6-14",
+      "checkedAt": "2026-10-29",
+      "asOf": "2009-12-31",
+      "batch": 6,
+      "measurementKey": "secondlife-2009-player-economy-usd-millions",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23515",
+    "difficulty": "hard",
+    "question": "Сколько минут заняло рекордное прохождение Portal 2 без выхода за пределы игрового мира по состоянию на март 2020 года?",
+    "answer": "59,79",
+    "unit": "минут",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Результат 59 минут 47,4 секунды; конвертирован в минуты с округлением до двух знаков.",
+    "source": "https://www.guinnessworldrecords.com/world-records/613563-fastest-completion-of-portal-2-no-oob",
+    "pack": "approx-games-v6",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq6-15",
+      "checkedAt": "2026-10-29",
+      "asOf": "2020-03-19",
+      "batch": 6,
+      "measurementKey": "portal2-2020-speedrun-no-oob-minutes",
+      "topic": "videogames"
+    }
+  }
+]

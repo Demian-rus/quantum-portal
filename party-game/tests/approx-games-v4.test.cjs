@@ -3,7 +3,7 @@ const test=require('node:test'),assert=require('node:assert/strict');
 const api=require('../scripts/content.cjs');
 test('GQ4 append-only 15 independently sourced in-game community estimates, preserving historical pools',()=>{
  const d=api.readDataset(),f=d.questions.filter(q=>q.pack==='approx-games-v4'),old=d.packs.find(p=>p.id==='general'&&p.version===64),p=d.packs.find(p=>p.id==='general'&&p.version===65);
- assert.ok(old&&p);assert.equal(f.length,15);assert.equal(d.questions.length,724);
+ assert.ok(old&&p);assert.equal(f.length,15);assert.equal(d.questions.length,739);
  assert.deepEqual(f.map(x=>x.id),Array.from({length:15},(_,i)=>'approx-'+(23301+i)));
  assert.equal(new Set(f.map(x=>api.normalize(x.question))).size,15);
  assert.equal(new Set(f.map(x=>x.meta.measurementKey)).size,15);
