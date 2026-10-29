@@ -1,0 +1,107 @@
+{
+  "gq2-1": {
+    "url": "https://www.guinnessworldrecords.com/world-records/563750-most-concurrently-played-videogame",
+    "sourceKind": "Guinness World Records",
+    "checkedAt": "2026-10-29",
+    "asOf": "2020-12-01",
+    "measurementKey": "fortnite-galactus-2020-concurrent"
+  },
+  "gq2-2": {
+    "url": "https://www.guinnessworldrecords.com/world-records/782027-largest-music-concert-in-a-videogame-by-a-single-artist",
+    "sourceKind": "Guinness World Records",
+    "checkedAt": "2026-10-29",
+    "asOf": "2026-01-17",
+    "measurementKey": "roblox-bruno-2026-concert-concurrent"
+  },
+  "gq2-3": {
+    "url": "https://www.guinnessworldrecords.com/news/2020/10/eve-onlines-record-breaking-fury-at-fwst-8",
+    "sourceKind": "Guinness World Records",
+    "checkedAt": "2026-10-29",
+    "asOf": "2020-10-06",
+    "measurementKey": "eve-fwst8-2020-destroyed-ships"
+  },
+  "gq2-4": {
+    "url": "https://www.guinnessworldrecords.com/world-records/422884-most-titans-lost-in-a-battle-in-eve-online",
+    "sourceKind": "Guinness World Records",
+    "checkedAt": "2026-10-29",
+    "asOf": "2020-12-31",
+    "measurementKey": "eve-m2xfe-2020-titans-lost"
+  },
+  "gq2-5": {
+    "url": "https://www.guinnessworldrecords.com/world-records/117417-most-costly-videogame-battle",
+    "sourceKind": "Guinness World Records",
+    "checkedAt": "2026-10-29",
+    "asOf": "2020-12-31",
+    "measurementKey": "eve-m2xfe-2020-loss-usd-equivalent"
+  },
+  "gq2-6": {
+    "url": "https://www.guinnessworldrecords.com/world-records/115115-longest-railway-track-in-minecraft",
+    "sourceKind": "Guinness World Records",
+    "checkedAt": "2026-10-29",
+    "asOf": "2026-03-31",
+    "measurementKey": "minecraft-rail-2026-length-blocks"
+  },
+  "gq2-7": {
+    "url": "https://www.guinnessworldrecords.com/world-records/734997-biggest-minecraft-project",
+    "sourceKind": "Guinness World Records",
+    "checkedAt": "2026-10-29",
+    "asOf": "2025-06-24",
+    "measurementKey": "minecraft-buildtheearth-2025-area-km2"
+  },
+  "gq2-8": {
+    "url": "https://www.guinnessworldrecords.com/world-records/113375-longest-minecraft-bridge",
+    "sourceKind": "Guinness World Records",
+    "checkedAt": "2026-10-29",
+    "asOf": "2026-04-10",
+    "measurementKey": "minecraft-bridge-2026-length-blocks"
+  },
+  "gq2-9": {
+    "url": "https://www.guinnessworldrecords.com/world-records/449604-most-played-custom-job-in-grand-theft-auto-online-pc",
+    "sourceKind": "Guinness World Records",
+    "checkedAt": "2026-10-29",
+    "asOf": "2016-11-02",
+    "measurementKey": "gtaonline-superstuntsky-2016-playcount"
+  },
+  "gq2-10": {
+    "url": "https://www.guinnessworldrecords.com/world-records/105589-biggest-mmo-community-donation",
+    "sourceKind": "Guinness World Records",
+    "checkedAt": "2026-10-29",
+    "asOf": "2011-03-11",
+    "measurementKey": "wow-japan-2011-community-charity"
+  },
+  "gq2-11": {
+    "url": "https://www.guinnessworldrecords.com/world-records/563742-largest-music-concert-in-a-videogame",
+    "sourceKind": "Guinness World Records",
+    "checkedAt": "2026-10-29",
+    "asOf": "2020-04-24",
+    "measurementKey": "fortnite-travis-2020-concert-concurrent"
+  },
+  "gq2-12": {
+    "url": "https://www.guinnessworldrecords.com/world-records/503322-most-concurrent-players-for-a-videogame-made-in-roblox",
+    "sourceKind": "Guinness World Records",
+    "checkedAt": "2026-10-29",
+    "asOf": "2025-10-11",
+    "measurementKey": "roblox-brainrot-2025-peak-concurrent"
+  },
+  "gq2-13": {
+    "url": "https://www.guinnessworldrecords.com/world-records/383608-longest-minecraft-roller-coaster-trip",
+    "sourceKind": "Guinness World Records",
+    "checkedAt": "2026-10-29",
+    "asOf": "2013-05-17",
+    "measurementKey": "minecraft-gaermine-2013-coaster-minutes"
+  },
+  "gq2-14": {
+    "url": "https://www.guinnessworldrecords.com/news/2025/4/people-whove-used-minecraft-to-break-records-underwater-city-to-recreating-the-earth",
+    "sourceKind": "Guinness World Records",
+    "checkedAt": "2026-10-29",
+    "asOf": "2019-12-31",
+    "measurementKey": "minecraft-kurt-2019-distance-thousand-km"
+  },
+  "gq2-15": {
+    "url": "https://www.guinnessworldrecords.com/world-records/422186-largest-playable-videogame-universe",
+    "sourceKind": "Guinness World Records",
+    "checkedAt": "2026-10-29",
+    "asOf": "2016-08-09",
+    "measurementKey": "nomanssky-visit-all-planets-years"
+  }
+}

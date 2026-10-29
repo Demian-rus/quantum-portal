@@ -475,6 +475,11 @@
       "path": "questions/approx-games-v1.json",
       "immutable": false,
       "review": "GQ1: 16 numerical videogame estimates, verified publisher/platform/Guinness sources; editorial/approx-games-v1-review.md"
+    },
+    {
+      "path": "questions/approx-games-v2.json",
+      "immutable": false,
+      "review": "GQ2: 15 verified in-game events and community estimates, reviewed in editorial/approx-games-v2-review.md"
     }
   ],
   "packs": [
@@ -787,6 +792,11 @@
       "path": "packs/approx-games-v1.json",
       "immutable": false,
       "review": "GQ1: general@62 appends 16 videogame estimates to general@61; all 7369 previously selected IDs pinned"
+    },
+    {
+      "path": "packs/approx-games-v2.json",
+      "immutable": false,
+      "review": "GQ2: general@63 appends 15 numerical estimates after general@62, preserving prior snapshots"
     }
   ],
   "legacyCollisions": [
