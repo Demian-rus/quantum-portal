@@ -9,7 +9,7 @@ test('TASK032 exact delta preserves every inherited script, all game CSS, dictio
  const scripts=[...before('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);assert.equal(scripts.length,53);
  // G46 generated catalogs are versioned and editor-reviewed, not part of TASK032's
  // immutable game-engine surface. Validate exact reproducibility instead.
- const generatedFiles=new Set(['cards.js','content-packs.js']);
+ const generatedFiles=new Set(['cards.js','content-packs.js','approx-questions.js']);
  for(const f of [...scripts.filter(name=>!generatedFiles.has(name)),'style.css','setup-wizard.css','team-game.css','index.html','sw.js'])
   assert.equal(normalizeTask032(read(f)),before(f),f);
  const api=require('../scripts/content.cjs'),dataset=api.readDataset(),rendered=api.render(dataset);
