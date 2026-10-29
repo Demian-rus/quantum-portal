@@ -480,6 +480,11 @@
       "path": "questions/approx-games-v2.json",
       "immutable": false,
       "review": "GQ2: 15 verified in-game events and community estimates, reviewed in editorial/approx-games-v2-review.md"
+    },
+    {
+      "path": "questions/approx-games-v3.json",
+      "immutable": false,
+      "review": "GQ3: 15 historical, measurable, community-created in-game achievements; editorial/approx-games-v3-review.md"
     }
   ],
   "packs": [
@@ -797,6 +802,11 @@
       "path": "packs/approx-games-v2.json",
       "immutable": false,
       "review": "GQ2: general@63 appends 15 numerical estimates after general@62, preserving prior snapshots"
+    },
+    {
+      "path": "packs/approx-games-v3.json",
+      "immutable": false,
+      "review": "GQ3 general@64 adds 15 numeric videogame estimates; 7400 prior IDs retained"
     }
   ],
   "legacyCollisions": [

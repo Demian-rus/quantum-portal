@@ -1,0 +1,332 @@
+[
+  {
+    "id": "approx-23201",
+    "difficulty": "medium",
+    "question": "Какую площадь занимал построенный игроками реалистичный город Greenfield в Minecraft по данным на август 2022 года?",
+    "answer": "38",
+    "unit": "км²",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Город Greenfield без водной поверхности занимал около 38 км², по записи Guinness.",
+    "source": "https://www.guinnessworldrecords.com/world-records/733195-largest-city-in-minecraft",
+    "pack": "approx-games-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq3-1",
+      "checkedAt": "2026-10-29",
+      "asOf": "2022-08-15",
+      "batch": 3,
+      "measurementKey": "greenfield:area-2022",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23202",
+    "difficulty": "hard",
+    "question": "Сколько миллиардов блоков понадобилось для воссоздания Дании в Minecraft в масштабе 1:1 в 2014 году?",
+    "answer": "4000",
+    "unit": "млрд блоков",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Датское геодезическое ведомство использовало около четырёх триллионов блоков; единицы приведены в миллиардах.",
+    "source": "https://www.guinnessworldrecords.com/world-records/397249-largest-real-world-place-created-in-minecraft-at-full-scale",
+    "pack": "approx-games-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq3-2",
+      "checkedAt": "2026-10-29",
+      "asOf": "2014-04-01",
+      "batch": 3,
+      "measurementKey": "denmark:minecraft-scale-blocks-2014",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23203",
+    "difficulty": "medium",
+    "question": "Сколько миллионов блоков использовали при создании рекордной картины из пикселей в Minecraft в ноябре 2025 года?",
+    "answer": "98,83",
+    "unit": "млн блоков",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Guinness: 98 828 288 блоков в картине с горным пейзажем; округлено до сотых миллиона.",
+    "source": "https://www.guinnessworldrecords.com/world-records/414577-largest-pixelart-created-in-minecraft",
+    "pack": "approx-games-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq3-3",
+      "checkedAt": "2026-10-29",
+      "asOf": "2025-11-30",
+      "batch": 3,
+      "measurementKey": "minecraft:pixel-art-2025-blocks",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23204",
+    "difficulty": "medium",
+    "question": "Сколько тысяч блоков составляла длина рекордного тоннеля в творческом режиме Minecraft в сентябре 2024 года?",
+    "answer": "950,9",
+    "unit": "тыс. блоков",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Тоннель Samuel Blight длиной 950 873 блока; округление до десятых тысячи.",
+    "source": "https://www.guinnessworldrecords.com/world-records/longest-minecraft-tunnel",
+    "pack": "approx-games-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq3-4",
+      "checkedAt": "2026-10-29",
+      "asOf": "2024-09-04",
+      "batch": 3,
+      "measurementKey": "minecraft:creative-tunnel-2024-blocks",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23205",
+    "difficulty": "medium",
+    "question": "Сколько тысяч блоков красной пыли разместил игрок в самой длинной цепи редстоуна Minecraft к августу 2025 года?",
+    "answer": "525,6",
+    "unit": "тыс. блоков",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Рекорд Jared Thayer: 525 600 блоков линии редстоуна.",
+    "source": "https://www.guinnessworldrecords.com/world-records/118515-longest-redstone-trail-in-minecraft",
+    "pack": "approx-games-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq3-5",
+      "checkedAt": "2026-10-29",
+      "asOf": "2025-08-23",
+      "batch": 3,
+      "measurementKey": "minecraft:redstone-2025-blocks",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23206",
+    "difficulty": "easy",
+    "question": "Примерно сколько миллионов блоков ушло на главную крепость подводной Атлантиды, созданной Jeracraft в Minecraft в 2017 году?",
+    "answer": "5",
+    "unit": "млн блоков",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Создатель сообщал о более чем пяти миллионах блоков только в главной крепости; используется опубликованный округлённый рубеж.",
+    "source": "https://www.guinnessworldrecords.com/world-records/519024-largest-underwater-city-in-minecraft",
+    "pack": "approx-games-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq3-6",
+      "checkedAt": "2026-10-29",
+      "asOf": "2017-07-29",
+      "batch": 3,
+      "measurementKey": "minecraft:jeracraft-2017-fortress-blocks",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23207",
+    "difficulty": "medium",
+    "question": "Сколько игроков одновременно сражалось в рекордной массовой битве PlanetSide 2 на сервере Jaeger в январе 2015 года?",
+    "answer": "1158",
+    "unit": "игроков",
+    "categories": [
+      "videogames"
+    ],
+    "note": "В массовой битве трёх фракций было 1158 одновременных участников, по Guinness.",
+    "source": "https://www.guinnessworldrecords.com/news/2015/1/planetside-2-gamers-aiming-for-fps-battle-world-record-this-weekend-370414",
+    "pack": "approx-games-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq3-7",
+      "checkedAt": "2026-10-29",
+      "asOf": "2015-01-23",
+      "batch": 3,
+      "measurementKey": "planetside2:jaeger-2015-simultaneous",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23208",
+    "difficulty": "easy",
+    "question": "Сколько тысяч воинов одновременно участвовало в демонстрационной битве Ultimate Epic Battle Simulator в январе 2017 года?",
+    "answer": "100",
+    "unit": "тыс. воинов",
+    "categories": [
+      "videogames"
+    ],
+    "note": "По Guinness, в демонстрации игры одновременно сражались 100 тысяч юнитов, показанных разработчиком.",
+    "source": "https://www.guinnessworldrecords.com/world-records/482220-largest-real-time-videogame-battle",
+    "pack": "approx-games-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq3-8",
+      "checkedAt": "2026-10-29",
+      "asOf": "2017-01-24",
+      "batch": 3,
+      "measurementKey": "uebs:2017-simultaneous-soldiers",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23209",
+    "difficulty": "medium",
+    "question": "Сколько миллионов человек успели сыграть в созданную внутри Minecraft ролевую игру Wynncraft к марту 2021 года?",
+    "answer": "2,9",
+    "unit": "млн человек",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Разработчики Wynncraft сообщили о более чем 2,9 млн пользователей с запуска проекта к марту 2021 года.",
+    "source": "https://www.guinnessworldrecords.com/world-records/481452-largest-mmorpg-built-in-minecraft",
+    "pack": "approx-games-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq3-9",
+      "checkedAt": "2026-10-29",
+      "asOf": "2021-03-19",
+      "batch": 3,
+      "measurementKey": "wynncraft:players-by-2021",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23210",
+    "difficulty": "medium",
+    "question": "Сколько миллионов раз игроки GTA Online запускали велосипедную гонку «Tour de Santos» к марту 2026 года?",
+    "answer": "505,3",
+    "unit": "млн запусков",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Рекорд Guinness: 505,3 млн запусков велосипедной гонки Tour de Santos к 30 марта 2026 года.",
+    "source": "https://www.guinnessworldrecords.com/world-records/449654-most-played-job-overall-in-grand-theft-auto-online",
+    "pack": "approx-games-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq3-10",
+      "checkedAt": "2026-10-29",
+      "asOf": "2026-03-30",
+      "batch": 3,
+      "measurementKey": "gtaonline:tour-de-santos-2026-plays",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23211",
+    "difficulty": "medium",
+    "question": "Сколько тысяч побед одержал игрок Ship во всех режимах Fortnite к апрелю 2024 года?",
+    "answer": "49,225",
+    "unit": "тыс. побед",
+    "categories": [
+      "videogames"
+    ],
+    "note": "По статистике Tracker Network: 49 225 побед Ship к 10 апреля 2024 года; единицы в тысячах.",
+    "source": "https://www.guinnessworldrecords.com/world-records/546233-most-wins-of-fortnite-battle-royale",
+    "pack": "approx-games-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq3-11",
+      "checkedAt": "2026-10-29",
+      "asOf": "2024-04-10",
+      "batch": 3,
+      "measurementKey": "fortnite:ship-2024-wins",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23212",
+    "difficulty": "medium",
+    "question": "Сколько тысяч отметок «нравится» собрал внутриигровой снимок акулы «Océano Pacífico» в GTA V к марту 2017 года?",
+    "answer": "26,583",
+    "unit": "тыс. отметок",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Guinness: 26 583 отметки под снимком с акулой в Snapmatic GTA V; единицы в тысячах.",
+    "source": "https://www.guinnessworldrecords.com/world-records/447387-most-liked-user-photo-in-grand-theft-auto-v",
+    "pack": "approx-games-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq3-12",
+      "checkedAt": "2026-10-29",
+      "asOf": "2017-03-29",
+      "batch": 3,
+      "measurementKey": "gtav:snapmatic-shark-photo-2017-likes",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23213",
+    "difficulty": "medium",
+    "question": "Сколько тысяч долларов пожертвований собрал Kurt J Mac благодаря пешему путешествию по Minecraft к апрелю 2024 года?",
+    "answer": "478,7",
+    "unit": "тыс. долларов США",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Guinness: 478 683,68 доллара пожертвований за Far Lands or Bust; округлено до десятых тысячи долларов.",
+    "source": "https://www.guinnessworldrecords.com/world-records/768724-most-money-raised-by-a-charity-walk-in-a-videogame-individual",
+    "pack": "approx-games-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq3-13",
+      "checkedAt": "2026-10-29",
+      "asOf": "2024-04-15",
+      "batch": 3,
+      "measurementKey": "minecraft:kurt-farlands-2024-charity-usd",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23214",
+    "difficulty": "easy",
+    "question": "Сколько часов понадобилось игроку World of Warcraft, чтобы первым достигнуть максимального уровня после выхода дополнения Battle for Azeroth?",
+    "answer": "5",
+    "unit": "часов",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Gingi достиг 120 уровня примерно через пять часов после запуска дополнения Battle for Azeroth.",
+    "source": "https://www.guinnessworldrecords.com/world-records/560592-first-player-to-reach-world-of-warcraft-battle-for-azeroths-level-cap",
+    "pack": "approx-games-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq3-14",
+      "checkedAt": "2026-10-29",
+      "asOf": "2018-08-14",
+      "batch": 3,
+      "measurementKey": "wow:2018-gingi-levelcap-hours",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23215",
+    "difficulty": "hard",
+    "question": "Сколько попыток потребовалось гильдии Method, чтобы впервые победить финального босса Аргуса в World of Warcraft: Legion на мифической сложности?",
+    "answer": "320",
+    "unit": "попыток",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Guinness: гильдии Method потребовалось 320 попыток против Аргуса в Анторусе.",
+    "source": "https://www.guinnessworldrecords.com/world-records/506549-first-guild-to-defeat-world-of-warcraft-legion-final-boss-argus-the-unmaker",
+    "pack": "approx-games-v3",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq3-15",
+      "checkedAt": "2026-10-29",
+      "asOf": "2017-12-13",
+      "batch": 3,
+      "measurementKey": "wow:method-2017-argus-attempts",
+      "topic": "videogames"
+    }
+  }
+]
