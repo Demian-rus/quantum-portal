@@ -449,7 +449,7 @@
   },
   {
     "id": "word-081033",
-    "text": "ТИТРЫ",
+    "text": "ЗАПУСК",
     "type": "word",
     "difficulty": "easy",
     "categories": [
@@ -457,7 +457,7 @@
     ],
     "pack": "general-games-v9",
     "meta": {
-      "game": "СОНИК",
+      "game": "СИМС",
       "recognition": "broad"
     }
   },
