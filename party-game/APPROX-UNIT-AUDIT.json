@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "total": 664,
-  "withUnit": 627,
+  "total": 679,
+  "withUnit": 642,
   "files": [
     {
       "path": "questions/legacy-v1.json",
@@ -42,6 +42,10 @@
     {
       "path": "questions/approx-games-v1.json",
       "questions": 16
+    },
+    {
+      "path": "questions/approx-games-v2.json",
+      "questions": 15
     }
   ],
   "unitCounts": {
@@ -52,6 +56,7 @@
     "бактерий": 1,
     "бар": 1,
     "бит": 1,
+    "блоков": 2,
     "буквы": 1,
     "вида": 1,
     "Вт": 1,
@@ -64,7 +69,9 @@
     "деталей": 1,
     "деталь": 1,
     "дней": 2,
+    "долларов США": 1,
     "зажиганий": 1,
+    "запусков": 1,
     "звёзд": 1,
     "зеркал": 1,
     "игроков": 2,
@@ -75,8 +82,9 @@
     "км": 40,
     "км/с": 2,
     "км/ч": 16,
-    "км²": 9,
+    "км²": 10,
     "км³": 2,
+    "кораблей": 1,
     "костяшек": 1,
     "крыла": 1,
     "куска": 1,
@@ -92,13 +100,15 @@
     "месяца": 1,
     "месяцев": 5,
     "метров": 1,
-    "минут": 10,
+    "минут": 11,
     "мл": 1,
     "млн °C": 1,
     "млн аккаунтов": 1,
     "млн блоков": 1,
-    "млн долларов США": 1,
+    "млн долларов США": 2,
     "млн заклёпок": 1,
+    "млн зрителей": 1,
+    "млн игроков": 2,
     "млн кирпичей": 1,
     "млн км": 2,
     "млн консолей": 2,
@@ -107,9 +117,10 @@
     "млн м³": 1,
     "млн пользователей": 1,
     "млн соединений": 2,
-    "млн человек": 1,
+    "млн человек": 2,
     "млрд клеток": 1,
     "млрд км": 1,
+    "млрд лет": 1,
     "млрд нейронов": 1,
     "млрд т": 1,
     "млрд часов": 1,
@@ -152,11 +163,13 @@
     "суток": 12,
     "т": 29,
     "территории": 1,
+    "титанов": 1,
     "Тл": 1,
     "тонн": 1,
     "трлн клеток": 1,
     "тромбоцитов": 1,
     "тс": 1,
+    "тыс. км": 1,
     "тыс. кусочков": 1,
     "тыс. мячей": 1,
     "тыс. плиток": 1,
@@ -723,6 +736,69 @@
       "file": "questions/approx-games-v1.json",
       "question": "Сколько миллионов долларов заработала GTA V за первые 24 часа продаж в 2013 году, по Guinness?",
       "unit": "млн долларов США",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23101",
+      "file": "questions/approx-games-v2.json",
+      "question": "Сколько миллионов игроков одновременно участвовало в битве с Галактусом в Fortnite в декабре 2020 года?",
+      "unit": "млн игроков",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23102",
+      "file": "questions/approx-games-v2.json",
+      "question": "Сколько миллионов зрителей одновременно пришли на концерт Бруно Марса в Roblox в январе 2026 года?",
+      "unit": "млн зрителей",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23110",
+      "file": "questions/approx-games-v2.json",
+      "question": "Сколько миллионов долларов собрали игроки World of Warcraft в помощь пострадавшим в Японии через покупку виртуального питомца?",
+      "unit": "млн долларов США",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23111",
+      "file": "questions/approx-games-v2.json",
+      "question": "Сколько миллионов человек одновременно смотрели концерт Трэвиса Скотта внутри Fortnite в апреле 2020 года?",
+      "unit": "млн человек",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23112",
+      "file": "questions/approx-games-v2.json",
+      "question": "Сколько миллионов игроков одновременно собрались в Roblox-игре Steal a Brainrot в октябре 2025 года?",
+      "unit": "млн игроков",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23114",
+      "file": "questions/approx-games-v2.json",
+      "question": "Сколько тысяч километров прошёл пешком Kurt J Mac в Minecraft в поисках Далёких земель к 2019 году?",
+      "unit": "тыс. км",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23115",
+      "file": "questions/approx-games-v2.json",
+      "question": "Сколько миллиардов лет занял бы обход всех возможных планет No Man’s Sky при открытии одной планеты каждую секунду?",
+      "unit": "млрд лет",
       "reasons": [
         "scaled-unit: review explicit scale in the question; not an established defect"
       ]
