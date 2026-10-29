@@ -86,7 +86,10 @@ test('published historical source JSON remains byte-exact; explicit G37–VG6 ad
    'party-game/content/editorial/general-games-v9-review.md',
    'party-game/content/cards/general-games-v10.json',
    'party-game/content/packs/general-games-v10.json',
-   'party-game/content/editorial/general-games-v10-review.md']);
+   'party-game/content/editorial/general-games-v10-review.md',
+    'party-game/content/cards/general-games-v11.json',
+    'party-game/content/packs/general-games-v11.json',
+    'party-game/content/editorial/general-games-v11-review.md']);
  for(const f of diff)assert.ok(allowed.has(f),'Unexpected published content change '+f);
  assert.equal(data.packs.find(p=>p.id==='general'&&p.version===38).criteria.cardIds.length,6550);
  assert.equal(data.packs.find(p=>p.id==='general'&&p.version===39).criteria.cardIds.length,6600);
