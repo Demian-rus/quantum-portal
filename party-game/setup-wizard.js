@@ -3,7 +3,7 @@
 // profiles and START remain owned by the existing production controllers.
 (function installSetupWizard(){
  if(typeof document.createElement!=='function')return;
- const titles=['Игра','Кто играет?','Правила','Старт'];
+ const titles=['Игра','Игроки','Правила','Старт'];
  let step=1,themes=false,ruleCenter=false,installed=false;
  const positions=new Map();
  const legacy={setScene,backWithinKvip,renderOptions};
@@ -53,8 +53,8 @@
  scene.id='scene-wizard';scene.className='scene setup-wizard';scene.hidden=true;
  scene.setAttribute('aria-labelledby','wizard-title');
  scene.innerHTML='<header class="wizard-header"><button type="button" id="wizard-back">‹ НАЗАД</button><span>КВИП</span></header>'+
-  '<nav class="wizard-steps" aria-label="Этапы создания партии">'+titles.map((t,i)=>'<button type="button" data-wizard-step="'+(i+1)+'"><b>'+(i+1)+'</b><span>'+t+'</span></button>').join('')+'</nav>'+
-  '<div id="wizard-scroll" class="wizard-scroll"><div class="wizard-page"><p id="wizard-kicker" class="section-kicker"></p><h1 id="wizard-title" tabindex="-1"></h1>'+
+  '<nav class="wizard-steps" aria-label="Этапы создания партии">'+titles.map((t,i)=>'<button type="button" data-wizard-step="'+(i+1)+'" aria-label="Этап '+(i+1)+' из 4: '+t+'"><b aria-hidden="true">'+(i+1)+'</b><span>'+t+'</span></button>').join('')+'</nav>'+
+  '<div id="wizard-scroll" class="wizard-scroll"><div class="wizard-page"><p id="wizard-kicker" class="section-kicker" hidden></p><h1 id="wizard-title" tabindex="-1"></h1>'+
   '<section data-wizard-page="1"><div id="wizard-catalog"></div><div id="wizard-themes" hidden><div id="wizard-theme-copy"></div><div id="wizard-theme-list"></div></div><p id="wizard-pack-current"></p></section>'+
   '<section data-wizard-page="2"><div class="wizard-formats" role="group" aria-label="Формат партии"><button id="wizard-format-duel" type="button" aria-pressed="true">1 НА 1</button><button id="wizard-format-teams" type="button" aria-pressed="false" disabled>2 НА 2</button></div><div id="wizard-players"></div><div id="wizard-award"></div></section>'+
   '<section data-wizard-page="3"><div id="wizard-difficulty"></div><div id="wizard-finish"></div><div id="wizard-time"></div><div class="wizard-mode-heading"><button type="button" id="wizard-mode-settings">НАСТРОЙКИ РЕЖИМОВ ↗</button></div><h2>АКТИВНЫЕ РЕЖИМЫ</h2><div id="wizard-modes"></div><details id="wizard-extra"><summary>ДОПОЛНИТЕЛЬНЫЕ ПРАВИЛА</summary><div id="wizard-extra-rules"></div><h3>ЧТО ЗАГАДЫВАТЬ</h3><div id="wizard-content"></div></details></section>'+
@@ -134,7 +134,8 @@
   legacy.setScene('home');$('scene-home').hidden=true;
   activeScene='wizard';document.body.dataset.screen='setup';document.body.classList.add('wizard-screen');scene.hidden=false;
   refreshOptions();
-  $('wizard-kicker').textContent=showRules?'ОБЩИЙ ЦЕНТР':('ШАГ '+step+' ИЗ 4');
+  $('wizard-kicker').hidden=!showRules;
+  $('wizard-kicker').textContent=showRules?'ОБЩИЙ ЦЕНТР':'';
   $('wizard-title').textContent=showRules?'Настройки режимов':themes?'Выберите тему':['Во что сыграем?','Кто играет?','Поймайте свой ритм','Всё готово?'][step-1];
   scene.querySelectorAll('[data-wizard-page]').forEach(node=>{node.hidden=showRules||Number(node.dataset.wizardPage)!==step;});
   scene.querySelectorAll('[data-wizard-step]').forEach(node=>{if(Number(node.dataset.wizardStep)===step)node.setAttribute('aria-current','step');else node.removeAttribute('aria-current');});

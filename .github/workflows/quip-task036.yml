@@ -1,0 +1,39 @@
+name: КВИП TASK036 stepper acceptance
+on:
+  push:
+    branches: ['feat/quip-task036-*']
+    paths: ['party-game/**', 'diagnostics/task036/**', '.github/workflows/quip-task036.yml']
+  pull_request:
+    paths: ['party-game/**', 'diagnostics/task036/**', '.github/workflows/quip-task036.yml']
+permissions: {contents: read}
+jobs:
+  stepper:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - if: matrix.engine == 'chromium'
+        run: npm install --no-save playwright-core@1.55.0
+      - if: matrix.engine == 'webkit'
+        run: npm install --no-save playwright-core@1.64.0
+      - if: matrix.engine == 'webkit'
+        run: npx playwright-core install --with-deps webkit
+        timeout-minutes: 8
+      - run: node diagnostics/task036/stepper.cjs
+        env:
+          QUIP036_ENGINE: ${{ matrix.engine }}
+          QUIP036_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+          CHROME_BIN: /usr/bin/google-chrome
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quip-task036-stepper-${{ matrix.engine }}
+          path: artifacts/quip-task036
+          if-no-files-found: error

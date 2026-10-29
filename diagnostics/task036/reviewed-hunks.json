@@ -1,0 +1,37 @@
+[
+  {
+    "file": "setup-wizard.js",
+    "before": " const titles=['Игра','Кто играет?','Правила','Старт'];\n",
+    "after": " const titles=['Игра','Игроки','Правила','Старт'];\n"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": "  '<nav class=\"wizard-steps\" aria-label=\"Этапы создания партии\">'+titles.map((t,i)=>'<button type=\"button\" data-wizard-step=\"'+(i+1)+'\"><b>'+(i+1)+'</b><span>'+t+'</span></button>').join('')+'</nav>'+\n  '<div id=\"wizard-scroll\" class=\"wizard-scroll\"><div class=\"wizard-page\"><p id=\"wizard-kicker\" class=\"section-kicker\"></p><h1 id=\"wizard-title\" tabindex=\"-1\"></h1>'+\n",
+    "after": "  '<nav class=\"wizard-steps\" aria-label=\"Этапы создания партии\">'+titles.map((t,i)=>'<button type=\"button\" data-wizard-step=\"'+(i+1)+'\" aria-label=\"Этап '+(i+1)+' из 4: '+t+'\"><b aria-hidden=\"true\">'+(i+1)+'</b><span>'+t+'</span></button>').join('')+'</nav>'+\n  '<div id=\"wizard-scroll\" class=\"wizard-scroll\"><div class=\"wizard-page\"><p id=\"wizard-kicker\" class=\"section-kicker\" hidden></p><h1 id=\"wizard-title\" tabindex=\"-1\"></h1>'+\n"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": "  $('wizard-kicker').textContent=showRules?'ОБЩИЙ ЦЕНТР':('ШАГ '+step+' ИЗ 4');\n",
+    "after": "  $('wizard-kicker').hidden=!showRules;\n  $('wizard-kicker').textContent=showRules?'ОБЩИЙ ЦЕНТР':'';\n"
+  },
+  {
+    "file": "setup-wizard.css",
+    "before": "",
+    "after": "\n/* TASK036: equal number/label rows; reserve the full column for short labels.\n   Keep the accepted 9/10px type sizes, including native enlarged text. */\n.setup-wizard .wizard-steps{gap:2px;padding-inline:0}\n.setup-wizard .wizard-steps button{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;justify-items:center;align-content:center;gap:4px;min-width:0;line-height:1.4}\n.setup-wizard .wizard-steps b{width:2em;height:2em;line-height:1}\n.setup-wizard .wizard-steps button>span{white-space:nowrap;overflow-wrap:normal;letter-spacing:-.04em}\n.setup-wizard .wizard-steps button:focus-visible{outline-offset:-3px}\n"
+  },
+  {
+    "file": "index.html",
+    "before": "  <link rel=\"stylesheet\" href=\"./setup-wizard.css?v=6\">\n",
+    "after": "  <link rel=\"stylesheet\" href=\"./setup-wizard.css?v=7\">\n"
+  },
+  {
+    "file": "index.html",
+    "before": "  <script src=\"./setup-wizard.js?v=10\" defer></script>\n",
+    "after": "  <script src=\"./setup-wizard.js?v=11\" defer></script>\n"
+  },
+  {
+    "file": "sw.js",
+    "before": "const CACHE='kvip-pwa-v101-20261029-fast-sliders-candidate';\nconst CORE=['./','./index.html','./style.css?v=45','./setup-wizard.css?v=6','./setup-wizard.js?v=10','./team-game.css?v=3','./responsive-layout.css?v=2','./team-format.js?v=2','./team-storage.js?v=5','./team-engine.js?v=2','./team-controller.js?v=10','./cards.js?v=11','./approx-questions.js?v=7','./mode-config.js?v=3','./mode-compatibility.js?v=1','./rules.js?v=5','./penalties.js?v=3','./risk-planner.js?v=1','./modifiers.js?v=3','./round-planner.js?v=3','./task-history.js?v=1','./modifiers-v2.js?v=3','./content-packs.js?v=19','./presets.js?v=4','./immersive-viewport.js?v=1','./rules-guide.js?v=1','./menu-navigation.js?v=10','./setup-view.js?v=7','./setup-controls.js?v=4','./audio.js?v=1','./round-views.js?v=3','./match-views.js?v=7','./timer-view.js?v=7','./round-selection.js?v=6','./tiebreak.js?v=5','./round-settlement.js?v=7','./timer-controller.js?v=2','./round-presentation.js?v=8','./round-actions.js?v=3','./storage-controller.js?v=2','./session-restoration.js?v=12','./team-statistics.js?v=1',\n",
+    "after": "const CACHE='kvip-pwa-v102-20261029-wizard-stepper-candidate';\nconst CORE=['./','./index.html','./style.css?v=45','./setup-wizard.css?v=7','./setup-wizard.js?v=11','./team-game.css?v=3','./responsive-layout.css?v=2','./team-format.js?v=2','./team-storage.js?v=5','./team-engine.js?v=2','./team-controller.js?v=10','./cards.js?v=11','./approx-questions.js?v=7','./mode-config.js?v=3','./mode-compatibility.js?v=1','./rules.js?v=5','./penalties.js?v=3','./risk-planner.js?v=1','./modifiers.js?v=3','./round-planner.js?v=3','./task-history.js?v=1','./modifiers-v2.js?v=3','./content-packs.js?v=19','./presets.js?v=4','./immersive-viewport.js?v=1','./rules-guide.js?v=1','./menu-navigation.js?v=10','./setup-view.js?v=7','./setup-controls.js?v=4','./audio.js?v=1','./round-views.js?v=3','./match-views.js?v=7','./timer-view.js?v=7','./round-selection.js?v=6','./tiebreak.js?v=5','./round-settlement.js?v=7','./timer-controller.js?v=2','./round-presentation.js?v=8','./round-actions.js?v=3','./storage-controller.js?v=2','./session-restoration.js?v=12','./team-statistics.js?v=1',\n"
+  }
+]
