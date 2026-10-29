@@ -722,6 +722,11 @@
       "path": "packs/general-games-v5.json",
       "immutable": false,
       "review": "VG5 general@55 adds 50 widely recognizable game prompts, retaining all general@54 IDs and previous snapshots"
+    },
+    {
+      "path": "packs/general-games-audience-v1.json",
+      "immutable": false,
+      "review": "VG6 audience curation: filter 151 of 200 VG1–VG4 cards from general@56; preserve source cards, previous snapshots, and all VG5 IDs"
     }
   ],
   "legacyCollisions": [
