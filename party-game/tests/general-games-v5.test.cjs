@@ -1,0 +1,25 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),api=require('../scripts/content.cjs');
+test('VG5: broad-recognition Cyrillic content with no hard jargon and all-source duplicate proof',()=>{
+ const d=api.readDataset(),prior=d.packs.find(p=>p.id==='general'&&p.version===54),current=d.packs.find(p=>p.id==='general'&&p.version===55);
+ assert.ok(prior&&current);
+ const rows=d.cards.filter(c=>c.pack==='general-games-v5'),ids=rows.map(c=>c.id);
+ assert.equal(rows.length,50);
+ assert.equal(rows.filter(c=>c.type==='word').length,40);
+ assert.equal(rows.filter(c=>c.type==='phrase').length,10);
+ assert.equal(rows.filter(c=>c.difficulty==='hard').length,0);
+ assert.ok(rows.filter(c=>c.difficulty==='easy').length>=40);
+ assert.ok(rows.every(c=>c.categories.length===1&&c.categories[0]==='videogames'&&c.meta?.recognition==='broad'));
+ assert.ok(rows.every(c=>/^[А-ЯЁ -]+$/u.test(c.text)&&/^[А-ЯЁ -]+$/u.test(c.meta?.game||'')));
+ assert.ok(rows.every(c=>c.type==='word'?!/\s/u.test(c.text):/\s/u.test(c.text)));
+ const normalized=rows.map(c=>api.normalize(c.text)),older=new Set(d.cards.filter(c=>c.pack!=='general-games-v5').map(c=>api.normalize(c.text)));
+ assert.equal(new Set(ids).size,50);
+ assert.equal(new Set(normalized).size,50);
+ for(let i=0;i<rows.length;i++)assert.ok(!older.has(normalized[i]),'Historical exact prompt overlap: '+rows[i].text);
+ assert.equal(prior.criteria.cardIds.length,7220);
+ assert.equal(current.criteria.cardIds.length,7270);
+ assert.deepEqual(current.criteria.cardIds.slice(0,7220),prior.criteria.cardIds);
+ assert.deepEqual(current.criteria.cardIds.slice(7220),ids);
+ assert.ok(d.packs.filter(p=>p.id!=='general').every(p=>!p.criteria.cardIds.some(id=>ids.includes(id))),'No standalone game theme');
+ assert.ok(api.validate(d).ok,'All content and pinned historical checks remain strict');
+});

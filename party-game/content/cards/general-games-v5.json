@@ -1,0 +1,702 @@
+[
+  {
+    "id": "word-078001",
+    "text": "ПРИСТАВКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ИГРОВАЯ ПРИСТАВКА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078002",
+    "text": "КАРТРИДЖ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ДЕНДИ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078003",
+    "text": "ЗОМБИ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "РАСТЕНИЯ ПРОТИВ ЗОМБИ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078004",
+    "text": "МОНСТР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078005",
+    "text": "ПРИНЦЕССА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "МАРИО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078006",
+    "text": "БОНУС",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "СУПЕР МАРИО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078007",
+    "text": "УРОВЕНЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "СУПЕР МАРИО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078008",
+    "text": "ПОБЕДА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ФОРТНАЙТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078009",
+    "text": "ПОРАЖЕНИЕ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ТЕТРИС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078010",
+    "text": "РАУНД",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "МОРТАЛ КОМБАТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078011",
+    "text": "ПАУЗА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "СИМС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078012",
+    "text": "СОХРАНЕНИЕ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "СКАЙРИМ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078013",
+    "text": "СЛОЖНОСТЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078014",
+    "text": "МИССИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ГТА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078015",
+    "text": "ЗАДАНИЕ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ВЕДЬМАК",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078016",
+    "text": "СЮЖЕТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ВЕДЬМАК",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078017",
+    "text": "БОСС",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "МАРИО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078018",
+    "text": "ПЕРСОНАЖ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "СИМС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078019",
+    "text": "ИНВЕНТАРЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078020",
+    "text": "АПТЕЧКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "КОНТР-СТРАЙК",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078021",
+    "text": "БРОНЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078022",
+    "text": "ПОРТАЛ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ПОРТАЛ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078023",
+    "text": "ТЕЛЕПОРТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078024",
+    "text": "ПРОХОЖДЕНИЕ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ТЕТРИС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078025",
+    "text": "ИГРОК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ФОРТНАЙТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078026",
+    "text": "ГОНКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "МАРИО КАРТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078027",
+    "text": "ФИНАЛ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "СУПЕР МАРИО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078028",
+    "text": "ГЕРОЙ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ЗЕЛЬДА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078029",
+    "text": "ПРЫЖОК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "СУПЕР МАРИО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078030",
+    "text": "МЕЧ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ЗЕЛЬДА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078031",
+    "text": "ЗМЕЙКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ЗМЕЙКА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078032",
+    "text": "ДЕНДИ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ДЕНДИ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078033",
+    "text": "СЕГА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "СЕГА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078034",
+    "text": "НИНТЕНДО",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "НИНТЕНДО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078035",
+    "text": "ИКСБОКС",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ИКСБОКС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078036",
+    "text": "ПЛЕЙСТЕЙШЕН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ПЛЕЙСТЕЙШЕН",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078037",
+    "text": "ГЕЙМЕР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078038",
+    "text": "ПРОКАЧКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "СИМС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078039",
+    "text": "СТРАТЕГИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ЦИВИЛИЗАЦИЯ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-078040",
+    "text": "ЧИТ-КОД",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ГТА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-078001",
+    "text": "СУПЕР МАРИО",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "СУПЕР МАРИО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-078002",
+    "text": "ЗЛЫЕ ПТИЦЫ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ЭНГРИ БЁРДС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-078003",
+    "text": "РАСТЕНИЯ ПРОТИВ ЗОМБИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "РАСТЕНИЯ ПРОТИВ ЗОМБИ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-078004",
+    "text": "ПОКЕМОН ГО",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ПОКЕМОН ГО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-078005",
+    "text": "ГОВОРЯЩИЙ ТОМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ГОВОРЯЩИЙ ТОМ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-078006",
+    "text": "ИГРА НА ДВОИХ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "МАРИО КАРТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-078007",
+    "text": "ГЛАВНЫЙ ГЕРОЙ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "ЗЕЛЬДА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-078008",
+    "text": "ФИНАЛЬНЫЙ БОСС",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "СУПЕР МАРИО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-078009",
+    "text": "ЗАПАСНАЯ ЖИЗНЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "СУПЕР МАРИО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-078010",
+    "text": "ЗОЛОТАЯ МОНЕТА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v5",
+    "meta": {
+      "game": "СУПЕР МАРИО",
+      "recognition": "broad"
+    }
+  }
+]
