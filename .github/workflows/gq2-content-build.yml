@@ -26,4 +26,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add party-game/approx-questions.js party-game/content-packs.js
           git commit -m "build(content): regenerate GQ2 numbers general@63"
+          git fetch origin content/approx-events-v2-20261029
+          git rebase origin/content/approx-events-v2-20261029
           git push origin HEAD:content/approx-events-v2-20261029
