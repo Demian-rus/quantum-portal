@@ -54,7 +54,7 @@ Production: party-game/responsive-layout.css; party-game/index.html; party-game/
 
 Тесты/инфраструктура: diagnostics/task034/{mobile,geometry,installed-pwa,source-contract}.cjs; новый task034.test.cjs; точечная нормализация loader/cache в исторических contract/upgrade tests и добавление CSS в их file maps; .github/workflows/quip-mobile034.yml и дополнительный guard в quip-game.yml. Существующие CI jobs и проверки сохранены.
 
-Запуск: npm install --no-save playwright-core@1.55.0; для WebKit — npx playwright-core install --with-deps webkit. Затем QUIP034_GROUP=<group> node diagnostics/task034/mobile.cjs. Chromium использует CHROME_BIN или /usr/bin/google-chrome. Локально использован разрешённый pinned headless_shell 140; официальный CI использует native Chrome для Android/performance и pinned Chromium для исторического exact raster.
+Запуск Chromium/Android/landscape/installed-PWA: `npm install --no-save playwright-core@1.55.0`. Только для iPhone/WebKit: `npm install --no-save playwright-core@1.64.0`, затем `npx playwright-core install --with-deps webkit`. После установки нужной версии: `QUIP034_GROUP=<group> node diagnostics/task034/mobile.cjs`. Группы работают в независимых CI jobs; версия Chromium и исторические raster/golden зависимости не обновлены. Chromium использует CHROME_BIN или /usr/bin/google-chrome. Локально использован разрешённый pinned headless_shell 140; официальный CI использует native Chrome для Android/performance и pinned Chromium для исторического exact raster.
 
 Архив каждого из четырёх mobile jobs: summary.json, before/after-<viewport>-font<1|2>/measurements.json и оригинальные PNG. installed-pwa — отдельный evidence.json и PNG. Ссылки на точные immutable run/artifact IDs и SHA256 — в итоговом PR/комплекте доказательств. Диагностика начального main, кандидат и production обозначаются отдельно.
 
@@ -67,3 +67,18 @@ Production: party-game/responsive-layout.css; party-game/index.html; party-game/
 В каждом mobile artifact автоматически сформированы `index.html` (сравнение оригинальных PNG по размеру/шрифту/состоянию) и `evidence-summary.json`. Строки `TASK034_EVIDENCE` в логах содержат полный список нарушений, font probe/method, RAW-инварианты и median/p95/scans; можно проверить цифры без скачивания большого ZIP. Index различает source Head и checkout SHA: pull_request обычно тестирует merge commit с тем же runtime tree, push — сам Head. Упаковка не меняет PNG или acceptance assertions. Полные Actions ZIP имеют срок хранения; ссылки и digest публикуются в PR.
 
 Обязательный touch-scroll нового увеличенного задания проверяется на кандидате. Исходный main, где такого scroll ещё нет, продолжает диагностический обход остальных режимов; его обрезанный текст фиксируется метриками, не прерывая получение последующих baseline PNG.
+
+## Продолжение после зависания: причина WebKit и граница исправления
+
+29 октября 2026 повторно прочитаны оба полных журнала [независимой диагностики 40764590764](https://github.com/Demian-rus/quantum-portal/actions/runs/40764590764) на Head `2ae8149a0c84734e3098a279aeb5d9f9659428b4`. Контрольный main и оба Draft PR совпали с переданными SHA. Никакой новой ветки или реализации не создавалось.
+
+| Проверка одного и того же HTTP/SW сценария | WebKit / Playwright 1.55.0 | WebKit / Playwright 1.64.0 |
+| --- | --- | --- |
+| CORE кеш исходного main / кандидата | 0 / 0 записей | 75 / 76 записей |
+| Независимые put/add/addAll, пять методов в каждом из восьми вариантов | promises успешны, кеш пуст | все 40 записей подтверждены чтением; sentinel сохранён |
+| Offline reload при TCP-отказе | 0/8; Returned response is null | 8/8; ошибок JS нет |
+| Новый offline tab | 1/8, только при public,max-age=600, недостаточно как доказательство SW | 8/8 |
+
+Варианты: baseline, candidate, абсолютный fallback, абсолютные CORE+fallback, три политики HTTP cache headers и headful. Это локализует дефект в поставляемом с 1.55.0 WebKit/runner, а не в новой вёрстке. Диагностический workflow сам по себе не является приёмкой: результат подтверждается полным повтором baseline/кандидат на 1.64.0 в обязательной группе iphone-webkit.
+
+Изменена только версия playwright-core для WebKit job в `quip-mobile034.yml`. Production SW после продолжения не менялся; mocks, пропуски iPhone и ослабление assertions не добавлялись. Полная матрица Chromium/Android/landscape/установленной PWA запускается вместе с WebKit. Итоговые статусы, точный Head, числа состояний, геометрические сравнения, performance и immutable run/artifact IDs публикуются в описании существующего PR #188 после завершения проверок. Оба PR остаются Draft; PR A, main и словарные ветки не изменяются.
