@@ -3,7 +3,7 @@ const test=require('node:test'),assert=require('node:assert/strict');
 const api=require('../scripts/content.cjs');
 test('GQ3: 15 verifiable in-game community-scale events append to general@64 and preserve every earlier question and pack',()=>{
  const d=api.readDataset(),f=d.questions.filter(q=>q.pack==='approx-games-v3'),prev=d.packs.find(x=>x.id==='general'&&x.version===63),next=d.packs.find(x=>x.id==='general'&&x.version===64);
- assert.ok(prev&&next);assert.equal(f.length,15);assert.equal(d.questions.length,724);
+ assert.ok(prev&&next);assert.equal(f.length,15);assert.equal(d.questions.length,739);
  assert.deepEqual(f.map(q=>q.id),Array.from({length:15},(_,i)=>'approx-'+(23201+i)));
  assert.equal(new Set(f.map(q=>api.normalize(q.question))).size,15);
  assert.equal(new Set(f.map(q=>q.meta.measurementKey)).size,15);
