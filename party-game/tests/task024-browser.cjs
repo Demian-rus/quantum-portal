@@ -54,7 +54,7 @@ function fits(g){
     measurements.push({width:w,height:h,scenario:s.id,before:baseline,after:candidate});
    }
    // Approx is a separate interaction: same HTML and pixel-identical screenshots.
-   const approx=async p=>{await p.evaluate(()=>{Object.assign(options,{modes:['approx'],dice:false,difficulty:'easy'});newGame();game.dice=false;roll();stopTicking()});await F.settled(p);};
+   const approx=async p=>{await p.evaluate(()=>{Object.assign(options,{modes:['approx'],dice:false,difficulty:'easy'});newGame();game.dice=false;roll();const q=QUIP_APPROX_QUESTIONS.find(q=>q.id==='approx-0007');if(!q)throw Error('Missing original raster fixture');game.current.question={...q};game.current.word=q.question;game.current.cardId=q.id;render();stopTicking()});await F.settled(p);};
    await approx(before);const oldApprox=await before.screenshot({path:folder+'/'+w+'-approx-before.png',animations:'disabled'});
    await approx(after);const newApprox=await after.screenshot({path:folder+'/'+w+'-approx-after.png',animations:'disabled'});assert.ok(oldApprox.equals(newApprox),'Approx pixels changed '+w);
    // Every displayed V2 condition fits at the smallest portrait, without scroll.
