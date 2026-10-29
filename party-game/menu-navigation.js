@@ -80,7 +80,8 @@ let gameTypeCountCache=null;
 function contentCountLabel(n){return n.toLocaleString('ru-RU')+' заданий';}
 function contentPackCount(pack){return new Set(pack.criteria.cardIds).size;}
 function gameTypeCountSnapshot(){
- const key=JSON.stringify(options);
+ const {duration,targetScore,rounds,modifierChance,...catalogSettings}=options;
+ const key=JSON.stringify(catalogSettings);
  if(!gameTypeCountCache||gameTypeCountCache.cards!==PARTY_CARDS||gameTypeCountCache.questions!==QUIP_APPROX_QUESTIONS||gameTypeCountCache.packs!==QUIP_CONTENT_PACKS)
   gameTypeCountCache={cards:PARTY_CARDS,questions:QUIP_APPROX_QUESTIONS,packs:QUIP_CONTENT_PACKS,entries:new Map()};
  const cache=gameTypeCountCache.entries;

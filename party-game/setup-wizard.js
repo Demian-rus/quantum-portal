@@ -9,7 +9,7 @@
  const legacy={setScene,backWithinKvip,renderOptions};
  function viewStamp(){
   // Pack preference history is not read by the settings renderer or validator.
-  const {packPreferences,...settings}=options;
+  const {packPreferences,duration,targetScore,rounds,modifierChance,...settings}=options;
   return {key:JSON.stringify([settings,selectedProfileIds,profileStoreProblem]),profiles:profileStore,
    cards:PARTY_CARDS,questions:QUIP_APPROX_QUESTIONS,packs:QUIP_CONTENT_PACKS,config:getModeConfig,validate:checkContentPack,pool:getPackCardPool};
  }
@@ -47,7 +47,7 @@
    try{legacy.renderOptions();}finally{getPackCardPool=selectPool;checkContentPack=check;}
    renderedStamp=viewStamp();
   }
-  renderMeta();
+  renderSetupValues();renderMeta();
  }
  const scene=document.createElement('section');
  scene.id='scene-wizard';scene.className='scene setup-wizard';scene.hidden=true;
@@ -125,6 +125,7 @@
   scene.dispatchEvent(new CustomEvent('quip:setup-rendered'));
  }
  function show(next=step,showThemes=false,showRules=false,restore=false){
+  flushSetupRangeWrite();
   const enteringRules=showRules&&!ruleCenter;
   remember();attach();step=next;themes=showThemes;ruleCenter=showRules;
   scene.classList.toggle('wizard-mode-center',showRules);
@@ -156,7 +157,21 @@
   url.searchParams.delete('setup');
   history.replaceState(history.state,'',url);
  }
+ // Numeric edits leave eligibility, profiles and catalog counts unchanged.
+ // Update the small dependent copy without rebuilding the summary or mode list.
+ document.addEventListener('quip:setup-values',()=>{
+  if(!installed)return;
+  const goal=options.finishType==='score'?ruPoints(options.targetScore):ruTurns(options.rounds);
+  for(const row of $('wizard-summary').children){
+   const title=row.querySelector('dt')?.textContent,copy=row.querySelector('dd');
+   if(title==='Цель')copy.textContent=goal;
+   if(title==='Базовое время')copy.textContent=options.duration+' с';
+   if(title==='Дополнительные правила')copy.textContent='Риск '+(options.riskRounds?'вкл.':'выкл.')+' · усложнения '+(options.complications?options.modifierChance+'%':'выкл.');
+  }
+  $('wizard-footer-caption').textContent=goal+' · '+ruCountText(options.modes.length,['режим','режима','режимов']);
+ });
  setScene=function(which){
+  flushSetupRangeWrite();
   if(['game-type','themes','setup','advanced'].includes(which)){
    show(which==='setup'?2:which==='advanced'?3:1,which==='themes');return;
   }

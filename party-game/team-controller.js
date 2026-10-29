@@ -30,14 +30,17 @@
  function root(){const base=s.tx?.proposal||s.record;if(!base||!E.isGame(game))throw Error('Нет активной командной партии.');return {...base,teamFormat:game.teamFormat,game,taskMemory};}
  function snapshotDuel(){return {game,options,taskMemory,storageBlocked,storageProblem,loadedSaveRaw,profileResultProblem};}
  function useDuel(){
+  flushSetupRangeWrite();
   stopTicking();revealToken++;for(const id of ['result-history-backdrop','report-backdrop'])$(id).hidden=true;const shell=$q('.site-shell');if(shell)shell.inert=false;reportView.item=null;reportView.focus=null;
   if(s.duel){({game,options,taskMemory,storageBlocked,storageProblem,loadedSaveRaw,profileResultProblem}=s.duel);}
   s.context=false;s.inSetup=false;s.duel=null;document.body.classList.remove('teams-active');panel.hidden=true;$('wizard-players').hidden=false;$('wizard-award').hidden=false;error.hidden=true;
   old.renderOptions();paintSetup();paintHome();
  }
  function useRecord(record,setup=false){
+  flushSetupRangeWrite();
   if(!s.context)s.duel=snapshotDuel();s.context=true;s.inSetup=setup;stopTicking();
   game=record?clone(record.game):null;taskMemory=record?clone(record.taskMemory):freshTaskMemory();options=E.optionsFor(record?.options||s.duel.options);
+  if(setup)readSetupRanges();
   storageBlocked=false;storageProblem=null;loadedSaveRaw=null;profileResultProblem=null;
   document.body.classList.toggle('teams-active',!setup);paintSetup();
  }
@@ -253,6 +256,27 @@
    }catch(e){setBusy(false);fault(e);return false;}
   })();return s.idle;
  }
+ // Four UI preferences have their own small guarded slot. No draft match,
+ // roster, profile, team ledger or legacy duel RAW is written before START.
+ const rangeKey='kvip:teams-2x2:setup-ranges:v1';let rangeRaw=null,rangeBlocked=false;
+ function readSetupRanges(){
+  rangeBlocked=false;
+  try{
+   rangeRaw=localStorage.getItem(rangeKey);if(rangeRaw===null)return;
+   const value=JSON.parse(rangeRaw),definitions=setupRangeDefinitions();
+   if(value?.version!==1||!value.values||Object.keys(value.values).length!==definitions.length)throw Error('Unsupported range preferences');
+   for(const [,key,min,max,step]of definitions){const n=value.values[key];if(!Number.isFinite(n)||n<min||n>max||n%step!==0)throw Error('Invalid range preference');}
+   Object.assign(options,value.values);
+  }catch{rangeBlocked=true;}
+ }
+ function persistSetupRanges(){
+  if(!s.context||!s.inSetup)return false;
+  try{
+   if(rangeBlocked||localStorage.getItem(rangeKey)!==rangeRaw)throw Error('Protected range preferences');
+   const raw=JSON.stringify({version:1,values:Object.fromEntries(setupRangeDefinitions().map(([,key])=>[key,options[key]]))});
+   localStorage.setItem(rangeKey,raw);if(localStorage.getItem(rangeKey)!==raw)throw Error('Range write failed');rangeRaw=raw;return true;
+  }catch{rangeBlocked=true;old.toast('Настройки ползунков не сохранены. Данные защищены; проверьте значения после перезагрузки.');return false;}
+ }
  function chooseTeam(){
   if(s.context)return;if(!s.store||s.status==='loading')return;
   useRecord(s.record,true);
@@ -262,6 +286,7 @@
   // Keep focus on the format control. No text input or automatic dialog/IME.
  }
  function startTeam(){
+  flushSetupRangeWrite();
   if(!selectedTeamProfiles()){paintSetup();return;}
   if(s.record&&!window.confirm('Текущая партия 2 на 2 будет полностью сохранена в отдельном архиве на этом устройстве. Начать новую?'))return;
   run(()=>{
@@ -324,7 +349,7 @@
  },true);
  // The existing Android Back guard must close this separate data dialog first.
  window.addEventListener('storage',event=>{if(!s.context&&[QuipTeamStorage.KEY,QuipTeamStorage.JOURNAL_KEY].includes(event.key)&&s.store)readStore().catch(()=>{});});
- window.QuipTeams=Object.freeze({get busy(){return s.busy;},get active(){return s.context;},get blocked(){return s.blocked;},whenIdle:()=>s.idle,whenReady:()=>s.ready,continue:continueTeam,record:()=>s.record?clone(s.record):null,isProfileTarget,selectedProfileId:target=>isProfileTarget(target)?s.profileIds[target.slot]:null,profileUnavailable:(target,id)=>s.profileIds.some((p,i)=>i!==target.slot&&p===id),chooseProfile:chooseTeamProfile,clearProfile:clearTeamProfile,results:resultLedger,validateProfileImport});
+ window.QuipTeams=Object.freeze({get busy(){return s.busy;},get active(){return s.context;},get blocked(){return s.blocked;},whenIdle:()=>s.idle,whenReady:()=>s.ready,continue:continueTeam,record:()=>s.record?clone(s.record):null,isProfileTarget,selectedProfileId:target=>isProfileTarget(target)?s.profileIds[target.slot]:null,profileUnavailable:(target,id)=>s.profileIds.some((p,i)=>i!==target.slot&&p===id),chooseProfile:chooseTeamProfile,clearProfile:clearTeamProfile,results:resultLedger,validateProfileImport,persistSetupRanges});
  try{
   if(!navigator.locks?.request)throw Error('Этот браузер не поддерживает безопасное сохранение 2 на 2. Игра 1 на 1 остаётся доступной.');
   s.store=QuipTeamStorage.create({storage:localStorage,validateMatch:E.validateRecord,validateReplacement:E.validateReplacement,validateTransition:E.validateTransition,exclusive});

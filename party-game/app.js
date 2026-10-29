@@ -142,6 +142,7 @@ function render(keepCardFocus=taskCardHasKeyboardFocus()) {
   if(keepCardFocus)focusTaskCard();
 }
 function newGame() {
+  flushSetupRangeWrite();
   if(storageBlocked&&storageProblem!=='corrupt'){toast(storageNotice());return;}
   // START is the explicit action; don't repeat it with a native confirmation.
   if(!options.modes.length){toast('Выберите хотя бы один игровой режим');return;}
