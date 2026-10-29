@@ -5,11 +5,11 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const {createSimulation}=require('../scripts/game-simulation.cjs'),{auditApproxUnits}=require('../scripts/approx-unit-audit.cjs');
 const parent='2872a233f97d70f84c5989eee653a233a72b7b44',root=path.resolve(__dirname,'..');
 test('approx units: every active/historical source is audited; all 37 empty units are explicit legacy counts',()=>{
- const a=auditApproxUnits();assert.equal(a.total,694);assert.equal(a.withUnit,657);assert.equal(a.empty.length,37);assert.ok(a.empty.every(r=>r.file==='questions/legacy-v1.json'));assert.ok(a.empty.every(r=>/^Скольк[ои]/u.test(r.question)));
- assert.ok(a.files.some(x=>x.path==='questions/approx-games-v1.json'&&x.questions===16));assert.ok(a.files.some(x=>x.path==='questions/approx-games-v2.json'&&x.questions===15));assert.ok(a.files.some(x=>x.path==='questions/approx-games-v3.json'&&x.questions===15));assert.ok(a.manualCandidates.length>0);assert.ok(a.manualCandidates.every(r=>r.unit));
+ const a=auditApproxUnits();assert.equal(a.total,709);assert.equal(a.withUnit,672);assert.equal(a.empty.length,37);assert.ok(a.empty.every(r=>r.file==='questions/legacy-v1.json'));assert.ok(a.empty.every(r=>/^Скольк[ои]/u.test(r.question)));
+ assert.ok(a.files.some(x=>x.path==='questions/approx-games-v1.json'&&x.questions===16));assert.ok(a.files.some(x=>x.path==='questions/approx-games-v2.json'&&x.questions===15));assert.ok(a.files.some(x=>x.path==='questions/approx-games-v3.json'&&x.questions===15));assert.ok(a.files.some(x=>x.path==='questions/approx-games-v4.json'&&x.questions===15));assert.ok(a.manualCandidates.length>0);assert.ok(a.manualCandidates.every(r=>r.unit));
  const report=JSON.parse(fs.readFileSync(path.join(root,'APPROX-UNIT-AUDIT.json')));assert.deepEqual(a,report);
 });
-test('approx units: all 694 snapshots render their own unit before the answer in both renderers, with no RNG or writes',()=>{
+test('approx units: all 709 snapshots render their own unit before the answer in both renderers, with no RNG or writes',()=>{
  const h=createSimulation();h.eval("Object.assign(options,{modes:['approx'],dice:false});newGame();game.dice=false;roll();Math.random=()=>{throw Error('RNG')}");
  const raw=h.storage.get('iskra-party:v1'),profiles=h.storage.get('kvip-player-profiles:v1');
  const result=h.eval(`(()=>{let checked=0;for(const q of QUIP_APPROX_QUESTIONS){
@@ -23,7 +23,7 @@ test('approx units: all 694 snapshots render their own unit before the answer in
    else if(html.includes('class="approx-unit"'))throw Error('Invented unit '+q.id);
   }checked++;
  }return checked;})()`);
- assert.equal(result,694);assert.equal(h.storage.get('iskra-party:v1'),raw);assert.equal(h.storage.get('kvip-player-profiles:v1'),profiles);
+ assert.equal(result,709);assert.equal(h.storage.get('iskra-party:v1'),raw);assert.equal(h.storage.get('kvip-player-profiles:v1'),profiles);
  assert.ok(!h.eval('approxUnitMarkup({unit:"м",answer:"SECRET_NUMBER"})').includes('SECRET_NUMBER'));
  assert.ok(h.eval('approxUnitMarkup({unit:"<м>"})').includes('&lt;м&gt;'));
 });

@@ -485,6 +485,11 @@
       "path": "questions/approx-games-v3.json",
       "immutable": false,
       "review": "GQ3: 15 historical, measurable, community-created in-game achievements; editorial/approx-games-v3-review.md"
+    },
+    {
+      "path": "questions/approx-games-v4.json",
+      "immutable": false,
+      "review": "GQ4: 15 date-scoped community and unusual gameplay magnitude questions with verified primary Guinness references"
     }
   ],
   "packs": [
@@ -807,6 +812,11 @@
       "path": "packs/approx-games-v3.json",
       "immutable": false,
       "review": "GQ3 general@64 adds 15 numeric videogame estimates; 7400 prior IDs retained"
+    },
+    {
+      "path": "packs/approx-games-v4.json",
+      "immutable": false,
+      "review": "GQ4 general@65 appends 15 numerical questions after general@64; keeps 7415 previous IDs unchanged"
     }
   ],
   "legacyCollisions": [

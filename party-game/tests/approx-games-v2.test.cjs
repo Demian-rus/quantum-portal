@@ -3,7 +3,7 @@ const test=require('node:test'),assert=require('node:assert/strict');
 const api=require('../scripts/content.cjs');
 test('GQ2 sourced videogame magnitude estimates are independent, append-only and historic packs remain immutable',()=>{
  const d=api.readDataset(),f=d.questions.filter(q=>q.pack==='approx-games-v2'),prev=d.packs.find(p=>p.id==='general'&&p.version===62),next=d.packs.find(p=>p.id==='general'&&p.version===63);
- assert.equal(f.length,15);assert.ok(prev&&next);assert.equal(d.questions.length,694);
+ assert.equal(f.length,15);assert.ok(prev&&next);assert.equal(d.questions.length,709);
  assert.deepEqual(f.map(q=>q.id),Array.from({length:15},(_,i)=>'approx-'+(23101+i)));
  assert.equal(new Set(f.map(q=>api.normalize(q.question))).size,15);
  assert.equal(new Set(f.map(q=>q.meta.measurementKey)).size,15);
