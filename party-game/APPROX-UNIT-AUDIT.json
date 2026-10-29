@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "total": 679,
-  "withUnit": 642,
+  "total": 694,
+  "withUnit": 657,
   "files": [
     {
       "path": "questions/legacy-v1.json",
@@ -46,6 +46,10 @@
     {
       "path": "questions/approx-games-v2.json",
       "questions": 15
+    },
+    {
+      "path": "questions/approx-games-v3.json",
+      "questions": 15
     }
   ],
   "unitCounts": {
@@ -74,7 +78,7 @@
     "запусков": 1,
     "звёзд": 1,
     "зеркал": 1,
-    "игроков": 2,
+    "игроков": 3,
     "канала": 1,
     "карты": 1,
     "кг": 65,
@@ -82,7 +86,7 @@
     "км": 40,
     "км/с": 2,
     "км/ч": 16,
-    "км²": 10,
+    "км²": 11,
     "км³": 2,
     "кораблей": 1,
     "костяшек": 1,
@@ -104,9 +108,10 @@
     "мл": 1,
     "млн °C": 1,
     "млн аккаунтов": 1,
-    "млн блоков": 1,
+    "млн блоков": 3,
     "млн долларов США": 2,
     "млн заклёпок": 1,
+    "млн запусков": 1,
     "млн зрителей": 1,
     "млн игроков": 2,
     "млн кирпичей": 1,
@@ -117,7 +122,8 @@
     "млн м³": 1,
     "млн пользователей": 1,
     "млн соединений": 2,
-    "млн человек": 2,
+    "млн человек": 3,
+    "млрд блоков": 1,
     "млрд клеток": 1,
     "млрд км": 1,
     "млрд лет": 1,
@@ -147,6 +153,7 @@
     "позвонков": 1,
     "полушария": 1,
     "полюса": 1,
+    "попыток": 1,
     "присосок": 1,
     "провинций": 2,
     "протона": 1,
@@ -169,15 +176,20 @@
     "трлн клеток": 1,
     "тромбоцитов": 1,
     "тс": 1,
+    "тыс. блоков": 2,
+    "тыс. воинов": 1,
+    "тыс. долларов США": 1,
     "тыс. км": 1,
     "тыс. кусочков": 1,
     "тыс. мячей": 1,
+    "тыс. отметок": 1,
     "тыс. плиток": 1,
+    "тыс. побед": 1,
     "ударов": 1,
     "циклов": 1,
     "ч": 1,
     "часа": 2,
-    "часов": 3,
+    "часов": 4,
     "штатов": 3,
     "штуки": 1,
     "яиц": 1
@@ -799,6 +811,105 @@
       "file": "questions/approx-games-v2.json",
       "question": "Сколько миллиардов лет занял бы обход всех возможных планет No Man’s Sky при открытии одной планеты каждую секунду?",
       "unit": "млрд лет",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23202",
+      "file": "questions/approx-games-v3.json",
+      "question": "Сколько миллиардов блоков понадобилось для воссоздания Дании в Minecraft в масштабе 1:1 в 2014 году?",
+      "unit": "млрд блоков",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23203",
+      "file": "questions/approx-games-v3.json",
+      "question": "Сколько миллионов блоков использовали при создании рекордной картины из пикселей в Minecraft в ноябре 2025 года?",
+      "unit": "млн блоков",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23204",
+      "file": "questions/approx-games-v3.json",
+      "question": "Сколько тысяч блоков составляла длина рекордного тоннеля в творческом режиме Minecraft в сентябре 2024 года?",
+      "unit": "тыс. блоков",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23205",
+      "file": "questions/approx-games-v3.json",
+      "question": "Сколько тысяч блоков красной пыли разместил игрок в самой длинной цепи редстоуна Minecraft к августу 2025 года?",
+      "unit": "тыс. блоков",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23206",
+      "file": "questions/approx-games-v3.json",
+      "question": "Примерно сколько миллионов блоков ушло на главную крепость подводной Атлантиды, созданной Jeracraft в Minecraft в 2017 году?",
+      "unit": "млн блоков",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23208",
+      "file": "questions/approx-games-v3.json",
+      "question": "Сколько тысяч воинов одновременно участвовало в демонстрационной битве Ultimate Epic Battle Simulator в январе 2017 года?",
+      "unit": "тыс. воинов",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23209",
+      "file": "questions/approx-games-v3.json",
+      "question": "Сколько миллионов человек успели сыграть в созданную внутри Minecraft ролевую игру Wynncraft к марту 2021 года?",
+      "unit": "млн человек",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23210",
+      "file": "questions/approx-games-v3.json",
+      "question": "Сколько миллионов раз игроки GTA Online запускали велосипедную гонку «Tour de Santos» к марту 2026 года?",
+      "unit": "млн запусков",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23211",
+      "file": "questions/approx-games-v3.json",
+      "question": "Сколько тысяч побед одержал игрок Ship во всех режимах Fortnite к апрелю 2024 года?",
+      "unit": "тыс. побед",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23212",
+      "file": "questions/approx-games-v3.json",
+      "question": "Сколько тысяч отметок «нравится» собрал внутриигровой снимок акулы «Océano Pacífico» в GTA V к марту 2017 года?",
+      "unit": "тыс. отметок",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23213",
+      "file": "questions/approx-games-v3.json",
+      "question": "Сколько тысяч долларов пожертвований собрал Kurt J Mac благодаря пешему путешествию по Minecraft к апрелю 2024 года?",
+      "unit": "тыс. долларов США",
       "reasons": [
         "scaled-unit: review explicit scale in the question; not an established defect"
       ]
