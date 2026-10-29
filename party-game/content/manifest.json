@@ -403,6 +403,11 @@
       "path": "cards/general-games-v7.json",
       "immutable": false,
       "review": "VG7: 50 accessible Russian-language game prompts, after exact 60-source dedup; editorial/general-games-v7-review.md"
+    },
+    {
+      "path": "cards/general-games-v8.json",
+      "immutable": false,
+      "review": "VG8: 40 broad-audience words and 10 game phrases; editorial/general-games-v8-review.md"
     }
   ],
   "questions": [
@@ -737,6 +742,11 @@
       "path": "packs/general-games-v7.json",
       "immutable": false,
       "review": "VG7 general@57 adds 50 broad-audience videogame prompts after 7119 pinned general@56, keeping all previous snapshots"
+    },
+    {
+      "path": "packs/general-games-v8.json",
+      "immutable": false,
+      "review": "VG8: general@58 appends 50 cards after general@57 with all 151 VG6 reserves still filtered"
     }
   ],
   "legacyCollisions": [
