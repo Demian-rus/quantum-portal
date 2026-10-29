@@ -1,0 +1,18 @@
+{
+  auto_https off
+  admin off
+}
+# Local template, no DNS / TLS issuance / external hostname configured.
+:8080 {
+  handle {
+    root * /srv/public
+    file_server
+  }
+}
+# A distinct origin (different local port here, separate API hostname later)
+# stays outside the existing PWA worker's same-origin cache handler. CORS stays
+# closed until the reviewed real public origin and authentication are configured.
+:8081 {
+  header Cache-Control "no-store"
+  reverse_proxy backend:8787
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "releaseEnabled": false,
+  "paymentsEnabled": false,
+  "authProvider": null,
+  "privateContentRoot": null,
+  "signingKeyFile": null,
+  "databaseUrlFile": null,
+  "ownerGrantProvisioned": false,
+  "publicOrigin": null
+}

@@ -1,0 +1,31 @@
+name: КВИП TASK034 commercial scaffold
+on:
+  push:
+    branches: ['feat/quip-task034-commercial-*', main]
+    paths: ['commercial/**', '.github/workflows/quip-commercial.yml']
+  pull_request:
+    paths: ['commercial/**', '.github/workflows/quip-commercial.yml']
+permissions: {contents: read}
+jobs:
+  contracts-and-public-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: node --test commercial/tests/*.test.cjs
+      - run: node commercial/deploy/plan.cjs --dry-run --sha "$GITHUB_SHA" --out "$RUNNER_TEMP/quip034-reviewed-build" > "$RUNNER_TEMP/quip034-plan.json"
+      - name: Validate inert compose syntax without pulling or starting containers
+        run: |
+          CADDY_IMAGE=caddy:2 NODE_IMAGE=node:22 POSTGRES_IMAGE=postgres:17 QUIP_REVIEWED_BUILD="$RUNNER_TEMP/quip034-reviewed-build" QUIP_DATABASE_PASSWORD_FILE=/dev/null docker compose -f commercial/deploy/compose.example.yml --profile future-deployment config --quiet
+      - uses: actions/upload-artifact@v4
+        with:
+          name: quip-task034-commercial-plan
+          path: |
+            ${{ runner.temp }}/quip034-plan.json
+            ${{ runner.temp }}/quip034-reviewed-build/build-manifest.json
+            ${{ runner.temp }}/quip034-reviewed-build/deployment-plan.json
+            ${{ runner.temp }}/quip034-reviewed-build/public-catalog.json
+          if-no-files-found: error

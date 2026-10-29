@@ -1,0 +1,1 @@
+{"schemaVersion":1,"status":"template-only-no-apk","webTarget":"public-web","engineCopies":1,"auth":"future-server-account","embeddedPaidPayload":false,"requiresBeforeBuild":["wrapper SDK selection and audit","application ID","signing outside git","Android offline/WebView/keyboard testing","separate owner release approval"]}
