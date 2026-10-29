@@ -6,6 +6,7 @@ require('./general-games-v8.test.cjs');
 require('./general-games-v9.test.cjs');
 require('./general-games-v10.test.cjs');
 require('./general-games-v11.test.cjs');
+require('./approx-games-v1.test.cjs');
 function selectRecoveryProfiles(h){h.eval("createPlayerProfile('Первый','coral');createPlayerProfile('Второй','cyan');selectedProfileIds=profileStore.profiles.map(p=>p.id)");}
 const root=path.resolve(__dirname,'..'),base=api.readDataset(),copy=()=>structuredClone(base);
 function hasError(data,code){return api.validate(data,{locks:false}).errors.some(e=>e.code===code)}

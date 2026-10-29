@@ -1,0 +1,146 @@
+{
+  "minecraft-sales": {
+    "url": "https://www.minecraft.net/en-us/15th-anniversary",
+    "checkedAt": "2026-10-29",
+    "reference": "Publisher, platform owner or Guinness World Records; see URL",
+    "measurementKey": "minecraft:sales-2023",
+    "scope": "historical or publication-dated figure",
+    "rounding": "300",
+    "sourceKind": "institutional publication"
+  },
+  "tetris-sales": {
+    "url": "https://tetris.com/news/the-tetris-company-celebrates-world-tetris-day",
+    "checkedAt": "2026-10-29",
+    "reference": "Publisher, platform owner or Guinness World Records; see URL",
+    "measurementKey": "tetris:total-sales-2026",
+    "scope": "historical or publication-dated figure",
+    "rounding": "520",
+    "sourceKind": "institutional publication"
+  },
+  "playstation2-sales": {
+    "url": "https://sonyinteractive.com/en/our-company/business-data-sales/",
+    "checkedAt": "2026-10-29",
+    "reference": "Publisher, platform owner or Guinness World Records; see URL",
+    "measurementKey": "playstation2:units-shipped",
+    "scope": "historical or publication-dated figure",
+    "rounding": "160",
+    "sourceKind": "institutional publication"
+  },
+  "nintendo-wii-sales": {
+    "url": "https://www.nintendo.co.jp/ir/en/finance/hard_soft/index.html",
+    "checkedAt": "2026-10-29",
+    "reference": "Publisher, platform owner or Guinness World Records; see URL",
+    "measurementKey": "nintendo:wii-hardware-lifetime",
+    "scope": "historical or publication-dated figure",
+    "rounding": "101,6",
+    "sourceKind": "institutional publication"
+  },
+  "mario-kart8-sales": {
+    "url": "https://www.nintendo.co.jp/ir/en/finance/software/switch.html",
+    "checkedAt": "2026-10-29",
+    "reference": "Publisher, platform owner or Guinness World Records; see URL",
+    "measurementKey": "nintendo:mario-kart8-deluxe-sales",
+    "scope": "historical or publication-dated figure",
+    "rounding": "71,5",
+    "sourceKind": "institutional publication"
+  },
+  "roblox-dau-q2-2025": {
+    "url": "https://ir.roblox.com/news/news-details/2025/Roblox-Reports-Second-Quarter-2025-Financial-Results/default.aspx",
+    "checkedAt": "2026-10-29",
+    "reference": "Publisher, platform owner or Guinness World Records; see URL",
+    "measurementKey": "roblox:q2-2025-dau",
+    "scope": "historical or publication-dated figure",
+    "rounding": "111,8",
+    "sourceKind": "institutional publication"
+  },
+  "roblox-hours-q2-2025": {
+    "url": "https://ir.roblox.com/news/news-details/2025/Roblox-Reports-Second-Quarter-2025-Financial-Results/default.aspx",
+    "checkedAt": "2026-10-29",
+    "reference": "Publisher, platform owner or Guinness World Records; see URL",
+    "measurementKey": "roblox:q2-2025-engagement-hours",
+    "scope": "historical or publication-dated figure",
+    "rounding": "27,4",
+    "sourceKind": "institutional publication"
+  },
+  "gta-v-first-day-sales": {
+    "url": "https://www.guinnessworldrecords.com/news/2013/10/confirmed-grand-theft-auto-breaks-six-sales-world-records-51900",
+    "checkedAt": "2026-10-29",
+    "reference": "Publisher, platform owner or Guinness World Records; see URL",
+    "measurementKey": "gtav:2013-first-day-copies",
+    "scope": "historical or publication-dated figure",
+    "rounding": "11,2",
+    "sourceKind": "records authority"
+  },
+  "witcher-3-sales-2026": {
+    "url": "https://www.cdprojekt.com/en/media/news/cd-projekt-red-wraps-up-the-first-half-of-2026/",
+    "checkedAt": "2026-10-29",
+    "reference": "Publisher, platform owner or Guinness World Records; see URL",
+    "measurementKey": "witcher3:total-sales-2026-09",
+    "scope": "historical or publication-dated figure",
+    "rounding": "65",
+    "sourceKind": "institutional publication"
+  },
+  "elden-ring-sales-2026": {
+    "url": "https://www.bandainamcoent.com/news/elden-ring-live-action-adaptation-in-theaters-march-3-2028",
+    "checkedAt": "2026-10-29",
+    "reference": "Publisher, platform owner or Guinness World Records; see URL",
+    "measurementKey": "eldenring:sales-2026-04",
+    "scope": "historical or publication-dated figure",
+    "rounding": "30",
+    "sourceKind": "institutional publication"
+  },
+  "fortnite-accounts-2023": {
+    "url": "https://www.epicgames.com/site/news/introducing-unreal-editor-for-fortnite-creator-economy-2-0-fab-and-more",
+    "checkedAt": "2026-10-29",
+    "reference": "Publisher, platform owner or Guinness World Records; see URL",
+    "measurementKey": "fortnite:registered-accounts-2023",
+    "scope": "historical or publication-dated figure",
+    "rounding": "500",
+    "sourceKind": "institutional publication"
+  },
+  "steam-peak-2025": {
+    "url": "https://steamcommunity.com/groups/steamworks/announcements/detail/528746884222682053",
+    "checkedAt": "2026-10-29",
+    "reference": "Publisher, platform owner or Guinness World Records; see URL",
+    "measurementKey": "steam:peak-concurrent-in-review-2025",
+    "scope": "historical or publication-dated figure",
+    "rounding": "42",
+    "sourceKind": "institutional publication"
+  },
+  "game-marathon-ddr": {
+    "url": "https://www.guinnessworldrecords.com/world-records/longest-video-games-marathon",
+    "checkedAt": "2026-10-29",
+    "reference": "Publisher, platform owner or Guinness World Records; see URL",
+    "measurementKey": "ddr:marathon-hours-2024",
+    "scope": "historical or publication-dated figure",
+    "rounding": "144",
+    "sourceKind": "records authority"
+  },
+  "pacman-perfect-score": {
+    "url": "https://www.guinnessworldrecords.com/world-records/first-highest-score-for-pac-man",
+    "checkedAt": "2026-10-29",
+    "reference": "Publisher, platform owner or Guinness World Records; see URL",
+    "measurementKey": "pacman:perfect-score-original",
+    "scope": "historical or publication-dated figure",
+    "rounding": "3333360",
+    "sourceKind": "records authority"
+  },
+  "minecraft-pyramid": {
+    "url": "https://www.guinnessworldrecords.com/world-records/412520-largest-minecraft-pyramid-survival",
+    "checkedAt": "2026-10-29",
+    "reference": "Publisher, platform owner or Guinness World Records; see URL",
+    "measurementKey": "minecraft:survival-pyramid-blocks-2013",
+    "scope": "historical or publication-dated figure",
+    "rounding": "2,63",
+    "sourceKind": "records authority"
+  },
+  "gta-v-first-day-revenue": {
+    "url": "https://www.guinnessworldrecords.com/world-records/88321-highest-revenue-generated-by-an-entertainment-product-in-24-hours",
+    "checkedAt": "2026-10-29",
+    "reference": "Publisher, platform owner or Guinness World Records; see URL",
+    "measurementKey": "gtav:2013-first-day-revenue",
+    "scope": "historical or publication-dated figure",
+    "rounding": "815,7",
+    "sourceKind": "records authority"
+  }
+}
