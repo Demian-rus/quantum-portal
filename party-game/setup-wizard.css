@@ -158,9 +158,9 @@
 /* TASK037: one native selector and one personal color per participant card. */
 .setup-wizard .wizard-page .participant-card{position:relative;display:flex;flex-direction:column;gap:10px;min-width:0;margin:0;padding:14px;border:1px solid #70639966;border-radius:14px;background:linear-gradient(145deg,#24203c,#191a2b);box-shadow:inset 0 1px #ffffff08}
 .setup-wizard .wizard-page .participant-card>span{font-size:10px;line-height:1.5;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
-.setup-wizard .wizard-page .participant-card .profile-selector{position:static;display:grid;grid-template-columns:22px minmax(0,1fr) 18px;align-items:center;gap:10px;min-width:0;min-height:48px;width:100%;padding:0;border:0;background:transparent;font-size:15px;line-height:1.5;text-align:left;white-space:normal;overflow-wrap:anywhere}
-.setup-wizard .participant-card .profile-selector>span:not(.profile-dot){grid-column:2;grid-row:1;min-width:0;white-space:normal;overflow-wrap:anywhere}
-.setup-wizard .participant-card .profile-selector>.profile-chevron{grid-column:3;grid-row:1;font-size:20px;color:var(--soft)}
+.setup-wizard .wizard-page .participant-card .profile-selector{position:static;display:grid;grid-template-columns:22px minmax(0,1fr) max-content;align-items:center;gap:10px;min-width:0;min-height:48px;width:100%;padding:0;border:0;background:transparent;font-size:15px;line-height:1.5;text-align:left;white-space:normal;overflow-wrap:anywhere}
+.setup-wizard .participant-card .profile-selector>span:not(.profile-dot):not(.profile-chevron){grid-column:2;grid-row:1;min-width:0;white-space:normal;overflow-wrap:anywhere}
+.setup-wizard .participant-card .profile-selector>.profile-chevron{grid-column:3;grid-row:1;margin:0;font-size:1.3em;color:var(--soft)}
 .setup-wizard .participant-card .profile-dot{grid-column:1;grid-row:1;width:20px;height:20px;margin:0;box-shadow:0 0 0 4px #ffffff08}
 .setup-wizard .participant-card .profile-selector::after{content:"";position:absolute;inset:0;border-radius:14px}
 .setup-wizard .participant-card .profile-selector::before{content:"";grid-column:1;grid-row:1;width:22px;height:22px;border:1px dashed #b2a6c780;border-radius:50%;box-sizing:border-box}
