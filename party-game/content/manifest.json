@@ -388,6 +388,11 @@
       "path": "cards/general-games-v3.json",
       "immutable": false,
       "review": "VG3: 50 Cyrillic videogame concepts, equipment, mechanics and places; editorial/general-games-v3-review.md"
+    },
+    {
+      "path": "cards/general-games-v4.json",
+      "immutable": false,
+      "review": "VG4: 50 carefully checked popular videogame terms and characters in Cyrillic; editorial/general-games-v4-review.md"
     }
   ],
   "questions": [
@@ -702,6 +707,11 @@
       "path": "packs/general-games-v3.json",
       "immutable": false,
       "review": "VG3 general@53 adds 50 gaming-mechanics tagged cards after unchanged general@52"
+    },
+    {
+      "path": "packs/general-games-v4.json",
+      "immutable": false,
+      "review": "VG4 general@54 appends 50 videogame-tagged prompts to unchanged general@53"
     }
   ],
   "legacyCollisions": [
