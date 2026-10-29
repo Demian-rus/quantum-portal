@@ -7356,7 +7356,7 @@ const PARTY_CARDS=Object.freeze([
   {"id":"word-077034","text":"ШАКО","type":"word","difficulty":"hard","categories":["videogames"],"pack":"general-games-v4","meta":{"game":"ЛИГА ЛЕГЕНД"}},
   {"id":"word-077035","text":"РАДАН","type":"word","difficulty":"hard","categories":["videogames"],"pack":"general-games-v4","meta":{"game":"ЭЛДЕН РИНГ"}},
   {"id":"word-077036","text":"МАРГИТ","type":"word","difficulty":"hard","categories":["videogames"],"pack":"general-games-v4","meta":{"game":"ЭЛДЕН РИНГ"}},
-  {"id":"word-077037","text":"МИКОЛЛА","type":"word","difficulty":"hard","categories":["videogames"],"pack":"general-games-v4","meta":{"game":"ЭЛДЕН РИНГ"}},
+  {"id":"word-077037","text":"МИКЕЛЛА","type":"word","difficulty":"hard","categories":["videogames"],"pack":"general-games-v4","meta":{"game":"ЭЛДЕН РИНГ"}},
   {"id":"word-077038","text":"МЕЛИНА","type":"word","difficulty":"hard","categories":["videogames"],"pack":"general-games-v4","meta":{"game":"ЭЛДЕН РИНГ"}},
   {"id":"word-077039","text":"БАРАТРУМ","type":"word","difficulty":"hard","categories":["videogames"],"pack":"general-games-v4","meta":{"game":"ДОТА"}},
   {"id":"word-077040","text":"АЕГИС","type":"word","difficulty":"hard","categories":["videogames"],"pack":"general-games-v4","meta":{"game":"ДОТА"}},
