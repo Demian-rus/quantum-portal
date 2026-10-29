@@ -47,12 +47,12 @@ async function completedMatch(page){
  try{git(['cat-file','-e',baseline+'^{commit}'])}catch{git(['fetch','--depth=1','origin',baseline])}
  const files=historicalRuntimeFiles(git,baseline,['sw.js','index.html','style.css']);
  assert.equal(files.length,50,'Exact v85 HTML must supply its original 47 scripts');
- const current=new Map(files.map(name=>[name,fs.readFileSync(path.join(root,'party-game',name))]));
+ const current=new Map([...files,'responsive-layout.css'].map(name=>[name,fs.readFileSync(path.join(root,'party-game',name))]));
  const previous=new Map(files.map(name=>[name,git(['show',baseline+':party-game/'+name])]));
  const write=sources=>{for(const[name,content]of sources)fs.writeFileSync(path.join(root,'party-game',name),content)};
  const cache=bytes=>bytes.toString().match(/const CACHE='([^']+)'/)[1];
  const oldCache=cache(previous.get('sw.js')),newCache=cache(current.get('sw.js'));
- assert.match(oldCache,/v85/);assert.match(newCache,/^kvip-pwa-v98-20261028-profile-focus-fix$/);assert.notEqual(oldCache,newCache);
+ assert.match(oldCache,/v85/);assert.match(newCache,/^kvip-pwa-v99-20261028-responsive-candidate$/);assert.notEqual(oldCache,newCache);
  const browser=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
  const ctx=await browser.newContext({viewport:{width:390,height:844},hasTouch:true}),page=await ctx.newPage(),errors=[];
  page.on('pageerror',e=>errors.push(e.message));

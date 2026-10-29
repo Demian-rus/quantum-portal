@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "sourceBase": "4b84dc88bc39e0b0b4145dce240a0a66d964248a",
+  "sourceBase": "89a980fce1c6361936b3a96b5b3412beb738a436",
   "files": [
     "app.js",
     "approx-questions.js",
@@ -48,6 +48,7 @@
     "profile-backup-view.js",
     "profile-backup.js",
     "profile-views.js",
+    "responsive-layout.css",
     "result-review-view.js",
     "result-review.js",
     "risk-planner.js",

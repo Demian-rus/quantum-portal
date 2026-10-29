@@ -1,0 +1,73 @@
+/* TASK034 B: local flow/scroll corrections. No app scaling or game state. */
+/* Keep the approved menu's top, width, buttons and artwork. Its lower bound
+   reserves the separate Other Games control, even after a saved team appears. */
+.scene--home{--home-menu-top:43%;--home-bottom:9;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:var(--home-menu-top) minmax(0,1fr) auto calc(var(--home-bottom) * var(--kvip-locked-vh,1dvh) + env(safe-area-inset-bottom));padding-inline:env(safe-area-inset-left) env(safe-area-inset-right)}
+.scene--home.has-team-save{--home-menu-top:34%}
+.scene--home .home-menu,.scene--home.has-team-save .home-menu{position:relative;left:auto;top:auto;bottom:auto;transform:none;grid-row:2;justify-self:center;min-height:0;height:100%;max-width:100%;align-content:start;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin}
+.scene--home .other-games-menu{position:relative;left:auto;bottom:auto;transform:none;grid-row:3;justify-self:center;max-width:100%;margin-top:12px}
+.scene--home .other-games-menu:hover:not(:disabled),.scene--home .other-games-menu:active:not(:disabled){transform:none}
+.scene--home .home-action{min-width:0;white-space:normal;overflow-wrap:anywhere}
+.scene--home .home-footnote{max-height:calc(6 * var(--kvip-locked-vh,1dvh) - 4px);overflow-y:auto;overflow-x:hidden;overflow-wrap:anywhere;overscroll-behavior:contain}
+@media(max-height:650px){.scene--home{--home-menu-top:40%;--home-bottom:8}.scene--home .home-footnote{max-height:calc(5 * var(--kvip-locked-vh,1dvh) - 4px)}}
+@media(max-height:450px) and (orientation:landscape){.scene--home{--home-menu-top:32%;--home-bottom:12}.scene--home .home-footnote{max-height:calc(9 * var(--kvip-locked-vh,1dvh) - 4px)}}
+
+/* Pointer targets grow without moving/painting the accepted score header. */
+@media(min-height:481px){.scene--game .match-team{position:relative}.scene--game .match-team::before{content:"";position:absolute;inset:-2px;pointer-events:auto}}
+.scene-back,#rules-understood{min-height:44px}
+
+/* Text can reflow inside its own surface instead of covering neighbouring
+   controls. Existing short labels retain their original geometry. */
+.dialog{min-width:0;overflow-wrap:anywhere}
+.dialog .button{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.profile-dialog-header h2,.backup-dialog-header h2{min-width:0;overflow-wrap:anywhere}
+.profile-choice{min-width:0}
+.profile-choice>span:not(.profile-dot){min-width:0;overflow-wrap:anywhere}
+.profile-choice small{flex-shrink:0;max-width:40%;white-space:normal;overflow-wrap:anywhere}
+.stat-metric span,.stat-mode,.backup-profiles li>span{overflow-wrap:anywhere}
+.setup-wizard .wizard-steps button{min-width:0;flex-wrap:wrap;overflow-wrap:anywhere}
+.setup-wizard .choices button,.setup-wizard .choices label>span{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.setup-wizard .slider-title{flex-wrap:wrap;align-items:flex-start}
+.setup-wizard #mode-toggles .mode-tile-copy strong{overflow-wrap:anywhere}
+.scene--preferences .choices{flex-wrap:wrap}
+.scene--preferences .choices button{min-width:0;white-space:normal;overflow-wrap:anywhere}
+.scene--preferences .button{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+#close-rules{flex:0 0 auto;min-width:44px;width:max-content;min-height:44px;height:auto;padding-inline:4px}
+.setup-wizard .game-type-choice{grid-template-columns:minmax(34px,max-content) minmax(0,1fr) minmax(22px,max-content)}
+.setup-wizard .game-type-choice strong{min-width:0;overflow-wrap:anywhere}
+.setup-wizard .finish-choices span{min-width:0;grid-template-columns:minmax(0,1fr)}
+.setup-wizard #mode-toggles .mode-tile-copy{min-width:0;max-width:100%}
+.setup-wizard #mode-toggles .mode-tile-copy b,.setup-wizard #mode-toggles .mode-tile-copy strong{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.preferences-title,.statistics-panel h3,.rules-header h2,.setup-wizard .wizard-rule header h2{min-width:0;overflow-wrap:anywhere}
+.scene--game .stable-round .round-top{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin}
+@media(min-height:481px){
+ .scene--game .play-card:has(>.stable-round) .play-card-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(74px,max-content);grid-template-rows:44px;padding-right:0;gap:0;height:44px;min-height:44px;flex:0 0 44px;align-items:center}
+ .scene--game .play-card:has(>.stable-round) #exit-game,.scene--game .play-card:has(>.stable-round) #timer-pause-control{position:static;transform:none;grid-row:1;justify-self:end}
+ .scene--game .play-card:has(>.stable-round) #timer-pause-control{grid-column:1}
+ .scene--game .play-card:has(>.stable-round) #exit-game{grid-column:2;margin-inline-start:10px}
+ .scene--game .stable-round .round-top{justify-content:safe center;align-content:safe center}
+}
+/* At larger text sizes the review list keeps a usable row; the surrounding
+   review surface may scroll when headings and confirmation no longer fit. */
+.scene--game .is-result-review{grid-template-rows:auto auto auto minmax(132px,1fr) auto;overflow-y:auto;overscroll-behavior:contain}
+.scene--game .is-result-review>.button,.scene--game .minor-action .button{white-space:normal;overflow-wrap:anywhere;max-width:100%}
+.scene--game .team-roster h3{min-width:0;overflow-wrap:anywhere}
+.result-history-dialog .dialog-close{flex:0 0 auto;width:max-content;min-width:44px;padding-inline:4px}
+/* Preserve zero-inset coordinates; respect real left/right cutouts when present. */
+.scene--game{padding-left:max(clamp(9px,2vw,26px),env(safe-area-inset-left));padding-right:max(clamp(9px,2vw,26px),env(safe-area-inset-right))}
+@media(max-width:700px){.scene--game{padding-left:max(9px,env(safe-area-inset-left));padding-right:max(9px,env(safe-area-inset-right))}}
+.setup-wizard{padding-inline:env(safe-area-inset-left) env(safe-area-inset-right)}
+.scene-back{left:calc(13px + env(safe-area-inset-left))}
+.scene--home .home-footnote{padding-inline:env(safe-area-inset-left) env(safe-area-inset-right)}
+.setup-wizard .wizard-page p,.setup-wizard .wizard-page small{overflow-wrap:anywhere}
+/* Large text remains readable inside the fixed card: scrolling changes only
+   its content, never the hidden/open/play anchor or dimensions. */
+.scene--game .stable-round .round-fixed-card .challenge-card{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain}
+
+.scene--game .is-ready .ready-content .play-title,.scene--game .is-ready .ready-content .play-title em{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.scene--game .is-ready .ready-content{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain}
+/* Intrinsic timer text can grow independently of its old fixed circle at 200%.
+   Keep the normal circle size; allow enlarged text to grow it and wrap the row
+   inside the existing vertical scroller instead of painting over ratings. */
+.scene--game .stable-round .round-top .timer-ring,.scene--game .stable-round .round-top:has(.blitz-status) .timer-ring{min-width:max-content;min-height:max-content;height:auto;aspect-ratio:1}
+.scene--game .stable-round .round-top .timer-dial{display:flex;flex-wrap:wrap;justify-content:center;max-width:100%}
+.scene--game .stable-round .round-top .timer-dial>.card-rating{flex:0 0 auto}
