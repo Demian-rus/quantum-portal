@@ -42,9 +42,9 @@ module.exports=async function thematicUI(browser,url){
    await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.promptTypes=['word'];options.finishType='rounds';options.rounds=2;options.dice=false;options.modifierChance=100;options.complications=true;Math.random=()=>0;chooseStartingTeam=()=>0;renderOptions()});
    await startFromSetup(page);await page.locator('[data-action="roll"]').click();await assertRoundSource(page,topic.source);
    await page.locator('[data-action="toggle-word"]').click();if(device.name==='phone')await screenshot(page,topic,'phone-round');
-   await page.locator('[data-action="start-timer"]').click();await page.locator('[data-action="base-now"]').click();
+   await page.locator('button[data-action="start-timer"]').click();await page.locator('[data-action="base-now"]').click();
    assert.equal(await page.evaluate(()=>game.history[0].outcome),'base-only');assert.deepEqual(await page.evaluate(()=>game.scores),awardTo==='setter'?[1,0]:[0,1]);
-   assert.equal(await page.evaluate(()=>game.phase),'ready');await page.locator('[data-action="roll"]').click();await assertRoundSource(page,topic.source);await page.locator('[data-action="toggle-word"]').click();await page.locator('[data-action="start-timer"]').click();await page.locator('[data-action="correct-now"]').click();
+   assert.equal(await page.evaluate(()=>game.phase),'ready');await page.locator('[data-action="roll"]').click();await assertRoundSource(page,topic.source);await page.locator('[data-action="toggle-word"]').click();await page.locator('button[data-action="start-timer"]').click();await page.locator('[data-action="correct-now"]').click();
    assert.equal(await page.evaluate(()=>game.phase),'review');assert.equal(await page.evaluate(()=>profileStore.recent.length),0);await page.locator('[data-action="confirm-results"]').click();
    assert.equal(await page.evaluate(()=>game.phase),'results');assert.equal(await page.evaluate(()=>profileStore.recent.length),1);assert.equal(await page.evaluate(()=>game.contentPack.id),topic.id);await page.locator('[data-action="again"]').click();assert.equal(await page.evaluate(()=>game.roundIndex),0);assert.equal(await page.evaluate(()=>game.contentPack.id),topic.id);
    if(device.name==='phone'){
@@ -52,7 +52,7 @@ module.exports=async function thematicUI(browser,url){
      await page.evaluate(mode=>{options.modes=[mode];options.dice=false;options.complications=mode!=='secret';options.modifierChance=100;newGame();roll()},mode);await assertRoundSource(page,topic.source);
      if(mode==='secret')assert.notEqual(await page.evaluate(()=>game.current.methodId),'sing');
      if(mode==='blitz'){
-      assert.equal(await page.evaluate(()=>new Set(game.current.blitzWords).size),3);await page.locator('[data-action="toggle-word"]').click();await page.locator('[data-action="start-timer"]').click();
+      assert.equal(await page.evaluate(()=>new Set(game.current.blitzWords).size),3);await page.locator('[data-action="toggle-word"]').click();await page.locator('button[data-action="start-timer"]').click();
       for(let i=0;i<3;i++)await page.locator('[data-action="blitz-correct"]').click();
       await page.locator('[data-action="base"]').click();assert.equal(await page.evaluate(()=>game.history[0].reward),2);
      }else if(mode==='approx'){

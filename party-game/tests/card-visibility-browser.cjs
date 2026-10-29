@@ -37,7 +37,7 @@ async function state(page,visible){
     assert.ok(fixed.width>=44&&fixed.height>=44);
     if(width===320&&mode==='talk'&&difficulty==='easy')await page.screenshot({path:'artifacts/quip-card-visibility/hidden-320.png',animations:'disabled'});
     await card(page).click();await state(page,true);sameBox(await box(page),fixed,'First reveal moved card');
-    if(difficulty==='easy')await page.locator('[data-action="start-timer"]').click();
+    if(difficulty==='easy')await page.locator('button[data-action="start-timer"]').click();
     else{
      assert.equal(await page.evaluate(()=>game.phase),'countdown');
      const scheduled=await clock(page);await card(page).tap();await state(page,false);await card(page).tap();await state(page,true);

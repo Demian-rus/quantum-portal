@@ -67,7 +67,7 @@ module.exports=async function awardPolicy(browser,url){
     await startFromSetup(page);
     assert.equal(await page.locator('#role-a').textContent(),'ЗАГАДЫВАЕТ');assert.equal(await page.locator('#role-b').textContent(),'ОТГАДЫВАЕТ');
     assert.match(await page.locator('.ready-content .play-subtitle').textContent(),new RegExp('Очки получает '+(value==='setter'?'Молнии':'Кометы')));
-    await page.locator('[data-action="roll"]').click();await page.locator('[data-action="toggle-word"]').click();await page.locator('[data-action="start-timer"]').click();
+    await page.locator('[data-action="roll"]').click();await page.locator('[data-action="toggle-word"]').click();await page.locator('button[data-action="start-timer"]').click();
     await page.locator('[data-action="correct-now"]').click();
     const expected=value==='setter'?[1,0]:[0,1];assert.deepEqual(await page.evaluate(()=>game.scores),expected);
     assert.equal(await page.evaluate(()=>game.history[0].team),value==='setter'?'Молнии':'Кометы');

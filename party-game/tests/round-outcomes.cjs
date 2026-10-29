@@ -14,7 +14,7 @@ async function fixture(page,{modifier=true,policy='setter',mode='talk',long=fals
   newGame();game.rulesVersion=version;roll();game.dice=true;options.dice=true;persist();render();
  },{modifier,policy,mode,long,version});
  await page.locator('#scene-game').evaluate(el=>Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{}))));
- await page.locator('[data-action="toggle-word"]').click();await page.locator('[data-action="start-timer"]').click();
+ await page.locator('[data-action="toggle-word"]').click();await page.locator('button[data-action="start-timer"]').click();
 }
 async function controls(page,phase,modified){
  const root=page.locator('.verdict-actions');
@@ -94,8 +94,13 @@ module.exports=async function outcomes(browser,url){
    await fixture(page,{mode:'blitz'});
    if(device.height<=390){
     await shot(page,device.name+'-blitz-playing');
-    const timer=await page.evaluate(()=>{const a=document.querySelector('.timer-ring').getBoundingClientRect(),b=document.querySelector('.timer-pause').getBoundingClientRect();return {ring:{left:a.left,right:a.right,top:a.top,bottom:a.bottom},pause:{left:b.left,right:b.right,top:b.top,bottom:b.bottom,w:b.width,h:b.height}}});
-    assert.ok(timer.pause.w>=44&&timer.pause.h>=44);assert.ok(timer.pause.bottom<=timer.ring.top-2||timer.pause.right<=timer.ring.left-2||timer.pause.left>=timer.ring.right+2,'Pause overlaps timer: '+JSON.stringify(timer));
+    const timer=await page.evaluate(()=>{
+     const control=document.querySelector('.timer-ring[role="button"][data-action="pause"]'),box=n=>{const b=n.getBoundingClientRect();return {left:b.left,right:b.right,top:b.top,bottom:b.bottom,w:b.width,h:b.height};};
+     if(!control)throw Error('Easy Blitz must use the ring as its pause control');
+     return {ring:box(control),ratings:[...document.querySelectorAll('[data-feedback]')].map(box),oldPause:document.querySelectorAll('.timer-pause').length};
+    });
+    assert.equal(timer.oldPause,0,'No separate pause control');assert.ok(timer.ring.w>=44&&timer.ring.h>=44,'The ring retains a reachable pause hit area');
+    for(const rating of timer.ratings)assert.ok(timer.ring.bottom<=rating.top||timer.ring.right<=rating.left||timer.ring.left>=rating.right||timer.ring.top>=rating.bottom,'Timer control overlaps rating: '+JSON.stringify({timer,rating}));
    }
    for(let i=0;i<3;i++)await page.locator('[data-action="blitz-correct"]').click();
    await controls(page,'judge',true);await page.locator('[data-action="base"]').click();assert.deepEqual(await page.evaluate(()=>game.scores),[2,0]);

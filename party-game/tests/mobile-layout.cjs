@@ -208,7 +208,7 @@ function fitsViewport(g,device,stage) {
         'Long card overlaps action region: '+JSON.stringify(longTask));
 
       await page.locator('.is-task .challenge-card[data-action="toggle-word"]').click();
-      await page.locator('.is-task [data-action="start-timer"]').click();
+      await page.locator('.is-task button[data-action="start-timer"]').click();
       await page.locator('#active-timer').waitFor({timeout:2000});
       fitsViewport(await take(page),device,'play');
       await page.evaluate(()=>{game.current.deadline=Date.now()-5;tick()});

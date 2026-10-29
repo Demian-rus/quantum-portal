@@ -45,6 +45,22 @@ function modeSettingsKeydown(event){
     else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
   }
 }
+// Only UI preference writes are coalesced. options is authoritative on every input.
+function setupRangeDefinitions(){
+ const policy=QUIP_MODIFIER_SELECTION_POLICIES[QUIP_MODIFIER_SELECTION_VERSION];
+ return [['modifier-chance','modifierChance',policy.minChance,policy.maxChance,policy.step],
+  ['base-duration','duration',30,90,5],['target-score','targetScore',15,100,5],['custom-rounds','rounds',2,100,2]];
+}
+let setupRangeWrite=null;
+function flushSetupRangeWrite(){
+ if(setupRangeWrite===null)return;
+ clearTimeout(setupRangeWrite);setupRangeWrite=null;
+ if(window.QuipTeams?.active)QuipTeams.persistSetupRanges();else persist();
+}
+function scheduleSetupRangeWrite(){
+ if(setupRangeWrite!==null)clearTimeout(setupRangeWrite);
+ setupRangeWrite=setTimeout(flushSetupRangeWrite,150);
+}
 // Setup selection guards and existing UI event handlers, extracted without changing their bodies.
 function selectAwardTo(value){
   if(!['setter','guesser'].includes(value)||value===options.awardTo)return;
@@ -91,20 +107,23 @@ function registerSetupControls() {
       renderOptions();persist();sfx('button');
     });
   });
-  const modifierPolicy=QUIP_MODIFIER_SELECTION_POLICIES[QUIP_MODIFIER_SELECTION_VERSION];
-  for(const [id,key,min,max,step] of [
-    ['modifier-chance','modifierChance',modifierPolicy.minChance,modifierPolicy.maxChance,modifierPolicy.step],
-    ['base-duration','duration',30,90,5],
-    ['target-score','targetScore',15,100,5],
-    ['custom-rounds','rounds',2,100,2]
-  ]) {
-    $(id).addEventListener('input',event=>{
+  for(const [id,key,min,max,step] of setupRangeDefinitions()) {
+    const input=$(id);
+    input.addEventListener('input',event=>{
       const requested=Number(event.target.value);
-      if(!Number.isFinite(requested)){renderOptions();return;}
+      if(!Number.isFinite(requested)){renderSetupValues();return;}
       options[key]=Math.max(min,Math.min(max,step*Math.round(requested/step)));
-      renderOptions();persist();
+      input.value=String(options[key]);
+      renderSetupValues();
+      document.dispatchEvent(new CustomEvent('quip:setup-values'));
+      scheduleSetupRangeWrite();
     });
+    for(const event of ['change','blur','pointercancel'])input.addEventListener(event,flushSetupRangeWrite);
   }
+  // Commit the last live value before navigation, START, reload or backgrounding.
+  document.addEventListener('click',event=>{if(!event.target.matches('input[type="range"]'))flushSetupRangeWrite();},true);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)flushSetupRangeWrite();});
+  for(const event of ['pagehide','beforeunload','popstate'])window.addEventListener?.(event,flushSetupRangeWrite);
   for(const [id,key] of [['mode-toggles','modes'],['content-toggles','promptTypes']]) {
     $(id).addEventListener('change',event=>{
       if(!event.target.matches('input[type="checkbox"]'))return;

@@ -6,7 +6,7 @@ const {settled}=require('./task024-fixtures.cjs');
 const URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/',folder='artifacts/quip-teams';
 const names=[['ДС','ПА'],['Мама','Папа']];
 const idle=async p=>{await p.evaluate(()=>QuipTeams.whenIdle());assert.equal(await p.evaluate(()=>QuipTeams.blocked),false,await p.locator('#team-save-message').textContent());};
-async function click(p,selector){await p.locator(selector).click();await idle(p);}
+async function click(p,selector){if(selector==='#timer-pause-control'&&!await p.locator(selector).count())selector='.timer-ring[role="button"]';else if(selector==='.timer-ring[role="button"]'&&!await p.locator(selector).count())selector='#timer-pause-control';await p.locator(selector).click();await idle(p);}
 async function range(p,id,value){await p.locator('#'+id).evaluate((node,value)=>{node.value=value;node.dispatchEvent(new Event('input',{bubbles:true}));node.dispatchEvent(new Event('change',{bubbles:true}));},String(value));}
 async function config(p,{mode='talk',rounds=12,goal=null,complications=false,risk=false,difficulty='easy'}={}){
  await p.locator('[data-wizard-step="3"]').click();await p.locator('[data-setting="difficulty"] [data-value="'+difficulty+'"]:visible').click();
@@ -26,7 +26,7 @@ async function start(p,settings={},bits=[0,0,0]){
  assert.equal(await p.evaluate(()=>activeScene),'game');assert.equal(await p.evaluate(()=>game.awardTo),'setter');return protectedBefore;
 }
 async function select(p){await click(p,'[data-action="roll"]');await p.waitForFunction(()=>game.phase==='task');await idle(p);}
-async function begin(p){await click(p,'[data-action="toggle-word"]');if(await p.evaluate(()=>game.phase==='task'))await click(p,'[data-action="start-timer"]');await p.waitForFunction(()=>game.phase==='play');await idle(p);}
+async function begin(p){await click(p,'[data-action="toggle-word"]');if(await p.evaluate(()=>game.phase==='task'))await click(p,'button[data-action="start-timer"]');await p.waitForFunction(()=>game.phase==='play');await idle(p);}
 async function answer(p,{success=true,base=false,shared='both',blitzSkip=false}={}){
  await select(p);const c=await p.evaluate(()=>JSON.parse(JSON.stringify(game.current))),before=await p.evaluate(()=>game.scores.slice()),team=await p.evaluate(()=>currentTeamIndex());
  if(c.modeId==='approx'){assert.match(await p.locator('.play-subtitle').textContent(),/Каждая команда/);await click(p,'[data-action="reveal-approx"]');await click(p,'[data-action="award-'+shared+'"]');}
@@ -54,7 +54,7 @@ if(require.main===module)(async()=>{fs.mkdirSync(folder,{recursive:true});const 
     const duel=await start(p,{rounds:[4,8,12][index]},[index%2,1,0]);await geometry(p,'handoff '+viewport.width,measurements);await p.screenshot({path:folder+'/'+viewport.width+'-handoff.png'});
     for(let i=0;i<[4,8,12][index];i++){
      const r=await p.evaluate(()=>QuipTeamsEngine.roles(game));assert.equal(r.teamIndex,(index%2+i)%2);assert.equal(r.setterPlayerIndex,([1,0][r.teamIndex]+Math.floor(i/2))%2);
-     if(i===1){await select(p);const hidden=await geometry(p,'hidden '+viewport.width,measurements);await click(p,'[data-action="toggle-word"]');const visible=await geometry(p,'visible '+viewport.width,measurements);assert.deepEqual(visible.card,hidden.card,'v88 task card stays fixed on reveal');await click(p,'[data-action="start-timer"]');const playing=await geometry(p,'timer '+viewport.width,measurements);assert.deepEqual(playing.card,hidden.card,'v88 task card stays fixed in timer');await click(p,'[data-action="correct-now"]');}
+     if(i===1){await select(p);const hidden=await geometry(p,'hidden '+viewport.width,measurements);await click(p,'[data-action="toggle-word"]');const visible=await geometry(p,'visible '+viewport.width,measurements);assert.deepEqual(visible.card,hidden.card,'v88 task card stays fixed on reveal');await click(p,'button[data-action="start-timer"]');const playing=await geometry(p,'timer '+viewport.width,measurements);assert.deepEqual(playing.card,hidden.card,'v88 task card stays fixed in timer');await click(p,'[data-action="correct-now"]');}
      else await answer(p,{success:i!==2});
     }
     assert.equal(await p.evaluate(()=>game.phase),'review');await click(p,'#match-team-a');await click(p,'#result-history-backdrop [data-review-tab="'+(index%2)+'"]');await click(p,'#result-history-backdrop [data-review-turn="0"] [data-review-choice="failed"]');assert.equal(await p.evaluate(()=>document.activeElement.closest('#result-history-backdrop')!==null&&document.activeElement.dataset.reviewChoice==='failed'),true,'editing modal retains focus inside the active editor');await p.keyboard.press('Escape');await idle(p);assert.equal(await p.evaluate(()=>document.activeElement.id),'match-team-a','Escape restores the history trigger');await click(p,'.is-result-review [data-review-tab="'+(index%2)+'"]');
@@ -78,9 +78,9 @@ if(require.main===module)(async()=>{fs.mkdirSync(folder,{recursive:true});const 
    const ctx=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,reducedMotion:'reduce'}),p=await ctx.newPage();
    try{await p.goto(URL+'?setup=wizard');await start(p,{mode,rounds:4,complications:true,risk:true},[1,0,1]);const first=await answer(p,{base:mode==='yesno',blitzSkip:true});if(!['approx'].includes(mode))assert.ok(first.c.complication);if(mode==='approx')assert.deepEqual(first.after,[1,1]);
     // Pause in a real active task, restore its exact snapshot cold and offline.
-    await select(p);if(mode!=='approx'){await begin(p);await click(p,'#timer-pause-control');}
+    await select(p);if(mode!=='approx'){await begin(p);await click(p,'.timer-ring[role="button"]');}
     const before=await raw(p),snapshot=await p.evaluate(()=>JSON.stringify(game));await p.evaluate(async()=>{await navigator.serviceWorker.ready});await p.waitForFunction(()=>!!navigator.serviceWorker.controller);await ctx.setOffline(true);await p.reload();await click(p,'#continue-teams');assert.equal(await raw(p),before);assert.equal(await p.evaluate(()=>JSON.stringify(game)),snapshot,'offline full snapshot '+mode);
-    if(mode!=='approx'){await click(p,'#timer-pause-control');if(mode==='blitz'){for(let n=0;n<3;n++)await click(p,'[data-action="blitz-correct"]');await click(p,'[data-action="yes"]');}else await click(p,'[data-action="correct-now"]');}else{await click(p,'[data-action="reveal-approx"]');await click(p,'[data-action="award-a"]');}
+    if(mode!=='approx'){await click(p,'.timer-ring[role="button"]');if(mode==='blitz'){for(let n=0;n<3;n++)await click(p,'[data-action="blitz-correct"]');await click(p,'[data-action="yes"]');}else await click(p,'[data-action="correct-now"]');}else{await click(p,'[data-action="reveal-approx"]');await click(p,'[data-action="award-a"]');}
     console.log('TASK028 mode',mode,'real actions / modifiers / isolated save / offline restart PASS');
    }finally{await ctx.close();}
   }

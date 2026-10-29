@@ -2364,7 +2364,7 @@ test('TASK013 B historical paused Mixed and active v69-v71 snapshots keep contro
   const again=harness(store);again.eval('continueGame();render()');assert.equal(again.eval('JSON.stringify(game)'),before);assert.equal(store.get('iskra-party:v1'),raw);assert.equal(writes,0);
   assert.equal(again.eval('game.timerPolicyVersion'),undefined);
   if(phase==='paused'){
-   assert.equal(again.elements.get('timer-pause-control').dataset.action,'resume');assert.equal(again.elements.get('timer-pause-control').hidden,false);const remaining=again.eval('game.current.remainingMs');again.eval('resumeTimer()');
+   assert.match(again.eval('timerControlAttributes(false)'),/data-action="resume"/);const remaining=again.eval('game.current.remainingMs');again.eval('resumeTimer()');
    assert.equal(again.eval('game.current.paused'),false);assert.ok(Math.abs(again.eval('game.current.deadline')-Date.now()-remaining)<1000);
   }
  }

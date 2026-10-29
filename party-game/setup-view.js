@@ -25,7 +25,7 @@ function renderModeSettings(useSnapshot=false){
   });
   const settings={...options,modes:['sing']};
   // Presentation cache only: always derive eligibility from the real checker.
-  const {packPreferences,...stableSettings}=settings;
+  const {packPreferences,duration,targetScore,rounds,modifierChance,...stableSettings}=settings;
   const stamp={key:JSON.stringify({...stableSettings,...setupSongPolicy(settings)}),cards:PARTY_CARDS,
     questions:QUIP_APPROX_QUESTIONS,packs:QUIP_CONTENT_PACKS,config:getModeConfig,validate:checkContentPack};
   let available;
@@ -39,11 +39,9 @@ function renderModeSettings(useSnapshot=false){
   $('mode-source-availability').textContent=available?'':'Для «Напой» нет заданий с этими источниками на выбранной сложности. В «Секретке» песенный способ будет исключён, если доступны другие способы. Для прямого «Напой» измените источники, сложность или набор.';
   return available;
 }
-// DOM-only rendering of new-game and advanced settings; original behavior preserved.
-function renderOptions() {
-  let setupPack=null;
-  try{setupPack=getContentPack(options.contentPack);$('setup-pack-caption').textContent=setupPack.name;}
-  catch{$('setup-pack-caption').textContent='Набор недоступен';}
+// Numeric values never determine catalog eligibility. This small projection also
+// updates the actual controls, quick choices and all labels synchronously.
+function renderSetupValues(){
   for(const setting of ['difficulty','duration','rounds','targetScore','awardTo']) {
     document.querySelectorAll('.choices[data-setting="'+setting+'"] button').forEach(button=>{
       const selected=String(options[setting])===button.dataset.value;
@@ -55,6 +53,7 @@ function renderOptions() {
   $('base-duration-value').textContent=options.duration+' с';
   $('target-score-value').textContent=ruPoints(options.targetScore);
   $('rounds-value').textContent=ruTurns(options.rounds);
+  $('modifier-chance-value').textContent=options.modifierChance+'%';
   $('base-duration-value-advanced').textContent=options.duration+' с';
   $('finish-score').checked=options.finishType==='score';
   $('finish-rounds').checked=options.finishType==='rounds';
@@ -69,6 +68,13 @@ function renderOptions() {
     const input=$(id);
     if(input && document.activeElement!==input)input.value=String(value);
   }
+}
+// DOM-only rendering of new-game and advanced settings; original behavior preserved.
+function renderOptions() {
+  let setupPack=null;
+  try{setupPack=getContentPack(options.contentPack);$('setup-pack-caption').textContent=setupPack.name;}
+  catch{$('setup-pack-caption').textContent='Набор недоступен';}
+  renderSetupValues();
   $('mode-selection-count').textContent=options.modes.length+' ИЗ '+DEFAULT_MODES.length;
   $('content-selection-count').textContent=options.promptTypes.length+' ИЗ '+PROMPT_TYPES.length;
   document.querySelectorAll('#mode-toggles input').forEach(input=>{

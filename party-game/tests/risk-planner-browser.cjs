@@ -5,7 +5,7 @@ const URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/',folder=
 const snapshot=p=>p.evaluate(()=>({raw:localStorage.getItem(STORAGE_KEY),game:JSON.stringify(game),profiles:localStorage.getItem(QUIP_PROFILES_KEY),memory:JSON.stringify(taskMemory)}));
 async function settle(page,choice='no'){
  await page.locator('[data-action="roll"]').click();await page.locator('.challenge-card').click();
- await page.locator('[data-action="start-timer"]').click();await page.evaluate(()=>finishTimer('early'));
+ await page.locator('button[data-action="start-timer"]').click();await page.evaluate(()=>finishTimer('early'));
  await page.locator('[data-action="'+choice+'"]').click();
 }
 (async()=>{
@@ -17,7 +17,7 @@ async function settle(page,choice='no'){
    await page.evaluate(()=>{soundOn=false;chooseStartingTeam=()=>0;Math.random=()=>0;Object.assign(options,{modes:['talk'],awardTo:'guesser',dice:false,difficulty:'easy',complications:false,riskRounds:true,finishType:'rounds',rounds:6});newGame()});
    await settle(page,'yes');await settle(page,'yes');await page.locator('[data-action="roll"]').click();
    assert.equal(await page.evaluate(()=>game.current.risk),true);assert.deepEqual(await page.evaluate(()=>game.riskPlannerState),{eligible:[0,1],risks:[0,1]});
-   await page.locator('.challenge-card').click();await page.locator('[data-action="start-timer"]').click();
+   await page.locator('.challenge-card').click();await page.locator('button[data-action="start-timer"]').click();
    const plan=await page.evaluate(()=>JSON.stringify(game.riskPlannerState));
    await page.locator('[data-feedback="report"]').click();const remain=await page.evaluate(()=>game.current.feedbackHold.remainingMs);
    await page.evaluate(()=>history.back());await page.waitForFunction(()=>!game.current.feedbackHold);assert.ok(await page.evaluate(()=>game.current.deadline-Date.now())>remain-1500);

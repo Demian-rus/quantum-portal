@@ -68,6 +68,10 @@ async function upgrade(browser,url){
    if(!navigator.serviceWorker.controller?.scriptURL.includes('qa-task013b-upgrade'))await Promise.race([changed,new Promise((_,reject)=>setTimeout(()=>reject(Error('v72 update timed out')),15000))]);
   });
   await page.waitForFunction(async({oldCache,newCache})=>await caches.has(newCache)&&!await caches.has(oldCache),{oldCache,newCache});
+  await page.waitForFunction(()=>navigator.serviceWorker.controller?.state==='activated');
+  const required=['./index.html',...Array.from(current.get('index.html').toString().matchAll(/(?:href|src)="(\.\/[^"?]+\.(?:css|js)\?v=\d+)"/g),m=>m[1])];
+  const cacheProof=await page.evaluate(async({name,required})=>{const cache=await caches.open(name),missing=[];for(const ref of required)if(!await cache.match(ref))missing.push(ref);return {name,controller:navigator.serviceWorker.controller?.scriptURL,state:navigator.serviceWorker.controller?.state,entries:(await cache.keys()).length,required:required.length,missing};},{name:newCache,required});
+  assert.equal(cacheProof.state,'activated');assert.deepEqual(cacheProof.missing,[],'Every real HTML/CSS/JS must be cached before network loss');console.log('TASK013_CACHE_PROOF '+JSON.stringify(cacheProof));
   await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
   assert.equal(await page.evaluate(()=>JSON.stringify(game)),snapshot.game);assert.equal(await page.evaluate(()=>JSON.stringify(taskMemory)),snapshot.memory);
   assert.deepEqual(await page.evaluate(()=>options),JSON.parse(snapshot.options));assert.equal(await page.evaluate(()=>localStorage.getItem(STORAGE_KEY)),snapshot.raw);
@@ -138,7 +142,7 @@ async function ui(browser,url,width,height){
   const fixed=await cardBox(page);const conditionGeometry=await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Scrolling moved card');
   if(width===320){await page.locator('.round-top,.round-condition-slot,.round-condition').evaluateAll(elements=>elements.forEach(el=>el.scrollTop=0));await page.screenshot({path:ART+'narrow-condition-after.png'})}
   await page.locator('.challenge-card[data-action="toggle-word"]').click();await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Reveal moved card');
-  await page.locator('[data-action="start-timer"]').click();await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Timer moved card');
+  await page.locator('button[data-action="start-timer"]').click();await fullCondition(page,LONG);sameBox(await cardBox(page),fixed,'Timer moved card');
   await page.locator('#exit-game').click();await setup(page);
   await setupStep(page,3);await page.locator('.choices[data-setting="difficulty"] [data-value="mixed"]').click();
   await page.evaluate(()=>{

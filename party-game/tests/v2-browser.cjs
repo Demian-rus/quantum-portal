@@ -96,7 +96,7 @@ async function configureOnly(page,id) {
     await blitz.locator('[data-action="roll"]').click();
     await blitz.waitForSelector('[data-action="toggle-word"]');
     await blitz.locator('[data-action="toggle-word"]').click();
-    await blitz.locator('[data-action="start-timer"]').click();
+    await blitz.locator('button[data-action="start-timer"]').click();
     assert.equal(await blitz.locator('.blitz-status').count(),1);
     const start=await blitz.evaluate(()=>game.current.deadline);
     for(const action of ['blitz-correct','blitz-skip','blitz-correct']){
