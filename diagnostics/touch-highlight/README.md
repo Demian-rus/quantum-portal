@@ -1,0 +1,15 @@
+# Native touch highlight hotfix
+
+Base: db20eabc7c2c71be18120fab230fd8103cb72517 (merged TASK037). Independent branch fix/quip-touch-highlight-20261029. No merge, PWA publication, category logic, game data or dictionary changes.
+
+On the exact base, a real Chromium Android-emulated touch reports `rgba(51, 181, 229, 0.4)` for the profile button, its enlarged ::after and the dialog controls. Pointerdown, pointerup, click and focusin were recorded. The source has no touch focus-visible outline, no authored blue shadow; modal z-index=20, source pseudo z-index=auto, and elementFromPoint identifies the modal above the source. The screenshot immediately after opening captures the residual blue header rectangle. With just the universal tap-color declaration it disappears; normal button and pseudo styles compute rgba(0,0,0,0). No delay, stacking change, outline reset or event handler is introduced.
+
+The existing universal box-sizing rule now also sets `-webkit-tap-highlight-color:transparent`, explicitly including ::before/::after and inherited hit descendants throughout party-game. All keyboard focus-visible rules and authored active animations remain byte-identical. No text selection/input behavior is disabled.
+
+Primary platform references: Apple Safari CSS Reference, `-webkit-tap-highlight-color` (alpha0 disables native highlight): https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariCSSRef/Articles/StandardCSSProperties.html ; Chromium LinkHighlights checks TapHighlightColor alpha before creating the compositor layer: https://chromium.googlesource.com/chromium/src/+/9d5d0c6635b31a4534ee1ade375e7eb29da4e1ab/third_party/blink/renderer/core/frame/link_highlights.cc . Native highlight is separate from the authored keyboard focus ring.
+
+Production diff: one CSS declaration, style46 loader and precache, candidate cache v104. Worker lifecycle and every runtime JS/data file are exact. Reviewed normalization reverses only those precise hunks before inherited source guards; negative controls keep unrelated edits visible. Current cache assertions follow v104; immutable historical caches stay fixed.
+
+Browser acceptance records trusted pointerdown, opening and focus/frame samples, normal/pseudo computed tap colors, actual source/modal hit tests, all 2+4 player slots, statistics profile selection, create/choose/back/close, wizard buttons, keyboard Enter/Space/Tab/Escape, text editing and authored active state. PNG, native compositor timeline and Playwright traces are artifacts. Browser emulation is not physical Android verification; owner must confirm absence of the transient flash on the real phone.
+
+Independent base CI issue: merged-main run40928711471 has raster Approx320 PNG inequality and a mode-settings offline reload load timeout under mobile-layout. PR207 equivalent-tree Game run40922781922 was16/16. These are recorded separately and must be reproduced against exact db20; no raster assertion or timeout is relaxed for this CSS hotfix.
