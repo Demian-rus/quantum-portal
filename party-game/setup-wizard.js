@@ -10,7 +10,7 @@
  function viewStamp(){
   // Pack preference history is not read by the settings renderer or validator.
   const {packPreferences,duration,targetScore,rounds,modifierChance,...settings}=options;
-  return {key:JSON.stringify([settings,selectedProfileIds,profileStoreProblem]),profiles:profileStore,
+  return {key:JSON.stringify([settings,selectedProfileIds,profileStoreProblem]),profiles:profileStore,catalogKey:JSON.stringify(settings),
    cards:PARTY_CARDS,questions:QUIP_APPROX_QUESTIONS,packs:QUIP_CONTENT_PACKS,config:getModeConfig,validate:checkContentPack,pool:getPackCardPool};
  }
  // app.boot has already rendered/validated the original controls before this
@@ -21,14 +21,15 @@
   const next=viewStamp();
   if(!renderedStamp||Object.keys(next).some(key=>next[key]!==renderedStamp[key])){
    // Cache only read-only results of the real renderer APIs, per exact
-   // settings/profile/catalog/function stamp. All native controls still render.
+   // settings/catalog/function stamp. All native controls still render.
    // The wrappers exist only during this synchronous projection; START and
    // gameplay always receive the original full validators and selectors.
-   let cached=projectionCache.get(next.key);
-   if(!cached||Object.keys(next).some(key=>next[key]!==cached.stamp[key])){
+   let cached=projectionCache.get(next.catalogKey);
+   // Profile identity changes repaint selectors, but do not change content eligibility.
+   if(!cached||['cards','questions','packs','config','validate','pool'].some(key=>next[key]!==cached.stamp[key])){
     cached={stamp:next,pools:new Map(),checks:new Map()};
     if(projectionCache.size>=8)projectionCache.delete(projectionCache.keys().next().value);
-    projectionCache.set(next.key,cached);
+    projectionCache.set(next.catalogKey,cached);
    }
    const selectPool=getPackCardPool,check=checkContentPack;
    getPackCardPool=function(selection,kind,level,types,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACKS){

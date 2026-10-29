@@ -1,0 +1,62 @@
+[
+  {
+    "file": "index.html",
+    "before": "  <link rel=\"stylesheet\" href=\"./setup-wizard.css?v=7\">\n",
+    "after": "  <link rel=\"stylesheet\" href=\"./setup-wizard.css?v=8\">\n"
+  },
+  {
+    "file": "index.html",
+    "before": "  <script src=\"./setup-wizard.js?v=11\" defer></script>\n",
+    "after": "  <script src=\"./setup-wizard.js?v=12\" defer></script>\n"
+  },
+  {
+    "file": "index.html",
+    "before": "  <script src=\"./team-controller.js?v=10\" defer></script>\n",
+    "after": "  <script src=\"./team-controller.js?v=11\" defer></script>\n"
+  },
+  {
+    "file": "index.html",
+    "before": "          <div class=\"team-input-wrap\"><span>ИГРОК 1</span><button id=\"team-a\" class=\"profile-selector\" type=\"button\" aria-haspopup=\"dialog\" aria-label=\"Профиль игрока 1\">ВЫБРАТЬ ПРОФИЛЬ</button></div>\n          <div class=\"team-input-wrap\"><span>ИГРОК 2</span><button id=\"team-b\" class=\"profile-selector\" type=\"button\" aria-haspopup=\"dialog\" aria-label=\"Профиль игрока 2\">ВЫБРАТЬ ПРОФИЛЬ</button></div>\n",
+    "after": "          <div class=\"team-input-wrap participant-card\"><span id=\"team-a-label\">ИГРОК 1</span><button id=\"team-a\" class=\"profile-selector\" type=\"button\" aria-haspopup=\"dialog\" aria-labelledby=\"team-a-label team-a\">ВЫБРАТЬ ПРОФИЛЬ</button></div>\n          <div class=\"team-input-wrap participant-card\"><span id=\"team-b-label\">ИГРОК 2</span><button id=\"team-b\" class=\"profile-selector\" type=\"button\" aria-haspopup=\"dialog\" aria-labelledby=\"team-b-label team-b\">ВЫБРАТЬ ПРОФИЛЬ</button></div>\n"
+  },
+  {
+    "file": "index.html",
+    "before": "      <label for=\"profile-name\">ИМЯ ПРОФИЛЯ</label><input id=\"profile-name\" type=\"text\" autocomplete=\"off\" spellcheck=\"false\" placeholder=\"Например, ДС\" required aria-describedby=\"profile-name-hint\"><small id=\"profile-name-hint\">До 24 символов</small>\n",
+    "after": "      <label for=\"profile-name\">ИМЯ ПРОФИЛЯ</label><input id=\"profile-name\" type=\"text\" autocomplete=\"off\" spellcheck=\"false\" required aria-describedby=\"profile-name-hint\"><small id=\"profile-name-hint\">До 24 символов</small>\n"
+  },
+  {
+    "file": "setup-wizard.css",
+    "before": "",
+    "after": "\n/* TASK037: one native selector and one personal color per participant card. */\n.setup-wizard .wizard-page .participant-card{position:relative;display:flex;flex-direction:column;gap:10px;min-width:0;margin:0;padding:14px;border:1px solid #70639966;border-radius:14px;background:linear-gradient(145deg,#24203c,#191a2b);box-shadow:inset 0 1px #ffffff08}\n.setup-wizard .wizard-page .participant-card>span{font-size:10px;line-height:1.5;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}\n.setup-wizard .wizard-page .participant-card .profile-selector{position:static;display:grid;grid-template-columns:22px minmax(0,1fr) 18px;align-items:center;gap:10px;min-width:0;min-height:48px;width:100%;padding:0;border:0;background:transparent;font-size:15px;line-height:1.5;text-align:left;white-space:normal;overflow-wrap:anywhere}\n.setup-wizard .participant-card .profile-selector>span:not(.profile-dot){grid-column:2;grid-row:1;min-width:0;white-space:normal;overflow-wrap:anywhere}\n.setup-wizard .participant-card .profile-selector>.profile-chevron{grid-column:3;grid-row:1;font-size:20px;color:var(--soft)}\n.setup-wizard .participant-card .profile-dot{grid-column:1;grid-row:1;width:20px;height:20px;margin:0;box-shadow:0 0 0 4px #ffffff08}\n.setup-wizard .participant-card .profile-selector::after{content:\"\";position:absolute;inset:0;border-radius:14px}\n.setup-wizard .participant-card .profile-selector::before{content:\"\";grid-column:1;grid-row:1;width:22px;height:22px;border:1px dashed #b2a6c780;border-radius:50%;box-sizing:border-box}\n.setup-wizard .participant-card .profile-selector:has(.profile-dot)::before{display:none}\n.setup-wizard .participant-card .profile-selector:not(:has(.profile-dot)){color:var(--soft)}\n.setup-wizard .participant-card:has(.profile-dot){border-color:#a28cce80}\n.setup-wizard .participant-card .profile-selector:focus-visible{outline-offset:4px}\n.setup-wizard .wizard-page .setup-grid,.setup-wizard .wizard-page .team-profile-grid{grid-template-columns:minmax(0,1fr);gap:14px}\n.setup-wizard .wizard-page .team-profile-grid fieldset{min-width:0;margin:0;padding:12px;border:1px solid #76668d66;border-top:2px solid var(--coral);border-radius:16px;background:#151623}\n.setup-wizard .wizard-page .team-profile-grid fieldset:nth-child(2){border-top-color:var(--cyan)}\n.setup-wizard .wizard-page .team-profile-grid legend{padding:0 6px;font-size:11px;line-height:1.5;color:var(--coral)}\n.setup-wizard .wizard-page .team-profile-grid fieldset:nth-child(2) legend{color:var(--cyan)}\n.setup-wizard .wizard-page .team-profile-slot+.team-profile-slot{margin-top:12px}\n@media(min-width:700px){.setup-wizard .wizard-page .setup-grid,.setup-wizard .wizard-page .team-profile-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}\n@media(hover:hover) and (pointer:fine){.setup-wizard .participant-card:hover{border-color:var(--cyan)}}\n"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": "  return {key:JSON.stringify([settings,selectedProfileIds,profileStoreProblem]),profiles:profileStore,\n",
+    "after": "  return {key:JSON.stringify([settings,selectedProfileIds,profileStoreProblem]),profiles:profileStore,catalogKey:JSON.stringify(settings),\n"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": "   // settings/profile/catalog/function stamp. All native controls still render.\n",
+    "after": "   // settings/catalog/function stamp. All native controls still render.\n"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": "   let cached=projectionCache.get(next.key);\n   if(!cached||Object.keys(next).some(key=>next[key]!==cached.stamp[key])){\n",
+    "after": "   let cached=projectionCache.get(next.catalogKey);\n   // Profile identity changes repaint selectors, but do not change content eligibility.\n   if(!cached||['cards','questions','packs','config','validate','pool'].some(key=>next[key]!==cached.stamp[key])){\n"
+  },
+  {
+    "file": "setup-wizard.js",
+    "before": "    projectionCache.set(next.key,cached);\n",
+    "after": "    projectionCache.set(next.catalogKey,cached);\n"
+  },
+  {
+    "file": "team-controller.js",
+    "before": " panel.innerHTML='<div class=\"team-profile-grid\">'+[0,1].map(t=>'<fieldset><legend>КОМАНДА '+(t+1)+'</legend>'+[0,1].map(p=>'<div class=\"team-profile-slot\"><span id=\"team-profile-label-'+t+'-'+p+'\">Игрок '+(p+1)+'</span><button id=\"team-profile-'+t+'-'+p+'\" data-team-profile=\"'+(t*2+p)+'\" type=\"button\" class=\"profile-selector\" aria-haspopup=\"dialog\" aria-labelledby=\"team-profile-label-'+t+'-'+p+' team-profile-'+t+'-'+p+'\">ВЫБРАТЬ ПРОФИЛЬ</button></div>').join('')+'</fieldset>').join('')+'</div><p id=\"team-name-error\" role=\"status\"></p><p class=\"profile-muted\">Выберите четыре разных постоянных профиля. Результаты 2 НА 2 учитываются отдельно от дуэлей. Настройки сохранятся при старте.</p>';\n",
+    "after": " panel.innerHTML='<div class=\"team-profile-grid\">'+[0,1].map(t=>'<fieldset><legend>КОМАНДА '+(t+1)+'</legend>'+[0,1].map(p=>'<div class=\"team-profile-slot participant-card\"><span id=\"team-profile-label-'+t+'-'+p+'\">Игрок '+(p+1)+'</span><button id=\"team-profile-'+t+'-'+p+'\" data-team-profile=\"'+(t*2+p)+'\" type=\"button\" class=\"profile-selector\" aria-haspopup=\"dialog\" aria-labelledby=\"team-profile-label-'+t+'-'+p+' team-profile-'+t+'-'+p+'\">ВЫБРАТЬ ПРОФИЛЬ</button></div>').join('')+'</fieldset>').join('')+'</div><p id=\"team-name-error\" role=\"status\"></p><p class=\"profile-muted\">Выберите четыре разных постоянных профиля. Результаты 2 НА 2 учитываются отдельно от дуэлей. Настройки сохранятся при старте.</p>';\n"
+  },
+  {
+    "file": "sw.js",
+    "before": "const CACHE='kvip-pwa-v102-20261029-wizard-stepper-candidate';\nconst CORE=['./','./index.html','./style.css?v=45','./setup-wizard.css?v=7','./setup-wizard.js?v=11','./team-game.css?v=3','./responsive-layout.css?v=2','./team-format.js?v=2','./team-storage.js?v=5','./team-engine.js?v=2','./team-controller.js?v=10','./cards.js?v=11','./approx-questions.js?v=7','./mode-config.js?v=3','./mode-compatibility.js?v=1','./rules.js?v=5','./penalties.js?v=3','./risk-planner.js?v=1','./modifiers.js?v=3','./round-planner.js?v=3','./task-history.js?v=1','./modifiers-v2.js?v=3','./content-packs.js?v=19','./presets.js?v=4','./immersive-viewport.js?v=1','./rules-guide.js?v=1','./menu-navigation.js?v=10','./setup-view.js?v=7','./setup-controls.js?v=4','./audio.js?v=1','./round-views.js?v=3','./match-views.js?v=7','./timer-view.js?v=7','./round-selection.js?v=6','./tiebreak.js?v=5','./round-settlement.js?v=7','./timer-controller.js?v=2','./round-presentation.js?v=8','./round-actions.js?v=3','./storage-controller.js?v=2','./session-restoration.js?v=12','./team-statistics.js?v=1',\n",
+    "after": "const CACHE='kvip-pwa-v103-20261029-player-cards-candidate';\nconst CORE=['./','./index.html','./style.css?v=45','./setup-wizard.css?v=8','./setup-wizard.js?v=12','./team-game.css?v=3','./responsive-layout.css?v=2','./team-format.js?v=2','./team-storage.js?v=5','./team-engine.js?v=2','./team-controller.js?v=11','./cards.js?v=11','./approx-questions.js?v=7','./mode-config.js?v=3','./mode-compatibility.js?v=1','./rules.js?v=5','./penalties.js?v=3','./risk-planner.js?v=1','./modifiers.js?v=3','./round-planner.js?v=3','./task-history.js?v=1','./modifiers-v2.js?v=3','./content-packs.js?v=19','./presets.js?v=4','./immersive-viewport.js?v=1','./rules-guide.js?v=1','./menu-navigation.js?v=10','./setup-view.js?v=7','./setup-controls.js?v=4','./audio.js?v=1','./round-views.js?v=3','./match-views.js?v=7','./timer-view.js?v=7','./round-selection.js?v=6','./tiebreak.js?v=5','./round-settlement.js?v=7','./timer-controller.js?v=2','./round-presentation.js?v=8','./round-actions.js?v=3','./storage-controller.js?v=2','./session-restoration.js?v=12','./team-statistics.js?v=1',\n"
+  }
+]
