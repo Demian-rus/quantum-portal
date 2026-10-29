@@ -495,6 +495,11 @@
       "path": "questions/approx-games-v5.json",
       "immutable": false,
       "review": "GQ5: verified gaming community records, editorial/approx-games-v5-review.md"
+    },
+    {
+      "path": "questions/approx-games-v6.json",
+      "immutable": false,
+      "review": "GQ6: 15 dated in-game and gaming-community scale estimates; editorial/approx-games-v6-review.md"
     }
   ],
   "packs": [
@@ -827,6 +832,11 @@
       "path": "packs/approx-games-v5.json",
       "immutable": false,
       "review": "GQ5 general@66 adds 15 source-backed estimation questions, all 7430 prior IDs pinned"
+    },
+    {
+      "path": "packs/approx-games-v6.json",
+      "immutable": false,
+      "review": "GQ6: general@67 appends 15 independently sourced videogame numerical questions, preserving previous general@66 7445 IDs"
     }
   ],
   "legacyCollisions": [
