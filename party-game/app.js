@@ -265,6 +265,7 @@ function setupEvents() {
   registerProfileBackupControls();
   registerCardReportControls();
   registerCardFeedbackControls();
+  registerTimerControls();
   registerResultReviewControls();
   $('new-game-menu').addEventListener('click',openGameType);
   $('game-type-back').addEventListener('click',()=>setScene('home'));
@@ -291,8 +292,10 @@ function setupEvents() {
     const button=event.target.closest('[data-action]');
     if(button){
       const keyboardCard=event.detail===0&&button.matches('.challenge-card[data-action="toggle-word"]');
+      const keyboardTimer=event.detail===0&&button.matches('.timer-ring[role="button"]');
       handleAction(button.dataset.action);
       if(keyboardCard)focusTaskCard();
+      if(keyboardTimer)focusTimerControl();
     }
   });
   $('results-content').addEventListener('click',event=>{

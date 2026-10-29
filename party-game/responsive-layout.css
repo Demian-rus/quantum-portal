@@ -71,3 +71,7 @@
 .scene--game .stable-round .round-top .timer-ring,.scene--game .stable-round .round-top:has(.blitz-status) .timer-ring{min-width:max-content;min-height:max-content;height:auto;aspect-ratio:1}
 .scene--game .stable-round .round-top .timer-dial{display:flex;flex-wrap:wrap;justify-content:center;max-width:100%}
 .scene--game .stable-round .round-top .timer-dial>.card-rating{flex:0 0 auto}
+
+/* TASK035: the existing ring is also a keyboard control; outline does not change layout. */
+.timer-ring[role="button"]{cursor:pointer}
+.timer-ring[role="button"]:focus-visible{outline:3px solid var(--lime);outline-offset:4px}

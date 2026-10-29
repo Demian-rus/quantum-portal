@@ -51,7 +51,7 @@
   else{game=null;taskMemory=freshTaskMemory();}
   document.body.classList.toggle('teams-active',!s.inSetup);
  }
- function focusHint(node){if(node?.dataset?.reportHistory!=null)return '[data-report-history="'+node.dataset.reportHistory+'"]'+(node.dataset.reportBlitz!=null?'[data-report-blitz="'+node.dataset.reportBlitz+'"]':'');return reviewFocusSelector(node)||(node?.id?'#'+CSS.escape(node.id):node?.dataset?.action?'[data-action="'+node.dataset.action+'"]':node?.dataset?.feedback?'[data-feedback="'+node.dataset.feedback+'"]':null);}
+ function focusHint(node){if(node?.matches?.('.timer-ring[role="button"]'))return '.timer-ring[role="button"]';if(node?.dataset?.reportHistory!=null)return '[data-report-history="'+node.dataset.reportHistory+'"]'+(node.dataset.reportBlitz!=null?'[data-report-blitz="'+node.dataset.reportBlitz+'"]':'');return reviewFocusSelector(node)||(node?.id?'#'+CSS.escape(node.id):node?.dataset?.action?'[data-action="'+node.dataset.action+'"]':node?.dataset?.feedback?'[data-feedback="'+node.dataset.feedback+'"]':null);}
  function run(action,{replace=false}={}){
   if(s.tx?.executing)return action();
   if(s.busy||s.blocked)return Promise.resolve(false);

@@ -6,7 +6,7 @@ const {settled}=require('./task024-fixtures.cjs');
 const URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/',folder='artifacts/quip-teams';
 const names=[['ДС','ПА'],['Мама','Папа']];
 const idle=async p=>{await p.evaluate(()=>QuipTeams.whenIdle());assert.equal(await p.evaluate(()=>QuipTeams.blocked),false,await p.locator('#team-save-message').textContent());};
-async function click(p,selector){await p.locator(selector).click();await idle(p);}
+async function click(p,selector){if(selector==='#timer-pause-control'&&!await p.locator(selector).count())selector='.timer-ring[role="button"]';await p.locator(selector).click();await idle(p);}
 async function range(p,id,value){await p.locator('#'+id).evaluate((node,value)=>{node.value=value;node.dispatchEvent(new Event('input',{bubbles:true}));node.dispatchEvent(new Event('change',{bubbles:true}));},String(value));}
 async function config(p,{mode='talk',rounds=12,goal=null,complications=false,risk=false,difficulty='easy'}={}){
  await p.locator('[data-wizard-step="3"]').click();await p.locator('[data-setting="difficulty"] [data-value="'+difficulty+'"]:visible').click();
