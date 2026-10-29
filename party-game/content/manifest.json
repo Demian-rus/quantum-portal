@@ -393,6 +393,11 @@
       "path": "cards/general-games-v4.json",
       "immutable": false,
       "review": "VG4: 50 carefully checked popular videogame terms and characters in Cyrillic; editorial/general-games-v4-review.md"
+    },
+    {
+      "path": "cards/general-games-v5.json",
+      "immutable": false,
+      "review": "VG5 broad recognition: 50 familiar videogame terms and titles without jargon; editorial/general-games-v5-review.md"
     }
   ],
   "questions": [
@@ -712,6 +717,11 @@
       "path": "packs/general-games-v4.json",
       "immutable": false,
       "review": "VG4 general@54 appends 50 videogame-tagged prompts to unchanged general@53"
+    },
+    {
+      "path": "packs/general-games-v5.json",
+      "immutable": false,
+      "review": "VG5 general@55 adds 50 widely recognizable game prompts, retaining all general@54 IDs and previous snapshots"
     }
   ],
   "legacyCollisions": [
