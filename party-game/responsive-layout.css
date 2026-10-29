@@ -65,3 +65,9 @@
 
 .scene--game .is-ready .ready-content .play-title,.scene--game .is-ready .ready-content .play-title em{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}
 .scene--game .is-ready .ready-content{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain}
+/* Intrinsic timer text can grow independently of its old fixed circle at 200%.
+   Keep the normal circle size; allow enlarged text to grow it and wrap the row
+   inside the existing vertical scroller instead of painting over ratings. */
+.scene--game .stable-round .round-top .timer-ring{min-width:max-content;min-height:max-content;height:auto;aspect-ratio:1}
+.scene--game .stable-round .round-top .timer-dial{display:flex;flex-wrap:wrap;justify-content:center;max-width:100%}
+.scene--game .stable-round .round-top .timer-dial>.card-rating{flex:0 0 auto}
