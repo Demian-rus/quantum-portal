@@ -60,7 +60,7 @@
     "бактерий": 1,
     "бар": 1,
     "бит": 1,
-    "блоков": 2,
+    "блоков": 3,
     "буквы": 1,
     "вида": 1,
     "Вт": 1,
@@ -123,7 +123,6 @@
     "млн пользователей": 1,
     "млн соединений": 2,
     "млн человек": 3,
-    "млрд блоков": 1,
     "млрд клеток": 1,
     "млрд км": 1,
     "млрд лет": 1,
@@ -811,15 +810,6 @@
       "file": "questions/approx-games-v2.json",
       "question": "Сколько миллиардов лет занял бы обход всех возможных планет No Man’s Sky при открытии одной планеты каждую секунду?",
       "unit": "млрд лет",
-      "reasons": [
-        "scaled-unit: review explicit scale in the question; not an established defect"
-      ]
-    },
-    {
-      "id": "approx-23202",
-      "file": "questions/approx-games-v3.json",
-      "question": "Сколько миллиардов блоков понадобилось для воссоздания Дании в Minecraft в масштабе 1:1 в 2014 году?",
-      "unit": "млрд блоков",
       "reasons": [
         "scaled-unit: review explicit scale in the question; not an established defect"
       ]
