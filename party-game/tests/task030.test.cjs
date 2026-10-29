@@ -5,7 +5,7 @@ const root=path.resolve(__dirname,'../..'),base='e0201acd7d544411b330264e6e2cfa2
 const {withoutTeamShell}=require('./wizard-contract.cjs');
 test('TASK030 keeps all non-content engine scripts and v88 scene byte-exact',()=>{
  const scripts=[...old('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);assert.equal(scripts.length,49);
- for(const f of scripts.filter(f=>!['setup-wizard.js','cards.js','content-packs.js'].includes(f)))assert.equal(read(f),old(f),f);
+ for(const f of scripts.filter(f=>!['setup-wizard.js','cards.js','content-packs.js','approx-questions.js'].includes(f)))assert.equal(read(f),old(f),f);
  assert.equal(read('style.css'),old('style.css'));
  assert.equal(withoutTeamShell(read('index.html')).replace('setup-wizard.js?v=4','setup-wizard.js?v=2').replace('setup-wizard.css?v=2','setup-wizard.css?v=1'),old('index.html'));
  assert.equal(withoutTeamShell(read('sw.js')).replace('kvip-pwa-v91-20261027-wizard-only-candidate-guard','kvip-pwa-v90-20261027-wizard-performance-candidate').replace('setup-wizard.js?v=4','setup-wizard.js?v=2').replace('setup-wizard.css?v=2','setup-wizard.css?v=1'),old('sw.js'));
@@ -18,7 +18,7 @@ test('TASK030 preserves the exact TASK029 validation stamp and scoped memo',()=>
 // Intentional G26–G46 catalog expansion: exact generated output and immutable historic selections remain mandatory.
 test('TASK027/TASK030 allow only generated content expansion while guarding exact 6000 published IDs',()=>{
  const api=require('../scripts/content.cjs'),data=api.readDataset(),output=api.render(data);
- for(const file of ['cards.js','content-packs.js'])assert.equal(read(file),output[file],file+' must match deterministic generator');
+ for(const file of ['cards.js','content-packs.js','approx-questions.js'])assert.equal(read(file),output[file],file+' must match deterministic generator');
  const published=data.packs.find(p=>p.id==='general'&&p.version===27);
  const g45=data.packs.find(p=>p.id==='general'&&p.version===47),latest=data.packs.find(p=>p.id==='general'&&p.version===48);
  assert.ok(published&&g45&&latest);
