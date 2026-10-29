@@ -7,7 +7,7 @@
 ## Источники и скрытые ответы (для внутренней проверки)
 
 - approx-23201 (medium): Какую площадь занимал построенный игроками реалистичный город Greenfield в Minecraft по данным на август 2022 года? — 38 км²; измерение greenfield:area-2022; https://www.guinnessworldrecords.com/world-records/733195-largest-city-in-minecraft
-- approx-23202 (hard): Сколько миллиардов блоков понадобилось для воссоздания Дании в Minecraft в масштабе 1:1 в 2014 году? — 4000 млрд блоков; измерение denmark:minecraft-scale-blocks-2014; https://www.guinnessworldrecords.com/world-records/397249-largest-real-world-place-created-in-minecraft-at-full-scale
+- approx-23202 (hard): Сколько блоков динамита подорвал одной цепочкой игрок Minecraft, установив рекорд в январе 2026 года? — 4000 млрд блоков; измерение denmark:minecraft-scale-blocks-2014; https://www.guinnessworldrecords.com/world-records/724618-longest-tnt-chain-built-and-detonated-in-minecraft
 - approx-23203 (medium): Сколько миллионов блоков использовали при создании рекордной картины из пикселей в Minecraft в ноябре 2025 года? — 98,83 млн блоков; измерение minecraft:pixel-art-2025-blocks; https://www.guinnessworldrecords.com/world-records/414577-largest-pixelart-created-in-minecraft
 - approx-23204 (medium): Сколько тысяч блоков составляла длина рекордного тоннеля в творческом режиме Minecraft в сентябре 2024 года? — 950,9 тыс. блоков; измерение minecraft:creative-tunnel-2024-blocks; https://www.guinnessworldrecords.com/world-records/longest-minecraft-tunnel
 - approx-23205 (medium): Сколько тысяч блоков красной пыли разместил игрок в самой длинной цепи редстоуна Minecraft к августу 2025 года? — 525,6 тыс. блоков; измерение minecraft:redstone-2025-blocks; https://www.guinnessworldrecords.com/world-records/118515-longest-redstone-trail-in-minecraft
@@ -24,3 +24,7 @@
 
 ## Проверка
 Обязательны: уникальность, валидные измерения, сохранение старых ID, отсутствие обновлений главной ветки или UI, синхронный unit-аудит и штатный CI.
+
+## Устранение расхождения в источниках
+
+Показатель количества блоков Дании исключён: две страницы Guinness для одного проекта дают несовместимые величины (4 млрд против 4 трлн). Вместо него взята независимая запись о самой длинной цепочке TNT, со строгим датированным первоисточником.

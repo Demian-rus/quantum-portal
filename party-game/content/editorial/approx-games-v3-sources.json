@@ -8,10 +8,10 @@
     "review": "Institutional record checked against precise time and unit"
   },
   "gq3-2": {
-    "url": "https://www.guinnessworldrecords.com/world-records/397249-largest-real-world-place-created-in-minecraft-at-full-scale",
+    "url": "https://www.guinnessworldrecords.com/world-records/724618-longest-tnt-chain-built-and-detonated-in-minecraft",
     "checkedAt": "2026-10-29",
-    "asOf": "2014-04-01",
-    "measurementKey": "denmark:minecraft-scale-blocks-2014",
+    "asOf": "2026-01-28",
+    "measurementKey": "minecraft:tnt-chain-2026-blocks",
     "sourceKind": "Guinness World Records",
     "review": "Institutional record checked against precise time and unit"
   },

@@ -24,22 +24,22 @@
   {
     "id": "approx-23202",
     "difficulty": "hard",
-    "question": "Сколько миллиардов блоков понадобилось для воссоздания Дании в Minecraft в масштабе 1:1 в 2014 году?",
-    "answer": "4000",
-    "unit": "млрд блоков",
+    "question": "Сколько блоков динамита подорвал одной цепочкой игрок Minecraft, установив рекорд в январе 2026 года?",
+    "answer": "100005",
+    "unit": "блоков",
     "categories": [
       "videogames"
     ],
-    "note": "Датское геодезическое ведомство использовало около четырёх триллионов блоков; единицы приведены в миллиардах.",
-    "source": "https://www.guinnessworldrecords.com/world-records/397249-largest-real-world-place-created-in-minecraft-at-full-scale",
+    "note": "Рекорд Li Zhuoxi от 28 января 2026 года: в самой длинной цепочке, построенной и взорванной игроком, было 100 005 блоков TNT.",
+    "source": "https://www.guinnessworldrecords.com/world-records/724618-longest-tnt-chain-built-and-detonated-in-minecraft",
     "pack": "approx-games-v3",
     "meta": {
       "estimationVersion": 3,
       "sourceKey": "gq3-2",
       "checkedAt": "2026-10-29",
-      "asOf": "2014-04-01",
+      "asOf": "2026-01-28",
       "batch": 3,
-      "measurementKey": "denmark:minecraft-scale-blocks-2014",
+      "measurementKey": "minecraft:tnt-chain-2026-blocks",
       "topic": "videogames"
     }
   },
