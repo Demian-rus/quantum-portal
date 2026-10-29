@@ -378,6 +378,11 @@
       "path": "cards/general-games-v1.json",
       "immutable": false,
       "review": "VG1: 50 Russian-Cyrillic gameplay prompts from popular videogames; editorial/general-games-v1-review.md"
+    },
+    {
+      "path": "cards/general-games-v2.json",
+      "immutable": false,
+      "review": "VG2: 50 unique Cyrillic videogame prompts 40 words 10 phrases; editorial/general-games-v2-review.md"
     }
   ],
   "questions": [
@@ -682,6 +687,11 @@
       "path": "packs/general-games-v1.json",
       "immutable": false,
       "review": "VG1 general@51 adds 50 videogame-tagged cards, retaining general@50 and all historical selections"
+    },
+    {
+      "path": "packs/general-games-v2.json",
+      "immutable": false,
+      "review": "VG2 general@52 appends 50 videogame-tagged cards, maintaining unchanged general@51 and historical snapshots"
     }
   ],
   "legacyCollisions": [
