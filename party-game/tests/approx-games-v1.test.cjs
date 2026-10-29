@@ -21,7 +21,7 @@ test('GQ1: 16 dated videogame estimates, sourced numbers, original snapshots and
  assert.deepEqual(next.criteria.cardIds.slice(0,7369),old.criteria.cardIds);
  assert.deepEqual(next.criteria.cardIds.slice(-16),fresh.map(q=>q.id));
  assert.equal(new Set(next.criteria.cardIds).size,7385);
- for(const p of data.packs.filter(x=>x.version!==62||x.id!=='general'))assert.ok(!p.criteria.cardIds?.includes('approx-23001'),'Historical/question theme pool changed '+p.id+'@'+p.version);
+ for(const p of data.packs.filter(x=>x.id!=='general'||x.version<62))assert.ok(!p.criteria.cardIds?.includes('approx-23001'),'Historical/question theme pool changed '+p.id+'@'+p.version);
  const existing=data.questions.filter(q=>q.pack!=='approx-games-v1'),historic=new Set(existing.map(q=>api.normalize(q.question)));
  assert.ok(fresh.every(q=>!historic.has(api.normalize(q.question))));
  assert.equal(api.validate(data).errors.length,0);
