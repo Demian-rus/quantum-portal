@@ -6,7 +6,7 @@ const group=process.env.QUIP034_GROUP,dir=path.resolve('artifacts/quip-task034',
 for(const name of fs.readdirSync(dir).sort()){
  const file=path.join(dir,name,'measurements.json');if(!fs.existsSync(file))continue;
  const d=JSON.parse(fs.readFileSync(file,'utf8'));reports.push({...d,key:name});
- const row={key:name,runtimeSha:d.runtimeSha,dirty:d.workingTreeDirty,engine:d.engine,cpu:d.cpu,dpr:d.dpr,fontScale:d.fontScale,fontProbe:d.fontProbe,fontMethod:d.fontMethod,offlineMethod:d.offlineMethod,failedNetworkRequests:d.failedNetworkRequests,states:d.rows.length,violations:d.violations,failures:d.failures.map(x=>({name:x.name,message:x.message})),errors:d.errors,detectorProof:d.detectorProof,invariants:d.invariants,performance:d.performance?{stats:d.performance.stats,scans:d.performance.scans,samples:d.performance.samples.length}:null};
+ const row={key:name,runtimeSha:d.runtimeSha,dirty:d.workingTreeDirty,engine:d.engine,cpu:d.cpu,dpr:d.dpr,fontScale:d.fontScale,fontProbe:d.fontProbe,fontMethod:d.fontMethod,offlineMethod:d.offlineMethod,failedNetworkRequests:d.failedNetworkRequests,states:d.rows.length,violations:d.violations,failures:d.failures.map(x=>({name:x.name,message:x.message})),errors:d.errors,detectorProof:d.detectorProof,baselineCardProof:d.baselineCardProof,targetRectangles:d.rows.reduce((n,r)=>n+r.targets.length,0),invariants:d.invariants,performance:d.performance?{stats:d.performance.stats,scans:d.performance.scans,samples:d.performance.samples.length}:null};
  console.log('TASK034_EVIDENCE '+JSON.stringify(row));
 }
 if(!reports.length)throw Error('No completed diagnostic reports to package');

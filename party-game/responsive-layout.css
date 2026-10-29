@@ -40,7 +40,7 @@
 .preferences-title,.statistics-panel h3,.rules-header h2,.setup-wizard .wizard-rule header h2{min-width:0;overflow-wrap:anywhere}
 .scene--game .stable-round .round-top{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin}
 @media(min-height:481px){
- .scene--game .play-card:has(>.stable-round) .play-card-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(74px,max-content);grid-template-rows:34px;padding-right:0;gap:0;height:34px;min-height:34px;flex:0 0 34px;align-items:center}
+ .scene--game .play-card:has(>.stable-round) .play-card-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(74px,max-content);grid-template-rows:44px;padding-right:0;gap:0;height:44px;min-height:44px;flex:0 0 44px;align-items:center}
  .scene--game .play-card:has(>.stable-round) #exit-game,.scene--game .play-card:has(>.stable-round) #timer-pause-control{position:static;transform:none;grid-row:1;justify-self:end}
  .scene--game .play-card:has(>.stable-round) #timer-pause-control{grid-column:1}
  .scene--game .play-card:has(>.stable-round) #exit-game{grid-column:2;margin-inline-start:10px}
