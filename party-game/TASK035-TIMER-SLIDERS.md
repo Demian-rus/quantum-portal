@@ -28,3 +28,30 @@ Baseline измеряется из неизменяемого main651 тем ж�
 - Все существующие game/mobile/profile/team/history/PWA/raster и TASK029–032 performance checks остаются обязательными. Старые byte guards разворачивают только явные точные hunks из reviewed-hunks.json; остальные байты сравниваются по прежним SHA. PWA меняет только resource versions/cache name, lifecycle install/activate/fetch прежний. Старые upgrade tests направлены на актуальный worker/кольцо после обновления, исторические исходники не меняются.
 
 Точные Head, CI, финальные показатели и ссылки на artifacts публикуются в единственном Draft PR TASK035 после полного прогона. До этого приёмка не объявлена завершённой. Без merge, публикации, словарных правок, платежей/облака или изменения коммерческих прав.
+
+## Зафиксированная приёмка production9b
+
+Целевые [PR CI3/3](https://github.com/Demian-rus/quantum-portal/actions/runs/40855981095) и [push CI3/3](https://github.com/Demian-rus/quantum-portal/actions/runs/40855935931) прошли для production Head `9b1b01d446c9b6f9148219b4c77864898e3cd1d4`. GitHub PR checkout использовал синтетическое merge-дерево `476a09c601afba8c858170344c99f7266158762c`, что честно отражено в raw summary. Последующие исправления приёмки уточняют неоднозначные селекторы (сохранённая стартовая button и новое кольцо), удалённый header pause и точные resource/cache versions; production остаётся побайтно прежним. Финальный Head и полный повтор Game/mobile/TASK035 фиксируются в [единственном Draft PR #198](https://github.com/Demian-rus/quantum-portal/pull/198).
+
+Chrome156.0.8078.47, viewport390×844, DPR2.625, mobile+touch, CPU4; одинаковый harness и n20 на каждый вид ×4 ползунка ×2 формата. По480 взаимодействий и2248 проверенных trusted input событий на каждой стороне. Замер — от начала обработки native input до следующего requestAnimationFrame с проверкой фактического options и подписи; это не измерение физической панели телефона. Счётчики ниже включают один прогревочный жест каждого сценария.
+
+| Ползунок: худший результат среди2 форматов и3 видов | median до → после, ms | p95 до → после, ms |
+| --- | --- | --- |
+| base-duration |188.3→5.9|203.6→18.8|
+| target-score |187.7→6.2|195.7→17.5|
+| custom-rounds |188.9→15.8|201.4→18.9|
+| modifier-chance |190.1→19.0|201.7→20.8|
+
+Суммарно на input: checkContentPack10166→0; getPackCardPool26142→0. В V8 profiles исходного рендера преобладают именно каталог/пулы, а не persist. После изменения полные проверки между сценариями остаются видны в профиле и по-прежнему выполняются при START; они не подменены mock. Порог median50/p95100ms не изменён.
+
+Таймер: Chromium12/12 + WebKit12/12. По72 состояния и240 скалярных сравнений x/y/width/height на движок; maxdelta0px. Всего144 состояния/480 сравнений,144 быстрых trusted taps, Enter/Space, остаток без сброса, offline paused RAW и отсутствие изменений задания/очков/истории. Trusted вертикальный скролл дополнительно проверен в Chromium. 200% в WebKit — computed-font stress, в Chromium — проверяемый text-size-adjust probe16→32px; оба метода не выдаются за физический OS display zoom.
+
+Range lifecycle:8/8 сочетаний,48 утверждений о native change/Back/reload/pagehide/real START/offline resume, плюс защита неизвестной версии отдельного preferences slot. Неизменность live game/history/memory/profiles/team RAW проверяется до START. Последующие полные inherited suites сохраняют прежние проверки статистики/backup/истории/rollback и budgets TASK029–032.
+
+| Исходный архив (JSON, PNG, трассы) | SHA256 ZIP |
+| --- | --- |
+| [sliders + lifecycle;4 traces и4 CPU profiles](https://github.com/Demian-rus/quantum-portal/actions/runs/40855981095/artifacts/12889418301) |`2d8d580aa90b4189b23f029748b9f009efd5f6108ccdfe1e70797208f482946a`|
+| [timer Chromium;60 PNG](https://github.com/Demian-rus/quantum-portal/actions/runs/40855981095/artifacts/12889456886) |`ebc44513a38df199a0ccfb14981def18bfed1a31b14af491eef2db885be0416f`|
+| [timer WebKit;60 PNG](https://github.com/Demian-rus/quantum-portal/actions/runs/40855981095/artifacts/12889447144) |`b52cab97149e330b4593efdd88195cbb63380347ad26d96f843b222463a5bae1`|
+
+Все три оригинальных ZIP повторно скачаны, SHA256 и CRC проверены. Срок хранения —27 января2027. Исходные failed Game/mobile runs также сохранены; они не выданы за успешные. После уточнения селекторов полный UI/PWA/raster прогон повторяется без ослабления assertions. Новые основные правила CSS и коммерческие allowlist/контракты не изменяются. Локальная Commercial проверка13/13 и exact-SHA dry-run на132031a2 сохранили networkOperations=[], cloudResources=[], releaseEnabled=false.
