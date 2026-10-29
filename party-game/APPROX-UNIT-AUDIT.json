@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "total": 709,
-  "withUnit": 672,
+  "total": 724,
+  "withUnit": 687,
   "files": [
     {
       "path": "questions/legacy-v1.json",
@@ -54,6 +54,10 @@
     {
       "path": "questions/approx-games-v4.json",
       "questions": 15
+    },
+    {
+      "path": "questions/approx-games-v5.json",
+      "questions": 15
     }
   ],
   "unitCounts": {
@@ -61,6 +65,7 @@
     "%": 8,
     "°": 5,
     "°C": 11,
+    "альянсов": 1,
     "бактерий": 1,
     "бар": 1,
     "бит": 1,
@@ -94,6 +99,7 @@
     "км/ч": 16,
     "км²": 11,
     "км³": 2,
+    "композиции": 1,
     "кораблей": 2,
     "костяшек": 1,
     "крыла": 1,
@@ -111,14 +117,15 @@
     "месяцев": 5,
     "метров": 1,
     "минут": 12,
-    "минуты": 1,
+    "минуты": 2,
     "мл": 1,
     "млн °C": 1,
     "млн аккаунтов": 1,
     "млн блоков": 3,
     "млн долларов США": 2,
+    "млн загрузок": 1,
     "млн заклёпок": 1,
-    "млн запусков": 1,
+    "млн запусков": 2,
     "млн зрителей": 1,
     "млн игроков": 2,
     "млн кирпичей": 1,
@@ -127,9 +134,11 @@
     "млн копий": 6,
     "млн л": 1,
     "млн м³": 1,
-    "млн отметок": 1,
+    "млн отметок": 2,
     "млн пользователей": 1,
+    "млн скачиваний": 2,
     "млн соединений": 2,
+    "млн творений": 1,
     "млн человек": 3,
     "млрд клеток": 1,
     "млрд км": 1,
@@ -188,7 +197,7 @@
     "трлн клеток": 1,
     "тромбоцитов": 1,
     "тс": 1,
-    "тыс. блоков": 2,
+    "тыс. блоков": 3,
     "тыс. воинов": 1,
     "тыс. долларов США": 1,
     "тыс. км": 1,
@@ -197,11 +206,14 @@
     "тыс. отметок": 1,
     "тыс. плиток": 1,
     "тыс. побед": 1,
+    "тыс. прохождений": 1,
+    "тыс. участников": 1,
+    "тыс. часов": 1,
     "ударов": 1,
     "циклов": 1,
     "ч": 1,
     "часа": 2,
-    "часов": 5,
+    "часов": 7,
     "человек": 1,
     "штатов": 3,
     "штуки": 1,
@@ -941,6 +953,96 @@
       "file": "questions/approx-games-v4.json",
       "question": "Сколько миллиардов внутриигровых кредитов стоили корабль и груз, потерянные в одном особенно дорогом уничтожении титана EVE Online в марте 2011 года?",
       "unit": "млрд ISK",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23403",
+      "file": "questions/approx-games-v5.json",
+      "question": "Сколько миллионов раз скачали виртуального персонажа Brunito Marsito после концерта Бруно Марса в Roblox в январе 2026 года?",
+      "unit": "млн скачиваний",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23404",
+      "file": "questions/approx-games-v5.json",
+      "question": "Сколько миллионов игроков Roblox отметили интерес к концерту Jonas Brothers в первые минуты после анонса 28 октября 2026 года?",
+      "unit": "млн отметок",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23405",
+      "file": "questions/approx-games-v5.json",
+      "question": "Сколько миллионов раз игроки GTA Online запускали пользовательскую гонку «Obstacle What?» к марту 2015 года?",
+      "unit": "млн запусков",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23406",
+      "file": "questions/approx-games-v5.json",
+      "question": "Сколько миллионов скачиваний набрала созданная игроком трасса «Jumps Jumps Jumps» в GTA Online к августу 2014 года?",
+      "unit": "млн скачиваний",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23407",
+      "file": "questions/approx-games-v5.json",
+      "question": "Сколько тысяч блоков простирался рекордный тоннель в Minecraft, вырытый в режиме выживания к октябрю 2025 года?",
+      "unit": "тыс. блоков",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23409",
+      "file": "questions/approx-games-v5.json",
+      "question": "Сколько миллионов загрузок пользовательских домов и персонажей для The Sims 3 зафиксировали к июлю 2011 года?",
+      "unit": "млн загрузок",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23410",
+      "file": "questions/approx-games-v5.json",
+      "question": "Сколько тысяч скоростных прохождений Super Mario 64 зарегистрировали на Speedrun.com к июню 2025 года?",
+      "unit": "тыс. прохождений",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23411",
+      "file": "questions/approx-games-v5.json",
+      "question": "Сколько тысяч часов понадобилось игроку Zyx, чтобы открыть все достижения Sea of Thieves в 2018 году?",
+      "unit": "тыс. часов",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23413",
+      "file": "questions/approx-games-v5.json",
+      "question": "Сколько тысяч участников привлекло сообщество Build the Earth за первые три месяца воссоздания Земли в Minecraft в 2020 году?",
+      "unit": "тыс. участников",
+      "reasons": [
+        "scaled-unit: review explicit scale in the question; not an established defect"
+      ]
+    },
+    {
+      "id": "approx-23415",
+      "file": "questions/approx-games-v5.json",
+      "question": "Сколько миллионов пользовательских творений разместили игроки Spore в Sporepedia к июлю 2011 года?",
+      "unit": "млн творений",
       "reasons": [
         "scaled-unit: review explicit scale in the question; not an established defect"
       ]

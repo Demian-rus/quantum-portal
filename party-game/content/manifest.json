@@ -490,6 +490,11 @@
       "path": "questions/approx-games-v4.json",
       "immutable": false,
       "review": "GQ4: 15 date-scoped community and unusual gameplay magnitude questions with verified primary Guinness references"
+    },
+    {
+      "path": "questions/approx-games-v5.json",
+      "immutable": false,
+      "review": "GQ5: verified gaming community records, editorial/approx-games-v5-review.md"
     }
   ],
   "packs": [
@@ -817,6 +822,11 @@
       "path": "packs/approx-games-v4.json",
       "immutable": false,
       "review": "GQ4 general@65 appends 15 numerical questions after general@64; keeps 7415 previous IDs unchanged"
+    },
+    {
+      "path": "packs/approx-games-v5.json",
+      "immutable": false,
+      "review": "GQ5 general@66 adds 15 source-backed estimation questions, all 7430 prior IDs pinned"
     }
   ],
   "legacyCollisions": [
