@@ -1868,7 +1868,7 @@ test('live catalog counters use active pack IDs and not the historical archive',
  h.eval('openGameType()');
  const general=h.elements.get('standard-content-count').textContent.replace(/\s/g,' ');
  const thematic=h.elements.get('thematic-content-count').textContent.replace(/\s/g,' ');
- assert.equal(general,'7 119 заданий');
+ assert.equal(general,'7 169 заданий');
  const expectedIds=h.eval('listThematicPacks(options).filter(entry=>entry.available&&entry.pack.enabled).reduce((sum,entry)=>sum+new Set(entry.pack.criteria.cardIds).size,0)');
  assert.equal(thematic.replace(/[^\d]/g,''),String(expectedIds));
  h.eval('openThemes()');

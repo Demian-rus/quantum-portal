@@ -1,0 +1,26 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),api=require('../scripts/content.cjs');
+const review=JSON.parse(fs.readFileSync(path.join(__dirname,'../content/editorial/general-games-audience-v1-decisions.json'),'utf8'));
+test('VG7 accessible 50 Cyrillic video game prompts extend curated general@56 without reviving deferred cards',()=>{
+ const d=api.readDataset(),old=d.packs.find(p=>p.id==='general'&&p.version===56),next=d.packs.find(p=>p.id==='general'&&p.version===57);
+ assert.ok(old&&next);
+ const rows=d.cards.filter(x=>x.pack==='general-games-v7'),ids=rows.map(x=>x.id);
+ assert.equal(rows.length,50);assert.equal(rows.filter(x=>x.type==='word').length,40);assert.equal(rows.filter(x=>x.type==='phrase').length,10);
+ assert.equal(rows.filter(x=>x.difficulty==='hard').length,0);
+ assert.ok(rows.filter(x=>x.difficulty==='easy').length>=40);
+ assert.ok(rows.every(x=>x.categories.length===1&&x.categories[0]==='videogames'&&x.meta?.recognition==='broad'));
+ assert.ok(rows.every(x=>/^[А-ЯЁ -]+$/u.test(x.text)&&/^[А-ЯЁ -]+$/u.test(x.meta.game)));
+ assert.ok(rows.every(x=>x.type==='word'?!/\s/u.test(x.text):/\s/u.test(x.text)));
+ const normalized=rows.map(x=>api.normalize(x.text)),oldText=new Set(d.cards.filter(x=>x.pack!=='general-games-v7').map(x=>api.normalize(x.text)));
+ assert.equal(new Set(normalized).size,50);assert.equal(new Set(ids).size,50);
+ for(let i=0;i<rows.length;i++)assert.ok(!oldText.has(normalized[i]),'Duplicate historical prompt '+rows[i].text);
+ assert.equal(old.criteria.cardIds.length,7119);assert.equal(next.criteria.cardIds.length,7169);
+ assert.deepEqual(next.criteria.cardIds.slice(0,7119),old.criteria.cardIds);
+ assert.deepEqual(next.criteria.cardIds.slice(7119),ids);
+ const nextIds=new Set(next.criteria.cardIds),deferred=review.entries.filter(x=>x.decision==='reserve-for-theme');
+ assert.equal(deferred.length,151);assert.ok(deferred.every(x=>!nextIds.has(x.id)),'No VG6 deferred ID reactivated');
+ const tagged=d.cards.filter(x=>['general-games-v1','general-games-v2','general-games-v3','general-games-v4','general-games-v5','general-games-v7'].includes(x.pack)&&nextIds.has(x.id));
+ assert.equal(tagged.length,149);
+ assert.ok(d.packs.filter(x=>x.id!=='general').every(x=>!x.criteria.cardIds.some(id=>ids.includes(id))),'No separate theme');
+ assert.ok(api.validate(d).ok,'No weakening of source and historic catalog validation');
+});
