@@ -4,7 +4,7 @@ const api=require('../scripts/content.cjs');
 test('GQ5: 15 independent dated gaming magnitude estimates, exact 7445 general IDs and historical pinning',()=>{
  const dataset=api.readDataset(),rows=dataset.questions.filter(q=>q.pack==='approx-games-v5');
  const before=dataset.packs.find(p=>p.id==='general'&&p.version===65),after=dataset.packs.find(p=>p.id==='general'&&p.version===66);
- assert.ok(before&&after);assert.equal(rows.length,15);assert.equal(dataset.questions.length,724);
+ assert.ok(before&&after);assert.equal(rows.length,15);assert.equal(dataset.questions.length,739);
  assert.deepEqual(rows.map(q=>q.id),Array.from({length:15},(_,i)=>'approx-'+(23401+i)));
  assert.equal(new Set(rows.map(q=>api.normalize(q.question))).size,15);
  assert.equal(new Set(rows.map(q=>q.meta.measurementKey)).size,15);
