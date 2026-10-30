@@ -1,7 +1,9 @@
 'use strict';
 const {normalizeTask032}=require('./task032-contract.cjs');
+const {normalizeTouchHighlight}=require('../../diagnostics/touch-highlight/source-contract.cjs');
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
 const {createSimulation}=require('../scripts/game-simulation.cjs'),base='3ff06f50eca48790ed5057e01847b4fdf424089e';
+const assertPublishedCss=css=>assert.ok(normalizeTouchHighlight(css).startsWith(execFileSync('git',['show',base+':party-game/style.css'],{cwd:path.resolve(__dirname,'../..'),encoding:'utf8',maxBuffer:12e6})),'Original gameplay CSS remains an exact prefix');
 function start(mode='mime',modifier=true){
  const h=createSimulation(22);h.context.mode=mode;h.context.modifier=modifier;
  h.eval(`soundOn=false;chooseStartingTeam=()=>0;Math.random=()=>0;Object.assign(options,{modes:[mode],dice:false,difficulty:'easy',complications:modifier,modifierChance:100,riskRounds:true,finishType:'rounds',rounds:100});newGame();game.dice=false;`);
@@ -71,5 +73,12 @@ test('TASK022 mathematical, storage, risk and gameplay cores remain exact; catal
  const oldMatch=git(['show',base+':party-game/match-views.js']),newMatch=fs.readFileSync(path.join(root,'party-game/match-views.js'),'utf8');
  const withoutHistory=s=>{const a=s.indexOf('function historyMarkup('),b=s.indexOf('\nfunction showResults()',a);assert.ok(a>=0&&b>a);return s.slice(0,a)+s.slice(b)};
  assert.equal(withoutHistory(newMatch).replace("reviewedRowsMarkup(game,null,false,'results')+reviewedTieMarkup(game,null,false,'results')","game.history.map(historyMarkup).join('')"),withoutHistory(oldMatch),'Completed winner/score/navigation view keeps every other byte');
- const css=fs.readFileSync(path.join(root,'party-game/style.css'),'utf8');assert.ok(css.startsWith(git(['show',base+':party-game/style.css'])),'Original gameplay CSS remains an exact prefix');
+ assertPublishedCss(fs.readFileSync(path.join(root,'party-game/style.css'),'utf8'));
+});
+test('TASK022 CSS prefix guard rejects unrelated edits after exact tap-highlight normalization',()=>{
+ const css=fs.readFileSync(path.resolve(__dirname,'../style.css'),'utf8');
+ for(const mutation of [css.replace('--bg:#0f0b20','--bg:#000000'),css.replace('outline:3px solid var(--lime)','outline:none'),css.replace('box-sizing:border-box','box-sizing:content-box')]){
+  assert.notEqual(mutation,css,'negative control must change CSS');
+  assert.throws(()=>assertPublishedCss(mutation),assert.AssertionError);
+ }
 });

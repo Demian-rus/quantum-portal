@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap');
 :root{color-scheme:dark;--bg:#0f0b20;--surface:#1b142f;--surface2:#251b3b;--stroke:#44365c;--white:#fff8ef;--soft:#c0b3d3;--coral:#ff827e;--violet:#af98ff;--lime:#c6f585;--cyan:#9aeee6;--font-title:'Unbounded',Impact,system-ui,sans-serif;--font-body:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif}
-*,*::before,*::after{box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--white);font-family:var(--font-body);font-size:16px;min-height:calc(100 * var(--kvip-locked-vh, 1dvh));overflow-x:hidden}
 button,input{font:inherit}
