@@ -92,6 +92,10 @@
     {
       "id": "everyday",
       "name": "Повседневная жизнь"
+    },
+    {
+      "id": "memes",
+      "name": "Мемы"
     }
   ],
   "cards": [
@@ -359,6 +363,66 @@
       "path": "cards/general-editorial-v1.json",
       "immutable": false,
       "review": "G46 editorial: eliminate active plural words, all exact duplicate prompts and multi-word word classification without changing historical IDs"
+    },
+    {
+      "path": "cards/general-editorial-v2.json",
+      "immutable": false,
+      "review": "G47: 3 exact semantic duplicate prompts replaced with three distinct singular word concepts; no historical changes"
+    },
+    {
+      "path": "cards/general-memes-v1.json",
+      "immutable": false,
+      "review": "M1: 20 independently editable internet meme words/phrases; editorial/general-memes-v1-review.md"
+    },
+    {
+      "path": "cards/general-games-v1.json",
+      "immutable": false,
+      "review": "VG1: 50 Russian-Cyrillic gameplay prompts from popular videogames; editorial/general-games-v1-review.md"
+    },
+    {
+      "path": "cards/general-games-v2.json",
+      "immutable": false,
+      "review": "VG2: 50 unique Cyrillic videogame prompts 40 words 10 phrases; editorial/general-games-v2-review.md"
+    },
+    {
+      "path": "cards/general-games-v3.json",
+      "immutable": false,
+      "review": "VG3: 50 Cyrillic videogame concepts, equipment, mechanics and places; editorial/general-games-v3-review.md"
+    },
+    {
+      "path": "cards/general-games-v4.json",
+      "immutable": false,
+      "review": "VG4: 50 carefully checked popular videogame terms and characters in Cyrillic; editorial/general-games-v4-review.md"
+    },
+    {
+      "path": "cards/general-games-v5.json",
+      "immutable": false,
+      "review": "VG5 broad recognition: 50 familiar videogame terms and titles without jargon; editorial/general-games-v5-review.md"
+    },
+    {
+      "path": "cards/general-games-v7.json",
+      "immutable": false,
+      "review": "VG7: 50 accessible Russian-language game prompts, after exact 60-source dedup; editorial/general-games-v7-review.md"
+    },
+    {
+      "path": "cards/general-games-v8.json",
+      "immutable": false,
+      "review": "VG8: 40 broad-audience words and 10 game phrases; editorial/general-games-v8-review.md"
+    },
+    {
+      "path": "cards/general-games-v9.json",
+      "immutable": false,
+      "review": "VG9: 40 singular familiar gaming words and 10 intuitive phrases; editorial/general-games-v9-review.md"
+    },
+    {
+      "path": "cards/general-games-v10.json",
+      "immutable": false,
+      "review": "VG10: 40 accessible game/fantasy action words and 10 familiar videogame phrases; editorial/general-games-v10-review.md"
+    },
+    {
+      "path": "cards/general-games-v11.json",
+      "immutable": false,
+      "review": "VG11: 40 widely recognizable solo game concepts and 10 everyday game phrases; editorial/general-games-v11-review.md"
     }
   ],
   "questions": [
@@ -406,6 +470,36 @@
       "path": "questions/estimation-v3-batch-3.json",
       "immutable": false,
       "review": "TASK009 F: recovered editorial material; checked sources, independent measurements, rounding and active/legacy review in editorial/estimation-*-v3.json."
+    },
+    {
+      "path": "questions/approx-games-v1.json",
+      "immutable": false,
+      "review": "GQ1: 16 numerical videogame estimates, verified publisher/platform/Guinness sources; editorial/approx-games-v1-review.md"
+    },
+    {
+      "path": "questions/approx-games-v2.json",
+      "immutable": false,
+      "review": "GQ2: 15 verified in-game events and community estimates, reviewed in editorial/approx-games-v2-review.md"
+    },
+    {
+      "path": "questions/approx-games-v3.json",
+      "immutable": false,
+      "review": "GQ3: 15 historical, measurable, community-created in-game achievements; editorial/approx-games-v3-review.md"
+    },
+    {
+      "path": "questions/approx-games-v4.json",
+      "immutable": false,
+      "review": "GQ4: 15 date-scoped community and unusual gameplay magnitude questions with verified primary Guinness references"
+    },
+    {
+      "path": "questions/approx-games-v5.json",
+      "immutable": false,
+      "review": "GQ5: verified gaming community records, editorial/approx-games-v5-review.md"
+    },
+    {
+      "path": "questions/approx-games-v6.json",
+      "immutable": false,
+      "review": "GQ6: 15 dated in-game and gaming-community scale estimates; editorial/approx-games-v6-review.md"
     }
   ],
   "packs": [
@@ -648,6 +742,101 @@
       "path": "packs/general-editorial-v1.json",
       "immutable": false,
       "review": "G46 editorial general@48: exactly 7000 unique active prompts, 162 replaced, historical catalogs retained"
+    },
+    {
+      "path": "packs/general-editorial-v2.json",
+      "immutable": false,
+      "review": "G47 general@49: preserve 7000 active IDs after removing three verified semantic duplicates and appending three authored words"
+    },
+    {
+      "path": "packs/general-memes-v1.json",
+      "immutable": false,
+      "review": "M1: general@50 includes meme tagged prompts, historical general@49 untouched"
+    },
+    {
+      "path": "packs/general-games-v1.json",
+      "immutable": false,
+      "review": "VG1 general@51 adds 50 videogame-tagged cards, retaining general@50 and all historical selections"
+    },
+    {
+      "path": "packs/general-games-v2.json",
+      "immutable": false,
+      "review": "VG2 general@52 appends 50 videogame-tagged cards, maintaining unchanged general@51 and historical snapshots"
+    },
+    {
+      "path": "packs/general-games-v3.json",
+      "immutable": false,
+      "review": "VG3 general@53 adds 50 gaming-mechanics tagged cards after unchanged general@52"
+    },
+    {
+      "path": "packs/general-games-v4.json",
+      "immutable": false,
+      "review": "VG4 general@54 appends 50 videogame-tagged prompts to unchanged general@53"
+    },
+    {
+      "path": "packs/general-games-v5.json",
+      "immutable": false,
+      "review": "VG5 general@55 adds 50 widely recognizable game prompts, retaining all general@54 IDs and previous snapshots"
+    },
+    {
+      "path": "packs/general-games-audience-v1.json",
+      "immutable": false,
+      "review": "VG6 audience curation: filter 151 of 200 VG1–VG4 cards from general@56; preserve source cards, previous snapshots, and all VG5 IDs"
+    },
+    {
+      "path": "packs/general-games-v7.json",
+      "immutable": false,
+      "review": "VG7 general@57 adds 50 broad-audience videogame prompts after 7119 pinned general@56, keeping all previous snapshots"
+    },
+    {
+      "path": "packs/general-games-v8.json",
+      "immutable": false,
+      "review": "VG8: general@58 appends 50 cards after general@57 with all 151 VG6 reserves still filtered"
+    },
+    {
+      "path": "packs/general-games-v9.json",
+      "immutable": false,
+      "review": "VG9: general@59 appends 50 familiar game prompts after 7219 pinned general@58, retaining all historical snapshots and 151 VG6 reserves"
+    },
+    {
+      "path": "packs/general-games-v10.json",
+      "immutable": false,
+      "review": "VG10: general@60 appends 50 audited prompts to general@59 while preserving all 7269 IDs and 151 reserved VG6 cards"
+    },
+    {
+      "path": "packs/general-games-v11.json",
+      "immutable": false,
+      "review": "VG11: general@61 adds 50 validated game prompts over general@60; preserves previous 7319 IDs and 151 VG6 reserves"
+    },
+    {
+      "path": "packs/approx-games-v1.json",
+      "immutable": false,
+      "review": "GQ1: general@62 appends 16 videogame estimates to general@61; all 7369 previously selected IDs pinned"
+    },
+    {
+      "path": "packs/approx-games-v2.json",
+      "immutable": false,
+      "review": "GQ2: general@63 appends 15 numerical estimates after general@62, preserving prior snapshots"
+    },
+    {
+      "path": "packs/approx-games-v3.json",
+      "immutable": false,
+      "review": "GQ3 general@64 adds 15 numeric videogame estimates; 7400 prior IDs retained"
+    },
+    {
+      "path": "packs/approx-games-v4.json",
+      "immutable": false,
+      "review": "GQ4 general@65 appends 15 numerical questions after general@64; keeps 7415 previous IDs unchanged"
+    },
+    {
+      "path": "packs/approx-games-v5.json",
+      "immutable": false,
+      "review": "GQ5 general@66 adds 15 source-backed estimation questions, all 7430 prior IDs pinned"
+    },
+    {
+      "path": "packs/approx-games-v6.json",
+      "immutable": false,
+      "review": "GQ6: general@67 appends 15 independently sourced videogame numerical questions, preserving previous general@66 7445 IDs"
     }
   ],
   "legacyCollisions": [

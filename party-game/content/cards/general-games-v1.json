@@ -1,0 +1,652 @@
+[
+  {
+    "id": "word-074001",
+    "text": "МАЙНКРАФТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Майнкрафт"
+    }
+  },
+  {
+    "id": "word-074002",
+    "text": "РОБЛОКС",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Роблокс"
+    }
+  },
+  {
+    "id": "word-074003",
+    "text": "ФОРТНАЙТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Фортнайт"
+    }
+  },
+  {
+    "id": "word-074004",
+    "text": "ДОТА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Дота"
+    }
+  },
+  {
+    "id": "word-074005",
+    "text": "ТЕТРИС",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Тетрис"
+    }
+  },
+  {
+    "id": "word-074006",
+    "text": "СИМС",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Симс"
+    }
+  },
+  {
+    "id": "word-074007",
+    "text": "ВЕДЬМАК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Ведьмак"
+    }
+  },
+  {
+    "id": "word-074008",
+    "text": "СКАЙРИМ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Скайрим"
+    }
+  },
+  {
+    "id": "word-074009",
+    "text": "СТАЛКЕР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Сталкер"
+    }
+  },
+  {
+    "id": "word-074010",
+    "text": "ТЕРРАРИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Террария"
+    }
+  },
+  {
+    "id": "word-074011",
+    "text": "ДИАБЛО",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Диабло"
+    }
+  },
+  {
+    "id": "word-074012",
+    "text": "ГТА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "ГТА"
+    }
+  },
+  {
+    "id": "word-074013",
+    "text": "КРИПЕР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Майнкрафт"
+    }
+  },
+  {
+    "id": "word-074014",
+    "text": "ГЕРАЛЬТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Ведьмак"
+    }
+  },
+  {
+    "id": "word-074015",
+    "text": "ЗЕЛЬДА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Легенда о Зельде"
+    }
+  },
+  {
+    "id": "word-074016",
+    "text": "КОНТР-СТРАЙК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Контр-страйк"
+    }
+  },
+  {
+    "id": "word-074017",
+    "text": "КИБЕРПАНК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Киберпанк"
+    }
+  },
+  {
+    "id": "word-074018",
+    "text": "ВАЛОРАНТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Валорант"
+    }
+  },
+  {
+    "id": "word-074019",
+    "text": "ГЕНШИН",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Геншин"
+    }
+  },
+  {
+    "id": "word-074020",
+    "text": "ВАРФРЕЙМ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Варфрейм"
+    }
+  },
+  {
+    "id": "word-074021",
+    "text": "ЭНДЕРМЕН",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Майнкрафт"
+    }
+  },
+  {
+    "id": "word-074022",
+    "text": "ПУДЖ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Дота"
+    }
+  },
+  {
+    "id": "word-074023",
+    "text": "РОШАН",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Дота"
+    }
+  },
+  {
+    "id": "word-074024",
+    "text": "ДОВАКИН",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Скайрим"
+    }
+  },
+  {
+    "id": "word-074025",
+    "text": "ДЖИНКС",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Лига легенд"
+    }
+  },
+  {
+    "id": "word-074026",
+    "text": "ЛИНК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Легенда о Зельде"
+    }
+  },
+  {
+    "id": "word-074027",
+    "text": "НЕЗЕРИТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Майнкрафт"
+    }
+  },
+  {
+    "id": "word-074028",
+    "text": "РОБУКС",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Роблокс"
+    }
+  },
+  {
+    "id": "word-074029",
+    "text": "ПЛАМБОБ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Симс"
+    }
+  },
+  {
+    "id": "word-074030",
+    "text": "ЛОС-САНТОС",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "ГТА"
+    }
+  },
+  {
+    "id": "word-074031",
+    "text": "ТЭННО",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Варфрейм"
+    }
+  },
+  {
+    "id": "word-074032",
+    "text": "ОРБИТЕР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Варфрейм"
+    }
+  },
+  {
+    "id": "word-074033",
+    "text": "МАЛЕНИЯ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Элден Ринг"
+    }
+  },
+  {
+    "id": "word-074034",
+    "text": "РАННИ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Элден Ринг"
+    }
+  },
+  {
+    "id": "word-074035",
+    "text": "ЯСУО",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Лига легенд"
+    }
+  },
+  {
+    "id": "word-074036",
+    "text": "НЕКСУС",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Лига легенд"
+    }
+  },
+  {
+    "id": "word-074037",
+    "text": "СИМОЛЕОН",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Симс"
+    }
+  },
+  {
+    "id": "word-074038",
+    "text": "ОББИ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Роблокс"
+    }
+  },
+  {
+    "id": "word-074039",
+    "text": "ГРИНИР",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Варфрейм"
+    }
+  },
+  {
+    "id": "word-074040",
+    "text": "БЛАДХАУНД",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Апекс Легендс"
+    }
+  },
+  {
+    "id": "phrase-074001",
+    "text": "АЛМАЗНАЯ КИРКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Майнкрафт"
+    }
+  },
+  {
+    "id": "phrase-074002",
+    "text": "БОЕВОЙ АВТОБУС",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Фортнайт"
+    }
+  },
+  {
+    "id": "phrase-074003",
+    "text": "МИР ТАНКОВ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Мир танков"
+    }
+  },
+  {
+    "id": "phrase-074004",
+    "text": "ЛИГА ЛЕГЕНД",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Лига легенд"
+    }
+  },
+  {
+    "id": "phrase-074005",
+    "text": "ПОРТАЛ В КРАЙ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Майнкрафт"
+    }
+  },
+  {
+    "id": "phrase-074006",
+    "text": "ЗОНА ОТЧУЖДЕНИЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Сталкер"
+    }
+  },
+  {
+    "id": "phrase-074007",
+    "text": "ЭКСТРЕННОЕ СОБРАНИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Среди нас"
+    }
+  },
+  {
+    "id": "phrase-074008",
+    "text": "ЭЛДЕН РИНГ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Элден Ринг"
+    }
+  },
+  {
+    "id": "phrase-074009",
+    "text": "СТЕНА ПЛОТИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Террария"
+    }
+  },
+  {
+    "id": "phrase-074010",
+    "text": "ЗНАК ИГНИ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v1",
+    "meta": {
+      "game": "Ведьмак"
+    }
+  }
+]

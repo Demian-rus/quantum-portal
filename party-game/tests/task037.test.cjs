@@ -1,10 +1,11 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),{execFileSync}=require('node:child_process');
 const {normalizeTask037,hunks}=require('../../diagnostics/task037/source-contract.cjs');
+const {catalogFiles,verifyApprovedCatalogEvolution}=require('./content-integration-guard.cjs');
 const BASE='ac7e2ce49c2c4dd066220b701ce00d801a5664e9',old=f=>execFileSync('git',['show',BASE+':party-game/'+f],{encoding:'utf8',maxBuffer:20e6}),read=f=>require('../../diagnostics/touch-highlight/source-contract.cjs').normalizeTouchHighlight(fs.readFileSync('party-game/'+f,'utf8'));
 test('TASK037 permits only reviewed presentation and catalog-cache hunks; every other runtime/data byte remains exact',()=>{
  const files=execFileSync('git',['ls-tree','-r','--name-only',BASE,'party-game'],{encoding:'utf8'}).trim().split('\n').filter(f=>!f.includes('/tests/')&&!f.includes('/scripts/')&&/\.(js|css|json|webmanifest|html)$/.test(f));
- for(const path of files){const f=path.slice('party-game/'.length);assert.equal(normalizeTask037(read(f)),old(f),f);}
+ for(const path of files){const f=path.slice('party-game/'.length);if(catalogFiles.has(f))continue;assert.equal(normalizeTask037(read(f)),old(f),f);}verifyApprovedCatalogEvolution(require('node:path').resolve(__dirname,'../..'));
  assert.deepEqual([...new Set(hunks.map(h=>h.file))].sort(),['index.html','setup-wizard.css','setup-wizard.js','sw.js','team-controller.js']);
  for(const h of hunks){assert(h.after);assert.equal(read(h.file).split(h.after).length,2,'unique exact reviewed addition '+h.file);}
 });

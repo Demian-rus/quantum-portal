@@ -1,0 +1,20 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),api=require('../scripts/content.cjs');
+test('VG2 is 50 Cyrillic videogame prompts; no duplicates across any historical source and general@52 extends general@51',()=>{
+ const d=api.readDataset(),old=d.packs.find(p=>p.id==='general'&&p.version===51),now=d.packs.find(p=>p.id==='general'&&p.version===52);
+ assert.ok(old&&now);
+ const rows=d.cards.filter(c=>c.pack==='general-games-v2'),ids=rows.map(c=>c.id);
+ assert.equal(rows.length,50);assert.equal(rows.filter(c=>c.type==='word').length,40);assert.equal(rows.filter(c=>c.type==='phrase').length,10);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(x=>[x,rows.filter(c=>c.difficulty===x).length])),{easy:20,medium:20,hard:10});
+ assert.ok(rows.every(c=>c.categories.length===1&&c.categories[0]==='videogames'));
+ assert.ok(rows.every(c=>/^[А-ЯЁ -]+$/u.test(c.text)&&/^[А-ЯЁ -]+$/u.test(c.meta?.game||'')));
+ assert.ok(rows.every(c=>c.type==='word'?!/\s/u.test(c.text):/\s/u.test(c.text)));
+ const normalized=rows.map(c=>api.normalize(c.text)),prior=new Set(d.cards.filter(c=>c.pack!=='general-games-v2').map(c=>api.normalize(c.text)));
+ assert.equal(new Set(ids).size,50);assert.equal(new Set(normalized).size,50);
+ for(let i=0;i<rows.length;i++)assert.ok(!prior.has(normalized[i]),'Existing historical card already has text '+rows[i].text);
+ assert.equal(old.criteria.cardIds.length,7070);assert.equal(now.criteria.cardIds.length,7120);
+ assert.deepEqual(now.criteria.cardIds.slice(0,7070),old.criteria.cardIds);
+ assert.deepEqual(now.criteria.cardIds.slice(7070),ids);
+ assert.ok(d.packs.filter(p=>p.id!=='general').every(p=>!p.criteria.cardIds.some(id=>ids.includes(id))),'Not an independent thematic mode');
+ assert.ok(api.validate(d).ok,'Strict historical locks and runtime compatibility checks');
+});

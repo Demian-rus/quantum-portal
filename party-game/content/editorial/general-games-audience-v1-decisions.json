@@ -1,0 +1,1811 @@
+{
+  "policyVersion": 1,
+  "previous": "general@55",
+  "next": "general@56",
+  "measuredRecognition": false,
+  "assessment": "Editorial, not based on audience survey",
+  "selectedCount": 49,
+  "excludedCount": 151,
+  "entries": [
+    {
+      "id": "word-074001",
+      "text": "МАЙНКРАФТ",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-074002",
+      "text": "РОБЛОКС",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-074003",
+      "text": "ФОРТНАЙТ",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-074004",
+      "text": "ДОТА",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-074005",
+      "text": "ТЕТРИС",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-074006",
+      "text": "СИМС",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-074007",
+      "text": "ВЕДЬМАК",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-074008",
+      "text": "СКАЙРИМ",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-074009",
+      "text": "СТАЛКЕР",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-074010",
+      "text": "ТЕРРАРИЯ",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074011",
+      "text": "ДИАБЛО",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-074012",
+      "text": "ГТА",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-074013",
+      "text": "КРИПЕР",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-074014",
+      "text": "ГЕРАЛЬТ",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-074015",
+      "text": "ЗЕЛЬДА",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-074016",
+      "text": "КОНТР-СТРАЙК",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-074017",
+      "text": "КИБЕРПАНК",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-074018",
+      "text": "ВАЛОРАНТ",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074019",
+      "text": "ГЕНШИН",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074020",
+      "text": "ВАРФРЕЙМ",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074021",
+      "text": "ЭНДЕРМЕН",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074022",
+      "text": "ПУДЖ",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074023",
+      "text": "РОШАН",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074024",
+      "text": "ДОВАКИН",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074025",
+      "text": "ДЖИНКС",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074026",
+      "text": "ЛИНК",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074027",
+      "text": "НЕЗЕРИТ",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074028",
+      "text": "РОБУКС",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074029",
+      "text": "ПЛАМБОБ",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074030",
+      "text": "ЛОС-САНТОС",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074031",
+      "text": "ТЭННО",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074032",
+      "text": "ОРБИТЕР",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074033",
+      "text": "МАЛЕНИЯ",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074034",
+      "text": "РАННИ",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074035",
+      "text": "ЯСУО",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074036",
+      "text": "НЕКСУС",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074037",
+      "text": "СИМОЛЕОН",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074038",
+      "text": "ОББИ",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074039",
+      "text": "ГРИНИР",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-074040",
+      "text": "БЛАДХАУНД",
+      "source": "general-games-v1",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-074001",
+      "text": "АЛМАЗНАЯ КИРКА",
+      "source": "general-games-v1",
+      "type": "phrase",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-074002",
+      "text": "БОЕВОЙ АВТОБУС",
+      "source": "general-games-v1",
+      "type": "phrase",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-074003",
+      "text": "МИР ТАНКОВ",
+      "source": "general-games-v1",
+      "type": "phrase",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-074004",
+      "text": "ЛИГА ЛЕГЕНД",
+      "source": "general-games-v1",
+      "type": "phrase",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-074005",
+      "text": "ПОРТАЛ В КРАЙ",
+      "source": "general-games-v1",
+      "type": "phrase",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-074006",
+      "text": "ЗОНА ОТЧУЖДЕНИЯ",
+      "source": "general-games-v1",
+      "type": "phrase",
+      "difficulty": "medium",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-074007",
+      "text": "ЭКСТРЕННОЕ СОБРАНИЕ",
+      "source": "general-games-v1",
+      "type": "phrase",
+      "difficulty": "medium",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-074008",
+      "text": "ЭЛДЕН РИНГ",
+      "source": "general-games-v1",
+      "type": "phrase",
+      "difficulty": "medium",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-074009",
+      "text": "СТЕНА ПЛОТИ",
+      "source": "general-games-v1",
+      "type": "phrase",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-074010",
+      "text": "ЗНАК ИГНИ",
+      "source": "general-games-v1",
+      "type": "phrase",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075001",
+      "text": "ВАРИО",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075002",
+      "text": "ВАЛУИДЖИ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075003",
+      "text": "НАКЛЗ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075004",
+      "text": "ЧАРМАНДЕР",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075005",
+      "text": "ПОКЕБОЛ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-075006",
+      "text": "ПАКМАН",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-075007",
+      "text": "ФОЛЛАУТ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-075008",
+      "text": "СПАЙРО",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075009",
+      "text": "СТИВ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075010",
+      "text": "КРАШ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075011",
+      "text": "БОМБЕРМЕН",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075012",
+      "text": "САБ-ЗИРО",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-075013",
+      "text": "ПОКЕМОН",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-075014",
+      "text": "ЭНДЕР-ДРАКОН",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075015",
+      "text": "ФРЕДДИ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075016",
+      "text": "РЭЙМАН",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075017",
+      "text": "ЭЛЛИ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075018",
+      "text": "ДЖОЭЛ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075019",
+      "text": "ЭЛОЙ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075020",
+      "text": "МИМИР",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075021",
+      "text": "ВЕСЕМИР",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075022",
+      "text": "ТРИСС",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075023",
+      "text": "ХОРНЕТ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075024",
+      "text": "ГАНОН",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075025",
+      "text": "ХАЙРУЛ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075026",
+      "text": "ФРИМЕН",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075027",
+      "text": "САНС",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075028",
+      "text": "КОРТАНА",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075029",
+      "text": "САМУС",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075030",
+      "text": "ХЕДКРАБ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075031",
+      "text": "ЧЕЛЛ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075032",
+      "text": "ТРИФОРС",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075033",
+      "text": "СЕФИРОТ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075034",
+      "text": "АРТОРИАС",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075035",
+      "text": "ТИРАЭЛЬ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075036",
+      "text": "ЗАГРЕЙ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075037",
+      "text": "КЭФКА",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075038",
+      "text": "ЛИЛИТ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075039",
+      "text": "ИНАРИЙ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-075040",
+      "text": "МЕЛИНОЯ",
+      "source": "general-games-v2",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-075001",
+      "text": "МОРТАЛ КОМБАТ",
+      "source": "general-games-v2",
+      "type": "phrase",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-075002",
+      "text": "ЗОВ ДОЛГА",
+      "source": "general-games-v2",
+      "type": "phrase",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-075003",
+      "text": "ПРИНЦ ПЕРСИИ",
+      "source": "general-games-v2",
+      "type": "phrase",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-075004",
+      "text": "ПРИНЦЕССА ПИЧ",
+      "source": "general-games-v2",
+      "type": "phrase",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-075005",
+      "text": "ЖЕЛЕЗНЫЙ ГОЛЕМ",
+      "source": "general-games-v2",
+      "type": "phrase",
+      "difficulty": "medium",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-075006",
+      "text": "ПОРТАЛЬНАЯ ПУШКА",
+      "source": "general-games-v2",
+      "type": "phrase",
+      "difficulty": "medium",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-075007",
+      "text": "ГОРОД СЕМНАДЦАТЬ",
+      "source": "general-games-v2",
+      "type": "phrase",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-075008",
+      "text": "КАПИТАН ПРАЙС",
+      "source": "general-games-v2",
+      "type": "phrase",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-075009",
+      "text": "ДЖОННИ СИЛЬВЕРХЕНД",
+      "source": "general-games-v2",
+      "type": "phrase",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-075010",
+      "text": "ПРИСУТСТВИЕ ЛУНЫ",
+      "source": "general-games-v2",
+      "type": "phrase",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076001",
+      "text": "ЧИТЕР",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-076002",
+      "text": "КАТСЦЕНА",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076003",
+      "text": "РЕСПАУН",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076004",
+      "text": "ЛУТ",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076005",
+      "text": "КРАФТ",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-076006",
+      "text": "СКИН",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076007",
+      "text": "ПИНГ",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-076008",
+      "text": "ЛАГ",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-076009",
+      "text": "КЛАН",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-076010",
+      "text": "ХИЛКА",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076011",
+      "text": "ФРАГ",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076012",
+      "text": "КОМБО",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-076013",
+      "text": "МАНА",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076014",
+      "text": "МОБ",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076015",
+      "text": "ЧЕКПОИНТ",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076016",
+      "text": "ДЖОЙКОН",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076017",
+      "text": "РЕДСТОУН",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076018",
+      "text": "ЭЛИТРА",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076019",
+      "text": "БУЛЬБАЗАВР",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076020",
+      "text": "ЧАРИЗАРД",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076021",
+      "text": "ИМПОСТЕР",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-076022",
+      "text": "ХЕДШОТ",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076023",
+      "text": "СТЕЛС",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076024",
+      "text": "АГРО",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076025",
+      "text": "БАННИХОП",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076026",
+      "text": "БЭКСТАБ",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076027",
+      "text": "ВАЙП",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076028",
+      "text": "РЕЙД",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-076029",
+      "text": "ФАРМИНГ",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076030",
+      "text": "НЕРФ",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076031",
+      "text": "БАФФ",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076032",
+      "text": "МОДПАК",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076033",
+      "text": "КИТИНГ",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076034",
+      "text": "ГАНК",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076035",
+      "text": "ХИТБОКС",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076036",
+      "text": "ФРЕЙМДАТА",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076037",
+      "text": "СПИДРАН",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076038",
+      "text": "ХИТСКАН",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076039",
+      "text": "СОФТЛОК",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-076040",
+      "text": "ФРЕЙМТРЕП",
+      "source": "general-games-v3",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-076001",
+      "text": "ПОЛОСКА ЗДОРОВЬЯ",
+      "source": "general-games-v3",
+      "type": "phrase",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-076002",
+      "text": "ТОЧКА СОХРАНЕНИЯ",
+      "source": "general-games-v3",
+      "type": "phrase",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-076003",
+      "text": "КОРОЛЕВСКАЯ БИТВА",
+      "source": "general-games-v3",
+      "type": "phrase",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-076004",
+      "text": "ИГРОВОЙ АВТОМАТ",
+      "source": "general-games-v3",
+      "type": "phrase",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-076005",
+      "text": "ДЕРЕВО НАВЫКОВ",
+      "source": "general-games-v3",
+      "type": "phrase",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-076006",
+      "text": "ВЕДЬМАЧЬЕ ЧУТЬЁ",
+      "source": "general-games-v3",
+      "type": "phrase",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-076007",
+      "text": "ПОЛНЫЙ ИНВЕНТАРЬ",
+      "source": "general-games-v3",
+      "type": "phrase",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-076008",
+      "text": "СЕКРЕТНЫЙ УРОВЕНЬ",
+      "source": "general-games-v3",
+      "type": "phrase",
+      "difficulty": "medium",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "phrase-076009",
+      "text": "ПРОЦЕДУРНАЯ ГЕНЕРАЦИЯ",
+      "source": "general-games-v3",
+      "type": "phrase",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-076010",
+      "text": "ИДЕАЛЬНОЕ ПАРИРОВАНИЕ",
+      "source": "general-games-v3",
+      "type": "phrase",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077001",
+      "text": "ЙОШИ",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-077002",
+      "text": "БОУЗЕР",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-077003",
+      "text": "ГУМБА",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077004",
+      "text": "МЬЮТУ",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077005",
+      "text": "СКВИРТЛ",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077006",
+      "text": "ИВИ",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077007",
+      "text": "ПИГЛИН",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077008",
+      "text": "ВИЗЕР",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077009",
+      "text": "ГАСТ",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077010",
+      "text": "ЛЮТИК",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "keep-general",
+      "reason": "Widely recognizable game, character, or understandable gaming concept"
+    },
+    {
+      "id": "word-077011",
+      "text": "ТРЕВОР",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077012",
+      "text": "ФРАНКЛИН",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077013",
+      "text": "ФОКСИ",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077014",
+      "text": "БОННИ",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077015",
+      "text": "ЧИКА",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077016",
+      "text": "ПИП-БОЙ",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077017",
+      "text": "ШАЛКЕР",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077018",
+      "text": "СТРАЙДЕР",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077019",
+      "text": "СПРИНГТРАП",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077020",
+      "text": "ПЛАНТЕРА",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077021",
+      "text": "СКЕЛЕТРОН",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077022",
+      "text": "СЕРАНА",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077023",
+      "text": "СОВНГАРД",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077024",
+      "text": "ТУУМ",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077025",
+      "text": "ФЛАУИ",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077026",
+      "text": "ТОРИЭЛЬ",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077027",
+      "text": "АНДАЙН",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077028",
+      "text": "ДЖУНИМО",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077029",
+      "text": "КРОБУС",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077030",
+      "text": "ДЖЕТТ",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077031",
+      "text": "СЕЙДЖ",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077032",
+      "text": "ТИМО",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077033",
+      "text": "ВИЕГО",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077034",
+      "text": "ШАКО",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077035",
+      "text": "РАДАН",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077036",
+      "text": "МАРГИТ",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077037",
+      "text": "МИКЕЛЛА",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077038",
+      "text": "МЕЛИНА",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077039",
+      "text": "БАРАТРУМ",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "word-077040",
+      "text": "АЕГИС",
+      "source": "general-games-v4",
+      "type": "word",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-077001",
+      "text": "ГЛАЗ КТУЛХУ",
+      "source": "general-games-v4",
+      "type": "phrase",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-077002",
+      "text": "КОГОТЬ СМЕРТИ",
+      "source": "general-games-v4",
+      "type": "phrase",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-077003",
+      "text": "БРАТСТВО СТАЛИ",
+      "source": "general-games-v4",
+      "type": "phrase",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-077004",
+      "text": "ТОМ НУК",
+      "source": "general-games-v4",
+      "type": "phrase",
+      "difficulty": "easy",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-077005",
+      "text": "ПОРТАЛ В НЕЗЕР",
+      "source": "general-games-v4",
+      "type": "phrase",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-077006",
+      "text": "МЕЧ МАСТЕРА",
+      "source": "general-games-v4",
+      "type": "phrase",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-077007",
+      "text": "ЧЁРНАЯ МЕЗА",
+      "source": "general-games-v4",
+      "type": "phrase",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-077008",
+      "text": "КРОВАВАЯ ЛУНА",
+      "source": "general-games-v4",
+      "type": "phrase",
+      "difficulty": "medium",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-077009",
+      "text": "ЗОЛОТОЙ СКАРАБЕЙ",
+      "source": "general-games-v4",
+      "type": "phrase",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    },
+    {
+      "id": "phrase-077010",
+      "text": "ЛОЖНЫЙ РЫЦАРЬ",
+      "source": "general-games-v4",
+      "type": "phrase",
+      "difficulty": "hard",
+      "decision": "reserve-for-theme",
+      "reason": "Too specific for a general audience: individual game lore, character, or specialized jargon"
+    }
+  ]
+}
