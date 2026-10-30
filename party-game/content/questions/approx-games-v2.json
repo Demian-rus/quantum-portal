@@ -1,0 +1,332 @@
+[
+  {
+    "id": "approx-23101",
+    "difficulty": "easy",
+    "question": "Сколько миллионов игроков одновременно участвовало в битве с Галактусом в Fortnite в декабре 2020 года?",
+    "answer": "15,3",
+    "unit": "млн игроков",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Пик одновременных участников события Fortnite против Галактуса по Guinness.",
+    "source": "https://www.guinnessworldrecords.com/world-records/563750-most-concurrently-played-videogame",
+    "pack": "approx-games-v2",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq2-1",
+      "checkedAt": "2026-10-29",
+      "asOf": "2020-12-01",
+      "batch": 2,
+      "measurementKey": "fortnite-galactus-2020-concurrent",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23102",
+    "difficulty": "easy",
+    "question": "Сколько миллионов зрителей одновременно пришли на концерт Бруно Марса в Roblox в январе 2026 года?",
+    "answer": "12,86",
+    "unit": "млн зрителей",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Одновременные зрители выступления в Steal a Brainrot; округлено до сотых миллиона.",
+    "source": "https://www.guinnessworldrecords.com/world-records/782027-largest-music-concert-in-a-videogame-by-a-single-artist",
+    "pack": "approx-games-v2",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq2-2",
+      "checkedAt": "2026-10-29",
+      "asOf": "2026-01-17",
+      "batch": 2,
+      "measurementKey": "roblox-bruno-2026-concert-concurrent",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23103",
+    "difficulty": "medium",
+    "question": "Сколько кораблей уничтожили участники битвы Fury at FWST-8 в EVE Online в октябре 2020 года?",
+    "answer": "6746",
+    "unit": "кораблей",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Сумма уничтоженных кораблей по Guinness, без учёта станции Keepstar.",
+    "source": "https://www.guinnessworldrecords.com/news/2020/10/eve-onlines-record-breaking-fury-at-fwst-8",
+    "pack": "approx-games-v2",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq2-3",
+      "checkedAt": "2026-10-29",
+      "asOf": "2020-10-06",
+      "batch": 2,
+      "measurementKey": "eve-fwst8-2020-destroyed-ships",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23104",
+    "difficulty": "medium",
+    "question": "Сколько гигантских кораблей класса «Титан» потеряли игроки в новогодней битве M2-XFE в EVE Online?",
+    "answer": "257",
+    "unit": "титанов",
+    "categories": [
+      "videogames"
+    ],
+    "note": "За бой 30–31 декабря 2020 года уничтожено 257 титанов.",
+    "source": "https://www.guinnessworldrecords.com/world-records/422884-most-titans-lost-in-a-battle-in-eve-online",
+    "pack": "approx-games-v2",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq2-4",
+      "checkedAt": "2026-10-29",
+      "asOf": "2020-12-31",
+      "batch": 2,
+      "measurementKey": "eve-m2xfe-2020-titans-lost",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23105",
+    "difficulty": "hard",
+    "question": "Во сколько долларов оценили общие виртуальные потери новогодней битвы M2-XFE в EVE Online?",
+    "answer": "378012",
+    "unit": "долларов США",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Денежный эквивалент потерянных игровых активов по Guinness, а не фактическая денежная выплата.",
+    "source": "https://www.guinnessworldrecords.com/world-records/117417-most-costly-videogame-battle",
+    "pack": "approx-games-v2",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq2-5",
+      "checkedAt": "2026-10-29",
+      "asOf": "2020-12-31",
+      "batch": 2,
+      "measurementKey": "eve-m2xfe-2020-loss-usd-equivalent",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23106",
+    "difficulty": "medium",
+    "question": "Сколько блоков в длину составила рекордная железная дорога игрока в Minecraft в марте 2026 года?",
+    "answer": "300999",
+    "unit": "блоков",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Длина железной дороги Casey Wilhelm, Guinness, 31 марта 2026 года.",
+    "source": "https://www.guinnessworldrecords.com/world-records/115115-longest-railway-track-in-minecraft",
+    "pack": "approx-games-v2",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq2-6",
+      "checkedAt": "2026-10-29",
+      "asOf": "2026-03-31",
+      "batch": 2,
+      "measurementKey": "minecraft-rail-2026-length-blocks",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23107",
+    "difficulty": "hard",
+    "question": "Сколько квадратных километров Земли удалось воссоздать сообществу Build the Earth в Minecraft к июню 2025 года?",
+    "answer": "768",
+    "unit": "км²",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Оценка Guinness — 768 020 507 м²; округлено до целых км².",
+    "source": "https://www.guinnessworldrecords.com/world-records/734997-biggest-minecraft-project",
+    "pack": "approx-games-v2",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq2-7",
+      "checkedAt": "2026-10-29",
+      "asOf": "2025-06-24",
+      "batch": 2,
+      "measurementKey": "minecraft-buildtheearth-2025-area-km2",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23108",
+    "difficulty": "medium",
+    "question": "Сколько блоков в длину имел рекордный мост, построенный игроком в Minecraft в апреле 2026 года?",
+    "answer": "45000",
+    "unit": "блоков",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Мост Grigoriy Sidorenko, рекорд Guinness от 10 апреля 2026 года.",
+    "source": "https://www.guinnessworldrecords.com/world-records/113375-longest-minecraft-bridge",
+    "pack": "approx-games-v2",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq2-8",
+      "checkedAt": "2026-10-29",
+      "asOf": "2026-04-10",
+      "batch": 2,
+      "measurementKey": "minecraft-bridge-2026-length-blocks",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23109",
+    "difficulty": "medium",
+    "question": "Сколько раз игроки GTA Online успели запустить пользовательскую гонку «Super Stunt Sky» на ПК к ноябрю 2016 года?",
+    "answer": "706200",
+    "unit": "запусков",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Показатель Guinness для PC-гонки по состоянию на 2 ноября 2016 года.",
+    "source": "https://www.guinnessworldrecords.com/world-records/449604-most-played-custom-job-in-grand-theft-auto-online-pc",
+    "pack": "approx-games-v2",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq2-9",
+      "checkedAt": "2026-10-29",
+      "asOf": "2016-11-02",
+      "batch": 2,
+      "measurementKey": "gtaonline-superstuntsky-2016-playcount",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23110",
+    "difficulty": "medium",
+    "question": "Сколько миллионов долларов собрали игроки World of Warcraft в помощь пострадавшим в Японии через покупку виртуального питомца?",
+    "answer": "1,9",
+    "unit": "млн долларов США",
+    "categories": [
+      "videogames"
+    ],
+    "note": "В рамках сбора после цунами 2011 года, через внутриигрового питомца Cenarion Hatchling.",
+    "source": "https://www.guinnessworldrecords.com/world-records/105589-biggest-mmo-community-donation",
+    "pack": "approx-games-v2",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq2-10",
+      "checkedAt": "2026-10-29",
+      "asOf": "2011-03-11",
+      "batch": 2,
+      "measurementKey": "wow-japan-2011-community-charity",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23111",
+    "difficulty": "easy",
+    "question": "Сколько миллионов человек одновременно смотрели концерт Трэвиса Скотта внутри Fortnite в апреле 2020 года?",
+    "answer": "12,3",
+    "unit": "млн человек",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Аудитория концертного события Astronomical по Guinness.",
+    "source": "https://www.guinnessworldrecords.com/world-records/563742-largest-music-concert-in-a-videogame",
+    "pack": "approx-games-v2",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq2-11",
+      "checkedAt": "2026-10-29",
+      "asOf": "2020-04-24",
+      "batch": 2,
+      "measurementKey": "fortnite-travis-2020-concert-concurrent",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23112",
+    "difficulty": "easy",
+    "question": "Сколько миллионов игроков одновременно собрались в Roblox-игре Steal a Brainrot в октябре 2025 года?",
+    "answer": "25,87",
+    "unit": "млн игроков",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Пиковая одновременная аудитория на 11 октября 2025; округлено до сотых миллиона.",
+    "source": "https://www.guinnessworldrecords.com/world-records/503322-most-concurrent-players-for-a-videogame-made-in-roblox",
+    "pack": "approx-games-v2",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq2-12",
+      "checkedAt": "2026-10-29",
+      "asOf": "2025-10-11",
+      "batch": 2,
+      "measurementKey": "roblox-brainrot-2025-peak-concurrent",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23113",
+    "difficulty": "easy",
+    "question": "Сколько минут занимала поездка по огромным американским горкам, построенным игроком Gaermine в Minecraft?",
+    "answer": "50",
+    "unit": "минут",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Guinness указывает рекордный маршрут длиной по времени не менее 50 минут.",
+    "source": "https://www.guinnessworldrecords.com/world-records/383608-longest-minecraft-roller-coaster-trip",
+    "pack": "approx-games-v2",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq2-13",
+      "checkedAt": "2026-10-29",
+      "asOf": "2013-05-17",
+      "batch": 2,
+      "measurementKey": "minecraft-gaermine-2013-coaster-minutes",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23114",
+    "difficulty": "medium",
+    "question": "Сколько тысяч километров прошёл пешком Kurt J Mac в Minecraft в поисках Далёких земель к 2019 году?",
+    "answer": "3,858",
+    "unit": "тыс. км",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Пройдено 3 857 848 блоков ≈3 858 км; число приведено в тысячах километров.",
+    "source": "https://www.guinnessworldrecords.com/news/2025/4/people-whove-used-minecraft-to-break-records-underwater-city-to-recreating-the-earth",
+    "pack": "approx-games-v2",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq2-14",
+      "checkedAt": "2026-10-29",
+      "asOf": "2019-12-31",
+      "batch": 2,
+      "measurementKey": "minecraft-kurt-2019-distance-thousand-km",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23115",
+    "difficulty": "hard",
+    "question": "Сколько миллиардов лет занял бы обход всех возможных планет No Man’s Sky при открытии одной планеты каждую секунду?",
+    "answer": "585",
+    "unit": "млрд лет",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Гипотетический расчёт автора игры для процедурно генерируемой вселенной, согласно Guinness.",
+    "source": "https://www.guinnessworldrecords.com/world-records/422186-largest-playable-videogame-universe",
+    "pack": "approx-games-v2",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq2-15",
+      "checkedAt": "2026-10-29",
+      "asOf": "2016-08-09",
+      "batch": 2,
+      "measurementKey": "nomanssky-visit-all-planets-years",
+      "topic": "videogames"
+    }
+  }
+]

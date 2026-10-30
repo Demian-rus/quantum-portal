@@ -1,0 +1,702 @@
+[
+  {
+    "id": "word-083001",
+    "text": "КРЕПОСТЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083002",
+    "text": "ТЮРЬМА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ГТА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083003",
+    "text": "БОЛОТО",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083004",
+    "text": "ТРЮК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ГТА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083005",
+    "text": "СТОЛКНОВЕНИЕ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "МАРИО КАРТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083006",
+    "text": "ПРЯТКИ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "РОБЛОКС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083007",
+    "text": "СРАЖЕНИЕ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "МИР ТАНКОВ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083008",
+    "text": "ВЫЗОВ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ФИФА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083009",
+    "text": "ПАРТНЁР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ФИФА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083010",
+    "text": "КОЛДУН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ВАРКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083011",
+    "text": "ИНОПЛАНЕТЯНИН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "СИМС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083012",
+    "text": "СТРОИТЕЛЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083013",
+    "text": "ВОДИТЕЛЬ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ГТА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083014",
+    "text": "КЛАД",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083015",
+    "text": "ДРАГОЦЕННОСТЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "СИМС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083016",
+    "text": "ВИНТОВКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "КОНТР-СТРАЙК",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083017",
+    "text": "МАСКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ФОРТНАЙТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083018",
+    "text": "УДОЧКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083019",
+    "text": "ШАРИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "СИМС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083020",
+    "text": "ДЖИП",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ГТА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083021",
+    "text": "КОСМОЛЁТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "РОБЛОКС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083022",
+    "text": "ТРЕК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "МАРИО КАРТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083023",
+    "text": "КАМПАНИЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ВАРКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083024",
+    "text": "ДИСКЕТА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ДУМ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083025",
+    "text": "ГРАФИКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ФОРТНАЙТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083026",
+    "text": "ОШИБКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "РОБЛОКС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083027",
+    "text": "РЕЖИМ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ФОРТНАЙТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083028",
+    "text": "СООБЩЕНИЕ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "РОБЛОКС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083029",
+    "text": "ЭМОЦИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "СИМС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083030",
+    "text": "ЖЕСТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ФОРТНАЙТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083031",
+    "text": "АВТОСОХРАНЕНИЕ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ГТА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083032",
+    "text": "УРОН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083033",
+    "text": "НАВЫК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "СИМС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083034",
+    "text": "СТАТУЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083035",
+    "text": "РЕАКЦИЯ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ФИФА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083036",
+    "text": "ПРЕПЯТСТВИЕ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "СУПЕР МАРИО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083037",
+    "text": "СЕРДЕЧКО",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083038",
+    "text": "ПРОМОКОД",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "РОБЛОКС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083039",
+    "text": "ПЕРЕЗАРЯДКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "КОНТР-СТРАЙК",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "word-083040",
+    "text": "ПОЛИГОН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "КОНТР-СТРАЙК",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-083001",
+    "text": "НАЧАТЬ СНАЧАЛА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ТЕТРИС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-083002",
+    "text": "ПРОПУСТИТЬ ЗАСТАВКУ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ГТА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-083003",
+    "text": "ВЫБРАТЬ ПЕРСОНАЖА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ФОРТНАЙТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-083004",
+    "text": "ОТКРЫТЬ СУНДУК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-083005",
+    "text": "УЙТИ ОТ ПОГОНИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ГТА",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-083006",
+    "text": "ПОЙМАТЬ РЫБУ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "МАЙНКРАФТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-083007",
+    "text": "ВЫИГРАТЬ ГОНКУ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "МАРИО КАРТ",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-083008",
+    "text": "ПОТЕРЯТЬ ЖИЗНЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "СУПЕР МАРИО",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-083009",
+    "text": "ВЫЗВАТЬ ПОМОЩЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "РОБЛОКС",
+      "recognition": "broad"
+    }
+  },
+  {
+    "id": "phrase-083010",
+    "text": "ПРОЙТИ ОБУЧЕНИЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v11",
+    "meta": {
+      "game": "ФИФА",
+      "recognition": "broad"
+    }
+  }
+]

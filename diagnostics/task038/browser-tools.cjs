@@ -3,7 +3,7 @@ const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),asse
 const {serve,scaleFonts}=require('../task034/mobile.cjs');
 const {collect}=require('../task034/geometry.cjs');
 const {answer}=require('../../party-game/tests/team-game-browser.cjs');
-const ROOT=path.resolve(__dirname,'../..'),BASE='126563ccd1c2a9fcbb8e857eb81b422c02a55701';
+const ROOT=path.resolve(__dirname,'../..'),BASE='af9eb4723a97c38394b6b9f0310506abb856ef4e';
 const names=['Первый','Второй','Третий','Четвёртый'];
 const raw=p=>p.evaluate(()=>Object.fromEntries(Object.keys(localStorage).sort().map(k=>[k,localStorage.getItem(k)])));
 async function idle(p){await p.evaluate(()=>QuipTeams.whenIdle());assert.equal(await p.evaluate(()=>QuipTeams.blocked),false);}
@@ -41,11 +41,11 @@ async function seed(p,count=4){
  await tap(p,'#exit-game');await wizard(p,'duel');await tap(p,'#wizard-back');await tap(p,'#wizard-back');await idle(p);
  assert(await p.evaluate(()=>game.current.paused),'original paused duel is still restored');
 }
-async function inspect(p,out,label,scale){
- await scaleFonts(p,scale);await p.evaluate(()=>document.fonts.ready);const geometry=await p.evaluate(collect,{sweep:true});
+async function inspect(p,out,label,scale,{baseline=false,reference}={}){
+ await scaleFonts(p,scale);await p.evaluate(async()=>{await document.fonts.ready;await Promise.all(document.getAnimations().filter(a=>Number.isFinite(a.effect.getTiming().iterations)).map(a=>a.finished.catch(()=>{})));});const geometry=await p.evaluate(collect,{sweep:true});
  const file=label+'.png';await p.screenshot({path:path.join(out,file),scale:'css',animations:'disabled'});
  assert(geometry.document.width<=geometry.viewport.width+1,label+' document overflow');
- assert.deepEqual(geometry.overlaps,[],label+' overlapping controls');assert.deepEqual(geometry.small,[],label+' small targets');assert.deepEqual(geometry.clipped,[],label+' control overflow');assert.deepEqual(geometry.textClips,[],label+' text overflow');assert.deepEqual(geometry.reachable,[],label+' unreachable controls');
+ assert.deepEqual(geometry.overlaps,[],label+' overlapping controls');if(!baseline)assert.deepEqual(geometry.small,reference?.small||[],label+' small targets must match accepted main exactly; new targets have no allowance');assert.deepEqual(geometry.clipped,[],label+' control overflow');assert.deepEqual(geometry.textClips,[],label+' text overflow');assert.deepEqual(geometry.reachable,[],label+' unreachable controls');
  assert(geometry.promptText.every(t=>t.readable),label+' prompt readability');assert(geometry.timerText.every(t=>t.fits&&!t.overlaps.length),label+' timer text fit');
  return {label,file,geometry,fontMethod:await p.evaluate(()=>window.__font034Method)};
 }

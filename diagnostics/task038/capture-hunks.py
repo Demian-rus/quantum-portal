@@ -1,7 +1,7 @@
 """Capture only the reviewed TASK038 implementation files against accepted main."""
 import difflib, json, pathlib, subprocess
 root=pathlib.Path(__file__).resolve().parents[2]
-base='126563ccd1c2a9fcbb8e857eb81b422c02a55701'
+base='af9eb4723a97c38394b6b9f0310506abb856ef4e'
 files=['card-reports.js','app.js','content-packs.js','content/templates/content-packs.after.js','index.html','menu-navigation.js','session-restoration.js','setup-wizard.css','setup-wizard.js','sw.js','team-controller.js','team-engine.js','setup-view.js']
 manifest=json.loads((root/'party-game/content/manifest.json').read_text())
 labels=json.dumps({c['id']:c['name'] for c in manifest['categories']},ensure_ascii=False,separators=(',',':'))

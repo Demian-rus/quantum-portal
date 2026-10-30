@@ -20,7 +20,7 @@ async function probeSelection(page){
  const files=historicalRuntimeFiles(git,base,['index.html','style.css','sw.js']);assert.equal(files.length,51);
  const current=new Map([...files,'responsive-layout.css'].map(n=>[n,fs.readFileSync(path.join(root,'party-game',n))])),previous=new Map(files.map(n=>[n,git(['show',base+':party-game/'+n])]));
  const write=m=>{for(const[n,bytes]of m)fs.writeFileSync(path.join(root,'party-game',n),bytes)};
- const cache=m=>m.get('sw.js').toString().match(/const CACHE='([^']+)'/)[1],oldCache=cache(previous),newCache=cache(current);assert.match(oldCache,/v88/);assert.equal(newCache,'kvip-pwa-v105-20261030-general-categories-candidate-b');
+ const cache=m=>m.get('sw.js').toString().match(/const CACHE='([^']+)'/)[1],oldCache=cache(previous),newCache=cache(current);assert.match(oldCache,/v88/);assert.equal(newCache,'kvip-pwa-v106-20261030-general-categories-candidate-c');
  const b=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
  try{for(const scenario of ['editor','pending']){
   const ctx=await b.newContext({viewport:{width:390,height:844},hasTouch:true}),p=await ctx.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));
@@ -48,7 +48,7 @@ async function probeSelection(page){
    await p.waitForFunction(async({oldCache,newCache})=>await caches.has(newCache)&&!await caches.has(oldCache),{oldCache,newCache});await ctx.setOffline(true);await p.reload();await p.locator('#continue-game').click();
    assert.deepEqual(await probeSelection(p),expectedSelection,'Pinned v88 next selections and RNG stay identical');
    assert.equal(await p.evaluate(()=>game.contentPack.version),15);
-   assert.equal(await p.evaluate(()=>latestGeneralPackSelection().version),48);
+   assert.equal(await p.evaluate(()=>latestGeneralPackSelection().version),67);
    assert.equal(await p.evaluate(()=>getContentPack({id:'general',version:27}).criteria.cardIds.length),6000);
    assert.deepEqual(await snapshot(p),before,'Actual v88 RAW, ledger, selected task, draft/pending review and profiles survive upgrade exactly');assert.equal(await p.evaluate(()=>JSON.stringify(game.riskPlannerState)),risk);
    if(scenario==='pending'){await p.evaluate(()=>document.fonts.ready);const fixedAfter=await p.evaluate(()=>{const c=$('play-content').getBoundingClientRect(),t=document.querySelector('.review-tabs').getBoundingClientRect(),b=document.querySelector('[data-action="confirm-results"]').getBoundingClientRect();return {tabs:t.y-c.y,bottom:b.bottom-c.bottom}});assert.ok(Math.abs(fixedAfter.tabs-fixedBefore.tabs)<1,'Published v88 tab anchor retained');assert.ok(Math.abs(fixedAfter.bottom-fixedBefore.bottom)<1,'Published v88 confirmation anchor retained');}
@@ -61,8 +61,8 @@ async function probeSelection(page){
    }else{
     await p.locator('[data-action="confirm-results"]').click();assert.equal(await p.evaluate(()=>profileStore.recent.length),1);const profiles=(await snapshot(p)).profiles;await p.reload();assert.equal((await snapshot(p)).profiles,profiles);
    }
-   await p.evaluate(()=>{backToMenu();newGame()});assert.equal(await p.evaluate(()=>game.contentPack.version),48);
-   assert.equal(await p.evaluate(()=>getContentPack(game.contentPack).criteria.cardIds.length),7000);
+   await p.evaluate(()=>{backToMenu();newGame()});assert.equal(await p.evaluate(()=>game.contentPack.version),67);
+   assert.equal(await p.evaluate(()=>getContentPack(game.contentPack).criteria.cardIds.length),7460);
    assert.deepEqual(errors,[]);console.log('v88 → v89',scenario,'real SW upgrade / cold offline / exact RAW + risk + profiles / 49 JS / disclosure / timer or exactly-once result PASS');
   }finally{write(current);await ctx.close();}
  }}finally{write(current);await b.close();}

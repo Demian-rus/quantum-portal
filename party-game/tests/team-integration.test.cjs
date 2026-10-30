@@ -16,13 +16,13 @@ test('integration imports original team contracts without changing engine, roles
 });
 test('published engine controllers and accepted game CSS remain exact; catalog expansion is independently guarded',()=>{
  const scripts=[...old(published,'index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);assert.equal(scripts.length,49);
- for(const f of [...scripts.filter(f=>!['setup-wizard.js','cards.js','content-packs.js'].includes(f)),'style.css'])assert.equal(read(f),old(published,f),f);
+ for(const f of [...scripts.filter(f=>!['setup-wizard.js','cards.js','content-packs.js','approx-questions.js'].includes(f)),'style.css'])assert.equal(read(f),old(published,f),f);
  const api=require('../scripts/content.cjs'),dataset=api.readDataset(),rendered=api.render(dataset);
- for(const f of ['cards.js','content-packs.js'])assert.equal(fs.readFileSync(path.join(root,'party-game',f),'utf8'),rendered[f],f+' is exact generator output');
+ for(const f of ['cards.js','content-packs.js','approx-questions.js'])assert.equal(fs.readFileSync(path.join(root,'party-game',f),'utf8'),rendered[f],f+' is exact generator output');
  assert.ok(api.validate(dataset).ok,'Full content validation must remain enabled');
 });
 
-test('published G26-G36 source JSON remains byte-exact; only G37-G46 additions and generated artifacts can differ',()=>{
+test('published historical source JSON remains byte-exact; explicit G37–VG6 additions allowed',()=>{
  const api=require('../scripts/content.cjs'),data=api.readDataset(),previous=JSON.parse(old(published,'content/manifest.json'));
  const priorSources=[...previous.cards,...previous.questions,...previous.packs];
  const currentSources=new Set([...data.manifest.cards,...data.manifest.questions,...data.manifest.packs].map(x=>x.path));
@@ -32,7 +32,7 @@ test('published G26-G36 source JSON remains byte-exact; only G37-G46 additions a
  }
  const diff=execFileSync('git',['diff','--name-only',published,'--','party-game/cards.js','party-game/content-packs.js','party-game/content'],{cwd:root,encoding:'utf8',maxBuffer:15e6}).trim().split('\n').filter(Boolean);
  assert.equal(read('content/templates/content-packs.after.js'),old(published,'content/templates/content-packs.after.js'),'Only exact reviewed selector/template hunks are permitted');
- const allowed=new Set(['party-game/content/templates/content-packs.after.js','party-game/cards.js','party-game/content-packs.js','party-game/content/manifest.json',
+ const allowed=new Set(['party-game/content/templates/content-packs.after.js','party-game/cards.js','party-game/content-packs.js','party-game/approx-questions.js','party-game/content/manifest.json',
  'party-game/content/cards/general-diversity-v23.json','party-game/content/packs/general-diversity-v23.json',
  'party-game/content/editorial/general-diversity-v23-review.md','party-game/content/cards/general-diversity-v24.json','party-game/content/packs/general-diversity-v24.json','party-game/content/editorial/general-diversity-v24-review.md',
  'party-game/content/cards/general-diversity-v25.json','party-game/content/packs/general-diversity-v25.json',
@@ -50,7 +50,72 @@ test('published G26-G36 source JSON remains byte-exact; only G37-G46 additions a
   'party-game/content/cards/general-diversity-v31.json','party-game/content/packs/general-diversity-v31.json',
   'party-game/content/editorial/general-diversity-v31-review.md',
    'party-game/content/cards/general-editorial-v1.json','party-game/content/packs/general-editorial-v1.json',
-   'party-game/content/editorial/general-editorial-v1-review.md']);
+   'party-game/content/editorial/general-editorial-v1-review.md',
+   'party-game/content/cards/general-editorial-v2.json','party-game/content/packs/general-editorial-v2.json',
+   'party-game/content/editorial/general-editorial-v2-review.md',
+   'party-game/content/editorial/modifiers-v3-review-proposals.md',
+   'party-game/content/cards/general-memes-v1.json',
+   'party-game/content/packs/general-memes-v1.json',
+   'party-game/content/editorial/general-memes-v1-review.md',
+   'party-game/content/cards/general-games-v1.json',
+   'party-game/content/packs/general-games-v1.json',
+   'party-game/content/editorial/general-games-v1-review.md',
+   'party-game/content/cards/general-games-v2.json',
+   'party-game/content/packs/general-games-v2.json',
+   'party-game/content/editorial/general-games-v2-review.md',
+   'party-game/content/cards/general-games-v3.json',
+   'party-game/content/packs/general-games-v3.json',
+   'party-game/content/editorial/general-games-v3-review.md',
+   'party-game/content/cards/general-games-v4.json',
+   'party-game/content/packs/general-games-v4.json',
+   'party-game/content/editorial/general-games-v4-review.md',
+   'party-game/content/cards/general-games-v5.json',
+   'party-game/content/packs/general-games-v5.json',
+   'party-game/content/editorial/general-games-v5-review.md',
+   'party-game/content/packs/general-games-audience-v1.json',
+   'party-game/content/editorial/general-games-audience-v1-decisions.json',
+   'party-game/content/editorial/general-games-audience-v1-review.md',
+   'party-game/content/editorial/general-games-audience-v1-ci-repair.md',
+   'party-game/content/cards/general-games-v7.json',
+   'party-game/content/packs/general-games-v7.json',
+   'party-game/content/editorial/general-games-v7-review.md',
+   'party-game/content/cards/general-games-v8.json',
+   'party-game/content/packs/general-games-v8.json',
+   'party-game/content/editorial/general-games-v8-review.md',
+   'party-game/content/cards/general-games-v9.json',
+   'party-game/content/packs/general-games-v9.json',
+   'party-game/content/editorial/general-games-v9-review.md',
+   'party-game/content/cards/general-games-v10.json',
+   'party-game/content/packs/general-games-v10.json',
+   'party-game/content/editorial/general-games-v10-review.md',
+    'party-game/content/cards/general-games-v11.json',
+    'party-game/content/packs/general-games-v11.json',
+    'party-game/content/editorial/general-games-v11-review.md',
+   'party-game/approx-questions.js',
+   'party-game/content/questions/approx-games-v1.json',
+   'party-game/content/packs/approx-games-v1.json',
+   'party-game/content/editorial/approx-games-v1-sources.json',
+   'party-game/content/editorial/approx-games-v1-review.md',
+   'party-game/content/questions/approx-games-v2.json',
+   'party-game/content/packs/approx-games-v2.json',
+   'party-game/content/editorial/approx-games-v2-sources.json',
+   'party-game/content/editorial/approx-games-v2-review.md',
+   'party-game/content/questions/approx-games-v3.json',
+   'party-game/content/packs/approx-games-v3.json',
+   'party-game/content/editorial/approx-games-v3-sources.json',
+   'party-game/content/editorial/approx-games-v3-review.md',
+   'party-game/content/questions/approx-games-v4.json',
+   'party-game/content/packs/approx-games-v4.json',
+   'party-game/content/editorial/approx-games-v4-sources.json',
+   'party-game/content/editorial/approx-games-v4-review.md',
+   'party-game/content/questions/approx-games-v5.json',
+   'party-game/content/packs/approx-games-v5.json',
+   'party-game/content/editorial/approx-games-v5-sources.json',
+   'party-game/content/editorial/approx-games-v5-review.md',
+   'party-game/content/questions/approx-games-v6.json',
+   'party-game/content/packs/approx-games-v6.json',
+   'party-game/content/editorial/approx-games-v6-sources.json',
+   'party-game/content/editorial/approx-games-v6-review.md']);
  for(const f of diff)assert.ok(allowed.has(f),'Unexpected published content change '+f);
  assert.equal(data.packs.find(p=>p.id==='general'&&p.version===38).criteria.cardIds.length,6550);
  assert.equal(data.packs.find(p=>p.id==='general'&&p.version===39).criteria.cardIds.length,6600);

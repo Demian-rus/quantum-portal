@@ -6,6 +6,7 @@ const groups={'android-compact':[[320,568],[360,640]],'android-tall':[[390,844],
 if(process.env.GITHUB_ACTIONS)assert(!PILOT,'CI must execute the complete matrix');
 const OUT=path.join(T.ROOT,'artifacts/quip-task038',GROUP);fs.mkdirSync(OUT,{recursive:true});
 const expectedCache=fs.readFileSync(path.join(T.ROOT,'party-game/sw.js'),'utf8').match(/const CACHE='([^']+)'/)[1];
+const referenceGeometry=new Map();
 const stats=p=>p.evaluate(()=>JSON.stringify({profiles:profileStore,team:localStorage.getItem(QuipTeamStorage.KEY),game,taskMemory}));
 async function row(browser,endpoint,variant,size,scale,kind){
  const [width,height]=size,key=[variant,width+'x'+height,'font'+scale,kind].join('-'),out=path.join(OUT,key);fs.mkdirSync(out,{recursive:true});
@@ -16,13 +17,13 @@ async function row(browser,endpoint,variant,size,scale,kind){
  const result={key,variant,width,height,scale,kind,physicalDevice:false,shots:[],ids:[],checks:[]},errors=[];let tracing=false;
  async function init(){p.setDefaultTimeout(20000);p.on('pageerror',e=>errors.push(e.message));p.on('dialog',d=>d.accept());await ctx.tracing.start({screenshots:true,snapshots:true,sources:true});tracing=true;}
  const tap=async selector=>{if(PILOT)console.log(key,selector);await T.scaleFonts(p,scale);await T.tap(p,selector);};
- const shot=async label=>result.shots.push(await T.inspect(p,out,label,scale));
+ const shot=async label=>{const refKey=[width,height,scale,kind,label==='08-cold-offline'?'07-paused':label].join('/'),shot=await T.inspect(p,out,label,scale,{baseline:variant==='before',reference:referenceGeometry.get(refKey)});if(variant==='before')referenceGeometry.set(refKey,shot.geometry);result.shots.push(shot);};
  async function probe(){const v=await p.evaluate(()=>({font:window.__font034Method,supported:CSS.supports('-webkit-tap-highlight-color','transparent'),colors:[...document.querySelectorAll('#wizard-categories summary,#wizard-categories input,#wizard-categories button')].map(n=>({tag:n.tagName,color:getComputedStyle(n).webkitTapHighlightColor,before:getComputedStyle(n,'::before').webkitTapHighlightColor,after:getComputedStyle(n,'::after').webkitTapHighlightColor}))}));if(v.supported)assert(v.colors.every(c=>[c.color,c.before,c.after].every(v=>v==='rgba(0, 0, 0, 0)')));return v;}
  try{
   await init();await p.goto(endpoint.url);await p.evaluate(()=>QuipTeams.whenReady());await T.seed(p);await T.wizard(p,kind);await tap('[data-wizard-step="1"]');
   result.detector=await T.detector(p);await shot('01-collapsed');
-  if(variant==='before'){result.checks.push('accepted main before screenshot and geometry, both formats and font sizes');result.success=true;return result;}
-  assert.equal(await p.locator('#wizard-categories').evaluate(n=>n.open),false);assert.equal(await p.locator('[data-category-id]').count(),22);assert.equal(await p.locator('[data-category-id=videogames],[data-category-id=memes]').count(),0);
+  if(variant==='before'){await T.configure(p);await tap('#start-game');await tap('[data-action=roll]');await p.waitForFunction(()=>game.phase==='task');await shot('04-hidden');await tap('[data-action=toggle-word]');await shot('05-opened');await tap('.timer-ring[role=button]');await shot('06-running');await tap('.timer-ring[role=button]');await shot('07-paused');result.checks.push('accepted main setup/game reference geometry; existing small targets retained in raw JSON');result.success=true;return result;}
+  assert.equal(await p.locator('#wizard-categories').evaluate(n=>n.open),false);const categoryCount=await p.evaluate(()=>generalCategoryCounts(latestGeneralPackSelection()).categories.length);assert.equal(await p.locator('[data-category-id]').count(),categoryCount);result.catalog=await p.evaluate(()=>generalCategoryCounts(latestGeneralPackSelection()));
   await p.locator('#wizard-category-summary').focus();await p.keyboard.press('Enter');await shot('02-expanded-keyboard');assert(await p.locator('#wizard-category-summary').evaluate(n=>n.matches(':focus-visible')&&getComputedStyle(n).outlineWidth==='3px'));
   const protectedRAW=await T.raw(p),protectedData=await stats(p);const expected=await p.evaluate(()=>generalCategoryCounts(latestGeneralPackSelection(),{version:1,excluded:['everyday']}).available);
   await p.evaluate(()=>{window.__rng038=0;const random=Math.random;window.__random038=random;Math.random=()=>{__rng038++;return random()};window.__native038=[];document.addEventListener('pointerup',e=>{if(e.target.closest('#wizard-categories'))__native038.push({trusted:e.isTrusted,pointer:e.pointerType})},true);});
@@ -31,7 +32,7 @@ async function row(browser,endpoint,variant,size,scale,kind){
   const after=await T.raw(p);delete after['kvip:general-categories:v1'];assert.deepEqual(after,protectedRAW);assert.equal(await stats(p),protectedData);
   await shot('03-excluded');result.tap=await probe();
   await p.locator('[data-category-id=science]').focus();await p.keyboard.press('Space');assert.equal(await p.locator('[data-category-id=science]').isChecked(),false);assert(await p.locator('[data-category-id=science]').evaluate(n=>n.matches(':focus-visible')));
-  await p.locator('#wizard-category-all').focus();await p.keyboard.press('Enter');assert.equal(await p.locator('[data-category-id=everyday]').isChecked(),true);assert.equal(await p.evaluate(()=>generalCategoryCounts(options.contentPack).available),7000);
+  await p.locator('#wizard-category-all').focus();await p.keyboard.press('Enter');assert.equal(await p.locator('[data-category-id=everyday]').isChecked(),true);assert.equal(await p.evaluate(()=>generalCategoryCounts(options.contentPack).available),result.catalog.total);
   await tap('[data-category-id=everyday]');assert.equal(await p.evaluate(()=>__rng038),0,'category touch/key UI cannot consume RNG');assert(await p.evaluate(()=>__native038.every(e=>e.trusted&&e.pointer==='touch')));
   await tap('[data-wizard-step="2"]');await T.format(p,kind==='teams'?'duel':'teams');await T.format(p,kind);assert.deepEqual(await p.evaluate(()=>readGeneralCategoryPreferences().policy.excluded),['everyday']);
   await T.configure(p);assert.equal(await p.locator('#start-game').isDisabled(),false);

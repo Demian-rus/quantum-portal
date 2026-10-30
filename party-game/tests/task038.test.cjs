@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),{execFileSync}=require('node:child_process');
 const {createSimulation}=require('../scripts/game-simulation.cjs');
-const BASE='126563ccd1c2a9fcbb8e857eb81b422c02a55701',plain=x=>JSON.parse(JSON.stringify(x));
+const BASE='af9eb4723a97c38394b6b9f0310506abb856ef4e',plain=x=>JSON.parse(JSON.stringify(x));
 const old=execFileSync('git',['show',BASE+':party-game/content-packs.js'],{encoding:'utf8',maxBuffer:20e6});
 function reference(h){for(const [name,next]of [['getPackCardPool','getPackQuestionPool'],['getPackQuestionPool','checkContentPack']]){const a=old.indexOf('function '+name+'('),b=old.indexOf('function '+next+'(',a);vm.runInContext('var old_'+name+'='+old.slice(a,b).trim()+';',h.context);}return h;}
 test('TASK038 all-on preserves every historical general pool, record order and identities against published selectors',()=>{
@@ -62,7 +62,7 @@ test('TASK038 only the reviewed policy/setup/resource hunks change; all editoria
  for(const h of hunks)assert.equal(canonicalizeMetadata(fs.readFileSync('party-game/'+h.file,'utf8')).split(h.after).length,2,'exact unique reviewed hunk '+h.file);
  const html=fs.readFileSync('party-game/index.html','utf8'),sw=fs.readFileSync('party-game/sw.js','utf8');
  for(const [,ref]of html.matchAll(/(?:src|href)="\.\/([^"?]+\.(?:css|js)\?v=\d+)"/g))assert(sw.includes("'./"+ref+"'"),ref);
- assert(sw.includes('kvip-pwa-v105-20261030-general-categories-candidate-b'));assert(html.includes('content-packs.js?v=21'));
+ assert(sw.includes('kvip-pwa-v106-20261030-general-categories-candidate-c'));assert(html.includes('content-packs.js?v=21'));
 });
 test('TASK038 normalizer cannot hide catalog changes, unknown metadata, RNG, focus, worker lifecycle or validation bypasses',()=>{
  const {normalizeTask038}=require('../../diagnostics/task038/source-contract.cjs');
@@ -79,14 +79,14 @@ test('TASK038 old published readers reject a filtered snapshot instead of silent
  assert.throws(()=>h.eval(`publishedGetContentPack(generalCategorySelection({id:'general',version:48},{version:1,excluded:['science']}))`));
 });
 test('TASK038 generated future category labels and revisions work without engine changes or editorial branch integration',()=>{
- const api=require('../scripts/content.cjs'),data=api.readDataset();data.manifest=structuredClone(data.manifest);data.manifest.categories.push({id:'memes',name:'Мемы'});
- const extra={id:'word-task038-future',type:'word',difficulty:'easy',text:'ТЕСТОВЫЙ ПРИМЕР',categories:['memes','videogames'],pack:'task038-fixture'};data.cards=data.cards.concat(extra);
+ const api=require('../scripts/content.cjs'),data=api.readDataset();data.manifest=structuredClone(data.manifest);data.manifest.categories.push({id:'future-test',name:'Будущая категория'});
+ const extra={id:'word-task038-future',type:'word',difficulty:'easy',text:'ТЕСТОВЫЙ ПРИМЕР',categories:['future-test','videogames'],pack:'task038-fixture'};data.cards=data.cards.concat(extra);
  const pack=structuredClone(data.packs.find(p=>p.id==='general'&&p.version===48));pack.version=999;pack.criteria.cardIds.push(extra.id);data.packs=data.packs.concat(pack);
  const generated=api.render(data),h=createSimulation();h.context.futureCards=data.cards;
  vm.runInContext('var future=(function(){'+generated['content-packs.js']+';return {getPackCardPool,generalCategorySelection,generalCategoryCounts,labels:QUIP_GENERAL_CATEGORY_LABELS,registry:QUIP_CONTENT_PACKS}})();',h.context);
- assert.equal(h.eval('future.labels.memes'),'Мемы');
+ assert.equal(h.eval("future.labels['future-test']"),'Будущая категория');
  assert.equal(h.eval(`future.generalCategoryCounts({id:'general',version:999},QUIP_GENERAL_CATEGORIES_ALL,futureCards,QUIP_APPROX_QUESTIONS,future.registry).total`),7001);
- assert.equal(h.eval(`future.generalCategoryCounts({id:'general',version:999},{version:1,excluded:['memes']},futureCards,QUIP_APPROX_QUESTIONS,future.registry).available`),7000);
+ assert.equal(h.eval(`future.generalCategoryCounts({id:'general',version:999},{version:1,excluded:['future-test']},futureCards,QUIP_APPROX_QUESTIONS,future.registry).available`),7000);
  assert.equal(h.eval(`future.getPackCardPool(future.generalCategorySelection({id:'general',version:999},{version:1,excluded:['videogames']}),'words','easy',PROMPT_TYPES,futureCards,future.registry).some(c=>c.id==='word-task038-future')`),false);
 });
 test('TASK038 filtered reports retain the same source-pack metadata and schemas',()=>{

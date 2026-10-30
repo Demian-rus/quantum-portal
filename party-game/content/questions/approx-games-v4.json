@@ -1,0 +1,332 @@
+[
+  {
+    "id": "approx-23301",
+    "difficulty": "easy",
+    "question": "Сколько человек поучаствовало в коллективном прохождении Pokémon Red через чат Twitch в 2014 году?",
+    "answer": "1165140",
+    "unit": "человек",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Twitch Plays Pokémon: число уникальных пользователей, отправивших команды для управления одним персонажем.",
+    "source": "https://www.guinnessworldrecords.com/world-records/most-participants-on-a-single-player-online-videogame",
+    "pack": "approx-games-v4",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq4-1",
+      "checkedAt": "2026-10-29",
+      "asOf": "2014-03-01",
+      "batch": 4,
+      "measurementKey": "twitchpokemon:2014-command-participants",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23302",
+    "difficulty": "medium",
+    "question": "Сколько километров прошёл игрок FleeceKing в Pokémon GO к моменту достижения максимального уровня в январе 2021 года?",
+    "answer": "20614",
+    "unit": "км",
+    "categories": [
+      "videogames"
+    ],
+    "note": "На момент достижения 50-го уровня FleeceKing прошёл 20 614 км, согласно Guinness; это суммарная игровая дистанция.",
+    "source": "https://www.guinnessworldrecords.com/world-records/647414-first-player-to-reach-level-50-on-pokemon%C2%A0go",
+    "pack": "approx-games-v4",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq4-2",
+      "checkedAt": "2026-10-29",
+      "asOf": "2021-01-26",
+      "batch": 4,
+      "measurementKey": "pokemongo:fleece-2021-distance-km",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23303",
+    "difficulty": "medium",
+    "question": "Сколько космических кораблей собрали участники операции Burn Jita для нападения на торговую столицу EVE Online в 2012 году?",
+    "answer": "15000",
+    "unit": "кораблей",
+    "categories": [
+      "videogames"
+    ],
+    "note": "По Guinness флот Goonswarm насчитывал примерно 15 тысяч кораблей, подготовленных к нападению на торговый хаб.",
+    "source": "https://www.guinnessworldrecords.com/world-records/422840-largest-player-attack-on-high-sec-space-in-eve-online",
+    "pack": "approx-games-v4",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq4-3",
+      "checkedAt": "2026-10-29",
+      "asOf": "2012-04-27",
+      "batch": 4,
+      "measurementKey": "eve:burnjita-2012-fleet-ships",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23304",
+    "difficulty": "medium",
+    "question": "Сколько пилотов одновременно собралось в одной звёздной системе EVE Online во время осады 9-4R в январе 2018 года?",
+    "answer": "6142",
+    "unit": "пилота",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Guinness фиксирует одновременное присутствие 6 142 игроков в одной системе на пике осады.",
+    "source": "https://www.guinnessworldrecords.com/world-records/513407-most-peak-players-in-a-single-solar-system-in-eve-online",
+    "pack": "approx-games-v4",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq4-4",
+      "checkedAt": "2026-10-29",
+      "asOf": "2018-01-23",
+      "batch": 4,
+      "measurementKey": "eve:9-4r-2018-pilots",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23305",
+    "difficulty": "easy",
+    "question": "Сколько секунд продлился самый долгий матч профессионального финала Rocket League в декабре 2016 года?",
+    "answer": "737",
+    "unit": "секунд",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Рекордный матч длился 12 минут 17 секунд с учётом дополнительного времени, то есть 737 секунд.",
+    "source": "https://www.guinnessworldrecords.com/world-records/457383-longest-single-pro-game-of-rocket-league",
+    "pack": "approx-games-v4",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq4-5",
+      "checkedAt": "2026-10-29",
+      "asOf": "2016-12-04",
+      "batch": 4,
+      "measurementKey": "rocketleague:2016-final-match-seconds",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23306",
+    "difficulty": "medium",
+    "question": "Сколько минут длились финальные титры Final Fantasy XIV: A Realm Reborn, где перечислили имена множества игроков предыдущей версии?",
+    "answer": "98",
+    "unit": "минут",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Guinness сообщает о титрах длиной 1 час 38 минут, то есть 98 минут; показатель версии A Realm Reborn 2013 года.",
+    "source": "https://www.guinnessworldrecords.com/world-records/453577-longest-end-credits-in-an-mmo-videogame",
+    "pack": "approx-games-v4",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq4-6",
+      "checkedAt": "2026-10-29",
+      "asOf": "2013-12-31",
+      "batch": 4,
+      "measurementKey": "ffxiv:2013-endcredits-minutes",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23307",
+    "difficulty": "easy",
+    "question": "Сколько снежных големов создал игрок за одну минуту в Minecraft, установив рекорд в январе 2025 года?",
+    "answer": "127",
+    "unit": "големов",
+    "categories": [
+      "videogames"
+    ],
+    "note": "За 60 секунд Shankar S P собрал 127 снежных големов, используя мышь и клавиатуру.",
+    "source": "https://www.guinnessworldrecords.com/world-records/110286-most-minecraft-snow-golems-built-in-one-minute",
+    "pack": "approx-games-v4",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq4-7",
+      "checkedAt": "2026-10-29",
+      "asOf": "2025-01-26",
+      "batch": 4,
+      "measurementKey": "minecraft:2025-golems-one-minute",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23308",
+    "difficulty": "medium",
+    "question": "Сколько минут прошло после выхода публичной альфы Minecraft до появления первой задокументированной постройки с четырьмя стенами?",
+    "answer": "53",
+    "unit": "минуты",
+    "categories": [
+      "videogames"
+    ],
+    "note": "По Guinness первый документированный четырёхстенный объект появился через 53 минуты после публичного выпуска альфы.",
+    "source": "https://www.guinnessworldrecords.com/world-records/384892-first-documented-tower-built-in-minecraft",
+    "pack": "approx-games-v4",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq4-8",
+      "checkedAt": "2026-10-29",
+      "asOf": "2009-05-17",
+      "batch": 4,
+      "measurementKey": "minecraft:2009-first-fourwall-minutes",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23309",
+    "difficulty": "medium",
+    "question": "Сколько побед подряд без поражений набрала команда Violent Pacification в GTA Online к августу 2014 года?",
+    "answer": "1171",
+    "unit": "победа",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Guinness: команда из пяти игроков на PS3 имела 1 171 победу и ноль поражений.",
+    "source": "https://www.guinnessworldrecords.com/world-records/117603-most-successful-gta-online-multiplayer-crew",
+    "pack": "approx-games-v4",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq4-9",
+      "checkedAt": "2026-10-29",
+      "asOf": "2014-08-12",
+      "batch": 4,
+      "measurementKey": "gtaonline:2014-crew-wins",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23310",
+    "difficulty": "hard",
+    "question": "Сколько триллионов игровых долларов накопил рекордсмен GTA Online на Xbox к февралю 2017 года?",
+    "answer": "17,068",
+    "unit": "трлн игровых долларов",
+    "categories": [
+      "videogames"
+    ],
+    "note": "По Guinness, у игрока RaquelRJ было 17 068 000 028 900 игровых долларов. Округлено до тысячной триллиона; деньги виртуальные.",
+    "source": "https://www.guinnessworldrecords.com/world-records/447562-most-cash-earned-in-gta-online-xbox",
+    "pack": "approx-games-v4",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq4-10",
+      "checkedAt": "2026-10-29",
+      "asOf": "2017-02-20",
+      "batch": 4,
+      "measurementKey": "gtaonline:2017-highest-in-game-fortune-trillions",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23311",
+    "difficulty": "medium",
+    "question": "Сколько часов заняло рекордное полное прохождение оригинальной Animal Crossing одним игроком в апреле 2023 года?",
+    "answer": "16,47",
+    "unit": "часов",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Guinness: 16 часов 28 минут 19 секунд, округлённо 16,47 часа. Указана оригинальная Animal Crossing, не New Horizons.",
+    "source": "https://www.guinnessworldrecords.com/world-records/422831-fastest-100-completion-of-animal-crossing-solo",
+    "pack": "approx-games-v4",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq4-11",
+      "checkedAt": "2026-10-29",
+      "asOf": "2023-04-09",
+      "batch": 4,
+      "measurementKey": "animalcrossing:2001-game-2023-fullspeedrun-hours",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23312",
+    "difficulty": "medium",
+    "question": "Сколько внутриигровых достижений успел полностью открыть российский игрок Хируко в World of Warcraft к апрелю 2014 года?",
+    "answer": "2057",
+    "unit": "достижений",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Guinness: Хируко открыл все 2 057 доступных на дату проверки достижений World of Warcraft, включая дополнение Mists of Pandaria.",
+    "source": "https://www.guinnessworldrecords.com/world-records/116521-first-gamer-to-unlock-all-world-of-warcraft-achievements",
+    "pack": "approx-games-v4",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq4-12",
+      "checkedAt": "2026-10-29",
+      "asOf": "2014-04-19",
+      "batch": 4,
+      "measurementKey": "wow:2014-hiruko-achievements-completed",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23313",
+    "difficulty": "medium",
+    "question": "Сколько добровольных строителей занималось воссозданием Нью-Йорка в Minecraft в проекте Build the Earth к июню 2025 года?",
+    "answer": "3720",
+    "unit": "строителей",
+    "categories": [
+      "videogames"
+    ],
+    "note": "На реконструкцию Нью-Йорка в рамках Build the Earth выделялась крупнейшая команда из 3 720 участников.",
+    "source": "https://www.guinnessworldrecords.com/world-records/734997-biggest-minecraft-project",
+    "pack": "approx-games-v4",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq4-13",
+      "checkedAt": "2026-10-29",
+      "asOf": "2025-06-24",
+      "batch": 4,
+      "measurementKey": "minecraft:buildtheearth-2025-nyc-builders",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23314",
+    "difficulty": "medium",
+    "question": "Сколько миллионов отметок «нравится» набрала созданная игроком миссия ROCKET's Vs INSURGENT! в GTA Online на PlayStation к февралю 2017 года?",
+    "answer": "3,2",
+    "unit": "млн отметок",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Guinness: пользовательский матч на PS3 и PS4 набрал 3,2 млн отметок нравится; не путать с количеством запусков.",
+    "source": "https://www.guinnessworldrecords.com/world-records/449657-most-liked-custom-job-in-grand-theft-auto-online-playstation",
+    "pack": "approx-games-v4",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq4-14",
+      "checkedAt": "2026-10-29",
+      "asOf": "2017-02-22",
+      "batch": 4,
+      "measurementKey": "gtaonline:rockets-vs-insurgent-2017-playstation-likes",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23315",
+    "difficulty": "hard",
+    "question": "Сколько миллиардов внутриигровых кредитов стоили корабль и груз, потерянные в одном особенно дорогом уничтожении титана EVE Online в марте 2011 года?",
+    "answer": "128",
+    "unit": "млрд ISK",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Потерянный титан Bjoern с грузом оценивался в 128 миллиардов ISK, по Guinness; это историческая рыночная оценка.",
+    "source": "https://www.guinnessworldrecords.com/world-records/105605-most-expensive-mmo-character-death",
+    "pack": "approx-games-v4",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gq4-15",
+      "checkedAt": "2026-10-29",
+      "asOf": "2011-03-20",
+      "batch": 4,
+      "measurementKey": "eve:2011-titan-destruction-loss-billions-isk",
+      "topic": "videogames"
+    }
+  }
+]

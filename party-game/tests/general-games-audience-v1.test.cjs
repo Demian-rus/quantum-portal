@@ -1,0 +1,28 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),api=require('../scripts/content.cjs');
+const review=JSON.parse(fs.readFileSync(path.join(__dirname,'../content/editorial/general-games-audience-v1-decisions.json'),'utf8'));
+test('VG6 audience audit fully covers 200 cards and filters only 151 from new general snapshot',()=>{
+ const d=api.readDataset(),prior=d.packs.find(p=>p.id==='general'&&p.version===55),next=d.packs.find(p=>p.id==='general'&&p.version===56);
+ assert.ok(prior&&next);
+ const groups=['general-games-v1','general-games-v2','general-games-v3','general-games-v4'];
+ const all=d.cards.filter(c=>groups.includes(c.pack));
+ assert.equal(all.length,200);assert.equal(review.entries.length,200);
+ assert.equal(new Set(review.entries.map(x=>x.id)).size,200);
+ assert.deepEqual(new Set(review.entries.map(x=>x.id)),new Set(all.map(c=>c.id)));
+ const sourceById=new Map(all.map(c=>[c.id,c]));
+ assert.ok(review.entries.every(r=>r.reason&&r.text===sourceById.get(r.id)?.text&&r.source===sourceById.get(r.id)?.pack),'Every decision refers to exact archived card');
+ const keep=review.entries.filter(x=>x.decision==='keep-general'),defer=review.entries.filter(x=>x.decision==='reserve-for-theme');
+ assert.equal(keep.length,49);assert.equal(defer.length,151);
+ assert.ok(review.entries.every(x=>['keep-general','reserve-for-theme'].includes(x.decision)));
+ const ids=new Set(next.criteria.cardIds),prevIds=new Set(prior.criteria.cardIds),remove=new Set(defer.map(x=>x.id));
+ assert.equal(prior.criteria.cardIds.length,7270);
+ assert.equal(next.criteria.cardIds.length,7119);
+ assert.ok(review.entries.every(x=>prevIds.has(x.id)));
+ assert.ok(keep.every(x=>ids.has(x.id))&&defer.every(x=>!ids.has(x.id)));
+ assert.deepEqual(next.criteria.cardIds,prior.criteria.cardIds.filter(id=>!remove.has(id)),'Only 151 reviewed IDs removed, no reorder');
+ assert.deepEqual(next.criteria.cardIds.slice(0,7020),prior.criteria.cardIds.slice(0,7020),'Non-game and meme selections unchanged');
+ const accessible=d.cards.filter(x=>x.pack==='general-games-v5');
+ assert.equal(accessible.length,50);assert.ok(accessible.every(x=>ids.has(x.id)));
+ assert.equal(d.cards.filter(x=>[...groups,'general-games-v5'].includes(x.pack)&&ids.has(x.id)).length,99);
+ assert.ok(api.validate(d).ok,'History locks and runtime pool compatibility remain strict');
+});
