@@ -2,8 +2,10 @@
 const {normalizeCatalogNavigation}=require('./catalog-count-contract.cjs');
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
 const {normalizeWizardModeCopy}=require('./wizard-contract.cjs');
+const {normalizeTouchHighlight}=require('../../diagnostics/touch-highlight/source-contract.cjs');
 const {createSimulation}=require('../scripts/game-simulation.cjs'),base='c4220005d43e2a86d448466617698b2ed069455a',root=path.resolve(__dirname,'../..');
 const git=(...a)=>execFileSync('git',a,{cwd:root,encoding:'utf8',maxBuffer:12e6});
+const assertPublishedCss=css=>assert.ok(normalizeTouchHighlight(css).startsWith(git('show',base+':party-game/style.css')),'Published CSS remains exact prefix, new rules scoped to stable-round');
 function start(){const h=createSimulation(12);h.eval("soundOn=false;Math.random=()=>0;Object.assign(options,{modes:['secret'],dice:false,difficulty:'easy',complications:true,modifierChance:100});newGame();game.dice=false;roll()");return h;}
 test('TASK024 render-only views keep state, RAW, profiles, source conditions and RNG unchanged',()=>{
  const h=start();
@@ -28,7 +30,14 @@ test('TASK024 published mechanisms, history and all unrelated runtime scripts re
   else if(a==='function displayedRoundCondition(')assert.equal(segment(current,a,'// Independent lower grid row'),segment(old,a,'// Keyboard focus'),a);
   else assert.equal(segment(current,a,b),segment(old,a,b),a);
  }
- assert.ok(read('style.css').startsWith(git('show',base+':party-game/style.css')),'Published CSS remains exact prefix, new rules scoped to stable-round');
+ assertPublishedCss(read('style.css'));
+});
+test('TASK024 CSS prefix guard rejects unrelated changes after exact tap-highlight normalization',()=>{
+ const css=fs.readFileSync(path.join(root,'party-game/style.css'),'utf8');
+ for(const mutation of [css.replace('--bg:#0f0b20','--bg:#000000'),css.replace('outline:3px solid var(--lime)','outline:none'),css.replace('box-sizing:border-box','box-sizing:content-box')]){
+  assert.notEqual(mutation,css,'negative control must change CSS');
+  assert.throws(()=>assertPublishedCss(mutation),assert.AssertionError);
+ }
 });
 test('TASK024 views remain intact with v89 content resource versions and no sync',()=>{
  const html=fs.readFileSync(path.join(root,'party-game/index.html'),'utf8'),sw=fs.readFileSync(path.join(root,'party-game/sw.js'),'utf8');
