@@ -114,14 +114,20 @@ const QuipTeamsEngine=(function teamEngine(){
  let recordValidationScope=null;
  async function withRecordValidation(work){
   if(recordValidationScope)return work();
-  const scope={keys:new Set(),stamp:[],chars:0};recordValidationScope=scope;
+  const scope={keys:new Set(),shapes:[],stamp:[],chars:0};recordValidationScope=scope;
   try{return await work();}finally{if(recordValidationScope===scope)recordValidationScope=null;}
  }
  function recordValidationKey(record,withArchives=true){
   if(!recordValidationScope||!Object.isFrozen(PARTY_CARDS)||!Object.isFrozen(QUIP_APPROX_QUESTIONS)||!Object.isFrozen(QUIP_CONTENT_PACKS))return null;
   const stamp=[PARTY_CARDS,QUIP_APPROX_QUESTIONS,QUIP_CONTENT_PACKS,QUIP_MODES_V4,QUIP_MODIFIERS_V2,getContentPack,getPackCardPool,getPackQuestionPool,getModeConfig,getV2ModifierPool];
-  if(stamp.some((v,i)=>v!==recordValidationScope.stamp[i])){recordValidationScope.keys.clear();recordValidationScope.chars=0;recordValidationScope.stamp=stamp;}
+  if(stamp.some((v,i)=>v!==recordValidationScope.stamp[i])){recordValidationScope.keys.clear();recordValidationScope.shapes.length=0;recordValidationScope.chars=0;recordValidationScope.stamp=stamp;}
   try{
+   // Compare against a private shape of previously validated JSON. Every own
+   // descriptor and prototype is still checked, including nested array items;
+   // equal mutable objects are never trusted by identity. Reusing the known
+   // keys avoids rebuilding key arrays, cycle sets and JSON strings on hits.
+   const prefix=withArchives?'record:':'entry:';
+   for(const cached of recordValidationScope.shapes)if(cached.key.startsWith(prefix)&&sameRecordShape(record,cached.shape))return cached.key;
    // JSON.stringify alone drops undefined/functions and can run toJSON/getters.
    // Those values must reach the original checker, never alias a valid key.
    const active=new Set();
@@ -146,10 +152,25 @@ const QuipTeamsEngine=(function teamEngine(){
    const key=JSON.stringify(record);return key.length<=131072?(withArchives?'record:':'entry:')+key:null;
   }catch{return null;}
  }
+ function recordShape(value){
+  if(value===null||typeof value!=='object')return value;
+  const keys=Object.keys(value);return {array:Array.isArray(value),keys,values:keys.map(key=>recordShape(value[key]))};
+ }
+ function sameRecordShape(value,shape){
+  if(shape===null||typeof shape!=='object')return value===shape;
+  if(value===null||typeof value!=='object'||Array.isArray(value)!==shape.array||Object.getPrototypeOf(value)!==(shape.array?Array.prototype:Object.prototype)||shape.array&&value.length!==shape.keys.length||Reflect.ownKeys(value).length!==shape.keys.length+(shape.array?1:0))return false;
+  for(let i=0;i<shape.keys.length;i++){
+   const d=Object.getOwnPropertyDescriptor(value,shape.keys[i]);
+   if(!d||!d.enumerable||!Object.hasOwn(d,'value')||!sameRecordShape(d.value,shape.values[i]))return false;
+  }
+  return true;
+ }
  function rememberRecordValidation(key){
   if(key===null||!recordValidationScope)return;
-  if(recordValidationScope.chars+key.length>524288){recordValidationScope.keys.clear();recordValidationScope.chars=0;}
+  if(recordValidationScope.keys.has(key))return;
+  if(recordValidationScope.chars+key.length>524288){recordValidationScope.keys.clear();recordValidationScope.shapes.length=0;recordValidationScope.chars=0;}
   recordValidationScope.keys.add(key);recordValidationScope.chars+=key.length;
+  recordValidationScope.shapes.push({key,shape:recordShape(JSON.parse(key.slice(key.indexOf(':')+1)))});
  }
  function validateRecord(record){
   const memoKey=recordValidationKey(record);if(memoKey!==null&&recordValidationScope.keys.has(memoKey))return true;
