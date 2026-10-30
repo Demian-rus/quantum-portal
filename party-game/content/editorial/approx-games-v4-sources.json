@@ -1,0 +1,107 @@
+{
+  "gq4-1": {
+    "url": "https://www.guinnessworldrecords.com/world-records/most-participants-on-a-single-player-online-videogame",
+    "checkedAt": "2026-10-29",
+    "asOf": "2014-03-01",
+    "measurementKey": "twitchpokemon:2014-command-participants",
+    "sourceKind": "Guinness World Records"
+  },
+  "gq4-2": {
+    "url": "https://www.guinnessworldrecords.com/world-records/647414-first-player-to-reach-level-50-on-pokemon%C2%A0go",
+    "checkedAt": "2026-10-29",
+    "asOf": "2021-01-26",
+    "measurementKey": "pokemongo:fleece-2021-distance-km",
+    "sourceKind": "Guinness World Records"
+  },
+  "gq4-3": {
+    "url": "https://www.guinnessworldrecords.com/world-records/422840-largest-player-attack-on-high-sec-space-in-eve-online",
+    "checkedAt": "2026-10-29",
+    "asOf": "2012-04-27",
+    "measurementKey": "eve:burnjita-2012-fleet-ships",
+    "sourceKind": "Guinness World Records"
+  },
+  "gq4-4": {
+    "url": "https://www.guinnessworldrecords.com/world-records/513407-most-peak-players-in-a-single-solar-system-in-eve-online",
+    "checkedAt": "2026-10-29",
+    "asOf": "2018-01-23",
+    "measurementKey": "eve:9-4r-2018-pilots",
+    "sourceKind": "Guinness World Records"
+  },
+  "gq4-5": {
+    "url": "https://www.guinnessworldrecords.com/world-records/457383-longest-single-pro-game-of-rocket-league",
+    "checkedAt": "2026-10-29",
+    "asOf": "2016-12-04",
+    "measurementKey": "rocketleague:2016-final-match-seconds",
+    "sourceKind": "Guinness World Records"
+  },
+  "gq4-6": {
+    "url": "https://www.guinnessworldrecords.com/world-records/453577-longest-end-credits-in-an-mmo-videogame",
+    "checkedAt": "2026-10-29",
+    "asOf": "2013-12-31",
+    "measurementKey": "ffxiv:2013-endcredits-minutes",
+    "sourceKind": "Guinness World Records"
+  },
+  "gq4-7": {
+    "url": "https://www.guinnessworldrecords.com/world-records/110286-most-minecraft-snow-golems-built-in-one-minute",
+    "checkedAt": "2026-10-29",
+    "asOf": "2025-01-26",
+    "measurementKey": "minecraft:2025-golems-one-minute",
+    "sourceKind": "Guinness World Records"
+  },
+  "gq4-8": {
+    "url": "https://www.guinnessworldrecords.com/world-records/384892-first-documented-tower-built-in-minecraft",
+    "checkedAt": "2026-10-29",
+    "asOf": "2009-05-17",
+    "measurementKey": "minecraft:2009-first-fourwall-minutes",
+    "sourceKind": "Guinness World Records"
+  },
+  "gq4-9": {
+    "url": "https://www.guinnessworldrecords.com/world-records/117603-most-successful-gta-online-multiplayer-crew",
+    "checkedAt": "2026-10-29",
+    "asOf": "2014-08-12",
+    "measurementKey": "gtaonline:2014-crew-wins",
+    "sourceKind": "Guinness World Records"
+  },
+  "gq4-10": {
+    "url": "https://www.guinnessworldrecords.com/world-records/447562-most-cash-earned-in-gta-online-xbox",
+    "checkedAt": "2026-10-29",
+    "asOf": "2017-02-20",
+    "measurementKey": "gtaonline:2017-highest-in-game-fortune-trillions",
+    "sourceKind": "Guinness World Records"
+  },
+  "gq4-11": {
+    "url": "https://www.guinnessworldrecords.com/world-records/422831-fastest-100-completion-of-animal-crossing-solo",
+    "checkedAt": "2026-10-29",
+    "asOf": "2023-04-09",
+    "measurementKey": "animalcrossing:2001-game-2023-fullspeedrun-hours",
+    "sourceKind": "Guinness World Records"
+  },
+  "gq4-12": {
+    "url": "https://www.guinnessworldrecords.com/world-records/116521-first-gamer-to-unlock-all-world-of-warcraft-achievements",
+    "checkedAt": "2026-10-29",
+    "asOf": "2014-04-19",
+    "measurementKey": "wow:2014-hiruko-achievements-completed",
+    "sourceKind": "Guinness World Records"
+  },
+  "gq4-13": {
+    "url": "https://www.guinnessworldrecords.com/world-records/734997-biggest-minecraft-project",
+    "checkedAt": "2026-10-29",
+    "asOf": "2025-06-24",
+    "measurementKey": "minecraft:buildtheearth-2025-nyc-builders",
+    "sourceKind": "Guinness World Records"
+  },
+  "gq4-14": {
+    "url": "https://www.guinnessworldrecords.com/world-records/449657-most-liked-custom-job-in-grand-theft-auto-online-playstation",
+    "checkedAt": "2026-10-29",
+    "asOf": "2017-02-22",
+    "measurementKey": "gtaonline:rockets-vs-insurgent-2017-playstation-likes",
+    "sourceKind": "Guinness World Records"
+  },
+  "gq4-15": {
+    "url": "https://www.guinnessworldrecords.com/world-records/105605-most-expensive-mmo-character-death",
+    "checkedAt": "2026-10-29",
+    "asOf": "2011-03-20",
+    "measurementKey": "eve:2011-titan-destruction-loss-billions-isk",
+    "sourceKind": "Guinness World Records"
+  }
+}

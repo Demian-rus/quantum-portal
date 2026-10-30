@@ -1,0 +1,24 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),api=require('../scripts/content.cjs');
+test('VG4: 50 Cyrillic game items, no exact normalized duplicate across historical sources, only general@54 extends 7170',()=>{
+ const d=api.readDataset(),old=d.packs.find(p=>p.id==='general'&&p.version===53),now=d.packs.find(p=>p.id==='general'&&p.version===54);
+ assert.ok(old&&now);
+ const rows=d.cards.filter(c=>c.pack==='general-games-v4'),ids=rows.map(c=>c.id);
+ assert.equal(rows.length,50);
+ assert.equal(rows.filter(c=>c.type==='word').length,40);
+ assert.equal(rows.filter(c=>c.type==='phrase').length,10);
+ assert.deepEqual(Object.fromEntries(['easy','medium','hard'].map(k=>[k,rows.filter(c=>c.difficulty===k).length])),{easy:20,medium:20,hard:10});
+ assert.ok(rows.every(c=>c.categories.length===1&&c.categories[0]==='videogames'));
+ assert.ok(rows.every(c=>/^[А-ЯЁ -]+$/u.test(c.text)&&/^[А-ЯЁ -]+$/u.test(c.meta?.game||'')));
+ assert.ok(rows.every(c=>c.type==='word'?!/\s/u.test(c.text):/\s/u.test(c.text)));
+ const norm=rows.map(c=>api.normalize(c.text)),prior=new Set(d.cards.filter(c=>c.pack!=='general-games-v4').map(c=>api.normalize(c.text)));
+ assert.equal(new Set(ids).size,50);
+ assert.equal(new Set(norm).size,50);
+ for(let i=0;i<rows.length;i++)assert.ok(!prior.has(norm[i]),'Duplicate historical text: '+rows[i].text);
+ assert.equal(old.criteria.cardIds.length,7170);
+ assert.equal(now.criteria.cardIds.length,7220);
+ assert.deepEqual(now.criteria.cardIds.slice(0,7170),old.criteria.cardIds);
+ assert.deepEqual(now.criteria.cardIds.slice(7170),ids);
+ assert.ok(d.packs.filter(p=>p.id!=='general').every(p=>!p.criteria.cardIds.some(id=>ids.includes(id))),'Not a separate mode or thematic pack');
+ assert.ok(api.validate(d).ok,'All content, runtime compatibility and historical locks remain strict');
+});

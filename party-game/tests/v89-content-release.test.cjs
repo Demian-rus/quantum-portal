@@ -8,8 +8,8 @@ const old=(ref,file)=>cp.execFileSync('git',['show',ref+':'+file],{cwd:root,enco
 const assertPublishedCss=css=>assert.equal(normalizeTouchHighlight(css),old(base,'party-game/style.css'));
 test('v89 retains every published runtime mechanism and every original editorial source',()=>{
  const html=old(base,'party-game/index.html');
- for(const[,name]of html.matchAll(/<script src="\.\/([^?]+\.js)\?/g))if(!['cards.js','content-packs.js'].includes(name))assert.equal(name==='mode-config.js'?normalizeWizardModeCopy(normalizeCatalogNavigation(fs.readFileSync(path.join(root,'party-game',name),'utf8'))):normalizeCatalogNavigation(fs.readFileSync(path.join(root,'party-game',name),'utf8')),old(base,'party-game/'+name),name);
- assertPublishedCss(fs.readFileSync(path.join(root,'party-game/style.css'),'utf8'));
+ for(const[,name]of html.matchAll(/<script src="\.\/([^?]+\.js)\?/g))if(!['cards.js','content-packs.js','approx-questions.js'].includes(name))assert.equal(name==='mode-config.js'?normalizeWizardModeCopy(normalizeCatalogNavigation(fs.readFileSync(path.join(root,'party-game',name),'utf8'))):normalizeCatalogNavigation(fs.readFileSync(path.join(root,'party-game',name),'utf8')),old(base,'party-game/'+name),name);
+ assertPublishedCss(fs.readFileSync(path.join(root,'party-game/style.css'),'utf8'));assert.equal(fs.readFileSync(path.join(root,'party-game/approx-questions.js'),'utf8'),api.render(api.readDataset())['approx-questions.js'],'exact generated numeric catalog');
  for(const ref of [base,editorial]){
   const manifest=JSON.parse(old(ref,'party-game/content/manifest.json'));
   for(const kind of ['cards','questions','packs'])for(const source of manifest[kind]){

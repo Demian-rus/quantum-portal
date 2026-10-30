@@ -1,0 +1,202 @@
+[
+  {
+    "id": "word-073001",
+    "text": "ЖДУН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "word-073002",
+    "text": "ШЛЁПА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "word-073003",
+    "text": "НИЧОСИ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "word-073004",
+    "text": "ТРОЛЛФЕЙС",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "word-073005",
+    "text": "ПЕПЕ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "word-073006",
+    "text": "ДОГЕ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "phrase-073001",
+    "text": "ЭТО ФИАСКО, БРАТАН",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "phrase-073002",
+    "text": "НАТАША, МЫ ВСЁ УРОНИЛИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "phrase-073003",
+    "text": "ВЫ ПРОДАЁТЕ РЫБОВ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "phrase-073004",
+    "text": "СОВПАДЕНИЕ? НЕ ДУМАЮ!",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "phrase-073005",
+    "text": "Я У МАМЫ ИНЖЕНЕР",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "phrase-073006",
+    "text": "КАК ТЕБЕ ТАКОЕ, ИЛОН МАСК?",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "phrase-073007",
+    "text": "ОЖИДАНИЕ И РЕАЛЬНОСТЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "phrase-073008",
+    "text": "ВОТ ЭТО ПОВОРОТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "phrase-073009",
+    "text": "ЭТО БАЗА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "phrase-073010",
+    "text": "НУ ДА, НУ ДА, ПОШЁЛ Я",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "phrase-073011",
+    "text": "НЕЛЬЗЯ ПРОСТО ТАК ВЗЯТЬ И",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "phrase-073012",
+    "text": "ПЛАЧУЩИЙ КОТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "phrase-073013",
+    "text": "КОТ ВЖУХ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  },
+  {
+    "id": "phrase-073014",
+    "text": "А ЧТО СЛУЧИЛОСЬ?",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "memes"
+    ],
+    "pack": "general-memes-v1"
+  }
+]

@@ -1,0 +1,652 @@
+[
+  {
+    "id": "word-076001",
+    "text": "ЧИТЕР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "КОНТР-СТРАЙК"
+    }
+  },
+  {
+    "id": "word-076002",
+    "text": "КАТСЦЕНА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ОДНИ ИЗ НАС"
+    }
+  },
+  {
+    "id": "word-076003",
+    "text": "РЕСПАУН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "АПЕКС ЛЕГЕНДС"
+    }
+  },
+  {
+    "id": "word-076004",
+    "text": "ЛУТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ДИАБЛО"
+    }
+  },
+  {
+    "id": "word-076005",
+    "text": "КРАФТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МАЙНКРАФТ"
+    }
+  },
+  {
+    "id": "word-076006",
+    "text": "СКИН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ФОРТНАЙТ"
+    }
+  },
+  {
+    "id": "word-076007",
+    "text": "ПИНГ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ВАЛОРАНТ"
+    }
+  },
+  {
+    "id": "word-076008",
+    "text": "ЛАГ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "РОБЛОКС"
+    }
+  },
+  {
+    "id": "word-076009",
+    "text": "КЛАН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МИР ТАНКОВ"
+    }
+  },
+  {
+    "id": "word-076010",
+    "text": "ХИЛКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ФОРТНАЙТ"
+    }
+  },
+  {
+    "id": "word-076011",
+    "text": "ФРАГ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "КОНТР-СТРАЙК"
+    }
+  },
+  {
+    "id": "word-076012",
+    "text": "КОМБО",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МОРТАЛ КОМБАТ"
+    }
+  },
+  {
+    "id": "word-076013",
+    "text": "МАНА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ДОТА"
+    }
+  },
+  {
+    "id": "word-076014",
+    "text": "МОБ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МАЙНКРАФТ"
+    }
+  },
+  {
+    "id": "word-076015",
+    "text": "ЧЕКПОИНТ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "СОНИК"
+    }
+  },
+  {
+    "id": "word-076016",
+    "text": "ДЖОЙКОН",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МАРИО КАРТ"
+    }
+  },
+  {
+    "id": "word-076017",
+    "text": "РЕДСТОУН",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МАЙНКРАФТ"
+    }
+  },
+  {
+    "id": "word-076018",
+    "text": "ЭЛИТРА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МАЙНКРАФТ"
+    }
+  },
+  {
+    "id": "word-076019",
+    "text": "БУЛЬБАЗАВР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ПОКЕМОН"
+    }
+  },
+  {
+    "id": "word-076020",
+    "text": "ЧАРИЗАРД",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ПОКЕМОН"
+    }
+  },
+  {
+    "id": "word-076021",
+    "text": "ИМПОСТЕР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "СРЕДИ НАС"
+    }
+  },
+  {
+    "id": "word-076022",
+    "text": "ХЕДШОТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "КОНТР-СТРАЙК"
+    }
+  },
+  {
+    "id": "word-076023",
+    "text": "СТЕЛС",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МЕТАЛ ГИР"
+    }
+  },
+  {
+    "id": "word-076024",
+    "text": "АГРО",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МИР ВАРКРАФТА"
+    }
+  },
+  {
+    "id": "word-076025",
+    "text": "БАННИХОП",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "КОНТР-СТРАЙК"
+    }
+  },
+  {
+    "id": "word-076026",
+    "text": "БЭКСТАБ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "КОНТР-СТРАЙК"
+    }
+  },
+  {
+    "id": "word-076027",
+    "text": "ВАЙП",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ПОБЕГ ИЗ ТАРКОВА"
+    }
+  },
+  {
+    "id": "word-076028",
+    "text": "РЕЙД",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МИР ВАРКРАФТА"
+    }
+  },
+  {
+    "id": "word-076029",
+    "text": "ФАРМИНГ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ДОТА"
+    }
+  },
+  {
+    "id": "word-076030",
+    "text": "НЕРФ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ЛИГА ЛЕГЕНД"
+    }
+  },
+  {
+    "id": "word-076031",
+    "text": "БАФФ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ЛИГА ЛЕГЕНД"
+    }
+  },
+  {
+    "id": "word-076032",
+    "text": "МОДПАК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МАЙНКРАФТ"
+    }
+  },
+  {
+    "id": "word-076033",
+    "text": "КИТИНГ",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МИР ВАРКРАФТА"
+    }
+  },
+  {
+    "id": "word-076034",
+    "text": "ГАНК",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ДОТА"
+    }
+  },
+  {
+    "id": "word-076035",
+    "text": "ХИТБОКС",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МОРТАЛ КОМБАТ"
+    }
+  },
+  {
+    "id": "word-076036",
+    "text": "ФРЕЙМДАТА",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МОРТАЛ КОМБАТ"
+    }
+  },
+  {
+    "id": "word-076037",
+    "text": "СПИДРАН",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МАРИО"
+    }
+  },
+  {
+    "id": "word-076038",
+    "text": "ХИТСКАН",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ВАЛОРАНТ"
+    }
+  },
+  {
+    "id": "word-076039",
+    "text": "СОФТЛОК",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "СКАЙРИМ"
+    }
+  },
+  {
+    "id": "word-076040",
+    "text": "ФРЕЙМТРЕП",
+    "type": "word",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "СТРИТ ФАЙТЕР"
+    }
+  },
+  {
+    "id": "phrase-076001",
+    "text": "ПОЛОСКА ЗДОРОВЬЯ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ЗЕЛЬДА"
+    }
+  },
+  {
+    "id": "phrase-076002",
+    "text": "ТОЧКА СОХРАНЕНИЯ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "РЕЗИДЕНТ ИВИЛ"
+    }
+  },
+  {
+    "id": "phrase-076003",
+    "text": "КОРОЛЕВСКАЯ БИТВА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ФОРТНАЙТ"
+    }
+  },
+  {
+    "id": "phrase-076004",
+    "text": "ИГРОВОЙ АВТОМАТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ПАКМАН"
+    }
+  },
+  {
+    "id": "phrase-076005",
+    "text": "ДЕРЕВО НАВЫКОВ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ВЕДЬМАК"
+    }
+  },
+  {
+    "id": "phrase-076006",
+    "text": "ВЕДЬМАЧЬЕ ЧУТЬЁ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "ВЕДЬМАК"
+    }
+  },
+  {
+    "id": "phrase-076007",
+    "text": "ПОЛНЫЙ ИНВЕНТАРЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "СКАЙРИМ"
+    }
+  },
+  {
+    "id": "phrase-076008",
+    "text": "СЕКРЕТНЫЙ УРОВЕНЬ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МАРИО"
+    }
+  },
+  {
+    "id": "phrase-076009",
+    "text": "ПРОЦЕДУРНАЯ ГЕНЕРАЦИЯ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "МАЙНКРАФТ"
+    }
+  },
+  {
+    "id": "phrase-076010",
+    "text": "ИДЕАЛЬНОЕ ПАРИРОВАНИЕ",
+    "type": "phrase",
+    "difficulty": "hard",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "general-games-v3",
+    "meta": {
+      "game": "СЕКИРО"
+    }
+  }
+]

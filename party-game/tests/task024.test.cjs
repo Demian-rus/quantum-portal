@@ -21,9 +21,9 @@ test('TASK024 render-only views keep state, RAW, profiles, source conditions and
  }
 });
 test('TASK024 published mechanisms, history and all unrelated runtime scripts remain byte-exact',()=>{
- const html=git('show',base+':party-game/index.html'),allowed=['round-views.js','timer-view.js','round-presentation.js','cards.js','content-packs.js'];
+ const html=git('show',base+':party-game/index.html'),allowed=['round-views.js','timer-view.js','round-presentation.js','cards.js','content-packs.js','approx-questions.js'];
  for(const [,name]of html.matchAll(/<script src="\.\/([^?]+\.js)\?/g))if(!allowed.includes(name))assert.equal(name==='mode-config.js'?normalizeWizardModeCopy(normalizeCatalogNavigation(fs.readFileSync(path.join(root,'party-game',name),'utf8'))):normalizeCatalogNavigation(fs.readFileSync(path.join(root,'party-game',name),'utf8')),git('show',base+':party-game/'+name),name);
- const read=n=>fs.readFileSync(path.join(root,'party-game',n),'utf8'),segment=(s,a,b)=>s.slice(s.indexOf(a),s.indexOf(b,s.indexOf(a)));
+ const read=n=>fs.readFileSync(path.join(root,'party-game',n),'utf8');const c=require('../scripts/content.cjs');assert.equal(read('approx-questions.js'),c.render(c.readDataset())['approx-questions.js'],'numeric catalog exact generated output');const segment=(s,a,b)=>s.slice(s.indexOf(a),s.indexOf(b,s.indexOf(a)));
  for(const [name,a,b]of [['round-presentation.js','function showApprox()','function blitzStatus()'],['round-presentation.js','function displayedRoundCondition(','// Independent lower grid row'],['timer-view.js','function updateTimerVisual(','\u0000'],['round-views.js','function showJudge()','\u0000']]){
   const current=read(name),old=git('show',base+':party-game/'+name);
   if(b==='\u0000')assert.equal(current.slice(current.indexOf(a)),old.slice(old.indexOf(a)),a);

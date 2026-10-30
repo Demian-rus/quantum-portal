@@ -1,0 +1,338 @@
+[
+  {
+    "id": "approx-23001",
+    "difficulty": "easy",
+    "question": "Сколько миллионов копий Minecraft было продано к октябрю 2023 года, согласно объявлению Mojang?",
+    "answer": "300",
+    "unit": "млн копий",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Mojang объявила о преодолении отметки 300 миллионов; это подтверждённый рубеж, а не точный окончательный тираж.",
+    "source": "https://www.minecraft.net/en-us/15th-anniversary",
+    "pack": "approx-games-v1",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "minecraft-sales",
+      "checkedAt": "2026-10-29",
+      "batch": 1,
+      "measurementKey": "minecraft:sales-2023",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23002",
+    "difficulty": "medium",
+    "question": "Сколько миллионов копий «Тетриса» было продано по всему миру к июню 2026 года по данным правообладателя?",
+    "answer": "520",
+    "unit": "млн копий",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Официальная публикация указывает на более чем 520 миллионов; учитываются версии игры на разных платформах.",
+    "source": "https://tetris.com/news/the-tetris-company-celebrates-world-tetris-day",
+    "pack": "approx-games-v1",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "tetris-sales",
+      "checkedAt": "2026-10-29",
+      "batch": 1,
+      "measurementKey": "tetris:total-sales-2026",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23003",
+    "difficulty": "easy",
+    "question": "Сколько миллионов консолей PlayStation 2 было продано по миру, по сводной статистике Sony?",
+    "answer": "160",
+    "unit": "млн консолей",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Sony указывает более 160 миллионов поставленных консолей PlayStation 2; ответ — округлённый рубеж, не продажи игр.",
+    "source": "https://sonyinteractive.com/en/our-company/business-data-sales/",
+    "pack": "approx-games-v1",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "playstation2-sales",
+      "checkedAt": "2026-10-29",
+      "batch": 1,
+      "measurementKey": "playstation2:units-shipped",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23004",
+    "difficulty": "medium",
+    "question": "Сколько миллионов приставок Nintendo Wii было продано за всё время, по отчёту Nintendo на июнь 2026 года?",
+    "answer": "101,6",
+    "unit": "млн консолей",
+    "categories": [
+      "videogames"
+    ],
+    "note": "У Nintendo указано 101,63 миллиона консолей Wii; округлено до одной десятой миллиона.",
+    "source": "https://www.nintendo.co.jp/ir/en/finance/hard_soft/index.html",
+    "pack": "approx-games-v1",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "nintendo-wii-sales",
+      "checkedAt": "2026-10-29",
+      "batch": 1,
+      "measurementKey": "nintendo:wii-hardware-lifetime",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23005",
+    "difficulty": "medium",
+    "question": "Сколько миллионов копий Mario Kart 8 Deluxe было продано к июню 2026 года по данным Nintendo?",
+    "answer": "71,5",
+    "unit": "млн копий",
+    "categories": [
+      "videogames"
+    ],
+    "note": "По Nintendo, 71,53 миллиона копий, включая цифровые и комплектные издания; округлено до десятых.",
+    "source": "https://www.nintendo.co.jp/ir/en/finance/software/switch.html",
+    "pack": "approx-games-v1",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "mario-kart8-sales",
+      "checkedAt": "2026-10-29",
+      "batch": 1,
+      "measurementKey": "nintendo:mario-kart8-deluxe-sales",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23006",
+    "difficulty": "medium",
+    "question": "Сколько миллионов человек в среднем ежедневно пользовались Roblox во втором квартале 2025 года?",
+    "answer": "111,8",
+    "unit": "млн человек",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Это среднее число ежедневных активных пользователей во втором квартале 2025 года, а не зарегистрированных аккаунтов.",
+    "source": "https://ir.roblox.com/news/news-details/2025/Roblox-Reports-Second-Quarter-2025-Financial-Results/default.aspx",
+    "pack": "approx-games-v1",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "roblox-dau-q2-2025",
+      "checkedAt": "2026-10-29",
+      "batch": 1,
+      "measurementKey": "roblox:q2-2025-dau",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23007",
+    "difficulty": "hard",
+    "question": "Сколько миллиардов часов пользователи провели в Roblox за второй квартал 2025 года?",
+    "answer": "27,4",
+    "unit": "млрд часов",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Отчёт Roblox фиксирует 27,4 миллиарда часов вовлечённости за квартал, не за год.",
+    "source": "https://ir.roblox.com/news/news-details/2025/Roblox-Reports-Second-Quarter-2025-Financial-Results/default.aspx",
+    "pack": "approx-games-v1",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "roblox-hours-q2-2025",
+      "checkedAt": "2026-10-29",
+      "batch": 1,
+      "measurementKey": "roblox:q2-2025-engagement-hours",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23008",
+    "difficulty": "medium",
+    "question": "Сколько миллионов копий GTA V купили за первые сутки после выхода игры в сентябре 2013 года?",
+    "answer": "11,2",
+    "unit": "млн копий",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Guinness указывает 11,21 миллиона копий за первые 24 часа на стартовых платформах; округлено до десятых.",
+    "source": "https://www.guinnessworldrecords.com/news/2013/10/confirmed-grand-theft-auto-breaks-six-sales-world-records-51900",
+    "pack": "approx-games-v1",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gta-v-first-day-sales",
+      "checkedAt": "2026-10-29",
+      "batch": 1,
+      "measurementKey": "gtav:2013-first-day-copies",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23009",
+    "difficulty": "medium",
+    "question": "Сколько миллионов копий «Ведьмака 3» было продано к сентябрю 2026 года по отчёту CD Projekt?",
+    "answer": "65",
+    "unit": "млн копий",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Издатель сообщил о преодолении 65 миллионов копий к публикации 2 сентября 2026 года.",
+    "source": "https://www.cdprojekt.com/en/media/news/cd-projekt-red-wraps-up-the-first-half-of-2026/",
+    "pack": "approx-games-v1",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "witcher-3-sales-2026",
+      "checkedAt": "2026-10-29",
+      "batch": 1,
+      "measurementKey": "witcher3:total-sales-2026-09",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23010",
+    "difficulty": "medium",
+    "question": "Сколько миллионов копий Elden Ring было продано к апрелю 2026 года по данным Bandai Namco?",
+    "answer": "30",
+    "unit": "млн копий",
+    "categories": [
+      "videogames"
+    ],
+    "note": "В апрельской публикации 2026 года Bandai Namco подтверждает более 30 миллионов копий оригинальной игры.",
+    "source": "https://www.bandainamcoent.com/news/elden-ring-live-action-adaptation-in-theaters-march-3-2028",
+    "pack": "approx-games-v1",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "elden-ring-sales-2026",
+      "checkedAt": "2026-10-29",
+      "batch": 1,
+      "measurementKey": "eldenring:sales-2026-04",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23011",
+    "difficulty": "medium",
+    "question": "Сколько миллионов зарегистрированных аккаунтов Fortnite сообщала Epic Games в марте 2023 года?",
+    "answer": "500",
+    "unit": "млн аккаунтов",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Epic говорила о более чем 500 миллионах учётных записей; это не одновременно играющие люди.",
+    "source": "https://www.epicgames.com/site/news/introducing-unreal-editor-for-fortnite-creator-economy-2-0-fab-and-more",
+    "pack": "approx-games-v1",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "fortnite-accounts-2023",
+      "checkedAt": "2026-10-29",
+      "batch": 1,
+      "measurementKey": "fortnite:registered-accounts-2023",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23012",
+    "difficulty": "medium",
+    "question": "Какого пикового количества одновременных пользователей Steam достигла платформа, согласно обзору Valve за 2025 год?",
+    "answer": "42",
+    "unit": "млн пользователей",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Valve сообщает о достигнутом пике 42 миллиона пользователей одновременно; показатель платформы, не одной игры.",
+    "source": "https://steamcommunity.com/groups/steamworks/announcements/detail/528746884222682053",
+    "pack": "approx-games-v1",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "steam-peak-2025",
+      "checkedAt": "2026-10-29",
+      "batch": 1,
+      "measurementKey": "steam:peak-concurrent-in-review-2025",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23013",
+    "difficulty": "easy",
+    "question": "Сколько часов продлился рекордный марафон в Dance Dance Revolution, зафиксированный Guinness в октябре 2024 года?",
+    "answer": "144",
+    "unit": "ч",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Рекорд в ритм-игре продолжался 144 часа; вопрос про длительность марафона, не отдельной партии.",
+    "source": "https://www.guinnessworldrecords.com/world-records/longest-video-games-marathon",
+    "pack": "approx-games-v1",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "game-marathon-ddr",
+      "checkedAt": "2026-10-29",
+      "batch": 1,
+      "measurementKey": "ddr:marathon-hours-2024",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23014",
+    "difficulty": "hard",
+    "question": "Сколько очков нужно для идеального результата в оригинальном Pac-Man, согласно Guinness?",
+    "answer": "3333360",
+    "unit": "очков",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Идеальный результат оригинального Pac-Man — 3 333 360 очков; это игровой рекорд, не количество уровней.",
+    "source": "https://www.guinnessworldrecords.com/world-records/first-highest-score-for-pac-man",
+    "pack": "approx-games-v1",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "pacman-perfect-score",
+      "checkedAt": "2026-10-29",
+      "batch": 1,
+      "measurementKey": "pacman:perfect-score-original",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23015",
+    "difficulty": "hard",
+    "question": "Сколько миллионов блоков потребовалось на гигантскую пирамиду в Minecraft, построенную Stone Titans в выживании?",
+    "answer": "2,63",
+    "unit": "млн блоков",
+    "categories": [
+      "videogames"
+    ],
+    "note": "По Guinness пирамида содержала 2 629 176 блоков; округлено до сотых миллиона.",
+    "source": "https://www.guinnessworldrecords.com/world-records/412520-largest-minecraft-pyramid-survival",
+    "pack": "approx-games-v1",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "minecraft-pyramid",
+      "checkedAt": "2026-10-29",
+      "batch": 1,
+      "measurementKey": "minecraft:survival-pyramid-blocks-2013",
+      "topic": "videogames"
+    }
+  },
+  {
+    "id": "approx-23016",
+    "difficulty": "medium",
+    "question": "Сколько миллионов долларов заработала GTA V за первые 24 часа продаж в 2013 году, по Guinness?",
+    "answer": "815,7",
+    "unit": "млн долларов США",
+    "categories": [
+      "videogames"
+    ],
+    "note": "Guinness указывает 815,7 миллиона долларов за первые сутки продаж игры, не за первый месяц.",
+    "source": "https://www.guinnessworldrecords.com/world-records/88321-highest-revenue-generated-by-an-entertainment-product-in-24-hours",
+    "pack": "approx-games-v1",
+    "meta": {
+      "estimationVersion": 3,
+      "sourceKey": "gta-v-first-day-revenue",
+      "checkedAt": "2026-10-29",
+      "batch": 1,
+      "measurementKey": "gtav:2013-first-day-revenue",
+      "topic": "videogames"
+    }
+  }
+]
