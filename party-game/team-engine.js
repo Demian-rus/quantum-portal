@@ -126,12 +126,20 @@ const QuipTeamsEngine=(function teamEngine(){
    // Those values must reach the original checker, never alias a valid key.
    const active=new Set();
    const json=value=>{
-    if(value===null||['string','boolean'].includes(typeof value))return;
-    if(typeof value==='number'){if(!Number.isFinite(value))throw Error('non-JSON number');return;}
-    if(typeof value!=='object'||active.has(value))throw Error('non-JSON value');
+    const type=typeof value;if(value===null||type==='string'||type==='boolean')return;
+    if(type==='number'){if(!Number.isFinite(value))throw Error('non-JSON number');return;}
+    if(type!=='object'||active.has(value))throw Error('non-JSON value');
     const array=Array.isArray(value),proto=Object.getPrototypeOf(value),keys=Object.keys(value);
     if(proto!==(array?Array.prototype:Object.prototype)||Reflect.ownKeys(value).length!==keys.length+(array?1:0)||array&&(keys.length!==value.length||keys.some((k,i)=>k!==String(i))))throw Error('non-JSON shape');
-    active.add(value);for(const key of keys){const d=Object.getOwnPropertyDescriptor(value,key);if(!Object.hasOwn(d,'value'))throw Error('accessor');json(d.value);}active.delete(value);
+    active.add(value);
+    for(const key of keys){
+     const d=Object.getOwnPropertyDescriptor(value,key);if(!Object.hasOwn(d,'value'))throw Error('accessor');
+     const child=d.value,kind=typeof child;
+     if(child===null||kind==='string'||kind==='boolean')continue;
+     if(kind==='number'){if(!Number.isFinite(child))throw Error('non-JSON number');continue;}
+     if(kind!=='object')throw Error('non-JSON value');json(child);
+    }
+    active.delete(value);
    };
    json(record);
    for(const value of withArchives?[record,...record.archives]:[record]){const pack=getContentPack(value.game.contentPack);if(QUIP_CONTENT_PACKS[pack.id+'@'+pack.version]!==pack)return null;}
