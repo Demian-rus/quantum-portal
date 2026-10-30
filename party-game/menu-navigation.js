@@ -81,7 +81,8 @@ function contentCountLabel(n){return n.toLocaleString('ru-RU')+' заданий'
 function contentPackCount(pack){return new Set(pack.criteria.cardIds).size;}
 function gameTypeCountSnapshot(){
  const {duration,targetScore,rounds,modifierChance,...catalogSettings}=options;
- const key=JSON.stringify(catalogSettings);
+ // Category preferences affect only the general count, never theme eligibility.
+ const key=JSON.stringify({...catalogSettings,contentPack:catalogSettings.contentPack?{id:catalogSettings.contentPack.id,version:catalogSettings.contentPack.version}:null});
  if(!gameTypeCountCache||gameTypeCountCache.cards!==PARTY_CARDS||gameTypeCountCache.questions!==QUIP_APPROX_QUESTIONS||gameTypeCountCache.packs!==QUIP_CONTENT_PACKS)
   gameTypeCountCache={cards:PARTY_CARDS,questions:QUIP_APPROX_QUESTIONS,packs:QUIP_CONTENT_PACKS,entries:new Map()};
  const cache=gameTypeCountCache.entries;
@@ -101,11 +102,12 @@ function gameTypeCountSnapshot(){
   if(cache.size>=8)cache.delete(cache.keys().next().value);
   cache.set(key,snapshot);
  }
- return cache.get(key);
+ const snapshot=cache.get(key),preferences=readGeneralCategoryPreferences();
+ return {...snapshot,general:preferences.problem?null:generalCategoryCounts(latestGeneralPackSelection(),preferences.policy).available};
 }
 function renderGameTypeCounts(){
  try{const counts=gameTypeCountSnapshot();
-  $('standard-content-count').textContent=contentCountLabel(counts.general);
+  $('standard-content-count').textContent=counts.general===null?'Настройки защищены':contentCountLabel(counts.general);
   $('thematic-content-count').textContent=contentCountLabel(counts.thematic);
  }catch{
   $('standard-content-count').textContent='Количество недоступно';

@@ -154,6 +154,7 @@ function newGame() {
   // itself into a playable selection. Saved games never enter this path.
   try{
     if(getContentPack(contentPack).enabled)contentPack=latestContentPackSelection(contentPack.id);
+    contentPack=setupCategorySelection(contentPack);
     const settings={...options,...songPolicy,modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION};
     const availability=checkContentPack(contentPack,settings);
     if(!availability.available){

@@ -198,7 +198,7 @@
    $('team-profile-'+t+'-'+p).innerHTML=profileLabel(selected)+'<span class="profile-chevron" aria-hidden="true">⌄</span>';
   }
   $('team-name-error').textContent=profileStoreProblem||(profiles?'':'Выберите четыре разных профиля, чтобы начать партию.');
-  $('start-game').disabled=!names||!$('setup-mode-notice').hidden||s.blocked||s.busy;
+  $('start-game').disabled=!names||!$('setup-mode-notice').hidden||!!setupCategoryProblem(options.contentPack)||s.blocked||s.busy;
   if(s.status==='blocked'){$('team-name-error').textContent='Сохранение 2 на 2 защищено. Сначала откройте восстановление через меню.';$('start-game').disabled=true;}
   const rows=[...$('wizard-summary').children];for(const row of rows){const title=row.querySelector('dt')?.textContent,dd=row.querySelector('dd');if(title==='Игроки')dd.textContent=names?names.map((n,i)=>'Команда '+(i+1)+': '+n.join(' + ')).join(' · '):'Выберите четыре разных профиля';if(title==='Очки получает')dd.textContent='Активная команда. Статистика 2 НА 2 — отдельно.';}
   $('wizard-summary').querySelector('[data-team-format-summary]')?.remove();const row=document.createElement('div');row.dataset.teamFormatSummary='';row.innerHTML='<dt>Формат</dt><dd>2 НА 2 · две команды по два участника</dd>';$('wizard-summary').prepend(row);

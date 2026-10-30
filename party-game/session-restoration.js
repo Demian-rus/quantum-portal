@@ -4,6 +4,7 @@
 function sanitizeOptions(raw) {
   const base=freshOptions();
   if(!raw||typeof raw!=='object')return base;
+  const categoryPolicy=validateGeneralCategorySelection(raw.contentPack);
   const difficulty=['easy','medium','hard','mixed'].includes(raw.difficulty)?raw.difficulty:base.difficulty;
   const duration=Math.max(30,Math.min(90,Math.round(Number(raw.duration)||base.duration)));
   const rounds=Math.max(2,Math.min(100,2*Math.round((Number(raw.rounds)||base.rounds)/2)));
@@ -21,7 +22,7 @@ function sanitizeOptions(raw) {
     modifierChance:sanitizeModifierChance(raw.modifierChance),
     packPreferences:Object.fromEntries(Object.entries(raw.packPreferences||{}).filter(([key,value])=>/^[a-z][a-z0-9-]*@[1-9][0-9]*$/.test(key)&&value&&Array.isArray(value.modes)&&Array.isArray(value.promptTypes)).map(([key,value])=>[key,{modes:DEFAULT_MODES.filter(id=>value.modes.includes(id)),promptTypes:PROMPT_TYPES.filter(id=>value.promptTypes.includes(id))}])) ,
     dice:true,complications:raw.complications!==false,scoring:'duel',
-    contentPack:raw.contentPack?{id:raw.contentPack.id,version:raw.contentPack.version}:base.contentPack,
+    contentPack:raw.contentPack?{id:raw.contentPack.id,version:raw.contentPack.version,...(categoryPolicy?{categoryPolicy:{version:1,excluded:categoryPolicy.excluded.slice()}}:{})}:base.contentPack,
     preset:raw.preset?{id:raw.preset.id,version:raw.preset.version}:base.preset};
 }
 function restoreSession() {

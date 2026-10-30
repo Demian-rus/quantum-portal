@@ -58,7 +58,7 @@ function render(data){
  const tuples=data.questions.map(q=>[q.id.slice(7),q.difficulty,q.question,q.answer,q.unit,q.categories.join(','),q.note,q.source,q.pack]);
  return {'cards.js':template('cards','before')+'\n'+lines(data.cards)+template('cards','after'),
   'approx-questions.js':template('approx-questions','before')+'\n'+lines(tuples)+template('approx-questions','after'),
-  'content-packs.js':template('content-packs','before')+'\n'+lines(data.packs)+template('content-packs','after').replace('/* reviewed-song-languages */{}',JSON.stringify(reviewedSongLanguages(data)))};
+  'content-packs.js':template('content-packs','before')+'\n'+lines(data.packs)+template('content-packs','after').replace('/* reviewed-song-languages */{}',JSON.stringify(reviewedSongLanguages(data))).replace('/* general-category-labels */{}',JSON.stringify(Object.fromEntries(data.manifest.categories.map(({id,name})=>[id,name]))))};
 }
 function validate(data,{locks=true,near=false}={}){
  const errors=[],warnings=[],add=(code,id,message)=>errors.push({code,id,message}),ids=new Set(),tags=new Set();

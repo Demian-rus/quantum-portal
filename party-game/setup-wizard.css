@@ -176,3 +176,19 @@
 .setup-wizard .wizard-page .team-profile-slot+.team-profile-slot{margin-top:12px}
 @media(min-width:700px){.setup-wizard .wizard-page .setup-grid,.setup-wizard .wizard-page .team-profile-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(hover:hover) and (pointer:fine){.setup-wizard .participant-card:hover{border-color:var(--cyan)}}
+/* TASK038: a collapsed dictionary filter; the accepted game screen is unchanged. */
+.setup-wizard .wizard-categories{margin-top:14px;border:1px solid var(--stroke);border-radius:16px;background:var(--surface);overflow:clip}
+.setup-wizard .wizard-categories>summary{min-height:52px;padding:15px;font-size:12px;line-height:1.6;cursor:pointer;overflow-wrap:anywhere}
+.setup-wizard #wizard-category-count{display:block;margin-top:5px;color:var(--lime);font-family:var(--font-body);font-size:14px}
+.setup-wizard .wizard-category-body{padding:0 14px 14px;min-width:0}
+.setup-wizard #wizard-category-definition,.setup-wizard #wizard-category-status{font-family:var(--font-body);font-size:13px;line-height:1.65;color:var(--soft);overflow-wrap:anywhere}
+.setup-wizard #wizard-category-list{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin:14px 0}
+.setup-wizard .wizard-category{display:flex;align-items:center;gap:12px;min-width:0;min-height:52px;padding:10px;border:1px solid var(--stroke);border-radius:12px;cursor:pointer;font-family:var(--font-body)}
+.setup-wizard .wizard-category input{flex:0 0 24px;width:24px;height:24px;accent-color:var(--lime)}
+.setup-wizard .wizard-category span{min-width:0;overflow-wrap:anywhere}
+.setup-wizard .wizard-category b,.setup-wizard .wizard-category small{display:block;font-size:14px;line-height:1.55}
+.setup-wizard .wizard-category small{font-size:12px;color:var(--soft);margin-top:3px}
+.setup-wizard .wizard-category:has(input:not(:checked)){opacity:.72}
+.setup-wizard .wizard-categories summary:focus-visible,.setup-wizard .wizard-category input:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+.setup-wizard #wizard-category-all{min-height:48px;width:100%;white-space:normal;overflow-wrap:anywhere}
+@media(min-width:700px){.setup-wizard #wizard-category-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
