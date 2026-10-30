@@ -63,7 +63,7 @@
   s.idle=(async()=>{
    let tx;
    try{
-    await exclusive(async()=>{
+    await E.withRecordValidation(()=>exclusive(async()=>{
      tx={lock:true,executing:false,messages:[],sounds:[],dirty:false,leave:false};s.tx=tx;
      const loaded=await s.store.load();if(!['empty','ok'].includes(loaded.status)||loaded.raw!==s.raw)throw Error('Сохранение изменилось в другой вкладке или требует восстановления. Откройте его заново.');
      tx.executing=true;try{action();const modalClosed=before.report&&$('report-backdrop').hidden||before.history&&$('result-history-backdrop').hidden;tx.focus=modalClosed&&before.returnFocus?before.returnFocus:focusHint(document.activeElement);}finally{tx.executing=false;}if(tx.failure)throw tx.failure;
@@ -74,7 +74,7 @@
        s.record=clone(saved.match);s.raw=saved.raw;s.status='ok';
       }
      }
-    });
+    }));
     s.tx=null;setBusy(false);s.blocked=false;error.hidden=true;
     if(tx.leave){useDuel();old.setScene('home');}
     else if(s.context&&!s.inSetup){old.render();paintGame();if(before.pending&&game.phase==='review'&&(game.pendingReview.playerIndex??0)===before.pending.player){const list=$q('.pending-review-rows');if(list)list.scrollTop=before.pending.scroll;}if(!$('result-history-backdrop').hidden)old.renderResultHistory();}
