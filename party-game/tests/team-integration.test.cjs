@@ -18,7 +18,7 @@ test('published engine controllers and accepted game CSS remain exact; catalog e
  const scripts=[...old(published,'index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);assert.equal(scripts.length,49);
  for(const f of [...scripts.filter(f=>!['setup-wizard.js','cards.js','content-packs.js'].includes(f)),'style.css'])assert.equal(read(f),old(published,f),f);
  const api=require('../scripts/content.cjs'),dataset=api.readDataset(),rendered=api.render(dataset);
- for(const f of ['cards.js','content-packs.js'])assert.equal(read(f),rendered[f],f+' is exact generator output');
+ for(const f of ['cards.js','content-packs.js'])assert.equal(fs.readFileSync(path.join(root,'party-game',f),'utf8'),rendered[f],f+' is exact generator output');
  assert.ok(api.validate(dataset).ok,'Full content validation must remain enabled');
 });
 
@@ -31,7 +31,8 @@ test('published G26-G36 source JSON remains byte-exact; only G37-G46 additions a
   assert.equal(read('content/'+entry.path),old(published,'content/'+entry.path),'Historical bytes changed '+entry.path);
  }
  const diff=execFileSync('git',['diff','--name-only',published,'--','party-game/cards.js','party-game/content-packs.js','party-game/content'],{cwd:root,encoding:'utf8',maxBuffer:15e6}).trim().split('\n').filter(Boolean);
- const allowed=new Set(['party-game/cards.js','party-game/content-packs.js','party-game/content/manifest.json',
+ assert.equal(read('content/templates/content-packs.after.js'),old(published,'content/templates/content-packs.after.js'),'Only exact reviewed selector/template hunks are permitted');
+ const allowed=new Set(['party-game/content/templates/content-packs.after.js','party-game/cards.js','party-game/content-packs.js','party-game/content/manifest.json',
  'party-game/content/cards/general-diversity-v23.json','party-game/content/packs/general-diversity-v23.json',
  'party-game/content/editorial/general-diversity-v23-review.md','party-game/content/cards/general-diversity-v24.json','party-game/content/packs/general-diversity-v24.json','party-game/content/editorial/general-diversity-v24-review.md',
  'party-game/content/cards/general-diversity-v25.json','party-game/content/packs/general-diversity-v25.json',

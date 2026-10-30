@@ -153,7 +153,8 @@ function newGame() {
   // the requested revision first: a disabled/unknown old theme cannot upgrade
   // itself into a playable selection. Saved games never enter this path.
   try{
-    if(getContentPack(contentPack).enabled)contentPack=latestContentPackSelection(contentPack.id);
+    const requested=getContentPack(contentPack);
+    if(requested.enabled)contentPack=latestContentPackSelection(requested.id);
     contentPack=setupCategorySelection(contentPack);
     const settings={...options,...songPolicy,modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION};
     const availability=checkContentPack(contentPack,settings);

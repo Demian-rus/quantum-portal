@@ -1,0 +1,56 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict'),{execFileSync}=require('node:child_process'),{chromium,webkit}=require('playwright-core');
+const T=require('./browser-tools.cjs');
+const GROUP=process.env.TASK038_GROUP||'android-compact',PILOT=process.env.TASK038_PILOT==='1',WK=GROUP==='iphone-webkit';
+const groups={'android-compact':[[320,568],[360,640]],'android-tall':[[390,844],[412,915]],landscape:[[844,390]],'iphone-webkit':[[375,667]]};assert(groups[GROUP]);
+if(process.env.GITHUB_ACTIONS)assert(!PILOT,'CI must execute the complete matrix');
+const OUT=path.join(T.ROOT,'artifacts/quip-task038',GROUP);fs.mkdirSync(OUT,{recursive:true});
+const expectedCache=fs.readFileSync(path.join(T.ROOT,'party-game/sw.js'),'utf8').match(/const CACHE='([^']+)'/)[1];
+const stats=p=>p.evaluate(()=>JSON.stringify({profiles:profileStore,team:localStorage.getItem(QuipTeamStorage.KEY),game,taskMemory}));
+async function row(browser,endpoint,variant,size,scale,kind){
+ const [width,height]=size,key=[variant,width+'x'+height,'font'+scale,kind].join('-'),out=path.join(OUT,key);fs.mkdirSync(out,{recursive:true});
+ const type=WK?webkit:chromium,persistent=WK||!!process.env.CHROME_BIN,dir=persistent?fs.mkdtempSync(path.join(os.tmpdir(),'task038-browser-')):null;
+ if(process.env.GITHUB_ACTIONS)assert(persistent,'CI must prove real cold browser restart');
+ const opts={viewport:{width,height},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce',headless:true,...(!WK&&process.env.CHROME_BIN?{executablePath:process.env.CHROME_BIN,args:['--no-sandbox']}: {})};
+ let ctx=persistent?await type.launchPersistentContext(dir,opts):await browser.newContext(opts),p=ctx.pages()[0]||await ctx.newPage();
+ const result={key,variant,width,height,scale,kind,physicalDevice:false,shots:[],ids:[],checks:[]},errors=[];let tracing=false;
+ async function init(){p.setDefaultTimeout(20000);p.on('pageerror',e=>errors.push(e.message));p.on('dialog',d=>d.accept());await ctx.tracing.start({screenshots:true,snapshots:true,sources:true});tracing=true;}
+ const tap=async selector=>{if(PILOT)console.log(key,selector);await T.scaleFonts(p,scale);await T.tap(p,selector);};
+ const shot=async label=>result.shots.push(await T.inspect(p,out,label,scale));
+ async function probe(){const v=await p.evaluate(()=>({font:window.__font034Method,supported:CSS.supports('-webkit-tap-highlight-color','transparent'),colors:[...document.querySelectorAll('#wizard-categories summary,#wizard-categories input,#wizard-categories button')].map(n=>({tag:n.tagName,color:getComputedStyle(n).webkitTapHighlightColor,before:getComputedStyle(n,'::before').webkitTapHighlightColor,after:getComputedStyle(n,'::after').webkitTapHighlightColor}))}));if(v.supported)assert(v.colors.every(c=>[c.color,c.before,c.after].every(v=>v==='rgba(0, 0, 0, 0)')));return v;}
+ try{
+  await init();await p.goto(endpoint.url);await p.evaluate(()=>QuipTeams.whenReady());await T.seed(p);await T.wizard(p,kind);await tap('[data-wizard-step="1"]');
+  result.detector=await T.detector(p);await shot('01-collapsed');
+  if(variant==='before'){result.checks.push('accepted main before screenshot and geometry, both formats and font sizes');result.success=true;return result;}
+  assert.equal(await p.locator('#wizard-categories').evaluate(n=>n.open),false);assert.equal(await p.locator('[data-category-id]').count(),22);assert.equal(await p.locator('[data-category-id=videogames],[data-category-id=memes]').count(),0);
+  await p.locator('#wizard-category-summary').focus();await p.keyboard.press('Enter');await shot('02-expanded-keyboard');assert(await p.locator('#wizard-category-summary').evaluate(n=>n.matches(':focus-visible')&&getComputedStyle(n).outlineWidth==='3px'));
+  const protectedRAW=await T.raw(p),protectedData=await stats(p);const expected=await p.evaluate(()=>generalCategoryCounts(latestGeneralPackSelection(),{version:1,excluded:['everyday']}).available);
+  await p.evaluate(()=>{window.__rng038=0;const random=Math.random;window.__random038=random;Math.random=()=>{__rng038++;return random()};window.__native038=[];document.addEventListener('pointerup',e=>{if(e.target.closest('#wizard-categories'))__native038.push({trusted:e.isTrusted,pointer:e.pointerType})},true);});
+  await tap('[data-category-id=everyday]');assert.equal(await p.locator('[data-category-id=everyday]').isChecked(),false);assert.equal(await p.evaluate(()=>generalCategoryCounts(options.contentPack).available),expected);
+  assert.equal(await p.evaluate(()=>JSON.stringify(game)),JSON.parse(protectedData).game?JSON.stringify(JSON.parse(protectedData).game):'null');
+  const after=await T.raw(p);delete after['kvip:general-categories:v1'];assert.deepEqual(after,protectedRAW);assert.equal(await stats(p),protectedData);
+  await shot('03-excluded');result.tap=await probe();
+  await p.locator('[data-category-id=science]').focus();await p.keyboard.press('Space');assert.equal(await p.locator('[data-category-id=science]').isChecked(),false);assert(await p.locator('[data-category-id=science]').evaluate(n=>n.matches(':focus-visible')));
+  await p.locator('#wizard-category-all').focus();await p.keyboard.press('Enter');assert.equal(await p.locator('[data-category-id=everyday]').isChecked(),true);assert.equal(await p.evaluate(()=>generalCategoryCounts(options.contentPack).available),7000);
+  await tap('[data-category-id=everyday]');assert.equal(await p.evaluate(()=>__rng038),0,'category touch/key UI cannot consume RNG');assert(await p.evaluate(()=>__native038.every(e=>e.trusted&&e.pointer==='touch')));
+  await tap('[data-wizard-step="2"]');await T.format(p,kind==='teams'?'duel':'teams');await T.format(p,kind);assert.deepEqual(await p.evaluate(()=>readGeneralCategoryPreferences().policy.excluded),['everyday']);
+  await T.configure(p);assert.equal(await p.locator('#start-game').isDisabled(),false);
+  await p.evaluate(()=>{Math.random=__random038;window.__startCheck038=0;const check=checkContentPack;checkContentPack=function(...a){__startCheck038++;return check.apply(this,a)};});
+  await tap('#start-game');assert(await p.evaluate(()=>__startCheck038>0),'real START must execute full validation');assert.equal(await p.evaluate(()=>game.contentPack.selectionPolicyVersion),1);assert.deepEqual(await p.evaluate(()=>game.contentPack.excluded),['everyday']);
+  const profileState=await p.evaluate(()=>JSON.stringify(profileStore));await tap('[data-action="roll"]');await p.waitForFunction(()=>game.phase==='task');await T.idle(p);
+  const cardId=await p.evaluate(()=>game.current.cardId);assert(await p.evaluate(id=>{const row=[...PARTY_CARDS,...QUIP_APPROX_QUESTIONS].find(r=>r.id===id);return !!row&&!row.categories.includes('everyday');},cardId));result.ids.push(cardId);
+  await shot('04-hidden');await tap('[data-action="toggle-word"]');await shot('05-opened');await tap('.timer-ring[role="button"]');await shot('06-running');await tap('.timer-ring[role="button"]');assert.equal(await p.evaluate(()=>game.current.paused),true);await shot('07-paused');
+  const cards=result.shots.filter(s=>/^0[4-7]-/.test(s.label)).map(s=>s.geometry.cards[0]);assert(cards.every(Boolean));for(const c of cards)for(const k of ['x','y','width','height'])assert(Math.abs(c[k]-cards[0][k])<=.25,'fixed card '+k);result.cardRects=cards;
+  await p.evaluate(async()=>navigator.serviceWorker.ready);await p.waitForFunction(()=>!!navigator.serviceWorker.controller);assert((await p.evaluate(()=>caches.keys())).includes(expectedCache));
+  const offlineRAW=await T.raw(p),networkBefore=endpoint.failedRequests();endpoint.setUnavailable(true);await p.reload();await p.evaluate(()=>QuipTeams.whenReady());assert.deepEqual(await T.raw(p),offlineRAW);assert(endpoint.failedRequests()>networkBefore,'actual loopback network is unavailable');
+  await ctx.tracing.stop({path:path.join(out,'online.trace.zip')});tracing=false;
+  if(persistent){await ctx.close();ctx=await type.launchPersistentContext(dir,{...opts,offline:true});p=ctx.pages()[0]||await ctx.newPage();await init();await p.goto(endpoint.url);result.coldMethod='new persistent browser process, globally offline, server unavailable';}
+  else{await ctx.setOffline(true);await init();await p.reload();result.coldMethod='fresh document, globally offline; ephemeral local pilot context';}
+  await p.evaluate(()=>QuipTeams.whenReady());assert.deepEqual(await T.raw(p),offlineRAW);await T.tap(p,kind==='teams'?'#continue-teams':'#continue-game');assert.equal(await p.evaluate(()=>game.current.paused),true);assert.equal(await p.evaluate(()=>game.current.cardId),cardId);await shot('08-cold-offline');assert.equal(await p.evaluate(()=>JSON.stringify(profileStore)),profileState);
+  await T.tap(p,'#exit-game');await T.idle(p);await T.wizard(p,kind);await tap('[data-wizard-step="1"]');await tap('#wizard-category-summary');assert.equal(await p.locator('[data-category-id=everyday]').isChecked(),false);const pinned=await p.evaluate(()=>JSON.stringify(game));await tap('#wizard-category-all');assert.equal(await p.evaluate(()=>JSON.stringify(game)),pinned);assert.equal(await p.evaluate(()=>readGeneralCategoryPreferences().policy.excluded.length),0);await shot('09-next-preferences');
+  result.checks.push('native touch and keyboard category selection; all-on; exact count','both formats share future preferences without rewriting old RAW','real native START/full validation and actual selected ID','hidden/open/running/paused fixed card geometry','paused snapshot/profiles/totals/RAW after real offline and cold restart');assert.deepEqual(errors,[]);result.success=true;
+ }catch(error){result.error=error.stack;await p.screenshot({path:path.join(out,'failure.png')}).catch(()=>{});throw error;}
+ finally{endpoint.setUnavailable(false);fs.writeFileSync(path.join(out,'measurements.json'),JSON.stringify(result,null,2));if(tracing)await ctx.tracing.stop({path:path.join(out,'playwright.trace.zip')}).catch(()=>{});await ctx.close().catch(()=>{});if(dir)fs.rmSync(dir,{recursive:true,force:true});console.log('TASK038_ROW '+JSON.stringify({key,success:result.success,shots:result.shots.length,ids:result.ids,checks:result.checks,error:result.error}));}
+ return result;
+}
+(async()=>{const roots=T.roots(),before=await T.serve(roots.base),after=await T.serve(roots.after),browser=WK||process.env.CHROME_BIN?null:await chromium.launch({headless:true}),report={base:T.BASE,sourceHead:process.env.TASK038_SOURCE_HEAD||execFileSync('git',['rev-parse','HEAD'],{cwd:T.ROOT,encoding:'utf8'}).trim(),group:GROUP,pilot:PILOT,physicalDevice:false,rows:[]};try{for(const size of PILOT?groups[GROUP].slice(0,1):groups[GROUP])for(const scale of [1,2])for(const kind of ['duel','teams'])for(const [variant,endpoint]of [['before',before],['after',after]]){report.rows.push(await row(browser,endpoint,variant,size,scale,kind));fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify(report,null,2));}}finally{await browser?.close();await Promise.all([before,after].map(s=>new Promise(r=>s.server.close(r))));roots.dispose();}})().catch(e=>{console.error(e);process.exitCode=1});

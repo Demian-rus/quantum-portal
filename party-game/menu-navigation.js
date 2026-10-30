@@ -82,7 +82,8 @@ function contentPackCount(pack){return new Set(pack.criteria.cardIds).size;}
 function gameTypeCountSnapshot(){
  const {duration,targetScore,rounds,modifierChance,...catalogSettings}=options;
  // Category preferences affect only the general count, never theme eligibility.
- const key=JSON.stringify({...catalogSettings,contentPack:catalogSettings.contentPack?{id:catalogSettings.contentPack.id,version:catalogSettings.contentPack.version}:null});
+ const selected=baseContentPackSelection(catalogSettings.contentPack);
+ const key=JSON.stringify({...catalogSettings,contentPack:selected?{id:selected.id,version:selected.version}:null});
  if(!gameTypeCountCache||gameTypeCountCache.cards!==PARTY_CARDS||gameTypeCountCache.questions!==QUIP_APPROX_QUESTIONS||gameTypeCountCache.packs!==QUIP_CONTENT_PACKS)
   gameTypeCountCache={cards:PARTY_CARDS,questions:QUIP_APPROX_QUESTIONS,packs:QUIP_CONTENT_PACKS,entries:new Map()};
  const cache=gameTypeCountCache.entries;
@@ -103,7 +104,7 @@ function gameTypeCountSnapshot(){
   cache.set(key,snapshot);
  }
  const snapshot=cache.get(key),preferences=readGeneralCategoryPreferences();
- return {...snapshot,general:preferences.problem?null:generalCategoryCounts(latestGeneralPackSelection(),preferences.policy).available};
+ return {...snapshot,general:preferences.problem?null:preferences.policy.excluded.length?generalCategoryCounts(latestGeneralPackSelection(),preferences.policy).available:snapshot.general};
 }
 function renderGameTypeCounts(){
  try{const counts=gameTypeCountSnapshot();
@@ -116,7 +117,7 @@ function renderGameTypeCounts(){
 }
 function openGameType(){renderGameTypeCounts();setScene('game-type');}
 function rememberPackSettings(){
- const selection=options.contentPack,key=selection.id+'@'+selection.version;
+ const selection=baseContentPackSelection(options.contentPack),key=selection.id+'@'+selection.version;
  options.packPreferences={...(options.packPreferences||{}),[key]:{modes:options.modes.slice(),promptTypes:options.promptTypes.slice()}};
 }
 function changeSetupPack(selection,from){

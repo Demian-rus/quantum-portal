@@ -11,13 +11,13 @@ test('TASK038 all-on preserves every historical general pool, record order and i
 });
 test('TASK038 any excluded tag removes a record in every pool; untagged IDs remain; counts are unique IDs for the entire pack',()=>{
  const h=createSimulation();
- const matrix=plain(h.eval(`(()=>{const s=latestGeneralPackSelection(),counts=generalCategoryCounts(s),rows=[];for(const {id}of counts.categories){const selected=generalCategorySelection(s,{version:1,excluded:[id]});for(const level of PARTY_CARD_LEVELS){for(const kind of ['words','songs','people','blitz']){const original=getPackCardPool(s,kind,level,PROMPT_TYPES),filtered=getPackCardPool(selected,kind,level,PROMPT_TYPES);if(JSON.stringify(filtered.map(c=>c.id))!==JSON.stringify(original.filter(c=>!c.categories.includes(id)).map(c=>c.id)))throw Error(id+'/'+kind+'/'+level);}const original=getPackQuestionPool(s,level),filtered=getPackQuestionPool(selected,level);if(JSON.stringify(filtered.map(c=>c.id))!==JSON.stringify(original.filter(c=>!c.categories.includes(id)).map(c=>c.id)))throw Error(id+'/number/'+level);}const total=generalCategoryCounts(s,{version:1,excluded:[id]});rows.push({id,count:total.available});}return {total:counts.total,categories:counts.categories.length,rows,allOff:generalCategoryCounts(s,{version:1,excluded:counts.categories.map(c=>c.id)}).available}})()`));
+ const matrix=plain(h.eval(`(()=>{const s={id:'general',version:48},counts=generalCategoryCounts(s),rows=[];for(const {id}of counts.categories){const selected=generalCategorySelection(s,{version:1,excluded:[id]});for(const level of PARTY_CARD_LEVELS){for(const kind of ['words','songs','people','blitz']){const original=getPackCardPool(s,kind,level,PROMPT_TYPES),filtered=getPackCardPool(selected,kind,level,PROMPT_TYPES);if(JSON.stringify(filtered.map(c=>c.id))!==JSON.stringify(original.filter(c=>!c.categories.includes(id)).map(c=>c.id)))throw Error(id+'/'+kind+'/'+level);}const original=getPackQuestionPool(s,level),filtered=getPackQuestionPool(selected,level);if(JSON.stringify(filtered.map(c=>c.id))!==JSON.stringify(original.filter(c=>!c.categories.includes(id)).map(c=>c.id)))throw Error(id+'/number/'+level);}const total=generalCategoryCounts(s,{version:1,excluded:[id]});rows.push({id,count:total.available});}return {total:counts.total,categories:counts.categories.length,rows,allOff:generalCategoryCounts(s,{version:1,excluded:counts.categories.map(c=>c.id)}).available}})()`));
  assert.equal(matrix.total,7000);assert.equal(matrix.categories,22);assert.equal(matrix.allOff,2840);assert(matrix.rows.some(r=>r.count<7000));
- assert.equal(h.eval(`generalCategoryCounts(latestGeneralPackSelection()).categories.some(c=>['videogames','memes'].includes(c.id))`),false);
+ assert.equal(h.eval(`generalCategoryCounts({id:'general',version:48}).categories.some(c=>['videogames','memes'].includes(c.id))`),false);
  assert.equal(h.eval(`generalCategoryCounts(latestGeneralPackSelection(),{version:1,excluded:['science','geography']}).available`),h.eval(`new Set([...PARTY_CARDS,...QUIP_APPROX_QUESTIONS].filter(c=>getContentPack(latestGeneralPackSelection()).criteria.cardIds.includes(c.id)&&!c.categories.some(t=>['science','geography'].includes(t))).map(c=>c.id)).size`));
 });
 test('TASK038 custom mutable catalogs, multi-tag exclusions, empty pools, unique Blitz minimum and Secret methods retain real validation',()=>{
- const h=createSimulation();h.eval(`var fixtures=[{id:'word-fixture-1',type:'word',difficulty:'easy',text:'А',categories:['videogames','culture'],pack:'fixture'},{id:'word-fixture-2',type:'word',difficulty:'easy',text:'Б',categories:['videogames'],pack:'fixture'},{id:'word-fixture-3',type:'word',difficulty:'easy',text:'В',categories:[],pack:'fixture'}];var fixturePack=defineContentPacks([{id:'general',version:999,name:'Тест',enabled:true,categories:[],types:['word','number'],criteria:{cardIds:[],sourcePacks:[]},minCardsPerPool:1}]);var selected={id:'general',version:999,categoryPolicy:{version:1,excluded:['videogames']}};var settings={...options,difficulty:'easy',modes:['blitz'],rulesVersion:5};`);
+ const h=createSimulation();h.eval(`var fixtures=[{id:'word-fixture-1',type:'word',difficulty:'easy',text:'А',categories:['videogames','culture'],pack:'fixture'},{id:'word-fixture-2',type:'word',difficulty:'easy',text:'Б',categories:['videogames'],pack:'fixture'},{id:'word-fixture-3',type:'word',difficulty:'easy',text:'В',categories:[],pack:'fixture'}];var fixturePack=defineContentPacks([{id:'general',version:999,name:'Тест',enabled:true,categories:[],types:['word','number'],criteria:{cardIds:[],sourcePacks:[]},minCardsPerPool:1}]);var selected={selectionPolicyVersion:1,pack:{id:'general',version:999},excluded:['videogames']};var settings={...options,difficulty:'easy',modes:['blitz'],rulesVersion:5};`);
  assert.deepEqual(plain(h.eval(`getPackCardPool(selected,'blitz','easy',PROMPT_TYPES,fixtures,fixturePack).map(c=>c.id)`)),['word-fixture-3']);
  assert.equal(h.eval(`checkContentPack(selected,settings,fixtures,fixturePack,[]).available`),false);
  h.eval(`fixtures[0].categories=[];fixtures[1].categories=[]`);
@@ -34,8 +34,8 @@ test('TASK038 real duel and team START/roll use the same filtered snapshot in al
  const h=createSimulation(380);h.eval(`QuipTeamsEngine.install();writeGeneralCategoryPreferences(['everyday']);var selectedIds=[];`);
  for(const format of ['duel','teams'])for(const mode of ['talk','mime','draw','sing','yesno','secret','blitz','approx'])for(const difficulty of ['easy','medium','hard']){
   h.context.mode=mode;h.context.level=difficulty;h.context.format=format;
-  const row=plain(h.eval(`(()=>{const settings={...options,modes:[mode],difficulty:level,complications:true,riskRounds:false,rounds:100,finishType:'rounds',contentPack:latestGeneralPackSelection()};if(format==='duel'){Object.assign(options,settings);newGame();}else{const r=QuipTeamsEngine.createRecord(settings,[['А','Б'],['В','Г']],{id:'task038-match-'+mode+'-'+level,random:()=>.1});game=r.game;taskMemory=r.taskMemory;options=r.options;}roll();const c=game.current;return {policy:game.contentPack.categoryPolicy,ids:c.blitzCardIds||[c.cardId],valid:(c.blitzCardIds||[c.cardId]).every(id=>{const r=[...PARTY_CARDS,...QUIP_APPROX_QUESTIONS].find(r=>r.id===id);return !!r&&!r.categories.includes('everyday')})}})()`));
-  assert.deepEqual(row.policy,{version:1,excluded:['everyday']},format+'/'+mode+'/'+difficulty);assert(row.valid);assert(row.ids.length>=1);
+  const row=plain(h.eval(`(()=>{const settings={...options,modes:[mode],difficulty:level,awardTo:mode==='yesno'?'guesser':'setter',complications:true,riskRounds:false,rounds:100,finishType:'rounds',contentPack:latestGeneralPackSelection()};if(format==='duel'){Object.assign(options,settings);newGame();}else{const r=QuipTeamsEngine.createRecord(settings,[['А','Б'],['В','Г']],{id:'task038-match-'+mode+'-'+level,random:()=>.1});game=r.game;taskMemory=r.taskMemory;options=r.options;}roll();const c=game.current;return {modeId:c.modeId,difficulty:c.difficulty,policy:validateGeneralCategorySelection(game.contentPack),ids:c.blitzCardIds||[c.cardId],valid:(c.blitzCardIds||[c.cardId]).every(id=>{const r=[...PARTY_CARDS,...QUIP_APPROX_QUESTIONS].find(r=>r.id===id);return !!r&&!r.categories.includes('everyday')})}})()`));
+  assert.equal(row.modeId,mode,format+'/'+mode+'/'+difficulty);assert.equal(row.difficulty,difficulty);assert.deepEqual(row.policy,{version:1,excluded:['everyday']},format+'/'+mode+'/'+difficulty);assert(row.valid);assert(row.ids.length>=1);
  }
 });
 test('TASK038 future preferences never change a running snapshot, RAW, profiles or RNG; reload restores the pinned policy',()=>{
@@ -43,7 +43,7 @@ test('TASK038 future preferences never change a running snapshot, RAW, profiles 
  const before=h.eval('JSON.stringify([game,profileStore,taskMemory])'),raw=h.storage.get('iskra-party:v1'),profiles=h.storage.get('kvip-player-profiles:v1');
  h.eval(`Math.random=()=>{throw Error('category UI RNG')};writeGeneralCategoryPreferences([])`);
  assert.equal(h.eval('JSON.stringify([game,profileStore,taskMemory])'),before);assert.equal(h.storage.get('iskra-party:v1'),raw);assert.equal(h.storage.get('kvip-player-profiles:v1'),profiles);
- const restored=createSimulation(381,new Map(h.storage));assert.deepEqual(plain(restored.eval('game.contentPack.categoryPolicy')),{version:1,excluded:['everyday']});assert.equal(restored.eval('game.current.paused'),true);assert.equal(restored.eval('readGeneralCategoryPreferences().policy.excluded.length'),0);assert.equal(restored.storage.get('iskra-party:v1'),raw);
+ const restored=createSimulation(381,new Map(h.storage));assert.deepEqual(plain(restored.eval('validateGeneralCategorySelection(game.contentPack)')),{version:1,excluded:['everyday']});assert.equal(restored.eval('game.current.paused'),true);assert.equal(restored.eval('readGeneralCategoryPreferences().policy.excluded.length'),0);assert.equal(restored.storage.get('iskra-party:v1'),raw);
 });
 test('TASK038 unknown/corrupt future preferences and saved policies fail closed without rewriting any RAW',()=>{
  const h=createSimulation();const key=h.eval('QUIP_GENERAL_CATEGORY_KEY');
@@ -53,7 +53,7 @@ test('TASK038 unknown/corrupt future preferences and saved policies fail closed 
   assert.equal(h.eval(`setupCategorySelection({id:'geography',version:2}).id`),'geography');
  }
  const source=createSimulation();source.eval('newGame()');const original=JSON.parse(source.storage.get('iskra-party:v1'));
- for(const target of ['options','game']){const value=structuredClone(original);value[target].contentPack.categoryPolicy={version:999,excluded:[]};const map=new Map(source.storage),raw=JSON.stringify(value);map.set('iskra-party:v1',raw);const loaded=createSimulation(382,map);assert.equal(loaded.eval('storageBlocked'),true);loaded.eval('persist();newGame()');assert.equal(map.get('iskra-party:v1'),raw);}
+ for(const target of ['options','game']){const value=structuredClone(original);value[target].contentPack={selectionPolicyVersion:999,pack:{id:'general',version:48},excluded:[]};const map=new Map(source.storage),raw=JSON.stringify(value);map.set('iskra-party:v1',raw);const loaded=createSimulation(382,map);assert.equal(loaded.eval('storageBlocked'),true);loaded.eval('persist();newGame()');assert.equal(map.get('iskra-party:v1'),raw);}
 });
 test('TASK038 only the reviewed policy/setup/resource hunks change; all editorial data and unrelated runtime bytes remain exact',()=>{
  const {normalizeTask038,canonicalizeMetadata,hunks}=require('../../diagnostics/task038/source-contract.cjs');
@@ -62,7 +62,7 @@ test('TASK038 only the reviewed policy/setup/resource hunks change; all editoria
  for(const h of hunks)assert.equal(canonicalizeMetadata(fs.readFileSync('party-game/'+h.file,'utf8')).split(h.after).length,2,'exact unique reviewed hunk '+h.file);
  const html=fs.readFileSync('party-game/index.html','utf8'),sw=fs.readFileSync('party-game/sw.js','utf8');
  for(const [,ref]of html.matchAll(/(?:src|href)="\.\/([^"?]+\.(?:css|js)\?v=\d+)"/g))assert(sw.includes("'./"+ref+"'"),ref);
- assert(sw.includes('kvip-pwa-v105-20261030-general-categories-candidate'));assert(html.includes('content-packs.js?v=20'));
+ assert(sw.includes('kvip-pwa-v105-20261030-general-categories-candidate-b'));assert(html.includes('content-packs.js?v=21'));
 });
 test('TASK038 normalizer cannot hide catalog changes, unknown metadata, RNG, focus, worker lifecycle or validation bypasses',()=>{
  const {normalizeTask038}=require('../../diagnostics/task038/source-contract.cjs');
@@ -71,4 +71,36 @@ test('TASK038 normalizer cannot hide catalog changes, unknown metadata, RNG, foc
  }
  const source=fs.readFileSync('party-game/content-packs.js','utf8'),expected=execFileSync('git',['show',BASE+':party-game/content-packs.js'],{encoding:'utf8',maxBuffer:20e6});
  for(const mutated of [source.replace('required=Math.max','required=0;Math.max'),source.replace('"Транспорт"','"Непроверенное название"'),source.replace('word-000001','word-CHANGED')]){assert.notEqual(mutated,source);assert.notEqual(normalizeTask038(mutated),expected);}
+});
+test('TASK038 old published readers reject a filtered snapshot instead of silently dropping its policy; all-on remains readable',()=>{
+ const h=createSimulation(),a=old.indexOf('function getContentPack('),b=old.indexOf('// General 1/2',a);
+ vm.runInContext('var publishedGetContentPack='+old.slice(a,b).trim()+';',h.context);
+ assert.equal(h.eval(`publishedGetContentPack(generalCategorySelection({id:'general',version:48},QUIP_GENERAL_CATEGORIES_ALL)).id`),'general');
+ assert.throws(()=>h.eval(`publishedGetContentPack(generalCategorySelection({id:'general',version:48},{version:1,excluded:['science']}))`));
+});
+test('TASK038 generated future category labels and revisions work without engine changes or editorial branch integration',()=>{
+ const api=require('../scripts/content.cjs'),data=api.readDataset();data.manifest=structuredClone(data.manifest);data.manifest.categories.push({id:'memes',name:'Мемы'});
+ const extra={id:'word-task038-future',type:'word',difficulty:'easy',text:'ТЕСТОВЫЙ ПРИМЕР',categories:['memes','videogames'],pack:'task038-fixture'};data.cards=data.cards.concat(extra);
+ const pack=structuredClone(data.packs.find(p=>p.id==='general'&&p.version===48));pack.version=999;pack.criteria.cardIds.push(extra.id);data.packs=data.packs.concat(pack);
+ const generated=api.render(data),h=createSimulation();h.context.futureCards=data.cards;
+ vm.runInContext('var future=(function(){'+generated['content-packs.js']+';return {getPackCardPool,generalCategorySelection,generalCategoryCounts,labels:QUIP_GENERAL_CATEGORY_LABELS,registry:QUIP_CONTENT_PACKS}})();',h.context);
+ assert.equal(h.eval('future.labels.memes'),'Мемы');
+ assert.equal(h.eval(`future.generalCategoryCounts({id:'general',version:999},QUIP_GENERAL_CATEGORIES_ALL,futureCards,QUIP_APPROX_QUESTIONS,future.registry).total`),7001);
+ assert.equal(h.eval(`future.generalCategoryCounts({id:'general',version:999},{version:1,excluded:['memes']},futureCards,QUIP_APPROX_QUESTIONS,future.registry).available`),7000);
+ assert.equal(h.eval(`future.getPackCardPool(future.generalCategorySelection({id:'general',version:999},{version:1,excluded:['videogames']}),'words','easy',PROMPT_TYPES,futureCards,future.registry).some(c=>c.id==='word-task038-future')`),false);
+});
+test('TASK038 filtered reports retain the same source-pack metadata and schemas',()=>{
+ const h=createSimulation(383);h.eval(`writeGeneralCategoryPreferences(['everyday']);Object.assign(options,{modes:['talk'],contentPack:latestGeneralPackSelection(),difficulty:'easy'});newGame();game.dice=false;roll();`);
+ const item=plain(h.eval('makeReportItem(game)'));assert.deepEqual(item.pack,plain(h.eval('latestGeneralPackSelection()')));assert.equal(h.eval('validateReportItem(makeReportItem(game))!==null'),true);
+});
+test('TASK038 all-on produces the published RNG draw count and actual round sequence',()=>{
+ function run(published){const h=reference(createSimulation(384));if(published)h.eval('getPackCardPool=old_getPackCardPool;getPackQuestionPool=old_getPackQuestionPool;');
+  return plain(h.eval(`(()=>{let draws=0;const random=Math.random;Math.random=()=>{draws++;return random()};Object.assign(options,{modes:DEFAULT_MODES.filter(id=>id!=='yesno'),difficulty:'mixed',rounds:100,finishType:'rounds',awardTo:'setter',contentPack:latestGeneralPackSelection()});newGame();game.dice=false;const rows=[];for(let i=0;i<24;i++){roll();const c=game.current;rows.push([c.modeId,c.methodId,c.difficulty,c.cardId,c.blitzCardIds,c.complicationId,c.points,c.risk]);if(c.modeId==='approx'){revealApprox();awardApprox('both');}else{game.phase='judge';if(c.modeId==='blitz')c.blitzCorrect=c.blitzRequired;recordAnswer(true,true);}}return {draws,rows,used:game.used,planner:game.plannerState}})()`));}
+ assert.deepEqual(run(false),run(true));
+});
+test('TASK038 report archive remains independent of the catalog/engine and projects only the stable pack identity',()=>{
+ const context=vm.createContext({Date});vm.runInContext(fs.readFileSync('party-game/card-reports.js','utf8'),context);
+ context.match={contentPack:{selectionPolicyVersion:1,pack:{id:'general',version:48},excluded:['science']},current:{modeId:'talk',methodId:'talk',difficulty:'easy',cardId:'word-fixture',word:'Тест'}};
+ assert.deepEqual(plain(vm.runInContext('makeReportItem(match).pack',context)),{id:'general',version:48});
+ context.match.contentPack.selectionPolicyVersion=999;assert.throws(()=>vm.runInContext('makeReportItem(match)',context));
 });

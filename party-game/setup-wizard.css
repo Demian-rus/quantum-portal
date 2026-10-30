@@ -177,7 +177,7 @@
 @media(min-width:700px){.setup-wizard .wizard-page .setup-grid,.setup-wizard .wizard-page .team-profile-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(hover:hover) and (pointer:fine){.setup-wizard .participant-card:hover{border-color:var(--cyan)}}
 /* TASK038: a collapsed dictionary filter; the accepted game screen is unchanged. */
-.setup-wizard .wizard-categories{margin-top:14px;border:1px solid var(--stroke);border-radius:16px;background:var(--surface);overflow:clip}
+.setup-wizard .wizard-categories{margin-top:14px;border:1px solid var(--stroke);border-radius:16px;background:var(--surface)}
 .setup-wizard .wizard-categories>summary{min-height:52px;padding:15px;font-size:12px;line-height:1.6;cursor:pointer;overflow-wrap:anywhere}
 .setup-wizard #wizard-category-count{display:block;margin-top:5px;color:var(--lime);font-family:var(--font-body);font-size:14px}
 .setup-wizard .wizard-category-body{padding:0 14px 14px;min-width:0}

@@ -147,7 +147,7 @@ test('TASK033 profile-picker touch closes without a container rectangle and pres
  assert.match(globalCss,/button:focus-visible,input:focus-visible/);
  assert.match(profiles,/profilePanelFocus\?\.focus\(\{preventScroll:true\}\)/);
  const html=read('index.html'),sw=read('sw.js');
- assert.match(html,/setup-wizard\.css\?v=9/);
- assert.match(sw,/setup-wizard\.css\?v=9/);
- assert.match(sw,/kvip-pwa-v105-20261030-general-categories-candidate/);
+ assert.match(html,/setup-wizard\.css\?v=10/);
+ assert.match(sw,/setup-wizard\.css\?v=10/);
+ assert.match(sw,/kvip-pwa-v105-20261030-general-categories-candidate-b/);
 });

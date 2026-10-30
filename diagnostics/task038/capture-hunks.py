@@ -2,7 +2,7 @@
 import difflib, json, pathlib, subprocess
 root=pathlib.Path(__file__).resolve().parents[2]
 base='126563ccd1c2a9fcbb8e857eb81b422c02a55701'
-files=['app.js','content-packs.js','content/templates/content-packs.after.js','index.html','menu-navigation.js','session-restoration.js','setup-wizard.css','setup-wizard.js','sw.js','team-controller.js','team-engine.js','setup-view.js']
+files=['card-reports.js','app.js','content-packs.js','content/templates/content-packs.after.js','index.html','menu-navigation.js','session-restoration.js','setup-wizard.css','setup-wizard.js','sw.js','team-controller.js','team-engine.js','setup-view.js']
 manifest=json.loads((root/'party-game/content/manifest.json').read_text())
 labels=json.dumps({c['id']:c['name'] for c in manifest['categories']},ensure_ascii=False,separators=(',',':'))
 generated='const QUIP_GENERAL_CATEGORY_LABELS=Object.freeze('+labels+');'

@@ -13,8 +13,10 @@ test('installed counts follow the latest editorial general pack and each availab
 function fixture(){
  const elements=new Map(),pack=(id,ids,enabled=true)=>({id,version:1,name:id,enabled,criteria:{cardIds:ids}});
  const general=pack('general',['g1','g2']),a=pack('a',['shared','a']),b=pack('b',['shared','b','b']),soon=pack('soon',['x'],false),unavailable=pack('unavailable',['z']);
- const ctx=vm.createContext({options:{difficulty:'easy'},PARTY_CARDS:[],QUIP_APPROX_QUESTIONS:[],QUIP_CONTENT_PACKS:{'general@1':general},themes:[{pack:a,available:true},{pack:b,available:true},{pack:soon,available:false},{pack:unavailable,available:false}],calls:0,$:id=>{if(!elements.has(id))elements.set(id,{});return elements.get(id);},escapeHTML:String,getPackCardPool(){throw Error('Fixture has no card pools');}});
+ const ctx=vm.createContext({options:{difficulty:'easy'},PARTY_CARDS:[],QUIP_APPROX_QUESTIONS:[],QUIP_CONTENT_PACKS:{'general@1':general},localStorage:{getItem:()=>null},themes:[{pack:a,available:true},{pack:b,available:true},{pack:soon,available:false},{pack:unavailable,available:false}],calls:0,$:id=>{if(!elements.has(id))elements.set(id,{});return elements.get(id);},escapeHTML:String,getPackCardPool(){throw Error('Fixture has no card pools');}});
  vm.runInContext("function latestGeneralPackSelection(){return {id:'general',version:Math.max(...Object.values(QUIP_CONTENT_PACKS).map(p=>p.version))}};function getContentPack(s){const p=QUIP_CONTENT_PACKS[s.id+'@'+s.version];if(!p)throw Error('Missing catalog');return p};function listThematicPacks(){calls++;return themes}",ctx);
+ const source=fs.readFileSync(require.resolve('../content-packs.js'),'utf8');
+ vm.runInContext(source.slice(source.indexOf('const QUIP_GENERAL_CATEGORY_LABELS='),source.indexOf('let generalCategoryIndexes=')),ctx);
  vm.runInContext(fs.readFileSync(require.resolve('../menu-navigation.js'),'utf8'),ctx);return {ctx,elements,run:s=>vm.runInContext(s,ctx)};
 }
 test('theme total is a sum of separate volumes, counts shared IDs in both themes and excludes unavailable themes',()=>{

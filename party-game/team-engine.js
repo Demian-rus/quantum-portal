@@ -123,7 +123,7 @@ const QuipTeamsEngine=(function teamEngine(){
  }
  function createRecord(settings,names,{id,random=Math.random,previous=null,profileBinding=null}={}){
   assert(installed,'командный движок не подключён');if(previous)validateRecord(previous);
-  const o=optionsFor(settings),songPolicy=setupSongPolicy(o),pack=setupCategorySelection(latestContentPackSelection(o.contentPack.id)),available=checkContentPack(pack,{...o,...songPolicy});
+  const o=optionsFor(settings),songPolicy=setupSongPolicy(o),pack=setupCategorySelection(latestContentPackSelection(getContentPack(o.contentPack).id)),available=checkContentPack(pack,{...o,...songPolicy});
   assert(available.available,available.problems[0]||'набор недоступен');
   const header=profileBinding?QuipTeamFormat.createBound(profileBinding,{id,random}):QuipTeamFormat.create(names,{id,random});let memory=previous?archiveTaskHistory(copy(previous.taskMemory),previous.game.taskHistory):freshTaskMemory();
   const started=startTaskHistory(memory);memory=started.memory;

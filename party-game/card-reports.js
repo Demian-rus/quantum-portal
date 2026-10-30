@@ -22,7 +22,9 @@ function validateReportItem(item){
  return item;
 }
 function makeReportItem(match,{current=match?.current,tiebreak=false,row=null,blitzIndex=null}={}){
- const pack=match?.contentPack?{id:match.contentPack.id,version:match.contentPack.version}:null;
+ // Project only the stable pack identity; the game owns selection validation.
+ const source=match?.contentPack,selection=source?.selectionPolicyVersion===1?source.pack:source;
+ const pack=selection?{id:selection.id,version:selection.version}:null;
  let item;
  if(tiebreak){const q=match?.tiebreak?.question;if(!q)return null;
   item={cardId:q.id??null,pack,context:'tiebreak',modeId:'approx',methodId:null,difficulty:q.difficulty??null,text:q.question};

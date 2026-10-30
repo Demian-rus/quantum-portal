@@ -18,7 +18,7 @@ test('TASK030 preserves the exact TASK029 validation stamp and scoped memo',()=>
 // Intentional G26–G46 catalog expansion: exact generated output and immutable historic selections remain mandatory.
 test('TASK027/TASK030 allow only generated content expansion while guarding exact 6000 published IDs',()=>{
  const api=require('../scripts/content.cjs'),data=api.readDataset(),output=api.render(data);
- for(const file of ['cards.js','content-packs.js'])assert.equal(read(file),output[file],file+' must match deterministic generator');
+ for(const file of ['cards.js','content-packs.js'])assert.equal(fs.readFileSync(path.join(root,'party-game',file),'utf8'),output[file],file+' must match deterministic generator');
  const published=data.packs.find(p=>p.id==='general'&&p.version===27);
  const g45=data.packs.find(p=>p.id==='general'&&p.version===47),latest=data.packs.find(p=>p.id==='general'&&p.version===48);
  assert.ok(published&&g45&&latest);
