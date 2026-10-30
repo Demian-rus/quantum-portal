@@ -1,0 +1,717 @@
+{
+  "sourceHead": "c4232f28f219a59b677fb68e494f7ac2424c8a22",
+  "rasterSourceRun": 41066140086,
+  "rasterArtifact": 12982804403,
+  "raster": [
+    {
+      "width": 320,
+      "beforeSHA256": "bfcde7b3cad564e344e0b600ac4d92d8e02ecf2af4c188dd71baaab81d5ab90e",
+      "afterSHA256": "bfcde7b3cad564e344e0b600ac4d92d8e02ecf2af4c188dd71baaab81d5ab90e",
+      "changedPixels": 0,
+      "bounds": null
+    },
+    {
+      "width": 360,
+      "beforeSHA256": "ab8868a6914073b116cde5500a2ee9c23dbe65945bd4d97c9a1abebbb96d4970",
+      "afterSHA256": "ab8868a6914073b116cde5500a2ee9c23dbe65945bd4d97c9a1abebbb96d4970",
+      "changedPixels": 0,
+      "bounds": null
+    },
+    {
+      "width": 390,
+      "beforeSHA256": "6c4efa658520924eaecc6682c01ed26d9d4daa9539170a390206d65128871f89",
+      "afterSHA256": "6c4efa658520924eaecc6682c01ed26d9d4daa9539170a390206d65128871f89",
+      "changedPixels": 0,
+      "bounds": null
+    },
+    {
+      "width": 412,
+      "beforeSHA256": "a3b5be801bddfbcb377fb93857b1cbb3f7de047f0c51b123fdb26aada63a118d",
+      "afterSHA256": "a3b5be801bddfbcb377fb93857b1cbb3f7de047f0c51b123fdb26aada63a118d",
+      "changedPixels": 0,
+      "bounds": null
+    },
+    {
+      "width": 844,
+      "beforeSHA256": "5aeae5eda655cb175cbe87ba1db68d2a7ab2bd7332ec5e99ae6dc1b11b9a6211",
+      "afterSHA256": "7cd746c5d9398893852c895022e20e8d667954045f2ef6d94982d3dac0d23bd5",
+      "changedPixels": 26,
+      "bounds": [
+        268,
+        35,
+        576,
+        231
+      ]
+    }
+  ],
+  "bootSourceRun": 41066140081,
+  "bootArtifact": 12983755719,
+  "bootFacts": {
+    "controller": "http://127.0.0.1:44949/party-game/sw.js",
+    "registrations": [
+      {
+        "scope": "http://127.0.0.1:44949/party-game/",
+        "active": "activated"
+      }
+    ],
+    "cachedScripts": 54,
+    "byteExactCachedScripts": 54,
+    "failedScriptRequests": 13,
+    "httpErrors": []
+  },
+  "localReloadControls": [
+    {
+      "serviceWorkers": "allow",
+      "browser": "140.0.7339.16",
+      "size": 15000,
+      "reloads": 60,
+      "scriptsPerBoot": [
+        54
+      ],
+      "failedBoots": 0,
+      "networkFailures": [
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        }
+      ],
+      "success": true
+    },
+    {
+      "serviceWorkers": "block",
+      "browser": "140.0.7339.16",
+      "size": 15000,
+      "reloads": 60,
+      "scriptsPerBoot": [
+        54
+      ],
+      "failedBoots": 0,
+      "networkFailures": [
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        }
+      ],
+      "success": true
+    }
+  ],
+  "localRasterControls": [
+    {
+      "method": "local-raster-default",
+      "browser": "Chromium headless-shell 140.0.7339.16 / Playwright1.55.0; local diagnostic only, not native CI acceptance",
+      "trials": 10,
+      "beforeAfterExact": 10,
+      "samePageTriplesExact": 20
+    },
+    {
+      "method": "local-font-raster-default",
+      "browser": "Chromium headless-shell 140.0.7339.16 / Playwright1.55.0; local diagnostic only, not native CI acceptance",
+      "trials": 10,
+      "beforeAfterExact": 10,
+      "samePageTriplesExact": 20
+    }
+  ],
+  "conclusion": "Historical failures preserved. All cached script bytes are exact; no corrupt-cache or saved-data cause is established. The original raster mismatch is 26 edge pixels on 844px only. Neither symptom reproduces in these local controls; native CI is required. Root cause remains unproven. No retries, budget/tolerance changes or golden replacement."
+}
