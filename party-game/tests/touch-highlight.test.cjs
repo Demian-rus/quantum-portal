@@ -15,5 +15,5 @@ test('hotfix preserves every authored focus/active rule and cannot hide unrelate
  for(const f of ['profile-views.js','player-profiles.js','app.js','responsive-layout.css','setup-wizard.css','team-controller.js'])assert.equal(read(f),old(f));
 });
 test('hotfix HTML and native worker precache use style46 and v104; worker lifecycle remains exact',()=>{
- const html=read('index.html'),sw=read('sw.js');assert(html.includes('./style.css?v=46'));assert(sw.includes("'./style.css?v=46'"));assert(sw.includes('kvip-pwa-v104-20261029-touch-highlight-candidate'));assert.equal(sw.slice(sw.indexOf('self.addEventListener')),old('sw.js').slice(old('sw.js').indexOf('self.addEventListener')));
+ const html=read('index.html'),sw=read('sw.js');assert(html.includes('./style.css?v=46'));assert(sw.includes("'./style.css?v=46'"));assert(sw.includes('kvip-pwa-v105-20261030-general67-catalog'));assert.equal(sw.slice(sw.indexOf('self.addEventListener')),old('sw.js').slice(old('sw.js').indexOf('self.addEventListener')));
 });
