@@ -104,8 +104,9 @@ const QuipTeamsEngine=(function teamEngine(){
  }
  function entry(record){return {version:1,teamFormat:copy(record.teamFormat),game:copy(record.game),options:copy(record.options),taskMemory:copy(record.taskMemory)};}
  function validateEntry(value){
+  const entryKey=recordValidationKey(value,false);if(entryKey!==null&&recordValidationScope.keys.has(entryKey))return true;
   exact(value,['version','teamFormat','game','options','taskMemory']);assert(value.version===1&&equal(value.teamFormat,value.game.teamFormat),'неверный конверт партии');
-  assert(equal(value.options,optionsFor(value.options)),'неверные сохранённые настройки');return validateGame(value.game,value.taskMemory);
+  assert(equal(value.options,optionsFor(value.options)),'неверные сохранённые настройки');const valid=validateGame(value.game,value.taskMemory);rememberRecordValidation(entryKey);return valid;
  }
  // Only one controller transaction may reuse a successful record check.
  // Cache the entire strict JSON value, never just an ID/checksum/role header.
@@ -116,7 +117,7 @@ const QuipTeamsEngine=(function teamEngine(){
   const scope={keys:new Set(),stamp:[],chars:0};recordValidationScope=scope;
   try{return await work();}finally{if(recordValidationScope===scope)recordValidationScope=null;}
  }
- function recordValidationKey(record){
+ function recordValidationKey(record,withArchives=true){
   if(!recordValidationScope||!Object.isFrozen(PARTY_CARDS)||!Object.isFrozen(QUIP_APPROX_QUESTIONS)||!Object.isFrozen(QUIP_CONTENT_PACKS))return null;
   const stamp=[PARTY_CARDS,QUIP_APPROX_QUESTIONS,QUIP_CONTENT_PACKS,QUIP_MODES_V4,QUIP_MODIFIERS_V2,getContentPack,getPackCardPool,getPackQuestionPool,getModeConfig,getV2ModifierPool];
   if(stamp.some((v,i)=>v!==recordValidationScope.stamp[i])){recordValidationScope.keys.clear();recordValidationScope.chars=0;recordValidationScope.stamp=stamp;}
@@ -133,9 +134,14 @@ const QuipTeamsEngine=(function teamEngine(){
     active.add(value);for(const key of keys){const d=Object.getOwnPropertyDescriptor(value,key);if(!Object.hasOwn(d,'value'))throw Error('accessor');json(d.value);}active.delete(value);
    };
    json(record);
-   for(const value of [record,...record.archives]){const pack=getContentPack(value.game.contentPack);if(QUIP_CONTENT_PACKS[pack.id+'@'+pack.version]!==pack)return null;}
-   const key=JSON.stringify(record);return key.length<=131072?key:null;
+   for(const value of withArchives?[record,...record.archives]:[record]){const pack=getContentPack(value.game.contentPack);if(QUIP_CONTENT_PACKS[pack.id+'@'+pack.version]!==pack)return null;}
+   const key=JSON.stringify(record);return key.length<=131072?(withArchives?'record:':'entry:')+key:null;
   }catch{return null;}
+ }
+ function rememberRecordValidation(key){
+  if(key===null||!recordValidationScope)return;
+  if(recordValidationScope.chars+key.length>524288){recordValidationScope.keys.clear();recordValidationScope.chars=0;}
+  recordValidationScope.keys.add(key);recordValidationScope.chars+=key.length;
  }
  function validateRecord(record){
   const memoKey=recordValidationKey(record);if(memoKey!==null&&recordValidationScope.keys.has(memoKey))return true;
@@ -147,7 +153,7 @@ const QuipTeamsEngine=(function teamEngine(){
   }
   assert(Array.isArray(record.archives)&&record.archives.length<=100,'неверный архив командных партий');record.archives.forEach(validateEntry);
   assert(new Set([record.teamFormat.id,...record.archives.map(e=>e.teamFormat.id)]).size===record.archives.length+1,'повторная партия в архиве');
-  if(memoKey!==null&&recordValidationScope){if(recordValidationScope.chars+memoKey.length>524288){recordValidationScope.keys.clear();recordValidationScope.chars=0;}recordValidationScope.keys.add(memoKey);recordValidationScope.chars+=memoKey.length;}return true;
+  rememberRecordValidation(memoKey);return true;
  }
  function validateReplacement(before,after){
   validateRecord(before);validateRecord(after);
