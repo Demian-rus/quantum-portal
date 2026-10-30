@@ -104,3 +104,11 @@ test('TASK038 report archive remains independent of the catalog/engine and proje
  assert.deepEqual(plain(vm.runInContext('makeReportItem(match).pack',context)),{id:'general',version:48});
  context.match.contentPack.selectionPolicyVersion=999;assert.throws(()=>vm.runInContext('makeReportItem(match)',context));
 });
+test('TASK038 deciding questions use the pinned category filter; an empty numeric pool consumes no RNG and retains paired turns',()=>{
+ const h=createSimulation(385);h.eval(`QuipTeamsEngine.install();`);
+ for(const format of ['duel','teams']){
+  h.context.format=format;
+  const result=plain(h.eval(`(()=>{writeGeneralCategoryPreferences(['science']);const settings={...options,modes:['talk'],difficulty:'easy',finishType:'score',contentPack:latestGeneralPackSelection()};if(format==='duel'){Object.assign(options,settings);newGame();}else{const r=QuipTeamsEngine.createRecord(settings,[['А','Б'],['В','Г']],{id:'task038-tie-'+format,random:()=>.1});game=r.game;taskMemory=r.taskMemory;options=r.options;}const q=nextTiebreakQuestion(),source=QUIP_APPROX_QUESTIONS.find(row=>row.id===q?.id),valid=!!source&&!source.categories.includes('science');writeGeneralCategoryPreferences([]);const same=validateGeneralCategorySelection(game.contentPack).excluded[0]==='science';writeGeneralCategoryPreferences(generalCategoryCounts(latestGeneralPackSelection()).categories.map(c=>c.id));if(format==='duel')newGame();else{const r=QuipTeamsEngine.createRecord(settings,[['А','Б'],['В','Г']],{id:'task038-empty-tie-'+format,random:()=>.1});game=r.game;taskMemory=r.taskMemory;options=r.options;}const before=JSON.stringify(game);const random=Math.random;Math.random=()=>{throw Error('empty tie consumed RNG')};let empty;try{empty=nextTiebreakQuestion()===null;}finally{Math.random=random;}return {valid,same,empty,unchanged:JSON.stringify(game)===before}})()`));
+  assert.deepEqual(result,{valid:true,same:true,empty:true,unchanged:true},format);
+ }
+});
