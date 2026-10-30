@@ -53,11 +53,18 @@ async function journey(browser,url,variant,kind,root){
   // artifacts). Restore only this isolated test origin, outside timing; the
   // production decoder, full validator, journal and strict receipt commit run.
   const startRAW=await T.raw(p),receipt=await p.evaluate(receiptValue);
-  row.startFixture={sha256:require('node:crypto').createHash('sha256').update(JSON.stringify([startRAW,receipt])).digest('hex'),profiles:ids.length,method:'same exact real RAW and IndexedDB receipt restored in isolated test origin before every sample; restoration/reload excluded from timing',archives:await p.evaluate(()=>QuipTeams.record().archives.length)};
+  row.startFixture={sha256:require('node:crypto').createHash('sha256').update(JSON.stringify([startRAW,receipt])).digest('hex'),profiles:ids.length,method:'same exact real RAW and IndexedDB receipt restored before every sample; commit about:blank then one navigation to production URL in the same context; preparation excluded from timing',archives:await p.evaluate(()=>QuipTeams.record().archives.length)};
   for(let i=-1;i<N;i++){
    await cdp.send('Emulation.setCPUThrottlingRate',{rate:1});
    await p.evaluate(async({raw,receipt})=>{stopTicking();localStorage.clear();for(const [key,value]of Object.entries(raw))localStorage.setItem(key,value);await new Promise((resolve,reject)=>{const q=indexedDB.open('kvip-teams-durability:v1');q.onerror=()=>reject(q.error);q.onsuccess=()=>{const db=q.result,t=db.transaction('receipts','readwrite',{durability:'strict'}),s=t.objectStore('receipts');s.clear();s.put(receipt,'kvip:teams-2x2:v1');t.oncomplete=()=>{db.close();resolve()};t.onabort=()=>reject(t.error);};});},{raw:startRAW,receipt});
-   await p.reload();await Boot.ready(p,row,'fixture START '+i,out,root);assert.deepEqual(await T.raw(p),startRAW,'identical fixture RAW at every trial');assert.equal(await p.evaluate(receiptValue),receipt,'identical native IndexedDB receipt at every trial');assert.equal(await p.evaluate(()=>QuipTeams.record().archives.length),row.startFixture.archives);
+   // Native CI has cancelled parser script requests during repeated reload in
+   // both published main and candidate, with byte-exact CacheStorage and no
+   // HTTP error (bd3316ba / run41113069420 / fixture15). Discard the preceding
+   // document before this sample's ONE navigation; preserve native HTTP cache,
+   // worker, CacheStorage and context. No retry, missing-script allowance or
+   // START work is moved outside the measurement. Product reload/offline paths
+   // remain covered independently by the mandatory PWA suites.
+   await p.goto('about:blank');await p.goto(url);await Boot.ready(p,row,'fixture START '+i,out,root);assert.deepEqual(await T.raw(p),startRAW,'identical fixture RAW at every trial');assert.equal(await p.evaluate(receiptValue),receipt,'identical native IndexedDB receipt at every trial');assert.equal(await p.evaluate(()=>QuipTeams.record().archives.length),row.startFixture.archives);
    await T.wizard(p,kind);await T.configure(p);await p.evaluate(()=>{window.__cost38={check:0,pool:0,index:0};for(const [name,key]of [['checkContentPack','check'],['getPackCardPool','pool'],['buildGeneralCategoryIndex','index']])if(typeof window[name]==='function'){const fn=window[name];window[name]=function(...a){__cost38[key]++;return fn.apply(this,a);};}renderOptions();});await reset();
    await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});await measure('#start-game',{kind:'start',label:'real_start'},false,i>=0);const c=await cost('START');if(i>=0)row.cost.push(c);assert(c.check>0,'real START full check');assert.equal(await p.evaluate(()=>game.contentPack.selectionPolicyVersion===1),variant==='after');
   }

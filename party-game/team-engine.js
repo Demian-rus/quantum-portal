@@ -112,30 +112,60 @@ const QuipTeamsEngine=(function teamEngine(){
  // Cache the entire strict JSON value, never just an ID/checksum/role header.
  // New bytes, custom catalogs and a new transaction always validate in full.
  let recordValidationScope=null;
- const parseRecordJSON=JSON.parse,recordJSONResolver=getContentPack;
+ const parseRecordJSON=JSON.parse,recordJSONResolver=getContentPack,immutableRecordKeys=new WeakMap();
+ function parseFiniteRecordJSON(raw,wrapped=false){
+  assert(typeof raw==='string'&&typeof wrapped==='boolean','ожидается JSON командной записи');
+  const value=parseRecordJSON(raw),record=wrapped?value?.match:value;
+  const finite=value=>{if(value===null||typeof value!=='object'){assert(typeof value!=='number'||Number.isFinite(value),'non-JSON number');return;}for(const key of Object.keys(value)){const child=value[key];if(child!==null&&typeof child==='object')finite(child);else assert(typeof child!=='number'||Number.isFinite(child),'non-JSON number');}};
+  finite(record);return record;
+ }
+ function readOnlyRecordJSON(raw,wrapped=false){
+  const record=parseFiniteRecordJSON(raw,wrapped);assert(record&&typeof record==='object'&&!Array.isArray(record),'ожидается командная запись');
+  const json=JSON.stringify(record),freeze=value=>{if(value!==null&&typeof value==='object'){for(const key of Object.keys(value))freeze(value[key]);Object.freeze(value);}};freeze(record);
+  // Serializer provenance, never a successful validation. A new transaction
+  // still has an empty keys set and must run the complete record validator.
+  if(json.length<=131072)immutableRecordKeys.set(record,'record:'+json);
+  return record;
+ }
  function validateRecordJSON(raw,wrapped=false){
   assert(typeof raw==='string'&&typeof wrapped==='boolean','ожидается JSON командной записи');
+  const scope=validationScope(),sources=scope?.sources[wrapped?1:0],saved=sources?.get(raw);
+  if(getContentPack===recordJSONResolver&&saved&&scope.keys.has(saved))return true;
   // Only our own synchronous native parse authorizes the private parsed path.
   // JSON's grammar also permits overflowing exponents: reject those before
   // stringify could alias Infinity to a previously checked nullable field.
-  const value=parseRecordJSON(raw),record=wrapped?value?.match:value;
+  const record=parseFiniteRecordJSON(raw,wrapped);
   // Native JSON.parse guarantees ordinary own data properties and dense arrays.
   // Only numeric overflow still needs checking; no reviver/descriptors/second
   // serializer are necessary to establish the source of these private bytes.
-  const finite=value=>{if(value===null||typeof value!=='object'){assert(typeof value!=='number'||Number.isFinite(value),'non-JSON number');return;}for(const key of Object.keys(value)){const child=value[key];if(child!==null&&typeof child==='object')finite(child);else assert(typeof child!=='number'||Number.isFinite(child),'non-JSON number');}};
-  finite(record);
-  return validateRecordValue(record,true);
+  const valid=validateRecordValue(record,true);
+  // Strings cannot acquire getters or mutate while a lock is awaited. Reuse
+  // only an exact source whose complete record succeeded in THIS scope.
+  if(scope&&scope===recordValidationScope&&getContentPack===recordJSONResolver&&raw.length<=131072){
+   const key=recordValidationKey(record,true,true);
+   if(key!==null&&scope.keys.has(key)&&!sources.has(raw)){
+    if(scope.sourceChars+raw.length>262144){scope.sources.forEach(map=>map.clear());scope.sourceChars=0;}
+    sources.set(raw,key);scope.sourceChars+=raw.length;
+   }
+  }
+  return valid;
  }
  async function withRecordValidation(work){
   if(recordValidationScope)return work();
-  const scope={keys:new Set(),shapes:[],stamp:[],chars:0};recordValidationScope=scope;
+  const scope={keys:new Set(),shapes:[],stamp:[],chars:0,sources:[new Map(),new Map()],sourceChars:0};recordValidationScope=scope;
   try{return await work();}finally{if(recordValidationScope===scope)recordValidationScope=null;}
  }
- function recordValidationKey(record,withArchives=true,parsed=false){
+ function validationScope(){
   if(!recordValidationScope||!Object.isFrozen(PARTY_CARDS)||!Object.isFrozen(QUIP_APPROX_QUESTIONS)||!Object.isFrozen(QUIP_CONTENT_PACKS))return null;
   const stamp=[PARTY_CARDS,QUIP_APPROX_QUESTIONS,QUIP_CONTENT_PACKS,QUIP_MODES_V4,QUIP_MODIFIERS_V2,getContentPack,getPackCardPool,getPackQuestionPool,getModeConfig,getV2ModifierPool];
-  if(stamp.some((v,i)=>v!==recordValidationScope.stamp[i])){recordValidationScope.keys.clear();recordValidationScope.shapes.length=0;recordValidationScope.chars=0;recordValidationScope.stamp=stamp;}
+  if(stamp.some((v,i)=>v!==recordValidationScope.stamp[i])){recordValidationScope.keys.clear();recordValidationScope.shapes.length=0;recordValidationScope.chars=0;recordValidationScope.sources.forEach(map=>map.clear());recordValidationScope.sourceChars=0;recordValidationScope.stamp=stamp;}
+  return recordValidationScope;
+ }
+ function recordValidationKey(record,withArchives=true,parsed=false){
+  if(!validationScope())return null;
   try{
+   const immutable=withArchives&&getContentPack===recordJSONResolver?immutableRecordKeys.get(record):null;
+   if(immutable){for(const value of [record,...record.archives]){const pack=getContentPack(value.game.contentPack);if(QUIP_CONTENT_PACKS[pack.id+'@'+pack.version]!==pack)return null;}return immutable;}
    if(parsed&&getContentPack===recordJSONResolver){
     for(const value of withArchives?[record,...record.archives]:[record]){const pack=getContentPack(value.game.contentPack);if(QUIP_CONTENT_PACKS[pack.id+'@'+pack.version]!==pack)return null;}
     const key=JSON.stringify(record);return key.length<=131072?(withArchives?'record:':'entry:')+key:null;
@@ -189,7 +219,7 @@ const QuipTeamsEngine=(function teamEngine(){
  function rememberRecordValidation(key){
   if(key===null||!recordValidationScope)return;
   if(recordValidationScope.keys.has(key))return;
-  if(recordValidationScope.chars+key.length>524288){recordValidationScope.keys.clear();recordValidationScope.shapes.length=0;recordValidationScope.chars=0;}
+  if(recordValidationScope.chars+key.length>524288){recordValidationScope.keys.clear();recordValidationScope.shapes.length=0;recordValidationScope.chars=0;recordValidationScope.sources.forEach(map=>map.clear());recordValidationScope.sourceChars=0;}
   recordValidationScope.keys.add(key);recordValidationScope.chars+=key.length;
   recordValidationScope.shapes.push({key,shape:recordShape(JSON.parse(key.slice(key.indexOf(':')+1)))});
  }
@@ -281,5 +311,5 @@ const QuipTeamsEngine=(function teamEngine(){
    c.word=card.text;c.cardId=card.id;c.visible=false;c.replaced=true;persist();sfx('button');render();
   };
  }
- return Object.freeze({VERSION,FORMAT,isGame,isSettings,roles,optionsFor,createRecord,validateGame,withRecordValidation,validateRecord,validateRecordJSON,validateReplacement,validateTransition,finalizeRecord,entry,replay,install});
+ return Object.freeze({VERSION,FORMAT,isGame,isSettings,roles,optionsFor,createRecord,validateGame,withRecordValidation,validateRecord,validateRecordJSON,readOnlyRecordJSON,validateReplacement,validateTransition,finalizeRecord,entry,replay,install});
 })();

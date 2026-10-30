@@ -68,10 +68,10 @@
      const loaded=await s.store.load();if(!['empty','ok'].includes(loaded.status)||loaded.raw!==s.raw)throw Error('Сохранение изменилось в другой вкладке или требует восстановления. Откройте его заново.');
      tx.executing=true;try{action();const modalClosed=before.report&&$('report-backdrop').hidden||before.history&&$('result-history-backdrop').hidden;tx.focus=modalClosed&&before.returnFocus?before.returnFocus:focusHint(document.activeElement);}finally{tx.executing=false;}if(tx.failure)throw tx.failure;
      if(s.context&&E.isGame(game)){
-      const next=E.finalizeRecord(root());E.validateRecord(next);
+      const next=E.readOnlyRecordJSON(JSON.stringify(E.finalizeRecord(root())));E.validateRecord(next);
       if(!same(next,s.record)){
        const saved=await s.store.commit({expectedRaw:s.raw,match:next,replaceMatchId:replace&&s.record?s.record.teamFormat.id:null});
-       s.record=clone(saved.match);s.raw=saved.raw;s.status='ok';
+       s.record=E.readOnlyRecordJSON(saved.raw,true);s.raw=saved.raw;s.status='ok';
       }
      }
     }));
@@ -244,7 +244,7 @@
  }
  async function readStore(){
   const loaded=await s.store.load();s.status=loaded.status;s.raw=loaded.raw??null;
-  if(loaded.status==='ok')s.record=loaded.match;else if(loaded.status==='empty')s.record=null;
+  if(loaded.status==='ok')s.record=E.readOnlyRecordJSON(loaded.raw,true);else if(loaded.status==='empty')s.record=null;
   paintHome();if(!$('scene-statistics').hidden&&typeof renderStatistics==='function')renderStatistics();return loaded;
  }
  function continueTeam(){
