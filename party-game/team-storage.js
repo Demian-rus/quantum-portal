@@ -15,19 +15,25 @@
  const RECEIPT_DB='kvip-teams-durability:v1';
  function nativeReceipt(){
   if(!globalThis.indexedDB)fail('RECEIPT_REQUIRED','Для надёжного сохранения 2 на 2 требуется IndexedDB. Игра 1 на 1 остаётся доступной.');
-  async function open(){return new Promise((resolve,reject)=>{
+  let connection=null,opening=null;
+  function open(){
+   if(connection)return Promise.resolve(connection);
+   if(opening)return opening;
+   const pending=new Promise((resolve,reject)=>{
    const request=globalThis.indexedDB.open(RECEIPT_DB,1);let rejected=false,problem=null;
    request.onupgradeneeded=event=>{try{if(event.oldVersion===0)request.result.createObjectStore('receipts');}catch(e){problem=e;request.transaction.abort();}};
    request.onblocked=()=>{rejected=true;reject(error('RECEIPT_BLOCKED','Закройте другую версию приложения и повторите сохранение 2 на 2.'));};
    request.onerror=()=>reject(problem||request.error);
-   request.onsuccess=()=>{const db=request.result;if(rejected){db.close();return;}if(db.version!==1||db.objectStoreNames.length!==1||!db.objectStoreNames.contains('receipts')){db.close();reject(error('INCOMPATIBLE','Неизвестная версия подтверждений 2 на 2.'));return;}resolve(db);};
-  });}
+   request.onsuccess=()=>{const db=request.result;if(rejected){db.close();return;}if(db.version!==1||db.objectStoreNames.length!==1||!db.objectStoreNames.contains('receipts')){db.close();reject(error('INCOMPATIBLE','Неизвестная версия подтверждений 2 на 2.'));return;}db.onversionchange=()=>{if(connection===db)connection=null;db.close();};db.onclose=()=>{if(connection===db)connection=null;};connection=db;resolve(db);};
+   }).finally(()=>{if(opening===pending)opening=null;});
+   opening=pending;return pending;
+  }
   async function access(expected,next,write){
-   const db=await open();try{return await new Promise((resolve,reject)=>{
+   const db=await open();return new Promise((resolve,reject)=>{
     const tx=db.transaction('receipts',write?'readwrite':'readonly',write?{durability:'strict'}:{}),store=tx.objectStore('receipts'),get=store.get(KEY);let value=null,problem=null;
     get.onsuccess=()=>{try{value=get.result??null;if(write){if(value!==expected){problem=error('CONFLICT','Подтверждённая версия уже изменена в другой вкладке.');tx.abort();}else store.put(next,KEY);}}catch(e){problem=e;tx.abort();}};
     tx.oncomplete=()=>resolve(write?next:value);tx.onabort=()=>reject(problem||tx.error||error('RECEIPT_FAILED','Подтверждение командной записи не сохранено.'));tx.onerror=()=>{};
-   });}finally{db.close();}
+   });
   }
   return {read:()=>access(null,null,false),write:(expected,next)=>access(expected,next,true)};
  }
