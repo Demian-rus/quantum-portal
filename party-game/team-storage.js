@@ -48,12 +48,12 @@
   if(typeof exclusive!=='function'||typeof digest!=='function')fail('DEPENDENCY','Неверный провайдер блокировки или контрольной суммы.');
   if(receipt===undefined)receipt=typeof window!=='undefined'&&window===globalThis?nativeReceipt():null;
   if(receipt!==null&&(!receipt||typeof receipt.read!=='function'||typeof receipt.write!=='function'))fail('DEPENDENCY','Неверное транзакционное хранилище подтверждений.');
-  function checkMatch(match){
+  function checkMatch(match,raw,wrapped=false){
    if(!match||typeof match!=='object'||Array.isArray(match))fail('CORRUPT','Нет командного матча.');
    format.validate(match.teamFormat);
    // This callback must validate the actual engine, history, score replay,
    // planners, cards and roles. Header validation alone cannot authorize a save.
-   if(validateMatch(match)!==true)fail('CORRUPT','Полная проверка командного матча не пройдена.');
+   if(validateMatch(match,raw,wrapped)!==true)fail('CORRUPT','Полная проверка командного матча не пройдена.');
    return match;
   }
   async function checksum(payload){const sum=await digest(JSON.stringify(payload));if(typeof sum!=='string'||!/^[0-9a-f]{64}$/.test(sum))fail('DIGEST','Контрольная сумма недоступна.');return sum;}
@@ -65,7 +65,7 @@
    if(!Number.isSafeInteger(value.revision)||value.revision<1)fail('CORRUPT','Неверная ревизия командного сохранения.');
    const {version,kind,revision,match}=value,payload={version,kind,revision,match};
    if(value.checksum!==await checksum(payload))fail('CORRUPT','Контрольная сумма не совпадает.');
-   checkMatch(match);return value;
+   checkMatch(match,raw,true);return value;
   }
   async function encode(match,revision){
    const payload={version:VERSION,kind:KIND,revision,match};
@@ -101,7 +101,7 @@
   function commit({expectedRaw,match,replaceMatchId=null}={}){
    // Snapshot synchronously: caller mutations while awaiting a lock/digest must
    // not change the action that is eventually committed.
-   let snapshot;try{snapshot=JSON.parse(bounded(JSON.stringify(match)));checkMatch(snapshot);}catch(e){return Promise.reject(e);}
+   let snapshot;try{const raw=bounded(JSON.stringify(match));snapshot=JSON.parse(raw);checkMatch(snapshot,raw);}catch(e){return Promise.reject(e);}
    if(expectedRaw!==null&&typeof expectedRaw!=='string')return Promise.reject(error('EXPECTED_RAW_REQUIRED','Требуется точный исходный RAW.'));
    return exclusive(async()=>{
     const state=await readReceipt();

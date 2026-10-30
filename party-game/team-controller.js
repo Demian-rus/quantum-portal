@@ -352,9 +352,9 @@
  window.QuipTeams=Object.freeze({get busy(){return s.busy;},get active(){return s.context;},get blocked(){return s.blocked;},whenIdle:()=>s.idle,whenReady:()=>s.ready,continue:continueTeam,record:()=>s.record?clone(s.record):null,isProfileTarget,selectedProfileId:target=>isProfileTarget(target)?s.profileIds[target.slot]:null,profileUnavailable:(target,id)=>s.profileIds.some((p,i)=>i!==target.slot&&p===id),chooseProfile:chooseTeamProfile,clearProfile:clearTeamProfile,results:resultLedger,validateProfileImport,persistSetupRanges});
  try{
   if(!navigator.locks?.request)throw Error('Этот браузер не поддерживает безопасное сохранение 2 на 2. Игра 1 на 1 остаётся доступной.');
-  // Storage passes only its native-parsed snapshots. Preserve rejection of
-  // overflowing JSON numbers before serializing for the engine's private parse.
-  s.store=QuipTeamStorage.create({storage:localStorage,validateMatch:record=>E.validateRecordJSON(JSON.stringify(record,(_key,value)=>{if(typeof value==='number'&&!Number.isFinite(value))throw Error('non-JSON number');return value;})),validateReplacement:E.validateReplacement,validateTransition:E.validateTransition,exclusive});
+  // Storage supplies the exact source it parsed. The engine parses those bytes
+  // itself; a second serializer must not normalize overflowing numbers to null.
+  s.store=QuipTeamStorage.create({storage:localStorage,validateMatch:(record,raw,wrapped)=>E.validateRecordJSON(raw,wrapped),validateReplacement:E.validateReplacement,validateTransition:E.validateTransition,exclusive});
   s.ready=readStore().catch(e=>{s.status='blocked';paintHome();old.toast(e.message);});
  }catch(e){s.status='unavailable';$('wizard-format-teams').title=e.message;$('wizard-format-teams').setAttribute('aria-describedby',unavailable.id);unavailable.textContent=e.message;unavailable.hidden=false;paintHome();}
 })();

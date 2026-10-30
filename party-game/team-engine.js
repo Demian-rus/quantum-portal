@@ -103,8 +103,8 @@ const QuipTeamsEngine=(function teamEngine(){
   return true;
  }
  function entry(record){return {version:1,teamFormat:copy(record.teamFormat),game:copy(record.game),options:copy(record.options),taskMemory:copy(record.taskMemory)};}
- function validateEntry(value){
-  const entryKey=recordValidationKey(value,false);if(entryKey!==null&&recordValidationScope.keys.has(entryKey))return true;
+ function validateEntry(value,parsed=false){
+  const entryKey=recordValidationKey(value,false,parsed);if(entryKey!==null&&recordValidationScope.keys.has(entryKey))return true;
   exact(value,['version','teamFormat','game','options','taskMemory']);assert(value.version===1&&equal(value.teamFormat,value.game.teamFormat),'неверный конверт партии');
   assert(equal(value.options,optionsFor(value.options)),'неверные сохранённые настройки');const valid=validateGame(value.game,value.taskMemory);rememberRecordValidation(entryKey);return valid;
  }
@@ -113,12 +113,17 @@ const QuipTeamsEngine=(function teamEngine(){
  // New bytes, custom catalogs and a new transaction always validate in full.
  let recordValidationScope=null;
  const parseRecordJSON=JSON.parse,recordJSONResolver=getContentPack;
- function validateRecordJSON(raw){
-  assert(typeof raw==='string','ожидается JSON командной записи');
+ function validateRecordJSON(raw,wrapped=false){
+  assert(typeof raw==='string'&&typeof wrapped==='boolean','ожидается JSON командной записи');
   // Only our own synchronous native parse authorizes the private parsed path.
   // JSON's grammar also permits overflowing exponents: reject those before
   // stringify could alias Infinity to a previously checked nullable field.
-  const record=parseRecordJSON(raw,(_key,value)=>{assert(typeof value!=='number'||Number.isFinite(value),'non-JSON number');return value;});
+  const value=parseRecordJSON(raw),record=wrapped?value?.match:value;
+  // Native JSON.parse guarantees ordinary own data properties and dense arrays.
+  // Only numeric overflow still needs checking; no reviver/descriptors/second
+  // serializer are necessary to establish the source of these private bytes.
+  const finite=value=>{if(value===null||typeof value!=='object'){assert(typeof value!=='number'||Number.isFinite(value),'non-JSON number');return;}for(const key of Object.keys(value)){const child=value[key];if(child!==null&&typeof child==='object')finite(child);else assert(typeof child!=='number'||Number.isFinite(child),'non-JSON number');}};
+  finite(record);
   return validateRecordValue(record,true);
  }
  async function withRecordValidation(work){
@@ -193,13 +198,17 @@ const QuipTeamsEngine=(function teamEngine(){
  }
  function validateRecordValue(record,parsed){
   const memoKey=recordValidationKey(record,true,parsed);if(memoKey!==null&&recordValidationScope.keys.has(memoKey))return true;
-  exact(record,['version','teamFormat','game','options','taskMemory','archives',...(record?.version===2?['profileResults']:[])]);assert([1,2].includes(record.version),'неизвестная версия сохранения');validateEntry(entry(record));
+  exact(record,['version','teamFormat','game','options','taskMemory','archives',...(record?.version===2?['profileResults']:[])]);assert([1,2].includes(record.version),'неизвестная версия сохранения');
+  // A strict key already proved an ordinary JSON tree. One native clone keeps
+  // this private entry independent without five separate parse/stringify pairs.
+  const current=memoKey===null?entry(record):parseRecordJSON(JSON.stringify({version:1,teamFormat:record.teamFormat,game:record.game,options:record.options,taskMemory:record.taskMemory}));
+  validateEntry(current,memoKey!==null);
   const results=record.version===2?QuipTeamStatistics.ledger(record.profileResults):[];
   if(record.version===1)assert(record.teamFormat.version===1&&record.archives.every(e=>e.teamFormat.version===1),'привязка профилей требует конверт v2');
   for(const value of [record,...record.archives])if(value.teamFormat.version===2&&value.game.phase==='results'){
    const expected=QuipTeamStatistics.result(value.game),saved=results.find(r=>r.id===value.teamFormat.id);assert(saved&&QuipTeamStatistics.same(saved,expected),'нет единственного подтверждённого результата профилей');
   }
-  assert(Array.isArray(record.archives)&&record.archives.length<=100,'неверный архив командных партий');record.archives.forEach(validateEntry);
+  assert(Array.isArray(record.archives)&&record.archives.length<=100,'неверный архив командных партий');record.archives.forEach(value=>validateEntry(value,parsed));
   assert(new Set([record.teamFormat.id,...record.archives.map(e=>e.teamFormat.id)]).size===record.archives.length+1,'повторная партия в архиве');
   rememberRecordValidation(memoKey);return true;
  }
