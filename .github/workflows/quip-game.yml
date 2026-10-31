@@ -33,6 +33,7 @@ jobs:
       - run: node party-game/scripts/approx-unit-audit.cjs check
       - run: node party-game/scripts/condition-audit.cjs check
       - run: node party-game/scripts/modifiers-v2.cjs check
+      - run: node --test party-game/tests/task039.test.cjs
       - run: node --test party-game/tests/task034.test.cjs party-game/tests/task035.test.cjs party-game/tests/task036.test.cjs party-game/tests/task037.test.cjs party-game/tests/touch-highlight.test.cjs party-game/tests/task038.test.cjs
       - run: node --test party-game/tests/task027.test.cjs party-game/tests/task030.test.cjs party-game/tests/task031.test.cjs party-game/tests/task032.test.cjs
       - run: node --test party-game/tests/team-foundation.test.cjs party-game/tests/team-engine.test.cjs party-game/tests/team-integration.test.cjs party-game/tests/catalog-counts.test.cjs
