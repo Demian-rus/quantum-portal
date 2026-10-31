@@ -9,8 +9,10 @@ const QuipTeamsEngine=(function teamEngine(){
  const equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
  const catalogCache=new Map();
  function catalog(match,kind,level){
-  const key=JSON.stringify([match.contentPack,kind,level,match.promptTypes]);let pool=catalogCache.get(key);
-  if(!pool){const rows=kind==='number'?getPackQuestionPool(match.contentPack,level):getPackCardPool(match.contentPack,kind,level,match.promptTypes);pool={rows,byId:new Map(rows.map(row=>[row.id,row]))};if(catalogCache.size>=128)catalogCache.delete(catalogCache.keys().next().value);catalogCache.set(key,pool);}
+  const key=JSON.stringify([match.contentPack,kind,level,match.promptTypes,match.rulesVersion]);let pool=catalogCache.get(key);
+  if(!pool){const rows=kind==='number'?getPackQuestionPool(match.contentPack,level):
+    kind==='blitz'&&match.rulesVersion>=6?PARTY_CARD_LEVELS.flatMap(tier=>getPackCardPool(match.contentPack,'words',tier,['word'])):
+    getPackCardPool(match.contentPack,kind,level,match.promptTypes);pool={rows,byId:new Map(rows.map(row=>[row.id,row]))};if(catalogCache.size>=128)catalogCache.delete(catalogCache.keys().next().value);catalogCache.set(key,pool);}
   return pool;
  }
  function assert(condition,message){if(!condition)throw Error('TEAM_GAME: '+message);}
@@ -61,7 +63,7 @@ const QuipTeamsEngine=(function teamEngine(){
   assert(c.basePoints===rewardForRound(match,c.modeId,c.difficulty)&&c.modifierPoints===(c.complication?config.modifierBonus:0)&&c.points===c.basePoints+c.modifierPoints,'изменена награда хода');
   assert(c.seconds===(config.usesTimer?match.duration+method.durationBonus:0),'изменено время хода');
   assert(typeof c.risk==='boolean'&&typeof c.visible==='boolean'&&typeof c.paused==='boolean','повреждён снимок хода');
-  if(c.complication){const modifier=QUIP_MODIFIERS_V2.find(m=>m.id===c.complicationId),card=c.modeId==='approx'?null:catalog(match,method.kind,c.difficulty).byId.get(c.modeId==='blitz'?c.blitzCardIds?.[0]:c.cardId);assert(config.usesModifiers&&c.modifierVersion===2&&modifier?.text===c.complication&&getV2ModifierPool(c.methodId,c.difficulty,match,{card}).some(m=>m.id===c.complicationId),'изменено усложнение');}
+  if(c.complication){const modifier=QUIP_MODIFIERS_V2.find(m=>m.id===c.complicationId),card=c.modeId==='approx'?null:catalog(match,c.modeId==='blitz'&&match.rulesVersion>=6?'blitz':method.kind,c.difficulty).byId.get(c.modeId==='blitz'?c.blitzCardIds?.[0]:c.cardId);assert(config.usesModifiers&&c.modifierVersion===2&&modifier?.text===c.complication&&getV2ModifierPool(c.methodId,c.difficulty,match,{card}).some(m=>m.id===c.complicationId),'изменено усложнение');}
   else assert(c.complication===''&&c.complicationId===null&&c.modeId!=='secret','нет обязательного усложнения');
   if(c.modeId==='approx'){
    const question=catalog(match,'number',c.difficulty).byId.get(c.question?.id);
@@ -83,7 +85,8 @@ const QuipTeamsEngine=(function teamEngine(){
   assert(installed&&isGame(match),'неизвестная версия командной механики');QuipTeamFormat.validate(match.teamFormat);
   assert(Object.keys(match).every(k=>GAME_FIELDS.includes(k))&&!Object.hasOwn(match,'profileMatch')&&match.matchId===match.teamFormat.id,'неверная идентичность партии');
   assert(equal(match.teams,match.teamFormat.teams.map(t=>t.name))&&match.startingTeamIndex===match.teamFormat.opening.teamIndex,'изменены команды или старт');
-  for(const [key,value]of Object.entries({scoringVersion:2,rulesVersion:5,modeConfigVersion:1,awardPolicyVersion:1,awardTo:'setter',modeCompatibilityVersion:1,resultReviewVersion:1,taskHistoryVersion:1,timerPolicyVersion:1,finishPolicyVersion:1,riskPolicyVersion:1,modifierCatalogVersion:2,modifierSelectionVersion:2,plannerVersion:1,modePlannerVersion:1,blitzCount:3}))assert(match[key]===value,'неизвестная политика '+key);
+  assert((match.rulesVersion===5&&match.modeConfigVersion===1)||(match.rulesVersion===6&&match.modeConfigVersion===2),'неизвестная версия начисления');
+  for(const [key,value]of Object.entries({scoringVersion:2,awardPolicyVersion:1,awardTo:'setter',modeCompatibilityVersion:1,resultReviewVersion:1,taskHistoryVersion:1,timerPolicyVersion:1,finishPolicyVersion:1,riskPolicyVersion:1,modifierCatalogVersion:2,modifierSelectionVersion:2,plannerVersion:1,modePlannerVersion:1,blitzCount:3}))assert(match[key]===value,'неизвестная политика '+key);
   assert(Array.isArray(match.scores)&&match.scores.length===2&&match.scores.every(n=>Number.isSafeInteger(n)&&n>=0)&&Number.isSafeInteger(match.roundIndex)&&match.roundIndex>=0&&Array.isArray(match.history)&&match.history.length===match.roundIndex,'неверные суммы или число ходов');
   assert(['easy','medium','hard','mixed'].includes(match.difficulty)&&Number.isInteger(match.duration)&&match.duration>=30&&match.duration<=90&&match.duration%5===0&&['score','rounds'].includes(match.finishType)&&Number.isInteger(match.rounds)&&match.rounds>=2&&match.rounds<=100&&match.rounds%2===0&&Number.isInteger(match.targetScore)&&match.targetScore>=15&&match.targetScore<=100&&match.targetScore%5===0,'неверные настройки партии');
   assert(Array.isArray(match.modes)&&match.modes.length>0&&new Set(match.modes).size===match.modes.length&&match.modes.every(id=>DEFAULT_MODES.includes(id))&&Array.isArray(match.promptTypes)&&match.promptTypes.every(t=>PROMPT_TYPES.includes(t)),'неверные режимы или типы');
@@ -288,7 +291,7 @@ const QuipTeamsEngine=(function teamEngine(){
   const started=startTaskHistory(memory);memory=started.memory;
   const match={matchId:header.id,teamFormat:header,teamPolicyVersion:VERSION,teams:header.teams.map(t=>t.name),scores:[0,0],roundIndex:0,startingTeamIndex:header.opening.teamIndex,
    resultReviewVersion:1,reviewRevision:0,reviewConfirmed:false,...songPolicy,timerPolicyVersion:1,finishPolicyVersion:1,taskHistoryVersion:1,taskHistory:started.history,
-   rounds:o.rounds,targetScore:o.targetScore,finishType:o.finishType,riskPolicyVersion:1,riskPlannerState:freshRiskPlan(),riskRounds:o.riskRounds,scoringVersion:2,rulesVersion:5,modeConfigVersion:1,
+   rounds:o.rounds,targetScore:o.targetScore,finishType:o.finishType,riskPolicyVersion:1,riskPlannerState:freshRiskPlan(),riskRounds:o.riskRounds,scoringVersion:2,rulesVersion:QUIP_RULE_VERSION,modeConfigVersion:QUIP_MODE_CONFIG_VERSION,
    awardPolicyVersion:1,awardTo:'setter',modeCompatibilityVersion:1,modifierCatalogVersion:2,modifierSelectionVersion:2,modifierChance:o.modifierChance,modifierRecent:[],
    plannerVersion:1,plannerState:freshRoundPlan(),modePlannerVersion:1,modePlannerState:freshModePlan(),duration:o.duration,difficulty:o.difficulty,contentPack:{...pack},preset:null,
    modes:o.modes.slice(),promptTypes:o.promptTypes.slice(),dice:o.dice,complications:o.complications,blitzCount:3,current:null,modeHistory:[],used:{},history:[],phase:'ready'};
