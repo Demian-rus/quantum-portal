@@ -1199,5 +1199,346 @@
       },
       "limitation": "The earlier strict IDB write also waited33ms versus3.6ms later; total-latency difference is not attributed to the CPU change. Transactions and strict completion remain mandatory."
     }
+  },
+  "b6881800": {
+    "head": "b68818004fd641dcee9310ac64b0e0cd27701703",
+    "browser": "Chrome156.0.8078.47 / Playwright1.64.0",
+    "hardware": "AMD EPYC7763;4logicalcores;CPU throttle4",
+    "n": 20,
+    "limitsMs": {
+      "median": 200,
+      "p95": 350
+    },
+    "runs": {
+      "task038Push": 41180540890,
+      "task038PR": 41180544245,
+      "gamePush": 41180540921,
+      "gamePR": 41180544256,
+      "task034": 41180544406,
+      "task035": 41180544286,
+      "task036": 41180544290,
+      "task037": 41180544271,
+      "touch": 41180544301,
+      "smokePush": 41180540885,
+      "smokePR": 41180544246
+    },
+    "ci": "Game push attempt2 and PR16/16 SUCCESS;034–037,Touch,Smoke SUCCESS;TASK038 push8/8SUCCESS,PR7/8,teams15000 median FAIL. Historical Androidwizard skipped by unchanged TASK029 branch guard.",
+    "start": [
+      {
+        "event": "push",
+        "size": 7000,
+        "beforeDuel": [
+          130.4,
+          150.8
+        ],
+        "duel": [
+          66.9,
+          83.4
+        ],
+        "beforeTeams": [
+          331.5,
+          400
+        ],
+        "teams": [
+          179.6,
+          260.8
+        ],
+        "result": "PASS",
+        "artifact": 13035170743
+      },
+      {
+        "event": "push",
+        "size": 15000,
+        "beforeDuel": [
+          334.2,
+          350.2
+        ],
+        "duel": [
+          72.9,
+          79.6
+        ],
+        "beforeTeams": [
+          503,
+          585.7
+        ],
+        "teams": [
+          181.1,
+          230.2
+        ],
+        "result": "PASS",
+        "artifact": 13035380200
+      },
+      {
+        "event": "pull_request",
+        "size": 7000,
+        "beforeDuel": [
+          157,
+          167.7
+        ],
+        "duel": [
+          71.9,
+          100.7
+        ],
+        "beforeTeams": [
+          381,
+          449.8
+        ],
+        "teams": [
+          199.3,
+          233
+        ],
+        "result": "PASS",
+        "artifact": 13034549656
+      },
+      {
+        "event": "pull_request",
+        "size": 15000,
+        "beforeDuel": [
+          414.4,
+          444.3
+        ],
+        "duel": [
+          70.6,
+          85.8
+        ],
+        "beforeTeams": [
+          635.8,
+          668.5
+        ],
+        "teams": [
+          213.3,
+          244.8
+        ],
+        "maxTeams": 329.7,
+        "result": "teams median FAIL",
+        "artifact": 13035217233,
+        "sha256": "4a7c3edf1a8166ba4bb01435d83adfa5aa50049500fbea72d6e3b4ae0dbd655d"
+      }
+    ],
+    "boot": "All four complete n20 series:80 actual START per size/event; no parser cancellation in these runs. This does not establish the historic cancellation root cause.",
+    "failed15000NativeTimeline": {
+      "samples": 20,
+      "layoutMedianMs": 23.098,
+      "layoutMaxMs": 27.978,
+      "updateLayoutMedianMs": 13.415,
+      "updateLayoutMaxMs": 18.133,
+      "paintMedianMs": 6.701,
+      "paintMaxMs": 12.613,
+      "majorGCMaxMs": 35.639,
+      "limitation": "CDP timeline intervals on the actual failed15000 sample set. Function-level native attribution on7000 remains a separate profile, not substituted for15000."
+    },
+    "raster": {
+      "firstAttempt": "FAIL360x640;4 text-edge pixels, maximum channel delta5",
+      "firstJob": 124476863016,
+      "firstArtifact": 13034374485,
+      "firstZipSha256": "cc262ab1656a12beaae3e7830e131e78057b67bd246c70ae992ed61011dceb2d",
+      "beforeSha256": "ab8868a6914073b116cde5500a2ee9c23dbe65945bd4d97c9a1abebbb96d4970",
+      "afterSha256": "7a96d5472b8c0e1a422a6eb4a3d563af850967a3c594a5b4bfb49bc26e7a5213",
+      "coordinates": [
+        [
+          102,
+          37
+        ],
+        [
+          261,
+          37
+        ],
+        [
+          102,
+          38
+        ],
+        [
+          211,
+          387
+        ]
+      ],
+      "controls": "Recorded fonts/status, node geometry/styles and finished animations identical. Each repeated frame matches its own first PNG exactly. Original failure artifact remains available.",
+      "rerun": "Exactly one actual targeted rerun of failed raster;attempt2SUCCESS,no code/environment/assertion/golden change",
+      "rerunArtifact": 13034608572,
+      "independentPR": "First PR raster SUCCESS",
+      "rootCause": "Internal Chromium rendering cause remains unproven. Success is not a root-cause claim."
+    }
+  },
+  "lazyOwnedArchiveCandidate": {
+    "scope": "Existing bounded, stamped withRecordValidation transaction; no new storage transaction/cache API",
+    "change": "Lazily create private strict JSON shape descriptions only where an ordinary mutable comparison actually visits. Own finite deeply frozen archives have separate entry serializer keys; archive projections can reuse these immutable references only after the complete prior record succeeded in the CURRENT transaction. Ordinary inputs retain independent copies. Public entry() remains an independent mutable clone.",
+    "authorization": "WeakMaps contain serializer provenance only. New transaction first validates current AND archived games, roles, cards, ledger in full. Newly changed immutable archives cannot reuse authorization. Mutable current game/taskMemory remain independent. Exact descriptor/prototype/own-key/order/dense-array/cycle/finite checks remain for every ordinary value.",
+    "storage": "Unchanged b688 storage9/controller17; all6 SHA calls,6 native IDB transactions including2strictwrites plus readbacks remain. No parallel decoding, checksum-result memo or render/focus change included.",
+    "resources": "engine13/cachecandidate-n; exact PWA guards and reviewed hunks updated without assertion relaxation",
+    "checks": "76/76 affected Node tests PASS, including fresh scopes fully checking both current+archive, corrupted readonly archive, changed mutable live score, ordinary-copy independence. Full local140 native browser safety PASS. Native156 n20 still mandatory.",
+    "localWorkCounts": {
+      "method": "Real cold synthetic7000 START; separate genuine fixture IDs and native IDB waits, diagnostic only",
+      "before": {
+        "keys": 20,
+        "immutableKeys": 8,
+        "shapeVisits": 186,
+        "shapeBuilds": 3105,
+        "entries": 5
+      },
+      "after": {
+        "keys": 20,
+        "immutableKeys": 8,
+        "shapeVisits": 2,
+        "shapeBuilds": 15,
+        "entries": 0
+      },
+      "limitation": "Different strict-write waits17.7 vs2.7ms: total197.6→134.2ms is not attributed to CPU. Counters show eliminated work only."
+    },
+    "discardedExperiments": "Native SHA reuse within one storage operation plus duplicate ready-render removal did not show a consistent local n7 benefit; neither change included. Initial archive n7 A/B overlapped Node tests and is confounded, not causal latency evidence.",
+    "localN7Control": {
+      "browser": "headless-shell140/Playwright1.55;CPU4;diagnostic only",
+      "method": "One exact genuine RAW/receipt shared across all4 contexts; snapshotsfalse, screenshot/source trace; no concurrent Node suites in this retained control; before/after/after/before",
+      "rows": [
+        {
+          "variant": "base",
+          "fixture": "cbad927476dcc462946005c09b401cef207949e719c1d3c61e4874675ab7f670",
+          "samples": [
+            127.1,
+            150.5,
+            156.2,
+            176.1,
+            176.4,
+            145.2,
+            144.9
+          ],
+          "median": 150.5
+        },
+        {
+          "variant": "candidate",
+          "fixture": "cbad927476dcc462946005c09b401cef207949e719c1d3c61e4874675ab7f670",
+          "samples": [
+            197.1,
+            139.2,
+            140.1,
+            125.8,
+            123.9,
+            129.3,
+            145.1
+          ],
+          "median": 139.2
+        },
+        {
+          "variant": "candidate",
+          "fixture": "cbad927476dcc462946005c09b401cef207949e719c1d3c61e4874675ab7f670",
+          "samples": [
+            183.5,
+            140.9,
+            128.3,
+            128.9,
+            145,
+            138.6,
+            146.7
+          ],
+          "median": 140.9
+        },
+        {
+          "variant": "base",
+          "fixture": "cbad927476dcc462946005c09b401cef207949e719c1d3c61e4874675ab7f670",
+          "samples": [
+            184.1,
+            161.1,
+            143.5,
+            144.7,
+            159.8,
+            129.4,
+            154.4
+          ],
+          "median": 154.4
+        }
+      ],
+      "limitation": "Local n7 direction supports less work; it does not establish native156 n20 success."
+    },
+    "local15000Profile": {
+      "browser": "headless-shell140/Playwright1.55;CPU4;Profiler500us;diagnostic only",
+      "fixture": "exact synthetic general@1000/15000, cold genuine seed27, one archived party; separate genuine IDs for source variants",
+      "rows": {
+        "before": {
+          "pointerToIdleMs": 128.2,
+          "idb": [
+            {
+              "ms": 1.900000000372529,
+              "mode": "readonly",
+              "durability": "default"
+            },
+            {
+              "ms": 4.599999999627471,
+              "mode": "readonly",
+              "durability": "default"
+            },
+            {
+              "ms": 3.199999999254942,
+              "mode": "readwrite",
+              "durability": "strict"
+            },
+            {
+              "ms": 1.400000000372529,
+              "mode": "readonly",
+              "durability": "default"
+            },
+            {
+              "ms": 3.599999999627471,
+              "mode": "readwrite",
+              "durability": "strict"
+            },
+            {
+              "ms": 1,
+              "mode": "readonly",
+              "durability": "default"
+            }
+          ],
+          "cpuInclusiveMs": {
+            "recordShape": 0.664,
+            "rememberRecordValidation": 1.2,
+            "copy": 0.972,
+            "entry": 1.29,
+            "(garbage collector)": 0.874,
+            "recordValidationKey": 3.683,
+            "sameRecordShape": 0.994,
+            "getClientRects": 17.585
+          }
+        },
+        "after": {
+          "pointerToIdleMs": 133.4,
+          "idb": [
+            {
+              "ms": 2.7000000001862645,
+              "mode": "readonly",
+              "durability": "default"
+            },
+            {
+              "ms": 4.8999999994412065,
+              "mode": "readonly",
+              "durability": "default"
+            },
+            {
+              "ms": 3.5,
+              "mode": "readwrite",
+              "durability": "strict"
+            },
+            {
+              "ms": 2.2000000001862645,
+              "mode": "readonly",
+              "durability": "default"
+            },
+            {
+              "ms": 4.099999999627471,
+              "mode": "readwrite",
+              "durability": "strict"
+            },
+            {
+              "ms": 1.900000000372529,
+              "mode": "readonly",
+              "durability": "default"
+            }
+          ],
+          "cpuInclusiveMs": {
+            "recordValidationKey": 6.425,
+            "copy": 1.074,
+            "getClientRects": 16.905
+          }
+        }
+      },
+      "limitation": "Single profiled START includes instrumentation, separate native waits/GC and no formal n20 gate. After latency133.4ms versus128.2ms is not an overall improvement claim;6 native transactions/2strict writes preserved in both."
+    }
   }
 }

@@ -116,7 +116,7 @@ const QuipTeamsEngine=(function teamEngine(){
  // Cache the entire strict JSON value, never just an ID/checksum/role header.
  // New bytes, custom catalogs and a new transaction always validate in full.
  let recordValidationScope=null;
- const parseRecordJSON=JSON.parse,recordJSONResolver=getContentPack,immutableRecordKeys=new WeakMap();
+ const parseRecordJSON=JSON.parse,recordJSONResolver=getContentPack,immutableRecordKeys=new WeakMap(),immutableEntryKeys=new WeakMap();
  function parseFiniteRecordJSON(raw,wrapped=false){
   assert(typeof raw==='string'&&typeof wrapped==='boolean','ожидается JSON командной записи');
   const value=parseRecordJSON(raw),record=wrapped?value?.match:value;
@@ -124,19 +124,35 @@ const QuipTeamsEngine=(function teamEngine(){
   finite(record);return record;
  }
  function freezeRecordJSON(value){if(value!==null&&typeof value==='object'){for(const key of Object.keys(value))freezeRecordJSON(value[key]);Object.freeze(value);}}
+ // Private, finite parser trees provide serializer provenance only. Application
+ // validation still needs the full key in the current transaction.
+ function rememberImmutableRecord(record,key){
+  freezeRecordJSON(record);immutableRecordKeys.set(record,key);
+  if(Array.isArray(record.archives))for(const value of record.archives){
+   if(value&&typeof value==='object'&&!Array.isArray(value)){const json=JSON.stringify(value);if(json.length<=131072)immutableEntryKeys.set(value,'entry:'+json);}
+  }
+ }
+ // All referenced fields are already deeply frozen; this internal archive
+ // projection cannot share a mutable reference with the new live game.
+ function immutableArchiveEntry(record){
+  const key=immutableRecordKeys.get(record);
+  if(getContentPack!==recordJSONResolver||!key||!validationScope()?.keys.has(key))return null;
+  const value=Object.freeze({version:1,teamFormat:record.teamFormat,game:record.game,options:record.options,taskMemory:record.taskMemory}),json=JSON.stringify(value);
+  if(json.length<=131072)immutableEntryKeys.set(value,'entry:'+json);return value;
+ }
  function readOnlyRecordJSON(raw,wrapped=false){
   assert(typeof raw==='string'&&typeof wrapped==='boolean','ожидается JSON командной записи');
   const scope=validationScope(),saved=scope?.sources[wrapped?1:0].get(raw);
   // The owned parser snapshot is private until frozen. Its successful check
   // still belongs only to this scope; the WeakMap stores serialization only.
   if(getContentPack===recordJSONResolver&&saved&&scope.keys.has(saved.key)){
-   if(!immutableRecordKeys.has(saved.record)){freezeRecordJSON(saved.record);immutableRecordKeys.set(saved.record,saved.key);}return saved.record;
+   if(!immutableRecordKeys.has(saved.record)){rememberImmutableRecord(saved.record,saved.key);}return saved.record;
   }
   const record=parseFiniteRecordJSON(raw,wrapped);assert(record&&typeof record==='object'&&!Array.isArray(record),'ожидается командная запись');
-  const json=JSON.stringify(record);freezeRecordJSON(record);
+  const json=JSON.stringify(record);
   // Serializer provenance, never a successful validation. A new transaction
   // still has an empty keys set and must run the complete record validator.
-  if(json.length<=131072)immutableRecordKeys.set(record,'record:'+json);
+  if(json.length<=131072)rememberImmutableRecord(record,'record:'+json);else freezeRecordJSON(record);
   return record;
  }
  function validateRecordJSON(raw,wrapped=false){
@@ -176,8 +192,8 @@ const QuipTeamsEngine=(function teamEngine(){
  function recordValidationKey(record,withArchives=true,parsed=false){
   if(!validationScope())return null;
   try{
-   const immutable=withArchives&&getContentPack===recordJSONResolver?immutableRecordKeys.get(record):null;
-   if(immutable){for(const value of [record,...record.archives]){const pack=getContentPack(value.game.contentPack);if(QUIP_CONTENT_PACKS[pack.id+'@'+pack.version]!==pack)return null;}return immutable;}
+   const immutable=getContentPack===recordJSONResolver?(withArchives?immutableRecordKeys:immutableEntryKeys).get(record):null;
+   if(immutable){for(const value of withArchives?[record,...record.archives]:[record]){const pack=getContentPack(value.game.contentPack);if(QUIP_CONTENT_PACKS[pack.id+'@'+pack.version]!==pack)return null;}return immutable;}
    if(parsed&&getContentPack===recordJSONResolver){
     for(const value of withArchives?[record,...record.archives]:[record]){const pack=getContentPack(value.game.contentPack);if(QUIP_CONTENT_PACKS[pack.id+'@'+pack.version]!==pack)return null;}
     const key=JSON.stringify(record);return key.length<=131072?(withArchives?'record:':'entry:')+key:null;
@@ -187,7 +203,10 @@ const QuipTeamsEngine=(function teamEngine(){
    // equal mutable objects are never trusted by identity. Reusing the known
    // keys avoids rebuilding key arrays, cycle sets and JSON strings on hits.
    const prefix=withArchives?'record:':'entry:';
-   for(const cached of recordValidationScope.shapes)if(cached.key.startsWith(prefix)&&sameRecordShape(record,cached.shape))return cached.key;
+   for(const cached of recordValidationScope.shapes)if(cached.key.startsWith(prefix)){
+    if(!cached.shape)cached.shape=recordShape(parseRecordJSON(cached.key.slice(cached.key.indexOf(':')+1)));
+    if(sameRecordShape(record,cached.shape))return cached.key;
+   }
    // JSON.stringify alone drops undefined/functions and can run toJSON/getters.
    // Those values must reach the original checker, never alias a valid key.
    const active=new Set();
@@ -195,6 +214,7 @@ const QuipTeamsEngine=(function teamEngine(){
     const type=typeof value;if(value===null||type==='string'||type==='boolean')return;
     if(type==='number'){if(!Number.isFinite(value))throw Error('non-JSON number');return;}
     if(type!=='object'||active.has(value))throw Error('non-JSON value');
+    if(getContentPack===recordJSONResolver&&(immutableRecordKeys.has(value)||immutableEntryKeys.has(value)))return;
     const array=Array.isArray(value),proto=Object.getPrototypeOf(value),keys=Object.keys(value);
     if(proto!==(array?Array.prototype:Object.prototype)||Reflect.ownKeys(value).length!==keys.length+(array?1:0)||array&&(keys.length!==value.length||keys.some((k,i)=>k!==String(i))))throw Error('non-JSON shape');
     active.add(value);
@@ -214,12 +234,13 @@ const QuipTeamsEngine=(function teamEngine(){
  }
  function recordShape(value){
   if(value===null||typeof value!=='object')return value;
-  const keys=Object.keys(value);return {array:Array.isArray(value),keys,values:keys.map(key=>recordShape(value[key]))};
+  const keys=Object.keys(value);return {array:Array.isArray(value),keys,source:value,values:null};
  }
  function sameRecordShape(value,shape){
   if(shape===null||typeof shape!=='object')return value===shape;
   if(value===null||typeof value!=='object'||Array.isArray(value)!==shape.array||Object.getPrototypeOf(value)!==(shape.array?Array.prototype:Object.prototype)||shape.array&&value.length!==shape.keys.length)return false;
   const keys=Reflect.ownKeys(value);if(keys.length!==shape.keys.length+(shape.array?1:0))return false;
+  if(!shape.values){shape.values=shape.keys.map(key=>recordShape(shape.source[key]));shape.source=null;}
   for(let i=0;i<shape.keys.length;i++){
    if(keys[i]!==shape.keys[i])return false;
    const d=Object.getOwnPropertyDescriptor(value,shape.keys[i]);
@@ -233,7 +254,7 @@ const QuipTeamsEngine=(function teamEngine(){
   if(recordValidationScope.keys.has(key))return;
   if(recordValidationScope.chars+key.length>524288){recordValidationScope.keys.clear();recordValidationScope.shapes.length=0;recordValidationScope.chars=0;recordValidationScope.sources.forEach(map=>map.clear());recordValidationScope.sourceChars=0;}
   recordValidationScope.keys.add(key);recordValidationScope.chars+=key.length;
-  recordValidationScope.shapes.push({key,shape:recordShape(JSON.parse(key.slice(key.indexOf(':')+1)))});
+  recordValidationScope.shapes.push({key,shape:null});
  }
  function validateRecord(record){
   return validateRecordValue(record,false);
@@ -256,7 +277,8 @@ const QuipTeamsEngine=(function teamEngine(){
  }
  function validateReplacement(before,after){
   validateRecord(before);validateRecord(after);
-  return after.archives.some(e=>equal(e,entry(before)))&&before.archives.every(e=>after.archives.some(n=>equal(n,e)))&&preservesResults(before,after);
+  const archived=immutableArchiveEntry(before);
+  return after.archives.some(e=>equal(e,archived||entry(before)))&&before.archives.every(e=>after.archives.some(n=>equal(n,e)))&&preservesResults(before,after);
  }
  function createRecord(settings,names,{id,random=Math.random,previous=null,profileBinding=null}={}){
   assert(installed,'командный движок не подключён');if(previous)validateRecord(previous);
@@ -270,8 +292,8 @@ const QuipTeamsEngine=(function teamEngine(){
    awardPolicyVersion:1,awardTo:'setter',modeCompatibilityVersion:1,modifierCatalogVersion:2,modifierSelectionVersion:2,modifierChance:o.modifierChance,modifierRecent:[],
    plannerVersion:1,plannerState:freshRoundPlan(),modePlannerVersion:1,modePlannerState:freshModePlan(),duration:o.duration,difficulty:o.difficulty,contentPack:{...pack},preset:null,
    modes:o.modes.slice(),promptTypes:o.promptTypes.slice(),dice:o.dice,complications:o.complications,blitzCount:3,current:null,modeHistory:[],used:{},history:[],phase:'ready'};
-  const withProfiles=!!profileBinding||previous?.version===2;
-  const record={version:withProfiles?2:1,teamFormat:header,game:match,options:o,taskMemory:memory,archives:previous?[...copy(previous.archives),entry(previous)]:[],...(withProfiles?{profileResults:copy(previous?.profileResults||[])}:{})};validateRecord(record);return record;
+  const withProfiles=!!profileBinding||previous?.version===2,archived=previous?immutableArchiveEntry(previous):null;
+  const record={version:withProfiles?2:1,teamFormat:header,game:match,options:o,taskMemory:memory,archives:previous?[...(archived?previous.archives:copy(previous.archives)),archived||entry(previous)]:[],...(withProfiles?{profileResults:copy(previous?.profileResults||[])}:{})};validateRecord(record);return record;
  }
  function finalizeRecord(record){
   if(record.version!==2)return record;
