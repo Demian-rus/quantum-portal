@@ -1007,5 +1007,105 @@
         "success": true
       }
     ]
+  },
+  "a3cec60d": {
+    "head": "a3cec60d4ffb86f902d9d8fe2686239274ea78f8",
+    "pushRun": 41177416860,
+    "prRun": 41177421613,
+    "performance": [
+      {
+        "event": "push",
+        "size": 7000,
+        "duel": [
+          66.6,
+          77.1
+        ],
+        "teams": [
+          173.3,
+          264.4
+        ],
+        "result": "PASS",
+        "artifact": 13032778300
+      },
+      {
+        "event": "pull_request",
+        "size": 7000,
+        "duel": [
+          71.3,
+          89.6
+        ],
+        "teams": [
+          215.5,
+          273.5
+        ],
+        "result": "teams median FAIL",
+        "artifact": 13033454502
+      },
+      {
+        "event": "pull_request",
+        "size": 15000,
+        "duel": [
+          65.6,
+          78
+        ],
+        "teams": [
+          194,
+          252.7
+        ],
+        "result": "PASS",
+        "artifact": 13033149530
+      }
+    ],
+    "nativeObserverControl": {
+      "nPerArm": 3,
+      "order": [
+        true,
+        false,
+        false,
+        true
+      ],
+      "pushMedianMs": [
+        170.5,
+        181.7,
+        211.7,
+        181.1
+      ],
+      "prMedianMs": [
+        241.6,
+        279.7,
+        238.4,
+        232.2
+      ],
+      "interpretation": "No consistent direction in native short A/B. Local n7 observer cost is not asserted to explain the full native n20 improvement."
+    },
+    "failedPRColdProfile": {
+      "wallMs": 292,
+      "bytesInclusiveMs": 8.875,
+      "encoderSelfMs": 11.039,
+      "gcMs": 28.124,
+      "getClientRectsMs": 32.638
+    },
+    "completion": "At least the three listed full n20 series completed all boots; PR7000 remains red. Other current jobs were still running at the next checkpoint."
+  },
+  "utf8BoundOptimization": {
+    "rule": "UTF-8 byte length is at least UTF-16 length and at most three times UTF-16 length; astral pair is four bytes for two units. Reject length>limit, accept size when length*3<=limit, encode exactly otherwise. No authorization/value/transaction cache.",
+    "regressions": "112 Unicode/limit combinations cover ASCII, Cyrillic, BMP, astral pairs, unpaired high/low surrogates and mixed text at both thresholds and limits; original byte budget and RAW preservation assertions retained. Affected suites74/74 passed locally.",
+    "localColdDiagnostic": {
+      "browser": "headless-shell140 / Playwright1.55 CPU4; not acceptance",
+      "beforePointerToIdleMs": 165.1,
+      "afterPointerToIdleMs": 150.8,
+      "interpretation": "Single local profile confirms size-encoder allocation path is absent for the genuine fixture; total-latency difference is diagnostic, not a native n20 result.",
+      "separateN7AfterMs": [
+        263.6,
+        227.1,
+        156.9,
+        157,
+        163.9,
+        156.4,
+        162.9
+      ],
+      "separateN7AfterMedianMs": 162.9,
+      "limitation": "Separate local n7 medians before160.2/after162.9 do not establish an overall latency improvement. The exact size-path allocation reduction is observed; current-head native n20 remains the acceptance gate."
+    }
   }
 }

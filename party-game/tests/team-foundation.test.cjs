@@ -84,6 +84,14 @@ test('size uses UTF-8 bytes; invalid payloads, validator failures and replacemen
  const big={...match(),text:'я'.repeat(800)},limited=h.make({maxBytes:1024,validateMatch:m=>m.fixtureOnly===true});
  await assert.rejects(limited.commit({expectedRaw:old.raw,match:big}),e=>e.code==='LIMIT');assert.equal(h.map.get(S.KEY),old.raw);
 });
+test('UTF-8 size boundary preserves RAW for ASCII, Cyrillic, BMP, astral and lone surrogates',async()=>{
+ for(const limit of [1024,2048])for(const unit of ['a','я','ह','😀','\ud800','\udc00','aяह😀\ud800'])for(const length of [Math.floor(limit/3)-1,Math.floor(limit/3),Math.floor(limit/3)+1,Math.floor(limit/2)-1,Math.floor(limit/2)+1,limit-1,limit,limit+1]){
+  const h=harness(),raw=unit.repeat(length);h.map.set(S.KEY,raw);
+  const result=await h.make({maxBytes:limit}).load();
+  assert.equal(result.status,'blocked');assert.equal(result.reason,Buffer.byteLength(raw,'utf8')>limit?'LIMIT':'CORRUPT',JSON.stringify({unit,length,limit}));
+  assert.equal(h.map.get(S.KEY),raw);assert.equal(h.map.has(S.JOURNAL_KEY),false);
+ }
+});
 test('failure before journal verification never writes the primary slot',async()=>{
  for(const fault of ['throw','silent','different']){
   const h=harness(),set=h.storage.setItem;h.storage.setItem=(k,v)=>{if(k===S.JOURNAL_KEY){if(fault==='throw')throw Error('quota');if(fault==='silent')return;if(fault==='different')return set(k,'UNTRUSTED');}return set(k,v);};

@@ -63,7 +63,10 @@
    return match;
   }
   async function checksum(payload){const sum=await digest(JSON.stringify(payload));if(typeof sum!=='string'||!/^[0-9a-f]{64}$/.test(sum))fail('DIGEST','Контрольная сумма недоступна.');return sum;}
-  function bounded(raw,limit=maxBytes){if(typeof raw!=='string'||bytes(raw)>limit)fail('LIMIT','Превышен размер командного сохранения.');return raw;}
+  // UTF-8 needs at most three bytes per UTF-16 code unit (a surrogate pair
+  // needs four for two). Prove small strings fit without allocating bytes;
+  // ambiguous sizes still use the exact encoder and the same strict limit.
+  function bounded(raw,limit=maxBytes){if(typeof raw!=='string'||raw.length>limit||raw.length*3>limit&&bytes(raw)>limit)fail('LIMIT','Превышен размер командного сохранения.');return raw;}
   async function decode(raw){
    let value;try{value=JSON.parse(bounded(raw));}catch(e){if(e.code)throw e;fail('CORRUPT','Повреждён JSON командной партии.');}
    exact(value,['version','kind','revision','match','checksum']);
