@@ -102,28 +102,187 @@ const QuipTeamsEngine=(function teamEngine(){
   else assert(['ready','review','results','tiebreak'].includes(match.phase),'нет снимка текущего задания');
   return true;
  }
- function entry(record){return {version:1,teamFormat:copy(record.teamFormat),game:copy(record.game),options:copy(record.options),taskMemory:copy(record.taskMemory)};}
- function validateEntry(value){
+ function entry(record){
+  const key=immutableRecordKeys.get(record);
+  if(key&&validationScope()?.keys.has(key))return parseRecordJSON(JSON.stringify({version:1,teamFormat:record.teamFormat,game:record.game,options:record.options,taskMemory:record.taskMemory}));
+  return {version:1,teamFormat:copy(record.teamFormat),game:copy(record.game),options:copy(record.options),taskMemory:copy(record.taskMemory)};
+ }
+ function validateEntry(value,parsed=false){
+  const entryKey=recordValidationKey(value,false,parsed);if(entryKey!==null&&recordValidationScope.keys.has(entryKey))return true;
   exact(value,['version','teamFormat','game','options','taskMemory']);assert(value.version===1&&equal(value.teamFormat,value.game.teamFormat),'неверный конверт партии');
-  assert(equal(value.options,optionsFor(value.options)),'неверные сохранённые настройки');return validateGame(value.game,value.taskMemory);
+  assert(equal(value.options,optionsFor(value.options)),'неверные сохранённые настройки');const valid=validateGame(value.game,value.taskMemory);rememberRecordValidation(entryKey);return valid;
+ }
+ // Only one controller transaction may reuse a successful record check.
+ // Cache the entire strict JSON value, never just an ID/checksum/role header.
+ // New bytes, custom catalogs and a new transaction always validate in full.
+ let recordValidationScope=null;
+ const parseRecordJSON=JSON.parse,recordJSONResolver=getContentPack,immutableRecordKeys=new WeakMap(),immutableEntryKeys=new WeakMap();
+ function parseFiniteRecordJSON(raw,wrapped=false){
+  assert(typeof raw==='string'&&typeof wrapped==='boolean','ожидается JSON командной записи');
+  const value=parseRecordJSON(raw),record=wrapped?value?.match:value;
+  const finite=value=>{if(value===null||typeof value!=='object'){assert(typeof value!=='number'||Number.isFinite(value),'non-JSON number');return;}for(const key of Object.keys(value)){const child=value[key];if(child!==null&&typeof child==='object')finite(child);else assert(typeof child!=='number'||Number.isFinite(child),'non-JSON number');}};
+  finite(record);return record;
+ }
+ function freezeRecordJSON(value){if(value!==null&&typeof value==='object'){for(const key of Object.keys(value))freezeRecordJSON(value[key]);Object.freeze(value);}}
+ // Private, finite parser trees provide serializer provenance only. Application
+ // validation still needs the full key in the current transaction.
+ function rememberImmutableRecord(record,key){
+  freezeRecordJSON(record);immutableRecordKeys.set(record,key);
+  if(Array.isArray(record.archives))for(const value of record.archives){
+   if(value&&typeof value==='object'&&!Array.isArray(value)){const json=JSON.stringify(value);if(json.length<=131072)immutableEntryKeys.set(value,'entry:'+json);}
+  }
+ }
+ // All referenced fields are already deeply frozen; this internal archive
+ // projection cannot share a mutable reference with the new live game.
+ function immutableArchiveEntry(record){
+  const key=immutableRecordKeys.get(record);
+  if(getContentPack!==recordJSONResolver||!key||!validationScope()?.keys.has(key))return null;
+  const value=Object.freeze({version:1,teamFormat:record.teamFormat,game:record.game,options:record.options,taskMemory:record.taskMemory}),json=JSON.stringify(value);
+  if(json.length<=131072)immutableEntryKeys.set(value,'entry:'+json);return value;
+ }
+ function readOnlyRecordJSON(raw,wrapped=false){
+  assert(typeof raw==='string'&&typeof wrapped==='boolean','ожидается JSON командной записи');
+  const scope=validationScope(),saved=scope?.sources[wrapped?1:0].get(raw);
+  // The owned parser snapshot is private until frozen. Its successful check
+  // still belongs only to this scope; the WeakMap stores serialization only.
+  if(getContentPack===recordJSONResolver&&saved&&scope.keys.has(saved.key)){
+   if(!immutableRecordKeys.has(saved.record)){rememberImmutableRecord(saved.record,saved.key);}return saved.record;
+  }
+  const record=parseFiniteRecordJSON(raw,wrapped);assert(record&&typeof record==='object'&&!Array.isArray(record),'ожидается командная запись');
+  const json=JSON.stringify(record);
+  // Serializer provenance, never a successful validation. A new transaction
+  // still has an empty keys set and must run the complete record validator.
+  if(json.length<=131072)rememberImmutableRecord(record,'record:'+json);else freezeRecordJSON(record);
+  return record;
+ }
+ function validateRecordJSON(raw,wrapped=false){
+  assert(typeof raw==='string'&&typeof wrapped==='boolean','ожидается JSON командной записи');
+  const scope=validationScope(),sources=scope?.sources[wrapped?1:0],saved=sources?.get(raw);
+  if(getContentPack===recordJSONResolver&&saved&&scope.keys.has(saved.key))return true;
+  // Only our own synchronous native parse authorizes the private parsed path.
+  // JSON's grammar also permits overflowing exponents: reject those before
+  // stringify could alias Infinity to a previously checked nullable field.
+  const record=parseFiniteRecordJSON(raw,wrapped);
+  // Native JSON.parse guarantees ordinary own data properties and dense arrays.
+  // Only numeric overflow still needs checking; no reviver/descriptors/second
+  // serializer are necessary to establish the source of these private bytes.
+  const valid=validateRecordValue(record,true);
+  // Strings cannot acquire getters or mutate while a lock is awaited. Reuse
+  // only an exact source whose complete record succeeded in THIS scope.
+  if(scope&&scope===recordValidationScope&&getContentPack===recordJSONResolver&&raw.length<=131072){
+   const key=recordValidationKey(record,true,true);
+   if(key!==null&&scope.keys.has(key)&&!sources.has(raw)){
+    if(scope.sourceChars+raw.length>262144){scope.sources.forEach(map=>map.clear());scope.sourceChars=0;}
+    sources.set(raw,{key,record});scope.sourceChars+=raw.length;
+   }
+  }
+  return valid;
+ }
+ async function withRecordValidation(work){
+  if(recordValidationScope)return work();
+  const scope={keys:new Set(),shapes:[],stamp:[],chars:0,sources:[new Map(),new Map()],sourceChars:0};recordValidationScope=scope;
+  try{return await work();}finally{if(recordValidationScope===scope)recordValidationScope=null;}
+ }
+ function validationScope(){
+  if(!recordValidationScope||!Object.isFrozen(PARTY_CARDS)||!Object.isFrozen(QUIP_APPROX_QUESTIONS)||!Object.isFrozen(QUIP_CONTENT_PACKS))return null;
+  const stamp=[PARTY_CARDS,QUIP_APPROX_QUESTIONS,QUIP_CONTENT_PACKS,QUIP_MODES_V4,QUIP_MODIFIERS_V2,getContentPack,getPackCardPool,getPackQuestionPool,getModeConfig,getV2ModifierPool];
+  if(stamp.some((v,i)=>v!==recordValidationScope.stamp[i])){recordValidationScope.keys.clear();recordValidationScope.shapes.length=0;recordValidationScope.chars=0;recordValidationScope.sources.forEach(map=>map.clear());recordValidationScope.sourceChars=0;recordValidationScope.stamp=stamp;}
+  return recordValidationScope;
+ }
+ function recordValidationKey(record,withArchives=true,parsed=false){
+  if(!validationScope())return null;
+  try{
+   const immutable=getContentPack===recordJSONResolver?(withArchives?immutableRecordKeys:immutableEntryKeys).get(record):null;
+   if(immutable){for(const value of withArchives?[record,...record.archives]:[record]){const pack=getContentPack(value.game.contentPack);if(QUIP_CONTENT_PACKS[pack.id+'@'+pack.version]!==pack)return null;}return immutable;}
+   if(parsed&&getContentPack===recordJSONResolver){
+    for(const value of withArchives?[record,...record.archives]:[record]){const pack=getContentPack(value.game.contentPack);if(QUIP_CONTENT_PACKS[pack.id+'@'+pack.version]!==pack)return null;}
+    const key=JSON.stringify(record);return key.length<=131072?(withArchives?'record:':'entry:')+key:null;
+   }
+   // Compare against a private shape of previously validated JSON. Every own
+   // descriptor and prototype is still checked, including nested array items;
+   // equal mutable objects are never trusted by identity. Reusing the known
+   // keys avoids rebuilding key arrays, cycle sets and JSON strings on hits.
+   const prefix=withArchives?'record:':'entry:';
+   for(const cached of recordValidationScope.shapes)if(cached.key.startsWith(prefix)){
+    if(!cached.shape)cached.shape=recordShape(parseRecordJSON(cached.key.slice(cached.key.indexOf(':')+1)));
+    if(sameRecordShape(record,cached.shape))return cached.key;
+   }
+   // JSON.stringify alone drops undefined/functions and can run toJSON/getters.
+   // Those values must reach the original checker, never alias a valid key.
+   const active=new Set();
+   const json=value=>{
+    const type=typeof value;if(value===null||type==='string'||type==='boolean')return;
+    if(type==='number'){if(!Number.isFinite(value))throw Error('non-JSON number');return;}
+    if(type!=='object'||active.has(value))throw Error('non-JSON value');
+    if(getContentPack===recordJSONResolver&&(immutableRecordKeys.has(value)||immutableEntryKeys.has(value)))return;
+    const array=Array.isArray(value),proto=Object.getPrototypeOf(value),keys=Object.keys(value);
+    if(proto!==(array?Array.prototype:Object.prototype)||Reflect.ownKeys(value).length!==keys.length+(array?1:0)||array&&(keys.length!==value.length||keys.some((k,i)=>k!==String(i))))throw Error('non-JSON shape');
+    active.add(value);
+    for(const key of keys){
+     const d=Object.getOwnPropertyDescriptor(value,key);if(!Object.hasOwn(d,'value'))throw Error('accessor');
+     const child=d.value,kind=typeof child;
+     if(child===null||kind==='string'||kind==='boolean')continue;
+     if(kind==='number'){if(!Number.isFinite(child))throw Error('non-JSON number');continue;}
+     if(kind!=='object')throw Error('non-JSON value');json(child);
+    }
+    active.delete(value);
+   };
+   json(record);
+   for(const value of withArchives?[record,...record.archives]:[record]){const pack=getContentPack(value.game.contentPack);if(QUIP_CONTENT_PACKS[pack.id+'@'+pack.version]!==pack)return null;}
+   const key=JSON.stringify(record);return key.length<=131072?(withArchives?'record:':'entry:')+key:null;
+  }catch{return null;}
+ }
+ function recordShape(value){
+  if(value===null||typeof value!=='object')return value;
+  const keys=Object.keys(value);return {array:Array.isArray(value),keys,source:value,values:null};
+ }
+ function sameRecordShape(value,shape){
+  if(shape===null||typeof shape!=='object')return value===shape;
+  if(value===null||typeof value!=='object'||Array.isArray(value)!==shape.array||Object.getPrototypeOf(value)!==(shape.array?Array.prototype:Object.prototype)||shape.array&&value.length!==shape.keys.length)return false;
+  const keys=Reflect.ownKeys(value);if(keys.length!==shape.keys.length+(shape.array?1:0))return false;
+  if(!shape.values){shape.values=shape.keys.map(key=>recordShape(shape.source[key]));shape.source=null;}
+  for(let i=0;i<shape.keys.length;i++){
+   if(keys[i]!==shape.keys[i])return false;
+   const d=Object.getOwnPropertyDescriptor(value,shape.keys[i]);
+   if(!d||!d.enumerable||!Object.hasOwn(d,'value'))return false;
+   const expected=shape.values[i];if(expected===null||typeof expected!=='object'){if(d.value!==expected)return false;}else if(!sameRecordShape(d.value,expected))return false;
+  }
+  return true;
+ }
+ function rememberRecordValidation(key){
+  if(key===null||!recordValidationScope)return;
+  if(recordValidationScope.keys.has(key))return;
+  if(recordValidationScope.chars+key.length>524288){recordValidationScope.keys.clear();recordValidationScope.shapes.length=0;recordValidationScope.chars=0;recordValidationScope.sources.forEach(map=>map.clear());recordValidationScope.sourceChars=0;}
+  recordValidationScope.keys.add(key);recordValidationScope.chars+=key.length;
+  recordValidationScope.shapes.push({key,shape:null});
  }
  function validateRecord(record){
-  exact(record,['version','teamFormat','game','options','taskMemory','archives',...(record?.version===2?['profileResults']:[])]);assert([1,2].includes(record.version),'неизвестная версия сохранения');validateEntry(entry(record));
+  return validateRecordValue(record,false);
+ }
+ function validateRecordValue(record,parsed){
+  const memoKey=recordValidationKey(record,true,parsed);if(memoKey!==null&&recordValidationScope.keys.has(memoKey))return true;
+  exact(record,['version','teamFormat','game','options','taskMemory','archives',...(record?.version===2?['profileResults']:[])]);assert([1,2].includes(record.version),'неизвестная версия сохранения');
+  // A strict key already proved an ordinary JSON tree. One native clone keeps
+  // this private entry independent without five separate parse/stringify pairs.
+  const current=memoKey===null?entry(record):parseRecordJSON(JSON.stringify({version:1,teamFormat:record.teamFormat,game:record.game,options:record.options,taskMemory:record.taskMemory}));
+  validateEntry(current,memoKey!==null);
   const results=record.version===2?QuipTeamStatistics.ledger(record.profileResults):[];
   if(record.version===1)assert(record.teamFormat.version===1&&record.archives.every(e=>e.teamFormat.version===1),'привязка профилей требует конверт v2');
   for(const value of [record,...record.archives])if(value.teamFormat.version===2&&value.game.phase==='results'){
    const expected=QuipTeamStatistics.result(value.game),saved=results.find(r=>r.id===value.teamFormat.id);assert(saved&&QuipTeamStatistics.same(saved,expected),'нет единственного подтверждённого результата профилей');
   }
-  assert(Array.isArray(record.archives)&&record.archives.length<=100,'неверный архив командных партий');record.archives.forEach(validateEntry);
-  assert(new Set([record.teamFormat.id,...record.archives.map(e=>e.teamFormat.id)]).size===record.archives.length+1,'повторная партия в архиве');return true;
+  assert(Array.isArray(record.archives)&&record.archives.length<=100,'неверный архив командных партий');record.archives.forEach(value=>validateEntry(value,parsed));
+  assert(new Set([record.teamFormat.id,...record.archives.map(e=>e.teamFormat.id)]).size===record.archives.length+1,'повторная партия в архиве');
+  rememberRecordValidation(memoKey);return true;
  }
  function validateReplacement(before,after){
   validateRecord(before);validateRecord(after);
-  return after.archives.some(e=>equal(e,entry(before)))&&before.archives.every(e=>after.archives.some(n=>equal(n,e)))&&preservesResults(before,after);
+  const archived=immutableArchiveEntry(before);
+  return after.archives.some(e=>equal(e,archived||entry(before)))&&before.archives.every(e=>after.archives.some(n=>equal(n,e)))&&preservesResults(before,after);
  }
  function createRecord(settings,names,{id,random=Math.random,previous=null,profileBinding=null}={}){
   assert(installed,'командный движок не подключён');if(previous)validateRecord(previous);
-  const o=optionsFor(settings),songPolicy=setupSongPolicy(o),pack=latestContentPackSelection(o.contentPack.id),available=checkContentPack(pack,{...o,...songPolicy});
+  const o=optionsFor(settings),songPolicy=setupSongPolicy(o),pack=setupCategorySelection(latestContentPackSelection(getContentPack(o.contentPack).id)),available=checkContentPack(pack,{...o,...songPolicy});
   assert(available.available,available.problems[0]||'набор недоступен');
   const header=profileBinding?QuipTeamFormat.createBound(profileBinding,{id,random}):QuipTeamFormat.create(names,{id,random});let memory=previous?archiveTaskHistory(copy(previous.taskMemory),previous.game.taskHistory):freshTaskMemory();
   const started=startTaskHistory(memory);memory=started.memory;
@@ -133,8 +292,8 @@ const QuipTeamsEngine=(function teamEngine(){
    awardPolicyVersion:1,awardTo:'setter',modeCompatibilityVersion:1,modifierCatalogVersion:2,modifierSelectionVersion:2,modifierChance:o.modifierChance,modifierRecent:[],
    plannerVersion:1,plannerState:freshRoundPlan(),modePlannerVersion:1,modePlannerState:freshModePlan(),duration:o.duration,difficulty:o.difficulty,contentPack:{...pack},preset:null,
    modes:o.modes.slice(),promptTypes:o.promptTypes.slice(),dice:o.dice,complications:o.complications,blitzCount:3,current:null,modeHistory:[],used:{},history:[],phase:'ready'};
-  const withProfiles=!!profileBinding||previous?.version===2;
-  const record={version:withProfiles?2:1,teamFormat:header,game:match,options:o,taskMemory:memory,archives:previous?[...copy(previous.archives),entry(previous)]:[],...(withProfiles?{profileResults:copy(previous?.profileResults||[])}:{})};validateRecord(record);return record;
+  const withProfiles=!!profileBinding||previous?.version===2,archived=previous?immutableArchiveEntry(previous):null;
+  const record={version:withProfiles?2:1,teamFormat:header,game:match,options:o,taskMemory:memory,archives:previous?[...(archived?previous.archives:copy(previous.archives)),archived||entry(previous)]:[],...(withProfiles?{profileResults:copy(previous?.profileResults||[])}:{})};validateRecord(record);return record;
  }
  function finalizeRecord(record){
   if(record.version!==2)return record;
@@ -186,5 +345,5 @@ const QuipTeamsEngine=(function teamEngine(){
    c.word=card.text;c.cardId=card.id;c.visible=false;c.replaced=true;persist();sfx('button');render();
   };
  }
- return Object.freeze({VERSION,FORMAT,isGame,isSettings,roles,optionsFor,createRecord,validateGame,validateRecord,validateReplacement,validateTransition,finalizeRecord,entry,replay,install});
+ return Object.freeze({VERSION,FORMAT,isGame,isSettings,roles,optionsFor,createRecord,validateGame,withRecordValidation,validateRecord,validateRecordJSON,readOnlyRecordJSON,validateReplacement,validateTransition,finalizeRecord,entry,replay,install});
 })();

@@ -1,0 +1,275 @@
+{
+  "sourceHead": "bd3316baeb945d44ebd150e71404775ae0573286",
+  "run": 41113069420,
+  "artifact": 13005616255,
+  "variant": "published main / before-duel / 7000",
+  "label": "fixture START 15",
+  "cachedScripts": 54,
+  "byteExactCachedScripts": 54,
+  "httpErrors": [],
+  "loaders": [
+    "EA6534DEFE1A280CC832D8D8248E12E6"
+  ],
+  "document": [
+    {
+      "event": "request",
+      "requestId": "EA6534DEFE1A280CC832D8D8248E12E6",
+      "loaderId": "EA6534DEFE1A280CC832D8D8248E12E6",
+      "type": "Document",
+      "url": "http://127.0.0.1:42869/party-game/",
+      "initiator": {
+        "type": "other"
+      },
+      "timestamp": 118.248142,
+      "wallTime": 1793388107.829657
+    },
+    {
+      "event": "response",
+      "requestId": "EA6534DEFE1A280CC832D8D8248E12E6",
+      "loaderId": "EA6534DEFE1A280CC832D8D8248E12E6",
+      "type": "Document",
+      "url": "http://127.0.0.1:42869/party-game/",
+      "status": 200,
+      "mime": "text/html",
+      "protocol": "http/1.1",
+      "fromDiskCache": false,
+      "fromServiceWorker": true,
+      "serviceWorkerResponseSource": "network",
+      "timestamp": 118.252479
+    }
+  ],
+  "failedScriptEvents": [
+    {
+      "event": "request",
+      "requestId": "2701.3769",
+      "loaderId": "EA6534DEFE1A280CC832D8D8248E12E6",
+      "type": "Script",
+      "url": "http://127.0.0.1:42869/party-game/curated-people.js?v=1",
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:42869/party-game/",
+        "lineNumber": 20,
+        "columnNumber": 46
+      },
+      "timestamp": 118.267988,
+      "wallTime": 1793388107.849542
+    },
+    {
+      "event": "request",
+      "requestId": "2701.3770",
+      "loaderId": "EA6534DEFE1A280CC832D8D8248E12E6",
+      "type": "Script",
+      "url": "http://127.0.0.1:42869/party-game/mode-images.js?v=6",
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:42869/party-game/",
+        "lineNumber": 21,
+        "columnNumber": 43
+      },
+      "timestamp": 118.268578,
+      "wallTime": 1793388107.850087
+    },
+    {
+      "event": "request",
+      "requestId": "2701.3771",
+      "loaderId": "EA6534DEFE1A280CC832D8D8248E12E6",
+      "type": "Script",
+      "url": "http://127.0.0.1:42869/party-game/cards.js?v=11",
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:42869/party-game/",
+        "lineNumber": 22,
+        "columnNumber": 38
+      },
+      "timestamp": 118.268697,
+      "wallTime": 1793388107.850199
+    },
+    {
+      "event": "request",
+      "requestId": "2701.3772",
+      "loaderId": "EA6534DEFE1A280CC832D8D8248E12E6",
+      "type": "Script",
+      "url": "http://127.0.0.1:42869/party-game/approx-questions.js?v=7",
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:42869/party-game/",
+        "lineNumber": 23,
+        "columnNumber": 48
+      },
+      "timestamp": 118.268786,
+      "wallTime": 1793388107.850286
+    },
+    {
+      "event": "request",
+      "requestId": "2701.3773",
+      "loaderId": "EA6534DEFE1A280CC832D8D8248E12E6",
+      "type": "Script",
+      "url": "http://127.0.0.1:42869/party-game/mode-config.js?v=3",
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:42869/party-game/",
+        "lineNumber": 24,
+        "columnNumber": 43
+      },
+      "timestamp": 118.268888,
+      "wallTime": 1793388107.850387
+    },
+    {
+      "event": "request",
+      "requestId": "2701.3774",
+      "loaderId": "EA6534DEFE1A280CC832D8D8248E12E6",
+      "type": "Script",
+      "url": "http://127.0.0.1:42869/party-game/mode-compatibility.js?v=1",
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:42869/party-game/",
+        "lineNumber": 25,
+        "columnNumber": 50
+      },
+      "timestamp": 118.268974,
+      "wallTime": 1793388107.850477
+    },
+    {
+      "event": "request",
+      "requestId": "2701.3775",
+      "loaderId": "EA6534DEFE1A280CC832D8D8248E12E6",
+      "type": "Script",
+      "url": "http://127.0.0.1:42869/party-game/rules.js?v=5",
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:42869/party-game/",
+        "lineNumber": 26,
+        "columnNumber": 37
+      },
+      "timestamp": 118.269775,
+      "wallTime": 1793388107.851286
+    },
+    {
+      "event": "request",
+      "requestId": "2701.3776",
+      "loaderId": "EA6534DEFE1A280CC832D8D8248E12E6",
+      "type": "Script",
+      "url": "http://127.0.0.1:42869/party-game/penalties.js?v=3",
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:42869/party-game/",
+        "lineNumber": 27,
+        "columnNumber": 41
+      },
+      "timestamp": 118.269874,
+      "wallTime": 1793388107.851374
+    },
+    {
+      "event": "request",
+      "requestId": "2701.3777",
+      "loaderId": "EA6534DEFE1A280CC832D8D8248E12E6",
+      "type": "Script",
+      "url": "http://127.0.0.1:42869/party-game/risk-planner.js?v=1",
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:42869/party-game/",
+        "lineNumber": 28,
+        "columnNumber": 44
+      },
+      "timestamp": 118.269973,
+      "wallTime": 1793388107.851507
+    },
+    {
+      "event": "request",
+      "requestId": "2701.3778",
+      "loaderId": "EA6534DEFE1A280CC832D8D8248E12E6",
+      "type": "Script",
+      "url": "http://127.0.0.1:42869/party-game/modifiers.js?v=3",
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:42869/party-game/",
+        "lineNumber": 29,
+        "columnNumber": 41
+      },
+      "timestamp": 118.270112,
+      "wallTime": 1793388107.851616
+    },
+    {
+      "event": "failed",
+      "requestId": "2701.3778",
+      "timestamp": 118.327248,
+      "type": "Script",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "event": "failed",
+      "requestId": "2701.3777",
+      "timestamp": 118.327312,
+      "type": "Script",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "event": "failed",
+      "requestId": "2701.3776",
+      "timestamp": 118.330585,
+      "type": "Script",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "event": "failed",
+      "requestId": "2701.3775",
+      "timestamp": 118.330675,
+      "type": "Script",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "event": "failed",
+      "requestId": "2701.3774",
+      "timestamp": 118.330724,
+      "type": "Script",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "event": "failed",
+      "requestId": "2701.3773",
+      "timestamp": 118.330769,
+      "type": "Script",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "event": "failed",
+      "requestId": "2701.3772",
+      "timestamp": 118.330809,
+      "type": "Script",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "event": "failed",
+      "requestId": "2701.3771",
+      "timestamp": 118.330849,
+      "type": "Script",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "event": "failed",
+      "requestId": "2701.3770",
+      "timestamp": 118.330893,
+      "type": "Script",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "event": "failed",
+      "requestId": "2701.3769",
+      "timestamp": 118.330937,
+      "type": "Script",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    }
+  ],
+  "observation": "Native browser cancels parser-initiated script requests in the current loader before any HTTP response. CacheStorage is byte-exact; no second navigation is observed. This occurs on published main too. Browser-internal root cause remains unproven.",
+  "harnessChange": "After restoring the same RAW/receipt, commit about:blank then navigate once to production URL in the same context. Preserve native worker/cache. No retry or relaxed boot assertion. START timing and budgets unchanged; product reload/PWA suites remain mandatory."
+}

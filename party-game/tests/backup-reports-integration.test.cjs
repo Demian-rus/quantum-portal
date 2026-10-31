@@ -1,5 +1,6 @@
 'use strict';
 const {normalizeTask032}=require('./task032-contract.cjs');
+const {normalizeTask038}=require('../../diagnostics/task038/source-contract.cjs');
 const {withoutRiskDispatch}=require('./selection-source.cjs');
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
 const {createSimulation}=require('../scripts/game-simulation.cjs');
@@ -32,6 +33,6 @@ test('integration: pinned storage cores and gameplay contracts are byte-exact fr
 });
 
 test('integration: session restoration retains every previous guard plus the explicit report-hold guard',()=>{
- const current=fs.readFileSync(path.join(__dirname,'../session-restoration.js'),'utf8').replace('validatePlannedGame(reviewPlannerProjection(candidate))','validatePlannedGame(candidate)').replace('    validateResultReview(candidate);\n','').replace('    validateGameRiskPlan(candidate);\n','').replace('    validateFeedbackHold(candidate);\n','').replace(' && !candidate.current?.feedbackHold &&',' &&');
+ const current=normalizeTask038(fs.readFileSync(path.join(__dirname,'../session-restoration.js'),'utf8')).replace('validatePlannedGame(reviewPlannerProjection(candidate))','validatePlannedGame(candidate)').replace('    validateResultReview(candidate);\n','').replace('    validateGameRiskPlan(candidate);\n','').replace('    validateFeedbackHold(candidate);\n','').replace(' && !candidate.current?.feedbackHold &&',' &&');
  assert.equal(current,execFileSync('git',['show','6b68155a2584eda787dc383e60e36c54cbe8b9c5:party-game/session-restoration.js'],{encoding:'utf8'}));
 });

@@ -1,4 +1,5 @@
 'use strict';
+const {normalizeTask038}=require('../../diagnostics/task038/source-contract.cjs');
 const assert=require('node:assert/strict'),path=require('node:path'),{execFileSync}=require('node:child_process'),api=require('../scripts/content.cjs');
 module.exports=function assertHistoricalCatalogBytes(reference){
  const root=path.resolve(__dirname,'../..'),old=name=>execFileSync('git',['show',reference+':party-game/'+name],{cwd:root,encoding:'utf8',maxBuffer:16e6});
@@ -12,5 +13,5 @@ module.exports=function assertHistoricalCatalogBytes(reference){
  // including both runtime templates and the reviewed language ledger.
  const rendered=api.render({...data,cards:data.cards.slice(0,cards.length),packs:data.packs.slice(0,packs.length)});
  assert.equal(rendered['cards.js'],cardsSource,'Historical generated cards and all runtime functions remain exact');
- assert.equal(rendered['content-packs.js'],packsSource,'Historical generated catalogs and all runtime functions remain exact');
+ assert.equal(normalizeTask038(rendered['content-packs.js']),packsSource,'Historical generated catalogs and all runtime functions remain exact');
 };

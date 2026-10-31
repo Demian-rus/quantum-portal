@@ -144,13 +144,112 @@ function listThematicPacks(settings,cards=PARTY_CARDS,registry=QUIP_CONTENT_PACK
   return {pack,...checkContentPack(selection,preview,cards,registry,questions)};});
 }
 function getContentPack(selection,registry=QUIP_CONTENT_PACKS){
- const pack=registry[selection?.id+'@'+selection?.version];
+ const base=baseContentPackSelection(selection);
+ const pack=registry[base?.id+'@'+base?.version];
  if(!pack)throw Error('Unknown QUIP content pack/version');
  return pack;
 }
 // General 1/2 were unbounded before TASK009. This adapter freezes their source
 // universe without editing their historical declarations or current rounds.
 const QUIP_PRE_TASK009_SOURCES=Object.freeze(['core','music','people','geography-v2','science-v2','approx-core-v1','approx-general-2026']);
+// TASK038: versioned exclusions belong to a pack snapshot, never to the RNG.
+const QUIP_GENERAL_CATEGORY_LABELS=Object.freeze({"transport":"Транспорт","arts":"Искусство","language":"Язык","marine":"Море","general":"Общее","geography":"География","science":"Наука","biology":"Биология","animals":"Животные","history":"История","culture":"Культура","nature":"Природа","cinema":"Кино","music":"Музыка","literature":"Литература","sport":"Спорт","technology":"Технологии","space":"Космос","mythology":"Мифология","food":"Еда","videogames":"Видеоигры","professions":"Профессии","everyday":"Повседневная жизнь","memes":"Мемы"});
+const QUIP_GENERAL_CATEGORY_KEY='kvip:general-categories:v1';
+const QUIP_GENERAL_CATEGORIES_ALL=Object.freeze({version:1,excluded:Object.freeze([])});
+function generalCategoryPolicy(value){
+ if(value===undefined)return null;
+ if(!value||typeof value!=='object'||Array.isArray(value)||value.version!==1||
+  Object.keys(value).sort().join(',')!=='excluded,version'||!Array.isArray(value.excluded)||value.excluded.length>512||
+  value.excluded.some(id=>typeof id!=='string'||!/^[a-z][a-z0-9-]*$/.test(id))||new Set(value.excluded).size!==value.excluded.length)
+  throw Error('Unsupported general category policy');
+ return value;
+}
+function validateGeneralCategorySelection(selection){
+ if(selection?.selectionPolicyVersion===undefined){if(selection?.pack!==undefined||selection?.excluded!==undefined||selection?.categoryPolicy!==undefined)throw Error('Missing content selection policy');return null;}
+ if(selection.selectionPolicyVersion!==1||Object.keys(selection).sort().join(',')!=='excluded,pack,selectionPolicyVersion'||
+  !selection.pack||typeof selection.pack!=='object'||Array.isArray(selection.pack)||Object.keys(selection.pack).sort().join(',')!=='id,version'||
+  selection.pack.id!=='general'||!Number.isInteger(selection.pack.version)||selection.pack.version<1)throw Error('Unsupported content selection policy');
+ return generalCategoryPolicy({version:1,excluded:selection.excluded});
+}
+function baseContentPackSelection(selection){return validateGeneralCategorySelection(selection)?selection.pack:selection;}
+function generalCategorySelection(selection,policy){
+ const selected=baseContentPackSelection(selection);if(selected.id!=='general')return selection;
+ const requested=generalCategoryPolicy(policy),pack={id:selected.id,version:selected.version};
+ // A distinct versioned shape makes published old readers fail closed instead
+ // of accepting id/version and silently ignoring an unknown exclusion field.
+ return requested?.excluded.length?{selectionPolicyVersion:1,pack,excluded:requested.excluded.slice()}:pack;
+}
+let generalCategoryPreferenceCache=null;
+function readGeneralCategoryPreferences(){
+ let raw;try{raw=localStorage.getItem(QUIP_GENERAL_CATEGORY_KEY);}catch{return {raw:null,policy:null,problem:'Не удалось прочитать категории. Настройки защищены.'};}
+ if(generalCategoryPreferenceCache?.raw===raw)return generalCategoryPreferenceCache;
+ try{const policy=raw===null?QUIP_GENERAL_CATEGORIES_ALL:JSON.parse(raw);generalCategoryPolicy(policy);
+  if(!policy)throw Error('Missing policy');
+  generalCategoryPreferenceCache={raw,policy:Object.freeze({version:1,excluded:Object.freeze(policy.excluded.slice())}),problem:''};
+ }catch{generalCategoryPreferenceCache={raw,policy:null,problem:'Настройки категорий повреждены или созданы другой версией. Исходные данные защищены.'};}
+ return generalCategoryPreferenceCache;
+}
+function writeGeneralCategoryPreferences(excluded){
+ const policy={version:1,excluded:excluded.slice().sort()};generalCategoryPolicy(policy);
+ const before=readGeneralCategoryPreferences();if(before.problem)throw Error(before.problem);
+ const raw=JSON.stringify(policy);
+ if(localStorage.getItem(QUIP_GENERAL_CATEGORY_KEY)!==before.raw)throw Error('Категории изменились в другой вкладке. Повторите выбор.');
+ if(raw!==before.raw)localStorage.setItem(QUIP_GENERAL_CATEGORY_KEY,raw);
+ if(localStorage.getItem(QUIP_GENERAL_CATEGORY_KEY)!==raw)throw Error('Не удалось сохранить категории. Проверьте настройки после перезагрузки.');
+ generalCategoryPreferenceCache=null;return readGeneralCategoryPreferences();
+}
+function setupCategorySelection(selection){
+ if(baseContentPackSelection(selection).id!=='general')return selection;
+ const preferences=readGeneralCategoryPreferences();if(preferences.problem)throw Error(preferences.problem);
+ return generalCategorySelection(selection,preferences.policy);
+}
+function setupCategoryProblem(selection){try{return baseContentPackSelection(selection)?.id==='general'?readGeneralCategoryPreferences().problem:'';}catch{return 'Настройки набора созданы другой версией и защищены.';}}
+let generalCategoryIndexes=null;
+function buildGeneralCategoryIndex(selection,rows,registry){
+ const pack=getContentPack(selection,registry),ids=new Set(pack.criteria.cardIds),sources=new Set(pack.criteria.sourcePacks);
+ const base=rows.filter(row=>historicalGeneralRecord(pack,row)&&pack.types.includes(row.type||'number')&&
+  (!pack.categories.length||pack.categories.some(tag=>row.categories.includes(tag)))&&
+  (!ids.size||ids.has(row.id))&&(!sources.size||sources.has(row.pack)));
+ const tags=new Map();for(const row of base)for(const tag of row.categories){if(!tags.has(tag))tags.set(tag,new Set());tags.get(tag).add(row.id);}
+ return {base,tags,ids:new Set(base.map(row=>row.id)),buckets:new Map()};
+}
+function generalCategoryIndex(selection,rows,registry=QUIP_CONTENT_PACKS){
+ // Only installed immutable source identities are cached. Explicit custom or
+ // mutable catalogs retain the uncached selector and its original dedup order.
+ if(typeof QUIP_APPROX_QUESTIONS==='undefined'||registry!==QUIP_CONTENT_PACKS||(rows!==PARTY_CARDS&&rows!==QUIP_APPROX_QUESTIONS))return null;
+ const base=baseContentPackSelection(selection);if(getContentPack(selection,registry)!==registry[base.id+'@'+base.version])return null;
+ if(!generalCategoryIndexes||generalCategoryIndexes.cards!==PARTY_CARDS||generalCategoryIndexes.questions!==QUIP_APPROX_QUESTIONS||generalCategoryIndexes.packs!==registry)
+  generalCategoryIndexes={cards:PARTY_CARDS,questions:QUIP_APPROX_QUESTIONS,packs:registry,entries:new Map(),summaries:new Map()};
+ const pack=getContentPack(selection,registry),key=pack.id+'@'+pack.version+':'+(rows===PARTY_CARDS?'cards':'questions'),entries=generalCategoryIndexes.entries;
+ if(!entries.has(key)){if(entries.size>=16){entries.delete(entries.keys().next().value);generalCategoryIndexes.summaries.clear();}entries.set(key,buildGeneralCategoryIndex(selection,rows,registry));}
+ return entries.get(key);
+}
+function categoryRecordPredicate(selection){const excluded=new Set(validateGeneralCategorySelection(selection)?.excluded||[]);return row=>!row.categories.some(tag=>excluded.has(tag));}
+function generalCategoryPool(index,selection,types,level,blitz=false){
+ const key=JSON.stringify([[...new Set(types)].sort(),level,blitz]);
+ if(!index.buckets.has(key))index.buckets.set(key,index.base.filter(row=>row.difficulty===level&&types.includes(row.type||'number')&&(!blitz||row.text.length<=12)));
+ // Fresh caller-owned array, original record identities and original order.
+ return index.buckets.get(key).filter(categoryRecordPredicate(selection));
+}
+function generalCategoryCounts(selection,policy=undefined,cards=PARTY_CARDS,questions=QUIP_APPROX_QUESTIONS,registry=QUIP_CONTENT_PACKS){
+ const pack=getContentPack(selection,registry);if(pack.id!=='general')throw Error('Not a general dictionary');
+ policy=policy===undefined?(validateGeneralCategorySelection(selection)||QUIP_GENERAL_CATEGORIES_ALL):policy;generalCategoryPolicy(policy);
+ const indexes=[cards,questions].map(rows=>generalCategoryIndex(selection,rows,registry)||buildGeneralCategoryIndex(selection,rows,registry));
+ const cached=registry===QUIP_CONTENT_PACKS&&cards===PARTY_CARDS&&questions===QUIP_APPROX_QUESTIONS?generalCategoryIndexes.summaries:null;
+ const key=pack.id+'@'+pack.version,stamp=cached?.get(key);let summary=stamp;
+ if(!summary||summary.indexes.some((index,i)=>index!==indexes[i])){
+  const ids=new Set(),tags=new Map();for(const index of indexes){for(const id of index.ids)ids.add(id);for(const [tag,values]of index.tags){if(!tags.has(tag))tags.set(tag,new Set());for(const id of values)tags.get(tag).add(id);}}
+  summary={indexes,ids,tags,policies:new Map()};if(cached)cached.set(key,summary);
+ }
+ const policyKey=JSON.stringify(policy.excluded.slice().sort());
+ if(!summary.policies.has(policyKey)){
+  const removed=new Set();for(const tag of policy.excluded)for(const id of summary.tags.get(tag)||[])removed.add(id);
+  const result={total:summary.ids.size,available:summary.ids.size-removed.size,categories:[...summary.tags].map(([id,ids])=>({id,name:QUIP_GENERAL_CATEGORY_LABELS[id]||'Категория без названия',count:ids.size,enabled:!policy.excluded.includes(id)}))};
+  if(summary.policies.size>=32)summary.policies.delete(summary.policies.keys().next().value);summary.policies.set(policyKey,result);
+ }
+ return summary.policies.get(policyKey);
+}
+
 function latestGeneralPackSelection(registry=QUIP_CONTENT_PACKS){
  return latestContentPackSelection('general',registry);
 }
@@ -177,13 +276,16 @@ function getPackCardPool(selection,kind,level,promptTypes,cards=PARTY_CARDS,regi
  const types={words:promptTypes?.length?promptTypes:['word','phrase','idiom'],songs:['song'],people:['person'],blitz:['word']}[kind];
  if(!types||types.some(t=>!PARTY_CARD_TYPES.includes(t))||
   (kind==='words'&&types.some(t=>!['word','phrase','idiom'].includes(t))))throw Error('Incompatible card types');
- const tier=kind==='blitz'?'easy':level,seen=new Set();
+ const tier=kind==='blitz'?'easy':level,seen=new Set(),allowed=categoryRecordPredicate(selection);
+ const index=pack.id==='general'?generalCategoryIndex(selection,cards,registry):null;
+ if(index)return generalCategoryPool(index,selection,types,tier,kind==='blitz');
  return cards.filter(card=>{
   if(!historicalGeneralRecord(pack,card)||seen.has(card.id)||card.difficulty!==tier||!types.includes(card.type)||!pack.types.includes(card.type)||
    (kind==='blitz'&&card.text.length>12)||
    (pack.categories.length&&!pack.categories.some(tag=>card.categories.includes(tag)))||
    (pack.criteria.cardIds.length&&!pack.criteria.cardIds.includes(card.id))||
    (pack.criteria.sourcePacks.length&&!pack.criteria.sourcePacks.includes(card.pack)))return false;
+  if(!allowed(card))return false;
   seen.add(card.id);return true;
  });
 }
@@ -191,7 +293,10 @@ function getPackQuestionPool(selection,level,questions=QUIP_APPROX_QUESTIONS,reg
  const pack=getContentPack(selection,registry);
  if(!PARTY_CARD_LEVELS.includes(level))throw Error('Unknown question difficulty');
  if(!pack.types.includes('number'))return [];
- return questions.filter(question=>historicalGeneralRecord(pack,question)&&question.difficulty===level&&
+ const index=pack.id==='general'?generalCategoryIndex(selection,questions,registry):null;
+ if(index)return generalCategoryPool(index,selection,['number'],level);
+ const allowed=categoryRecordPredicate(selection);
+ return questions.filter(question=>allowed(question)&&historicalGeneralRecord(pack,question)&&question.difficulty===level&&
   (!pack.categories.length||pack.categories.some(tag=>question.categories.includes(tag)))&&
   (!pack.criteria.cardIds.length||pack.criteria.cardIds.includes(question.id))&&
   (!pack.criteria.sourcePacks.length||pack.criteria.sourcePacks.includes(question.pack)));
@@ -218,7 +323,9 @@ function checkContentPack(selection,settings,cards=PARTY_CARDS,registry=QUIP_CON
    let pool=kind==='number'?getPackQuestionPool(selection,level,questions,registry):getPackCardPool(selection,kind,level,settings.promptTypes,cards,registry);
    if(method==='sing')pool=filterSongLanguagePool(pool,settings);
    const count=new Set(pool.map(card=>card.text||card.question)).size,required=Math.max(pack.minCardsPerPool,kind==='blitz'?(settings.rulesVersion&&settings.rulesVersion<4?5:getModeConfig('blitz').blitzWordsCount):1);
-   if(count<required)problems.push(method+'/'+level+': '+count+' из '+required+' заданий');
+   if(count<required)problems.push(validateGeneralCategorySelection(selection)?.excluded.length?
+    'Режим «'+getModeConfig(method).title+'», сложность «'+({easy:'Легко',medium:'Средний',hard:'Сложный'}[level])+'»: доступно '+count+', нужно '+required+'. Включите категории или выберите другой режим.':
+    method+'/'+level+': '+count+' из '+required+' заданий');
   }
  }
  return {available:problems.length===0,problems};
@@ -255,12 +362,12 @@ function secretMethodsForPack(selection,settings,registry=QUIP_CONTENT_PACKS,dif
 }
 function packSetupSettings(selection,settings,registry=QUIP_CONTENT_PACKS){
  const pack=getContentPack(selection,registry),key=pack.id+'@'+pack.version;
- const same=settings.contentPack?.id===pack.id&&settings.contentPack?.version===pack.version;
+ const current=baseContentPackSelection(settings.contentPack),same=current?.id===pack.id&&current?.version===pack.version;
  // A new catalog version inherits the same theme's explicit preferences. An
  // existing profile for this exact version always wins over an older profile.
  const earlier=Object.keys(settings.packPreferences||{}).filter(value=>value.startsWith(pack.id+'@')&&Number(value.split('@')[1])<pack.version).sort((a,b)=>Number(b.split('@')[1])-Number(a.split('@')[1]));
  const previous=same?settings:settings.packPreferences?.[key]||
-  (settings.contentPack?.id===pack.id&&settings.contentPack.version<pack.version?settings:null)||
+  (current?.id===pack.id&&current.version<pack.version?settings:null)||
   settings.packPreferences?.[earlier[0]]||settings;
  let modes=previous.modes.slice(),promptTypes=previous.promptTypes.slice();
  if(pack.allowedModes){
@@ -275,7 +382,7 @@ function packSetupSettings(selection,settings,registry=QUIP_CONTENT_PACKS){
 function packModeAvailability(selection,settings,id){
  const pack=getContentPack(selection);
  const recipient=modeAwardAvailability(id,settings);if(!recipient.available)return recipient;
- if(!pack.allowedModes&&id!=='secret')return recipient;
+ if(!pack.allowedModes&&id!=='secret'&&!validateGeneralCategorySelection(selection)?.excluded.length)return recipient;
  if(pack.allowedModes&&!pack.allowedModes.includes(id))return {available:false,reason:id==='sing'?'В теме нет песен':'Нет заданий этого режима'};
  const modes=id==='secret'?[...new Set([...settings.modes,'secret'])]:[id];
  const result=checkContentPack(selection,{...settings,modes});

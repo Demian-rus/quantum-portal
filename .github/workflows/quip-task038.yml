@@ -1,0 +1,98 @@
+name: КВИП TASK038 dictionary categories acceptance
+on:
+  push:
+    branches: ['feat/quip-task038-*']
+    paths: ['party-game/**', 'diagnostics/task038/**', '.github/workflows/quip-task038.yml']
+  pull_request:
+    paths: ['party-game/**', 'diagnostics/task038/**', '.github/workflows/quip-task038.yml']
+permissions: {contents: read}
+jobs:
+  categories:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [android-compact, android-tall, landscape, iphone-webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - if: matrix.group != 'iphone-webkit'
+        run: npm install --no-save playwright-core@1.55.0
+      - if: matrix.group == 'iphone-webkit'
+        run: npm install --no-save playwright-core@1.64.0 && npx playwright-core install --with-deps webkit
+      - run: node diagnostics/task038/browser.cjs
+        env:
+          TASK038_GROUP: ${{ matrix.group }}
+          TASK038_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+          CHROME_BIN: /usr/bin/google-chrome
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quip-task038-${{ matrix.group }}
+          path: artifacts/quip-task038
+          if-no-files-found: error
+  performance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix: {size: [7000, 15000]}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm install --no-save playwright-core@1.64.0
+      - if: matrix.size == 7000
+        run: node diagnostics/task038/boot-controls.cjs
+        env: {CHROME_BIN: /usr/bin/google-chrome}
+      - if: matrix.size == 7000
+        run: node diagnostics/task038/instrumentation.cjs
+        env:
+          TASK038_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+          CHROME_BIN: /usr/bin/google-chrome
+      - run: node diagnostics/task038/perf.cjs
+        env:
+          TASK038_SIZE: ${{ matrix.size }}
+          TASK038_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+          CHROME_BIN: /usr/bin/google-chrome
+      - if: always() && matrix.size == 7000
+        run: node diagnostics/task038/attribution.cjs
+        env:
+          CHROME_BIN: /usr/bin/google-chrome
+          TASK038_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quip-task038-cpu4-${{ matrix.size }}
+          path: artifacts/quip-task038
+          if-no-files-found: error
+  upgrade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix: {engine: [chromium, webkit]}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - if: matrix.engine == 'chromium'
+        run: npm install --no-save playwright-core@1.55.0
+      - if: matrix.engine == 'webkit'
+        run: npm install --no-save playwright-core@1.64.0 && npx playwright-core install --with-deps webkit
+      - run: node diagnostics/task038/upgrade.cjs
+        env:
+          TASK038_ENGINE: ${{ matrix.engine }}
+          TASK038_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+          CHROME_BIN: /usr/bin/google-chrome
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quip-task038-upgrade-${{ matrix.engine }}
+          path: artifacts/quip-task038
+          if-no-files-found: error

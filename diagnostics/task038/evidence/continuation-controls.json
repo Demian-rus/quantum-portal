@@ -1,0 +1,1967 @@
+{
+  "sourceHead": "c4232f28f219a59b677fb68e494f7ac2424c8a22",
+  "rasterSourceRun": 41066140086,
+  "rasterArtifact": 12982804403,
+  "raster": [
+    {
+      "width": 320,
+      "beforeSHA256": "bfcde7b3cad564e344e0b600ac4d92d8e02ecf2af4c188dd71baaab81d5ab90e",
+      "afterSHA256": "bfcde7b3cad564e344e0b600ac4d92d8e02ecf2af4c188dd71baaab81d5ab90e",
+      "changedPixels": 0,
+      "bounds": null
+    },
+    {
+      "width": 360,
+      "beforeSHA256": "ab8868a6914073b116cde5500a2ee9c23dbe65945bd4d97c9a1abebbb96d4970",
+      "afterSHA256": "ab8868a6914073b116cde5500a2ee9c23dbe65945bd4d97c9a1abebbb96d4970",
+      "changedPixels": 0,
+      "bounds": null
+    },
+    {
+      "width": 390,
+      "beforeSHA256": "6c4efa658520924eaecc6682c01ed26d9d4daa9539170a390206d65128871f89",
+      "afterSHA256": "6c4efa658520924eaecc6682c01ed26d9d4daa9539170a390206d65128871f89",
+      "changedPixels": 0,
+      "bounds": null
+    },
+    {
+      "width": 412,
+      "beforeSHA256": "a3b5be801bddfbcb377fb93857b1cbb3f7de047f0c51b123fdb26aada63a118d",
+      "afterSHA256": "a3b5be801bddfbcb377fb93857b1cbb3f7de047f0c51b123fdb26aada63a118d",
+      "changedPixels": 0,
+      "bounds": null
+    },
+    {
+      "width": 844,
+      "beforeSHA256": "5aeae5eda655cb175cbe87ba1db68d2a7ab2bd7332ec5e99ae6dc1b11b9a6211",
+      "afterSHA256": "7cd746c5d9398893852c895022e20e8d667954045f2ef6d94982d3dac0d23bd5",
+      "changedPixels": 26,
+      "bounds": [
+        268,
+        35,
+        576,
+        231
+      ]
+    }
+  ],
+  "bootSourceRun": 41066140081,
+  "bootArtifact": 12983755719,
+  "bootFacts": {
+    "controller": "http://127.0.0.1:44949/party-game/sw.js",
+    "registrations": [
+      {
+        "scope": "http://127.0.0.1:44949/party-game/",
+        "active": "activated"
+      }
+    ],
+    "cachedScripts": 54,
+    "byteExactCachedScripts": 54,
+    "failedScriptRequests": 13,
+    "httpErrors": []
+  },
+  "localReloadControls": [
+    {
+      "serviceWorkers": "allow",
+      "browser": "140.0.7339.16",
+      "size": 15000,
+      "reloads": 60,
+      "scriptsPerBoot": [
+        54
+      ],
+      "failedBoots": 0,
+      "networkFailures": [
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        }
+      ],
+      "success": true
+    },
+    {
+      "serviceWorkers": "block",
+      "browser": "140.0.7339.16",
+      "size": 15000,
+      "reloads": 60,
+      "scriptsPerBoot": [
+        54
+      ],
+      "failedBoots": 0,
+      "networkFailures": [
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800;900&display=swap",
+          "failure": "net::ERR_FAILED",
+          "resource": "stylesheet"
+        }
+      ],
+      "success": true
+    }
+  ],
+  "localRasterControls": [
+    {
+      "method": "local-raster-default",
+      "browser": "Chromium headless-shell 140.0.7339.16 / Playwright1.55.0; local diagnostic only, not native CI acceptance",
+      "trials": 10,
+      "beforeAfterExact": 10,
+      "samePageTriplesExact": 20
+    },
+    {
+      "method": "local-font-raster-default",
+      "browser": "Chromium headless-shell 140.0.7339.16 / Playwright1.55.0; local diagnostic only, not native CI acceptance",
+      "trials": 10,
+      "beforeAfterExact": 10,
+      "samePageTriplesExact": 20
+    }
+  ],
+  "conclusion": "Historical failures preserved. All cached script bytes are exact; no corrupt-cache or saved-data cause is established. The original raster mismatch is 26 edge pixels on 844px only. Neither symptom reproduces in these local controls; native CI is required. Root cause remains unproven. No retries, budget/tolerance changes or golden replacement.",
+  "b7b4c076": {
+    "head": "b7b4c0768504a548f66b7ce474add62b96defe3b",
+    "pushRun": 41121181777,
+    "prRun": 41121196761,
+    "gameChecks": {
+      "push": 41121182444,
+      "pr": 41121197120,
+      "result": "both SUCCESS 16/16"
+    },
+    "otherRequired": "Smoke, TASK034–037 and Touch Highlight SUCCESS; all six TASK038 UI/PWA jobs SUCCESS in push and PR",
+    "performance": [
+      {
+        "event": "push",
+        "size": 7000,
+        "result": "baseline boot FAIL at fixture START15",
+        "artifact": 13009115877
+      },
+      {
+        "event": "push",
+        "size": 15000,
+        "duel": [
+          66.2,
+          99
+        ],
+        "teams": [
+          223.8,
+          244.2
+        ],
+        "result": "teams median FAIL",
+        "artifact": 13009600454
+      },
+      {
+        "event": "pull_request",
+        "size": 7000,
+        "duel": [
+          64.3,
+          82
+        ],
+        "teams": [
+          236,
+          267.8
+        ],
+        "result": "teams median FAIL",
+        "artifact": 13008937760
+      },
+      {
+        "event": "pull_request",
+        "size": 15000,
+        "duel": [
+          62.4,
+          101.3
+        ],
+        "teams": [
+          187.2,
+          248.6
+        ],
+        "result": "PASS",
+        "artifact": 13010030592
+      }
+    ],
+    "budgetMs": {
+      "median": 200,
+      "p95": 350
+    },
+    "boot": {
+      "cancelledParserScripts": 3,
+      "sameLoader": true,
+      "byteExactCachedScripts": 54,
+      "cachedScripts": 54,
+      "httpErrors": [],
+      "aboutBlankIsolationDidNotPreventFailure": true,
+      "rootCause": "unproven",
+      "events": [
+        {
+          "event": "request",
+          "requestId": "2485.3768",
+          "loaderId": "2AED5C054209C42CEAE5108ACCE30D38",
+          "type": "Script",
+          "url": "http://127.0.0.1:41481/party-game/curated-songs.js?v=1",
+          "initiator": {
+            "type": "parser",
+            "url": "http://127.0.0.1:41481/party-game/",
+            "lineNumber": 19,
+            "columnNumber": 45
+          },
+          "timestamp": 172.33081,
+          "wallTime": 1793391134.485304
+        },
+        {
+          "event": "request",
+          "requestId": "2485.3769",
+          "loaderId": "2AED5C054209C42CEAE5108ACCE30D38",
+          "type": "Script",
+          "url": "http://127.0.0.1:41481/party-game/curated-people.js?v=1",
+          "initiator": {
+            "type": "parser",
+            "url": "http://127.0.0.1:41481/party-game/",
+            "lineNumber": 20,
+            "columnNumber": 46
+          },
+          "timestamp": 172.330867,
+          "wallTime": 1793391134.485369
+        },
+        {
+          "event": "request",
+          "requestId": "2485.3770",
+          "loaderId": "2AED5C054209C42CEAE5108ACCE30D38",
+          "type": "Script",
+          "url": "http://127.0.0.1:41481/party-game/mode-images.js?v=6",
+          "initiator": {
+            "type": "parser",
+            "url": "http://127.0.0.1:41481/party-game/",
+            "lineNumber": 21,
+            "columnNumber": 43
+          },
+          "timestamp": 172.331054,
+          "wallTime": 1793391134.485558
+        },
+        {
+          "event": "failed",
+          "requestId": "2485.3770",
+          "timestamp": 172.357803,
+          "type": "Script",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        },
+        {
+          "event": "failed",
+          "requestId": "2485.3769",
+          "timestamp": 172.357855,
+          "type": "Script",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        },
+        {
+          "event": "failed",
+          "requestId": "2485.3768",
+          "timestamp": 172.357953,
+          "type": "Script",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        }
+      ],
+      "artifactSHA256": "6b610ece615470ee085b7421906955505e8fa0569b6db97f140f2931361ea281",
+      "resources": [
+        {
+          "url": "http://127.0.0.1:41481/party-game/curated-songs.js?v=1",
+          "cached": true,
+          "bytes": 23578,
+          "status": 200,
+          "mime": "text/javascript",
+          "sha256": "4e7f49eecce4cd28e0e363c283338ece0cc4afa19766d7619ce256ad4d5c25c0",
+          "expected": "4e7f49eecce4cd28e0e363c283338ece0cc4afa19766d7619ce256ad4d5c25c0",
+          "exact": true
+        },
+        {
+          "url": "http://127.0.0.1:41481/party-game/curated-people.js?v=1",
+          "cached": true,
+          "bytes": 8142,
+          "status": 200,
+          "mime": "text/javascript",
+          "sha256": "434ce7b9c0a6eeb900d93e1c23e47469e851642c79c7cf0407dc517443f6313a",
+          "expected": "434ce7b9c0a6eeb900d93e1c23e47469e851642c79c7cf0407dc517443f6313a",
+          "exact": true
+        },
+        {
+          "url": "http://127.0.0.1:41481/party-game/mode-images.js?v=6",
+          "cached": true,
+          "bytes": 863,
+          "status": 200,
+          "mime": "text/javascript",
+          "sha256": "24117ded42b6629a43c41cf3074f82deb0d77c65edc45ab78decb463c82fa765",
+          "expected": "24117ded42b6629a43c41cf3074f82deb0d77c65edc45ab78decb463c82fa765",
+          "exact": true
+        }
+      ]
+    }
+  },
+  "localObserverCost": {
+    "sourceHead": "b7b4c0768504a548f66b7ce474add62b96defe3b",
+    "browser": "Chromium headless shell140 / Playwright1.55; diagnostic only, not acceptance",
+    "cpu": 4,
+    "nPerArm": 7,
+    "sameProductionSTART": true,
+    "sameFixturePerArm": true,
+    "screenshotsAndSources": true,
+    "forward": {
+      "order": [
+        "DOM snapshots on",
+        "DOM snapshots off"
+      ],
+      "onMs": [
+        235,
+        213.3,
+        203,
+        207.9,
+        294.3,
+        244,
+        281.1
+      ],
+      "offMs": [
+        176.2,
+        160.2,
+        156.5,
+        174.9,
+        161.1,
+        158.5,
+        157.6
+      ],
+      "onMedianMs": 235,
+      "offMedianMs": 160.2
+    },
+    "reverse": {
+      "order": [
+        "DOM snapshots off",
+        "DOM snapshots on"
+      ],
+      "onMs": [
+        253.5,
+        305.8,
+        259.9,
+        278.5,
+        259.1,
+        276.6,
+        231.8
+      ],
+      "offMs": [
+        181.1,
+        191.9,
+        176.5,
+        171.1,
+        163.8,
+        208.8,
+        173.8
+      ],
+      "onMedianMs": 259.9,
+      "offMedianMs": 176.5
+    },
+    "traceFrames": {
+      "firstOn": 1342,
+      "firstOff": 0
+    },
+    "interpretation": "DOM snapshot/HAR observation materially perturbs the measured START. Forward and reverse order agree. This does not establish the browser cancellation root cause; native156 A/B and unchanged n20 gate remain mandatory."
+  },
+  "localObserverFixtureControl": {
+    "acceptance": false,
+    "browser": "140.0.7339.16",
+    "driver": "1.55.0",
+    "cpu": 4,
+    "fixtureSHA256": "b03a8d54cfa12c7b84fffbb50c0005a45b6d9aa04a668e99adb4c3cfc6ba1fad",
+    "method": "same exact genuine RAW and native strict receipt shared across all four contexts; full production START; fonts blocked only for local diagnostic",
+    "rows": [
+      {
+        "snapshots": true,
+        "stats": {
+          "n": 3,
+          "median": 200.3,
+          "p95": 251,
+          "max": 251
+        },
+        "success": true
+      },
+      {
+        "snapshots": false,
+        "stats": {
+          "n": 3,
+          "median": 181.4,
+          "p95": 195.6,
+          "max": 195.6
+        },
+        "success": true
+      },
+      {
+        "snapshots": false,
+        "stats": {
+          "n": 3,
+          "median": 164.6,
+          "p95": 191.2,
+          "max": 191.2
+        },
+        "success": true
+      },
+      {
+        "snapshots": true,
+        "stats": {
+          "n": 3,
+          "median": 209.3,
+          "p95": 210.4,
+          "max": 210.4
+        },
+        "success": true
+      }
+    ]
+  },
+  "a3cec60d": {
+    "head": "a3cec60d4ffb86f902d9d8fe2686239274ea78f8",
+    "pushRun": 41177416860,
+    "prRun": 41177421613,
+    "performance": [
+      {
+        "event": "push",
+        "size": 7000,
+        "duel": [
+          66.6,
+          77.1
+        ],
+        "teams": [
+          173.3,
+          264.4
+        ],
+        "result": "PASS",
+        "artifact": 13032778300
+      },
+      {
+        "event": "pull_request",
+        "size": 7000,
+        "duel": [
+          71.3,
+          89.6
+        ],
+        "teams": [
+          215.5,
+          273.5
+        ],
+        "result": "teams median FAIL",
+        "artifact": 13033454502
+      },
+      {
+        "event": "pull_request",
+        "size": 15000,
+        "duel": [
+          65.6,
+          78
+        ],
+        "teams": [
+          194,
+          252.7
+        ],
+        "result": "PASS",
+        "artifact": 13033149530
+      }
+    ],
+    "nativeObserverControl": {
+      "nPerArm": 3,
+      "order": [
+        true,
+        false,
+        false,
+        true
+      ],
+      "pushMedianMs": [
+        170.5,
+        181.7,
+        211.7,
+        181.1
+      ],
+      "prMedianMs": [
+        241.6,
+        279.7,
+        238.4,
+        232.2
+      ],
+      "interpretation": "No consistent direction in native short A/B. Local n7 observer cost is not asserted to explain the full native n20 improvement."
+    },
+    "failedPRColdProfile": {
+      "wallMs": 292,
+      "bytesInclusiveMs": 8.875,
+      "encoderSelfMs": 11.039,
+      "gcMs": 28.124,
+      "getClientRectsMs": 32.638
+    },
+    "completion": "At least the three listed full n20 series completed all boots; PR7000 remains red. Other current jobs were still running at the next checkpoint."
+  },
+  "utf8BoundOptimization": {
+    "rule": "UTF-8 byte length is at least UTF-16 length and at most three times UTF-16 length; astral pair is four bytes for two units. Reject length>limit, accept size when length*3<=limit, encode exactly otherwise. No authorization/value/transaction cache.",
+    "regressions": "112 Unicode/limit combinations cover ASCII, Cyrillic, BMP, astral pairs, unpaired high/low surrogates and mixed text at both thresholds and limits; original byte budget and RAW preservation assertions retained. Affected suites74/74 passed locally.",
+    "localColdDiagnostic": {
+      "browser": "headless-shell140 / Playwright1.55 CPU4; not acceptance",
+      "beforePointerToIdleMs": 165.1,
+      "afterPointerToIdleMs": 150.8,
+      "interpretation": "Single local profile confirms size-encoder allocation path is absent for the genuine fixture; total-latency difference is diagnostic, not a native n20 result.",
+      "separateN7AfterMs": [
+        263.6,
+        227.1,
+        156.9,
+        157,
+        163.9,
+        156.4,
+        162.9
+      ],
+      "separateN7AfterMedianMs": 162.9,
+      "limitation": "Separate local n7 medians before160.2/after162.9 do not establish an overall latency improvement. The exact size-path allocation reduction is observed; current-head native n20 remains the acceptance gate."
+    }
+  },
+  "b324a648": {
+    "head": "b324a6481dd10d67176a510c46e633747c57436c",
+    "pushRun": 41178396001,
+    "prRun": 41178399366,
+    "uiAndPWA": "all six UI/PWA jobs SUCCESS in both push and PR",
+    "performance": [
+      {
+        "event": "push",
+        "size": 7000,
+        "duel": [
+          67.4,
+          78.2
+        ],
+        "teams": [
+          213.8,
+          246.1
+        ],
+        "result": "teams median FAIL",
+        "artifact": 13034326477
+      },
+      {
+        "event": "push",
+        "size": 15000,
+        "duel": [
+          70.1,
+          96.4
+        ],
+        "teams": [
+          214.5,
+          247.9
+        ],
+        "result": "teams median FAIL",
+        "artifact": 13034461259
+      },
+      {
+        "event": "pull_request",
+        "size": 7000,
+        "duel": [
+          65.5,
+          80.4
+        ],
+        "teams": [
+          192.7,
+          234.3
+        ],
+        "result": "PASS",
+        "artifact": 13034690249
+      },
+      {
+        "event": "pull_request",
+        "size": 15000,
+        "duel": [
+          70.4,
+          85.3
+        ],
+        "teams": [
+          203.9,
+          286.8
+        ],
+        "result": "teams median FAIL",
+        "artifact": 13034322915
+      }
+    ],
+    "sizeProfile": "size-encoding no longer appears in the common fixture profile; native n20 was still over budget. No success claim."
+  },
+  "ownedJSONProjection": {
+    "scope": "existing withRecordValidation transaction only; same stamp, size caps, exact raw and separate envelope/bare maps",
+    "change": "Keep the owned native parser record alongside its successful full key. Before returning it, deep-freeze it and memoize only its serializer key. Transition/replacement receive the exact source strings from storage and use these readonly snapshots. Ordinary mutable-object validation is unchanged.",
+    "entryClone": "A single native entry clone requires both private immutable serializer provenance and a successful full key in the current stamped transaction. Unvalidated shapes and new transactions keep their original validation requirements.",
+    "checks": "75/75 targeted Node tests passed. Actual local native140 safety suite passed stale tabs/RNG, strict receipt failure, journal recovery, offline reload, review, archive/ledger, score-goal/tiebreak and unknown slots. Local diagnostic only; native156 n20 mandatory.",
+    "focusExperiment": "Checking hidden ancestors before getClientRects merely moved layout cost into focus(), without observed acceleration; this change was not included.",
+    "attribution": "Next native profile uses the exact synthetic general@1000/7000 roots from perf.cjs, cold document and source SHA. Earlier profiles on production general@67 remain historical.",
+    "localWorkCounts": {
+      "browser": "headless-shell140 / Playwright1.55 CPU4; local source A/B diagnostic, not acceptance",
+      "fixture": "same genuine fixture construction:27 profiles, one archived team party; separate generated IDs and native storage waits",
+      "before": {
+        "keys": 20,
+        "immutableKeys": 2,
+        "shapeNodes": 1641,
+        "entries": 5,
+        "immutableEntries": 1
+      },
+      "after": {
+        "keys": 20,
+        "immutableKeys": 8,
+        "shapeNodes": 186,
+        "entries": 5,
+        "immutableEntries": 5
+      },
+      "limitation": "The earlier strict IDB write also waited33ms versus3.6ms later; total-latency difference is not attributed to the CPU change. Transactions and strict completion remain mandatory."
+    }
+  },
+  "b6881800": {
+    "head": "b68818004fd641dcee9310ac64b0e0cd27701703",
+    "browser": "Chrome156.0.8078.47 / Playwright1.64.0",
+    "hardware": "AMD EPYC7763;4logicalcores;CPU throttle4",
+    "n": 20,
+    "limitsMs": {
+      "median": 200,
+      "p95": 350
+    },
+    "runs": {
+      "task038Push": 41180540890,
+      "task038PR": 41180544245,
+      "gamePush": 41180540921,
+      "gamePR": 41180544256,
+      "task034": 41180544406,
+      "task035": 41180544286,
+      "task036": 41180544290,
+      "task037": 41180544271,
+      "touch": 41180544301,
+      "smokePush": 41180540885,
+      "smokePR": 41180544246
+    },
+    "ci": "Game push attempt2 and PR16/16 SUCCESS;034–037,Touch,Smoke SUCCESS;TASK038 push8/8SUCCESS,PR7/8,teams15000 median FAIL. Historical Androidwizard skipped by unchanged TASK029 branch guard.",
+    "start": [
+      {
+        "event": "push",
+        "size": 7000,
+        "beforeDuel": [
+          130.4,
+          150.8
+        ],
+        "duel": [
+          66.9,
+          83.4
+        ],
+        "beforeTeams": [
+          331.5,
+          400
+        ],
+        "teams": [
+          179.6,
+          260.8
+        ],
+        "result": "PASS",
+        "artifact": 13035170743
+      },
+      {
+        "event": "push",
+        "size": 15000,
+        "beforeDuel": [
+          334.2,
+          350.2
+        ],
+        "duel": [
+          72.9,
+          79.6
+        ],
+        "beforeTeams": [
+          503,
+          585.7
+        ],
+        "teams": [
+          181.1,
+          230.2
+        ],
+        "result": "PASS",
+        "artifact": 13035380200
+      },
+      {
+        "event": "pull_request",
+        "size": 7000,
+        "beforeDuel": [
+          157,
+          167.7
+        ],
+        "duel": [
+          71.9,
+          100.7
+        ],
+        "beforeTeams": [
+          381,
+          449.8
+        ],
+        "teams": [
+          199.3,
+          233
+        ],
+        "result": "PASS",
+        "artifact": 13034549656
+      },
+      {
+        "event": "pull_request",
+        "size": 15000,
+        "beforeDuel": [
+          414.4,
+          444.3
+        ],
+        "duel": [
+          70.6,
+          85.8
+        ],
+        "beforeTeams": [
+          635.8,
+          668.5
+        ],
+        "teams": [
+          213.3,
+          244.8
+        ],
+        "maxTeams": 329.7,
+        "result": "teams median FAIL",
+        "artifact": 13035217233,
+        "sha256": "4a7c3edf1a8166ba4bb01435d83adfa5aa50049500fbea72d6e3b4ae0dbd655d"
+      }
+    ],
+    "boot": "All four complete n20 series:80 actual START per size/event; no parser cancellation in these runs. This does not establish the historic cancellation root cause.",
+    "failed15000NativeTimeline": {
+      "samples": 20,
+      "layoutMedianMs": 23.098,
+      "layoutMaxMs": 27.978,
+      "updateLayoutMedianMs": 13.415,
+      "updateLayoutMaxMs": 18.133,
+      "paintMedianMs": 6.701,
+      "paintMaxMs": 12.613,
+      "majorGCMaxMs": 35.639,
+      "limitation": "CDP timeline intervals on the actual failed15000 sample set. Function-level native attribution on7000 remains a separate profile, not substituted for15000."
+    },
+    "raster": {
+      "firstAttempt": "FAIL360x640;4 text-edge pixels, maximum channel delta5",
+      "firstJob": 124476863016,
+      "firstArtifact": 13034374485,
+      "firstZipSha256": "cc262ab1656a12beaae3e7830e131e78057b67bd246c70ae992ed61011dceb2d",
+      "beforeSha256": "ab8868a6914073b116cde5500a2ee9c23dbe65945bd4d97c9a1abebbb96d4970",
+      "afterSha256": "7a96d5472b8c0e1a422a6eb4a3d563af850967a3c594a5b4bfb49bc26e7a5213",
+      "coordinates": [
+        [
+          102,
+          37
+        ],
+        [
+          261,
+          37
+        ],
+        [
+          102,
+          38
+        ],
+        [
+          211,
+          387
+        ]
+      ],
+      "controls": "Recorded fonts/status, node geometry/styles and finished animations identical. Each repeated frame matches its own first PNG exactly. Original failure artifact remains available.",
+      "rerun": "Exactly one actual targeted rerun of failed raster;attempt2SUCCESS,no code/environment/assertion/golden change",
+      "rerunArtifact": 13034608572,
+      "independentPR": "First PR raster SUCCESS",
+      "rootCause": "Internal Chromium rendering cause remains unproven. Success is not a root-cause claim."
+    }
+  },
+  "lazyOwnedArchiveCandidate": {
+    "scope": "Existing bounded, stamped withRecordValidation transaction; no new storage transaction/cache API",
+    "change": "Lazily create private strict JSON shape descriptions only where an ordinary mutable comparison actually visits. Own finite deeply frozen archives have separate entry serializer keys; archive projections can reuse these immutable references only after the complete prior record succeeded in the CURRENT transaction. Ordinary inputs retain independent copies. Public entry() remains an independent mutable clone.",
+    "authorization": "WeakMaps contain serializer provenance only. New transaction first validates current AND archived games, roles, cards, ledger in full. Newly changed immutable archives cannot reuse authorization. Mutable current game/taskMemory remain independent. Exact descriptor/prototype/own-key/order/dense-array/cycle/finite checks remain for every ordinary value.",
+    "storage": "Unchanged b688 storage9/controller17; all6 SHA calls,6 native IDB transactions including2strictwrites plus readbacks remain. No parallel decoding, checksum-result memo or render/focus change included.",
+    "resources": "engine13/cachecandidate-n; exact PWA guards and reviewed hunks updated without assertion relaxation",
+    "checks": "76/76 affected Node tests PASS, including fresh scopes fully checking both current+archive, corrupted readonly archive, changed mutable live score, ordinary-copy independence. Full local140 native browser safety PASS. Native156 n20 still mandatory.",
+    "localWorkCounts": {
+      "method": "Real cold synthetic7000 START; separate genuine fixture IDs and native IDB waits, diagnostic only",
+      "before": {
+        "keys": 20,
+        "immutableKeys": 8,
+        "shapeVisits": 186,
+        "shapeBuilds": 3105,
+        "entries": 5
+      },
+      "after": {
+        "keys": 20,
+        "immutableKeys": 8,
+        "shapeVisits": 2,
+        "shapeBuilds": 15,
+        "entries": 0
+      },
+      "limitation": "Different strict-write waits17.7 vs2.7ms: total197.6→134.2ms is not attributed to CPU. Counters show eliminated work only."
+    },
+    "discardedExperiments": "Native SHA reuse within one storage operation plus duplicate ready-render removal did not show a consistent local n7 benefit; neither change included. Initial archive n7 A/B overlapped Node tests and is confounded, not causal latency evidence.",
+    "localN7Control": {
+      "browser": "headless-shell140/Playwright1.55;CPU4;diagnostic only",
+      "method": "One exact genuine RAW/receipt shared across all4 contexts; snapshotsfalse, screenshot/source trace; no concurrent Node suites in this retained control; before/after/after/before",
+      "rows": [
+        {
+          "variant": "base",
+          "fixture": "cbad927476dcc462946005c09b401cef207949e719c1d3c61e4874675ab7f670",
+          "samples": [
+            127.1,
+            150.5,
+            156.2,
+            176.1,
+            176.4,
+            145.2,
+            144.9
+          ],
+          "median": 150.5
+        },
+        {
+          "variant": "candidate",
+          "fixture": "cbad927476dcc462946005c09b401cef207949e719c1d3c61e4874675ab7f670",
+          "samples": [
+            197.1,
+            139.2,
+            140.1,
+            125.8,
+            123.9,
+            129.3,
+            145.1
+          ],
+          "median": 139.2
+        },
+        {
+          "variant": "candidate",
+          "fixture": "cbad927476dcc462946005c09b401cef207949e719c1d3c61e4874675ab7f670",
+          "samples": [
+            183.5,
+            140.9,
+            128.3,
+            128.9,
+            145,
+            138.6,
+            146.7
+          ],
+          "median": 140.9
+        },
+        {
+          "variant": "base",
+          "fixture": "cbad927476dcc462946005c09b401cef207949e719c1d3c61e4874675ab7f670",
+          "samples": [
+            184.1,
+            161.1,
+            143.5,
+            144.7,
+            159.8,
+            129.4,
+            154.4
+          ],
+          "median": 154.4
+        }
+      ],
+      "limitation": "Local n7 direction supports less work; it does not establish native156 n20 success."
+    },
+    "local15000Profile": {
+      "browser": "headless-shell140/Playwright1.55;CPU4;Profiler500us;diagnostic only",
+      "fixture": "exact synthetic general@1000/15000, cold genuine seed27, one archived party; separate genuine IDs for source variants",
+      "rows": {
+        "before": {
+          "pointerToIdleMs": 128.2,
+          "idb": [
+            {
+              "ms": 1.900000000372529,
+              "mode": "readonly",
+              "durability": "default"
+            },
+            {
+              "ms": 4.599999999627471,
+              "mode": "readonly",
+              "durability": "default"
+            },
+            {
+              "ms": 3.199999999254942,
+              "mode": "readwrite",
+              "durability": "strict"
+            },
+            {
+              "ms": 1.400000000372529,
+              "mode": "readonly",
+              "durability": "default"
+            },
+            {
+              "ms": 3.599999999627471,
+              "mode": "readwrite",
+              "durability": "strict"
+            },
+            {
+              "ms": 1,
+              "mode": "readonly",
+              "durability": "default"
+            }
+          ],
+          "cpuInclusiveMs": {
+            "recordShape": 0.664,
+            "rememberRecordValidation": 1.2,
+            "copy": 0.972,
+            "entry": 1.29,
+            "(garbage collector)": 0.874,
+            "recordValidationKey": 3.683,
+            "sameRecordShape": 0.994,
+            "getClientRects": 17.585
+          }
+        },
+        "after": {
+          "pointerToIdleMs": 133.4,
+          "idb": [
+            {
+              "ms": 2.7000000001862645,
+              "mode": "readonly",
+              "durability": "default"
+            },
+            {
+              "ms": 4.8999999994412065,
+              "mode": "readonly",
+              "durability": "default"
+            },
+            {
+              "ms": 3.5,
+              "mode": "readwrite",
+              "durability": "strict"
+            },
+            {
+              "ms": 2.2000000001862645,
+              "mode": "readonly",
+              "durability": "default"
+            },
+            {
+              "ms": 4.099999999627471,
+              "mode": "readwrite",
+              "durability": "strict"
+            },
+            {
+              "ms": 1.900000000372529,
+              "mode": "readonly",
+              "durability": "default"
+            }
+          ],
+          "cpuInclusiveMs": {
+            "recordValidationKey": 6.425,
+            "copy": 1.074,
+            "getClientRects": 16.905
+          }
+        }
+      },
+      "limitation": "Single profiled START includes instrumentation, separate native waits/GC and no formal n20 gate. After latency133.4ms versus128.2ms is not an overall improvement claim;6 native transactions/2strict writes preserved in both."
+    }
+  },
+  "ownerHandoff20261031": {
+    "date": "2026-10-31",
+    "testedCodeHead": "8942ffae26614d58db0b97cb58b2742d7bd92f75",
+    "main": "af9eb4723a97c38394b6b9f0310506abb856ef4e",
+    "status": "Готов к ручной приёмке владельцем с документированным исключением по производительности",
+    "ownerException": {
+      "run": 41183606030,
+      "job": 124485902394,
+      "size": 7000,
+      "format": "2x2",
+      "medianMs": 203.3,
+      "p95Ms": 257.4,
+      "excessMs": 3.3,
+      "ciConclusion": "failure",
+      "scope": "Owner accepted only this3.3ms median overrun on this code SHA, conditional on successful functional/save-protection checks. Both passed. No broader waiver or further optimization.",
+      "limitsRemainMs": [
+        200,
+        350
+      ]
+    },
+    "stats": [
+      {
+        "event": "push",
+        "size": 7000,
+        "run": 41183600478,
+        "artifact": 13035794155,
+        "rows": [
+          {
+            "variant": "before",
+            "kind": "duel",
+            "n": 20,
+            "median": 134.2,
+            "p95": 155.3,
+            "max": 163.4
+          },
+          {
+            "variant": "after",
+            "kind": "duel",
+            "n": 20,
+            "median": 65.9,
+            "p95": 86.1,
+            "max": 94.4
+          },
+          {
+            "variant": "before",
+            "kind": "teams",
+            "n": 20,
+            "median": 312.8,
+            "p95": 404.9,
+            "max": 429.7
+          },
+          {
+            "variant": "after",
+            "kind": "teams",
+            "n": 20,
+            "median": 164.8,
+            "p95": 204.7,
+            "max": 239.6
+          }
+        ]
+      },
+      {
+        "event": "push",
+        "size": 15000,
+        "run": 41183600478,
+        "artifact": 13035398942,
+        "rows": [
+          {
+            "variant": "before",
+            "kind": "duel",
+            "n": 20,
+            "median": 415.8,
+            "p95": 428.4,
+            "max": 432.1
+          },
+          {
+            "variant": "after",
+            "kind": "duel",
+            "n": 20,
+            "median": 74,
+            "p95": 96.8,
+            "max": 110.1
+          },
+          {
+            "variant": "before",
+            "kind": "teams",
+            "n": 20,
+            "median": 647,
+            "p95": 699.6,
+            "max": 723.4
+          },
+          {
+            "variant": "after",
+            "kind": "teams",
+            "n": 20,
+            "median": 198,
+            "p95": 278.9,
+            "max": 325.5
+          }
+        ]
+      },
+      {
+        "event": "pr",
+        "size": 7000,
+        "run": 41183606030,
+        "artifact": 13036066179,
+        "rows": [
+          {
+            "variant": "before",
+            "kind": "duel",
+            "n": 20,
+            "median": 151.2,
+            "p95": 175.3,
+            "max": 205.9
+          },
+          {
+            "variant": "after",
+            "kind": "duel",
+            "n": 20,
+            "median": 70.1,
+            "p95": 81.3,
+            "max": 91
+          },
+          {
+            "variant": "before",
+            "kind": "teams",
+            "n": 20,
+            "median": 401.4,
+            "p95": 431.6,
+            "max": 501
+          },
+          {
+            "variant": "after",
+            "kind": "teams",
+            "n": 20,
+            "median": 203.3,
+            "p95": 257.4,
+            "max": 259,
+            "error": "AssertionError [ERR_ASSERTION]: real_start budget {\"n\":20,\"median\":203.3,\"p95\":257.4,\"max\":259}\n    at journey (/home/runner/work/quantum-portal/quantum-portal/diagnostics/task038/perf.cjs:75:93)\n    at async main (/home/runner/work/quantum-portal/quantum-portal/diagnostics/task038/perf.cjs:79:1623)"
+          }
+        ]
+      },
+      {
+        "event": "pr",
+        "size": 15000,
+        "run": 41183606030,
+        "artifact": 13036990322,
+        "rows": [
+          {
+            "variant": "before",
+            "kind": "duel",
+            "n": 20,
+            "median": 325,
+            "p95": 336.2,
+            "max": 340.4
+          },
+          {
+            "variant": "after",
+            "kind": "duel",
+            "n": 20,
+            "median": 67.4,
+            "p95": 89.2,
+            "max": 105.6
+          },
+          {
+            "variant": "before",
+            "kind": "teams",
+            "n": 20,
+            "median": 518.4,
+            "p95": 584,
+            "max": 584.6
+          },
+          {
+            "variant": "after",
+            "kind": "teams",
+            "n": 20,
+            "median": 182.3,
+            "p95": 272.1,
+            "max": 274.6
+          }
+        ]
+      }
+    ],
+    "ci": [
+      {
+        "id": 41183606107,
+        "name": "КВИП TASK036 stepper acceptance",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 2,
+        "total": 2
+      },
+      {
+        "id": 41183606047,
+        "name": "КВИП TASK034 mobile baseline and acceptance",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 5,
+        "total": 5
+      },
+      {
+        "id": 41183606030,
+        "name": "КВИП TASK038 dictionary categories acceptance",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "failure",
+        "attempt": 1,
+        "success": 7,
+        "total": 8
+      },
+      {
+        "id": 41183606002,
+        "name": "КВИП TASK037 participant cards acceptance",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 4,
+        "total": 4
+      },
+      {
+        "id": 41183606231,
+        "name": "КВИП game checks",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 16,
+        "total": 16
+      },
+      {
+        "id": 41183606087,
+        "name": "КВИП Android wizard performance",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "skipped",
+        "attempt": 1,
+        "success": 0,
+        "total": 0
+      },
+      {
+        "id": 41183606021,
+        "name": "Quantum Portal Smoke Tests",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 1,
+        "total": 1
+      },
+      {
+        "id": 41183606067,
+        "name": "КВИП TASK035 timer and range acceptance",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 3,
+        "total": 3
+      },
+      {
+        "id": 41183606126,
+        "name": "КВИП native touch highlight hotfix",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 2,
+        "total": 2
+      },
+      {
+        "id": 41183600485,
+        "name": "КВИП game checks",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 16,
+        "total": 16
+      },
+      {
+        "id": 41183600478,
+        "name": "КВИП TASK038 dictionary categories acceptance",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 8,
+        "total": 8
+      },
+      {
+        "id": 41183600486,
+        "name": "Quantum Portal Smoke Tests",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 1,
+        "total": 1
+      }
+    ],
+    "artifacts": [
+      {
+        "id": 13036580515,
+        "name": "quip-task038-landscape",
+        "digest": "sha256:0eae41dbe0a5707118dd18381d8b394e7b6e55a2e7c869f13b853ebf6c669d35",
+        "run": 41183600478
+      },
+      {
+        "id": 13036500520,
+        "name": "quip-task038-upgrade-chromium",
+        "digest": "sha256:7ce2b9985d964af51e87df85e225445e18015f8fdbbde05246b496847221d82c",
+        "run": 41183600478
+      },
+      {
+        "id": 13036296206,
+        "name": "quip-task038-iphone-webkit",
+        "digest": "sha256:8652bc8e7b923343ba4f470c24c42611ea5230a34ee1e2a3ca9cec7780b37f78",
+        "run": 41183600478
+      },
+      {
+        "id": 13036070844,
+        "name": "quip-task038-upgrade-webkit",
+        "digest": "sha256:0598b653c68f13d2a117753c8f160425903bfbdc18bd638baa3a4508378eaf86",
+        "run": 41183600478
+      },
+      {
+        "id": 13035960956,
+        "name": "quip-task038-android-compact",
+        "digest": "sha256:5b9eb1a90205ccbc9110d22fb23541b60da7518587e7bb6e54a1abc380e52c91",
+        "run": 41183600478
+      },
+      {
+        "id": 13035955992,
+        "name": "quip-task038-android-tall",
+        "digest": "sha256:f29867c6f7670a73f1f5c3c783cbe69d72c26a6ffc2a2030da9b26f43fa29c8a",
+        "run": 41183600478
+      },
+      {
+        "id": 13035794155,
+        "name": "quip-task038-cpu4-7000",
+        "digest": "sha256:1567096dc9c6d9e538e30c74f2a069a10e8c4c3f9d27211a7cec219cf6bbb3b7",
+        "run": 41183600478
+      },
+      {
+        "id": 13035398942,
+        "name": "quip-task038-cpu4-15000",
+        "digest": "sha256:d2c4b12463e5b0555c2bfd143cb7942b5646d6054635afce88d700d269964972",
+        "run": 41183600478
+      },
+      {
+        "id": 13036990322,
+        "name": "quip-task038-cpu4-15000",
+        "digest": "sha256:791ae27d800c094ed6aa7b3551d86c0ab9a81fc1ce3caea8a7c94803f2b52dbf",
+        "run": 41183606030
+      },
+      {
+        "id": 13036885540,
+        "name": "quip-task038-iphone-webkit",
+        "digest": "sha256:edc75ebbe07e9019fffd627ecfd7a5abd64cea7c095a8803ec49f02b137a7821",
+        "run": 41183606030
+      },
+      {
+        "id": 13036805954,
+        "name": "quip-task038-landscape",
+        "digest": "sha256:1ef38507a2ffe535ad1735a0bc47a731e8077451a8f42bb95645fbf66eada9a1",
+        "run": 41183606030
+      },
+      {
+        "id": 13036376516,
+        "name": "quip-task038-upgrade-chromium",
+        "digest": "sha256:413296fed9aae32d5ccf9f92ad6073ed50caaa084f7287e157c60596cae222b9",
+        "run": 41183606030
+      },
+      {
+        "id": 13036241863,
+        "name": "quip-task038-upgrade-webkit",
+        "digest": "sha256:61cd65e4985a9806052e7502e646cd1be655a7ef7b0a4a28b2a83c6a599252b9",
+        "run": 41183606030
+      },
+      {
+        "id": 13036066179,
+        "name": "quip-task038-cpu4-7000",
+        "digest": "sha256:e56064b5eda579cdd020774a73e77da46a8df42c13a70e84f30edc731e8b8faf",
+        "run": 41183606030
+      },
+      {
+        "id": 13036061657,
+        "name": "quip-task038-android-compact",
+        "digest": "sha256:605967318e572bc27a41d43f338380317c0f41a9598b41497dd4e7c0134d3e33",
+        "run": 41183606030
+      },
+      {
+        "id": 13036016830,
+        "name": "quip-task038-android-tall",
+        "digest": "sha256:1f2cb23be47dcb1a8220cf39f6c6588a661eb68bc6e6834a91b71d484bbdad4d",
+        "run": 41183606030
+      }
+    ],
+    "integrity": "Current-head successful logic/source/catalog guards plus teams/profiles/PWA browser tests preserve editorial sources, historical IDs, rules/RNG, exact old RAW, profiles/statistics, paused unfinished parties, archives/history/ledger, explicit result confirmation, backup/import/export, stale-tab CAS/Web Locks, strict receipts/journal recovery and offline restart. No additional tests launched for handoff.",
+    "remainingRisks": [
+      "Physical Android not yet tested.",
+      "Historical tagging is incomplete; untagged cards intentionally remain available.",
+      "The single accepted performance gate stays red. Historical loader cancellations and raster text-edge variance have unproven browser-internal causes; current4performancejobs completed boots and both current raster jobs passed first attempt."
+    ],
+    "physicalAndroid": [
+      "Install the test PWA on owner's actual Android; record model/OS/Chrome versions.",
+      "Touch profile/category controls; check long names, stepper, scrolling, landscape and native tap highlight.",
+      "Disable/enable categories including videogames/memes, restart and inspect preference persistence; exercise all8modes and both1x1/2x2 formats.",
+      "Use test profiles with a backup; start/archive/resume games, inspect scores/statistics/history and explicit final confirmation.",
+      "Check paused/unpaused timers, Android Back and offline restart; test upgrade/rollback on test origin without publishing production."
+    ],
+    "documentationOnly": {
+      "runtimeTestsWorkflowsThresholdsChanged": false,
+      "skipNewCI": true,
+      "commitMessageMarker": "[skip ci]",
+      "purpose": "Avoid a new full matrix for report-only edits as owner requested; all CI results remain pinned to testedCodeHead. Final PR documentation head is reported separately."
+    }
+  }
+}

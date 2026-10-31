@@ -15,19 +15,25 @@
  const RECEIPT_DB='kvip-teams-durability:v1';
  function nativeReceipt(){
   if(!globalThis.indexedDB)fail('RECEIPT_REQUIRED','Для надёжного сохранения 2 на 2 требуется IndexedDB. Игра 1 на 1 остаётся доступной.');
-  async function open(){return new Promise((resolve,reject)=>{
+  let connection=null,opening=null;
+  function open(){
+   if(connection)return Promise.resolve(connection);
+   if(opening)return opening;
+   const pending=new Promise((resolve,reject)=>{
    const request=globalThis.indexedDB.open(RECEIPT_DB,1);let rejected=false,problem=null;
    request.onupgradeneeded=event=>{try{if(event.oldVersion===0)request.result.createObjectStore('receipts');}catch(e){problem=e;request.transaction.abort();}};
    request.onblocked=()=>{rejected=true;reject(error('RECEIPT_BLOCKED','Закройте другую версию приложения и повторите сохранение 2 на 2.'));};
    request.onerror=()=>reject(problem||request.error);
-   request.onsuccess=()=>{const db=request.result;if(rejected){db.close();return;}if(db.version!==1||db.objectStoreNames.length!==1||!db.objectStoreNames.contains('receipts')){db.close();reject(error('INCOMPATIBLE','Неизвестная версия подтверждений 2 на 2.'));return;}resolve(db);};
-  });}
+   request.onsuccess=()=>{const db=request.result;if(rejected){db.close();return;}if(db.version!==1||db.objectStoreNames.length!==1||!db.objectStoreNames.contains('receipts')){db.close();reject(error('INCOMPATIBLE','Неизвестная версия подтверждений 2 на 2.'));return;}db.onversionchange=()=>{if(connection===db)connection=null;db.close();};db.onclose=()=>{if(connection===db)connection=null;};connection=db;resolve(db);};
+   }).finally(()=>{if(opening===pending)opening=null;});
+   opening=pending;return pending;
+  }
   async function access(expected,next,write){
-   const db=await open();try{return await new Promise((resolve,reject)=>{
+   const db=await open();return new Promise((resolve,reject)=>{
     const tx=db.transaction('receipts',write?'readwrite':'readonly',write?{durability:'strict'}:{}),store=tx.objectStore('receipts'),get=store.get(KEY);let value=null,problem=null;
     get.onsuccess=()=>{try{value=get.result??null;if(write){if(value!==expected){problem=error('CONFLICT','Подтверждённая версия уже изменена в другой вкладке.');tx.abort();}else store.put(next,KEY);}}catch(e){problem=e;tx.abort();}};
     tx.oncomplete=()=>resolve(write?next:value);tx.onabort=()=>reject(problem||tx.error||error('RECEIPT_FAILED','Подтверждение командной записи не сохранено.'));tx.onerror=()=>{};
-   });}finally{db.close();}
+   });
   }
   return {read:()=>access(null,null,false),write:(expected,next)=>access(expected,next,true)};
  }
@@ -48,16 +54,19 @@
   if(typeof exclusive!=='function'||typeof digest!=='function')fail('DEPENDENCY','Неверный провайдер блокировки или контрольной суммы.');
   if(receipt===undefined)receipt=typeof window!=='undefined'&&window===globalThis?nativeReceipt():null;
   if(receipt!==null&&(!receipt||typeof receipt.read!=='function'||typeof receipt.write!=='function'))fail('DEPENDENCY','Неверное транзакционное хранилище подтверждений.');
-  function checkMatch(match){
+  function checkMatch(match,raw,wrapped=false){
    if(!match||typeof match!=='object'||Array.isArray(match))fail('CORRUPT','Нет командного матча.');
    format.validate(match.teamFormat);
    // This callback must validate the actual engine, history, score replay,
    // planners, cards and roles. Header validation alone cannot authorize a save.
-   if(validateMatch(match)!==true)fail('CORRUPT','Полная проверка командного матча не пройдена.');
+   if(validateMatch(match,raw,wrapped)!==true)fail('CORRUPT','Полная проверка командного матча не пройдена.');
    return match;
   }
   async function checksum(payload){const sum=await digest(JSON.stringify(payload));if(typeof sum!=='string'||!/^[0-9a-f]{64}$/.test(sum))fail('DIGEST','Контрольная сумма недоступна.');return sum;}
-  function bounded(raw,limit=maxBytes){if(typeof raw!=='string'||bytes(raw)>limit)fail('LIMIT','Превышен размер командного сохранения.');return raw;}
+  // UTF-8 needs at most three bytes per UTF-16 code unit (a surrogate pair
+  // needs four for two). Prove small strings fit without allocating bytes;
+  // ambiguous sizes still use the exact encoder and the same strict limit.
+  function bounded(raw,limit=maxBytes){if(typeof raw!=='string'||raw.length>limit||raw.length*3>limit&&bytes(raw)>limit)fail('LIMIT','Превышен размер командного сохранения.');return raw;}
   async function decode(raw){
    let value;try{value=JSON.parse(bounded(raw));}catch(e){if(e.code)throw e;fail('CORRUPT','Повреждён JSON командной партии.');}
    exact(value,['version','kind','revision','match','checksum']);
@@ -65,7 +74,7 @@
    if(!Number.isSafeInteger(value.revision)||value.revision<1)fail('CORRUPT','Неверная ревизия командного сохранения.');
    const {version,kind,revision,match}=value,payload={version,kind,revision,match};
    if(value.checksum!==await checksum(payload))fail('CORRUPT','Контрольная сумма не совпадает.');
-   checkMatch(match);return value;
+   checkMatch(match,raw,true);return value;
   }
   async function encode(match,revision){
    const payload={version:VERSION,kind:KIND,revision,match};
@@ -101,7 +110,7 @@
   function commit({expectedRaw,match,replaceMatchId=null}={}){
    // Snapshot synchronously: caller mutations while awaiting a lock/digest must
    // not change the action that is eventually committed.
-   let snapshot;try{snapshot=JSON.parse(bounded(JSON.stringify(match)));checkMatch(snapshot);}catch(e){return Promise.reject(e);}
+   let snapshot,snapshotRaw;try{snapshotRaw=bounded(JSON.stringify(match));snapshot=JSON.parse(snapshotRaw);checkMatch(snapshot,snapshotRaw);}catch(e){return Promise.reject(e);}
    if(expectedRaw!==null&&typeof expectedRaw!=='string')return Promise.reject(error('EXPECTED_RAW_REQUIRED','Требуется точный исходный RAW.'));
    return exclusive(async()=>{
     const state=await readReceipt();
@@ -118,8 +127,9 @@
     if(storage.getItem(JOURNAL_KEY)!==null)fail('RECOVERY_REQUIRED','Сначала восстановите прерванную командную запись.');
     if(!Number.isSafeInteger(revision))fail('LIMIT','Исчерпаны ревизии.');
     const replacing=!!before&&before.match.teamFormat.id!==snapshot.teamFormat.id;
-    if(replacing&&!(replaceMatchId===before.match.teamFormat.id&&validateReplacement?.(before.match,snapshot)===true)||!replacing&&replaceMatchId!==null)fail('MATCH_CHANGED','Нельзя заменить другую командную партию без явного сохранения её архива.');
-    if(before&&validateTransition&&validateTransition(before.match,snapshot)!==true)fail('RESULT_CONFLICT','Подтверждённая привязка или статистика партии изменена.');
+    const sources=Object.freeze({before:raw,after:snapshotRaw,wrappedAfter:false});
+    if(replacing&&!(replaceMatchId===before.match.teamFormat.id&&validateReplacement?.(before.match,snapshot,sources)===true)||!replacing&&replaceMatchId!==null)fail('MATCH_CHANGED','Нельзя заменить другую командную партию без явного сохранения её архива.');
+    if(before&&validateTransition&&validateTransition(before.match,snapshot,sources)!==true)fail('RESULT_CONFLICT','Подтверждённая привязка или статистика партии изменена.');
     const next=await encode(snapshot,revision),journal=bounded(JSON.stringify(replacing?{version:2,before:raw,after:next,replaceMatchId}:{version:1,before:raw,after:next}),maxBytes*3);
     if(storage.getItem(KEY)!==raw||storage.getItem(JOURNAL_KEY)!==null)fail('CONFLICT','Командное сохранение изменилось.');
     const pendingReceipt=receipt?await writeReceipt(state.raw,raw,journal):null;
@@ -149,10 +159,11 @@
    if(value?.version!==1&&value?.version!==2)fail('INCOMPATIBLE','Неизвестная версия журнала.');
    exact(value,value.version===2?['version','before','after','replaceMatchId']:['version','before','after']);
    const before=value.before===null?null:await decode(value.before),after=await decode(value.after);
+   const sources=Object.freeze({before:value.before,after:value.after,wrappedAfter:true});
    if(after.revision!==(before?.revision||0)+1)fail('CORRUPT','Непоследовательный журнал командной записи.');
-   if(before&&validateTransition&&validateTransition(before.match,after.match)!==true)fail('RESULT_CONFLICT','Журнал изменяет подтверждённые профили или статистику.');
+   if(before&&validateTransition&&validateTransition(before.match,after.match,sources)!==true)fail('RESULT_CONFLICT','Журнал изменяет подтверждённые профили или статистику.');
    if(value.version===1){if(before&&before.match.teamFormat.id!==after.match.teamFormat.id)fail('CORRUPT','Изменена партия в обычном журнале.');}
-   else if(!before||value.replaceMatchId!==before.match.teamFormat.id||before.match.teamFormat.id===after.match.teamFormat.id||validateReplacement?.(before.match,after.match)!==true)fail('CORRUPT','Журнал не сохраняет предыдущую партию.');
+   else if(!before||value.replaceMatchId!==before.match.teamFormat.id||before.match.teamFormat.id===after.match.teamFormat.id||validateReplacement?.(before.match,after.match,sources)!==true)fail('CORRUPT','Журнал не сохраняет предыдущую партию.');
    return value;
   }
   function recover({expectedJournal,choice}={}){return exclusive(async()=>{

@@ -56,7 +56,19 @@ function fits(g){
    // Approx is a separate interaction: same HTML and pixel-identical screenshots.
    const approx=async p=>{await p.evaluate(()=>{Object.assign(options,{modes:['approx'],dice:false,difficulty:'easy'});newGame();game.dice=false;roll();const q=QUIP_APPROX_QUESTIONS.find(q=>q.id==='approx-0007');if(!q)throw Error('Missing published question fixture');game.current.question={...q};game.current.word=q.question;game.current.cardId=q.id;render();stopTicking()});await F.settled(p);};
    await approx(before);const oldApprox=await before.screenshot({path:folder+'/'+w+'-approx-before.png',animations:'disabled'});
-   await approx(after);const newApprox=await after.screenshot({path:folder+'/'+w+'-approx-after.png',animations:'disabled'});assert.ok(oldApprox.equals(newApprox),'Approx pixels changed '+w);
+   await approx(after);const newApprox=await after.screenshot({path:folder+'/'+w+'-approx-after.png',animations:'disabled'});
+   if(!oldApprox.equals(newApprox)){
+    // Preserve the FIRST mismatch and its exact assertion. Repeated captures
+    // diagnose paint/font instability; they can never turn a failure into PASS.
+    const evidence=[];
+    for(const [version,page,first]of [['before',before,oldApprox],['after',after,newApprox]]){
+     const state=await page.evaluate(()=>({fonts:[...document.fonts].map(f=>({family:f.family,weight:f.weight,status:f.status})),fontStatus:document.fonts.status,animations:document.getAnimations().map(a=>({state:a.playState,time:a.currentTime,timing:a.effect.getComputedTiming()})),nodes:[...document.querySelectorAll('.match-team-meta,.match-team-meta small,.match-team-label,.mode-name,.play-title,.approx-question')].map(n=>{const s=getComputedStyle(n);return {text:n.textContent,rect:JSON.parse(JSON.stringify(n.getBoundingClientRect())),font:s.font,spacing:s.letterSpacing,transform:s.transform,opacity:s.opacity};})}));
+     const repeated=await page.screenshot({path:folder+'/'+w+'-approx-'+version+'-repeat.png',animations:'disabled'});
+     evidence.push({version,...state,samePageRepeatExact:first.equals(repeated)});
+    }
+    fs.writeFileSync(folder+'/'+w+'-approx-paint.json',JSON.stringify({width:w,height:h,playwright:require('playwright-core/package.json').version,chromium:browser.version(),evidence},null,2));
+   }
+   assert.ok(oldApprox.equals(newApprox),'Approx pixels changed '+w);
    // Every displayed V2 condition fits at the smallest portrait, without scroll.
    if(w===320){const ids=await after.evaluate(()=>QUIP_MODIFIERS_V2.map(r=>r.id));for(const modifier of ids){await F.fixture(after,{mode:'mime',modifier});await F.phase(after,'play');fits(await F.geometry(after));}}
    if(w===320){

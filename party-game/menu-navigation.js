@@ -81,7 +81,9 @@ function contentCountLabel(n){return n.toLocaleString('ru-RU')+' заданий'
 function contentPackCount(pack){return new Set(pack.criteria.cardIds).size;}
 function gameTypeCountSnapshot(){
  const {duration,targetScore,rounds,modifierChance,...catalogSettings}=options;
- const key=JSON.stringify(catalogSettings);
+ // Category preferences affect only the general count, never theme eligibility.
+ const selected=baseContentPackSelection(catalogSettings.contentPack);
+ const key=JSON.stringify({...catalogSettings,contentPack:selected?{id:selected.id,version:selected.version}:null});
  if(!gameTypeCountCache||gameTypeCountCache.cards!==PARTY_CARDS||gameTypeCountCache.questions!==QUIP_APPROX_QUESTIONS||gameTypeCountCache.packs!==QUIP_CONTENT_PACKS)
   gameTypeCountCache={cards:PARTY_CARDS,questions:QUIP_APPROX_QUESTIONS,packs:QUIP_CONTENT_PACKS,entries:new Map()};
  const cache=gameTypeCountCache.entries;
@@ -101,11 +103,12 @@ function gameTypeCountSnapshot(){
   if(cache.size>=8)cache.delete(cache.keys().next().value);
   cache.set(key,snapshot);
  }
- return cache.get(key);
+ const snapshot=cache.get(key),preferences=readGeneralCategoryPreferences();
+ return {...snapshot,general:preferences.problem?null:preferences.policy.excluded.length?generalCategoryCounts(latestGeneralPackSelection(),preferences.policy).available:snapshot.general};
 }
 function renderGameTypeCounts(){
  try{const counts=gameTypeCountSnapshot();
-  $('standard-content-count').textContent=contentCountLabel(counts.general);
+  $('standard-content-count').textContent=counts.general===null?'Настройки защищены':contentCountLabel(counts.general);
   $('thematic-content-count').textContent=contentCountLabel(counts.thematic);
  }catch{
   $('standard-content-count').textContent='Количество недоступно';
@@ -114,7 +117,7 @@ function renderGameTypeCounts(){
 }
 function openGameType(){renderGameTypeCounts();setScene('game-type');}
 function rememberPackSettings(){
- const selection=options.contentPack,key=selection.id+'@'+selection.version;
+ const selection=baseContentPackSelection(options.contentPack),key=selection.id+'@'+selection.version;
  options.packPreferences={...(options.packPreferences||{}),[key]:{modes:options.modes.slice(),promptTypes:options.promptTypes.slice()}};
 }
 function changeSetupPack(selection,from){

@@ -84,6 +84,14 @@ test('size uses UTF-8 bytes; invalid payloads, validator failures and replacemen
  const big={...match(),text:'я'.repeat(800)},limited=h.make({maxBytes:1024,validateMatch:m=>m.fixtureOnly===true});
  await assert.rejects(limited.commit({expectedRaw:old.raw,match:big}),e=>e.code==='LIMIT');assert.equal(h.map.get(S.KEY),old.raw);
 });
+test('UTF-8 size boundary preserves RAW for ASCII, Cyrillic, BMP, astral and lone surrogates',async()=>{
+ for(const limit of [1024,2048])for(const unit of ['a','я','ह','😀','\ud800','\udc00','aяह😀\ud800'])for(const length of [Math.floor(limit/3)-1,Math.floor(limit/3),Math.floor(limit/3)+1,Math.floor(limit/2)-1,Math.floor(limit/2)+1,limit-1,limit,limit+1]){
+  const h=harness(),raw=unit.repeat(length);h.map.set(S.KEY,raw);
+  const result=await h.make({maxBytes:limit}).load();
+  assert.equal(result.status,'blocked');assert.equal(result.reason,Buffer.byteLength(raw,'utf8')>limit?'LIMIT':'CORRUPT',JSON.stringify({unit,length,limit}));
+  assert.equal(h.map.get(S.KEY),raw);assert.equal(h.map.has(S.JOURNAL_KEY),false);
+ }
+});
 test('failure before journal verification never writes the primary slot',async()=>{
  for(const fault of ['throw','silent','different']){
   const h=harness(),set=h.storage.setItem;h.storage.setItem=(k,v)=>{if(k===S.JOURNAL_KEY){if(fault==='throw')throw Error('quota');if(fault==='silent')return;if(fault==='different')return set(k,'UNTRUSTED');}return set(k,v);};
@@ -101,6 +109,12 @@ test('write failures preserve the verified before/after journal, explicit recove
   h.storage.setItem=set;h.storage.removeItem=remove;
   const recovered=await s.recover({expectedJournal:pending.journal,choice});assert.equal(recovered.raw,choice==='keep-before'?old.raw:pending.after);assert.equal(recovered.match.turn,choice==='keep-before'?0:1);assert.equal(h.map.has(S.JOURNAL_KEY),false);
  }
+});
+test('transition and replacement callbacks receive exact immutable JSON sources through commit and recovery',async()=>{
+ const h=harness(),seen=[];const check=(before,after,source)=>{assert(Object.isFrozen(source));assert.deepEqual(JSON.parse(source.before).match,before);assert.deepEqual(source.wrappedAfter?JSON.parse(source.after).match:JSON.parse(source.after),after);seen.push(source.wrappedAfter);return true;};
+ const store=h.make({validateTransition:check,validateReplacement:check}),old=await store.commit({expectedRaw:null,match:match()}),next=match([1,1,1],1);next.teamFormat=F.create(names,{id:'source-replacement-fixture-0001',random:()=>0});
+ const remove=h.storage.removeItem;h.storage.removeItem=()=>{throw Error('retain journal')};await assert.rejects(store.commit({expectedRaw:old.raw,match:next,replaceMatchId:old.match.teamFormat.id}),/retain journal/);h.storage.removeItem=remove;
+ const pending=await store.pending();assert.equal(pending.status,'pending');await store.recover({expectedJournal:pending.journal,choice:'keep-after'});assert(seen.includes(false)&&seen.includes(true),'bare commit and envelope recovery both retain their actual JSON');assert.equal((await store.load()).match.turn,1);
 });
 test('first creation can recover to empty without touching an existing duel',async()=>{
  const h=harness(),remove=h.storage.removeItem;h.storage.removeItem=()=>{throw Error('remove');};

@@ -18,6 +18,7 @@
  let renderedStamp=viewStamp();
  const projectionCache=new Map();
  function refreshOptions(){
+  if(activeScene==='wizard'&&baseContentPackSelection(options.contentPack)?.id==='general'&&!setupCategoryProblem(options.contentPack))options.contentPack=setupCategorySelection(options.contentPack);
   const next=viewStamp();
   if(!renderedStamp||Object.keys(next).some(key=>next[key]!==renderedStamp[key])){
    // Cache only read-only results of the real renderer APIs, per exact
@@ -56,7 +57,7 @@
  scene.innerHTML='<header class="wizard-header"><button type="button" id="wizard-back">‹ НАЗАД</button><span>КВИП</span></header>'+
   '<nav class="wizard-steps" aria-label="Этапы создания партии">'+titles.map((t,i)=>'<button type="button" data-wizard-step="'+(i+1)+'" aria-label="Этап '+(i+1)+' из 4: '+t+'"><b aria-hidden="true">'+(i+1)+'</b><span>'+t+'</span></button>').join('')+'</nav>'+
   '<div id="wizard-scroll" class="wizard-scroll"><div class="wizard-page"><p id="wizard-kicker" class="section-kicker" hidden></p><h1 id="wizard-title" tabindex="-1"></h1>'+
-  '<section data-wizard-page="1"><div id="wizard-catalog"></div><div id="wizard-themes" hidden><div id="wizard-theme-copy"></div><div id="wizard-theme-list"></div></div><p id="wizard-pack-current"></p></section>'+
+  '<section data-wizard-page="1"><div id="wizard-catalog"></div><div id="wizard-themes" hidden><div id="wizard-theme-copy"></div><div id="wizard-theme-list"></div></div><p id="wizard-pack-current"></p><details id="wizard-categories" class="wizard-categories"><summary id="wizard-category-summary">КАТЕГОРИИ СЛОВАРЯ<span id="wizard-category-count" aria-live="polite"></span></summary><div class="wizard-category-body"><p id="wizard-category-definition">Уникальные задания всего набора, по всем режимам, типам и сложностям. Задание исключается, если выключен хотя бы один его тег. Задания без тематической разметки остаются доступны.</p><button id="wizard-category-all" type="button" class="button button-secondary">ВКЛЮЧИТЬ ВСЕ</button><div id="wizard-category-list"></div><p id="wizard-category-status" role="status"></p></div></details></section>'+
   '<section data-wizard-page="2"><div class="wizard-formats" role="group" aria-label="Формат партии"><button id="wizard-format-duel" type="button" aria-pressed="true">1 НА 1</button><button id="wizard-format-teams" type="button" aria-pressed="false" disabled>2 НА 2</button></div><div id="wizard-players"></div><div id="wizard-award"></div></section>'+
   '<section data-wizard-page="3"><div id="wizard-difficulty"></div><div id="wizard-finish"></div><div id="wizard-time"></div><div class="wizard-mode-heading"><button type="button" id="wizard-mode-settings">НАСТРОЙКИ РЕЖИМОВ ↗</button></div><h2>АКТИВНЫЕ РЕЖИМЫ</h2><div id="wizard-modes"></div><details id="wizard-extra"><summary>ДОПОЛНИТЕЛЬНЫЕ ПРАВИЛА</summary><div id="wizard-extra-rules"></div><h3>ЧТО ЗАГАДЫВАТЬ</h3><div id="wizard-content"></div></details></section>'+
   '<section data-wizard-page="4"><p>Проверьте настройки. Кнопка ниже начнёт настоящую партию.</p><dl id="wizard-summary"></dl><div id="wizard-start-notice"></div></section>'+
@@ -99,7 +100,7 @@
   for(const mode of MODE_LIST){
    const row=scene.querySelector('[data-wizard-rule="'+mode.id+'"]'),config=getModeConfig(mode.id),guide=rulesGuidePage(mode.id);
    const input=[...$('mode-toggles').querySelectorAll('input')].find(node=>node.value===mode.id);
-   const availability=input?{available:!input.disabled,reason:input.closest('label').title}:
+   const availability=input?{available:!input.disabled&&input.dataset.categoryUnavailable!=='true',reason:input.closest('label').title}:
     packModeAvailability(options.contentPack,{...options,...setupSongPolicy(options)},mode.id);
    const missingSource=mode.id==='sing'&&!songAvailable;
    const active=options.modes.includes(mode.id)&&availability.available&&!missingSource;
@@ -113,9 +114,36 @@
   }
   // Source controls and their real eligibility were rendered above.
  }
+ let categoryMarkupStamp='';
+ function renderGeneralCategories(){
+  const box=$('wizard-categories'),hidden=themes||baseContentPackSelection(options.contentPack)?.id!=='general';box.hidden=hidden;if(hidden)return;
+  const preferences=readGeneralCategoryPreferences();let counts,problem=preferences.problem;
+  try{counts=generalCategoryCounts(options.contentPack,preferences.policy||QUIP_GENERAL_CATEGORIES_ALL);}catch{problem=problem||'Набор категорий недоступен.';}
+  const rows=counts?.categories||[],stamp=JSON.stringify(rows.map(({id,name,count})=>[id,name,count]));
+  if(stamp!==categoryMarkupStamp){
+   $('wizard-category-list').innerHTML=rows.map(row=>'<label class="wizard-category"><input type="checkbox" data-category-id="'+row.id+'"><span><b>'+escapeHTML(row.name)+'</b><small>'+row.count.toLocaleString('ru-RU')+' в наборе</small></span></label>').join('');categoryMarkupStamp=stamp;
+  }
+  for(const input of $('wizard-category-list').querySelectorAll('input'))input.checked=!!preferences.policy&&!preferences.policy.excluded.includes(input.dataset.categoryId);
+  $('wizard-category-list').hidden=!!problem;$('wizard-category-all').disabled=!!problem||!preferences.policy?.excluded.length;
+  const count=problem?'Настройки защищены':counts.available.toLocaleString('ru-RU')+' из '+counts.total.toLocaleString('ru-RU');
+  if($('wizard-category-count').textContent!==count)$('wizard-category-count').textContent=count;
+  $('wizard-category-status').textContent=problem;
+  if(problem){$('start-game').disabled=true;$('setup-mode-notice').hidden=false;$('setup-mode-notice').textContent=problem;}
+ }
+ function changeCategories(excluded){
+  try{writeGeneralCategoryPreferences(excluded);sfx('button');}catch(error){toast(error.message);}
+  renderOptions();
+ }
+ $('wizard-category-list').addEventListener('change',event=>{
+  const input=event.target.closest('input[data-category-id]');if(!input)return;
+  const preferences=readGeneralCategoryPreferences();if(preferences.problem){renderOptions();return;}
+  const excluded=new Set(preferences.policy.excluded);if(input.checked)excluded.delete(input.dataset.categoryId);else excluded.add(input.dataset.categoryId);changeCategories([...excluded]);
+ });
+ $('wizard-category-all').addEventListener('click',()=>changeCategories([]));
+ window.addEventListener('storage',event=>{if(event.key===QUIP_GENERAL_CATEGORY_KEY&&activeScene==='wizard')renderOptions();});
  function renderMeta(){
   if(!installed)return;
-  renderGameTypeCounts();
+  renderGameTypeCounts();renderGeneralCategories();
   let pack;try{pack=getContentPack(options.contentPack);}catch{}
   $('wizard-pack-current').textContent='Выбрано: '+(pack?.name||'Набор недоступен');
   const profiles=selectedPlayerProfiles();

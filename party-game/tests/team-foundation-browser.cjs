@@ -46,6 +46,11 @@ const URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/';
   // A Web Locks-free environment must block saving rather than silently weaken
   // concurrency. Test injection does not change the browser's real navigator.
   const rejected=await b.evaluate(()=>{try{QuipTeamStorage.create({storage:localStorage,validateMatch:()=>false,exclusive:'invalid'});return null;}catch(e){return e.code;}});assert.equal(rejected,'DEPENDENCY');
+  // A retained native connection must yield to a future schema in another tab.
+  // The same store instance must then block, preserving the exact saved bytes.
+  await a.evaluate(async()=>new Promise((resolve,reject)=>{const request=indexedDB.open(QuipTeamStorage.RECEIPT_DB,2);request.onupgradeneeded=()=>request.result.createObjectStore('future-receipts');request.onsuccess=()=>{request.result.close();resolve()};request.onerror=()=>reject(request.error)}));
+  const future=await b.evaluate(()=>teamStore.load());assert.equal(future.status,'blocked');assert.equal(await b.evaluate(()=>localStorage.getItem(QuipTeamStorage.KEY)),latest.raw);
+  assert.equal(await b.evaluate(async()=>new Promise((resolve,reject)=>{const request=indexedDB.open(QuipTeamStorage.RECEIPT_DB,2);request.onsuccess=()=>{const kept=request.result.objectStoreNames.contains('future-receipts');request.result.close();resolve(kept)};request.onerror=()=>reject(request.error)})),true);
   await context.close();console.log('TASK028 foundation PASS: real Web Locks / two tabs / conflict / localStorage / SHA-256 / restart offline / duel exact RAW');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
