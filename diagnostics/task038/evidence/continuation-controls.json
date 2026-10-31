@@ -1540,5 +1540,428 @@
       },
       "limitation": "Single profiled START includes instrumentation, separate native waits/GC and no formal n20 gate. After latency133.4ms versus128.2ms is not an overall improvement claim;6 native transactions/2strict writes preserved in both."
     }
+  },
+  "ownerHandoff20261031": {
+    "date": "2026-10-31",
+    "testedCodeHead": "8942ffae26614d58db0b97cb58b2742d7bd92f75",
+    "main": "af9eb4723a97c38394b6b9f0310506abb856ef4e",
+    "status": "Готов к ручной приёмке владельцем с документированным исключением по производительности",
+    "ownerException": {
+      "run": 41183606030,
+      "job": 124485902394,
+      "size": 7000,
+      "format": "2x2",
+      "medianMs": 203.3,
+      "p95Ms": 257.4,
+      "excessMs": 3.3,
+      "ciConclusion": "failure",
+      "scope": "Owner accepted only this3.3ms median overrun on this code SHA, conditional on successful functional/save-protection checks. Both passed. No broader waiver or further optimization.",
+      "limitsRemainMs": [
+        200,
+        350
+      ]
+    },
+    "stats": [
+      {
+        "event": "push",
+        "size": 7000,
+        "run": 41183600478,
+        "artifact": 13035794155,
+        "rows": [
+          {
+            "variant": "before",
+            "kind": "duel",
+            "n": 20,
+            "median": 134.2,
+            "p95": 155.3,
+            "max": 163.4
+          },
+          {
+            "variant": "after",
+            "kind": "duel",
+            "n": 20,
+            "median": 65.9,
+            "p95": 86.1,
+            "max": 94.4
+          },
+          {
+            "variant": "before",
+            "kind": "teams",
+            "n": 20,
+            "median": 312.8,
+            "p95": 404.9,
+            "max": 429.7
+          },
+          {
+            "variant": "after",
+            "kind": "teams",
+            "n": 20,
+            "median": 164.8,
+            "p95": 204.7,
+            "max": 239.6
+          }
+        ]
+      },
+      {
+        "event": "push",
+        "size": 15000,
+        "run": 41183600478,
+        "artifact": 13035398942,
+        "rows": [
+          {
+            "variant": "before",
+            "kind": "duel",
+            "n": 20,
+            "median": 415.8,
+            "p95": 428.4,
+            "max": 432.1
+          },
+          {
+            "variant": "after",
+            "kind": "duel",
+            "n": 20,
+            "median": 74,
+            "p95": 96.8,
+            "max": 110.1
+          },
+          {
+            "variant": "before",
+            "kind": "teams",
+            "n": 20,
+            "median": 647,
+            "p95": 699.6,
+            "max": 723.4
+          },
+          {
+            "variant": "after",
+            "kind": "teams",
+            "n": 20,
+            "median": 198,
+            "p95": 278.9,
+            "max": 325.5
+          }
+        ]
+      },
+      {
+        "event": "pr",
+        "size": 7000,
+        "run": 41183606030,
+        "artifact": 13036066179,
+        "rows": [
+          {
+            "variant": "before",
+            "kind": "duel",
+            "n": 20,
+            "median": 151.2,
+            "p95": 175.3,
+            "max": 205.9
+          },
+          {
+            "variant": "after",
+            "kind": "duel",
+            "n": 20,
+            "median": 70.1,
+            "p95": 81.3,
+            "max": 91
+          },
+          {
+            "variant": "before",
+            "kind": "teams",
+            "n": 20,
+            "median": 401.4,
+            "p95": 431.6,
+            "max": 501
+          },
+          {
+            "variant": "after",
+            "kind": "teams",
+            "n": 20,
+            "median": 203.3,
+            "p95": 257.4,
+            "max": 259,
+            "error": "AssertionError [ERR_ASSERTION]: real_start budget {\"n\":20,\"median\":203.3,\"p95\":257.4,\"max\":259}\n    at journey (/home/runner/work/quantum-portal/quantum-portal/diagnostics/task038/perf.cjs:75:93)\n    at async main (/home/runner/work/quantum-portal/quantum-portal/diagnostics/task038/perf.cjs:79:1623)"
+          }
+        ]
+      },
+      {
+        "event": "pr",
+        "size": 15000,
+        "run": 41183606030,
+        "artifact": 13036990322,
+        "rows": [
+          {
+            "variant": "before",
+            "kind": "duel",
+            "n": 20,
+            "median": 325,
+            "p95": 336.2,
+            "max": 340.4
+          },
+          {
+            "variant": "after",
+            "kind": "duel",
+            "n": 20,
+            "median": 67.4,
+            "p95": 89.2,
+            "max": 105.6
+          },
+          {
+            "variant": "before",
+            "kind": "teams",
+            "n": 20,
+            "median": 518.4,
+            "p95": 584,
+            "max": 584.6
+          },
+          {
+            "variant": "after",
+            "kind": "teams",
+            "n": 20,
+            "median": 182.3,
+            "p95": 272.1,
+            "max": 274.6
+          }
+        ]
+      }
+    ],
+    "ci": [
+      {
+        "id": 41183606107,
+        "name": "КВИП TASK036 stepper acceptance",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 2,
+        "total": 2
+      },
+      {
+        "id": 41183606047,
+        "name": "КВИП TASK034 mobile baseline and acceptance",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 5,
+        "total": 5
+      },
+      {
+        "id": 41183606030,
+        "name": "КВИП TASK038 dictionary categories acceptance",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "failure",
+        "attempt": 1,
+        "success": 7,
+        "total": 8
+      },
+      {
+        "id": 41183606002,
+        "name": "КВИП TASK037 participant cards acceptance",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 4,
+        "total": 4
+      },
+      {
+        "id": 41183606231,
+        "name": "КВИП game checks",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 16,
+        "total": 16
+      },
+      {
+        "id": 41183606087,
+        "name": "КВИП Android wizard performance",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "skipped",
+        "attempt": 1,
+        "success": 0,
+        "total": 0
+      },
+      {
+        "id": 41183606021,
+        "name": "Quantum Portal Smoke Tests",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 1,
+        "total": 1
+      },
+      {
+        "id": 41183606067,
+        "name": "КВИП TASK035 timer and range acceptance",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 3,
+        "total": 3
+      },
+      {
+        "id": 41183606126,
+        "name": "КВИП native touch highlight hotfix",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 2,
+        "total": 2
+      },
+      {
+        "id": 41183600485,
+        "name": "КВИП game checks",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 16,
+        "total": 16
+      },
+      {
+        "id": 41183600478,
+        "name": "КВИП TASK038 dictionary categories acceptance",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 8,
+        "total": 8
+      },
+      {
+        "id": 41183600486,
+        "name": "Quantum Portal Smoke Tests",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "success": 1,
+        "total": 1
+      }
+    ],
+    "artifacts": [
+      {
+        "id": 13036580515,
+        "name": "quip-task038-landscape",
+        "digest": "sha256:0eae41dbe0a5707118dd18381d8b394e7b6e55a2e7c869f13b853ebf6c669d35",
+        "run": 41183600478
+      },
+      {
+        "id": 13036500520,
+        "name": "quip-task038-upgrade-chromium",
+        "digest": "sha256:7ce2b9985d964af51e87df85e225445e18015f8fdbbde05246b496847221d82c",
+        "run": 41183600478
+      },
+      {
+        "id": 13036296206,
+        "name": "quip-task038-iphone-webkit",
+        "digest": "sha256:8652bc8e7b923343ba4f470c24c42611ea5230a34ee1e2a3ca9cec7780b37f78",
+        "run": 41183600478
+      },
+      {
+        "id": 13036070844,
+        "name": "quip-task038-upgrade-webkit",
+        "digest": "sha256:0598b653c68f13d2a117753c8f160425903bfbdc18bd638baa3a4508378eaf86",
+        "run": 41183600478
+      },
+      {
+        "id": 13035960956,
+        "name": "quip-task038-android-compact",
+        "digest": "sha256:5b9eb1a90205ccbc9110d22fb23541b60da7518587e7bb6e54a1abc380e52c91",
+        "run": 41183600478
+      },
+      {
+        "id": 13035955992,
+        "name": "quip-task038-android-tall",
+        "digest": "sha256:f29867c6f7670a73f1f5c3c783cbe69d72c26a6ffc2a2030da9b26f43fa29c8a",
+        "run": 41183600478
+      },
+      {
+        "id": 13035794155,
+        "name": "quip-task038-cpu4-7000",
+        "digest": "sha256:1567096dc9c6d9e538e30c74f2a069a10e8c4c3f9d27211a7cec219cf6bbb3b7",
+        "run": 41183600478
+      },
+      {
+        "id": 13035398942,
+        "name": "quip-task038-cpu4-15000",
+        "digest": "sha256:d2c4b12463e5b0555c2bfd143cb7942b5646d6054635afce88d700d269964972",
+        "run": 41183600478
+      },
+      {
+        "id": 13036990322,
+        "name": "quip-task038-cpu4-15000",
+        "digest": "sha256:791ae27d800c094ed6aa7b3551d86c0ab9a81fc1ce3caea8a7c94803f2b52dbf",
+        "run": 41183606030
+      },
+      {
+        "id": 13036885540,
+        "name": "quip-task038-iphone-webkit",
+        "digest": "sha256:edc75ebbe07e9019fffd627ecfd7a5abd64cea7c095a8803ec49f02b137a7821",
+        "run": 41183606030
+      },
+      {
+        "id": 13036805954,
+        "name": "quip-task038-landscape",
+        "digest": "sha256:1ef38507a2ffe535ad1735a0bc47a731e8077451a8f42bb95645fbf66eada9a1",
+        "run": 41183606030
+      },
+      {
+        "id": 13036376516,
+        "name": "quip-task038-upgrade-chromium",
+        "digest": "sha256:413296fed9aae32d5ccf9f92ad6073ed50caaa084f7287e157c60596cae222b9",
+        "run": 41183606030
+      },
+      {
+        "id": 13036241863,
+        "name": "quip-task038-upgrade-webkit",
+        "digest": "sha256:61cd65e4985a9806052e7502e646cd1be655a7ef7b0a4a28b2a83c6a599252b9",
+        "run": 41183606030
+      },
+      {
+        "id": 13036066179,
+        "name": "quip-task038-cpu4-7000",
+        "digest": "sha256:e56064b5eda579cdd020774a73e77da46a8df42c13a70e84f30edc731e8b8faf",
+        "run": 41183606030
+      },
+      {
+        "id": 13036061657,
+        "name": "quip-task038-android-compact",
+        "digest": "sha256:605967318e572bc27a41d43f338380317c0f41a9598b41497dd4e7c0134d3e33",
+        "run": 41183606030
+      },
+      {
+        "id": 13036016830,
+        "name": "quip-task038-android-tall",
+        "digest": "sha256:1f2cb23be47dcb1a8220cf39f6c6588a661eb68bc6e6834a91b71d484bbdad4d",
+        "run": 41183606030
+      }
+    ],
+    "integrity": "Current-head successful logic/source/catalog guards plus teams/profiles/PWA browser tests preserve editorial sources, historical IDs, rules/RNG, exact old RAW, profiles/statistics, paused unfinished parties, archives/history/ledger, explicit result confirmation, backup/import/export, stale-tab CAS/Web Locks, strict receipts/journal recovery and offline restart. No additional tests launched for handoff.",
+    "remainingRisks": [
+      "Physical Android not yet tested.",
+      "Historical tagging is incomplete; untagged cards intentionally remain available.",
+      "The single accepted performance gate stays red. Historical loader cancellations and raster text-edge variance have unproven browser-internal causes; current4performancejobs completed boots and both current raster jobs passed first attempt."
+    ],
+    "physicalAndroid": [
+      "Install the test PWA on owner's actual Android; record model/OS/Chrome versions.",
+      "Touch profile/category controls; check long names, stepper, scrolling, landscape and native tap highlight.",
+      "Disable/enable categories including videogames/memes, restart and inspect preference persistence; exercise all8modes and both1x1/2x2 formats.",
+      "Use test profiles with a backup; start/archive/resume games, inspect scores/statistics/history and explicit final confirmation.",
+      "Check paused/unpaused timers, Android Back and offline restart; test upgrade/rollback on test origin without publishing production."
+    ],
+    "documentationOnly": {
+      "runtimeTestsWorkflowsThresholdsChanged": false,
+      "skipNewCI": true,
+      "commitMessageMarker": "[skip ci]",
+      "purpose": "Avoid a new full matrix for report-only edits as owner requested; all CI results remain pinned to testedCodeHead. Final PR documentation head is reported separately."
+    }
   }
 }
