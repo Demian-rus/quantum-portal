@@ -7483,40 +7483,40 @@
     "estimationPolicyVersion": 3,
     "categoryOverrides": {
       "word-000001": [
-        "general"
+        "everyday"
       ],
       "word-000002": [
-        "general"
+        "everyday"
       ],
       "word-000003": [
-        "general"
+        "everyday"
       ],
       "word-000004": [
-        "general"
+        "everyday"
       ],
       "word-000005": [
         "food"
       ],
       "word-000006": [
-        "general"
+        "everyday"
       ],
       "word-000007": [
-        "general"
+        "everyday"
       ],
       "word-000008": [
-        "general"
+        "everyday"
       ],
       "word-000009": [
-        "general"
+        "everyday"
       ],
       "word-000010": [
-        "general"
+        "everyday"
       ],
       "word-000011": [
-        "general"
+        "everyday"
       ],
       "word-000012": [
-        "general"
+        "everyday"
       ],
       "word-000013": [
         "nature",
@@ -7589,31 +7589,31 @@
         "transport"
       ],
       "word-000036": [
-        "general"
+        "everyday"
       ],
       "word-000037": [
-        "general"
+        "everyday"
       ],
       "word-000039": [
-        "general"
+        "everyday"
       ],
       "word-000040": [
-        "general"
+        "everyday"
       ],
       "word-000042": [
-        "general"
+        "everyday"
       ],
       "word-000043": [
-        "general"
+        "everyday"
       ],
       "word-000045": [
-        "general"
+        "everyday"
       ],
       "word-000046": [
-        "general"
+        "everyday"
       ],
       "word-000047": [
-        "general"
+        "everyday"
       ],
       "word-000048": [
         "animals"
@@ -7697,16 +7697,16 @@
         "animals"
       ],
       "word-000076": [
-        "general"
+        "food"
       ],
       "word-000077": [
-        "general"
+        "food"
       ],
       "word-000078": [
-        "general"
+        "food"
       ],
       "word-000079": [
-        "general"
+        "food"
       ],
       "word-000080": [
         "food"
@@ -7781,91 +7781,91 @@
         "food"
       ],
       "word-000104": [
-        "general"
+        "food"
       ],
       "word-000105": [
-        "general"
+        "food"
       ],
       "word-000106": [
-        "general"
+        "food"
       ],
       "word-000107": [
-        "general"
+        "food"
       ],
       "word-000108": [
-        "general"
+        "food"
       ],
       "word-000109": [
-        "general"
+        "food"
       ],
       "word-000110": [
-        "general"
+        "food"
       ],
       "word-000111": [
         "food"
       ],
       "word-000112": [
-        "general"
+        "food"
       ],
       "word-000113": [
-        "general"
+        "food"
       ],
       "word-000114": [
-        "general"
+        "food"
       ],
       "word-000115": [
-        "general"
+        "food"
       ],
       "word-000116": [
-        "general"
+        "food"
       ],
       "word-000117": [
-        "general"
+        "everyday"
       ],
       "word-000118": [
-        "general"
+        "everyday"
       ],
       "word-000119": [
-        "general"
+        "everyday"
       ],
       "word-000120": [
-        "general"
+        "everyday"
       ],
       "word-000121": [
-        "general"
+        "everyday"
       ],
       "word-000122": [
-        "general"
+        "everyday"
       ],
       "word-000123": [
-        "general"
+        "everyday"
       ],
       "word-000124": [
-        "general"
+        "everyday"
       ],
       "word-000125": [
-        "general"
+        "everyday"
       ],
       "word-000127": [
-        "general"
+        "everyday"
       ],
       "word-000129": [
-        "general"
+        "everyday"
       ],
       "word-000130": [
-        "general"
+        "everyday"
       ],
       "word-000131": [
-        "general"
+        "everyday"
       ],
       "word-000132": [
-        "general"
+        "everyday"
       ],
       "word-000134": [
-        "general"
+        "everyday"
       ],
       "word-000136": [
-        "general"
+        "everyday"
       ],
       "word-000137": [
         "professions",
@@ -7957,31 +7957,31 @@
         "sport"
       ],
       "word-000166": [
-        "general"
+        "nature"
       ],
       "word-000167": [
-        "general"
+        "nature"
       ],
       "word-000168": [
-        "general"
+        "nature"
       ],
       "word-000169": [
-        "general"
+        "nature"
       ],
       "word-000170": [
-        "general"
+        "nature"
       ],
       "word-000171": [
-        "general"
+        "nature"
       ],
       "word-000172": [
-        "general"
+        "nature"
       ],
       "word-000173": [
-        "general"
+        "nature"
       ],
       "word-000174": [
-        "general"
+        "nature"
       ],
       "word-000175": [
         "geography"
@@ -8122,25 +8122,25 @@
         "technology"
       ],
       "word-000223": [
-        "general"
+        "technology"
       ],
       "word-000224": [
-        "general"
+        "technology"
       ],
       "word-000225": [
-        "general"
+        "technology"
       ],
       "word-000226": [
-        "general"
+        "technology"
       ],
       "word-000227": [
-        "general"
+        "technology"
       ],
       "word-000228": [
-        "general"
+        "technology"
       ],
       "word-000229": [
-        "general"
+        "technology"
       ],
       "word-000230": [
         "animals"
@@ -8207,7 +8207,7 @@
         "everyday"
       ],
       "word-000252": [
-        "general"
+        "everyday"
       ],
       "word-000255": [
         "everyday"
@@ -8303,13 +8303,13 @@
         "transport"
       ],
       "word-000290": [
-        "general"
+        "geography"
       ],
       "word-000291": [
         "space"
       ],
       "word-000294": [
-        "general"
+        "geography"
       ],
       "word-000295": [
         "geography"
@@ -8375,79 +8375,79 @@
         "professions"
       ],
       "word-000320": [
-        "general"
+        "everyday"
       ],
       "word-000321": [
-        "general"
+        "everyday"
       ],
       "word-000322": [
-        "general"
+        "everyday"
       ],
       "word-000323": [
-        "general"
+        "everyday"
       ],
       "word-000324": [
-        "general"
+        "everyday"
       ],
       "word-000325": [
-        "general"
+        "everyday"
       ],
       "word-000326": [
-        "general"
+        "everyday"
       ],
       "word-000327": [
-        "general"
+        "everyday"
       ],
       "word-000329": [
-        "general"
+        "everyday"
       ],
       "word-000330": [
-        "general"
+        "everyday"
       ],
       "word-000332": [
         "nature"
       ],
       "word-000333": [
-        "general"
+        "everyday"
       ],
       "word-000334": [
-        "general"
+        "everyday"
       ],
       "word-000335": [
-        "general"
+        "everyday"
       ],
       "word-000336": [
-        "general"
+        "everyday"
       ],
       "word-000337": [
-        "general"
+        "everyday"
       ],
       "word-000338": [
-        "general"
+        "everyday"
       ],
       "word-000339": [
-        "general"
+        "everyday"
       ],
       "word-000340": [
-        "general"
+        "everyday"
       ],
       "word-000341": [
-        "general"
+        "everyday"
       ],
       "word-000342": [
-        "general"
+        "everyday"
       ],
       "word-000343": [
-        "general"
+        "everyday"
       ],
       "word-000344": [
-        "general"
+        "everyday"
       ],
       "word-000345": [
-        "general"
+        "everyday"
       ],
       "word-000346": [
-        "general"
+        "everyday"
       ],
       "word-000347": [
         "general"
@@ -8802,40 +8802,40 @@
         "food"
       ],
       "word-000465": [
-        "general"
+        "everyday"
       ],
       "word-000466": [
-        "general"
+        "everyday"
       ],
       "word-000467": [
-        "general"
+        "everyday"
       ],
       "word-000468": [
-        "general"
+        "everyday"
       ],
       "word-000471": [
-        "general"
+        "everyday"
       ],
       "word-000472": [
-        "general"
+        "everyday"
       ],
       "word-000474": [
         "nature"
       ],
       "word-000475": [
-        "general"
+        "everyday"
       ],
       "word-000476": [
-        "general"
+        "everyday"
       ],
       "word-000477": [
-        "general"
+        "everyday"
       ],
       "word-000478": [
-        "general"
+        "everyday"
       ],
       "word-000479": [
-        "general"
+        "everyday"
       ],
       "word-000480": [
         "everyday"
@@ -8869,61 +8869,61 @@
         "everyday"
       ],
       "word-000491": [
-        "general"
+        "everyday"
       ],
       "word-000492": [
-        "general"
+        "everyday"
       ],
       "word-000493": [
-        "general"
+        "everyday"
       ],
       "word-000494": [
-        "general"
+        "everyday"
       ],
       "word-000495": [
-        "general"
+        "everyday"
       ],
       "word-000496": [
-        "general"
+        "everyday"
       ],
       "word-000497": [
-        "general"
+        "everyday"
       ],
       "word-000498": [
-        "general"
+        "everyday"
       ],
       "word-000499": [
-        "general"
+        "everyday"
       ],
       "word-000500": [
-        "general"
+        "everyday"
       ],
       "word-000501": [
-        "general"
+        "everyday"
       ],
       "word-000502": [
-        "general"
+        "everyday"
       ],
       "word-000503": [
-        "general"
+        "everyday"
       ],
       "word-000504": [
-        "general"
+        "everyday"
       ],
       "word-000505": [
         "sport"
       ],
       "word-000506": [
-        "general"
+        "everyday"
       ],
       "word-000507": [
         "everyday"
       ],
       "word-000508": [
-        "general"
+        "everyday"
       ],
       "word-000509": [
-        "general"
+        "everyday"
       ],
       "word-000510": [
         "everyday"
@@ -8953,28 +8953,28 @@
         "everyday"
       ],
       "word-000529": [
-        "general"
+        "everyday"
       ],
       "word-000530": [
-        "general"
+        "everyday"
       ],
       "word-000531": [
-        "general"
+        "everyday"
       ],
       "word-000532": [
-        "general"
+        "everyday"
       ],
       "word-000533": [
-        "general"
+        "everyday"
       ],
       "word-000534": [
-        "general"
+        "everyday"
       ],
       "word-000535": [
-        "general"
+        "everyday"
       ],
       "word-000536": [
-        "general"
+        "everyday"
       ],
       "word-000537": [
         "general"
@@ -9058,28 +9058,28 @@
         "language"
       ],
       "word-000564": [
-        "general"
+        "language"
       ],
       "word-000565": [
-        "general"
+        "language"
       ],
       "word-000566": [
-        "general"
+        "language"
       ],
       "word-000567": [
-        "general"
+        "language"
       ],
       "word-000568": [
-        "general"
+        "language"
       ],
       "word-000569": [
-        "general"
+        "language"
       ],
       "word-000570": [
-        "general"
+        "language"
       ],
       "word-000571": [
-        "general"
+        "language"
       ],
       "word-000572": [
         "sport"
@@ -9124,7 +9124,7 @@
         "sport"
       ],
       "word-000590": [
-        "general"
+        "sport"
       ],
       "word-000592": [
         "music"
@@ -9184,97 +9184,97 @@
         "music"
       ],
       "word-000612": [
-        "general"
+        "everyday"
       ],
       "word-000613": [
-        "general"
+        "everyday"
       ],
       "word-000614": [
-        "general"
+        "everyday"
       ],
       "word-000615": [
-        "general"
+        "everyday"
       ],
       "word-000616": [
-        "general"
+        "everyday"
       ],
       "word-000617": [
-        "general"
+        "everyday"
       ],
       "word-000618": [
-        "general"
+        "everyday"
       ],
       "word-000619": [
-        "general"
+        "everyday"
       ],
       "word-000620": [
-        "general"
+        "everyday"
       ],
       "word-000621": [
-        "general"
+        "everyday"
       ],
       "word-000623": [
-        "general"
+        "everyday"
       ],
       "word-000624": [
-        "general"
+        "everyday"
       ],
       "word-000625": [
-        "general"
+        "everyday"
       ],
       "word-000626": [
-        "general"
+        "everyday"
       ],
       "word-000627": [
-        "general"
+        "everyday"
       ],
       "word-000628": [
-        "general"
+        "everyday"
       ],
       "word-000629": [
-        "general"
+        "everyday"
       ],
       "word-000630": [
-        "general"
+        "everyday"
       ],
       "word-000631": [
-        "general"
+        "everyday"
       ],
       "word-000632": [
-        "general"
+        "everyday"
       ],
       "word-000633": [
-        "general"
+        "everyday"
       ],
       "word-000634": [
-        "general"
+        "everyday"
       ],
       "word-000635": [
-        "general"
+        "everyday"
       ],
       "word-000636": [
-        "general"
+        "everyday"
       ],
       "word-000637": [
-        "general"
+        "everyday"
       ],
       "word-000638": [
-        "general"
+        "everyday"
       ],
       "word-000640": [
-        "general"
+        "everyday"
       ],
       "word-000641": [
-        "general"
+        "everyday"
       ],
       "word-000642": [
-        "general"
+        "everyday"
       ],
       "word-000644": [
-        "general"
+        "everyday"
       ],
       "word-000645": [
-        "general"
+        "everyday"
       ],
       "word-000646": [
         "nature"
@@ -9383,85 +9383,85 @@
         "nature"
       ],
       "word-000681": [
-        "general"
+        "everyday"
       ],
       "word-000682": [
-        "general"
+        "everyday"
       ],
       "word-000683": [
-        "general"
+        "everyday"
       ],
       "word-000684": [
-        "general"
+        "everyday"
       ],
       "word-000685": [
-        "general"
+        "everyday"
       ],
       "word-000686": [
-        "general"
+        "everyday"
       ],
       "word-000687": [
-        "general"
+        "everyday"
       ],
       "word-000688": [
-        "general"
+        "everyday"
       ],
       "word-000689": [
-        "general"
+        "everyday"
       ],
       "word-000690": [
-        "general"
+        "everyday"
       ],
       "word-000691": [
-        "general"
+        "everyday"
       ],
       "word-000692": [
-        "general"
+        "everyday"
       ],
       "word-000693": [
-        "general"
+        "everyday"
       ],
       "word-000694": [
-        "general"
+        "everyday"
       ],
       "word-000695": [
-        "general"
+        "everyday"
       ],
       "word-000696": [
-        "general"
+        "everyday"
       ],
       "word-000697": [
-        "general"
+        "everyday"
       ],
       "word-000700": [
-        "general"
+        "everyday"
       ],
       "word-000701": [
-        "general"
+        "everyday"
       ],
       "word-000702": [
-        "general"
+        "everyday"
       ],
       "word-000703": [
-        "general"
+        "everyday"
       ],
       "word-000704": [
-        "general"
+        "everyday"
       ],
       "word-000705": [
-        "general"
+        "everyday"
       ],
       "word-000706": [
-        "general"
+        "everyday"
       ],
       "word-000707": [
         "transport"
       ],
       "word-000708": [
-        "general"
+        "everyday"
       ],
       "word-000709": [
-        "general"
+        "everyday"
       ],
       "word-000711": [
         "food"
@@ -9656,31 +9656,31 @@
         "professions"
       ],
       "word-000774": [
-        "general"
+        "professions"
       ],
       "word-000775": [
-        "general"
+        "professions"
       ],
       "word-000776": [
-        "general"
+        "professions"
       ],
       "word-000777": [
-        "general"
+        "professions"
       ],
       "word-000778": [
-        "general"
+        "professions"
       ],
       "word-000779": [
-        "general"
+        "professions"
       ],
       "word-000780": [
-        "general"
+        "professions"
       ],
       "word-000781": [
-        "general"
+        "professions"
       ],
       "word-000782": [
-        "general"
+        "culture"
       ],
       "word-000783": [
         "music"
@@ -9815,7 +9815,7 @@
         "arts"
       ],
       "word-000827": [
-        "general"
+        "arts"
       ],
       "word-000828": [
         "science"
@@ -9863,13 +9863,13 @@
         "science"
       ],
       "word-000843": [
-        "general"
+        "science"
       ],
       "word-000844": [
-        "general"
+        "science"
       ],
       "word-000845": [
-        "general"
+        "science"
       ],
       "word-000846": [
         "arts"
@@ -9998,109 +9998,109 @@
         "marine"
       ],
       "word-000888": [
-        "general"
+        "culture"
       ],
       "word-000889": [
-        "general"
+        "culture"
       ],
       "word-000891": [
-        "general"
+        "culture"
       ],
       "word-000892": [
-        "general"
+        "culture"
       ],
       "word-000893": [
-        "general"
+        "culture"
       ],
       "word-000894": [
-        "general"
+        "culture"
       ],
       "word-000895": [
-        "general"
+        "culture"
       ],
       "word-000896": [
-        "general"
+        "culture"
       ],
       "word-000897": [
-        "general"
+        "culture"
       ],
       "word-000898": [
-        "general"
+        "culture"
       ],
       "word-000899": [
-        "general"
+        "culture"
       ],
       "word-000900": [
-        "general"
+        "culture"
       ],
       "word-000901": [
-        "general"
+        "culture"
       ],
       "word-000902": [
-        "general"
+        "culture"
       ],
       "word-000903": [
-        "general"
+        "culture"
       ],
       "word-000904": [
-        "general"
+        "culture"
       ],
       "word-000905": [
-        "general"
+        "culture"
       ],
       "word-000906": [
-        "general"
+        "culture"
       ],
       "word-000907": [
-        "general"
+        "culture"
       ],
       "word-000908": [
-        "general"
+        "culture"
       ],
       "word-000909": [
-        "general"
+        "culture"
       ],
       "word-000910": [
-        "general"
+        "culture"
       ],
       "word-000911": [
-        "general"
+        "culture"
       ],
       "word-000912": [
-        "general"
+        "culture"
       ],
       "word-000913": [
-        "general"
+        "culture"
       ],
       "word-000914": [
-        "general"
+        "culture"
       ],
       "word-000915": [
-        "general"
+        "culture"
       ],
       "word-000916": [
-        "general"
+        "culture"
       ],
       "word-000917": [
-        "general"
+        "culture"
       ],
       "word-000918": [
-        "general"
+        "culture"
       ],
       "word-000919": [
-        "general"
+        "culture"
       ],
       "word-000920": [
-        "general"
+        "culture"
       ],
       "word-000921": [
-        "general"
+        "culture"
       ],
       "word-000922": [
-        "general"
+        "culture"
       ],
       "word-000923": [
-        "general"
+        "culture"
       ],
       "word-000924": [
         "literature"
@@ -10139,10 +10139,10 @@
         "literature"
       ],
       "word-000936": [
-        "general"
+        "language"
       ],
       "word-000937": [
-        "general"
+        "language"
       ],
       "word-000938": [
         "culture"
@@ -10184,16 +10184,16 @@
         "culture"
       ],
       "word-000953": [
-        "general"
+        "science"
       ],
       "word-000954": [
-        "general"
+        "science"
       ],
       "word-000955": [
-        "general"
+        "science"
       ],
       "word-000956": [
-        "general"
+        "science"
       ],
       "word-000957": [
         "nature",
@@ -10242,22 +10242,22 @@
         "science"
       ],
       "word-000971": [
-        "general"
+        "science"
       ],
       "word-000972": [
-        "general"
+        "science"
       ],
       "word-000973": [
-        "general"
+        "science"
       ],
       "word-000974": [
-        "general"
+        "science"
       ],
       "word-000975": [
-        "general"
+        "science"
       ],
       "word-000976": [
-        "general"
+        "science"
       ],
       "word-000977": [
         "food"
@@ -10305,7 +10305,7 @@
         "food"
       ],
       "word-000992": [
-        "general"
+        "arts"
       ],
       "word-000994": [
         "arts"
@@ -12827,16 +12827,16 @@
         "everyday"
       ],
       "phrase-000007": [
-        "general"
+        "everyday"
       ],
       "phrase-000008": [
-        "general"
+        "everyday"
       ],
       "phrase-000009": [
-        "general"
+        "everyday"
       ],
       "phrase-000010": [
-        "general"
+        "everyday"
       ],
       "phrase-000011": [
         "nature"
@@ -12845,7 +12845,7 @@
         "sport"
       ],
       "phrase-000013": [
-        "general"
+        "everyday"
       ],
       "phrase-000014": [
         "transport"
@@ -12866,73 +12866,73 @@
         "everyday"
       ],
       "phrase-000020": [
-        "general"
+        "everyday"
       ],
       "phrase-000021": [
         "everyday"
       ],
       "phrase-000022": [
-        "general"
+        "everyday"
       ],
       "phrase-000023": [
-        "general"
+        "everyday"
       ],
       "phrase-000024": [
-        "general"
+        "everyday"
       ],
       "phrase-000025": [
-        "general"
+        "everyday"
       ],
       "phrase-000026": [
         "food"
       ],
       "phrase-000027": [
-        "general"
+        "everyday"
       ],
       "phrase-000028": [
-        "general"
+        "everyday"
       ],
       "phrase-000029": [
         "nature"
       ],
       "phrase-000030": [
-        "general"
+        "everyday"
       ],
       "phrase-000031": [
-        "general"
+        "everyday"
       ],
       "phrase-000032": [
-        "general"
+        "everyday"
       ],
       "phrase-000033": [
-        "general"
+        "everyday"
       ],
       "phrase-000034": [
-        "general"
+        "everyday"
       ],
       "phrase-000035": [
-        "general"
+        "everyday"
       ],
       "phrase-000036": [
         "sport"
       ],
       "phrase-000037": [
-        "general"
+        "everyday"
       ],
       "phrase-000038": [
-        "general"
+        "everyday"
       ],
       "phrase-000039": [
-        "general"
+        "everyday"
       ],
       "phrase-000040": [
-        "general"
+        "everyday"
       ],
       "phrase-000041": [
         "food"
       ],
       "phrase-000042": [
-        "general"
+        "everyday"
       ],
       "phrase-000043": [
         "everyday"
@@ -12944,19 +12944,19 @@
         "transport"
       ],
       "phrase-000046": [
-        "general"
+        "everyday"
       ],
       "phrase-000047": [
-        "general"
+        "everyday"
       ],
       "phrase-000048": [
         "nature"
       ],
       "phrase-000049": [
-        "general"
+        "everyday"
       ],
       "phrase-000050": [
-        "general"
+        "everyday"
       ],
       "phrase-000051": [
         "food"
@@ -12971,94 +12971,94 @@
         "space"
       ],
       "phrase-000055": [
-        "general"
+        "everyday"
       ],
       "phrase-000056": [
         "space"
       ],
       "phrase-000057": [
-        "general"
+        "everyday"
       ],
       "phrase-000058": [
-        "general"
+        "everyday"
       ],
       "phrase-000059": [
         "nature"
       ],
       "phrase-000060": [
-        "general"
+        "everyday"
       ],
       "phrase-000061": [
-        "general"
+        "everyday"
       ],
       "phrase-000062": [
-        "general"
+        "everyday"
       ],
       "phrase-000063": [
-        "general"
+        "everyday"
       ],
       "phrase-000064": [
         "marine"
       ],
       "phrase-000065": [
-        "general"
+        "everyday"
       ],
       "phrase-000066": [
         "animals"
       ],
       "phrase-000067": [
-        "general"
+        "everyday"
       ],
       "phrase-000068": [
         "music"
       ],
       "phrase-000069": [
-        "general"
+        "everyday"
       ],
       "phrase-000070": [
-        "general"
+        "everyday"
       ],
       "phrase-000071": [
-        "general"
+        "everyday"
       ],
       "phrase-000072": [
-        "general"
+        "everyday"
       ],
       "phrase-000073": [
         "transport"
       ],
       "phrase-000074": [
-        "general"
+        "everyday"
       ],
       "phrase-000075": [
-        "general"
+        "everyday"
       ],
       "phrase-000076": [
         "food"
       ],
       "phrase-000077": [
-        "general"
+        "everyday"
       ],
       "phrase-000078": [
-        "general"
+        "everyday"
       ],
       "phrase-000079": [
-        "general"
+        "everyday"
       ],
       "phrase-000080": [
-        "general"
+        "everyday"
       ],
       "phrase-000081": [
-        "general"
+        "everyday"
       ],
       "phrase-000082": [
-        "general"
+        "everyday"
       ],
       "phrase-000083": [
-        "general"
+        "everyday"
       ],
       "phrase-000084": [
-        "general"
+        "everyday"
       ],
       "phrase-000085": [
         "food"
@@ -13070,88 +13070,88 @@
         "food"
       ],
       "phrase-000088": [
-        "general"
+        "everyday"
       ],
       "phrase-000089": [
-        "general"
+        "everyday"
       ],
       "phrase-000090": [
-        "general"
+        "everyday"
       ],
       "phrase-000091": [
-        "general"
+        "everyday"
       ],
       "phrase-000092": [
         "animals"
       ],
       "phrase-000093": [
-        "general"
+        "everyday"
       ],
       "phrase-000094": [
-        "general"
+        "everyday"
       ],
       "phrase-000095": [
-        "general"
+        "everyday"
       ],
       "phrase-000096": [
-        "general"
+        "everyday"
       ],
       "phrase-000097": [
         "everyday"
       ],
       "phrase-000098": [
-        "general"
+        "everyday"
       ],
       "phrase-000099": [
         "transport"
       ],
       "phrase-000100": [
-        "general"
+        "everyday"
       ],
       "phrase-000101": [
-        "general"
+        "everyday"
       ],
       "phrase-000102": [
-        "general"
+        "everyday"
       ],
       "phrase-000103": [
-        "general"
+        "everyday"
       ],
       "phrase-000104": [
-        "general"
+        "everyday"
       ],
       "phrase-000105": [
-        "general"
+        "everyday"
       ],
       "phrase-000106": [
         "nature"
       ],
       "phrase-000107": [
-        "general"
+        "everyday"
       ],
       "phrase-000108": [
-        "general"
+        "everyday"
       ],
       "phrase-000109": [
         "everyday"
       ],
       "phrase-000110": [
-        "general"
+        "everyday"
       ],
       "phrase-000111": [
-        "general"
+        "everyday"
       ],
       "phrase-000112": [
-        "general"
+        "everyday"
       ],
       "phrase-000113": [
-        "general"
+        "everyday"
       ],
       "phrase-000114": [
         "nature"
       ],
       "phrase-000115": [
-        "general"
+        "everyday"
       ],
       "phrase-000116": [
         "animals"
@@ -13160,22 +13160,22 @@
         "animals"
       ],
       "phrase-000118": [
-        "general"
+        "everyday"
       ],
       "phrase-000119": [
         "animals"
       ],
       "phrase-000120": [
-        "general"
+        "everyday"
       ],
       "phrase-000121": [
-        "general"
+        "everyday"
       ],
       "phrase-000122": [
         "animals"
       ],
       "phrase-000123": [
-        "general"
+        "everyday"
       ],
       "phrase-000124": [
         "literature"
@@ -13187,10 +13187,10 @@
         "nature"
       ],
       "phrase-000127": [
-        "general"
+        "everyday"
       ],
       "phrase-000128": [
-        "general"
+        "everyday"
       ],
       "phrase-000129": [
         "everyday"
@@ -13214,7 +13214,7 @@
         "animals"
       ],
       "phrase-000136": [
-        "general"
+        "everyday"
       ],
       "phrase-000137": [
         "animals"
@@ -13223,19 +13223,19 @@
         "animals"
       ],
       "phrase-000139": [
-        "general"
+        "everyday"
       ],
       "phrase-000140": [
-        "general"
+        "everyday"
       ],
       "phrase-000141": [
         "animals"
       ],
       "phrase-000142": [
-        "general"
+        "everyday"
       ],
       "phrase-000143": [
-        "general"
+        "everyday"
       ],
       "phrase-000144": [
         "geography"
@@ -13244,19 +13244,19 @@
         "animals"
       ],
       "phrase-000146": [
-        "general"
+        "everyday"
       ],
       "phrase-000147": [
-        "general"
+        "everyday"
       ],
       "phrase-000148": [
-        "general"
+        "everyday"
       ],
       "phrase-000149": [
-        "general"
+        "everyday"
       ],
       "phrase-000150": [
-        "general"
+        "everyday"
       ],
       "phrase-000151": [
         "general"
@@ -13927,352 +13927,352 @@
         "general"
       ],
       "phrase-000376": [
-        "general"
+        "culture"
       ],
       "phrase-000377": [
-        "general"
+        "culture"
       ],
       "phrase-000378": [
-        "general"
+        "culture"
       ],
       "phrase-000379": [
-        "general"
+        "culture"
       ],
       "phrase-000380": [
-        "general"
+        "culture"
       ],
       "phrase-000381": [
-        "general"
+        "culture"
       ],
       "phrase-000382": [
-        "general"
+        "culture"
       ],
       "phrase-000383": [
-        "general"
+        "culture"
       ],
       "phrase-000384": [
-        "general"
+        "culture"
       ],
       "phrase-000385": [
-        "general"
+        "culture"
       ],
       "phrase-000386": [
-        "general"
+        "culture"
       ],
       "phrase-000387": [
-        "general"
+        "culture"
       ],
       "phrase-000388": [
-        "general"
+        "culture"
       ],
       "phrase-000389": [
-        "general"
+        "culture"
       ],
       "phrase-000390": [
-        "general"
+        "culture"
       ],
       "phrase-000391": [
-        "general"
+        "culture"
       ],
       "phrase-000392": [
-        "general"
+        "culture"
       ],
       "phrase-000393": [
-        "general"
+        "culture"
       ],
       "phrase-000394": [
-        "general"
+        "culture"
       ],
       "phrase-000395": [
-        "general"
+        "culture"
       ],
       "phrase-000396": [
-        "general"
+        "culture"
       ],
       "phrase-000397": [
-        "general"
+        "culture"
       ],
       "phrase-000398": [
-        "general"
+        "culture"
       ],
       "phrase-000399": [
-        "general"
+        "culture"
       ],
       "phrase-000400": [
-        "general"
+        "culture"
       ],
       "phrase-000401": [
-        "general"
+        "culture"
       ],
       "phrase-000402": [
-        "general"
+        "culture"
       ],
       "phrase-000403": [
-        "general"
+        "culture"
       ],
       "phrase-000404": [
-        "general"
+        "culture"
       ],
       "phrase-000405": [
-        "general"
+        "culture"
       ],
       "phrase-000406": [
-        "general"
+        "culture"
       ],
       "phrase-000407": [
-        "general"
+        "culture"
       ],
       "phrase-000408": [
-        "general"
+        "culture"
       ],
       "phrase-000409": [
-        "general"
+        "culture"
       ],
       "phrase-000410": [
         "transport"
       ],
       "phrase-000411": [
-        "general"
+        "culture"
       ],
       "phrase-000413": [
         "nature"
       ],
       "phrase-000417": [
-        "general"
+        "culture"
       ],
       "phrase-000419": [
-        "general"
+        "culture"
       ],
       "phrase-000420": [
-        "general"
+        "culture"
       ],
       "phrase-000421": [
-        "general"
+        "culture"
       ],
       "phrase-000422": [
-        "general"
+        "culture"
       ],
       "phrase-000423": [
-        "general"
+        "culture"
       ],
       "phrase-000424": [
-        "general"
+        "culture"
       ],
       "phrase-000425": [
-        "general"
+        "culture"
       ],
       "phrase-000426": [
-        "general"
+        "culture"
       ],
       "phrase-000427": [
-        "general"
+        "culture"
       ],
       "phrase-000428": [
-        "general"
+        "culture"
       ],
       "phrase-000429": [
-        "general"
+        "culture"
       ],
       "phrase-000430": [
-        "general"
+        "culture"
       ],
       "phrase-000431": [
-        "general"
+        "culture"
       ],
       "phrase-000432": [
-        "general"
+        "culture"
       ],
       "phrase-000433": [
-        "general"
+        "culture"
       ],
       "phrase-000434": [
-        "general"
+        "culture"
       ],
       "phrase-000435": [
-        "general"
+        "culture"
       ],
       "phrase-000436": [
-        "general"
+        "culture"
       ],
       "phrase-000437": [
         "food"
       ],
       "phrase-000438": [
-        "general"
+        "culture"
       ],
       "phrase-000439": [
-        "general"
+        "culture"
       ],
       "phrase-000440": [
-        "general"
+        "culture"
       ],
       "phrase-000441": [
-        "general"
+        "culture"
       ],
       "phrase-000442": [
-        "general"
+        "culture"
       ],
       "phrase-000443": [
-        "general"
+        "culture"
       ],
       "phrase-000444": [
-        "general"
+        "culture"
       ],
       "phrase-000445": [
-        "general"
+        "culture"
       ],
       "phrase-000446": [
-        "general"
+        "culture"
       ],
       "phrase-000447": [
-        "general"
+        "culture"
       ],
       "phrase-000448": [
-        "general"
+        "culture"
       ],
       "phrase-000449": [
-        "general"
+        "culture"
       ],
       "phrase-000450": [
-        "general"
+        "culture"
       ],
       "phrase-000451": [
-        "general"
+        "culture"
       ],
       "phrase-000452": [
-        "general"
+        "culture"
       ],
       "phrase-000453": [
-        "general"
+        "culture"
       ],
       "phrase-000454": [
-        "general"
+        "culture"
       ],
       "phrase-000455": [
-        "general"
+        "culture"
       ],
       "phrase-000456": [
         "nature"
       ],
       "phrase-000457": [
-        "general"
+        "culture"
       ],
       "phrase-000458": [
-        "general"
+        "culture"
       ],
       "phrase-000459": [
-        "general"
+        "culture"
       ],
       "phrase-000460": [
-        "general"
+        "culture"
       ],
       "phrase-000461": [
-        "general"
+        "culture"
       ],
       "phrase-000462": [
-        "general"
+        "culture"
       ],
       "phrase-000463": [
-        "general"
+        "culture"
       ],
       "phrase-000464": [
-        "general"
+        "culture"
       ],
       "phrase-000465": [
-        "general"
+        "culture"
       ],
       "phrase-000466": [
-        "general"
+        "culture"
       ],
       "phrase-000467": [
-        "general"
+        "culture"
       ],
       "phrase-000468": [
-        "general"
+        "culture"
       ],
       "phrase-000469": [
-        "general"
+        "culture"
       ],
       "phrase-000470": [
-        "general"
+        "culture"
       ],
       "phrase-000471": [
-        "general"
+        "culture"
       ],
       "phrase-000472": [
-        "general"
+        "culture"
       ],
       "phrase-000473": [
-        "general"
+        "culture"
       ],
       "phrase-000474": [
-        "general"
+        "culture"
       ],
       "phrase-000475": [
-        "general"
+        "culture"
       ],
       "phrase-000476": [
-        "general"
+        "culture"
       ],
       "phrase-000477": [
-        "general"
+        "culture"
       ],
       "phrase-000478": [
-        "general"
+        "culture"
       ],
       "phrase-000479": [
-        "general"
+        "culture"
       ],
       "phrase-000480": [
-        "general"
+        "culture"
       ],
       "phrase-000481": [
-        "general"
+        "culture"
       ],
       "phrase-000482": [
-        "general"
+        "culture"
       ],
       "phrase-000483": [
-        "general"
+        "culture"
       ],
       "phrase-000484": [
-        "general"
+        "culture"
       ],
       "phrase-000485": [
-        "general"
+        "culture"
       ],
       "phrase-000486": [
-        "general"
+        "culture"
       ],
       "phrase-000487": [
-        "general"
+        "culture"
       ],
       "phrase-000488": [
-        "general"
+        "culture"
       ],
       "phrase-000489": [
-        "general"
+        "culture"
       ],
       "phrase-000490": [
-        "general"
+        "culture"
       ],
       "phrase-000491": [
-        "general"
+        "culture"
       ],
       "phrase-000492": [
-        "general"
+        "culture"
       ],
       "phrase-000493": [
-        "general"
+        "culture"
       ],
       "phrase-000494": [
-        "general"
+        "culture"
       ],
       "phrase-000495": [
-        "general"
+        "culture"
       ],
       "phrase-000496": [
-        "general"
+        "culture"
       ],
       "idiom-000001": [
         "language"
