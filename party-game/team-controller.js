@@ -354,7 +354,7 @@
   if(!navigator.locks?.request)throw Error('Этот браузер не поддерживает безопасное сохранение 2 на 2. Игра 1 на 1 остаётся доступной.');
   // Storage supplies the exact source it parsed. The engine parses those bytes
   // itself; a second serializer must not normalize overflowing numbers to null.
-  s.store=QuipTeamStorage.create({storage:localStorage,validateMatch:(record,raw,wrapped)=>E.validateRecordJSON(raw,wrapped),validateReplacement:E.validateReplacement,validateTransition:E.validateTransition,exclusive});
+  s.store=QuipTeamStorage.create({storage:localStorage,validateMatch:(record,raw,wrapped)=>E.validateRecordJSON(raw,wrapped),validateReplacement:(before,after,source)=>E.validateReplacement(E.readOnlyRecordJSON(source.before,true),E.readOnlyRecordJSON(source.after,source.wrappedAfter)),validateTransition:(before,after,source)=>E.validateTransition(E.readOnlyRecordJSON(source.before,true),E.readOnlyRecordJSON(source.after,source.wrappedAfter)),exclusive});
   s.ready=readStore().catch(e=>{s.status='blocked';paintHome();old.toast(e.message);});
  }catch(e){s.status='unavailable';$('wizard-format-teams').title=e.message;$('wizard-format-teams').setAttribute('aria-describedby',unavailable.id);unavailable.textContent=e.message;unavailable.hidden=false;paintHome();}
 })();

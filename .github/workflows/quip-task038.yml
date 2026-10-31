@@ -61,7 +61,9 @@ jobs:
           CHROME_BIN: /usr/bin/google-chrome
       - if: always() && matrix.size == 7000
         run: node diagnostics/task038/attribution.cjs
-        env: {CHROME_BIN: /usr/bin/google-chrome}
+        env:
+          CHROME_BIN: /usr/bin/google-chrome
+          TASK038_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -1107,5 +1107,97 @@
       "separateN7AfterMedianMs": 162.9,
       "limitation": "Separate local n7 medians before160.2/after162.9 do not establish an overall latency improvement. The exact size-path allocation reduction is observed; current-head native n20 remains the acceptance gate."
     }
+  },
+  "b324a648": {
+    "head": "b324a6481dd10d67176a510c46e633747c57436c",
+    "pushRun": 41178396001,
+    "prRun": 41178399366,
+    "uiAndPWA": "all six UI/PWA jobs SUCCESS in both push and PR",
+    "performance": [
+      {
+        "event": "push",
+        "size": 7000,
+        "duel": [
+          67.4,
+          78.2
+        ],
+        "teams": [
+          213.8,
+          246.1
+        ],
+        "result": "teams median FAIL",
+        "artifact": 13034326477
+      },
+      {
+        "event": "push",
+        "size": 15000,
+        "duel": [
+          70.1,
+          96.4
+        ],
+        "teams": [
+          214.5,
+          247.9
+        ],
+        "result": "teams median FAIL",
+        "artifact": 13034461259
+      },
+      {
+        "event": "pull_request",
+        "size": 7000,
+        "duel": [
+          65.5,
+          80.4
+        ],
+        "teams": [
+          192.7,
+          234.3
+        ],
+        "result": "PASS",
+        "artifact": 13034690249
+      },
+      {
+        "event": "pull_request",
+        "size": 15000,
+        "duel": [
+          70.4,
+          85.3
+        ],
+        "teams": [
+          203.9,
+          286.8
+        ],
+        "result": "teams median FAIL",
+        "artifact": 13034322915
+      }
+    ],
+    "sizeProfile": "size-encoding no longer appears in the common fixture profile; native n20 was still over budget. No success claim."
+  },
+  "ownedJSONProjection": {
+    "scope": "existing withRecordValidation transaction only; same stamp, size caps, exact raw and separate envelope/bare maps",
+    "change": "Keep the owned native parser record alongside its successful full key. Before returning it, deep-freeze it and memoize only its serializer key. Transition/replacement receive the exact source strings from storage and use these readonly snapshots. Ordinary mutable-object validation is unchanged.",
+    "entryClone": "A single native entry clone requires both private immutable serializer provenance and a successful full key in the current stamped transaction. Unvalidated shapes and new transactions keep their original validation requirements.",
+    "checks": "75/75 targeted Node tests passed. Actual local native140 safety suite passed stale tabs/RNG, strict receipt failure, journal recovery, offline reload, review, archive/ledger, score-goal/tiebreak and unknown slots. Local diagnostic only; native156 n20 mandatory.",
+    "focusExperiment": "Checking hidden ancestors before getClientRects merely moved layout cost into focus(), without observed acceleration; this change was not included.",
+    "attribution": "Next native profile uses the exact synthetic general@1000/7000 roots from perf.cjs, cold document and source SHA. Earlier profiles on production general@67 remain historical.",
+    "localWorkCounts": {
+      "browser": "headless-shell140 / Playwright1.55 CPU4; local source A/B diagnostic, not acceptance",
+      "fixture": "same genuine fixture construction:27 profiles, one archived team party; separate generated IDs and native storage waits",
+      "before": {
+        "keys": 20,
+        "immutableKeys": 2,
+        "shapeNodes": 1641,
+        "entries": 5,
+        "immutableEntries": 1
+      },
+      "after": {
+        "keys": 20,
+        "immutableKeys": 8,
+        "shapeNodes": 186,
+        "entries": 5,
+        "immutableEntries": 5
+      },
+      "limitation": "The earlier strict IDB write also waited33ms versus3.6ms later; total-latency difference is not attributed to the CPU change. Transactions and strict completion remain mandatory."
+    }
   }
 }

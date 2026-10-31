@@ -110,7 +110,7 @@
   function commit({expectedRaw,match,replaceMatchId=null}={}){
    // Snapshot synchronously: caller mutations while awaiting a lock/digest must
    // not change the action that is eventually committed.
-   let snapshot;try{const raw=bounded(JSON.stringify(match));snapshot=JSON.parse(raw);checkMatch(snapshot,raw);}catch(e){return Promise.reject(e);}
+   let snapshot,snapshotRaw;try{snapshotRaw=bounded(JSON.stringify(match));snapshot=JSON.parse(snapshotRaw);checkMatch(snapshot,snapshotRaw);}catch(e){return Promise.reject(e);}
    if(expectedRaw!==null&&typeof expectedRaw!=='string')return Promise.reject(error('EXPECTED_RAW_REQUIRED','Требуется точный исходный RAW.'));
    return exclusive(async()=>{
     const state=await readReceipt();
@@ -127,8 +127,9 @@
     if(storage.getItem(JOURNAL_KEY)!==null)fail('RECOVERY_REQUIRED','Сначала восстановите прерванную командную запись.');
     if(!Number.isSafeInteger(revision))fail('LIMIT','Исчерпаны ревизии.');
     const replacing=!!before&&before.match.teamFormat.id!==snapshot.teamFormat.id;
-    if(replacing&&!(replaceMatchId===before.match.teamFormat.id&&validateReplacement?.(before.match,snapshot)===true)||!replacing&&replaceMatchId!==null)fail('MATCH_CHANGED','Нельзя заменить другую командную партию без явного сохранения её архива.');
-    if(before&&validateTransition&&validateTransition(before.match,snapshot)!==true)fail('RESULT_CONFLICT','Подтверждённая привязка или статистика партии изменена.');
+    const sources=Object.freeze({before:raw,after:snapshotRaw,wrappedAfter:false});
+    if(replacing&&!(replaceMatchId===before.match.teamFormat.id&&validateReplacement?.(before.match,snapshot,sources)===true)||!replacing&&replaceMatchId!==null)fail('MATCH_CHANGED','Нельзя заменить другую командную партию без явного сохранения её архива.');
+    if(before&&validateTransition&&validateTransition(before.match,snapshot,sources)!==true)fail('RESULT_CONFLICT','Подтверждённая привязка или статистика партии изменена.');
     const next=await encode(snapshot,revision),journal=bounded(JSON.stringify(replacing?{version:2,before:raw,after:next,replaceMatchId}:{version:1,before:raw,after:next}),maxBytes*3);
     if(storage.getItem(KEY)!==raw||storage.getItem(JOURNAL_KEY)!==null)fail('CONFLICT','Командное сохранение изменилось.');
     const pendingReceipt=receipt?await writeReceipt(state.raw,raw,journal):null;
@@ -158,10 +159,11 @@
    if(value?.version!==1&&value?.version!==2)fail('INCOMPATIBLE','Неизвестная версия журнала.');
    exact(value,value.version===2?['version','before','after','replaceMatchId']:['version','before','after']);
    const before=value.before===null?null:await decode(value.before),after=await decode(value.after);
+   const sources=Object.freeze({before:value.before,after:value.after,wrappedAfter:true});
    if(after.revision!==(before?.revision||0)+1)fail('CORRUPT','Непоследовательный журнал командной записи.');
-   if(before&&validateTransition&&validateTransition(before.match,after.match)!==true)fail('RESULT_CONFLICT','Журнал изменяет подтверждённые профили или статистику.');
+   if(before&&validateTransition&&validateTransition(before.match,after.match,sources)!==true)fail('RESULT_CONFLICT','Журнал изменяет подтверждённые профили или статистику.');
    if(value.version===1){if(before&&before.match.teamFormat.id!==after.match.teamFormat.id)fail('CORRUPT','Изменена партия в обычном журнале.');}
-   else if(!before||value.replaceMatchId!==before.match.teamFormat.id||before.match.teamFormat.id===after.match.teamFormat.id||validateReplacement?.(before.match,after.match)!==true)fail('CORRUPT','Журнал не сохраняет предыдущую партию.');
+   else if(!before||value.replaceMatchId!==before.match.teamFormat.id||before.match.teamFormat.id===after.match.teamFormat.id||validateReplacement?.(before.match,after.match,sources)!==true)fail('CORRUPT','Журнал не сохраняет предыдущую партию.');
    return value;
   }
   function recover({expectedJournal,choice}={}){return exclusive(async()=>{

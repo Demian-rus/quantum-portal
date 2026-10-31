@@ -110,6 +110,12 @@ test('write failures preserve the verified before/after journal, explicit recove
   const recovered=await s.recover({expectedJournal:pending.journal,choice});assert.equal(recovered.raw,choice==='keep-before'?old.raw:pending.after);assert.equal(recovered.match.turn,choice==='keep-before'?0:1);assert.equal(h.map.has(S.JOURNAL_KEY),false);
  }
 });
+test('transition and replacement callbacks receive exact immutable JSON sources through commit and recovery',async()=>{
+ const h=harness(),seen=[];const check=(before,after,source)=>{assert(Object.isFrozen(source));assert.deepEqual(JSON.parse(source.before).match,before);assert.deepEqual(source.wrappedAfter?JSON.parse(source.after).match:JSON.parse(source.after),after);seen.push(source.wrappedAfter);return true;};
+ const store=h.make({validateTransition:check,validateReplacement:check}),old=await store.commit({expectedRaw:null,match:match()}),next=match([1,1,1],1);next.teamFormat=F.create(names,{id:'source-replacement-fixture-0001',random:()=>0});
+ const remove=h.storage.removeItem;h.storage.removeItem=()=>{throw Error('retain journal')};await assert.rejects(store.commit({expectedRaw:old.raw,match:next,replaceMatchId:old.match.teamFormat.id}),/retain journal/);h.storage.removeItem=remove;
+ const pending=await store.pending();assert.equal(pending.status,'pending');await store.recover({expectedJournal:pending.journal,choice:'keep-after'});assert(seen.includes(false)&&seen.includes(true),'bare commit and envelope recovery both retain their actual JSON');assert.equal((await store.load()).match.turn,1);
+});
 test('first creation can recover to empty without touching an existing duel',async()=>{
  const h=harness(),remove=h.storage.removeItem;h.storage.removeItem=()=>{throw Error('remove');};
  const s=h.make();await assert.rejects(s.commit({expectedRaw:null,match:match()}));const pending=await s.pending();h.storage.removeItem=remove;

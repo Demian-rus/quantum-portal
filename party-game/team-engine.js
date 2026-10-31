@@ -102,7 +102,11 @@ const QuipTeamsEngine=(function teamEngine(){
   else assert(['ready','review','results','tiebreak'].includes(match.phase),'нет снимка текущего задания');
   return true;
  }
- function entry(record){return {version:1,teamFormat:copy(record.teamFormat),game:copy(record.game),options:copy(record.options),taskMemory:copy(record.taskMemory)};}
+ function entry(record){
+  const key=immutableRecordKeys.get(record);
+  if(key&&validationScope()?.keys.has(key))return parseRecordJSON(JSON.stringify({version:1,teamFormat:record.teamFormat,game:record.game,options:record.options,taskMemory:record.taskMemory}));
+  return {version:1,teamFormat:copy(record.teamFormat),game:copy(record.game),options:copy(record.options),taskMemory:copy(record.taskMemory)};
+ }
  function validateEntry(value,parsed=false){
   const entryKey=recordValidationKey(value,false,parsed);if(entryKey!==null&&recordValidationScope.keys.has(entryKey))return true;
   exact(value,['version','teamFormat','game','options','taskMemory']);assert(value.version===1&&equal(value.teamFormat,value.game.teamFormat),'неверный конверт партии');
@@ -119,9 +123,17 @@ const QuipTeamsEngine=(function teamEngine(){
   const finite=value=>{if(value===null||typeof value!=='object'){assert(typeof value!=='number'||Number.isFinite(value),'non-JSON number');return;}for(const key of Object.keys(value)){const child=value[key];if(child!==null&&typeof child==='object')finite(child);else assert(typeof child!=='number'||Number.isFinite(child),'non-JSON number');}};
   finite(record);return record;
  }
+ function freezeRecordJSON(value){if(value!==null&&typeof value==='object'){for(const key of Object.keys(value))freezeRecordJSON(value[key]);Object.freeze(value);}}
  function readOnlyRecordJSON(raw,wrapped=false){
+  assert(typeof raw==='string'&&typeof wrapped==='boolean','ожидается JSON командной записи');
+  const scope=validationScope(),saved=scope?.sources[wrapped?1:0].get(raw);
+  // The owned parser snapshot is private until frozen. Its successful check
+  // still belongs only to this scope; the WeakMap stores serialization only.
+  if(getContentPack===recordJSONResolver&&saved&&scope.keys.has(saved.key)){
+   if(!immutableRecordKeys.has(saved.record)){freezeRecordJSON(saved.record);immutableRecordKeys.set(saved.record,saved.key);}return saved.record;
+  }
   const record=parseFiniteRecordJSON(raw,wrapped);assert(record&&typeof record==='object'&&!Array.isArray(record),'ожидается командная запись');
-  const json=JSON.stringify(record),freeze=value=>{if(value!==null&&typeof value==='object'){for(const key of Object.keys(value))freeze(value[key]);Object.freeze(value);}};freeze(record);
+  const json=JSON.stringify(record);freezeRecordJSON(record);
   // Serializer provenance, never a successful validation. A new transaction
   // still has an empty keys set and must run the complete record validator.
   if(json.length<=131072)immutableRecordKeys.set(record,'record:'+json);
@@ -130,7 +142,7 @@ const QuipTeamsEngine=(function teamEngine(){
  function validateRecordJSON(raw,wrapped=false){
   assert(typeof raw==='string'&&typeof wrapped==='boolean','ожидается JSON командной записи');
   const scope=validationScope(),sources=scope?.sources[wrapped?1:0],saved=sources?.get(raw);
-  if(getContentPack===recordJSONResolver&&saved&&scope.keys.has(saved))return true;
+  if(getContentPack===recordJSONResolver&&saved&&scope.keys.has(saved.key))return true;
   // Only our own synchronous native parse authorizes the private parsed path.
   // JSON's grammar also permits overflowing exponents: reject those before
   // stringify could alias Infinity to a previously checked nullable field.
@@ -145,7 +157,7 @@ const QuipTeamsEngine=(function teamEngine(){
    const key=recordValidationKey(record,true,true);
    if(key!==null&&scope.keys.has(key)&&!sources.has(raw)){
     if(scope.sourceChars+raw.length>262144){scope.sources.forEach(map=>map.clear());scope.sourceChars=0;}
-    sources.set(raw,key);scope.sourceChars+=raw.length;
+    sources.set(raw,{key,record});scope.sourceChars+=raw.length;
    }
   }
   return valid;
