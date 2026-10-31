@@ -49,6 +49,11 @@ jobs:
       - if: matrix.size == 7000
         run: node diagnostics/task038/boot-controls.cjs
         env: {CHROME_BIN: /usr/bin/google-chrome}
+      - if: matrix.size == 7000
+        run: node diagnostics/task038/instrumentation.cjs
+        env:
+          TASK038_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+          CHROME_BIN: /usr/bin/google-chrome
       - run: node diagnostics/task038/perf.cjs
         env:
           TASK038_SIZE: ${{ matrix.size }}

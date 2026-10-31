@@ -713,5 +713,299 @@
       "samePageTriplesExact": 20
     }
   ],
-  "conclusion": "Historical failures preserved. All cached script bytes are exact; no corrupt-cache or saved-data cause is established. The original raster mismatch is 26 edge pixels on 844px only. Neither symptom reproduces in these local controls; native CI is required. Root cause remains unproven. No retries, budget/tolerance changes or golden replacement."
+  "conclusion": "Historical failures preserved. All cached script bytes are exact; no corrupt-cache or saved-data cause is established. The original raster mismatch is 26 edge pixels on 844px only. Neither symptom reproduces in these local controls; native CI is required. Root cause remains unproven. No retries, budget/tolerance changes or golden replacement.",
+  "b7b4c076": {
+    "head": "b7b4c0768504a548f66b7ce474add62b96defe3b",
+    "pushRun": 41121181777,
+    "prRun": 41121196761,
+    "gameChecks": {
+      "push": 41121182444,
+      "pr": 41121197120,
+      "result": "both SUCCESS 16/16"
+    },
+    "otherRequired": "Smoke, TASK034–037 and Touch Highlight SUCCESS; all six TASK038 UI/PWA jobs SUCCESS in push and PR",
+    "performance": [
+      {
+        "event": "push",
+        "size": 7000,
+        "result": "baseline boot FAIL at fixture START15",
+        "artifact": 13009115877
+      },
+      {
+        "event": "push",
+        "size": 15000,
+        "duel": [
+          66.2,
+          99
+        ],
+        "teams": [
+          223.8,
+          244.2
+        ],
+        "result": "teams median FAIL",
+        "artifact": 13009600454
+      },
+      {
+        "event": "pull_request",
+        "size": 7000,
+        "duel": [
+          64.3,
+          82
+        ],
+        "teams": [
+          236,
+          267.8
+        ],
+        "result": "teams median FAIL",
+        "artifact": 13008937760
+      },
+      {
+        "event": "pull_request",
+        "size": 15000,
+        "duel": [
+          62.4,
+          101.3
+        ],
+        "teams": [
+          187.2,
+          248.6
+        ],
+        "result": "PASS",
+        "artifact": 13010030592
+      }
+    ],
+    "budgetMs": {
+      "median": 200,
+      "p95": 350
+    },
+    "boot": {
+      "cancelledParserScripts": 3,
+      "sameLoader": true,
+      "byteExactCachedScripts": 54,
+      "cachedScripts": 54,
+      "httpErrors": [],
+      "aboutBlankIsolationDidNotPreventFailure": true,
+      "rootCause": "unproven",
+      "events": [
+        {
+          "event": "request",
+          "requestId": "2485.3768",
+          "loaderId": "2AED5C054209C42CEAE5108ACCE30D38",
+          "type": "Script",
+          "url": "http://127.0.0.1:41481/party-game/curated-songs.js?v=1",
+          "initiator": {
+            "type": "parser",
+            "url": "http://127.0.0.1:41481/party-game/",
+            "lineNumber": 19,
+            "columnNumber": 45
+          },
+          "timestamp": 172.33081,
+          "wallTime": 1793391134.485304
+        },
+        {
+          "event": "request",
+          "requestId": "2485.3769",
+          "loaderId": "2AED5C054209C42CEAE5108ACCE30D38",
+          "type": "Script",
+          "url": "http://127.0.0.1:41481/party-game/curated-people.js?v=1",
+          "initiator": {
+            "type": "parser",
+            "url": "http://127.0.0.1:41481/party-game/",
+            "lineNumber": 20,
+            "columnNumber": 46
+          },
+          "timestamp": 172.330867,
+          "wallTime": 1793391134.485369
+        },
+        {
+          "event": "request",
+          "requestId": "2485.3770",
+          "loaderId": "2AED5C054209C42CEAE5108ACCE30D38",
+          "type": "Script",
+          "url": "http://127.0.0.1:41481/party-game/mode-images.js?v=6",
+          "initiator": {
+            "type": "parser",
+            "url": "http://127.0.0.1:41481/party-game/",
+            "lineNumber": 21,
+            "columnNumber": 43
+          },
+          "timestamp": 172.331054,
+          "wallTime": 1793391134.485558
+        },
+        {
+          "event": "failed",
+          "requestId": "2485.3770",
+          "timestamp": 172.357803,
+          "type": "Script",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        },
+        {
+          "event": "failed",
+          "requestId": "2485.3769",
+          "timestamp": 172.357855,
+          "type": "Script",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        },
+        {
+          "event": "failed",
+          "requestId": "2485.3768",
+          "timestamp": 172.357953,
+          "type": "Script",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        }
+      ],
+      "artifactSHA256": "6b610ece615470ee085b7421906955505e8fa0569b6db97f140f2931361ea281",
+      "resources": [
+        {
+          "url": "http://127.0.0.1:41481/party-game/curated-songs.js?v=1",
+          "cached": true,
+          "bytes": 23578,
+          "status": 200,
+          "mime": "text/javascript",
+          "sha256": "4e7f49eecce4cd28e0e363c283338ece0cc4afa19766d7619ce256ad4d5c25c0",
+          "expected": "4e7f49eecce4cd28e0e363c283338ece0cc4afa19766d7619ce256ad4d5c25c0",
+          "exact": true
+        },
+        {
+          "url": "http://127.0.0.1:41481/party-game/curated-people.js?v=1",
+          "cached": true,
+          "bytes": 8142,
+          "status": 200,
+          "mime": "text/javascript",
+          "sha256": "434ce7b9c0a6eeb900d93e1c23e47469e851642c79c7cf0407dc517443f6313a",
+          "expected": "434ce7b9c0a6eeb900d93e1c23e47469e851642c79c7cf0407dc517443f6313a",
+          "exact": true
+        },
+        {
+          "url": "http://127.0.0.1:41481/party-game/mode-images.js?v=6",
+          "cached": true,
+          "bytes": 863,
+          "status": 200,
+          "mime": "text/javascript",
+          "sha256": "24117ded42b6629a43c41cf3074f82deb0d77c65edc45ab78decb463c82fa765",
+          "expected": "24117ded42b6629a43c41cf3074f82deb0d77c65edc45ab78decb463c82fa765",
+          "exact": true
+        }
+      ]
+    }
+  },
+  "localObserverCost": {
+    "sourceHead": "b7b4c0768504a548f66b7ce474add62b96defe3b",
+    "browser": "Chromium headless shell140 / Playwright1.55; diagnostic only, not acceptance",
+    "cpu": 4,
+    "nPerArm": 7,
+    "sameProductionSTART": true,
+    "sameFixturePerArm": true,
+    "screenshotsAndSources": true,
+    "forward": {
+      "order": [
+        "DOM snapshots on",
+        "DOM snapshots off"
+      ],
+      "onMs": [
+        235,
+        213.3,
+        203,
+        207.9,
+        294.3,
+        244,
+        281.1
+      ],
+      "offMs": [
+        176.2,
+        160.2,
+        156.5,
+        174.9,
+        161.1,
+        158.5,
+        157.6
+      ],
+      "onMedianMs": 235,
+      "offMedianMs": 160.2
+    },
+    "reverse": {
+      "order": [
+        "DOM snapshots off",
+        "DOM snapshots on"
+      ],
+      "onMs": [
+        253.5,
+        305.8,
+        259.9,
+        278.5,
+        259.1,
+        276.6,
+        231.8
+      ],
+      "offMs": [
+        181.1,
+        191.9,
+        176.5,
+        171.1,
+        163.8,
+        208.8,
+        173.8
+      ],
+      "onMedianMs": 259.9,
+      "offMedianMs": 176.5
+    },
+    "traceFrames": {
+      "firstOn": 1342,
+      "firstOff": 0
+    },
+    "interpretation": "DOM snapshot/HAR observation materially perturbs the measured START. Forward and reverse order agree. This does not establish the browser cancellation root cause; native156 A/B and unchanged n20 gate remain mandatory."
+  },
+  "localObserverFixtureControl": {
+    "acceptance": false,
+    "browser": "140.0.7339.16",
+    "driver": "1.55.0",
+    "cpu": 4,
+    "fixtureSHA256": "b03a8d54cfa12c7b84fffbb50c0005a45b6d9aa04a668e99adb4c3cfc6ba1fad",
+    "method": "same exact genuine RAW and native strict receipt shared across all four contexts; full production START; fonts blocked only for local diagnostic",
+    "rows": [
+      {
+        "snapshots": true,
+        "stats": {
+          "n": 3,
+          "median": 200.3,
+          "p95": 251,
+          "max": 251
+        },
+        "success": true
+      },
+      {
+        "snapshots": false,
+        "stats": {
+          "n": 3,
+          "median": 181.4,
+          "p95": 195.6,
+          "max": 195.6
+        },
+        "success": true
+      },
+      {
+        "snapshots": false,
+        "stats": {
+          "n": 3,
+          "median": 164.6,
+          "p95": 191.2,
+          "max": 191.2
+        },
+        "success": true
+      },
+      {
+        "snapshots": true,
+        "stats": {
+          "n": 3,
+          "median": 209.3,
+          "p95": 210.4,
+          "max": 210.4
+        },
+        "success": true
+      }
+    ]
+  }
 }
