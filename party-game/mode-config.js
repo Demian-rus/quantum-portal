@@ -1,6 +1,6 @@
 'use strict';
 // Add a new version when changing parameters. Saved rounds retain their snapshots.
-const QUIP_MODE_CONFIG_VERSION=1;
+const QUIP_MODE_CONFIG_VERSION=2;
 const QUIP_MODES_V4=Object.freeze(Object.fromEntries([
  {"id":"talk","title":"СЛОВА","rule":"Объясняй словами, не называя ответ и однокоренные слова.","kind":"words","basePoints":1,"modifierBonus":1,"usesTimer":true,"allowsRisk":true,"blitzWordsCount":0,"supportsSharedAward":false,"cardType":"words","durationBonus":0,"secretMethod":true,"usesModifiers":true,"interaction":"explain","enabled":true},
  {"id":"mime","title":"ЖЕСТЫ","rule":"Только жесты и мимика. Нельзя говорить или издавать звуки.","kind":"words","basePoints":1,"modifierBonus":1,"usesTimer":true,"allowsRisk":true,"blitzWordsCount":0,"supportsSharedAward":false,"cardType":"words","durationBonus":0,"secretMethod":true,"usesModifiers":true,"interaction":"explain","enabled":true},
@@ -11,7 +11,10 @@ const QUIP_MODES_V4=Object.freeze(Object.fromEntries([
  {"id":"blitz","title":"БЛИЦ","rule":"Отгадайте все 3 слова за один таймер. За 3 из 3 — 2 базовых очка, за неполный результат — 0.","kind":"words","basePoints":2,"modifierBonus":1,"usesTimer":true,"allowsRisk":true,"blitzWordsCount":3,"supportsSharedAward":false,"cardType":"blitz","durationBonus":30,"secretMethod":false,"usesModifiers":true,"interaction":"explain","enabled":true},
  {"id":"approx","title":"ПРИМЕРНО","rule":"Назовите свои ответы, затем откройте правильный и решите, кому начислить очки.","kind":"number","cardType":"number","basePoints":1,"modifierBonus":0,"usesTimer":false,"allowsRisk":false,"blitzWordsCount":0,"supportsSharedAward":true,"durationBonus":0,"secretMethod":false,"usesModifiers":false,"interaction":"estimate","enabled":true}
 ].map(mode=>[mode.id,Object.freeze(mode)])));
-const QUIP_MODE_CONFIGS=Object.freeze({1:QUIP_MODES_V4});
+// Historical mode-config v1 is frozen for existing games. v2 applies only to new games.
+const QUIP_MODES_V5=Object.freeze(Object.fromEntries(Object.entries(QUIP_MODES_V4).map(([id,config])=>
+ [id,Object.freeze(['mime','draw','sing'].includes(id)?{...config,basePoints:2}:config)])));
+const QUIP_MODE_CONFIGS=Object.freeze({1:QUIP_MODES_V4,2:QUIP_MODES_V5});
 const QUIP_LEGACY_MODES=Object.freeze(Object.fromEntries(Object.values(QUIP_MODES_V4)
  .filter(mode=>mode.id!=='approx').map(mode=>[mode.id,Object.freeze({...mode,rule:mode.id==='blitz'?'Отгадай все 5 слов за отведённое время! За 5 из 5 получи 3 очка. За неполный результат — 0.':mode.rule,blitzWordsCount:mode.id==='blitz'?5:0})])));
 function getModeConfig(id,version=QUIP_MODE_CONFIG_VERSION){
