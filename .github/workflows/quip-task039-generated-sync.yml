@@ -13,6 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: feat/quip-task039-blitz-all-levels-score-and-category-review-20261031
+          fetch-depth: 0
           persist-credentials: true
       - uses: actions/setup-node@v4
         with:
