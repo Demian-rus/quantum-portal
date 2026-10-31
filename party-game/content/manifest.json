@@ -837,6 +837,11 @@
       "path": "packs/approx-games-v6.json",
       "immutable": false,
       "review": "GQ6: general@67 appends 15 independently sourced videogame numerical questions, preserving previous general@66 7445 IDs"
+    },
+    {
+      "path": "packs/general-category-review-v1.json",
+      "immutable": false,
+      "review": "TASK039: general@68 retains all 7460 IDs and source rows, overlays thematic tags for 2840 historical cards without editing immutable sources; 1443 broad/general labels flagged for editorial refinement."
     }
   ],
   "legacyCollisions": [
