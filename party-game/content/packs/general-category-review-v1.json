@@ -8573,7 +8573,6 @@
         "animals"
       ],
       "word-000385": [
-        "marine",
         "animals"
       ],
       "word-000386": [
@@ -12052,10 +12051,10 @@
         "general"
       ],
       "word-001555": [
-        "culture"
+        "general"
       ],
       "word-001556": [
-        "culture"
+        "general"
       ],
       "word-001557": [
         "general"
@@ -12581,8 +12580,9 @@
         "science"
       ],
       "word-001730": [
-        "nature",
-        "space"
+        "science",
+        "space",
+        "technology"
       ],
       "word-001731": [
         "science"
@@ -13084,7 +13084,8 @@
         "transport"
       ],
       "phrase-000046": [
-        "mythology"
+        "general",
+        "culture"
       ],
       "phrase-000047": [
         "animals"
@@ -13123,8 +13124,8 @@
         "everyday"
       ],
       "phrase-000059": [
-        "mythology",
-        "nature"
+        "nature",
+        "general"
       ],
       "phrase-000060": [
         "everyday"
@@ -13767,7 +13768,7 @@
         "everyday"
       ],
       "phrase-000273": [
-        "culture"
+        "general"
       ],
       "phrase-000274": [
         "arts"
@@ -14121,7 +14122,7 @@
         "general"
       ],
       "phrase-000391": [
-        "culture"
+        "general"
       ],
       "phrase-000392": [
         "mythology"
@@ -14130,16 +14131,16 @@
         "arts"
       ],
       "phrase-000394": [
-        "culture"
+        "general"
       ],
       "phrase-000395": [
-        "culture"
+        "general"
       ],
       "phrase-000396": [
         "culture"
       ],
       "phrase-000397": [
-        "culture"
+        "general"
       ],
       "phrase-000398": [
         "science"
