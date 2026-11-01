@@ -327,7 +327,7 @@ function checkContentPack(selection,settings,cards=PARTY_CARDS,registry=QUIP_CON
   const kind=getModeConfig(method).cardType;
   if(!kind)throw Error('Unknown QUIP mode: '+method);
   for(const level of levels){
-   let pool=kind==='number'?getPackQuestionPool(selection,level,questions,registry):kind==='blitz'?PARTY_CARD_LEVELS.flatMap(tier=>getPackCardPool(selection,'words',tier,['word'],cards,registry)):getPackCardPool(selection,kind,level,settings.promptTypes,cards,registry);
+   let pool=kind==='number'?getPackQuestionPool(selection,level,questions,registry):kind==='blitz'&&(settings.rulesVersion==null||settings.rulesVersion>=6)?PARTY_CARD_LEVELS.flatMap(tier=>getPackCardPool(selection,'words',tier,['word'],cards,registry)):getPackCardPool(selection,kind,level,settings.promptTypes,cards,registry);
    if(method==='sing')pool=filterSongLanguagePool(pool,settings);
    const count=new Set(pool.map(card=>card.text||card.question)).size,required=Math.max(pack.minCardsPerPool,kind==='blitz'?(settings.rulesVersion&&settings.rulesVersion<4?5:getModeConfig('blitz').blitzWordsCount):1);
    if(count<required)problems.push(validateGeneralCategorySelection(selection)?.excluded.length?
