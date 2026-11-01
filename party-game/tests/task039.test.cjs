@@ -143,3 +143,46 @@ test('TASK039 editorial: all 2840 category overrides retain IDs and corrected se
  };
  for(const [id,expected] of Object.entries(corrected))assert.deepEqual(tags[id],expected,id);
 });
+
+test('TASK039 future menu preferences survive reload without changing active match RAW',()=>{
+ const h=createSimulation(7041);
+ h.eval('Object.assign(options,{modes:["talk","mime"],difficulty:"easy",modifierChance:100});newGame()');
+ assert(h.eval('game!==null'),'baseline party must start');
+ const before=h.storage.get('iskra-party:v1'),snapshot=h.eval('JSON.stringify(game)');
+ const original=JSON.parse(before),matchId=h.eval('game.matchId');
+ h.eval('options.modifierChance=10;options.modes=[];options.difficulty="hard";persist()');
+ const futureRaw=h.storage.get('iskra-party:future-options:v1');
+ assert.equal(typeof futureRaw,'string');
+ assert.equal(h.storage.get('iskra-party:v1'),before,'future menu settings must not rewrite paused RAW');
+ assert.deepEqual(JSON.parse(futureRaw).options.modes,[]);
+ assert.equal(JSON.parse(futureRaw).matchId,matchId);
+ const restarted=createSimulation(7042,new Map(h.storage));
+ assert.equal(restarted.eval('storageBlocked'),false);
+ assert.equal(restarted.storage.get('iskra-party:v1'),before,'reload must not rewrite paused RAW');
+ assert.equal(restarted.eval('JSON.stringify(game)'),snapshot,'live party snapshot remains unchanged');
+ assert.equal(restarted.eval('options.modifierChance'),10);
+ assert.equal(restarted.eval('options.difficulty'),'hard');
+ assert.deepEqual(JSON.parse(restarted.eval('JSON.stringify(options.modes)')),[]);
+ restarted.eval('options.modes=["talk"];options.modifierChance=30;persist()');
+ const twice=createSimulation(7043,new Map(restarted.storage));
+ assert.equal(twice.eval('options.modifierChance'),30,'later preference edits supersede the sidecar');
+ assert.deepEqual(JSON.parse(twice.eval('JSON.stringify(options.modes)')),['talk']);
+ assert.equal(twice.storage.get('iskra-party:v1'),before,'repeated edits still protect RAW');
+ twice.eval('newGame()');
+ assert.notEqual(twice.eval('game.matchId'),matchId);
+ assert.equal(JSON.parse(twice.storage.get('iskra-party:v1')).options.modifierChance,30);
+ const next=createSimulation(7044,new Map(twice.storage));
+ assert.equal(next.eval('options.modifierChance'),30,'a new party adopts the chosen menu options');
+ assert.equal(next.eval('storageBlocked'),false);
+});
+
+test('TASK039 incompatible future setup policy blocks writes without damaging paused RAW',()=>{
+ const h=createSimulation(7045);h.eval('newGame()');
+ const before=h.storage.get('iskra-party:v1');
+ h.eval('options.modeCompatibilityVersion=99;persist()');
+ const restarted=createSimulation(7046,new Map(h.storage));
+ assert.equal(restarted.eval('storageBlocked'),true);
+ assert.equal(restarted.storage.get('iskra-party:v1'),before);
+ restarted.eval('persist()');
+ assert.equal(restarted.storage.get('iskra-party:v1'),before);
+});
