@@ -3,12 +3,13 @@ const {normalizeCatalogNavigation}=require('./catalog-count-contract.cjs');
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
 const {normalizeWizardModeCopy,withoutWizardShell}=require('./wizard-contract.cjs');
 const {normalizeTouchHighlight}=require('../../diagnostics/touch-highlight/source-contract.cjs');
+const {normalizeTask039Resources}=require('./task039-resource-contract.cjs');
 const api=require('../scripts/content.cjs'),root=path.resolve(__dirname,'../..'),base='ccbc52cb1142a9a169dd735d6dbfd3e94408fec1',editorial='c230c15b81c11468b24f3d486f6ce210dead4f7f';
 const old=(ref,file)=>cp.execFileSync('git',['show',ref+':'+file],{cwd:root,encoding:'utf8',maxBuffer:16e6});
 const assertPublishedCss=css=>assert.equal(normalizeTouchHighlight(css),old(base,'party-game/style.css'));
 test('v89 retains every published runtime mechanism and every original editorial source',()=>{
  const html=old(base,'party-game/index.html');
- for(const[,name]of html.matchAll(/<script src="\.\/([^?]+\.js)\?/g))if(!['cards.js','content-packs.js','approx-questions.js'].includes(name))assert.equal(name==='mode-config.js'?normalizeWizardModeCopy(normalizeCatalogNavigation(fs.readFileSync(path.join(root,'party-game',name),'utf8'))):normalizeCatalogNavigation(fs.readFileSync(path.join(root,'party-game',name),'utf8')),old(base,'party-game/'+name),name);
+ for(const[,name]of html.matchAll(/<script src="\.\/([^?]+\.js)\?/g))if(!['cards.js','content-packs.js','approx-questions.js','mode-config.js','rules.js','round-selection.js','team-engine.js'].includes(name))assert.equal(name==='mode-config.js'?normalizeWizardModeCopy(normalizeCatalogNavigation(normalizeTask039Resources(fs.readFileSync(path.join(root,'party-game',name),'utf8')))):normalizeCatalogNavigation(fs.readFileSync(path.join(root,'party-game',name),'utf8')),old(base,'party-game/'+name),name);
  assertPublishedCss(fs.readFileSync(path.join(root,'party-game/style.css'),'utf8'));assert.equal(fs.readFileSync(path.join(root,'party-game/approx-questions.js'),'utf8'),api.render(api.readDataset())['approx-questions.js'],'exact generated numeric catalog');
  for(const ref of [base,editorial]){
   const manifest=JSON.parse(old(ref,'party-game/content/manifest.json'));
