@@ -120044,7 +120044,7 @@
         ],
         "themes": [],
         "ambiguities": [
-          "Копирование ДНК и воспроизведение данных."
+          "Биологическая репликация и воспроизведение данных."
         ],
         "modes": {
           "talk": {
@@ -120090,7 +120090,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Репликация означает воспроизведение ДНК или данных; две копии цепи можно нарисовать, но термин требует знаний."
       }
     },
@@ -120115,9 +120115,7 @@
           "technology"
         ],
         "themes": [],
-        "ambiguities": [
-          "Случайное распределение участников и случайный выбор."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -120162,7 +120160,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Рандомизация применяет случайное распределение; жеребьёвка даёт жестовый и рисуночный ориентир."
       }
     },
@@ -120187,9 +120185,7 @@
           "biology"
         ],
         "themes": [],
-        "ambiguities": [
-          "Сложное название контроля эффекта плацебо в исследовании."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -120234,7 +120230,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Плацебо-контроль сопоставляет лечение с неактивным средством; изображение таблетки не отличает метод проверки."
       }
     },
@@ -120258,9 +120254,7 @@
           "science"
         ],
         "themes": [],
-        "ambiguities": [
-          "Статистическое соответствие выборки всей группе."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -120305,7 +120299,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Репрезентативность показывает, насколько выборка отражает генеральную совокупность; без числовой схемы не передать."
       }
     },
@@ -120330,9 +120324,7 @@
           "language"
         ],
         "themes": [],
-        "ambiguities": [
-          "Корректность измерения и обоснованность вывода."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -120377,7 +120369,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Валидность означает измерение именно нужного свойства; жест или рисунок не отличит её от надёжности."
       }
     },
@@ -120404,7 +120396,7 @@
         ],
         "themes": [],
         "ambiguities": [
-          "Надёжность человека, вещи и научного измерения."
+          "Надёжность человека или вещи и достоверность измерений."
         ],
         "modes": {
           "talk": {
@@ -120450,7 +120442,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Надёжность описывает устойчивость к отказам или доверие; крепкий мост и повторные испытания дадут образ."
       }
     },
@@ -120476,7 +120468,7 @@
         ],
         "themes": [],
         "ambiguities": [
-          "Статистическая выборка и взятие образца."
+          "Статистическая выборка и отбор физического образца."
         ],
         "modes": {
           "talk": {
@@ -120522,7 +120514,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Выборка — отобранная часть большого множества; выбор нескольких предметов из кучи можно показать."
       }
     },
@@ -120547,9 +120539,7 @@
           "technology"
         ],
         "themes": [],
-        "ambiguities": [
-          "Ошибка измерения относительно правильного результата."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -120594,7 +120584,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Погрешность — отклонение измерения; повторные взвешивания или несовпадающие шкалы покажут её косвенно."
       }
     },
@@ -120620,9 +120610,7 @@
           "everyday"
         ],
         "themes": [],
-        "ambiguities": [
-          "Повторяющаяся связь событий или чисел."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -120667,7 +120655,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Закономерность обнаруживают в повторяющемся порядке; рисунок ряда фигур не всегда отличает её от узора."
       }
     },
@@ -120694,7 +120682,7 @@
         ],
         "themes": [],
         "ambiguities": [
-          "Толкование текста, события и результатов исследования."
+          "Толкование текста и интерпретация научных данных."
         ],
         "modes": {
           "talk": {
@@ -120740,7 +120728,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Интерпретация означает объяснение смысла; изображение нескольких трактовок без слов трудно сделать однозначным."
       }
     },
@@ -120766,9 +120754,7 @@
           "everyday"
         ],
         "themes": [],
-        "ambiguities": [
-          "Зависимость оценки от личной точки зрения."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -120813,7 +120799,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Субъективность — личное восприятие; жесты выбора по вкусу возможны, рисунок неоднозначен."
       }
     },
@@ -120838,9 +120824,7 @@
           "culture"
         ],
         "themes": [],
-        "ambiguities": [
-          "Беспристрастность и независимость от мнения."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -120885,7 +120869,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Объективность требует опоры на факты; уравновешенные весы только косвенно показывают беспристрастность."
       }
     },
@@ -120912,7 +120896,7 @@
         ],
         "themes": [],
         "ambiguities": [
-          "Окружающие слова и обстоятельства события."
+          "Речевой контекст и обстоятельства события."
         ],
         "modes": {
           "talk": {
@@ -120958,7 +120942,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Контекст — окружающие условия или текст; пантомима вокруг события возможна, но без подписи рисунок неточен."
       }
     },
@@ -120983,9 +120967,7 @@
           "science"
         ],
         "themes": [],
-        "ambiguities": [
-          "Скрытое предварительное допущение в высказывании."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -121030,7 +121012,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Пресуппозиция — предпосылка, принимаемая в речи как данная; жест и рисунок не различают её."
       }
     },
@@ -121055,9 +121037,7 @@
           "science"
         ],
         "themes": [],
-        "ambiguities": [
-          "Непрямой смысл, выводимый из разговора."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -121102,7 +121082,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Импликатура — подразумеваемый смысл фразы, а не сказанное прямо; для показа нужен речевой пример."
       }
     },
@@ -121127,9 +121107,7 @@
           "literature"
         ],
         "themes": [],
-        "ambiguities": [
-          "Описательное выражение вместо прямого названия."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -121174,7 +121152,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Перифраз заменяет название описанием; без произнесения фразы жест и рисунок не показывают приём."
       }
     },
@@ -121200,9 +121178,7 @@
           "science"
         ],
         "themes": [],
-        "ambiguities": [
-          "Постепенное изменение силы или степени."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -121247,7 +121223,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Градация — последовательное усиление или ослабление; ступени и нарастающие размеры рисуются легко."
       }
     },
@@ -121272,9 +121248,7 @@
           "culture"
         ],
         "themes": [],
-        "ambiguities": [
-          "Подражание узнаваемой манере, стилю."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -121319,7 +121293,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Стилизация — придание характерного стиля; переодевание и рисунок одного предмета в разных стилях подходят."
       }
     },
@@ -121345,9 +121319,7 @@
           "arts"
         ],
         "themes": [],
-        "ambiguities": [
-          "Насмешливая критика через художественное преувеличение."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -121392,7 +121364,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Сатира высмеивает недостатки; карикатуру нарисовать можно, но отличить её от юмора трудно."
       }
     },
@@ -121417,9 +121389,7 @@
           "culture"
         ],
         "themes": [],
-        "ambiguities": [
-          "Острое публицистическое обличение в небольшой форме."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -121464,7 +121434,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Памфлет — обличительный публицистический текст; нарисованная газета не передаёт жанр."
       }
     },
@@ -121489,9 +121459,7 @@
           "culture"
         ],
         "themes": [],
-        "ambiguities": [
-          "Сатирическое журналистское произведение."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -121536,7 +121504,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Фельетон — иронический газетный жанр; без текста нельзя различить от памфлета или статьи."
       }
     },
@@ -121561,9 +121529,7 @@
           "language"
         ],
         "themes": [],
-        "ambiguities": [
-          "Короткое сатирическое стихотворение."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -121608,7 +121574,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Эпиграмма — краткое колкое стихотворение; жестикуляция стихотворца не даёт точного жанра."
       }
     },
@@ -121634,7 +121600,7 @@
         ],
         "themes": [],
         "ambiguities": [
-          "Лирическое произведение с оттенком грусти."
+          "Поэтическая элегия и музыкальная пьеса."
         ],
         "modes": {
           "talk": {
@@ -121680,7 +121646,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Элегия — печальная лирика в поэзии или музыке; грустный жест не отличает жанр."
       }
     },
@@ -121706,7 +121672,7 @@
         ],
         "themes": [],
         "ambiguities": [
-          "Торжественное стихотворение и музыкальное произведение."
+          "Поэтическая ода и музыкальная ода."
         ],
         "modes": {
           "talk": {
@@ -121752,7 +121718,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Ода прославляет человека или событие; торжественное поклонение жестами намекает, рисунок не различает жанр."
       }
     },
@@ -121778,7 +121744,7 @@
         ],
         "themes": [],
         "ambiguities": [
-          "Повествовательное стихотворение и песенная баллада."
+          "Баллада как стихотворный и песенный жанр."
         ],
         "modes": {
           "talk": {
@@ -121824,7 +121790,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Баллада рассказывает историю в стихах или песне; игра на гитаре сама по себе не отделяет её от песни."
       }
     },
@@ -121849,9 +121815,7 @@
           "culture"
         ],
         "themes": [],
-        "ambiguities": [
-          "Небольшой поучительный рассказ с моралью."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -121896,7 +121860,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Притча — иносказательный назидательный рассказ; разыграть сюжет можно, но без сюжета не опознать жанр."
       }
     },
@@ -121922,9 +121886,7 @@
           "culture"
         ],
         "themes": [],
-        "ambiguities": [
-          "Краткая законченная мудрая мысль."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -121969,7 +121931,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Афоризм — ёмкое изречение; без произнесения слов не отличить от пословицы."
       }
     },
@@ -121995,9 +121957,7 @@
           "science"
         ],
         "themes": [],
-        "ambiguities": [
-          "Общее правило или краткий принцип."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -122042,7 +122002,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Максима — краткое правило поведения или суждение; это узкий термин, требующий словесной подсказки."
       }
     },
@@ -122067,9 +122027,7 @@
           "language"
         ],
         "themes": [],
-        "ambiguities": [
-          "Логическое заключение из двух посылок."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -122114,7 +122072,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Силлогизм — форма рассуждения с посылками и выводом; показать без слов и символов нельзя."
       }
     },
@@ -122139,9 +122097,7 @@
           "language"
         ],
         "themes": [],
-        "ambiguities": [
-          "Противоречие двух обоснованных положений."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -122186,7 +122142,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Антиномия — конфликт логически обоснованных тезисов; жестами можно лишь показать спор."
       }
     },
@@ -122211,9 +122167,7 @@
           "language"
         ],
         "themes": [],
-        "ambiguities": [
-          "Ошибочное, но внешне связное умозаключение."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -122258,7 +122212,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Паралогизм — непреднамеренная логическая ошибка; без сравнительного речевого примера её не передать."
       }
     },
@@ -122283,9 +122237,7 @@
           "language"
         ],
         "themes": [],
-        "ambiguities": [
-          "Свойство доказательно необходимого суждения."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -122330,7 +122282,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Аподиктичность — логическая необходимость и достоверность; для массовой аудитории нет быстрого пути к догадке."
       }
     },
@@ -122355,9 +122307,7 @@
           "culture"
         ],
         "themes": [],
-        "ambiguities": [
-          "Философская возможность того, что могло быть иначе."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -122402,7 +122352,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Контингентность описывает не-необходимость положения дел; не имеет различимого бытового рисунка."
       }
     },
@@ -122427,9 +122377,7 @@
           "culture"
         ],
         "themes": [],
-        "ambiguities": [
-          "Выход за пределы обычного опыта и познания."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -122474,7 +122422,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Трансцендентность — нахождение за пределами опыта; религиозный символ даёт лишь ложную конкретизацию."
       }
     },
@@ -122499,9 +122447,7 @@
           "culture"
         ],
         "themes": [],
-        "ambiguities": [
-          "Присущность чему-либо изнутри, в отличие от внешнего."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -122546,7 +122492,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Имманентность противоположна трансцендентности; жест или рисунок не раскрывает философскую разницу."
       }
     },
@@ -122571,9 +122517,7 @@
           "culture"
         ],
         "themes": [],
-        "ambiguities": [
-          "Объяснение сложного через более простые части."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -122618,7 +122562,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Редукционизм сводит целое к компонентам; разобранный механизм лишь косвенно иллюстрирует философский подход."
       }
     },
@@ -122644,9 +122588,7 @@
           "culture"
         ],
         "themes": [],
-        "ambiguities": [
-          "Понимание целой системы, а не суммы деталей."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -122691,7 +122633,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Холизм рассматривает целое как самостоятельное; мозаика из частей отражает идею, но термин узкий."
       }
     },
@@ -122716,9 +122658,7 @@
           "culture"
         ],
         "themes": [],
-        "ambiguities": [
-          "Философский тезис о неизменной сущности явления."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -122763,7 +122703,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Эссенциализм связывает вещи с устойчивой сущностью; рисунок не передаёт концепцию."
       }
     },
@@ -122789,9 +122729,7 @@
           "literature"
         ],
         "themes": [],
-        "ambiguities": [
-          "Изучение объектов через отношения элементов структуры."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -122836,7 +122774,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Структурализм — направление анализа языка и культуры; схема связей без слов недостаточна."
       }
     },
@@ -122863,7 +122801,7 @@
         ],
         "themes": [],
         "ambiguities": [
-          "Функция как объяснение социальных или биологических явлений."
+          "Функционализм в социологии, психологии и архитектуре."
         ],
         "modes": {
           "talk": {
@@ -122909,7 +122847,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Функционализм существует в социологии, психологии и архитектуре; без контекста значение неоднозначно."
       }
     },
@@ -122934,9 +122872,7 @@
           "culture"
         ],
         "themes": [],
-        "ambiguities": [
-          "Общее для нескольких субъектов понимание опыта."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -122981,7 +122917,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Интерсубъективность означает разделяемость знания между людьми; рукопожатие слишком общее."
       }
     },
@@ -123006,9 +122942,7 @@
           "culture"
         ],
         "themes": [],
-        "ambiguities": [
-          "Философское учение о ценностях."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -123053,7 +122987,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Аксиология изучает ценности; изображённые деньги вводят в заблуждение относительно смысла."
       }
     },
@@ -123080,7 +123014,7 @@
         ],
         "themes": [],
         "ambiguities": [
-          "Философия красоты и внешняя привлекательность."
+          "Философское учение о прекрасном и внешний вид вещи."
         ],
         "modes": {
           "talk": {
@@ -123126,7 +123060,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Эстетика — учение о прекрасном или впечатление от оформления; поза любования передаёт частный смысл."
       }
     },
@@ -123153,7 +123087,7 @@
         ],
         "themes": [],
         "ambiguities": [
-          "Моральные нормы и теория должного поведения."
+          "Практические нравственные нормы и философская этика."
         ],
         "modes": {
           "talk": {
@@ -123199,7 +123133,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Этика обсуждает допустимые поступки; жест помощи намекает на мораль, но рисунок не раскрывает тему точно."
       }
     },
@@ -123225,9 +123159,7 @@
           "literature"
         ],
         "themes": [],
-        "ambiguities": [
-          "Изучение языков, текстов и литературы."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -123272,7 +123204,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Филология исследует язык и тексты; образ учёного с книгами подходит, но похож на литературоведение."
       }
     },
@@ -123298,9 +123230,7 @@
           "history"
         ],
         "themes": [],
-        "ambiguities": [
-          "Предлагаемая эпоха заметного влияния человека на Землю."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -123345,7 +123275,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Антропоцен — обозначение времени глобального воздействия людей; изображение загрязнения даёт косвенную подсказку."
       }
     },
@@ -123371,9 +123301,7 @@
           "history"
         ],
         "themes": [],
-        "ambiguities": [
-          "Климат далёких геологических эпох."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -123418,7 +123346,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Палеоклимат изучает прошлые климатические условия; лёд и древний ландшафт на рисунке не дают однозначности."
       }
     },
@@ -123444,9 +123372,7 @@
           "geography"
         ],
         "themes": [],
-        "ambiguities": [
-          "Вечная мерзлота и замёрзшие грунты."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -123491,7 +123417,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Пермафрост — многолетнемёрзлый грунт; разрез почвы со льдом возможен, но слово заимствованное."
       }
     },
@@ -123516,9 +123442,7 @@
           "geography"
         ],
         "themes": [],
-        "ambiguities": [
-          "Древнее магнитное поле, записанное в породах."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -123563,7 +123487,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Палеомагнетизм изучают по намагниченности пород; обычный магнит не показывает геологическое прошлое."
       }
     },
@@ -123589,9 +123513,7 @@
           "history"
         ],
         "themes": [],
-        "ambiguities": [
-          "Датирование последовательности геологических событий."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -123636,7 +123558,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Геохронология определяет возраст горных пород; слои и временная шкала дают сложный образ."
       }
     },
@@ -123661,9 +123583,7 @@
           "geography"
         ],
         "themes": [],
-        "ambiguities": [
-          "Химический состав и процессы в земных оболочках."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -123708,7 +123628,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Геохимия соединяет исследования Земли с химией; колбы рядом с породой — трудный визуальный намёк."
       }
     },
@@ -123733,9 +123653,7 @@
           "geography"
         ],
         "themes": [],
-        "ambiguities": [
-          "Физические процессы Земли и методы их измерения."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -123780,7 +123698,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Геофизика применяет физику к строению Земли; сейсмограф на карте помогает специалисту."
       }
     },
@@ -123806,9 +123724,7 @@
           "geography"
         ],
         "themes": [],
-        "ambiguities": [
-          "Распределение живых организмов по Земле."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -123853,7 +123769,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Биогеография изучает ареалы животных и растений; карта с видами похожа на атлас."
       }
     },
@@ -123880,9 +123796,7 @@
           "science"
         ],
         "themes": [],
-        "ambiguities": [
-          "Взаимосвязанная среда и живые организмы."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -123927,7 +123841,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Экосистема объединяет живые организмы и среду; пруд с рыбами, растениями и солнцем легко изобразить."
       }
     },
@@ -123954,9 +123868,7 @@
           "science"
         ],
         "themes": [],
-        "ambiguities": [
-          "Сообщество организмов на определённой территории."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -124001,7 +123913,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Биоценоз — совокупность совместно обитающих видов; даже лесной рисунок легко принять за экосистему."
       }
     },
@@ -124028,9 +123940,7 @@
           "animals"
         ],
         "themes": [],
-        "ambiguities": [
-          "Разнообразие живых видов в экосистеме."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -124075,7 +123985,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Биоразнообразие — множество видов; рисунок разной флоры и фауны даёт прямую подсказку."
       }
     },
@@ -124102,7 +124012,7 @@
         ],
         "themes": [],
         "ambiguities": [
-          "Смена сообществ и передача прав по наследству."
+          "Экологическая смена сообществ и передача преемственности."
         ],
         "modes": {
           "talk": {
@@ -124148,7 +124058,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Сукцессия в экологии означает смену сообществ: поле, кустарники, лес; есть и значение преемственности."
       }
     },
@@ -124175,9 +124085,7 @@
           "nature"
         ],
         "themes": [],
-        "ambiguities": [
-          "Организм, живущий в тесной связи с другим."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -124222,7 +124130,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Симбионт живёт во взаимосвязи с другим видом; рыба-клоун и актиния дают пример."
       }
     },
@@ -124249,9 +124157,7 @@
           "nature"
         ],
         "themes": [],
-        "ambiguities": [
-          "Взаимодействие, при котором один живёт за счёт другого."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -124296,7 +124202,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Паразитизм наглядно иллюстрируется клещом на животном; отличить от обычного соседства несложно."
       }
     },
@@ -124323,9 +124229,7 @@
           "nature"
         ],
         "themes": [],
-        "ambiguities": [
-          "Сосуществование с выгодой одному без ущерба другому."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -124370,7 +124274,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Комменсализм отличает отсутствие вреда и пользы второму участнику; рисунок акулы с прилипалой не доказывает это."
       }
     },
@@ -124397,9 +124301,7 @@
           "animals"
         ],
         "themes": [],
-        "ambiguities": [
-          "Взаимодействие с взаимной выгодой двух организмов."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -124444,7 +124346,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Мутуализм иллюстрируют пчела и цветок; жесты взаимопомощи не уточняют биологический термин."
       }
     },
@@ -124472,9 +124374,7 @@
           "everyday"
         ],
         "themes": [],
-        "ambiguities": [
-          "Соперничество людей, компаний и организмов."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -124519,7 +124419,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Конкуренция — соревнование за результат или ресурс; бегущих соперников можно показать."
       }
     },
@@ -124546,9 +124446,7 @@
           "science"
         ],
         "themes": [],
-        "ambiguities": [
-          "Связанные эволюционные изменения взаимодействующих видов."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -124593,7 +124491,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Коэволюция означает взаимное эволюционное влияние видов; рисунок смены поколений требует знаний."
       }
     },
@@ -124621,7 +124519,7 @@
         ],
         "themes": [],
         "ambiguities": [
-          "Территория распространения вида и область явления."
+          "Ареал вида и более широкая географическая область явления."
         ],
         "modes": {
           "talk": {
@@ -124667,7 +124565,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Ареал показывает, где встречается вид; карта с заштрихованной областью косвенна без подписи."
       }
     },
@@ -124694,9 +124592,7 @@
           "marine"
         ],
         "themes": [],
-        "ambiguities": [
-          "Свечение, которое создают живые существа."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -124741,7 +124637,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Биолюминесценция — свечение медуз и светлячков; нарисовать светлячка можно, но уточнение термина требует знаний."
       }
     },
@@ -124768,9 +124664,7 @@
           "science"
         ],
         "themes": [],
-        "ambiguities": [
-          "Технические решения по образцу живых организмов."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -124815,7 +124709,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Бионика переносит биологические принципы в технику; механическая лапа и животное дают образ."
       }
     },
@@ -124842,9 +124736,7 @@
           "science"
         ],
         "themes": [],
-        "ambiguities": [
-          "Подражание решениям природы при проектировании."
-        ],
+        "ambiguities": [],
         "modes": {
           "talk": {
             "eligible": true,
@@ -124889,7 +124781,7 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "reviewedAt": "2026-11-01T21:13:10.720Z",
         "rationale": "Биомимикрия — создание решений по образцу природы; крыло птицы и самолёт помогают, но пересекаются с бионикой."
       }
     },
