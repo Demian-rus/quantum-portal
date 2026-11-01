@@ -42,7 +42,8 @@ test('TASK039 future Wizard catalog does not rewrite paused match options in RAW
    options.contentPack={id:'general',version:67};
    if(!persist())throw Error('Initial save failed');
    const before=localStorage.getItem(STORAGE_KEY);
-   options.contentPack={id:'general',version:68};
+   // Existing controls may mutate a nested preference in place.
+   options.contentPack.version=68;
    if(!persist())throw Error('Future setup save failed');
    const unchanged=localStorage.getItem(STORAGE_KEY);
    game.roundIndex=1;
