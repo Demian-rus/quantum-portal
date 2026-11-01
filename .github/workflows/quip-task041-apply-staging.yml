@@ -1,0 +1,36 @@
+name: TASK041 apply staged editorial journals
+on:
+  push:
+    branches: [feat/quip-task041-editorial-mode-difficulty-20261101]
+    paths: ['editorial/quip/staging/*.psv']
+permissions:
+  contents: write
+jobs:
+  apply:
+    if: github.repository == 'Demian-rus/quantum-portal'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply explicit source-bound decisions
+        shell: bash
+        run: |
+          shopt -s nullglob
+          files=(editorial/quip/staging/*.psv)
+          if (( ${#files[@]} == 0 )); then exit 0; fi
+          for file in "${files[@]}"; do
+            node editorial/quip/review-table.cjs "$file" codex-semantic-review
+            mv "$file" "editorial/quip/reviews/${file##*/}"
+          done
+          node editorial/quip/editor.cjs check
+          node --test editorial/quip/tests/*.test.cjs
+          node party-game/scripts/content.cjs check
+          git config user.name "quip-editorial-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add editorial/quip/editions/quip-v1.json editorial/quip/reviews/ editorial/quip/staging/
+          git commit -m "TASK041: apply reviewed journal to editorial edition"
+          git push origin HEAD:refs/heads/feat/quip-task041-editorial-mode-difficulty-20261101
