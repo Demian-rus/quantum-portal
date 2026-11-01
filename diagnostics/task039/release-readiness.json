@@ -1,0 +1,130 @@
+{
+  "checkedAtUTC": "2026-11-01T11:42:26.108548+00:00",
+  "status": "BLOCKED — not accepted for merge or publication",
+  "issue": 220,
+  "pr": 218,
+  "branch": "feat/quip-task039-blitz-all-levels-score-and-category-review-20261031",
+  "baseMain": "d305bad897d1f912553cf600d82969c031dd76d7",
+  "headBeforeSync": "213d7b7becb3d6813ba25a44afcf7c6a3cee6540",
+  "finalHead": "Recorded in PR218 after this completed work is committed",
+  "compiler": {
+    "build": "PASS",
+    "check": "PASS",
+    "sourceOverlayKeys": 2840,
+    "compiledEditorialCorrections": 1042,
+    "activeUniqueIds": 7460,
+    "compiledMatchesEntireSourcePack": true,
+    "cardsAndQuestionsByteIdentical": true,
+    "generatedBlob": "999bea2eaddac556dfe37f204294bf2342bd6fd2",
+    "generatedSHA256": "3e1d9f4b7a7d38595249bd3beb3e98fc8780722b34798bd3c13966e0f5d5b9b5"
+  },
+  "completedRepairs": [
+    "Deterministically rebuilt the actual generated catalog with all 1042 corrections.",
+    "Added exact reversible reviewed TASK039 source hunks to the existing historical guard chain; no blanket runtime allowlist in TASK038.",
+    "Replaced the empty-numeric test fixture with real excluded numeric tags, retaining 230 playable easy words; every numeric tier empty, original no-RNG/no-mutation assertions retained.",
+    "Added exact compiled-overlay checks and version-specific v5/v6 paused Blitz reload/RAW regressions.",
+    "Retained canonical dice=true in persisted test fixtures; real hard countdown advanced by the production beginAutomaticRound in the team test helper.",
+    "Updated only fresh-game v6 assertions and current cache URLs; explicit historical v1–v5 data left unchanged.",
+    "Removed the one-off editorial workflow after successful build/check."
+  ],
+  "localChecks": {
+    "scriptSyntax": "PASS",
+    "contentApproxConditionModifiersChecks": "PASS",
+    "task039AndTask034To038Touch": {
+      "pass": 42,
+      "fail": 0
+    },
+    "task027To032": {
+      "pass": 24,
+      "fail": 0
+    },
+    "teamFoundationEngineIntegrationCatalog": {
+      "pass": 45,
+      "fail": 0
+    },
+    "historicalContentAndTask024": {
+      "pass": 64,
+      "fail": 0
+    },
+    "remainingLogicGroup": {
+      "pass": 390,
+      "fail": 18,
+      "failures": [
+        "approx units: numeric answers and scoring retain exact historical bytes; content catalog is reproducible",
+        "integration: pinned storage cores and gameplay contracts are byte-exact from the accepted PRs",
+        "UX aliases are exact display-only matches; saved/custom/V1 snapshots and catalogs stay unchanged",
+        "reports: selection metadata adds zero RNG calls and preserves every chosen outcome and planner state",
+        "КВИП branding is consistent across the browser and installed PWA",
+        "all version 3 rewards follow the selected difficulty; Blitz stays three",
+        "offline engine scripts and old storage envelope are preserved",
+        "all eight active mode icons exist and load from versioned URLs",
+        "V4 fixed rewards cover all eight configured modes and all difficulties",
+        "chance and recent state are snapshotted per party and restored with the selected modifier",
+        "TASK009 G recipient changes and settings selection cannot reactivate an incompatible mode or hide an empty choice",
+        "TASK009 G empty settings survive theme transitions without silently enabling modes",
+        "TASK009 G unknown compatibility versions preserve original storage, both in options and in matches",
+        "TASK009 G ordinary rewards/timers and all four manual Approx outcomes stay independent of compatibility",
+        "TASK012 C old and active language snapshots restore independently of future menu preferences without RAW writes",
+        "TASK019 historical selection byte behavior against actual published v85 function including RNG counts",
+        "TASK021: historical sources and mechanics retain v83 bytes; new content artifacts are generated",
+        "original v85 runtime untouched; content-only additions are explicitly versioned"
+      ]
+    },
+    "unitTotal": {
+      "pass": 565,
+      "fail": 18,
+      "total": 583
+    },
+    "allGameChecksPassed": false
+  },
+  "confirmedProductRegression": {
+    "file": "party-game/storage-controller.js",
+    "cause": "sameMatch pins the entire saved options object; explicit future-menu preferences are not persisted/restored.",
+    "evidence": "modifier chance is changed 100→10, but after reload options.modifierChance is 100; empty mode selections are similarly lost. Existing regression assertions remain failing and have not been weakened.",
+    "requiredBeforeRelease": "Restore independent future-menu preference persistence while retaining byte-identical paused RAW for category/catalog upgrade; validate current and historical save fixtures."
+  },
+  "ci": {
+    "syncRun": 41299569292,
+    "syncJob": 124827523915,
+    "syncStatus": "queued",
+    "syncRunnerId": 0,
+    "latestPreCommitGameRun": 41299794849,
+    "gameStatus": "queued; all 16 jobs unassigned, runner_id: 0",
+    "latestPreCommitTask038Run": 41299794859,
+    "task038Status": "queued",
+    "acceptance": "queued/action_required are not SUCCESS. Final-head native game/PWA/mobile/raster/performance checks remain mandatory. No global runner-outage/billing cause inferred."
+  },
+  "historicalRaster": {
+    "head": "d83ac801ea3b0b0ae5a9f89589b3e685fe45e05a",
+    "run": 41259158211,
+    "artifact": 13070645403,
+    "artifactSHA256": "538b135e28cb6426c9fb634bd785dd1cd853f22fb0034304361cfe812db1abc1",
+    "width": 390,
+    "height": 844,
+    "changedPixels": 10,
+    "maxChannelDelta": 5,
+    "bbox": [
+      117,
+      32,
+      276,
+      519
+    ],
+    "beforeSHA256": "6c4efa658520924eaecc6682c01ed26d9d4daa9539170a390206d65128871f89",
+    "afterSHA256": "63ef5fb58c21290da068938d4749cc7b6ef6b0940d9cd88315e9d337cfa9c844",
+    "recordedFontsGeometryAnimationsEqual": true,
+    "bothSamePageRepeatsByteExact": true,
+    "cause": "Browser-internal root cause unproven; no exact golden/assertion/tolerance change. Current-head raster acceptance still required."
+  },
+  "task041": {
+    "codingStarted": false,
+    "newCodeBranchCreated": false,
+    "gate": "Do not implement until PR218 is accepted, merged, and its actual live PWA deployment is verified."
+  },
+  "publication": {
+    "merged": false,
+    "published": false,
+    "draft": true,
+    "ownerAuthorizedSafePublication": true,
+    "reasonNotPublished": "Unfulfilled native CI plus 18 failing local logic assertions, including a confirmed preference-persistence regression."
+  }
+}

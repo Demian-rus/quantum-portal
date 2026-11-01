@@ -16,7 +16,7 @@ function start(settings={},bits=[0,0,0],seed=71){
 function check(h){assert.equal(h.eval('QuipTeamsEngine.validateRecord({...teamRecord,game,taskMemory})'),true);assert.deepEqual(h.storage,h.legacy,'team mechanics cannot write duel/profile/backup keys');}
 function answer(h,{success=true,modifier=true,shared='none'}={}){
  h.context.result={success,modifier,shared};h.eval(`roll();if(game.current.modeId==='approx'){revealApprox();awardApprox(result.shared)}else if(game.current.modeId==='blitz'){
- toggleWord();startTimer();for(let i=0;i<(result.success?3:2);i++)advanceBlitz(true);if(game.phase==='play')finishTimer('early');judge(result.success,result.modifier);
+ toggleWord();startTimer();if(game.phase==='countdown')beginAutomaticRound();for(let i=0;i<(result.success?3:2);i++)advanceBlitz(true);if(game.phase==='play')finishTimer('early');judge(result.success,result.modifier);
  }else{toggleWord();startTimer();if(game.phase==='countdown')beginAutomaticRound();recordAnswer(result.success,result.modifier)}`);check(h);
 }
 test('real task selection and settlement: all eight starts, 4/8/12 turns, team/partner rotation and no duel writes',()=>{

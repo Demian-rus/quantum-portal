@@ -149,5 +149,5 @@ test('TASK033 profile-picker touch closes without a container rectangle and pres
  const html=read('index.html'),sw=read('sw.js');
  assert.match(html,/setup-wizard\.css\?v=10/);
  assert.match(sw,/setup-wizard\.css\?v=10/);
- assert.match(sw,/kvip-pwa-v106-20261030-general-categories-candidate-n/);
+ assert.match(sw,/kvip-pwa-v107-20261031-task039-mixed-blitz-categories/);
 });

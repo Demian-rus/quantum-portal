@@ -1982,7 +1982,7 @@ test('new award defaults select the setter and leave immutable presets intact',(
  assert.equal(h.eval('options.modes.includes("yesno")'),false);
  assert.equal(h.eval('QUIP_PARTY_PRESETS["classic-duel@3"].settings.modes.includes("yesno")'),true);
  h.eval('soundOn=false;newGame()');assert.equal(h.eval('game.awardPolicyVersion'),1);assert.equal(h.eval('game.awardTo'),'setter');
- assert.equal(h.eval('game.scoringVersion'),2);assert.equal(h.eval('game.rulesVersion'),5);
+ assert.equal(h.eval('game.scoringVersion'),2);assert.equal(h.eval('game.rulesVersion'),6);
 });
 test('award selection removes incompatible modes without a fallback and blocks manual reactivation',()=>{
  const h=harness();h.eval('options.awardTo="guesser";options.modes=DEFAULT_MODES.slice();selectAwardTo("setter")');
@@ -2122,7 +2122,7 @@ test('new modifier selection defaults and ranges come from the independent polic
  for(const [raw,expected] of [[undefined,20],[0,10],[102,100],[36,35],[100,100]]){
   h.context.rawChance=raw;assert.equal(h.eval('sanitizeModifierChance(rawChance)'),expected);
  }
- h.eval('soundOn=false;newGame()');assert.equal(h.eval('game.modifierSelectionVersion'),2);assert.equal(h.eval('game.modifierChance'),20);assert.equal(h.eval('game.rulesVersion'),5);
+ h.eval('soundOn=false;newGame()');assert.equal(h.eval('game.modifierSelectionVersion'),2);assert.equal(h.eval('game.modifierChance'),20);assert.equal(h.eval('game.rulesVersion'),6);
 });
 test('optional modifier probability has deterministic boundaries and no guaranteed batch quota',()=>{
  for(const chance of [10,20,50,100]){

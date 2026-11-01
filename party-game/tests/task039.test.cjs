@@ -2,6 +2,46 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {createSimulation}=require('../scripts/game-simulation.cjs');
 const root=path.resolve(__dirname,'..');
+test('TASK039 exact reviewed source additions restore accepted main and expose unrelated edits',()=>{
+ const {execFileSync}=require('node:child_process'),{normalizeTask039,hunks}=require('../../diagnostics/task039/source-contract.cjs');
+ const base='d305bad897d1f912553cf600d82969c031dd76d7';
+ for(const file of new Set(hunks.map(h=>h.file))){
+  const source=fs.readFileSync(path.join(root,file),'utf8'),before=execFileSync('git',['show',base+':party-game/'+file],{encoding:'utf8',maxBuffer:20e6});
+  assert.equal(normalizeTask039(source),before,file);
+  assert.notEqual(normalizeTask039(source+'\n/* unreviewed edit */'),before,file);
+  for(const h of hunks.filter(h=>h.file===file))assert.equal(source.split(h.after).length,2,file+' exact unique hunk');
+ }
+ for(const [file,from,to]of [['mode-config.js','basePoints:2','basePoints:9'],['round-selection.js',"game&&ruleSetForGame(game).version>=6","game&&ruleSetForGame(game).version>=5"],['storage-controller.js','sameMatch?persistedMatchOptions:options','options']]){
+  const source=fs.readFileSync(path.join(root,file),'utf8'),changed=source.replace(from,to);assert.notEqual(source,changed);
+  assert.notEqual(normalizeTask039(changed),execFileSync('git',['show',base+':party-game/'+file],{encoding:'utf8'}),file+' mutation remains visible');
+ }
+});
+
+test('TASK039 compiled general@68 contains all 1042 editorial corrections and every current override',()=>{
+ const {execFileSync}=require('node:child_process'),data=require('../scripts/content.cjs').readDataset(),source=data.packs.find(p=>p.id==='general'&&p.version===68);
+ const initial=execFileSync('git',['show','213d7b7becb3d6813ba25a44afcf7c6a3cee6540:party-game/content-packs.js'],{encoding:'utf8',maxBuffer:20e6});
+ const previous=JSON.parse(initial.split('\n').find(row=>row.includes('"id":"general","version":68,')).trim().replace(/,$/,''));
+ assert.equal(Object.keys(source.categoryOverrides).filter(id=>JSON.stringify(previous.categoryOverrides[id])!==JSON.stringify(source.categoryOverrides[id])).length,1042);
+ const h=createSimulation();assert.deepEqual(JSON.parse(h.eval("JSON.stringify(QUIP_CONTENT_PACKS['general@68'])")),source);
+ const old=data.packs.find(p=>p.id==='general'&&p.version===67);assert.deepEqual(source.criteria.cardIds,old.criteria.cardIds);
+});
+
+test('TASK039 v5 and v6 paused Blitz retain exact RAW, selected IDs and their versioned pool after reload',()=>{
+ for(const version of [5,6]){
+  const source=createSimulation(7039);source.eval('Object.assign(options,{modes:["blitz"],difficulty:"easy",finishType:"rounds",rounds:4,riskRounds:false,complications:false});newGame()');
+  const fixture=JSON.parse(source.storage.get('iskra-party:v1'));
+  // Explicit historical schema fixture; never change the rules of a live save.
+  fixture.game.rulesVersion=version;fixture.game.modeConfigVersion=version===5?1:2;fixture.game.contentPack={id:'general',version:version===5?67:68};fixture.options.contentPack={...fixture.game.contentPack};
+  source.storage.set('iskra-party:v1',JSON.stringify(fixture));
+  const h=createSimulation(7039,new Map(source.storage));assert.equal(h.eval('storageBlocked'),false);h.eval('game.dice=false;roll();game.dice=true;toggleWord();startTimer();pauseTimer();persist()');
+  assert.equal(h.eval('game.current.paused'),true);const raw=h.storage.get('iskra-party:v1'),ids=JSON.parse(h.eval('JSON.stringify(game.current.blitzCardIds)'));assert.equal(ids.length,3);assert.equal(new Set(ids).size,3);
+  const restored=createSimulation(7040,new Map(h.storage));assert.equal(restored.eval('storageBlocked'),false);assert.equal(restored.storage.get('iskra-party:v1'),raw);assert.equal(restored.eval('game.rulesVersion'),version);assert.deepEqual(JSON.parse(restored.eval('JSON.stringify(game.current.blitzCardIds)')),ids);
+  if(version===5)assert(restored.eval("getPromptPool('blitz','hard').every(text=>{const card=PARTY_CARDS.find(c=>c.text===text&&c.type==='word');return card?.difficulty==='easy'&&text.length<=12})"));
+  else assert(restored.eval("new Set(blitzFullWordPool(game.contentPack).map(c=>c.difficulty)).size===3&&blitzFullWordPool(game.contentPack).some(c=>c.text.length>12)"));
+  restored.eval('options.contentPack={id:"general",version:68};renderOptions();persist()');assert.equal(restored.storage.get('iskra-party:v1'),raw,'future setup cannot change either version of paused Blitz');
+  restored.eval('resumeTimer();advanceBlitz(true);advanceBlitz(true);advanceBlitz(true);judge(true)');assert.equal(restored.eval('game.history.length'),1);assert.equal(restored.eval('game.history[0].basePoints'),2);assert.equal(restored.eval('game.rulesVersion'),version);
+ }
+});
 test('TASK039 new reward v6 raises only mime, draw and sing and keeps saved v5 scores',()=>{
  const h=createSimulation();
  const data=JSON.parse(h.eval(`JSON.stringify((()=>{
