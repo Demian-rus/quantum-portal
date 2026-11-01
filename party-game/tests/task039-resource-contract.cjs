@@ -7,7 +7,8 @@ const REVISIONS=Object.freeze([
  ['rules.js?v=6','rules.js?v=5'],
  ['round-selection.js?v=7','round-selection.js?v=6'],
  ['team-engine.js?v=14','team-engine.js?v=13'],
- ['content-packs.js?v=22','content-packs.js?v=21']
+ ['content-packs.js?v=22','content-packs.js?v=21'],
+ ['storage-controller.js?v=3','storage-controller.js?v=2']
 ]);
 function normalizeTask039Resources(source){
  return REVISIONS.reduce((result,[current,previous])=>result.replaceAll(current,previous),source);
