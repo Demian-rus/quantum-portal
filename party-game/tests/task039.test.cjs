@@ -87,10 +87,13 @@ test('TASK039 editorial: all 2840 category overrides retain IDs and corrected se
   'word-001580':['science'],       // Skepticism is not zoology
   'word-001642':['science'],       // Chromatography is not culture
   'word-001729':['science'],       // Spectroscopy is not painting
-  'word-001793':['language'],      // Presupposition is not food
+  'word-001793':['language'],
+  'word-001730':['science','space','technology'],
+  'word-000385':['animals'],      // Presupposition is not food
   'phrase-000064':['space'],       // Spaceship is not a ship at sea
   'phrase-000073':['technology','everyday'],
-  'phrase-000345':['science'],     // A random factor is not food
+  'phrase-000345':['science'],
+  'phrase-000059':['nature','general'],     // A random factor is not food
   'person-000065':['literature'],  // Pushkin
   'person-000071':['music'],       // Michael Jackson
   'person-000094':['sport'],       // Cristiano Ronaldo
