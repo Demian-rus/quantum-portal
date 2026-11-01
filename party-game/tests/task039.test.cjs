@@ -60,3 +60,43 @@ test('TASK039 future Wizard catalog does not rewrite paused match options in RAW
  assert.equal(state.roundIndex,1,'round persistence must continue normally');
  assert.equal(state.newPack,68,'a new match adopts the latest selected catalog');
 });
+
+test('TASK039 editorial: all 2840 category overrides retain IDs and corrected semantics',()=>{
+ const registry=JSON.parse(fs.readFileSync(path.join(root,'content/packs/general-category-review-v1.json'),'utf8'))[0];
+ const tags=registry.categoryOverrides;
+ assert.equal(Object.keys(tags).length,2840);
+ const allowed=new Set(JSON.parse(fs.readFileSync(path.join(root,'content/manifest.json'),'utf8')).categories.map(c=>c.id));
+ for(const [id,cats] of Object.entries(tags)){
+  assert(registry.criteria.cardIds.includes(id),'Unknown active ID: '+id);
+  assert(cats.length>0&&new Set(cats).size===cats.length,'Invalid tag set for '+id);
+  for(const category of cats)assert(allowed.has(category),'Unsupported category '+category);
+ }
+ const corrected={
+  'word-000005':['culture'],        // Confetti is not food
+  'word-000112':['general'],        // Concept is not food
+  'word-000229':['animals'],       // Cat is not technology
+  'word-000249':['technology'],    // Telephone is not an animal
+  'word-000361':['animals'],       // Seagull is not food
+  'word-000505':['everyday'],      // T-shirt is not inherently sport
+  'word-000646':['technology','everyday'],
+  'word-000730':['food'],          // Quinoa is not cinema
+  'word-000966':['technology'],    // Robot vacuum is not a natural phenomenon
+  'word-001097':['memes','culture'],
+  'word-001159':['everyday'],      // First-grader is not history
+  'word-001526':['science'],       // Antigravity is not zoology
+  'word-001580':['science'],       // Skepticism is not zoology
+  'word-001642':['science'],       // Chromatography is not culture
+  'word-001729':['science'],       // Spectroscopy is not painting
+  'word-001793':['language'],      // Presupposition is not food
+  'phrase-000064':['space'],       // Spaceship is not a ship at sea
+  'phrase-000073':['technology','everyday'],
+  'phrase-000345':['science'],     // A random factor is not food
+  'person-000065':['literature'],  // Pushkin
+  'person-000071':['music'],       // Michael Jackson
+  'person-000094':['sport'],       // Cristiano Ronaldo
+  'person-000277':['videogames'], // Lara Croft
+  'person-000291':['science'],     // Alan Turing
+  'person-000317':['arts']         // Paul Gauguin
+ };
+ for(const [id,expected] of Object.entries(corrected))assert.deepEqual(tags[id],expected,id);
+});
