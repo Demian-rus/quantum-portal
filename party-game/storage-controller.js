@@ -50,7 +50,7 @@ function persist() {
     localStorage.setItem(STORAGE_KEY,raw);
     if(localStorage.getItem(STORAGE_KEY)!==raw)return false;
     persistedMatchId=game?.matchId??null;
-    persistedMatchOptions=game?savedOptions:null;
+    persistedMatchOptions=game?(sameMatch?persistedMatchOptions:JSON.parse(JSON.stringify(savedOptions))):null;
     return true;
   }catch { return false; }
 }
