@@ -8,6 +8,9 @@ function storageNotice(){
 }
 function blockSavedData(reason){storageBlocked=true;storageProblem=reason;return null;}
 // A saved game's options are pinned until another match actually starts.
+// Keep the live match's RAW options stable; future Wizard choices use a distinct,
+// match-scoped, versioned preference record. Neither key rewrites the other.
+const FUTURE_OPTIONS_KEY='iskra-party:future-options:v1';
 let persistedMatchId=null,persistedMatchOptions=null;
 function readSaved() {
   try { loadedSaveRaw=localStorage.getItem(STORAGE_KEY); }
@@ -20,6 +23,22 @@ function readSaved() {
   if(obj.version!==1)return blockSavedData('incompatible');
   persistedMatchId=obj.game?.matchId??null;
   persistedMatchOptions=obj.game?obj.options:null;
+  // An unfinished match must restore its historical options and its future
+  // menu preferences independently. Old saves need no migration or RAW write.
+  if(obj.game?.matchId!=null){
+    let futureRaw;
+    try { futureRaw=localStorage.getItem(FUTURE_OPTIONS_KEY); }
+    catch { return blockSavedData('unavailable'); }
+    if(futureRaw!==null){
+      let future;
+      try { future=JSON.parse(futureRaw); }
+      catch { return blockSavedData('corrupt'); }
+      if(!future||typeof future!=='object'||Array.isArray(future)||future.version!==1||
+        typeof future.matchId!=='string'||!future.options||typeof future.options!=='object'||Array.isArray(future.options))
+        return blockSavedData('incompatible');
+      if(future.matchId===obj.game.matchId)obj.options=future.options;
+    }
+  }
   return obj;
 }
 // Explicit recovery only for corrupt data, never for an unknown future version.
@@ -46,6 +65,15 @@ function persist() {
     // creates a new matchId and adopts the new options; turns still persist.
     const sameMatch=game?.matchId!=null&&game.matchId===persistedMatchId;
     const savedOptions=sameMatch?persistedMatchOptions:options;
+    // Write the independent future setup snapshot before the match state.
+    // A failed preference write never authorizes a misleading successful save.
+    if(sameMatch){
+      const future=JSON.stringify({version:1,matchId:game.matchId,options});
+      if(localStorage.getItem(FUTURE_OPTIONS_KEY)!==future){
+        localStorage.setItem(FUTURE_OPTIONS_KEY,future);
+        if(localStorage.getItem(FUTURE_OPTIONS_KEY)!==future)return false;
+      }
+    }
     const raw=JSON.stringify({version:1,options:savedOptions,soundOn,game,...(taskMemory?{taskMemory}:{})});
     localStorage.setItem(STORAGE_KEY,raw);
     if(localStorage.getItem(STORAGE_KEY)!==raw)return false;
