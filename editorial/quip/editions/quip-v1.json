@@ -120035,12 +120035,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "biology",
+          "science",
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Копирование ДНК и воспроизведение данных."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Репликация означает воспроизведение ДНК или данных; две копии цепи можно нарисовать, но термин требует знаний."
       }
     },
     {
@@ -120057,12 +120108,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Случайное распределение участников и случайный выбор."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Рандомизация применяет случайное распределение; жеребьёвка даёт жестовый и рисуночный ориентир."
       }
     },
     {
@@ -120079,12 +120180,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "biology"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Сложное название контроля эффекта плацебо в исследовании."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "insufficient-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Плацебо-контроль сопоставляет лечение с неактивным средством; изображение таблетки не отличает метод проверки."
       }
     },
     {
@@ -120101,12 +120252,61 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Статистическое соответствие выборки всей группе."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Репрезентативность показывает, насколько выборка отражает генеральную совокупность; без числовой схемы не передать."
       }
     },
     {
@@ -120123,12 +120323,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "language"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Корректность измерения и обоснованность вывода."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Валидность означает измерение именно нужного свойства; жест или рисунок не отличит её от надёжности."
       }
     },
     {
@@ -120145,12 +120395,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "technology",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Надёжность человека, вещи и научного измерения."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Надёжность описывает устойчивость к отказам или доверие; крепкий мост и повторные испытания дадут образ."
       }
     },
     {
@@ -120167,12 +120468,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Статистическая выборка и взятие образца."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Выборка — отобранная часть большого множества; выбор нескольких предметов из кучи можно показать."
       }
     },
     {
@@ -120189,12 +120540,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Ошибка измерения относительно правильного результата."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Погрешность — отклонение измерения; повторные взвешивания или несовпадающие шкалы покажут её косвенно."
       }
     },
     {
@@ -120211,12 +120612,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "nature",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Повторяющаяся связь событий или чисел."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Закономерность обнаруживают в повторяющемся порядке; рисунок ряда фигур не всегда отличает её от узора."
       }
     },
     {
@@ -120233,12 +120685,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "language",
+          "culture",
+          "science"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Толкование текста, события и результатов исследования."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Интерпретация означает объяснение смысла; изображение нескольких трактовок без слов трудно сделать однозначным."
       }
     },
     {
@@ -120255,12 +120758,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "culture",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Зависимость оценки от личной точки зрения."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Субъективность — личное восприятие; жесты выбора по вкусу возможны, рисунок неоднозначен."
       }
     },
     {
@@ -120277,12 +120831,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Беспристрастность и независимость от мнения."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Объективность требует опоры на факты; уравновешенные весы только косвенно показывают беспристрастность."
       }
     },
     {
@@ -120299,12 +120903,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "language",
+          "culture",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Окружающие слова и обстоятельства события."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Контекст — окружающие условия или текст; пантомима вокруг события возможна, но без подписи рисунок неточен."
       }
     },
     {
@@ -120321,12 +120976,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "language",
+          "science"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Скрытое предварительное допущение в высказывании."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "insufficient-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Пресуппозиция — предпосылка, принимаемая в речи как данная; жест и рисунок не различают её."
       }
     },
     {
@@ -120343,12 +121048,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "language",
+          "science"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Непрямой смысл, выводимый из разговора."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "insufficient-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Импликатура — подразумеваемый смысл фразы, а не сказанное прямо; для показа нужен речевой пример."
       }
     },
     {
@@ -120365,12 +121120,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "language",
+          "literature"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Описательное выражение вместо прямого названия."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Перифраз заменяет название описанием; без произнесения фразы жест и рисунок не показывают приём."
       }
     },
     {
@@ -120387,12 +121192,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "language",
+          "arts",
+          "science"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Постепенное изменение силы или степени."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Градация — последовательное усиление или ослабление; ступени и нарастающие размеры рисуются легко."
       }
     },
     {
@@ -120409,12 +121265,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "arts",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Подражание узнаваемой манере, стилю."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Стилизация — придание характерного стиля; переодевание и рисунок одного предмета в разных стилях подходят."
       }
     },
     {
@@ -120431,12 +121337,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "literature",
+          "culture",
+          "arts"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Насмешливая критика через художественное преувеличение."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Сатира высмеивает недостатки; карикатуру нарисовать можно, но отличить её от юмора трудно."
       }
     },
     {
@@ -120453,12 +121410,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "literature",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Острое публицистическое обличение в небольшой форме."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Памфлет — обличительный публицистический текст; нарисованная газета не передаёт жанр."
       }
     },
     {
@@ -120475,12 +121482,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "literature",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Сатирическое журналистское произведение."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Фельетон — иронический газетный жанр; без текста нельзя различить от памфлета или статьи."
       }
     },
     {
@@ -120497,12 +121554,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "literature",
+          "language"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Короткое сатирическое стихотворение."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Эпиграмма — краткое колкое стихотворение; жестикуляция стихотворца не даёт точного жанра."
       }
     },
     {
@@ -120519,12 +121626,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "literature",
+          "music"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Лирическое произведение с оттенком грусти."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Элегия — печальная лирика в поэзии или музыке; грустный жест не отличает жанр."
       }
     },
     {
@@ -120541,12 +121698,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "literature",
+          "music"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Торжественное стихотворение и музыкальное произведение."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Ода прославляет человека или событие; торжественное поклонение жестами намекает, рисунок не различает жанр."
       }
     },
     {
@@ -120563,12 +121770,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "literature",
+          "music"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Повествовательное стихотворение и песенная баллада."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Баллада рассказывает историю в стихах или песне; игра на гитаре сама по себе не отделяет её от песни."
       }
     },
     {
@@ -120585,12 +121842,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "literature",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Небольшой поучительный рассказ с моралью."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Притча — иносказательный назидательный рассказ; разыграть сюжет можно, но без сюжета не опознать жанр."
       }
     },
     {
@@ -120607,12 +121914,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "language",
+          "literature",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Краткая законченная мудрая мысль."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Афоризм — ёмкое изречение; без произнесения слов не отличить от пословицы."
       }
     },
     {
@@ -120629,12 +121987,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "language",
+          "literature",
+          "science"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Общее правило или краткий принцип."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Максима — краткое правило поведения или суждение; это узкий термин, требующий словесной подсказки."
       }
     },
     {
@@ -120651,12 +122060,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "language"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Логическое заключение из двух посылок."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Силлогизм — форма рассуждения с посылками и выводом; показать без слов и символов нельзя."
       }
     },
     {
@@ -120673,12 +122132,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "language"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Противоречие двух обоснованных положений."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Антиномия — конфликт логически обоснованных тезисов; жестами можно лишь показать спор."
       }
     },
     {
@@ -120695,12 +122204,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "language"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Ошибочное, но внешне связное умозаключение."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "insufficient-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Паралогизм — непреднамеренная логическая ошибка; без сравнительного речевого примера её не передать."
       }
     },
     {
@@ -120717,12 +122276,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "language"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Свойство доказательно необходимого суждения."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "insufficient-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Аподиктичность — логическая необходимость и достоверность; для массовой аудитории нет быстрого пути к догадке."
       }
     },
     {
@@ -120739,12 +122348,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Философская возможность того, что могло быть иначе."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "insufficient-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Контингентность описывает не-необходимость положения дел; не имеет различимого бытового рисунка."
       }
     },
     {
@@ -120761,12 +122420,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Выход за пределы обычного опыта и познания."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Трансцендентность — нахождение за пределами опыта; религиозный символ даёт лишь ложную конкретизацию."
       }
     },
     {
@@ -120783,12 +122492,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Присущность чему-либо изнутри, в отличие от внешнего."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "insufficient-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Имманентность противоположна трансцендентности; жест или рисунок не раскрывает философскую разницу."
       }
     },
     {
@@ -120805,12 +122564,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Объяснение сложного через более простые части."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Редукционизм сводит целое к компонентам; разобранный механизм лишь косвенно иллюстрирует философский подход."
       }
     },
     {
@@ -120827,12 +122636,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "biology",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Понимание целой системы, а не суммы деталей."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Холизм рассматривает целое как самостоятельное; мозаика из частей отражает идею, но термин узкий."
       }
     },
     {
@@ -120849,12 +122709,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Философский тезис о неизменной сущности явления."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "insufficient-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Эссенциализм связывает вещи с устойчивой сущностью; рисунок не передаёт концепцию."
       }
     },
     {
@@ -120871,12 +122781,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "language",
+          "literature"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Изучение объектов через отношения элементов структуры."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Структурализм — направление анализа языка и культуры; схема связей без слов недостаточна."
       }
     },
     {
@@ -120893,12 +122854,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "culture",
+          "biology"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Функция как объяснение социальных или биологических явлений."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Функционализм существует в социологии, психологии и архитектуре; без контекста значение неоднозначно."
       }
     },
     {
@@ -120915,12 +122927,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Общее для нескольких субъектов понимание опыта."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "insufficient-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Интерсубъективность означает разделяемость знания между людьми; рукопожатие слишком общее."
       }
     },
     {
@@ -120937,12 +122999,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Философское учение о ценностях."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "insufficient-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Аксиология изучает ценности; изображённые деньги вводят в заблуждение относительно смысла."
       }
     },
     {
@@ -120959,12 +123071,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "arts",
+          "culture",
+          "science"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Философия красоты и внешняя привлекательность."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Эстетика — учение о прекрасном или впечатление от оформления; поза любования передаёт частный смысл."
       }
     },
     {
@@ -120981,12 +123144,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "science",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Моральные нормы и теория должного поведения."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Этика обсуждает допустимые поступки; жест помощи намекает на мораль, но рисунок не раскрывает тему точно."
       }
     },
     {
@@ -121003,12 +123217,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "language",
+          "science",
+          "literature"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Изучение языков, текстов и литературы."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Филология исследует язык и тексты; образ учёного с книгами подходит, но похож на литературоведение."
       }
     },
     {
@@ -121025,12 +123290,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "nature",
+          "history"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Предлагаемая эпоха заметного влияния человека на Землю."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Антропоцен — обозначение времени глобального воздействия людей; изображение загрязнения даёт косвенную подсказку."
       }
     },
     {
@@ -121047,12 +123363,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "nature",
+          "history"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Климат далёких геологических эпох."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Палеоклимат изучает прошлые климатические условия; лёд и древний ландшафт на рисунке не дают однозначности."
       }
     },
     {
@@ -121069,12 +123436,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "nature",
+          "science",
+          "geography"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Вечная мерзлота и замёрзшие грунты."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Пермафрост — многолетнемёрзлый грунт; разрез почвы со льдом возможен, но слово заимствованное."
       }
     },
     {
@@ -121091,12 +123509,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "geography"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Древнее магнитное поле, записанное в породах."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Палеомагнетизм изучают по намагниченности пород; обычный магнит не показывает геологическое прошлое."
       }
     },
     {
@@ -121113,12 +123581,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "geography",
+          "history"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Датирование последовательности геологических событий."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Геохронология определяет возраст горных пород; слои и временная шкала дают сложный образ."
       }
     },
     {
@@ -121135,12 +123654,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "geography"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Химический состав и процессы в земных оболочках."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Геохимия соединяет исследования Земли с химией; колбы рядом с породой — трудный визуальный намёк."
       }
     },
     {
@@ -121157,12 +123726,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "geography"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Физические процессы Земли и методы их измерения."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Геофизика применяет физику к строению Земли; сейсмограф на карте помогает специалисту."
       }
     },
     {
@@ -121179,12 +123798,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "biology",
+          "geography"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Распределение живых организмов по Земле."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Биогеография изучает ареалы животных и растений; карта с видами похожа на атлас."
       }
     },
     {
@@ -121202,12 +123872,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "biology",
+          "nature",
+          "science"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Взаимосвязанная среда и живые организмы."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Экосистема объединяет живые организмы и среду; пруд с рыбами, растениями и солнцем легко изобразить."
       }
     },
     {
@@ -121225,12 +123946,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "biology",
+          "nature",
+          "science"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Сообщество организмов на определённой территории."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Биоценоз — совокупность совместно обитающих видов; даже лесной рисунок легко принять за экосистему."
       }
     },
     {
@@ -121248,12 +124020,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "biology",
+          "nature",
+          "animals"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Разнообразие живых видов в экосистеме."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Биоразнообразие — множество видов; рисунок разной флоры и фауны даёт прямую подсказку."
       }
     },
     {
@@ -121271,12 +124094,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "biology",
+          "nature"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Смена сообществ и передача прав по наследству."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Сукцессия в экологии означает смену сообществ: поле, кустарники, лес; есть и значение преемственности."
       }
     },
     {
@@ -121294,12 +124167,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "biology",
+          "animals",
+          "nature"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Организм, живущий в тесной связи с другим."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Симбионт живёт во взаимосвязи с другим видом; рыба-клоун и актиния дают пример."
       }
     },
     {
@@ -121317,12 +124241,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "biology",
+          "animals",
+          "nature"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Взаимодействие, при котором один живёт за счёт другого."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Паразитизм наглядно иллюстрируется клещом на животном; отличить от обычного соседства несложно."
       }
     },
     {
@@ -121340,12 +124315,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "biology",
+          "animals",
+          "nature"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Сосуществование с выгодой одному без ущерба другому."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Комменсализм отличает отсутствие вреда и пользы второму участнику; рисунок акулы с прилипалой не доказывает это."
       }
     },
     {
@@ -121363,12 +124389,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "biology",
+          "nature",
+          "animals"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Взаимодействие с взаимной выгодой двух организмов."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Мутуализм иллюстрируют пчела и цветок; жесты взаимопомощи не уточняют биологический термин."
       }
     },
     {
@@ -121386,12 +124463,64 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "sport",
+          "biology",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Соперничество людей, компаний и организмов."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Конкуренция — соревнование за результат или ресурс; бегущих соперников можно показать."
       }
     },
     {
@@ -121409,12 +124538,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "biology",
+          "nature",
+          "science"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Связанные эволюционные изменения взаимодействующих видов."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Коэволюция означает взаимное эволюционное влияние видов; рисунок смены поколений требует знаний."
       }
     },
     {
@@ -121432,12 +124612,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "geography",
+          "biology",
+          "nature"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Территория распространения вида и область явления."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Ареал показывает, где встречается вид; карта с заштрихованной областью косвенна без подписи."
       }
     },
     {
@@ -121455,12 +124686,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "biology",
+          "nature",
+          "marine"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Свечение, которое создают живые существа."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Биолюминесценция — свечение медуз и светлячков; нарисовать светлячка можно, но уточнение термина требует знаний."
       }
     },
     {
@@ -121478,12 +124760,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "biology",
+          "technology",
+          "science"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Технические решения по образцу живых организмов."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Бионика переносит биологические принципы в технику; механическая лапа и животное дают образ."
       }
     },
     {
@@ -121501,12 +124834,63 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "biology",
+          "technology",
+          "science"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Подражание решениям природы при проектировании."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:03:12.590Z",
+        "rationale": "Биомимикрия — создание решений по образцу природы; крыло птицы и самолёт помогают, но пересекаются с бионикой."
       }
     },
     {
