@@ -84835,12 +84835,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "professions",
+          "language"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Корректор исправляет ошибки в тексте; жестами нужна сцена вычитки, рисунком пометки на листе."
       }
     },
     {
@@ -84857,12 +84905,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "professions",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Диктор читает в эфире; микрофон и текст нужны, чтобы отделить его от ведущего."
       }
     },
     {
@@ -84879,12 +84975,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "professions",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Телеведущий работает перед камерой; для жестов и рисунка нужна телестудия."
       }
     },
     {
@@ -84901,12 +85045,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "professions",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Журналист берёт интервью и готовит материал; действие доступно, но рисунку нужен контекст."
       }
     },
     {
@@ -84923,12 +85115,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "professions",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Репортёр говорит с места события; микрофон и событийный фон отличают его от диктора."
       }
     },
     {
@@ -84945,12 +85185,62 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "professions",
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Кинооператор, оператор колл-центра и оборудования."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Оператор работает с камерой, телефонной связью или оборудованием; выбор значения влияет на показ."
       }
     },
     {
@@ -84968,12 +85258,61 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "professions",
+          "cinema",
+          "music"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Звукорежиссёр настраивает запись на пульте; рисунок легко принять за работу диджея."
       }
     },
     {
@@ -84990,12 +85329,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "professions",
+          "cinema"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Монтажёр соединяет фрагменты фильма; без подписей трудно отличить его от редактора."
       }
     },
     {
@@ -85012,12 +85399,62 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "professions",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Ведущий-аниматор и художник-аниматор."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Аниматор ведёт праздник либо создаёт мультфильмы; жесты различаются в зависимости от смысла."
       }
     },
     {
@@ -85034,12 +85471,61 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "professions",
+          "cinema",
+          "literature"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Сценарист пишет сюжет фильма; писательский жест есть, но рисунок профессии не отличает."
       }
     },
     {
@@ -85056,12 +85542,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Косплеер надевает костюм героя; переодевание легко показать, а рисунку нужен персонаж."
       }
     },
     {
@@ -85078,12 +85612,62 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "history",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Исторический реконструктор и специалист по восстановлению."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Реконструктор воссоздаёт историческую сцену в костюме; без контекста похож на актёра."
       }
     },
     {
@@ -85100,12 +85684,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "literature",
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Аудиокнига — записанная книга для прослушивания; рисунок книги с наушниками понятнее жестов."
       }
     },
     {
@@ -85122,12 +85754,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "cinema",
+          "history"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Кинохроника снимает реальные события прошлого; пантомима не отличает её от кино вообще."
       }
     },
     {
@@ -85144,12 +85824,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "cinema",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Кинопрокат — распространение фильмов для показа; билетами невозможно отличить его от сеанса."
       }
     },
     {
@@ -85167,12 +85895,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "cinema",
+          "literature"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Экранизация переносит книгу на экран; последовательность книга-фильм доступна для показа."
       }
     },
     {
@@ -85189,12 +85965,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "language",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Сурдоперевод — перевод жестовым языком; сам жест понятен, рисунок почти неотличим от общения."
       }
     },
     {
@@ -85211,12 +86035,63 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "professions",
+          "sport",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Спортивный и неспортивный комментатор."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Комментатор озвучивает матч либо событие; жестам нужен матч и микрофон."
       }
     },
     {
@@ -85234,12 +86109,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "technology",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Трансляция показывает событие в эфире; камера и экран помогают отличить от записи."
       }
     },
     {
@@ -85256,12 +86179,61 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "literature",
+          "cinema"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Рецензия — оценка произведения; жестами можно изобразить критику, рисунок трудно узнать без слов."
       }
     },
     {
@@ -85278,12 +86250,63 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "arts",
+          "cinema"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Выставка прошлых работ и взгляд назад."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Ретроспектива собирает прошлые работы автора; без слов временной охват не показать."
       }
     },
     {
@@ -85300,12 +86323,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "science"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Конференция — собрание с докладами; выступление перед слушателями даёт узнаваемую сцену."
       }
     },
     {
@@ -85322,12 +86393,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "science"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Симпозиум — встреча научных докладчиков; визуально похож на конференцию."
       }
     },
     {
@@ -85344,12 +86463,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "history"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Съезд — собрание делегатов; сценка трибуны и зала требует отличать от конференции."
       }
     },
     {
@@ -85366,12 +86533,62 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Интернет-форум и публичный форум."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Форум может быть обсуждением онлайн или очным собранием; рисунок различается."
       }
     },
     {
@@ -85388,12 +86605,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "history"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Митинг легко узнать по толпе, выступающему и плакатам."
       }
     },
     {
@@ -85410,12 +86675,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "history"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Шествие — движение колонны; марш понятен жестами, рисунку нужны несколько людей."
       }
     },
     {
@@ -85432,12 +86745,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "history"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Манифестация — массовое выражение позиции; физический марш есть, но похож на митинг."
       }
     },
     {
@@ -85454,12 +86815,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "professions"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Мастер-класс — практическое обучение у наставника; показ действия понятен."
       }
     },
     {
@@ -85476,12 +86885,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "professions"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Воркшоп — совместное практическое занятие; показать надо участие, а не лекцию."
       }
     },
     {
@@ -85498,12 +86955,62 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "sport"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Учебный и спортивный интенсив."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Интенсив — плотный цикл занятий; темп передать жестами можно, рисунком трудно."
       }
     },
     {
@@ -85521,12 +87028,63 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "professions",
+          "culture",
+          "arts"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Куратор выставки, проекта и учебной группы."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Куратор организует проект либо выставку; без слов его трудно отличить от организатора."
       }
     },
     {
@@ -85543,12 +87101,61 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "arts",
+          "history"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Экспонат — музейный предмет в витрине; рисунок витрины узнаваем."
       }
     },
     {
@@ -85565,12 +87172,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "arts"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Экспозиция — несколько организованных экспонатов; показать надо весь выставочный зал."
       }
     },
     {
@@ -85587,12 +87242,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "arts"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Вернисаж — открытие художественной выставки; нужны гости и картины."
       }
     },
     {
@@ -85609,12 +87312,62 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Учебная комната и слушатели."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Аудитория — слушатели или помещение для занятий; смысл задаёт способ показа."
       }
     },
     {
@@ -85631,12 +87384,61 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "culture",
+          "history",
+          "arts"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Амфитеатр узнаваем по рядам мест вокруг сцены; жестами геометрию передать сложнее."
       }
     },
     {
@@ -85654,12 +87456,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science",
+          "space"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Обсерватория имеет купол и телескоп; узнаваемый рисунок."
       }
     },
     {
@@ -85676,12 +87526,61 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "space",
+          "science",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Планетарий показывает небо под куполом; зрители и проекция понятны."
       }
     },
     {
@@ -85698,12 +87597,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Линия маркировки и фактическое погружение."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Ватерлиния — граница воды и судового корпуса; рисовать её легче, чем показывать."
       }
     },
     {
@@ -85720,12 +87669,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Форштевень — передняя конструктивная деталь судна; без подписи не отличить от носа."
       }
     },
     {
@@ -85742,12 +87739,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Ахтерштевень — задняя конструктивная деталь судна; без схемы не распознаётся."
       }
     },
     {
@@ -85764,12 +87809,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Фальшборт — ограждение над бортом; подробный рисунок возможен только для знатоков."
       }
     },
     {
@@ -85786,12 +87879,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "След за кораблём и кильватерное построение."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Кильватер — след судна и следование за ним; можно изобразить корабль и водный след."
       }
     },
     {
@@ -85808,12 +87951,61 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "transport",
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Брашпиль поднимает якорь; изображение барабана может спутаться с лебёдкой."
       }
     },
     {
@@ -85830,12 +88022,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Бизань — кормовая мачта или парус; силуэт судна не даёт точного слова."
       }
     },
     {
@@ -85852,12 +88092,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Бушприт — выдающийся вперёд брус парусника; изобразить без подписей трудно."
       }
     },
     {
@@ -85874,12 +88162,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Грот-мачта — главная мачта парусника; рисунок её расположения возможен, жесты неясны."
       }
     },
     {
@@ -85896,12 +88232,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Шпангоут — поперечное ребро корпуса; без схемы нельзя отличить от обычной рамы."
       }
     },
     {
@@ -85918,12 +88302,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Швартов — канат крепления судна; привязывание лодки можно показать."
       }
     },
     {
@@ -85940,12 +88372,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Крен судна и наклон в иных ситуациях."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Крен — наклон судна на бок; наклон корпуса легко разыграть и нарисовать."
       }
     },
     {
@@ -85962,12 +88444,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Дифферент — продольный наклон судна; даже понятный рисунок носа вниз не раскрывает термин."
       }
     },
     {
@@ -85984,12 +88514,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Осадка судна и атмосферные осадки."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Осадка — глубина погружения судна; линия воды на рисунке может путаться с ватерлинией."
       }
     },
     {
@@ -86006,12 +88586,61 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "transport",
+          "geography"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Каботаж — плавание между портами одной страны; без надписей на карте показать невозможно."
       }
     },
     {
@@ -86028,12 +88657,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "history"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Абордаж — захват корабля с переходом на его борт; можно разыграть нападение."
       }
     },
     {
@@ -86050,12 +88727,61 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "geography",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Пеленг — направление на ориентир; компас и визирование дают образ, но слово специальное."
       }
     },
     {
@@ -86072,12 +88798,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "geography"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Лоция — описание навигации или справочник моряка; рисунок карты не определяет термин."
       }
     },
     {
@@ -86094,12 +88868,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "geography"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Навигационный траверз и поперечина в технике."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Траверз — поперечное направление на объект относительно курса; без схемы и подписей неясно."
       }
     },
     {
@@ -86116,12 +88940,62 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "geography",
+          "arts"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Набросок местности и общий контур."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T20:29:08.518Z",
+        "rationale": "Абрис — краткий очерк местности либо контур; рисунок карты не отличает от эскиза."
       }
     },
     {
