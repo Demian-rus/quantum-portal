@@ -11,7 +11,7 @@ function blockSavedData(reason){storageBlocked=true;storageProblem=reason;return
 // Keep the live match's RAW options stable; future Wizard choices use a distinct,
 // match-scoped, versioned preference record. Neither key rewrites the other.
 const FUTURE_OPTIONS_KEY='iskra-party:future-options:v1';
-let persistedMatchId=null,persistedMatchOptions=null;
+let persistedMatchId=null,persistedMatchOptions=null,persistedMatchRef=null;
 function readSaved() {
   try { loadedSaveRaw=localStorage.getItem(STORAGE_KEY); }
   catch { return blockSavedData('unavailable'); }
@@ -23,9 +23,10 @@ function readSaved() {
   if(obj.version!==1)return blockSavedData('incompatible');
   persistedMatchId=obj.game?.matchId??null;
   persistedMatchOptions=obj.game?obj.options:null;
+  persistedMatchRef=obj.game??null;
   // An unfinished match must restore its historical options and its future
   // menu preferences independently. Old saves need no migration or RAW write.
-  if(obj.game?.matchId!=null){
+  if(obj.game){
     let futureRaw;
     try { futureRaw=localStorage.getItem(FUTURE_OPTIONS_KEY); }
     catch { return blockSavedData('unavailable'); }
@@ -33,10 +34,15 @@ function readSaved() {
       let future;
       try { future=JSON.parse(futureRaw); }
       catch { return blockSavedData('corrupt'); }
-      if(!future||typeof future!=='object'||Array.isArray(future)||future.version!==1||
-        typeof future.matchId!=='string'||!future.options||typeof future.options!=='object'||Array.isArray(future.options))
-        return blockSavedData('incompatible');
-      if(future.matchId===obj.game.matchId)obj.options=future.options;
+      if(!future||typeof future!=='object'||Array.isArray(future)||
+        (future.matchId!==null&&typeof future.matchId!=='string'))return blockSavedData('incompatible');
+      // A stale sidecar belongs to a different match; ignore it, even if its
+      // preference schema is from an unknown later revision.
+      if(future.matchId===(obj.game.matchId??null)){
+        if(future.version!==1||!future.options||typeof future.options!=='object'||Array.isArray(future.options))
+          return blockSavedData('incompatible');
+        obj.options=future.options;
+      }
     }
   }
   return obj;
@@ -63,12 +69,12 @@ function persist() {
     // Wizard previews of new catalogs may change in-memory options but must
     // not rewrite saved options of the same unfinished match. A new START
     // creates a new matchId and adopts the new options; turns still persist.
-    const sameMatch=game?.matchId!=null&&game.matchId===persistedMatchId;
+    const sameMatch=!!game&&(game===persistedMatchRef||(game.matchId!=null&&game.matchId===persistedMatchId));
     const savedOptions=sameMatch?persistedMatchOptions:options;
     // Write the independent future setup snapshot before the match state.
     // A failed preference write never authorizes a misleading successful save.
     if(sameMatch){
-      const future=JSON.stringify({version:1,matchId:game.matchId,options});
+      const future=JSON.stringify({version:1,matchId:game.matchId??null,options});
       if(localStorage.getItem(FUTURE_OPTIONS_KEY)!==future){
         localStorage.setItem(FUTURE_OPTIONS_KEY,future);
         if(localStorage.getItem(FUTURE_OPTIONS_KEY)!==future)return false;
@@ -78,6 +84,7 @@ function persist() {
     localStorage.setItem(STORAGE_KEY,raw);
     if(localStorage.getItem(STORAGE_KEY)!==raw)return false;
     persistedMatchId=game?.matchId??null;
+    persistedMatchRef=game??null;
     persistedMatchOptions=game?(sameMatch?persistedMatchOptions:JSON.parse(JSON.stringify(savedOptions))):null;
     return true;
   }catch { return false; }
