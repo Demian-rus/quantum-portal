@@ -290335,12 +290335,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "marine"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Морская черепаха узнаваема по ластам и панцирю; в жестах отличить от наземной сложнее."
       }
     },
     {
@@ -290359,12 +290409,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "marine"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Летучая рыба выпрыгивает из моря и планирует на плавниках; рисунок показывает обе части."
       }
     },
     {
@@ -290383,12 +290483,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Лесная мышь похожа на обычную; нужна среда леса, а не только хвост и уши."
       }
     },
     {
@@ -290407,12 +290557,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Речная выдра плавает и держит добычу; рисунок берега и вытянутого тела узнаваем."
       }
     },
     {
@@ -290431,12 +290631,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Горный козёл узнаётся по большим рогам и скалам; пантомима среды условна."
       }
     },
     {
@@ -290455,12 +290705,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Серый волк — распространённый образ зверя с воем; окраску жестами не показать."
       }
     },
     {
@@ -290479,12 +290779,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Рыжая лиса имеет характерные цвет и пушистый хвост; жесты не передают окраску."
       }
     },
     {
@@ -290503,12 +290853,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Снежный барс — пятнистый горный хищник с толстым хвостом; рисунку нужны скалы и шерсть."
       }
     },
     {
@@ -290527,12 +290927,64 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "culture"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [
+          "Чёрная пантера как меланистический леопард или ягуар, также название персонажа."
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Чёрная пантера — чёрный большой кошачий хищник; контекст животных исключает супергероя."
       }
     },
     {
@@ -290551,12 +291003,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Полярная сова — белая крупная сова на снегу; рисунок выразительнее жестов."
       }
     },
     {
@@ -290575,12 +291077,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "everyday"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Домашний кролик узнаётся по клетке, длинным ушам и заботе человека."
       }
     },
     {
@@ -290599,12 +291151,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "everyday"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Кошкин хвост — длинный подвижный хвост кота; рисуется и показывается прямо."
       }
     },
     {
@@ -290623,12 +291225,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Птичье гнездо — веточки с яйцами или птенцами; сцена хорошо узнаваема на рисунке."
       }
     },
     {
@@ -290647,12 +291299,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Пчелиный рой — множество летающих пчёл вокруг улья; показать целый рой жестами трудно."
       }
     },
     {
@@ -290671,12 +291373,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "everyday"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Собачья будка — маленький домик для пса; рисунок с собакой исключает обычный сарай."
       }
     },
     {
@@ -290695,12 +291447,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Медвежья берлога — зимнее убежище медведя; рисунок входа в логово понятен."
       }
     },
     {
@@ -290719,12 +291521,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Лисья нора — подземный дом лисы; нужен разрез земли или лиса у входа."
       }
     },
     {
@@ -290743,12 +291595,61 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Оленьи рога — ветвящиеся рога самца оленя; можно показать руками над головой."
       }
     },
     {
@@ -290767,12 +291668,61 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Пятнистая гиена — зверь с пятнистой шерстью и покатой спиной; жестово вид неотличим."
       }
     },
     {
@@ -290791,12 +291741,61 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Зелёная игуана имеет гребень и зелёную окраску; без цвета рисунок неоднозначен."
       }
     },
     {
@@ -290815,12 +291814,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Бенгальский тигр отличается происхождением, а не особым силуэтом; жесты изображают тигра."
       }
     },
     {
@@ -290839,12 +291888,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Африканский буйвол имеет массивные рога; от другого буйвола его трудно отличить рисунком."
       }
     },
     {
@@ -290863,12 +291962,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Императорский пингвин узнаётся по высокому росту и птенцу у лап; жесты показывают пингвина вообще."
       }
     },
     {
@@ -290887,12 +292036,61 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Королевский питон — некрупный пятнистый питон; рисунок не отличается от другого удава."
       }
     },
     {
@@ -290911,12 +292109,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "marine"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Горбатый кит известен огромными грудными плавниками и прыжками из воды."
       }
     },
     {
@@ -290935,12 +292183,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Гигантская панда узнаётся по чёрно-белой окраске и бамбуку."
       }
     },
     {
@@ -290959,12 +292257,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Комодский варан — гигантская ящерица острова Комодо; рисунок требует размера."
       }
     },
     {
@@ -290983,12 +292331,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Древесная лягушка сидит на ветке с присосками на лапках; рисунок прямой."
       }
     },
     {
@@ -291007,12 +292405,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "marine"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Морская игуана питается водорослями у берегов островов; нужно показать плавание ящерицы."
       }
     },
     {
@@ -291031,12 +292479,61 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Летучая лисица — крупная плодоядная летучая мышь; без контекста название обманывает."
       }
     },
     {
@@ -291055,12 +292552,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "marine"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Богомоловая креветка имеет мощные передние конечности и яркое тело; термин редок."
       }
     },
     {
@@ -291079,12 +292626,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Пчелиная матка — единственная яйцекладущая самка в улье; корона на пчеле лишь условна."
       }
     },
     {
@@ -291103,12 +292700,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Зимняя спячка — сон зверя в логове зимой; сцена медведя под снегом читается."
       }
     },
     {
@@ -291127,12 +292774,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Брачный танец птиц — ритуальные движения перед спариванием; картинка двух птиц помогает."
       }
     },
     {
@@ -291151,12 +292848,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Сезонная линька — смена шерсти или перьев; показать выпадающий мех можно, но термин неочевиден."
       }
     },
     {
@@ -291175,12 +292922,63 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature",
+          "geography"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Миграция птиц — сезонный перелёт стаи в тёплые края; рисунок птиц и направления подходит."
       }
     },
     {
@@ -291199,12 +292997,63 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "marine",
+          "science"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Эхолокация дельфина использует отражение звуков; рисунок волн требует специальных знаний."
       }
     },
     {
@@ -291223,12 +293072,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "biology"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Кошачьи вибриссы — длинные чувствительные усы; термин редкий, хотя объект можно показать."
       }
     },
     {
@@ -291247,12 +293146,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "marine"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Китовый ус — роговые фильтрующие пластины в пасти кита; рисунок требует разреза пасти."
       }
     },
     {
@@ -291271,12 +293220,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "marine"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Электрический угорь способен ударить током; рисунок угря и молнии узнаваем."
       }
     },
     {
@@ -291295,12 +293294,61 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Мраморный тритон отличается характерным рисунком кожи; без окраски от обычного не отличить."
       }
     },
     {
@@ -291319,12 +293367,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Голубой древолаз — ярко-синяя ядовитая лягушка; рисунок с цветом сильнее жестов."
       }
     },
     {
@@ -291343,12 +293441,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Красноглазая квакша имеет большие красные глаза и зелёную кожу; вид узнаётся по цвету."
       }
     },
     {
@@ -291367,12 +293515,61 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Плащеносный павиан — самец с густой светлой гривой; точное название для знатоков приматов."
       }
     },
     {
@@ -291391,12 +293588,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Японская макака известна купанием в горячих источниках; обычная обезьяна на рисунке недостаточна."
       }
     },
     {
@@ -291415,12 +293662,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Красная панда узнаётся по рыжему меху и полосатому пушистому хвосту."
       }
     },
     {
@@ -291439,12 +293736,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Кольцехвостый лемур известен полосатым хвостом и большими глазами."
       }
     },
     {
@@ -291463,12 +293810,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Гривастый волк — длинноногий рыжий псовый зверь; жесты легко спутать с лисой."
       }
     },
     {
@@ -291487,12 +293884,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Китайский аллигатор внешне похож на других аллигаторов, требуется географический контекст."
       }
     },
     {
@@ -291511,12 +293958,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Мандариновая утка имеет разноцветное оперение; без цвета рисунок малоразличим."
       }
     },
     {
@@ -291535,12 +294032,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Райская птица узнаётся по пышным перьям у отдельных видов; название общее для группы."
       }
     },
     {
@@ -291559,12 +294106,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Большая выпь — болотная птица с вертикальной маскировочной стойкой; образ требует контекста."
       }
     },
     {
@@ -291583,12 +294180,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Обыкновенная выхухоль — водный зверёк с длинным хоботком; редкое название для широкой аудитории."
       }
     },
     {
@@ -291607,12 +294254,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "marine"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Морской леопард — хищный тюлень с пятнами и вытянутой мордой; рисунок косвенен."
       }
     },
     {
@@ -291631,12 +294328,62 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "marine"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Северный морской слон узнаётся по массивному телу и носу-хоботу взрослого самца."
       }
     },
     {
@@ -291655,12 +294402,63 @@
           "animals"
         ]
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "animals",
+          "nature",
+          "biology"
+        ],
+        "themes": [
+          "animals"
+        ],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:18:25.735Z",
+        "rationale": "Покровительственная окраска скрывает животное на фоне среды; рисунок с маскировкой понятнее жестов."
       }
     },
     {
