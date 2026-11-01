@@ -65,7 +65,7 @@ test('TASK038 only the reviewed policy/setup/resource hunks change; all editoria
  for(const h of hunks)assert.equal(canonicalizeMetadata(normalizeTask039(fs.readFileSync('party-game/'+h.file,'utf8'))).split(h.after).length,2,'exact unique reviewed hunk '+h.file);
  const html=fs.readFileSync('party-game/index.html','utf8'),sw=fs.readFileSync('party-game/sw.js','utf8');
  for(const [,ref]of html.matchAll(/(?:src|href)="\.\/([^"?]+\.(?:css|js)\?v=\d+)"/g))assert(sw.includes("'./"+ref+"'"),ref);
- assert(sw.includes('kvip-pwa-v107-20261031-task039-mixed-blitz-categories'));assert(html.includes('content-packs.js?v=22'));
+ assert(sw.includes('kvip-pwa-v109-20261101-task039-future-settings-protection'));assert(html.includes('content-packs.js?v=22'));
 });
 test('TASK038 normalizer cannot hide catalog changes, unknown metadata, RNG, focus, worker lifecycle or validation bypasses',()=>{
  const {normalizeTask038}=require('../../diagnostics/task038/source-contract.cjs');

@@ -124,6 +124,8 @@ jobs:
         run: node party-game/tests/card-visibility-browser.cjs
       - if: ${{ !cancelled() && matrix.suite == 'profiles' }}
         run: node party-game/tests/player-profiles-browser.cjs
+      - if: ${{ !cancelled() && matrix.suite == 'profiles' }}
+        run: node diagnostics/task039/future-options-browser.cjs
       - if: ${{ !cancelled() && matrix.suite == 'raster' }}
         run: node party-game/tests/refactor-guardrails.cjs
       - if: ${{ !cancelled() && matrix.suite == 'layout' }}
@@ -170,6 +172,7 @@ jobs:
             artifacts/quip-reports
             artifacts/quip-card-visibility
             artifacts/quip-profiles
+            artifacts/quip-task039
             artifacts/quip-duel
             artifacts/quip-mobile-layout
           if-no-files-found: ignore

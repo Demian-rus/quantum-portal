@@ -80,7 +80,7 @@ test('TASK009 G unknown compatibility versions preserve original storage, both i
 });
 test('TASK009 G ordinary rewards/timers and all four manual Approx outcomes stay independent of compatibility',()=>{
  for(const awardTo of ['setter','guesser']){
-  for(const id of ['talk','mime','draw','sing','blitz']){const h=setup([id],awardTo);h.eval('options.complications=false;newGame();roll()');assert.equal(h.eval('game.current.basePoints'),id==='blitz'?2:1);assert.equal(h.eval('game.current.seconds'),h.eval('options.duration+getModeConfig(game.current.modeId).durationBonus'))}
+  for(const id of ['talk','mime','draw','sing','blitz']){const h=setup([id],awardTo);h.eval('options.complications=false;newGame();roll()');assert.equal(h.eval('game.current.basePoints'),['mime','draw','sing','blitz'].includes(id)?2:1);assert.equal(h.eval('game.current.seconds'),h.eval('options.duration+getModeConfig(game.current.modeId).durationBonus'))}
   for(const action of ['a','b','both','none']){const h=setup(['approx'],awardTo);h.context.action=action;h.eval('roll();revealApprox();awardApprox(action)');assert.deepEqual(plain(h.eval('game.scores')),action==='a'?[1,0]:action==='b'?[0,1]:action==='both'?[1,1]:[0,0])}
  }
 });

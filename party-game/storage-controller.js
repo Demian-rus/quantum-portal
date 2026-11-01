@@ -2,6 +2,7 @@
 // Storage I/O and save protection; shared state is initialized in app.js.
 
 function storageNotice(){
+  if(storageProblem==='future-corrupt')return 'Настройки следующей игры повреждены. Данные партии сохранены; запись заблокирована.';
   if(storageProblem==='corrupt')return 'Сохранение повреждено и защищено. Для безопасного сброса начните новую партию.';
   if(storageProblem==='unavailable')return 'Не удалось прочитать сохранение. Запись заблокирована.';
   return 'Сохранение несовместимо с этой версией игры. Данные сохранены.';
@@ -33,14 +34,25 @@ function readSaved() {
     if(futureRaw!==null){
       let future;
       try { future=JSON.parse(futureRaw); }
-      catch { return blockSavedData('corrupt'); }
+      catch { return blockSavedData('future-corrupt'); }
       if(!future||typeof future!=='object'||Array.isArray(future)||
         (future.matchId!==null&&typeof future.matchId!=='string'))return blockSavedData('incompatible');
       // A stale sidecar belongs to a different match; ignore it, even if its
       // preference schema is from an unknown later revision.
-      if(future.matchId===(obj.game.matchId??null)){
+      const sameId=future.matchId===(obj.game.matchId??null);
+      // Legacy saves have no permanent match ID. Bind their sidecar to the
+      // exact saved game, so importing another legacy party cannot adopt it.
+      if(sameId&&future.matchId===null&&typeof future.legacyGame!=='string')return blockSavedData('incompatible');
+      if(sameId&&(future.matchId!==null||future.legacyGame===JSON.stringify(obj.game))){
         if(future.version!==1||!future.options||typeof future.options!=='object'||Array.isArray(future.options))
           return blockSavedData('incompatible');
+        const next=future.options;
+        if(!Array.isArray(next.modes)||!next.modes.every(id=>DEFAULT_MODES.includes(id))||
+          !Array.isArray(next.promptTypes)||!next.promptTypes.every(id=>PROMPT_TYPES.includes(id))||
+          !['easy','medium','hard','mixed'].includes(next.difficulty)||
+          !['duration','rounds','targetScore','modifierChance'].every(key=>Number.isFinite(next[key]))||
+          !['riskRounds','complications','dice'].every(key=>typeof next[key]==='boolean'))return blockSavedData('future-corrupt');
+        try{if(next.contentPack)getContentPack(next.contentPack);}catch{return blockSavedData('incompatible');}
         obj.options=future.options;
       }
     }
@@ -74,7 +86,7 @@ function persist() {
     // Write the independent future setup snapshot before the match state.
     // A failed preference write never authorizes a misleading successful save.
     if(sameMatch){
-      const future=JSON.stringify({version:1,matchId:game.matchId??null,options});
+      const future=JSON.stringify({version:1,matchId:game.matchId??null,...(game.matchId==null?{legacyGame:JSON.stringify(game)}:{}),options});
       if(localStorage.getItem(FUTURE_OPTIONS_KEY)!==future){
         localStorage.setItem(FUTURE_OPTIONS_KEY,future);
         if(localStorage.getItem(FUTURE_OPTIONS_KEY)!==future)return false;

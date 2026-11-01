@@ -186,3 +186,66 @@ test('TASK039 incompatible future setup policy blocks writes without damaging pa
  restarted.eval('persist()');
  assert.equal(restarted.storage.get('iskra-party:v1'),before);
 });
+
+test('TASK039 legacy identities and v1–v6 rules retain RAW while repeated future choices survive reload',()=>{
+ for(const version of [1,2,3,4,5,6]){
+  const seed=createSimulation(7050);seed.eval('newGame()');
+  const fixture=JSON.parse(seed.storage.get('iskra-party:v1'));
+  fixture.game.rulesVersion=version;fixture.game.modeConfigVersion=version<6?1:2;
+  delete fixture.game.matchId;delete fixture.game.profileMatch;
+  const raw=JSON.stringify(fixture);seed.storage.set('iskra-party:v1',raw);
+  const h=createSimulation(7051,new Map(seed.storage));assert.equal(h.eval('storageBlocked'),false);
+  const game=h.eval('JSON.stringify(game)');
+  h.eval('options.modifierChance=10;options.modes=[];persist()');
+  assert.equal(h.storage.get('iskra-party:v1'),raw);
+  const next=createSimulation(7052,new Map(h.storage));assert.equal(next.eval('storageBlocked'),false);
+  assert.equal(next.eval('options.modifierChance'),10);assert.equal(next.eval('options.modes.length'),0);
+  assert.equal(next.eval('JSON.stringify(game)'),game);assert.equal(next.eval('game.rulesVersion'),version);
+  next.eval('options.modes=["talk"];options.modifierChance=30;persist()');
+  const again=createSimulation(7053,new Map(next.storage));assert.equal(again.eval('options.modifierChance'),30);
+  assert.equal(again.storage.get('iskra-party:v1'),raw);again.eval('newGame()');
+  assert.equal(again.eval('game.rulesVersion'),6);assert.equal(again.eval('game.modifierChance'),30);
+ }
+});
+
+test('TASK039 stale future versions are ignored; matching unknown or corrupt sidecars never authorize primary recovery',()=>{
+ const seed=createSimulation(7060);seed.eval('newGame()');
+ const key='iskra-party:future-options:v1',raw=seed.storage.get('iskra-party:v1'),matchId=seed.eval('game.matchId');
+ for(const data of [JSON.stringify({version:99,matchId:'another-match',options:{}}),JSON.stringify({version:99,matchId,options:{}}),'{',JSON.stringify({version:1,matchId,options:null}),JSON.stringify({version:1,matchId,options:{}}),...[{modes:'talk'},{modifierChance:null},{contentPack:{id:'general',version:999}}].map(change=>JSON.stringify({version:1,matchId,options:{...JSON.parse(raw).options,...change}}))]){
+  const storage=new Map(seed.storage);storage.set(key,data);const before=new Map(storage),h=createSimulation(7061,storage);
+  const stale=JSON.parse(data==='{'?'{}':data).matchId==='another-match';
+  assert.equal(h.eval('storageBlocked'),!stale);
+  if(!stale){h.eval('persist();newGame();recoverCorruptSave()');assert.deepEqual(storage,before,'neither source key nor backups may be overwritten');}
+  assert.equal(storage.get('iskra-party:v1'),raw);
+ }
+});
+
+test('TASK039 a sidecar for another legacy party without matchId cannot supply its preferences',()=>{
+ const seed=createSimulation(7065);seed.eval('newGame()');
+ const fixture=JSON.parse(seed.storage.get('iskra-party:v1'));delete fixture.game.matchId;delete fixture.game.profileMatch;
+ seed.storage.set('iskra-party:v1',JSON.stringify(fixture));
+ const h=createSimulation(7066,new Map(seed.storage));h.eval('options.modifierChance=10;persist()');
+ const key='iskra-party:future-options:v1',future=h.storage.get(key);
+ fixture.game.teams=['Другая первая','Другая вторая'];fixture.options.modifierChance=80;
+ const raw=JSON.stringify(fixture);h.storage.set('iskra-party:v1',raw);
+ const next=createSimulation(7067,new Map(h.storage));assert.equal(next.eval('storageBlocked'),false);
+ assert.equal(next.eval('options.modifierChance'),80);assert.equal(next.storage.get(key),future);assert.equal(next.storage.get('iskra-party:v1'),raw);
+});
+
+test('TASK039 future preference write failures report false and preserve the original party for retry',()=>{
+ for(const fault of ['throw','drop','readback','primary']){
+  const h=createSimulation(7070);h.eval('newGame()');const raw=h.storage.get('iskra-party:v1'),game=h.eval('JSON.stringify(game)');
+  const key='iskra-party:future-options:v1',write=h.context.localStorage.setItem,read=h.context.localStorage.getItem;let wrote=false;
+  h.context.localStorage.setItem=(k,v)=>{if(k===key){if(fault==='throw')throw Error('quota');if(fault==='drop')return;wrote=true;}if(k==='iskra-party:v1'&&fault==='primary')throw Error('quota');return write(k,v);};
+  h.context.localStorage.getItem=k=>k===key&&wrote&&fault==='readback'?null:read(k);
+  assert.equal(h.eval('options.modifierChance=10;options.modes=[];persist()'),false,fault);
+  assert.equal(h.storage.get('iskra-party:v1'),raw);assert.equal(h.eval('JSON.stringify(game)'),game);
+  h.context.localStorage.setItem=write;h.context.localStorage.getItem=read;assert.equal(h.eval('persist()'),true);
+  const next=createSimulation(7071,new Map(h.storage));assert.equal(next.eval('storageBlocked'),false);
+  assert.equal(next.eval('options.modifierChance'),10);assert.equal(next.eval('options.modes.length'),0);assert.equal(next.storage.get('iskra-party:v1'),raw);
+ }
+ const seed=createSimulation(7072);seed.eval('newGame();persist()');const before=new Map(seed.storage),stored=new Map(before);
+ stored.get=key=>{if(key==='iskra-party:future-options:v1')throw Error('read unavailable');return Map.prototype.get.call(stored,key);};
+ const blocked=createSimulation(7073,stored);assert.equal(blocked.eval('storageBlocked'),true);assert.equal(blocked.eval('storageProblem'),'unavailable');
+ blocked.eval('persist();newGame()');assert.deepEqual(new Map(stored),before);
+});

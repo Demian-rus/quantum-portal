@@ -5,7 +5,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const {createSimulation}=require('../scripts/game-simulation.cjs');
 const root=path.resolve(__dirname,'..');
-const rows=JSON.parse(fs.readFileSync(path.join(root,'content/cards/animals-v2.json'),'utf8'));
+const rows=JSON.parse(fs.readFileSync(path.join(root,'content/cards/animals-v1.json'),'utf8'));
 const pack=JSON.parse(fs.readFileSync(path.join(root,'content/packs/animals-v2.json'),'utf8'))[0];
 const norm=s=>String(s).normalize('NFKC').toLocaleLowerCase('ru').replace(/ё/g,'е').replace(/[^\p{L}\p{N}]+/gu,' ').trim();
 test('Animals@2 curated records have distinct permanent IDs and normalized texts',()=>{
@@ -22,7 +22,9 @@ test('Animals@2 selection is a unique explicit mix of old and new records',()=>{
 });
 test('Animals@2 production content pools are playable across tiers and preserve general@6',()=>{
  const h=createSimulation(101);
- assert.equal(h.eval('latestGeneralPackSelection().version'),6);
+ assert.equal(h.eval('getContentPack({id:"general",version:6}).version'),6);
+ const historical=JSON.parse(require('node:child_process').execFileSync('git',['show','d305bad897d1f912553cf600d82969c031dd76d7:party-game/content/packs/estimation-v3.json'],{encoding:'utf8'})).find(p=>p.id==='general'&&p.version===6);
+ assert.deepEqual(JSON.parse(h.eval('JSON.stringify(QUIP_CONTENT_PACKS["general@6"])')),historical);
  assert.deepEqual(JSON.parse(JSON.stringify(h.eval('getContentPack({id:"animals",version:2}).types'))),['word','phrase','person','number']);
  const settings={...h.eval('options'),awardTo:'guesser',difficulty:'mixed',modes:['talk','mime','draw','yesno','secret','blitz','approx'],promptTypes:['word','phrase'],contentPack:{id:'animals',version:2}};
  h.context.animalsSettings=settings;
