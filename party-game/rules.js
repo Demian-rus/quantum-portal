@@ -1,6 +1,6 @@
 'use strict';
 // Immutable rules. Never edit existing versions: saved matches depend on them.
-const QUIP_RULE_VERSION=5;
+const QUIP_RULE_VERSION=6;
 const QUIP_DIFFICULTIES=Object.freeze(['easy','medium','hard']);
 const freezeQuipRewards=rows=>Object.freeze(Object.fromEntries(Object.entries(rows).map(([key,tiers])=>[key,Object.freeze({...tiers})])));
 const CLASSIC_QUIP_REWARDS=freezeQuipRewards({
@@ -21,12 +21,15 @@ function makeQuipRule(version,rewards,legacyBlitz=false){
 }
 const V4_QUIP_REWARDS=freezeQuipRewards(Object.fromEntries(Object.values(QUIP_MODES_V4)
  .map(mode=>[mode.id,Object.fromEntries(QUIP_DIFFICULTIES.map(level=>[level,mode.basePoints]))])));
+const V6_QUIP_REWARDS=freezeQuipRewards(Object.fromEntries(Object.values(QUIP_MODES_V5)
+ .map(mode=>[mode.id,Object.fromEntries(QUIP_DIFFICULTIES.map(level=>[level,mode.basePoints]))])));
 const QUIP_RULESETS=Object.freeze({
  1:makeQuipRule(1,CLASSIC_QUIP_REWARDS,true),
  2:makeQuipRule(2,CLASSIC_QUIP_REWARDS),
  3:makeQuipRule(3,GRADED_QUIP_REWARDS),
  4:Object.freeze({...makeQuipRule(4,V4_QUIP_REWARDS),modeConfigVersion:1,blitzRequired:3}),
- 5:Object.freeze({...makeQuipRule(5,V4_QUIP_REWARDS),modeConfigVersion:1,blitzRequired:3,splitModifierOutcome:true})
+ 5:Object.freeze({...makeQuipRule(5,V4_QUIP_REWARDS),modeConfigVersion:1,blitzRequired:3,splitModifierOutcome:true}),
+ 6:Object.freeze({...makeQuipRule(6,V6_QUIP_REWARDS),modeConfigVersion:2,blitzRequired:3,splitModifierOutcome:true})
 });
 function ruleSetForGame(match){
  if(!match||match.scoringVersion!==2)return QUIP_RULESETS[1];

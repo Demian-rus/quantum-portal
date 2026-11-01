@@ -28,8 +28,14 @@ function chooseDifficulty() {
   return planned.difficulty;
 }
 
+// New rules give Blitz every single-word card across easy, medium and hard.
+ // Calling the ordinary 'words' selector also removes the former 12-character cap.
+function blitzFullWordPool(selection){
+ return PARTY_CARD_LEVELS.flatMap(tier=>getPackCardPool(selection,'words',tier,['word']));
+}
 function getPromptPool(kind,level,modeId=game?.current?.modeId??'sing'){
-  let cards=game?.contentPack?getPackCardPool(game.contentPack,kind,level,game.promptTypes):
+  let cards=kind==='blitz'&&game&&ruleSetForGame(game).version>=6?blitzFullWordPool(game.contentPack):
+    game?.contentPack?getPackCardPool(game.contentPack,kind,level,game.promptTypes):
     getPackCardPool({id:'general',version:1},kind,level,game?.promptTypes);
   if(kind==='songs')cards=filterSongLanguagePool(cards,game,modeId);
   return [...new Set(cards.map(card=>card.text))];
@@ -48,7 +54,7 @@ function chooseRememberedTask(pool,excluded=[]){
 }
 
 function rememberLegacyWordUse(kind,level,word,modeId=game?.current?.modeId??'sing'){
- const key=(kind==='blitz'?'easy':level)+':'+kind+':'+(game.promptTypes||[]).join(',');
+ const key=(kind==='blitz'&&game&&ruleSetForGame(game).version>=6?'all':kind==='blitz'?'easy':level)+':'+kind+':'+(game.promptTypes||[]).join(',');
  const pool=getPromptPool(kind,level,modeId),used=game.used[key]||[];
  const next=pool.every(text=>used.includes(text))?[]:used.slice();
  if(!next.includes(word))next.push(word);game.used[key]=next;
@@ -57,14 +63,15 @@ function rememberLegacyWordUse(kind,level,word,modeId=game?.current?.modeId??'si
 function pullWord(kind, level=chooseDifficulty(),excluded=[],modeId=game?.current?.modeId??'sing',identity=null) {
   if(identity)identity.cardId=null;
   if(game.taskHistoryVersion!=null){
-    let pool=game.contentPack?getPackCardPool(game.contentPack,kind,level,game.promptTypes):getCardPool(kind,level,game.promptTypes);
+    let pool=kind==='blitz'&&ruleSetForGame(game).version>=6?blitzFullWordPool(game.contentPack):
+      game.contentPack?getPackCardPool(game.contentPack,kind,level,game.promptTypes):getCardPool(kind,level,game.promptTypes);
     if(kind==='songs')pool=filterSongLanguagePool(pool,game,modeId);
     const selected=chooseRememberedTask(pool,excluded);if(identity)identity.cardId=selected.id;rememberLegacyWordUse(kind,level,selected.text,modeId);return selected.text;
   }
   const pool=getPromptPool(kind,level,modeId).filter(word=>!excluded.includes(word));
   if(!pool?.length)throw Error('Нет слов для выбранных настроек');
   // Blitz uses the same easy-word pool at every difficulty: avoid repeats across levels.
-  const key=(kind==='blitz'?'easy':level)+':'+kind+':'+(game.promptTypes||[]).join(',');
+  const key=(kind==='blitz'&&game&&ruleSetForGame(game).version>=6?'all':kind==='blitz'?'easy':level)+':'+kind+':'+(game.promptTypes||[]).join(',');
   let used=game.used[key]||[];
   let free=pool.filter(word=>!used.includes(word));
   if(!free.length){used=[];free=pool.slice();}
@@ -106,7 +113,8 @@ function rollOutcome() {
     const picked={cardId:null};blitzWords.push(pullWord('blitz',level,blitzWords,undefined,picked));blitzCardIds.push(picked.cardId);
   }
   if(game.modifierSelectionVersion===2&&config.usesModifiers){
-    const card=getPackCardPool(game.contentPack,actualMode.kind,level,game.promptTypes).find(row=>row.text===word);
+    const card=(mode.id==='blitz'&&ruleSetForGame(game).version>=6?
+      blitzFullWordPool(game.contentPack):getPackCardPool(game.contentPack,actualMode.kind,level,game.promptTypes)).find(row=>row.text===word);
     selection=choosePartyModifier(game,{modeId:mode.id,methodId:actualMode.id,difficulty:level,complications:game.complications,card,memory:taskMemory});
   }
   const modifier=selection?.modifier||null;

@@ -151,7 +151,7 @@ async function ui(browser,url,width,height){
    const nativeInterval=window.setInterval;window.setInterval=(fn,...args)=>nativeInterval(()=>{if(!document.hidden)fn()},...args);
   });
   await startFromSetup(page);await page.locator('[data-action="roll"]').click();
-  assert.equal(await page.evaluate(()=>game.current.difficulty),'easy');assert.equal(await page.evaluate(()=>game.current.points),1);
+  assert.equal(await page.evaluate(()=>game.current.difficulty),'easy');assert.equal(await page.evaluate(()=>game.rulesVersion),6);assert.equal(await page.evaluate(()=>game.current.points),2);
   await settle(page);const mixedBox=await cardBox(page);await page.locator('.challenge-card[data-action="toggle-word"]').click();assert.equal(await page.evaluate(()=>game.phase),'countdown');
   assert.equal(await page.locator('[data-action="start-timer"]').count(),0);sameBox(await cardBox(page),mixedBox,'Countdown moved card');
   const auto=await page.evaluate(()=>game.current.autoStartAt);

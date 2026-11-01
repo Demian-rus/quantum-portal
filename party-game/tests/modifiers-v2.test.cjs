@@ -10,7 +10,7 @@ test('TASK009 C all 112 historical decisions and the complete 51-record V2 are r
  const data=read();assert.deepEqual(validate(data),{modifiers:51,audited:112});
  for(const [file,content]of Object.entries(build(data)))assert.equal(fs.readFileSync(path.join(__dirname,'..',file),'utf8'),content);
  const h=match();assert.equal(h.eval('QUIP_MODIFIERS.length'),112);assert.equal(new Set(data.rows.map(r=>r.id)).size,51);
- assert.ok(data.audit.every(row=>row.reason&&row.text));assert.equal(h.eval('game.rulesVersion'),5);assert.equal(h.eval('game.modifierCatalogVersion'),2);
+ assert.ok(data.audit.every(row=>row.reason&&row.text));assert.equal(h.eval('game.rulesVersion'),6);assert.equal(h.eval('game.modifierCatalogVersion'),2);
 });
 test('TASK009 C pools are exact-tier, role-aware and manually gated by concrete-object metadata',()=>{
  const h=match();for(const level of ['easy','medium','hard'])for(const mode of ['talk','mime','draw','sing','blitz','yesno'])for(const awardTo of ['setter','guesser']){

@@ -95,7 +95,7 @@ function buildGeneralCategoryIndex(selection,rows,registry){
  const base=rows.filter(row=>historicalGeneralRecord(pack,row)&&pack.types.includes(row.type||'number')&&
   (!pack.categories.length||pack.categories.some(tag=>row.categories.includes(tag)))&&
   (!ids.size||ids.has(row.id))&&(!sources.size||sources.has(row.pack)));
- const tags=new Map();for(const row of base)for(const tag of row.categories){if(!tags.has(tag))tags.set(tag,new Set());tags.get(tag).add(row.id);}
+ const tags=new Map();for(const row of base)for(const tag of (pack.categoryOverrides?.[row.id]||row.categories)){if(!tags.has(tag))tags.set(tag,new Set());tags.get(tag).add(row.id);}
  return {base,tags,ids:new Set(base.map(row=>row.id)),buckets:new Map()};
 }
 function generalCategoryIndex(selection,rows,registry=QUIP_CONTENT_PACKS){
@@ -109,7 +109,7 @@ function generalCategoryIndex(selection,rows,registry=QUIP_CONTENT_PACKS){
  if(!entries.has(key)){if(entries.size>=16){entries.delete(entries.keys().next().value);generalCategoryIndexes.summaries.clear();}entries.set(key,buildGeneralCategoryIndex(selection,rows,registry));}
  return entries.get(key);
 }
-function categoryRecordPredicate(selection){const excluded=new Set(validateGeneralCategorySelection(selection)?.excluded||[]);return row=>!row.categories.some(tag=>excluded.has(tag));}
+function categoryRecordPredicate(selection,registry=QUIP_CONTENT_PACKS){const excluded=new Set(validateGeneralCategorySelection(selection)?.excluded||[]),overrides=getContentPack(selection,registry).categoryOverrides;return row=>!(overrides?.[row.id]||row.categories).some(tag=>excluded.has(tag));}
 function generalCategoryPool(index,selection,types,level,blitz=false){
  const key=JSON.stringify([[...new Set(types)].sort(),level,blitz]);
  if(!index.buckets.has(key))index.buckets.set(key,index.base.filter(row=>row.difficulty===level&&types.includes(row.type||'number')&&(!blitz||row.text.length<=12)));
@@ -161,7 +161,7 @@ function getPackCardPool(selection,kind,level,promptTypes,cards=PARTY_CARDS,regi
  const types={words:promptTypes?.length?promptTypes:['word','phrase','idiom'],songs:['song'],people:['person'],blitz:['word']}[kind];
  if(!types||types.some(t=>!PARTY_CARD_TYPES.includes(t))||
   (kind==='words'&&types.some(t=>!['word','phrase','idiom'].includes(t))))throw Error('Incompatible card types');
- const tier=kind==='blitz'?'easy':level,seen=new Set(),allowed=categoryRecordPredicate(selection);
+ const tier=kind==='blitz'?'easy':level,seen=new Set(),allowed=categoryRecordPredicate(selection,registry);
  const index=pack.id==='general'?generalCategoryIndex(selection,cards,registry):null;
  if(index)return generalCategoryPool(index,selection,types,tier,kind==='blitz');
  return cards.filter(card=>{
@@ -180,7 +180,7 @@ function getPackQuestionPool(selection,level,questions=QUIP_APPROX_QUESTIONS,reg
  if(!pack.types.includes('number'))return [];
  const index=pack.id==='general'?generalCategoryIndex(selection,questions,registry):null;
  if(index)return generalCategoryPool(index,selection,['number'],level);
- const allowed=categoryRecordPredicate(selection);
+ const allowed=categoryRecordPredicate(selection,registry);
  return questions.filter(question=>allowed(question)&&historicalGeneralRecord(pack,question)&&question.difficulty===level&&
   (!pack.categories.length||pack.categories.some(tag=>question.categories.includes(tag)))&&
   (!pack.criteria.cardIds.length||pack.criteria.cardIds.includes(question.id))&&
@@ -205,7 +205,7 @@ function checkContentPack(selection,settings,cards=PARTY_CARDS,registry=QUIP_CON
   const kind=getModeConfig(method).cardType;
   if(!kind)throw Error('Unknown QUIP mode: '+method);
   for(const level of levels){
-   let pool=kind==='number'?getPackQuestionPool(selection,level,questions,registry):getPackCardPool(selection,kind,level,settings.promptTypes,cards,registry);
+   let pool=kind==='number'?getPackQuestionPool(selection,level,questions,registry):kind==='blitz'&&(settings.rulesVersion==null||settings.rulesVersion>=6)?PARTY_CARD_LEVELS.flatMap(tier=>getPackCardPool(selection,'words',tier,['word'],cards,registry)):getPackCardPool(selection,kind,level,settings.promptTypes,cards,registry);
    if(method==='sing')pool=filterSongLanguagePool(pool,settings);
    const count=new Set(pool.map(card=>card.text||card.question)).size,required=Math.max(pack.minCardsPerPool,kind==='blitz'?(settings.rulesVersion&&settings.rulesVersion<4?5:getModeConfig('blitz').blitzWordsCount):1);
    if(count<required)problems.push(validateGeneralCategorySelection(selection)?.excluded.length?

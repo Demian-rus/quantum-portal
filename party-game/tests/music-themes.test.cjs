@@ -64,7 +64,9 @@ test('TASK012 C old and active language snapshots restore independently of futur
   const h=createSimulation(25);h.context.policy=policy;h.context.version=version;
   h.eval('Object.assign(options,{modes:["sing"],difficulty:"hard",dice:false,complications:false,modeSettings:{sing:{songLanguages:policy||["ru"]}}});newGame();game.rulesVersion=version;'+
    'if(!policy){delete game.songLanguagePolicyVersion;delete game.songLanguages};roll();game.dice=true;options.dice=true;delete options.modeSettings;persist()');
-  const raw=h.storage.get('iskra-party:v1'),before=h.eval('JSON.stringify([game,taskMemory])');let writes=0;
+  // Construct the historical RAW explicitly: persist protects the live party options.
+  const fixture=JSON.parse(h.storage.get('iskra-party:v1'));delete fixture.options.modeSettings;
+  const raw=JSON.stringify(fixture),before=h.eval('JSON.stringify([game,taskMemory])');let writes=0;
   const stored=new Map([['iskra-party:v1',raw]]),set=stored.set;stored.set=function(...args){writes++;return Reflect.apply(set,this,args)};
   const next=createSimulation(26,stored);next.eval('continueGame();render()');
   assert.equal(next.eval('JSON.stringify([game,taskMemory])'),before);assert.equal(stored.get('iskra-party:v1'),raw);assert.equal(writes,0);
@@ -283,7 +285,9 @@ test('TASK013 B V2 song snapshots restore unchanged and unknown future versions 
  for(const languages of [['ru'],['en'],['ru','en']]){
   const h=createSimulation(45);h.context.languages=languages;
   h.eval('Object.assign(options,{modes:["secret"],difficulty:"hard",dice:false,modeSettings:{sing:{songLanguages:languages}}});newGame();roll();game.dice=true;options.dice=true;persist()');
-  const raw=h.storage.get('iskra-party:v1'),before=h.eval('JSON.stringify([game,taskMemory])');let writes=0;
+  // Construct the historical RAW explicitly: persist protects the live party options.
+  const fixture=JSON.parse(h.storage.get('iskra-party:v1'));delete fixture.options.modeSettings;
+  const raw=JSON.stringify(fixture),before=h.eval('JSON.stringify([game,taskMemory])');let writes=0;
   const stored=new Map([['iskra-party:v1',raw]]),set=stored.set;stored.set=function(...args){writes++;return Reflect.apply(set,this,args)};
   const again=createSimulation(46,stored);again.eval('continueGame();render()');assert.equal(again.eval('JSON.stringify([game,taskMemory])'),before);
   assert.equal(stored.get('iskra-party:v1'),raw);assert.equal(writes,0);

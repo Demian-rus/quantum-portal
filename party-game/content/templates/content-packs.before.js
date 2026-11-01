@@ -19,7 +19,13 @@ function defineContentPacks(entries){
    if(values!=null&&(!Array.isArray(values)||!values.length||new Set(values).size!==values.length||values.some(id=>!allowed.includes(id))))throw Error('Invalid pack '+field+': '+key);
   }
   if(entry.secretMethods&&(!entry.allowedModes||entry.secretMethods.some(id=>!entry.allowedModes.includes(id))))throw Error('Incompatible secret methods: '+key);
+  const overrides=entry.categoryOverrides;
+  if(overrides!==undefined&&(entry.id!=='general'||!overrides||typeof overrides!=='object'||Array.isArray(overrides)||
+   Object.entries(overrides).some(([id,tags])=>!entry.criteria.cardIds.includes(id)||!Array.isArray(tags)||!tags.length||
+    new Set(tags).size!==tags.length||tags.some(t=>typeof t!=='string'||!/^[a-z][a-z0-9-]*$/.test(t)))))
+   throw Error('Invalid versioned category overrides: '+key);
   registry[key]=Object.freeze({...entry,
+   ...(overrides?{categoryOverrides:Object.freeze(Object.fromEntries(Object.entries(overrides).map(([id,tags])=>[id,Object.freeze(tags.slice())])))}:{}),
    ...(entry.allowedModes?{allowedModes:Object.freeze(entry.allowedModes.slice())}:{}),
    ...(entry.secretMethods?{secretMethods:Object.freeze(entry.secretMethods.slice())}:{}),categories:Object.freeze(entry.categories.slice()),
    types:Object.freeze(entry.types.slice()),criteria:Object.freeze({

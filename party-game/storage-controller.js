@@ -2,11 +2,17 @@
 // Storage I/O and save protection; shared state is initialized in app.js.
 
 function storageNotice(){
+  if(storageProblem==='future-corrupt')return 'Настройки следующей игры повреждены. Данные партии сохранены; запись заблокирована.';
   if(storageProblem==='corrupt')return 'Сохранение повреждено и защищено. Для безопасного сброса начните новую партию.';
   if(storageProblem==='unavailable')return 'Не удалось прочитать сохранение. Запись заблокирована.';
   return 'Сохранение несовместимо с этой версией игры. Данные сохранены.';
 }
 function blockSavedData(reason){storageBlocked=true;storageProblem=reason;return null;}
+// A saved game's options are pinned until another match actually starts.
+// Keep the live match's RAW options stable; future Wizard choices use a distinct,
+// match-scoped, versioned preference record. Neither key rewrites the other.
+const FUTURE_OPTIONS_KEY='iskra-party:future-options:v1';
+let persistedMatchId=null,persistedMatchOptions=null,persistedMatchRef=null;
 function readSaved() {
   try { loadedSaveRaw=localStorage.getItem(STORAGE_KEY); }
   catch { return blockSavedData('unavailable'); }
@@ -16,6 +22,42 @@ function readSaved() {
   catch { return blockSavedData('corrupt'); }
   if(!obj||typeof obj!=='object'||Array.isArray(obj))return blockSavedData('corrupt');
   if(obj.version!==1)return blockSavedData('incompatible');
+  persistedMatchId=obj.game?.matchId??null;
+  persistedMatchOptions=obj.game?obj.options:null;
+  persistedMatchRef=obj.game??null;
+  // An unfinished match must restore its historical options and its future
+  // menu preferences independently. Old saves need no migration or RAW write.
+  if(obj.game){
+    let futureRaw;
+    try { futureRaw=localStorage.getItem(FUTURE_OPTIONS_KEY); }
+    catch { return blockSavedData('unavailable'); }
+    if(futureRaw!==null){
+      let future;
+      try { future=JSON.parse(futureRaw); }
+      catch { return blockSavedData('future-corrupt'); }
+      if(!future||typeof future!=='object'||Array.isArray(future)||
+        (future.matchId!==null&&typeof future.matchId!=='string'))return blockSavedData('incompatible');
+      // A stale sidecar belongs to a different match; ignore it, even if its
+      // preference schema is from an unknown later revision.
+      const sameId=future.matchId===(obj.game.matchId??null);
+      // Legacy saves have no permanent match ID. Bind their sidecar to the
+      // exact saved game, so importing another legacy party cannot adopt it.
+      if(sameId&&future.matchId===null&&typeof future.legacyGame!=='string')return blockSavedData('incompatible');
+      if(sameId&&(future.matchId!==null||future.legacyGame===JSON.stringify(obj.game))){
+        if(future.version!==1||!future.options||typeof future.options!=='object'||Array.isArray(future.options))
+          return blockSavedData('incompatible');
+        const next=future.options;
+        if(!Array.isArray(next.modes)||!next.modes.every(id=>DEFAULT_MODES.includes(id))||
+          !Array.isArray(next.promptTypes)||!next.promptTypes.every(id=>PROMPT_TYPES.includes(id))||
+          !['easy','medium','hard','mixed'].includes(next.difficulty)||
+          !['duration','rounds','targetScore'].every(key=>Number.isFinite(next[key]))||
+          (Object.hasOwn(next,'modifierChance')&&!Number.isFinite(next.modifierChance))||
+          !['riskRounds','complications','dice'].every(key=>typeof next[key]==='boolean'))return blockSavedData('future-corrupt');
+        try{if(next.contentPack)getContentPack(next.contentPack);}catch{return blockSavedData('incompatible');}
+        obj.options=future.options;
+      }
+    }
+  }
   return obj;
 }
 // Explicit recovery only for corrupt data, never for an unknown future version.
@@ -37,8 +79,26 @@ function recoverCorruptSave(){
 function persist() {
   if(storageBlocked)return false;
   try {
-    const raw=JSON.stringify({version:1,options,soundOn,game,...(taskMemory?{taskMemory}:{})});
+    // Wizard previews of new catalogs may change in-memory options but must
+    // not rewrite saved options of the same unfinished match. A new START
+    // creates a new matchId and adopts the new options; turns still persist.
+    const sameMatch=!!game&&(game===persistedMatchRef||(game.matchId!=null&&game.matchId===persistedMatchId));
+    const savedOptions=sameMatch?persistedMatchOptions:options;
+    // Write the independent future setup snapshot before the match state.
+    // A failed preference write never authorizes a misleading successful save.
+    if(sameMatch){
+      const future=JSON.stringify({version:1,matchId:game.matchId??null,...(game.matchId==null?{legacyGame:JSON.stringify(game)}:{}),options});
+      if(localStorage.getItem(FUTURE_OPTIONS_KEY)!==future){
+        localStorage.setItem(FUTURE_OPTIONS_KEY,future);
+        if(localStorage.getItem(FUTURE_OPTIONS_KEY)!==future)return false;
+      }
+    }
+    const raw=JSON.stringify({version:1,options:savedOptions,soundOn,game,...(taskMemory?{taskMemory}:{})});
     localStorage.setItem(STORAGE_KEY,raw);
-    return localStorage.getItem(STORAGE_KEY)===raw;
+    if(localStorage.getItem(STORAGE_KEY)!==raw)return false;
+    persistedMatchId=game?.matchId??null;
+    persistedMatchRef=game??null;
+    persistedMatchOptions=game?(sameMatch?persistedMatchOptions:JSON.parse(JSON.stringify(savedOptions))):null;
+    return true;
   }catch { return false; }
 }

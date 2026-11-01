@@ -91,7 +91,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
       game.rulesVersion=version;game.contentPack={id:'general',version:1};delete game.taskHistoryVersion;delete game.taskHistory;delete game.modeConfigVersion;delete game.awardTo;delete game.awardPolicyVersion;delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;game.blitzCount=5;game.modes=game.modes.filter(id=>id!=='approx');persist();
     }
   }`,context);
-  vm.runInContext("function v4Game(){startHistoricalFixture();game.rulesVersion=4;delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;persist()}",context);
+  vm.runInContext("function v4Game(){startHistoricalFixture();game.rulesVersion=4;game.modeConfigVersion=1;delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;persist()}",context);
   vm.runInContext("function startPreReviewFixture(){newGame();delete game.riskPolicyVersion;delete game.riskPlannerState;delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;persist()}",context);
   // Scoring fixtures choose a fixed starting player; dedicated tests exercise both draws.
   if(!randomizeStarter)vm.runInContext('chooseStartingTeam=()=>0',context);
@@ -278,11 +278,11 @@ test('repeated reel rendering preserves saved state and ignores stale animation 
  }
 });
 test('last Blitz answer checks the exact deadline before changing its queue or completing twice',()=>{
- for(const version of [1,2,3,4,5])for(const offset of [-1,0,1])for(const correct of [false,true]){
+ for(const version of [1,2,3,4,5,6])for(const offset of [-1,0,1])for(const correct of [false,true]){
   const h=harness();let clock=1792756800000;
   h.context.Date=class extends Date{static now(){return clock}};
   h.eval('soundOn=false;options.modes=["blitz"];options.difficulty="easy";options.dice=false;'+
-   (version===5?'newGame()':version===4?'v4Game()':'legacyGame('+version+')')+';'+
+   (version>=5?'newGame();game.rulesVersion='+version+';game.modeConfigVersion='+(version===5?1:2):version===4?'v4Game()':'legacyGame('+version+')')+';'+
    (version===1?'delete game.scoringVersion;':'')+'roll();toggleWord();startTimer();'+
    'while(game.current.blitzQueue.length>1)advanceBlitz(true)');
   const before=JSON.parse(h.eval('JSON.stringify(game.current)'));
@@ -308,9 +308,11 @@ test('last Blitz answer checks the exact deadline before changing its queue or c
   assert.equal(after.finishedReason,reason||before.finishedReason);
   assert.equal(h.eval('game.roundIndex'),0);assert.equal(h.eval('game.history.length'),0);
   assert.deepEqual(Array.from(h.eval('game.scores')),[0,0]);
-  const expected=reason?['finishTimer:'+reason,'stopTicking','persist','write',
-   ...(reason==='timeout'?['sfx:time']:[]),'render','stopTicking']:['persist','write','sfx:button','showTimer'];
+  const writes=version<5?['write','write']:['write'];
+  const expected=reason?['finishTimer:'+reason,'stopTicking','persist',...writes,
+   ...(reason==='timeout'?['sfx:time']:[]),'render','stopTicking']:['persist',...writes,'sfx:button','showTimer'];
   assert.deepEqual(Array.from(h.eval('boundaryEffects')),expected);
+  if(version<5)assert.equal(JSON.parse(h.storage.get('iskra-party:future-options:v1')).legacyGame,JSON.stringify(JSON.parse(h.storage.get('iskra-party:v1')).game));
   if(reason){
    const state=h.eval('JSON.stringify([game,options,taskMemory])'),raw=h.storage.get('iskra-party:v1');
    h.eval('boundaryEffects.length=0;advanceBlitz(true);advanceBlitz(false);tick()');
@@ -459,7 +461,8 @@ test('Continue protects malformed between saves and preserves completed V1-V5 ro
   assert.equal(h.eval('game.phase'),'ready');assert.equal(h.eval('game.roundIndex'),saved.game.roundIndex);
   assert.equal(h.eval('JSON.stringify(game.scores)'),JSON.stringify(saved.game.scores));
   assert.equal(h.eval('JSON.stringify(game.history)'),JSON.stringify(saved.game.history));
-  assert.deepEqual(writes.map(([k])=>k),[key]);assert.equal(draws(),0);
+  assert.deepEqual(writes.map(([k])=>k),['iskra-party:future-options:v1',key]);
+  const future=JSON.parse(storage.get('iskra-party:future-options:v1'));assert.equal(future.version,1);assert.equal(future.matchId,saved.game.matchId??null);assert.deepEqual(future.options,JSON.parse(h.eval('JSON.stringify(options)')));assert.equal(draws(),0);
  }
 });
 test('vocabulary is varied, unique within packs and contains at least 400 prompts',()=>{
@@ -939,7 +942,7 @@ test('КВИП branding is consistent across the browser and installed PWA',()=>
  assert.equal(manifest.short_name,'КВИП');
  assert.equal(manifest.name,'КВИП — игра для компании');
  assert.match(css,/content:"КВИП";/);
- assert.match(worker,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);
+ assert.match(worker,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z0-9-]+'/);
  assert.match(worker,/iskra-pwa-/); // Clear the previous cache without losing offline updates.
 });
 
@@ -1248,7 +1251,7 @@ test('all version 3 rewards follow the selected difficulty; Blitz stays three',(
   sing:[2,3,4],yesno:[2,3,4],secret:[3,4,5],blitz:[3,3,3]};
  h.eval('soundOn=false;legacyGame()');
  assert.equal(h.eval('game.rulesVersion'),3);
- assert.equal(h.eval('QUIP_RULE_VERSION'),5);
+ assert.equal(h.eval('QUIP_RULE_VERSION'),6);
  for(const [mode,tiers] of Object.entries(table))
   for(const [i,level] of ['easy','medium','hard'].entries())
    assert.equal(h.eval("rewardForRound(game,'"+mode+"','"+level+"')"),tiers[i],mode+'/'+level);
@@ -1333,7 +1336,7 @@ test('offline engine scripts and old storage envelope are preserved',()=>{
  for(const file of ['approx-questions.js','mode-config.js','rules.js','penalties.js','modifiers.js','round-planner.js','content-packs.js','presets.js','app.js']){
   const url=scripts.find(src=>src.startsWith(file+'?v='));assert.ok(url,file);assert.ok(sw.includes(url),url);
  }
- assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);
+ assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z0-9-]+'/);
 });
 
 
@@ -1730,7 +1733,7 @@ test('all eight active mode icons exist and load from versioned URLs',()=>{
   assert.equal(h.eval('DEFAULT_MODES.includes("approx")'),true);
   const sw=read('sw.js'),html=read('index.html');
   assert.ok(html.includes("mode-images.js?v=6"));
-  assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z-]+'/);
+  assert.match(sw,/const CACHE='kvip-pwa-v\d+-\d{8}-[a-z0-9-]+'/);
   for(const mode of modes){
     assert.equal(assets[mode],'./assets/modes/'+mode+'.webp?v=3');
     assert.ok(sw.includes("'approx'")||mode!=='approx');
@@ -1982,7 +1985,7 @@ test('new award defaults select the setter and leave immutable presets intact',(
  assert.equal(h.eval('options.modes.includes("yesno")'),false);
  assert.equal(h.eval('QUIP_PARTY_PRESETS["classic-duel@3"].settings.modes.includes("yesno")'),true);
  h.eval('soundOn=false;newGame()');assert.equal(h.eval('game.awardPolicyVersion'),1);assert.equal(h.eval('game.awardTo'),'setter');
- assert.equal(h.eval('game.scoringVersion'),2);assert.equal(h.eval('game.rulesVersion'),5);
+ assert.equal(h.eval('game.scoringVersion'),2);assert.equal(h.eval('game.rulesVersion'),6);
 });
 test('award selection removes incompatible modes without a fallback and blocks manual reactivation',()=>{
  const h=harness();h.eval('options.awardTo="guesser";options.modes=DEFAULT_MODES.slice();selectAwardTo("setter")');
@@ -2122,7 +2125,7 @@ test('new modifier selection defaults and ranges come from the independent polic
  for(const [raw,expected] of [[undefined,20],[0,10],[102,100],[36,35],[100,100]]){
   h.context.rawChance=raw;assert.equal(h.eval('sanitizeModifierChance(rawChance)'),expected);
  }
- h.eval('soundOn=false;newGame()');assert.equal(h.eval('game.modifierSelectionVersion'),2);assert.equal(h.eval('game.modifierChance'),20);assert.equal(h.eval('game.rulesVersion'),5);
+ h.eval('soundOn=false;newGame()');assert.equal(h.eval('game.modifierSelectionVersion'),2);assert.equal(h.eval('game.modifierChance'),20);assert.equal(h.eval('game.rulesVersion'),6);
 });
 test('optional modifier probability has deterministic boundaries and no guaranteed batch quota',()=>{
  for(const chance of [10,20,50,100]){

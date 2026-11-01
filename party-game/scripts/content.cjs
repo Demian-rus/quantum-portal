@@ -72,6 +72,18 @@ function validate(data,{locks=true,near=false}={}){
   const locked=data.lock.sources[source.path];
   if(locks&&source.immutable&&(!locked||locked.count!==source.rows.length||locked.sha256!==digest(source.rows)))add('historical-source',source.path,'Immutable source changed; add a new source and selection policy instead');
  }
+ // A new pack may review historical category labels without editing locked source cards.
+ const byId=new Map(data.cards.map(row=>[row.id,row]));
+ for(const pack of data.packs)if(pack.categoryOverrides!==undefined){
+  if(pack.id!=='general'||!pack.categoryOverrides||typeof pack.categoryOverrides!=='object'||Array.isArray(pack.categoryOverrides))
+   add('category-override',pack.id+'@'+pack.version,'Only general packs may overlay historical tags');
+  else for(const [id,names] of Object.entries(pack.categoryOverrides)){
+   const row=byId.get(id);
+   if(!pack.criteria.cardIds.includes(id)||!row||row.categories.length||
+    !Array.isArray(names)||!names.length||new Set(names).size!==names.length||names.some(tag=>!tags.has(tag)))
+     add('category-override',id,'Override must reference an unclassified selected historical card with valid unique tags');
+  }
+ }
  for(const row of [...data.cards,...data.questions]){
   if(!row||typeof row!=='object'){add('schema','?', 'Record must be an object');continue;}
   if(typeof row.id!=='string'||ids.has(row.id))add('id',row.id,'Missing or duplicate ID');ids.add(row.id);
