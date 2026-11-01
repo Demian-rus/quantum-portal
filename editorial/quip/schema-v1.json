@@ -1,0 +1,441 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:quip:editorial:1",
+  "title": "КВИП editorial edition v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "rubric",
+    "catalogs",
+    "records",
+    "songLanguagesDigest",
+    "poolPolicies"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "const": "quip"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "rubric": {
+      "const": "quip-rubric@1"
+    },
+    "catalogs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/catalog"
+      }
+    },
+    "records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/record"
+      }
+    },
+    "songLanguagesDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "poolPolicies": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/poolPolicy"
+      },
+      "minProperties": 1
+    }
+  },
+  "$defs": {
+    "reason": {
+      "enum": [
+        "familiar",
+        "concrete",
+        "indirect",
+        "specialist",
+        "fast-clue",
+        "repertoire",
+        "recognisable-person",
+        "estimation",
+        "type",
+        "multiword",
+        "not-physical",
+        "not-visual",
+        "insufficient-clue",
+        "not-estimate",
+        "ambiguous",
+        "source-defect",
+        "rule-conflict",
+        "other-reviewed"
+      ]
+    },
+    "eligible": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "eligible",
+        "difficulty",
+        "reason"
+      ],
+      "properties": {
+        "eligible": {
+          "const": true
+        },
+        "difficulty": {
+          "enum": [
+            "easy",
+            "medium",
+            "hard"
+          ]
+        },
+        "reason": {
+          "$ref": "#/$defs/reason"
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 600
+        }
+      }
+    },
+    "ineligible": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "eligible",
+        "difficulty",
+        "reason"
+      ],
+      "properties": {
+        "eligible": {
+          "const": false
+        },
+        "difficulty": {
+          "type": "null"
+        },
+        "reason": {
+          "$ref": "#/$defs/reason"
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 600
+        }
+      }
+    },
+    "judgement": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/eligible"
+        },
+        {
+          "$ref": "#/$defs/ineligible"
+        }
+      ]
+    },
+    "modes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "talk",
+        "mime",
+        "draw",
+        "sing",
+        "yesno",
+        "secret",
+        "blitz",
+        "approx"
+      ],
+      "properties": {
+        "talk": {
+          "$ref": "#/$defs/judgement"
+        },
+        "mime": {
+          "$ref": "#/$defs/judgement"
+        },
+        "draw": {
+          "$ref": "#/$defs/judgement"
+        },
+        "sing": {
+          "$ref": "#/$defs/judgement"
+        },
+        "yesno": {
+          "$ref": "#/$defs/judgement"
+        },
+        "secret": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "policy"
+          ],
+          "properties": {
+            "policy": {
+              "const": "actual-method"
+            }
+          }
+        },
+        "blitz": {
+          "$ref": "#/$defs/judgement"
+        },
+        "approx": {
+          "$ref": "#/$defs/judgement"
+        }
+      }
+    },
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "form",
+        "categories",
+        "themes",
+        "ambiguities",
+        "modes"
+      ],
+      "properties": {
+        "form": {
+          "enum": [
+            "word",
+            "phrase",
+            "idiom",
+            "song",
+            "person",
+            "number"
+          ]
+        },
+        "categories": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "themes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "ambiguities": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "modes": {
+          "$ref": "#/$defs/modes"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "fingerprint"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^party-game/content/"
+        },
+        "fingerprint": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "proposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "form",
+        "categories",
+        "legacyDifficulty",
+        "themes"
+      ],
+      "properties": {
+        "form": {
+          "enum": [
+            "word",
+            "phrase",
+            "idiom",
+            "song",
+            "person",
+            "number"
+          ]
+        },
+        "categories": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "legacyDifficulty": {
+          "enum": [
+            "easy",
+            "medium",
+            "hard"
+          ]
+        },
+        "themes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "reviewer",
+        "reviewedAt",
+        "rationale"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "pending",
+            "needs-source",
+            "reviewed"
+          ]
+        },
+        "reviewer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewedAt": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rationale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "source",
+        "proposal",
+        "classification",
+        "review"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "proposal": {
+          "$ref": "#/$defs/proposal"
+        },
+        "classification": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/classification"
+            }
+          ]
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        }
+      }
+    },
+    "catalog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version",
+        "idsDigest",
+        "packDigest"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "idsDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "packDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "poolPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum",
+        "allowedModes"
+      ],
+      "properties": {
+        "minimum": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "allowedModes": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "talk",
+              "mime",
+              "draw",
+              "sing",
+              "yesno",
+              "secret",
+              "blitz",
+              "approx"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
