@@ -7,6 +7,8 @@ function storageNotice(){
   return 'Сохранение несовместимо с этой версией игры. Данные сохранены.';
 }
 function blockSavedData(reason){storageBlocked=true;storageProblem=reason;return null;}
+// A saved game's options are pinned until another match actually starts.
+let persistedMatchId=null,persistedMatchOptions=null;
 function readSaved() {
   try { loadedSaveRaw=localStorage.getItem(STORAGE_KEY); }
   catch { return blockSavedData('unavailable'); }
@@ -16,6 +18,8 @@ function readSaved() {
   catch { return blockSavedData('corrupt'); }
   if(!obj||typeof obj!=='object'||Array.isArray(obj))return blockSavedData('corrupt');
   if(obj.version!==1)return blockSavedData('incompatible');
+  persistedMatchId=obj.game?.matchId??null;
+  persistedMatchOptions=obj.game?obj.options:null;
   return obj;
 }
 // Explicit recovery only for corrupt data, never for an unknown future version.
@@ -37,8 +41,16 @@ function recoverCorruptSave(){
 function persist() {
   if(storageBlocked)return false;
   try {
-    const raw=JSON.stringify({version:1,options,soundOn,game,...(taskMemory?{taskMemory}:{})});
+    // Wizard previews of new catalogs may change in-memory options but must
+    // not rewrite saved options of the same unfinished match. A new START
+    // creates a new matchId and adopts the new options; turns still persist.
+    const sameMatch=game?.matchId!=null&&game.matchId===persistedMatchId;
+    const savedOptions=sameMatch?persistedMatchOptions:options;
+    const raw=JSON.stringify({version:1,options:savedOptions,soundOn,game,...(taskMemory?{taskMemory}:{})});
     localStorage.setItem(STORAGE_KEY,raw);
-    return localStorage.getItem(STORAGE_KEY)===raw;
+    if(localStorage.getItem(STORAGE_KEY)!==raw)return false;
+    persistedMatchId=game?.matchId??null;
+    persistedMatchOptions=game?savedOptions:null;
+    return true;
   }catch { return false; }
 }

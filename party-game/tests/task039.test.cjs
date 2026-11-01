@@ -36,3 +36,26 @@ test('TASK039 category overlay is versioned, complete and does not mutate histor
  })())`));
  assert.equal(result.oldHas,true);assert.equal(result.newHas,false);assert.equal(result.counts.total,7460);
 });
+test('TASK039 future Wizard catalog does not rewrite paused match options in RAW',()=>{
+ const h=createSimulation(),state=JSON.parse(h.eval(`JSON.stringify((()=>{
+   game={matchId:'paused-duel',contentPack:{id:'general',version:67},roundIndex:0};
+   options.contentPack={id:'general',version:67};
+   if(!persist())throw Error('Initial save failed');
+   const before=localStorage.getItem(STORAGE_KEY);
+   options.contentPack={id:'general',version:68};
+   if(!persist())throw Error('Future setup save failed');
+   const unchanged=localStorage.getItem(STORAGE_KEY);
+   game.roundIndex=1;
+   if(!persist())throw Error('Round save failed');
+   const progressed=JSON.parse(localStorage.getItem(STORAGE_KEY));
+   game={matchId:'new-duel',contentPack:{id:'general',version:68},roundIndex:0};
+   if(!persist())throw Error('New match save failed');
+   const fresh=JSON.parse(localStorage.getItem(STORAGE_KEY));
+   return {untouched:before===unchanged,pausedPack:progressed.options.contentPack.version,
+      roundIndex:progressed.game.roundIndex,newPack:fresh.options.contentPack.version};
+ })())`));
+ assert.equal(state.untouched,true,'preview must not modify paused RAW');
+ assert.equal(state.pausedPack,67);
+ assert.equal(state.roundIndex,1,'round persistence must continue normally');
+ assert.equal(state.newPack,68,'a new match adopts the latest selected catalog');
+});
