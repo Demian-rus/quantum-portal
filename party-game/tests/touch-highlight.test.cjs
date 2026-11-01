@@ -38,7 +38,7 @@ test('native focus, active, controller, and geometry protection remains intact',
 test('only reviewed TASK039 cache resource versions change in HTML and service worker',()=>{
  const html=read('index.html'),sw=read('sw.js');
  assert(html.includes('./style.css?v=46'));assert(sw.includes("'./style.css?v=46'"));
- assert(sw.includes('kvip-pwa-v107-20261031-task039-mixed-blitz-categories'));
+ assert(sw.includes('kvip-pwa-v108-20261101-task039-pinned-match-future-settings'));
  assert.equal(normalizeTask039Resources(html),old('index.html'),'Unexpected HTML change');
  assert.equal(normalizeTask039Resources(sw),old('sw.js'),'Unexpected PWA precache change');
  assert.equal(sw.slice(sw.indexOf('self.addEventListener')),old('sw.js').slice(old('sw.js').indexOf('self.addEventListener')));
