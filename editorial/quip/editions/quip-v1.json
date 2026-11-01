@@ -167401,12 +167401,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday",
+          "food"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Завтрак в постель — поднос с едой возле лежащего человека; все детали можно показать."
       }
     },
     {
@@ -167423,12 +167471,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday",
+          "animals"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Прогулка с собакой узнаётся по поводку, шагам и питомцу рядом."
       }
     },
     {
@@ -167445,12 +167541,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Поездка на дачу требует показать дорогу и загородный дом, а не просто транспорт."
       }
     },
     {
@@ -167467,12 +167611,61 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday",
+          "nature",
+          "food"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Пикник у озера — покрывало и еда рядом с водоёмом; рисунок отражает обе части."
       }
     },
     {
@@ -167489,12 +167682,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday",
+          "food"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Очередь за мороженым требует людей, прилавка и рожка; действие показать сложнее предмета."
       }
     },
     {
@@ -167511,12 +167752,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Пропавший носок — поиск пары в ящике; рисунку нужны оставшийся носок и пустое место."
       }
     },
     {
@@ -167533,12 +167821,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Порванный шнурок легко показать при завязывании ботинка и на рисунке разрыва."
       }
     },
     {
@@ -167555,12 +167890,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday",
+          "nature"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Запотевшее стекло — капли конденсата и след пальца; рисунок нуждается в рамке окна."
       }
     },
     {
@@ -167577,12 +167960,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Скрипучая дверь узнаётся по медленному открытию и реакциям, но звук без речи недоступен."
       }
     },
     {
@@ -167599,12 +168029,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "food",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Подгоревший тост — чёрный хлеб из тостера и дым; рисунок легко передаёт ситуацию."
       }
     },
     {
@@ -167621,12 +168099,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "technology",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Разряженный телефон — гаснущий экран и батарея без заряда; жесты понятны."
       }
     },
     {
@@ -167643,12 +168169,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "food",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Остывший чай — чашка без пара и попытка согреться; рисунок требует температурного контраста."
       }
     },
     {
@@ -167665,12 +168239,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Посылка с сюрпризом — закрытая коробка и удивление после открытия; сцена узнаваема."
       }
     },
     {
@@ -167687,12 +168308,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "food",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Рассыпанный попкорн — перевёрнутое ведёрко и зерна на полу; наглядно в обоих показах."
       }
     },
     {
@@ -167709,12 +168378,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday",
+          "nature"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Строительство снеговика включает катание снежных шаров и морковку вместо носа."
       }
     },
     {
@@ -167731,12 +168448,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Поиск потерянных очков — ощупывание стола и жесты зрения; рисунок должен передать поиск."
       }
     },
     {
@@ -167753,12 +168517,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "culture",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Побег из квест-комнаты требует закрытой двери, загадки и выхода; сам побег недостаточен."
       }
     },
     {
@@ -167775,12 +168587,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "technology",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Запись голосового сообщения — телефон, микрофон и удержание кнопки; в рисунке нужен контекст."
       }
     },
     {
@@ -167797,12 +168657,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Примерка чужих очков показывается обменом очками; рисунок не подчёркивает принадлежность."
       }
     },
     {
@@ -167819,12 +168726,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Разбор чемодана — открытый багаж и раскладывание вещей по шкафу."
       }
     },
     {
@@ -167841,12 +168796,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday",
+          "nature"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Сборка палатки — установка дуг и натягивание тента; последовательность узнаваема."
       }
     },
     {
@@ -167863,12 +168866,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "transport",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Поездка в плацкарте — купейный вагон без дверей и боковые полки; нужен отличимый интерьер."
       }
     },
     {
@@ -167885,12 +168936,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday",
+          "nature"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Туристический рюкзак — большой рюкзак с лямками, спальником и походными креплениями."
       }
     },
     {
@@ -167907,12 +169006,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Переезд в новую квартиру — перенос коробок в другое жильё; рисунку нужно показать два места."
       }
     },
     {
@@ -167929,12 +169075,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "language",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Чтение по губам — пристальное наблюдение за губами говорящего; без букв рисунок косвенный."
       }
     },
     {
@@ -167951,12 +169145,61 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "culture",
+          "everyday",
+          "music"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Репетиция свадебного танца — пара разучивает движения перед свадьбой; жестами проще."
       }
     },
     {
@@ -167973,12 +169216,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Коробка на верхней полке — человек тянется к предмету над головой; рисуется напрямую."
       }
     },
     {
@@ -167995,12 +169285,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "transport",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Потерянный багаж — пустая лента выдачи и растерянный пассажир; требуется контекст аэропорта."
       }
     },
     {
@@ -168017,12 +169355,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "language",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Разговор через переводчика — два собеседника и посредник; без слов рисунок может означать спор."
       }
     },
     {
@@ -168039,12 +169425,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday",
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Сборка шкафа без инструкции — мебельные доски и растерянный сборщик; отсутствие схемы надо показать."
       }
     },
     {
@@ -168061,12 +169495,61 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "science",
+          "culture",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Эффект первого впечатления — ранняя оценка при знакомстве; рисунок не раскрывает временной аспект."
       }
     },
     {
@@ -168083,12 +169566,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "science",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Обманчивое чувство безопасности — человек уверен в защите при реальной угрозе; изображение многозначно."
       }
     },
     {
@@ -168105,12 +169636,61 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "language",
+          "science",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Эффект испорченного телефона — искажение сообщения в цепочке людей; без произнесения слов трудно показать."
       }
     },
     {
@@ -168127,12 +169707,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "culture",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Неудачная импровизация — внезапный выход и заминка исполнителя; жесты подходят, рисунок неточен."
       }
     },
     {
@@ -168149,12 +169777,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "science",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Случайное совпадение — два независимых события одновременно; без речи рисунок сложен."
       }
     },
     {
@@ -168171,12 +169847,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "technology",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Сбой прямого эфира — камера, экран и прерывание трансляции; жесты требуют нескольких признаков."
       }
     },
     {
@@ -168193,12 +169917,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "culture",
+          "language"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Сорванные переговоры — люди прерывают обсуждение и уходят; на рисунке причина неочевидна."
       }
     },
     {
@@ -168215,12 +169987,61 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "culture",
+          "cinema",
+          "professions"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Провал на прослушивании — актёр выступает перед комиссией и получает отказ; сценка яснее рисунка."
       }
     },
     {
@@ -168237,12 +170058,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Неловкая пауза — люди замолкают и избегают взгляда; в рисунке без текста паузу не передать."
       }
     },
     {
@@ -168259,12 +170128,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "culture",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Конфликт поколений — спор молодых и старших; рисунок может показывать любую семейную ссору."
       }
     },
     {
@@ -168281,12 +170198,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "literature",
+          "language"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Ненадёжный рассказчик сообщает искажённую версию событий; без сравнения рассказов его не определить."
       }
     },
     {
@@ -168303,12 +170268,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "culture",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Конкуренция за внимание — несколько людей пытаются привлечь одного слушателя; рисунок косвенный."
       }
     },
     {
@@ -168325,12 +170338,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "science",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Синдром отложенной жизни — постоянное ожидание будущего вместо настоящего; абстракция без устойчивого образа."
       }
     },
     {
@@ -168347,12 +170408,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "culture",
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Разочарование в кумире — поклонник видит неприятный поступок героя; рисунку нужен контраст ожиданий."
       }
     },
     {
@@ -168369,12 +170478,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "literature",
+          "cinema"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Неожиданный поворот сюжета меняет ход истории; без рассказа можно показать лишь удивление."
       }
     },
     {
@@ -168391,12 +170548,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Пословица о труде и усилии: можно сыграть рыбака, но нужно показать именно смысл необходимости работы."
       }
     },
     {
@@ -168413,12 +170618,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Пословица про верного друга в тяжёлое время; сценка помощи понятнее статичного рисунка."
       }
     },
     {
@@ -168435,12 +170688,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Лучше опоздать, чем отказаться совсем; жест времени возможен, рисунок редко даёт точную фразу."
       }
     },
     {
@@ -168457,12 +170758,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Совместное обсуждение умнее одиночного; два человека у задачи дают образ пословицы."
       }
     },
     {
@@ -168479,12 +170828,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Цыплят по осени считают — итог оценивают позже; буквальные птицы не раскрывают переносного смысла."
       }
     },
     {
@@ -168501,12 +170898,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Дарёному коню в зубы не смотрят — подарок не следует критиковать; буквально нарисовать можно, смысл труднее."
       }
     },
     {
@@ -168523,12 +170968,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Терпение и труд всё перетрут — упорная работа приносит результат; рисунок не даёт всей формулировки."
       }
     },
     {
@@ -168545,12 +171038,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Кончил дело гуляй смело — сначала работа, затем отдых; две последовательные сцены доступны."
       }
     },
     {
@@ -168567,12 +171108,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Откладывать в долгий ящик — затягивать решение задачи; буквальный ящик можно сыграть."
       }
     },
     {
@@ -168589,12 +171178,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Сесть на своего конька — увлечённо говорить о любимой теме; буквальная сценка сбивает с смысла."
       }
     },
     {
@@ -168611,12 +171248,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Взять быка за рога — решительно приступить к трудному; буквальное действие хорошо передаёт выражение."
       }
     },
     {
@@ -168633,12 +171318,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Попасть в яблочко — угадать точно или попасть в цель; мишень и попадание наглядны."
       }
     },
     {
@@ -168655,12 +171388,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Прийти к шапочному разбору — появиться очень поздно; жест опоздания не передаёт фразу полностью."
       }
     },
     {
@@ -168677,12 +171458,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Сбить с панталыку — запутать человека; ни жест, ни рисунок не воспроизводят устойчивые слова однозначно."
       }
     },
     {
@@ -168699,12 +171528,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Остаться с носом означает ничего не получить; буквальный нос на рисунке ведёт к неверному ответу."
       }
     },
     {
@@ -168721,12 +171598,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Взять себя в руки означает успокоиться и собраться; жест самообъятия и паузы доступен."
       }
     },
     {
@@ -168743,12 +171668,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Пускать красного петуха — поджигать; образ петуха и огня понятен лишь знающим идиому."
       }
     },
     {
@@ -168765,12 +171738,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Метать бисер перед свиньями — бесполезно тратить объяснения на непонимающего; буквальная сцена рисуется."
       }
     },
     {
@@ -168787,12 +171808,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Попасть как кур во щи — оказаться в беде; рисунок петуха в кастрюле неочевиден для современного игрока."
       }
     },
     {
@@ -168809,12 +171878,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Точить лясы — пустословить; жест долгого разговора подходит, буквальное точение вводит в заблуждение."
       }
     },
     {
@@ -168831,12 +171948,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Разводить турусы на колёсах — болтать бессмыслицу; устаревшие слова и буквальный образ почти не опознаются."
       }
     },
     {
@@ -168853,12 +172018,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "other-reviewed"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Показать где раки зимуют — сурово проучить; рисунок рака зимой не передаёт угрозы."
       }
     },
     {
@@ -168875,12 +172088,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Лезть в бутылку — раздражаться без необходимости; буквальная бутылка может помочь отгадать фразу."
       }
     },
     {
@@ -168897,12 +172158,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "У чёрта на куличках — очень далеко; сценка долгого пути и буквальный чертёнок косвенно помогают."
       }
     },
     {
@@ -168919,12 +172228,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "language",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-01T21:16:40.893Z",
+        "rationale": "Ходить фертом — держаться щегольски и самодовольно; архаичное значение неизвестно многим."
       }
     },
     {
