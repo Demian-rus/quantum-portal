@@ -11,7 +11,8 @@
     "rubric",
     "catalogs",
     "records",
-    "songLanguagesDigest"
+    "songLanguagesDigest",
+    "poolPolicies"
   ],
   "properties": {
     "schemaVersion": {
@@ -44,6 +45,13 @@
     "songLanguagesDigest": {
       "type": "string",
       "pattern": "^[a-f0-9]{64}$"
+    },
+    "poolPolicies": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/poolPolicy"
+      },
+      "minProperties": 1
     }
   },
   "$defs": {
@@ -64,6 +72,8 @@
         "insufficient-clue",
         "not-estimate",
         "ambiguous",
+        "source-defect",
+        "rule-conflict",
         "other-reviewed"
       ]
     },
@@ -374,7 +384,8 @@
       "required": [
         "id",
         "version",
-        "idsDigest"
+        "idsDigest",
+        "packDigest"
       ],
       "properties": {
         "id": {
@@ -388,6 +399,41 @@
         "idsDigest": {
           "type": "string",
           "pattern": "^[a-f0-9]{64}$"
+        },
+        "packDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "poolPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum",
+        "allowedModes"
+      ],
+      "properties": {
+        "minimum": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "allowedModes": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "talk",
+              "mime",
+              "draw",
+              "sing",
+              "yesno",
+              "secret",
+              "blitz",
+              "approx"
+            ]
+          }
         }
       }
     }

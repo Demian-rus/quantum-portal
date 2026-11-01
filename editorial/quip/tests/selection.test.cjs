@@ -65,8 +65,23 @@ test('songs and numeric tasks retain separate pools and source values; song lang
  assert.deepEqual(index.pool({...en,languages:[]}),[]);const q=index.pool(request({mode:'approx',tiers:['hard']}));assert.equal(q.length,1);assert.equal(q[0],c.sources.get('approx-0046').row);
 });
 test('compiled format carries metadata and IDs, without answers or mutable authoring notes',()=>{
- const {compiled}=fixture(),text=JSON.stringify(compiled);assert.doesNotMatch(text,/"(?:answer|question|text|rationale|reviewer|sourceUrl)"\s*:/);
+ const {compiled,edition}=fixture(),text=JSON.stringify(compiled);assert.doesNotMatch(text,/"(?:answer|question|text|rationale|reviewer|sourceUrl)"\s*:/);
  assert.equal(compiled.records['word-000964'][3][S.STORED_MODES.indexOf('draw')],'2');
+ const {digest,...payload}=compiled;assert.equal(digest,E.hash(payload));assert.equal(compiled.sourceDigest,E.hash(edition));
+ const changed=clone(payload);changed.catalogs.general.minimum++;assert.notEqual(E.hash(changed),digest);
+});
+test('compiled and source boundaries reject accessors and toJSON without executing them',()=>{
+ const {compiled,rows}=fixture();let calls=0;const bad=clone(compiled);Object.defineProperty(bad,'version',{enumerable:true,get(){calls++;return 1}});
+ assert.throws(()=>S.createIndex(bad,rows));const source=clone(rows);Object.defineProperty(source[0],'text',{enumerable:true,get(){calls++;return 'tampered'}});assert.throws(()=>S.createIndex(compiled,source));
+ const json=clone(compiled);json.toJSON=()=>{calls++;return {}};assert.throws(()=>S.createIndex(json,rows));assert.equal(calls,0);
+});
+test('compiler uses the explicit edition policy rather than inferring it from historical pack fields',()=>{
+ const {c,edition,compiled}=fixture();
+ // Deliberately inconsistent isolated context: the validated catalog object is
+ // not the authority for the new edition's mode policy.
+ const general={...c.general,pack:{...c.general.pack,minCardsPerPool:99,allowedModes:['talk']}},next=compile(edition,{...c,general,catalogs:[general]});
+ assert.deepEqual(next,compiled);assert.equal(next.catalogs.general.minimum,1);
+ assert.equal(S.createIndex(next,c.ids.map(id=>c.sources.get(id).row)).availability(request()).available,true);
 });
 test('unsupported compiled editions and malformed mode/form metadata fail closed',()=>{
  const {compiled,rows}=fixture();for(const mutate of [e=>{e.schemaVersion=2},e=>{e.future=true},e=>{e.records['word-000229'][3]='1111119'},e=>{e.records['phrase-000334'][3]='3000030'},e=>{e.records['word-000229'][4]='ru'},e=>{e.catalogs.general.ids.push('missing')}]){

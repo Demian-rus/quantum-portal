@@ -5,7 +5,7 @@ const ROOT=path.resolve(__dirname,'../..'),DIR=__dirname,content=require('../../
 const MODES=Object.freeze(['talk','mime','draw','sing','yesno','secret','blitz','approx']);
 const LEVELS=Object.freeze(['easy','medium','hard']);
 const FORMS=Object.freeze(['word','phrase','idiom','song','person','number']);
-const REASONS=Object.freeze(['familiar','concrete','indirect','specialist','fast-clue','repertoire','recognisable-person','estimation','type','multiword','not-physical','not-visual','insufficient-clue','not-estimate','ambiguous','other-reviewed']);
+const REASONS=Object.freeze(['familiar','concrete','indirect','specialist','fast-clue','repertoire','recognisable-person','estimation','type','multiword','not-physical','not-visual','insufficient-clue','not-estimate','ambiguous','source-defect','rule-conflict','other-reviewed']);
 function fail(message){throw Error('EDITORIAL: '+message);}
 function ownKeys(value,allowed,required=allowed){
  if(!value||typeof value!=='object'||Array.isArray(value))fail('Expected object');
@@ -38,14 +38,15 @@ function validateManifest(m){
  if(!Array.isArray(m.editions)||!m.editions.length)fail('No registered editions');
  const keys=new Set(),paths=new Set();let drafts=0;
  for(const e of m.editions){
-  ownKeys(e,['id','version','status','path','catalogs','songLanguages']);
+  ownKeys(e,['id','version','status','path','catalogs','songLanguages','poolPolicies']);
   if(e.id!=='quip'||!Number.isSafeInteger(e.version)||e.version<1||!['draft','published'].includes(e.status))fail('Invalid edition registration');
   const key=e.id+'@'+e.version;if(keys.has(key)||paths.has(e.path))fail('Duplicate edition registration');keys.add(key);paths.add(e.path);
   if(e.path!==`editions/${e.id}-v${e.version}.json`)fail('Noncanonical edition path');fileWithin(e.path);
   ownKeys(e.songLanguages,['path','sha256']);if(typeof e.songLanguages.path!=='string'||! /^baselines\/song-languages-v[1-9][0-9]*\.json$/.test(e.songLanguages.path)||! /^[a-f0-9]{64}$/.test(e.songLanguages.sha256))fail('Invalid song language baseline');fileWithin(e.songLanguages.path);
   if(e.status==='draft')drafts++;
   if(!Array.isArray(e.catalogs)||!e.catalogs.length)fail('No catalog baselines');const names=new Set();
-  for(const r of e.catalogs){ownKeys(r,['id','version']);if(typeof r.id!=='string'||! /^[a-z][a-z0-9-]*$/.test(r.id)||!Number.isSafeInteger(r.version)||r.version<1||names.has(r.id))fail('Invalid catalog reference');names.add(r.id);}
+  for(const r of e.catalogs){ownKeys(r,['id','version','sha256']);if(typeof r.id!=='string'||! /^[a-z][a-z0-9-]*$/.test(r.id)||!Number.isSafeInteger(r.version)||r.version<1||names.has(r.id)||! /^[a-f0-9]{64}$/.test(r.sha256))fail('Invalid catalog reference');names.add(r.id);}
+  ownKeys(e.poolPolicies,[...names]);for(const policy of Object.values(e.poolPolicies)){ownKeys(policy,['minimum','allowedModes']);if(!Number.isSafeInteger(policy.minimum)||policy.minimum<1)fail('Invalid pool minimum');list(policy.allowedModes,new Set(MODES),'allowed modes');}
  }
  if(drafts>1)fail('Only one active draft is allowed');
  if(!m.published||typeof m.published!=='object'||Array.isArray(m.published))fail('Invalid published locks');
@@ -63,8 +64,10 @@ function context(data=content.readDataset(),m=manifest(),reference=null){
  const sources=new Map();for(const s of data.sources.filter(s=>s.kind!=='packs'))for(const row of s.rows){if(sources.has(row.id))fail('Duplicate source ID '+row.id);sources.set(row.id,{row,path:'party-game/content/'+s.path,fingerprint:hash(row)});}
  const catalogs=spec.catalogs.map(ref=>{
   const pack=data.packs.find(p=>p.id===ref.id&&p.version===ref.version);if(!pack||!Array.isArray(pack.criteria?.cardIds))fail('Unknown explicit catalog '+ref.id+'@'+ref.version);
+  const packDigest=hash(pack);if(packDigest!==ref.sha256)fail('Historical catalog definition changed '+ref.id+'@'+ref.version);
+  if(spec.poolPolicies[ref.id].minimum<pack.minCardsPerPool)fail('A thematic minimum cannot be weakened');
   const ids=pack.criteria.cardIds.slice();if(new Set(ids).size!==ids.length)fail('Duplicate catalog ID');
-  return {id:ref.id,version:ref.version,ids,idsDigest:hash(ids),pack};
+  return {id:ref.id,version:ref.version,ids,idsDigest:hash(ids),packDigest,pack};
  });
  const ids=[...new Set(catalogs.flatMap(p=>p.ids))],general=catalogs.find(p=>p.id==='general');if(!general)fail('General baseline missing');
  for(const id of ids)if(!sources.has(id))fail('Missing source '+id);
@@ -78,7 +81,7 @@ function proposal(id,c){
  return {form:type,categories:(c.general.pack.categoryOverrides?.[id]||row.categories).slice(),legacyDifficulty:row.difficulty,themes:c.catalogs.filter(p=>p.id!=='general'&&p.ids.includes(id)).map(p=>p.id)};
 }
 function createDraft(c=context()){
- return {schemaVersion:1,id:c.spec.id,version:c.spec.version,rubric:'quip-rubric@1',songLanguagesDigest:c.spec.songLanguages.sha256,catalogs:c.catalogs.map(({id,version,idsDigest})=>({id,version,idsDigest})),records:c.ids.map(id=>{
+ return {schemaVersion:1,id:c.spec.id,version:c.spec.version,rubric:'quip-rubric@1',songLanguagesDigest:c.spec.songLanguages.sha256,poolPolicies:JSON.parse(JSON.stringify(c.spec.poolPolicies)),catalogs:c.catalogs.map(({id,version,idsDigest,packDigest})=>({id,version,idsDigest,packDigest})),records:c.ids.map(id=>{
   const source=c.sources.get(id);return {id,source:{path:source.path,fingerprint:source.fingerprint},proposal:proposal(id,c),classification:null,review:{status:'pending',reviewer:null,reviewedAt:null,rationale:null}};
  })};
 }
@@ -107,10 +110,11 @@ function validateClassification(value,source,c){
  }
 }
 function validate(edition,c=context(),{release=false}={}){
- jsonData(edition);ownKeys(edition,['schemaVersion','id','version','rubric','songLanguagesDigest','catalogs','records']);
+ jsonData(edition);ownKeys(edition,['schemaVersion','id','version','rubric','songLanguagesDigest','poolPolicies','catalogs','records']);
  if(edition.schemaVersion!==1||edition.id!==c.spec.id||edition.version!==c.spec.version||edition.rubric!=='quip-rubric@1')fail('Unsupported editorial edition');
  if(edition.songLanguagesDigest!==c.spec.songLanguages.sha256)fail('Edition song language baseline changed');
- const expected=c.catalogs.map(({id,version,idsDigest})=>({id,version,idsDigest}));if(canonical(edition.catalogs)!==canonical(expected))fail('Catalog baseline changed');
+ if(canonical(edition.poolPolicies)!==canonical(c.spec.poolPolicies))fail('Edition pool policies changed');
+ const expected=c.catalogs.map(({id,version,idsDigest,packDigest})=>({id,version,idsDigest,packDigest}));if(canonical(edition.catalogs)!==canonical(expected))fail('Catalog baseline changed');
  if(!Array.isArray(edition.records)||edition.records.length!==c.ids.length)fail('Incomplete catalog coverage');
  const ids=new Set(),states={pending:0,'needs-source':0,reviewed:0};
  for(const r of edition.records){
@@ -127,14 +131,16 @@ function validate(edition,c=context(),{release=false}={}){
  }
  for(const id of c.ids)if(!ids.has(id))fail('Missing active ID '+id);
  const lock=c.m.published[edition.id+'@'+edition.version];if(lock&&hash(edition)!==lock)fail('Published edition is immutable; append a new version');
- if(release&&states.reviewed!==c.ids.length)fail('Release blocked: '+(c.ids.length-states.reviewed)+' records await semantic review');
- if(release){
+ const reviewComplete=states.reviewed===ids.size,releaseProblems=[];
+ if(release&&!reviewComplete)fail('Release blocked: '+(c.ids.length-states.reviewed)+' records await semantic review');
+ if(reviewComplete){
   const pools=poolMatrix(edition,c).filter(p=>p.theme==='general'&&p.category==='all');
-  for(const mode of MODES)if(!pools.some(p=>p.mode===mode&&p.available))fail('Release blocked: no playable '+mode+' pool');
-  if(!pools.some(p=>p.mode==='draw'&&p.tier==='easy'&&p.available))fail('Release blocked: safe drawing default is empty');
-  for(const r of edition.records)if(r.classification.form==='word'&&/\s/u.test((c.sources.get(r.id).row.text||'').trim()))fail('Release blocked: multiword word '+r.id);
+  for(const mode of MODES)if(!pools.some(p=>p.mode===mode&&p.available))releaseProblems.push('no playable '+mode+' pool');
+  if(!pools.some(p=>p.mode==='draw'&&p.tier==='easy'&&p.available))releaseProblems.push('safe drawing default is empty');
+  for(const r of edition.records)if(r.classification.form==='word'&&/\s/u.test((c.sources.get(r.id).row.text||'').trim()))releaseProblems.push('multiword word '+r.id);
  }
- return {ok:true,records:ids.size,general:c.general.ids.length,themeOnly:ids.size-c.general.ids.length,states,releaseReady:states.reviewed===ids.size};
+ if(release&&releaseProblems.length)fail('Release blocked: '+releaseProblems[0]);
+ return {ok:true,records:ids.size,general:c.general.ids.length,themeOnly:ids.size-c.general.ids.length,states,reviewComplete,releaseReady:reviewComplete&&!releaseProblems.length,releaseProblems};
 }
 function editionPath(c=context()){return fileWithin(c.spec.path);}
 function readEdition(c=context()){return readJSON(editionPath(c));}
@@ -160,9 +166,9 @@ function poolMatrix(edition,c=context()){
  }
  const matrix=[];
  for(const theme of ['general',...c.themes])for(const category of ['all',...c.categories])for(const mode of MODES)for(const tier of LEVELS){
-  const pack=c.catalogs.find(p=>p.id===theme).pack,allowed=!pack.allowedModes||pack.allowedModes.includes(mode);
+  const policy=c.spec.poolPolicies[theme],allowed=policy.allowedModes.includes(mode);
   const count=allowed?(counts.get(key(theme,category,mode,tier))?.size||0):0;
-  const minimum=Math.max(pack.minCardsPerPool||1,mode==='blitz'?3:1);matrix.push({theme,category,mode,tier,count,minimum,available:count>=minimum});
+  const minimum=Math.max(policy.minimum,mode==='blitz'?3:1);matrix.push({theme,category,mode,tier,count,minimum,available:count>=minimum});
  }
  return matrix;
 }

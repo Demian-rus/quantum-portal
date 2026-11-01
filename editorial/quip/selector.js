@@ -43,9 +43,9 @@ const QuipEditorialSelection=(()=>{
   if(mode==='blitz')return form==='word'&&!/\s/u.test(text.trim());return ['word','phrase','idiom'].includes(form);
  }
  function createIndex(edition,rows){
-  plain(edition);keys(edition,['schemaVersion','id','version','rubric','digest','categories','themes','catalogs','records']);
+  plain(edition);keys(edition,['schemaVersion','id','version','rubric','sourceDigest','digest','categories','themes','catalogs','records']);
   plain(rows);if(!Array.isArray(rows))fail('Invalid source rows');
-  if(edition.schemaVersion!==1||edition.id!=='quip'||!Number.isSafeInteger(edition.version)||edition.version<1||edition.rubric!=='quip-rubric@1'||! /^[a-f0-9]{64}$/.test(edition.digest))fail('Unknown edition');
+  if(edition.schemaVersion!==1||edition.id!=='quip'||!Number.isSafeInteger(edition.version)||edition.version<1||edition.rubric!=='quip-rubric@1'||! /^[a-f0-9]{64}$/.test(edition.digest)||! /^[a-f0-9]{64}$/.test(edition.sourceDigest))fail('Unknown edition');
   if(!Array.isArray(edition.categories)||edition.categories.length>30||!edition.categories.length||edition.categories.some(x=>typeof x!=='string')||new Set(edition.categories).size!==edition.categories.length)fail('Invalid categories');
   if(!Array.isArray(edition.themes)||edition.themes.length>30||edition.themes.includes('general')||edition.themes.some(x=>typeof x!=='string')||new Set(edition.themes).size!==edition.themes.length)fail('Invalid themes');
   const source=new Map();for(const row of rows){if(source.has(row.id))fail('Duplicate source ID');source.set(row.id,row);}

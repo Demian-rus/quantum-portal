@@ -6,11 +6,17 @@
     {
       "id": "quip", "version": 1, "status": "draft", "path": "editions/quip-v1.json",
       "songLanguages": {"path": "baselines/song-languages-v1.json", "sha256": "a0e91dd203b34e459e4b2fa44b7115fc94a2914e2b28177cee793ce7cc0bb4c6"},
+      "poolPolicies": {
+        "general": {"minimum": 1, "allowedModes": ["talk","mime","draw","sing","yesno","secret","blitz","approx"]},
+        "animals": {"minimum": 5, "allowedModes": ["talk","mime","draw","sing","yesno","secret","blitz","approx"]},
+        "geography": {"minimum": 5, "allowedModes": ["talk","mime","draw","sing","yesno","secret","blitz","approx"]},
+        "science": {"minimum": 5, "allowedModes": ["talk","mime","draw","sing","yesno","secret","blitz","approx"]}
+      },
       "catalogs": [
-        {"id": "general", "version": 68},
-        {"id": "animals", "version": 2},
-        {"id": "geography", "version": 6},
-        {"id": "science", "version": 8}
+        {"id": "general", "version": 68, "sha256": "977d7610f9f02298dff2a5d186f4308527bf9389159be5a2f3e8085c8a14016e"},
+        {"id": "animals", "version": 2, "sha256": "16f2da248106808c4f4485da207d7bdc704e1fe50b3786645b839c6373108cb5"},
+        {"id": "geography", "version": 6, "sha256": "754e317cc708cea0fc306450f42f0cb6432f78ef814c929edc0b75f2daa63543"},
+        {"id": "science", "version": 8, "sha256": "bde1d6e98d14a09354f6b12d4f90baa039e8a72692a82879e29a1a9acfad3b34"}
       ]
     }
   ],

@@ -44,6 +44,13 @@ test('unknown schemas, rubrics, properties and migration hint edits fail closed'
   const next=clone(initial);mutate(next);assert.throws(()=>E.validate(next,C));
  }
 });
+test('all reviewed is distinct from ready to release when real mode pools are missing',()=>{
+ const id=cat.id,general={...C.general,ids:[id],idsDigest:E.hash([id])},c={...C,ids:[id],idSet:new Set([id]),general,catalogs:[general],themes:new Set()};
+ const only=clone(cat);only.classification.themes=[];
+ const e=E.apply(E.createDraft(c),[only],{reviewer:'isolated-test',at},c),result=E.validate(e,c);
+ assert.equal(result.reviewComplete,true);assert.equal(result.releaseReady,false);assert.ok(result.releaseProblems.includes('no playable sing pool'));
+ assert.throws(()=>E.validate(e,c,{release:true}),/Release blocked/);
+});
 test('version registrations are unique and every published edition needs a checksum',()=>{
  for(const mutate of [m=>{m.schemaVersion=2},m=>m.editions.push(clone(m.editions[0])),m=>{m.editions[0].path='../escape.json'},m=>{m.editions[0].status='published'},m=>{m.published['quip@999']='0'.repeat(64)},m=>{m.editions[0].catalogs[0].version=0}]){
   const m=clone(C.m);mutate(m);assert.throws(()=>E.validateManifest(m));
@@ -52,6 +59,23 @@ test('version registrations are unique and every published edition needs a check
 test('historical source edits are detected before generating a new draft',()=>{
  const data=clone(C.data),source=data.sources.find(s=>s.immutable);source.rows[0].text+='changed';
  assert.throws(()=>E.context(data,C.m),/Historical source changed/);
+});
+test('historical pool policies and category overrides cannot change behind the same catalog version',()=>{
+ for(const mutate of [p=>{p.minCardsPerPool++},p=>{p.allowedModes=['talk']},p=>{p.categoryOverrides['word-000005']=['food']}]){
+  const data=clone(C.data),pack=data.packs.find(p=>p.id==='general'&&p.version===68);mutate(pack);
+  assert.throws(()=>E.context(data,C.m),/Historical catalog definition changed/);
+ }
+});
+test('an edition binds explicit pool policy and rejects weaker thematic minima',()=>{
+ const altered=clone(initial);altered.poolPolicies.animals.minimum++;
+ assert.throws(()=>E.validate(altered,C),/Edition pool policies changed/);
+ const changedModes=clone(initial);changedModes.poolPolicies.science.allowedModes=['talk'];
+ assert.throws(()=>E.validate(changedModes,C),/Edition pool policies changed/);
+ const m=clone(C.m);m.editions[0].poolPolicies.animals.minimum=1;
+ assert.throws(()=>E.context(C.data,m),/minimum cannot be weakened/);
+ for(const mutate of [p=>{p.allowedModes=['future']},p=>{p.minimum=0},p=>{delete p.allowedModes}]){
+  const bad=clone(C.m);mutate(bad.editions[0].poolPolicies.animals);assert.throws(()=>E.validateManifest(bad));
+ }
 });
 test('published editions are content-locked and cannot be edited',()=>{
  const m=clone(C.m);m.editions[0].status='published';m.published['quip@1']=E.hash(initial);const c=E.context(C.data,m);

@@ -7,22 +7,26 @@
     {
       "id": "general",
       "version": 68,
-      "idsDigest": "b17e41513e6b0c0efacf5e7f500d554e5b09e23ca735db68d8d4c6ece7bbc8ac"
+      "idsDigest": "b17e41513e6b0c0efacf5e7f500d554e5b09e23ca735db68d8d4c6ece7bbc8ac",
+      "packDigest": "977d7610f9f02298dff2a5d186f4308527bf9389159be5a2f3e8085c8a14016e"
     },
     {
       "id": "animals",
       "version": 2,
-      "idsDigest": "0b4f2ff5845015e937e0df15225329a104a42e46319997a66d44b7033f64bb8a"
+      "idsDigest": "0b4f2ff5845015e937e0df15225329a104a42e46319997a66d44b7033f64bb8a",
+      "packDigest": "16f2da248106808c4f4485da207d7bdc704e1fe50b3786645b839c6373108cb5"
     },
     {
       "id": "geography",
       "version": 6,
-      "idsDigest": "58e2d8a34722e20df1ac714110ecc35ce44c9e890dab45468944ad4a0a13a0e6"
+      "idsDigest": "58e2d8a34722e20df1ac714110ecc35ce44c9e890dab45468944ad4a0a13a0e6",
+      "packDigest": "754e317cc708cea0fc306450f42f0cb6432f78ef814c929edc0b75f2daa63543"
     },
     {
       "id": "science",
       "version": 8,
-      "idsDigest": "ad9acebdad355b086017e7aedee7f658a1a98b21142f5648aff34f4dbba2d499"
+      "idsDigest": "ad9acebdad355b086017e7aedee7f658a1a98b21142f5648aff34f4dbba2d499",
+      "packDigest": "bde1d6e98d14a09354f6b12d4f90baa039e8a72692a82879e29a1a9acfad3b34"
     }
   ],
   "records": [
@@ -215352,5 +215356,59 @@
       }
     }
   ],
-  "songLanguagesDigest": "a0e91dd203b34e459e4b2fa44b7115fc94a2914e2b28177cee793ce7cc0bb4c6"
+  "songLanguagesDigest": "a0e91dd203b34e459e4b2fa44b7115fc94a2914e2b28177cee793ce7cc0bb4c6",
+  "poolPolicies": {
+    "general": {
+      "minimum": 1,
+      "allowedModes": [
+        "talk",
+        "mime",
+        "draw",
+        "sing",
+        "yesno",
+        "secret",
+        "blitz",
+        "approx"
+      ]
+    },
+    "animals": {
+      "minimum": 5,
+      "allowedModes": [
+        "talk",
+        "mime",
+        "draw",
+        "sing",
+        "yesno",
+        "secret",
+        "blitz",
+        "approx"
+      ]
+    },
+    "geography": {
+      "minimum": 5,
+      "allowedModes": [
+        "talk",
+        "mime",
+        "draw",
+        "sing",
+        "yesno",
+        "secret",
+        "blitz",
+        "approx"
+      ]
+    },
+    "science": {
+      "minimum": 5,
+      "allowedModes": [
+        "talk",
+        "mime",
+        "draw",
+        "sing",
+        "yesno",
+        "secret",
+        "blitz",
+        "approx"
+      ]
+    }
+  }
 }
