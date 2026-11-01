@@ -176,6 +176,14 @@ test('TASK039 future menu preferences survive reload without changing active mat
  assert.equal(next.eval('storageBlocked'),false);
 });
 
+test('TASK039 historical preset options without optional modifierChance remain readable in the sidecar',()=>{
+ const h=createSimulation(7047);h.eval('options=optionsForPartyPreset("classic-duel",3,{awardTo:"guesser",modes:["yesno"],dice:false});newGame();game.dice=true;game.phase="ready";selectAwardTo("setter");persist()');
+ const raw=h.storage.get('iskra-party:v1'),future=JSON.parse(h.storage.get('iskra-party:future-options:v1'));
+ assert.equal(Object.hasOwn(future.options,'modifierChance'),false);assert.deepEqual(future.options.modes,[]);
+ const next=createSimulation(7048,new Map(h.storage));assert.equal(next.eval('storageBlocked'),false);assert.equal(next.eval('options.modifierChance'),20);
+ assert.equal(next.eval('options.modes.length'),0);assert.equal(next.eval('game.awardTo'),'guesser');assert.equal(next.storage.get('iskra-party:v1'),raw);
+});
+
 test('TASK039 incompatible future setup policy blocks writes without damaging paused RAW',()=>{
  const h=createSimulation(7045);h.eval('newGame()');
  const before=h.storage.get('iskra-party:v1');

@@ -50,7 +50,8 @@ function readSaved() {
         if(!Array.isArray(next.modes)||!next.modes.every(id=>DEFAULT_MODES.includes(id))||
           !Array.isArray(next.promptTypes)||!next.promptTypes.every(id=>PROMPT_TYPES.includes(id))||
           !['easy','medium','hard','mixed'].includes(next.difficulty)||
-          !['duration','rounds','targetScore','modifierChance'].every(key=>Number.isFinite(next[key]))||
+          !['duration','rounds','targetScore'].every(key=>Number.isFinite(next[key]))||
+          (Object.hasOwn(next,'modifierChance')&&!Number.isFinite(next.modifierChance))||
           !['riskRounds','complications','dice'].every(key=>typeof next[key]==='boolean'))return blockSavedData('future-corrupt');
         try{if(next.contentPack)getContentPack(next.contentPack);}catch{return blockSavedData('incompatible');}
         obj.options=future.options;

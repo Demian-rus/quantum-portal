@@ -23,6 +23,6 @@ test('54 scripts match service-worker precache and inherited content URLs',()=>{
  const html=fs.readFileSync(path.join(root,'party-game/index.html'),'utf8'),sw=fs.readFileSync(path.join(root,'party-game/sw.js'),'utf8');
  const scripts=[...html.matchAll(/<script src="\.\/([^?"/]+\.js)\?v=(\d+)"/g)].map(x=>'./'+x[1]+'?v='+x[2]);
  assert.equal(scripts.length,54);for(const s of scripts)assert.ok(sw.includes("'"+s+"'"),s);
- assert.match(sw,/kvip-pwa-v109-20261101-task039-future-settings-protection/);
+ assert.match(sw,/kvip-pwa-v110-20261101-task039-historical-future-settings/);
  for(const x of ['cards.js?v=11','content-packs.js?v=22']){assert.ok(html.includes(x));assert.ok(sw.includes(x));}
 });
