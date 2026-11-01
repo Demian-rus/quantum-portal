@@ -1,0 +1,28 @@
+name: КВИП editorial model
+on:
+  push:
+    branches: [main, 'feat/quip-*']
+    paths:
+      - 'editorial/quip/**'
+      - 'party-game/content/**'
+      - 'party-game/scripts/content.cjs'
+      - '.github/workflows/quip-editorial.yml'
+  pull_request:
+    paths:
+      - 'editorial/quip/**'
+      - 'party-game/content/**'
+      - 'party-game/scripts/content.cjs'
+      - '.github/workflows/quip-editorial.yml'
+permissions:
+  contents: read
+jobs:
+  authoring:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node editorial/quip/editor.cjs check
+      - run: node --test editorial/quip/tests/*.test.cjs
+      - run: node party-game/scripts/content.cjs check

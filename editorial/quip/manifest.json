@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "rubric": "quip-rubric@1",
+  "acceptedGameCommit": "73147f83f1ed23988205468924bac837f1dc4650",
+  "editions": [
+    {
+      "id": "quip", "version": 1, "status": "draft", "path": "editions/quip-v1.json",
+      "catalogs": [
+        {"id": "general", "version": 68},
+        {"id": "animals", "version": 2},
+        {"id": "geography", "version": 6},
+        {"id": "science", "version": 8}
+      ]
+    }
+  ],
+  "published": {}
+}
