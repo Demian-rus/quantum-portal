@@ -1,4 +1,4 @@
-# {"schemaVersion":1,"edition":"quip@1","rubric":"quip-rubric@1","sourcesDigest":"d9df385e8e2cf8c986a97a92be90222c83d2a243ec2bdab7e3a99c6b45e20e63"}
+# {"schemaVersion":1,"edition":"quip@1","rubric":"quip-rubric@1","sourcesDigest":"dec0d309b00412a39668fb8e34cb1cce21e9436a15636ea1176e5808cb6ed419"}
 id|text|form|categories|themes|ambiguities|talk|mime|draw|sing|yesno|blitz|approx|rationale
 word-008001|ПЛЕД|word|everyday|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:familiar|-:type|Плед — мягкое покрывало, которым укрываются; прямоугольная ткань и жест укутывания узнаваемы.
 word-008002|МАТРАС|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:familiar|-:type|Матрас — мягкая основа кровати; лежание и вид простёганного прямоугольника дают подсказку.
@@ -14,12 +14,8 @@ word-008011|СЫРНИК|word|food|||easy:familiar|medium:indirect|medium:indire
 word-008012|ДРАНИК|word|food|||medium:other-reviewed|medium:indirect|medium:indirect|-:type|-:type|medium:other-reviewed|-:type|Драник — картофельная оладья; тёрка и жарка дают жестовую подсказку, но без слов блюдо неочевидно.
 word-008013|ФРИКАДЕЛЬКА|word|food|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:familiar|-:type|Фрикаделька — небольшой шарик мясного фарша; рисунок не отличает его от тефтели.
 word-008014|КОЛЯСКА|word|everyday||Детская и инвалидная коляска.|easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:familiar|-:type|Коляска бывает детской или для передвижения человека с инвалидностью; оба варианта можно показать.
-word-008015|ХОДУНКИ|word|everyday||Детские ходунки и опора для взрослых.|easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:familiar|-:type|Ходунки помогают ходить малышу либо взрослому; опора и движение дают узнаваемый рисунок.
 word-008016|ГОЛОЛЁД|word|nature+everyday|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:familiar|-:type|Гололёд — скользкий лёд на дороге; падение покажет его, но рисунок может означать зиму вообще.
-word-008017|БРЫЗГИ|word|nature+everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:familiar|-:type|Брызги — разлетающиеся капли воды; их легко показать резким движением и нарисовать.
 word-008018|СУГРОБ|word|nature|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:familiar|-:type|Сугроб — большая куча снега; рисунок передаёт объём и зимнюю улицу.
-word-008019|КУСАЧКИ|word|technology+everyday|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:familiar|-:type|Кусачки перекусывают проволоку или ногти; на рисунке нужны короткие режущие губки.
-word-008020|ПЛОСКОГУБЦЫ|word|technology+everyday|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:familiar|-:type|Плоскогубцы — инструмент для захвата и сгибания; рисуются плоские губки и ручки.
 word-008021|ШИЛО|word|technology+everyday|||medium:other-reviewed|medium:indirect|medium:indirect|-:type|-:type|medium:other-reviewed|-:type|Шило — тонкий острый инструмент для прокалывания кожи и ткани; рисунок похож на отвёртку.
 word-008022|СОВОК|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:familiar|-:type|Совок — лопатка для мусора; движение собирания и узнаваемый силуэт просты.
 word-008023|СТРЕМЯНКА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:familiar|-:type|Стремянка — небольшая складная лестница; изображение раскрытых опор однозначно.
@@ -29,16 +25,12 @@ word-008026|КЛЮЧНИЦА|word|everyday||Настенная ключница 
 word-008027|ЗАКЛАДКА|word|literature+technology+everyday||Книжная закладка и сохранённая веб-страница.|easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:familiar|-:type|Закладка отмечает страницу книги или сайта; рисунок бумажной ленты в книге проще.
 word-008028|СКОТЧ|word|everyday||Клейкая лента и шотландский виски.|easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:familiar|-:type|Скотч — клейкая лента в обычном бытовом контексте; рулон и жест приклеивания понятны.
 word-008029|ПЛАСТЫРЬ|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:familiar|-:type|Пластырь закрывает маленькую ранку; приклеивание на палец и форма полоски узнаваемы.
-word-008030|БАХИЛЫ|word|everyday|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:familiar|-:type|Бахилы надевают поверх обуви; жест натягивания прост, рисунок обуви в чехле требует контекста.
-word-008031|БЕРУШИ|word|everyday|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:familiar|-:type|Беруши вставляют в уши для тишины; маленькие вставки труднее нарисовать без человека.
 word-008032|ПРИСОСКА|word|everyday+technology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:familiar|-:type|Присоска держится на гладкой поверхности; характерная чашечка и нажатие дают подсказку.
 word-008033|ПОДКОВА|word|everyday+animals|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:familiar|-:type|Подкова — дугообразное железо на копыте; рисунок с отверстиями ясно узнаваем.
 word-008034|БРЕЛОК|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:familiar|-:type|Брелок висит на кольце ключей; звяканье и рисунок связки хорошо подходят.
 word-008035|БИРКА|word|everyday|||medium:other-reviewed|medium:indirect|medium:indirect|-:type|-:type|medium:other-reviewed|-:type|Бирка — маленькая этикетка, прикреплённая к товару; без букв рисунок может обозначать ценник.
-word-008036|УСЫ|word|everyday+animals|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:familiar|-:type|Усы — волосы над верхней губой или чувствительные волоски зверя; жест и рисунок очень просты.
 word-008037|ЧЁЛКА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:familiar|-:type|Чёлка — волосы на лбу; показать рукой и нарисовать лицо с чёлкой легко.
 word-008038|ПРОБОР|word|everyday|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:familiar|-:type|Пробор — линия разделения волос; жест прочёсывания может выглядеть как причёска вообще.
-word-008039|КУДРИ|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:familiar|-:type|Кудри — завитые волосы; вращение пальца и спирали на голове понятны.
 word-008040|КЛЕШНЯ|word|animals|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:familiar|-:type|Клешня — хватательная конечность рака или краба; руки-щипцы и рисунок просты.
 word-008041|ПАНЦИРЬ|word|animals+biology||Животный панцирь и защитная оболочка техники.|easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:familiar|-:type|Панцирь — твёрдая защита черепахи или рака; черепаху с пластинами изобразить легко.
 word-008042|КОПЫТО|word|animals|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:familiar|-:type|Копыто — роговая часть ноги лошади или коровы; топот и вид ноги служат подсказкой.
