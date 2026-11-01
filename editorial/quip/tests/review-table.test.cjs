@@ -22,3 +22,16 @@ test('all committed review tables parse and exactly match their reviewed edition
   for(const d of decisions){const r=records.get(d.id);assert.equal(r.review.status,'reviewed');assert.deepEqual(r.classification,d.classification);assert.equal(r.review.rationale,d.rationale);}
  }
 });
+test('semantic examples keep concrete drawing separate from abstract words and phrase-free Blitz',()=>{
+ const records=new Map(E.readEdition(c).records.map(r=>[r.id,r]));
+ const concept=records.get('word-000112').classification,greeting=records.get('word-000113').classification,pencil=records.get('word-000001').classification;
+ assert.equal(concept.modes.talk.difficulty,'medium');assert.equal(concept.modes.draw.eligible,false);assert.equal(concept.modes.mime.eligible,false);
+ assert.equal(greeting.modes.draw.difficulty,'easy');assert.equal(greeting.modes.mime.difficulty,'easy');assert.equal(pencil.modes.blitz.difficulty,'easy');
+ assert.equal(records.get('person-000129').classification.modes.yesno.eligible,false);
+});
+test('polysemy and marine/freshwater distinctions are explicit editorial decisions',()=>{
+ const records=new Map(E.readEdition(c).records.map(r=>[r.id,r.classification]));
+ assert.deepEqual(records.get('word-000191').categories,['animals','transport']);assert.ok(records.get('word-000205').ambiguities.length);
+ assert.equal(records.get('word-000071').categories.includes('marine'),false);assert.equal(records.get('word-000385').categories.includes('marine'),false);
+ assert.equal(records.get('word-000377').categories.includes('marine'),true);
+});

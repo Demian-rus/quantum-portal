@@ -167,7 +167,8 @@ function poolMatrix(edition,c=context()){
  return matrix;
 }
 function audit(edition,c=context()){
- const result=validate(edition,c),byMode=Object.fromEntries(MODES.map(m=>[m,{eligible:0,ineligible:0,easy:0,medium:0,hard:0,derived:0,reasons:{}}])),byType={},byCategory={},intersections={},pending=[],uncertain=[],allExcluded=[],normalized=new Map(),pluralCandidates=[],formConflicts=[],themeChanges=[];
+ const tallies=()=>Object.fromEntries(MODES.map(m=>[m,m==='secret'?{eligible:0,ineligible:0,derived:0,byMethod:Object.fromEntries(['talk','mime','draw','sing','yesno'].map(method=>[method,{easy:0,medium:0,hard:0}]))}:{eligible:0,ineligible:0,easy:0,medium:0,hard:0,reasons:{}}]));
+ const result=validate(edition,c),byMode=tallies(),byFormMode=Object.fromEntries(FORMS.map(f=>[f,tallies()])),byType={},byCategory={},intersections={},pending=[],uncertain=[],allExcluded=[],normalized=new Map(),pluralCandidates=[],formConflicts=[],themeChanges=[];
  for(const r of edition.records){const source=c.sources.get(r.id).row,form=source.type||'number';byType[form]=(byType[form]||0)+1;
   // Reports never contain numeric answers, derivations or answer-bearing URLs.
   const label=source.text||source.question,key=content.normalize(label);if(!normalized.has(key))normalized.set(key,[]);normalized.get(key).push(r.id);
@@ -179,10 +180,13 @@ function audit(edition,c=context()){
   for(const cat of classification.categories)byCategory[cat]=(byCategory[cat]||0)+1;
   for(const [i,a]of classification.categories.entries())for(const b of classification.categories.slice(i+1)){const pair=[a,b].sort().join('+');intersections[pair]=(intersections[pair]||0)+1;}
   if(r.classification.ambiguities.length)uncertain.push({id:r.id,text:label,meanings:r.classification.ambiguities});
-  for(const mode of MODES){const j=r.classification.modes[mode];if(mode==='secret'){byMode[mode].derived++;const methods=['talk','mime','draw','sing','yesno'];byMode[mode][methods.some(m=>r.classification.modes[m].eligible)?'eligible':'ineligible']++;}else{byMode[mode][j.eligible?'eligible':'ineligible']++;if(j.eligible)byMode[mode][j.difficulty]++;else byMode[mode].reasons[j.reason]=(byMode[mode].reasons[j.reason]||0)+1;}}
+  for(const target of [byMode,byFormMode[classification.form]])for(const mode of MODES){const j=classification.modes[mode];if(mode==='secret'){
+   target[mode].derived++;const methods=['talk','mime','draw','sing','yesno'];target[mode][methods.some(m=>classification.modes[m].eligible)?'eligible':'ineligible']++;
+   for(const method of methods){const actual=classification.modes[method];if(actual.eligible)target[mode].byMethod[method][actual.difficulty]++;}
+  }else{target[mode][j.eligible?'eligible':'ineligible']++;if(j.eligible)target[mode][j.difficulty]++;else target[mode].reasons[j.reason]=(target[mode].reasons[j.reason]||0)+1;}}
   if(MODES.filter(m=>m!=='secret').every(m=>!r.classification.modes[m].eligible))allExcluded.push({id:r.id,text:label});
  }
- return {...result,byType,byMode,byCategory,intersections,pending,ambiguities:uncertain,allExcluded,formConflicts,themeChanges,duplicates:[...normalized].filter(([,ids])=>ids.length>1).map(([text,ids])=>({text,ids})),pluralCandidates,pools:poolMatrix(edition,c)};
+ return {...result,byType,byMode,byFormMode,byCategory,intersections,pending,ambiguities:uncertain,allExcluded,formConflicts,themeChanges,duplicates:[...normalized].filter(([,ids])=>ids.length>1).map(([text,ids])=>({text,ids})),pluralCandidates,pools:poolMatrix(edition,c)};
 }
 function writeDraft(edition,c){validate(edition,c);const target=editionPath(c),temp=target+'.tmp';if(c.spec.status!=='draft'||c.m.published[edition.id+'@'+edition.version])fail('Cannot replace a published file');fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(temp,JSON.stringify(edition,null,2)+'\n');fs.renameSync(temp,target);}
 function run(argv=process.argv.slice(2)){

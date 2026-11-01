@@ -82,6 +82,8 @@ test('JSON boundary rejects getters/toJSON, cycles, symbols, hidden values and n
 test('audit counts actual-method tiers, category intersections and distinct Blitz IDs',()=>{
  const report=E.audit(apply(),C);assert.equal(report.byMode.draw.easy,1);assert.equal(report.byMode.draw.medium,1);assert.equal(report.byMode.draw.ineligible,2);
  assert.equal(report.intersections['science+technology'],1);assert.equal(report.byMode.secret.derived,4);
+ assert.equal(report.byFormMode.word.draw.easy,1);assert.equal(report.byFormMode.phrase.draw.ineligible,1);
+ assert.equal(report.byMode.secret.byMethod.draw.medium,1);assert.equal(report.byMode.secret.byMethod.talk.hard,1);
  const find=(mode,tier)=>report.pools.find(p=>p.theme==='general'&&p.category==='all'&&p.mode===mode&&p.tier===tier);
  assert.equal(find('blitz','easy').count,1);assert.equal(find('blitz','easy').minimum,3);assert.equal(find('blitz','easy').available,false);
  assert.equal(find('secret','easy').count,3);assert.equal(find('secret','medium').count,1);assert.equal(find('draw','hard').available,false);
