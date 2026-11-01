@@ -155,7 +155,7 @@ async function settingsReload(page){
  const started=await snapshot(page);
  for(const field of ['difficulty','duration','awardTo','modes','promptTypes','complications','modifierChance','riskRounds','targetScore','contentPack'])
   assert.deepEqual(started.game[field],guesser.options[field],'Start uses restored '+field);
- assert.equal(started.game.rulesVersion,5);assert.equal(started.game.modePlannerVersion,1);
+ assert.equal(started.game.rulesVersion,6);assert.equal(started.game.modeConfigVersion,2);assert.equal(started.game.modePlannerVersion,1);
  assert.equal(JSON.parse(started.raw).version,1);
 }
 async function protectedMenus(page,raw){
