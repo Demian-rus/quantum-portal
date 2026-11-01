@@ -1,7 +1,8 @@
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
-const E=require('../editor.cjs'),C=E.context(),initial=E.readEdition(C),clone=v=>JSON.parse(JSON.stringify(v));
+const E=require('../editor.cjs'),C=E.context(),initial=E.createDraft(C),clone=v=>JSON.parse(JSON.stringify(v));
 const at='2026-11-01T12:00:00.000Z';
+test('the checked-in working edition has complete, source-bound coverage',()=>assert.equal(E.validate(E.readEdition(C),C).ok,true));
 function classification(form,categories,eligible,themes=[]){
  return {form,categories,themes,ambiguities:[],modes:Object.fromEntries(E.MODES.map(mode=>[mode,mode==='secret'?{policy:'actual-method'}:{eligible:!!eligible[mode],difficulty:eligible[mode]||null,reason:eligible[mode]?'concrete':'type'}]))};
 }

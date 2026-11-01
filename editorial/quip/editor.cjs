@@ -38,10 +38,11 @@ function validateManifest(m){
  if(!Array.isArray(m.editions)||!m.editions.length)fail('No registered editions');
  const keys=new Set(),paths=new Set();let drafts=0;
  for(const e of m.editions){
-  ownKeys(e,['id','version','status','path','catalogs']);
+  ownKeys(e,['id','version','status','path','catalogs','songLanguages']);
   if(e.id!=='quip'||!Number.isSafeInteger(e.version)||e.version<1||!['draft','published'].includes(e.status))fail('Invalid edition registration');
   const key=e.id+'@'+e.version;if(keys.has(key)||paths.has(e.path))fail('Duplicate edition registration');keys.add(key);paths.add(e.path);
   if(e.path!==`editions/${e.id}-v${e.version}.json`)fail('Noncanonical edition path');fileWithin(e.path);
+  ownKeys(e.songLanguages,['path','sha256']);if(typeof e.songLanguages.path!=='string'||! /^baselines\/song-languages-v[1-9][0-9]*\.json$/.test(e.songLanguages.path)||! /^[a-f0-9]{64}$/.test(e.songLanguages.sha256))fail('Invalid song language baseline');fileWithin(e.songLanguages.path);
   if(e.status==='draft')drafts++;
   if(!Array.isArray(e.catalogs)||!e.catalogs.length)fail('No catalog baselines');const names=new Set();
   for(const r of e.catalogs){ownKeys(r,['id','version']);if(typeof r.id!=='string'||! /^[a-z][a-z0-9-]*$/.test(r.id)||!Number.isSafeInteger(r.version)||r.version<1||names.has(r.id))fail('Invalid catalog reference');names.add(r.id);}
@@ -67,14 +68,17 @@ function context(data=content.readDataset(),m=manifest(),reference=null){
  });
  const ids=[...new Set(catalogs.flatMap(p=>p.ids))],general=catalogs.find(p=>p.id==='general');if(!general)fail('General baseline missing');
  for(const id of ids)if(!sources.has(id))fail('Missing source '+id);
- return {data,m,spec,sources,catalogs,ids,idSet:new Set(ids),general,categories:new Set(data.manifest.categories.map(c=>c.id)),themes:new Set(catalogs.filter(p=>p.id!=='general').map(p=>p.id))};
+ const languageRows=readJSON(fileWithin(spec.songLanguages.path));if(hash(languageRows)!==spec.songLanguages.sha256)fail('Song language baseline changed');
+ const songLanguages=new Map();for(const r of languageRows){ownKeys(r,['id','text','language']);const source=sources.get(r.id)?.row;if(!source||source.type!=='song'||source.text!==r.text||!['ru','en'].includes(r.language)||songLanguages.has(r.id)||source.meta?.language&&source.meta.language!==r.language)fail('Invalid song language '+r.id);songLanguages.set(r.id,r.language);}
+ for(const id of ids)if(sources.get(id).row.type==='song'&&!songLanguages.has(id))fail('Missing song language '+id);
+ return {data,m,spec,sources,catalogs,ids,idSet:new Set(ids),general,songLanguages,categories:new Set(data.manifest.categories.map(c=>c.id)),themes:new Set(catalogs.filter(p=>p.id!=='general').map(p=>p.id))};
 }
 function proposal(id,c){
  const row=c.sources.get(id).row,type=row.type||'number';
  return {form:type,categories:(c.general.pack.categoryOverrides?.[id]||row.categories).slice(),legacyDifficulty:row.difficulty,themes:c.catalogs.filter(p=>p.id!=='general'&&p.ids.includes(id)).map(p=>p.id)};
 }
 function createDraft(c=context()){
- return {schemaVersion:1,id:c.spec.id,version:c.spec.version,rubric:'quip-rubric@1',catalogs:c.catalogs.map(({id,version,idsDigest})=>({id,version,idsDigest})),records:c.ids.map(id=>{
+ return {schemaVersion:1,id:c.spec.id,version:c.spec.version,rubric:'quip-rubric@1',songLanguagesDigest:c.spec.songLanguages.sha256,catalogs:c.catalogs.map(({id,version,idsDigest})=>({id,version,idsDigest})),records:c.ids.map(id=>{
   const source=c.sources.get(id);return {id,source:{path:source.path,fingerprint:source.fingerprint},proposal:proposal(id,c),classification:null,review:{status:'pending',reviewer:null,reviewedAt:null,rationale:null}};
  })};
 }
@@ -103,8 +107,9 @@ function validateClassification(value,source,c){
  }
 }
 function validate(edition,c=context(),{release=false}={}){
- jsonData(edition);ownKeys(edition,['schemaVersion','id','version','rubric','catalogs','records']);
+ jsonData(edition);ownKeys(edition,['schemaVersion','id','version','rubric','songLanguagesDigest','catalogs','records']);
  if(edition.schemaVersion!==1||edition.id!==c.spec.id||edition.version!==c.spec.version||edition.rubric!=='quip-rubric@1')fail('Unsupported editorial edition');
+ if(edition.songLanguagesDigest!==c.spec.songLanguages.sha256)fail('Edition song language baseline changed');
  const expected=c.catalogs.map(({id,version,idsDigest})=>({id,version,idsDigest}));if(canonical(edition.catalogs)!==canonical(expected))fail('Catalog baseline changed');
  if(!Array.isArray(edition.records)||edition.records.length!==c.ids.length)fail('Incomplete catalog coverage');
  const ids=new Set(),states={pending:0,'needs-source':0,reviewed:0};
@@ -150,23 +155,26 @@ function poolMatrix(edition,c=context()){
   const themes=[...(generalIds.has(r.id)?['general']:[]),...cl.themes],categories=['all',...cl.categories],levels=new Map();
   for(const mode of MODES.filter(m=>m!=='secret'))if(cl.modes[mode].eligible)levels.set(mode,[cl.modes[mode].difficulty]);
   levels.set('secret',[...new Set(['talk','mime','draw','sing','yesno'].filter(m=>cl.modes[m].eligible).map(m=>cl.modes[m].difficulty))]);
-  for(const theme of themes)for(const category of categories)for(const [mode,tiers]of levels)for(const tier of tiers){const k=key(theme,category,mode,tier);counts.set(k,(counts.get(k)||0)+1);}
+  const source=c.sources.get(r.id).row,label=content.normalize(source.text||source.question);
+  for(const theme of themes)for(const category of categories)for(const [mode,tiers]of levels)for(const tier of tiers){const k=key(theme,category,mode,tier);if(!counts.has(k))counts.set(k,new Set());counts.get(k).add(label);}
  }
  const matrix=[];
  for(const theme of ['general',...c.themes])for(const category of ['all',...c.categories])for(const mode of MODES)for(const tier of LEVELS){
-  const count=counts.get(key(theme,category,mode,tier))||0;
-  const minimum=mode==='blitz'?3:1;matrix.push({theme,category,mode,tier,count,minimum,available:count>=minimum});
+  const pack=c.catalogs.find(p=>p.id===theme).pack,allowed=!pack.allowedModes||pack.allowedModes.includes(mode);
+  const count=allowed?(counts.get(key(theme,category,mode,tier))?.size||0):0;
+  const minimum=Math.max(pack.minCardsPerPool||1,mode==='blitz'?3:1);matrix.push({theme,category,mode,tier,count,minimum,available:count>=minimum});
  }
  return matrix;
 }
 function audit(edition,c=context()){
- const result=validate(edition,c),byMode=Object.fromEntries(MODES.map(m=>[m,{eligible:0,ineligible:0,easy:0,medium:0,hard:0,derived:0,reasons:{}}])),byType={},byCategory={},intersections={},pending=[],uncertain=[],allExcluded=[],normalized=new Map(),pluralCandidates=[],formConflicts=[];
+ const result=validate(edition,c),byMode=Object.fromEntries(MODES.map(m=>[m,{eligible:0,ineligible:0,easy:0,medium:0,hard:0,derived:0,reasons:{}}])),byType={},byCategory={},intersections={},pending=[],uncertain=[],allExcluded=[],normalized=new Map(),pluralCandidates=[],formConflicts=[],themeChanges=[];
  for(const r of edition.records){const source=c.sources.get(r.id).row,form=source.type||'number';byType[form]=(byType[form]||0)+1;
   // Reports never contain numeric answers, derivations or answer-bearing URLs.
   const label=source.text||source.question,key=content.normalize(label);if(!normalized.has(key))normalized.set(key,[]);normalized.get(key).push(r.id);
   if(form==='word'&&/(?:ы|и)$/iu.test(label))pluralCandidates.push({id:r.id,text:label,status:'linguistic-review-only'});
   if(r.review.status!=='reviewed'){pending.push({id:r.id,type:form,text:label,status:r.review.status});continue;}
   const classification=r.classification;
+  if(canonical(classification.themes.slice().sort())!==canonical(r.proposal.themes.slice().sort()))themeChanges.push({id:r.id,text:label,before:r.proposal.themes,after:classification.themes});
   if(classification.form==='word'&&/\s/u.test(label.trim()))formConflicts.push({id:r.id,text:label,form:'word',reason:'multiword'});
   for(const cat of classification.categories)byCategory[cat]=(byCategory[cat]||0)+1;
   for(const [i,a]of classification.categories.entries())for(const b of classification.categories.slice(i+1)){const pair=[a,b].sort().join('+');intersections[pair]=(intersections[pair]||0)+1;}
@@ -174,7 +182,7 @@ function audit(edition,c=context()){
   for(const mode of MODES){const j=r.classification.modes[mode];if(mode==='secret'){byMode[mode].derived++;const methods=['talk','mime','draw','sing','yesno'];byMode[mode][methods.some(m=>r.classification.modes[m].eligible)?'eligible':'ineligible']++;}else{byMode[mode][j.eligible?'eligible':'ineligible']++;if(j.eligible)byMode[mode][j.difficulty]++;else byMode[mode].reasons[j.reason]=(byMode[mode].reasons[j.reason]||0)+1;}}
   if(MODES.filter(m=>m!=='secret').every(m=>!r.classification.modes[m].eligible))allExcluded.push({id:r.id,text:label});
  }
- return {...result,byType,byMode,byCategory,intersections,pending,ambiguities:uncertain,allExcluded,formConflicts,duplicates:[...normalized].filter(([,ids])=>ids.length>1).map(([text,ids])=>({text,ids})),pluralCandidates,pools:poolMatrix(edition,c)};
+ return {...result,byType,byMode,byCategory,intersections,pending,ambiguities:uncertain,allExcluded,formConflicts,themeChanges,duplicates:[...normalized].filter(([,ids])=>ids.length>1).map(([text,ids])=>({text,ids})),pluralCandidates,pools:poolMatrix(edition,c)};
 }
 function writeDraft(edition,c){validate(edition,c);const target=editionPath(c),temp=target+'.tmp';if(c.spec.status!=='draft'||c.m.published[edition.id+'@'+edition.version])fail('Cannot replace a published file');fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(temp,JSON.stringify(edition,null,2)+'\n');fs.renameSync(temp,target);}
 function run(argv=process.argv.slice(2)){
@@ -191,5 +199,5 @@ function run(argv=process.argv.slice(2)){
   const file=argv[1],reviewer=argv[2];if(!file||!reviewer)fail('Use apply decisions.json reviewer');const next=apply(edition,readJSON(path.resolve(file)),{reviewer},c);writeDraft(next,c);console.log(JSON.stringify(validate(next,c)));
  }else fail('Use init, check [--release], audit, review-batch [offset] [size], or apply decisions.json reviewer');
 }
-module.exports={MODES,LEVELS,FORMS,REASONS,context,hash,jsonData,validateManifest,createDraft,validate,validateClassification,readEdition,apply,audit,poolMatrix,typeAllows,run};
+module.exports={MODES,LEVELS,FORMS,REASONS,context,hash,jsonData,validateManifest,createDraft,validate,validateClassification,readEdition,writeDraft,apply,audit,poolMatrix,typeAllows,run};
 if(require.main===module)try{run()}catch(e){console.error(e.message);process.exitCode=1;}

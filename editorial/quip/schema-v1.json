@@ -10,7 +10,8 @@
     "version",
     "rubric",
     "catalogs",
-    "records"
+    "records",
+    "songLanguagesDigest"
   ],
   "properties": {
     "schemaVersion": {
@@ -39,6 +40,10 @@
       "items": {
         "$ref": "#/$defs/record"
       }
+    },
+    "songLanguagesDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
     }
   },
   "$defs": {

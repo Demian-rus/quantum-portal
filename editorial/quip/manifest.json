@@ -5,6 +5,7 @@
   "editions": [
     {
       "id": "quip", "version": 1, "status": "draft", "path": "editions/quip-v1.json",
+      "songLanguages": {"path": "baselines/song-languages-v1.json", "sha256": "a0e91dd203b34e459e4b2fa44b7115fc94a2914e2b28177cee793ce7cc0bb4c6"},
       "catalogs": [
         {"id": "general", "version": 68},
         {"id": "animals", "version": 2},
