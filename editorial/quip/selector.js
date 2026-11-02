@@ -58,7 +58,7 @@ const QuipEditorialSelection=(()=>{
    const row=source.get(id);if(!row||!Array.isArray(tuple)||tuple.length!==5)fail('Missing source/metadata '+id);
    const [form,categoryMask,themeMask,levels,language]=tuple;
    if(!Number.isInteger(form)||!FORMS[form]||!Number.isSafeInteger(categoryMask)||categoryMask<1||categoryMask>categoryLimit||!Number.isSafeInteger(themeMask)||themeMask<0||themeMask>themeLimit||typeof levels!=='string'||! /^[0-3]{7}$/.test(levels)||!['','ru','en'].includes(language))fail('Invalid metadata '+id);
-   const rawForm=row.type||'number',newForm=FORMS[form];if(!(['word','phrase','idiom'].includes(rawForm)&&['word','phrase','idiom'].includes(newForm))&&rawForm!==newForm)fail('Changed game kind '+id);
+   const rawForm=row.type||'number',newForm=FORMS[form];if(!(['word','phrase','idiom'].includes(rawForm)&&['word','phrase','idiom','person'].includes(newForm))&&rawForm!==newForm)fail('Changed game kind '+id);
    if(newForm==='song'?!['ru','en'].includes(language):language!=='')fail('Invalid song language '+id);
    for(const [i,mode]of STORED_MODES.entries())if(levels[i]!=='0'&&!typeAllows(newForm,mode,row.text||row.question))fail('Incompatible method '+id);
    data.set(id,Object.freeze({row,form:newForm,categoryMask,themeMask,levels,language}));

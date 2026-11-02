@@ -23,7 +23,7 @@ function fixture(){
 }
 function request(overrides={}){return {theme:'general',mode:'draw',method:null,tiers:['easy'],promptTypes:['word','phrase','idiom'],excludedCategories:[],languages:['ru'],...overrides};}
 
-test('unreviewed full draft cannot be compiled into a playable edition',()=>assert.throws(()=>compile(E.readEdition()),/await semantic review/));
+test('unreviewed full draft cannot be compiled into a playable edition',()=>assert.throws(()=>compile(E.createDraft()),/await semantic review/));
 test('draw defaults to easy independently of round severity; other modes remain independent',()=>{
  const p=S.preferences();assert.deepEqual(S.tiersFor(p,'draw','hard'),['easy']);assert.deepEqual(S.tiersFor(p,'mime','hard'),['easy']);
  assert.deepEqual(S.tiersFor(p,'talk','hard'),['hard']);assert.deepEqual(S.tiersFor(p,'blitz','medium'),['medium','hard']);
@@ -99,4 +99,17 @@ test('selectors do not consume RNG, change source records or mutate independent 
  const {index,rows}=fixture(),before=E.hash(rows),random=Math.random,p=S.preferences();
  Math.random=()=>{throw Error('Unexpected RNG')};try{index.availability(request());index.pool(request({mode:'secret',method:'draw'}));S.tiersFor(p,'secret','hard','draw');}finally{Math.random=random;}
  assert.equal(E.hash(rows),before);assert.equal(p.choices.draw,'easy');assert.equal(Object.isFrozen(p.choices),true);
+});
+
+test('compiled lexical character stays in yesno and rejects retyping special kinds',()=>{
+ const id='word-075012',source=E.context().sources.get(id).row,compiled=fixture().compiled;
+ const tuple=[S.FORMS.indexOf('person'),2**compiled.categories.indexOf('videogames'),0,'0000200',''];
+ const payload={...compiled,catalogs:{general:{ids:[id],minimum:1,allowedModes:S.MODES.slice()}},records:{[id]:tuple}};
+ const {digest,...data}=payload;payload.digest=E.hash(data);
+ const index=S.createIndex(payload,[source]);
+ assert.deepEqual(index.pool(request({mode:'yesno',tiers:['medium']})).map(r=>r.id),[id]);
+ assert.deepEqual(index.pool(request({mode:'talk',tiers:['medium']})),[]);
+ assert.deepEqual(index.pool(request({mode:'blitz',tiers:['medium']})),[]);
+ assert.equal(source.type,'word');
+ for(const type of ['song','number'])assert.throws(()=>S.createIndex(payload,[{...source,type}]),/Changed game kind/);
 });

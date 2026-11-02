@@ -94,9 +94,9 @@ function typeAllows(form,mode,label){
 }
 function validateClassification(value,source,c){
  ownKeys(value,['form','categories','themes','ambiguities','modes']);if(!FORMS.includes(value.form))fail('Unknown editorial form');
- // A versioned lexical correction may distinguish an old word-ID from a phrase,
- // but songs, people and numbers cannot silently become a different game kind.
- const rawForm=source.type||'number';if(!(['word','phrase','idiom'].includes(rawForm)&&['word','phrase','idiom'].includes(value.form))&&rawForm!==value.form)fail('Game kind changed');
+ // Editorial metadata may identify a historical lexical prompt as a character.
+ // Source IDs/text stay immutable; songs, existing people and numbers keep their kind.
+ const rawForm=source.type||'number';if(!(['word','phrase','idiom'].includes(rawForm)&&['word','phrase','idiom','person'].includes(value.form))&&rawForm!==value.form)fail('Game kind changed');
  list(value.categories,c.categories,'categories');list(value.themes,c.themes,'themes',{empty:true});
  if(!Array.isArray(value.ambiguities)||value.ambiguities.length>8)fail('Invalid ambiguity list');value.ambiguities.forEach(v=>text(v,'ambiguity',1,200));
  ownKeys(value.modes,MODES);

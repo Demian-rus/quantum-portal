@@ -127,3 +127,14 @@ test('schema enumerations and required modes match executable format',()=>{
  assert.deepEqual(schema.$defs.classification.properties.form.enum,E.FORMS);assert.deepEqual(schema.$defs.modes.required,E.MODES);
  assert.deepEqual(schema.$defs.eligible.properties.difficulty.enum,E.LEVELS);assert.deepEqual(schema.$defs.reason.enum,E.REASONS);
 });
+
+test('lexical character correction preserves source and moves eligibility exclusively to yesno',()=>{
+ const id='word-075012',d=decision(id,classification('person',['videogames','culture'],{yesno:'medium'}),'Именной ледяной боец является персонажем; исходный ID и текст сохранены.');
+ const next=E.apply(initial,[d],{reviewer:'editorial-test',at},C),r=next.records.find(r=>r.id===id);
+ assert.equal(r.proposal.form,'word');assert.equal(r.classification.form,'person');
+ assert.equal(r.classification.modes.yesno.difficulty,'medium');
+ assert.equal(r.classification.modes.blitz.eligible,false);
+ assert.deepEqual(r.source,initial.records.find(r=>r.id===id).source);
+ const bad=clone(d);bad.classification.modes.talk={eligible:true,difficulty:'medium',reason:'indirect'};
+ assert.throws(()=>E.apply(initial,[bad],{reviewer:'editorial-test',at},C),/eligible mode talk/);
+});
