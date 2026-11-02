@@ -282821,12 +282821,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Дум — серия Doom о борьбе с демонами на марсианских базах, рисунок требует узнаваемого шлема и чудовищ."
       }
     },
     {
@@ -282843,12 +282890,61 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Серия футбольных игр и международная футбольная федерация"
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "ФИФА — футбольная игровая серия и название международной футбольной федерации, нужна футбольная привязка."
       }
     },
     {
@@ -282865,12 +282961,61 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Игра Mafia и преступная организация"
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Мафия — название серии криминальных игр и преступная организация, для рисунка нужна эпоха и сцена."
       }
     },
     {
@@ -282887,12 +283032,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames",
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Стример — человек, ведущий прямую трансляцию игры, показ через камеру и комментарии очевиден."
       }
     },
     {
@@ -282909,12 +283102,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Пасхалка — скрытая шутка или находка разработчиков, а не обычное крашеное яйцо."
       }
     },
     {
@@ -282931,12 +283171,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames",
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Баг — ошибка программы, которую показывают зависшим или странно работающим объектом."
       }
     },
     {
@@ -282953,12 +283241,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames",
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Глюк — неожиданное неправильное поведение игры или изображения, наглядно как сбой экрана."
       }
     },
     {
@@ -282975,12 +283311,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Напарник — партнёр игрока, помогающий проходить испытание вдвоём."
       }
     },
     {
@@ -282997,12 +283380,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Команда — группа игроков, действующих ради общего результата, а не голосовой приказ."
       }
     },
     {
@@ -283019,12 +283449,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames",
+          "sport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Чемпион — победитель соревнования с кубком и медалью."
       }
     },
     {
@@ -283041,12 +283519,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames",
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Контроллер — устройство управления игрой с кнопками и стиками."
       }
     },
     {
@@ -283063,12 +283589,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames",
+          "sport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Автогонка — состязание машин на скорость с обгоном и финишем."
       }
     },
     {
@@ -283085,12 +283659,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames",
+          "sport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Финиш — конец трассы, отмеченный лентой или клетчатым флагом."
       }
     },
     {
@@ -283107,12 +283729,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Старт — начало гонки или этапа, узнаваемо по сигналу начала движения."
       }
     },
     {
@@ -283129,12 +283798,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Трасса — путь автомобильной гонки с поворотами и разметкой."
       }
     },
     {
@@ -283151,12 +283867,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames",
+          "mythology"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Дракон — большое крылатое сказочное существо, обычно дышащее огнём."
       }
     },
     {
@@ -283173,12 +283937,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames",
+          "mythology"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Волшебник — персонаж, творящий чудеса посохом или заклинанием."
       }
     },
     {
@@ -283195,12 +284007,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Сокровище — ценная находка, часто сундук с драгоценностями."
       }
     },
     {
@@ -283217,12 +284076,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Ловушка — устройство или место для незаметного захвата, показывается заманиванием."
       }
     },
     {
@@ -283239,12 +284145,61 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Строительный блок и блокировка действия"
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Блок — кубический строительный элемент Майнкрафта, а не блокировка игрока."
       }
     },
     {
@@ -283261,12 +284216,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Кирка — инструмент с длинной ручкой и поперечным остриём для добычи камня."
       }
     },
     {
@@ -283283,12 +284285,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Алмаз — прозрачный драгоценный камень с гранями, встречается как игровой ресурс."
       }
     },
     {
@@ -283305,12 +284354,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Факел — горящая палка для освещения пещеры или подземелья."
       }
     },
     {
@@ -283327,12 +284423,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Лава — раскалённая расплавленная порода, опасная преграда в игре."
       }
     },
     {
@@ -283349,12 +284492,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames",
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Монитор — экран компьютера, на котором отображается игра."
       }
     },
     {
@@ -283371,12 +284562,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames",
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Клавиатура — устройство с рядами кнопок для ввода и управления."
       }
     },
     {
@@ -283393,12 +284632,62 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames",
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Компьютерная мышь и маленькое животное"
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Мышка — компьютерный манипулятор для указателя, не животное в игровом контексте."
       }
     },
     {
@@ -283415,12 +284704,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Загрузка — ожидание появления игры после запуска, часто с индикатором прогресса."
       }
     },
     {
@@ -283437,12 +284773,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Битва — крупное столкновение противников, наглядно по боевой сцене."
       }
     },
     {
@@ -283459,12 +284842,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Враг — тот, кто противостоит игроку или герою."
       }
     },
     {
@@ -283481,12 +284911,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Выживание — сохранение жизни в опасных условиях, часто при нехватке ресурсов."
       }
     },
     {
@@ -283503,12 +284980,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames",
+          "sport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Гонщик — участник гонки в шлеме и гоночном автомобиле."
       }
     },
     {
@@ -283525,12 +285050,61 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Таблица рангов и оценка популярности"
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Рейтинг — численный порядок игроков по результатам, без цифр рисунок слишком неопределёнен."
       }
     },
     {
@@ -283547,12 +285121,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Приключение — необычное путешествие с опасностями и находками, требует сюжета."
       }
     },
     {
@@ -283569,12 +285190,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Магия — сверхъестественные действия, изображаются волшебными эффектами."
       }
     },
     {
@@ -283591,12 +285259,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames",
+          "sport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Киберспорт — профессиональные соревнования в компьютерных играх, нужны сцена и экраны."
       }
     },
     {
@@ -283613,12 +285329,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Геймплей — процесс действий игрока во время игры, не жанр и не название конкретной игры."
       }
     },
     {
@@ -283635,12 +285398,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Платформер — игра с прыжками между уступами и препятствиями на уровнях."
       }
     },
     {
@@ -283657,12 +285467,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Симуляция — воспроизведение реальной системы или занятия в игре, рисунку нужен контекст."
       }
     },
     {
@@ -283679,12 +285536,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "videogames",
+          "mythology"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Заклинание — произнесённые волшебные слова или действие, вызывающее магический эффект."
       }
     },
     {
@@ -283701,12 +285606,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Бравл Старс — командная мобильная игра с мультяшными бойцами и короткими матчами."
       }
     },
     {
@@ -283723,12 +285675,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Амонг Ас — игра о членах экипажа и скрытом предателе в космическом корабле."
       }
     },
     {
@@ -283745,12 +285744,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Марио Карт — гоночная серия с Марио, картингом и предметами на трассе."
       }
     },
     {
@@ -283767,12 +285813,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Пять ночей с Фредди — хоррор с аниматрониками и ночным наблюдением камер."
       }
     },
     {
@@ -283789,12 +285882,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Резидент Ивил — серия игр ужасов о зомби и биологической угрозе, рисунок легко спутать с другим хоррором."
       }
     },
     {
@@ -283811,12 +285951,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Сабвей Сёрферс — мобильная игра о беге между поездами и уклонении от препятствий."
       }
     },
     {
@@ -283833,12 +286020,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Новая игра — команда начать прохождение сначала, изображается стартовым экраном."
       }
     },
     {
@@ -283855,12 +286089,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Игра окончена — экран проигрыша или завершения партии, на жестах понятен конец попытки."
       }
     },
     {
@@ -283877,12 +286158,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Главное меню — стартовый экран с основными пунктами выбора игры."
       }
     },
     {
@@ -283899,12 +286227,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "videogames"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T07:39:41.786Z",
+        "rationale": "Выбор персонажа — экран, где игрок выбирает героя из нескольких фигур."
       }
     },
     {
