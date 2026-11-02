@@ -27,7 +27,7 @@ word-047021|ШТОЛЬНЯ|word|technology+geography|||hard:specialist|medium:in
 word-047022|ГРОТ|word|nature+geography|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Грот — небольшая пещера, часто с входом со стороны воды.
 word-047023|МУШКЕТ|word|history|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Мушкет — старинное длинное ружьё, используемое пехотой прошлых веков.
 word-047024|ПЕРГАМЕНТ|word|history|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Пергамент — древний материал для письма из обработанной кожи животных.
-word-047025|ШАРЛАТАН|word|general+professions|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Шарлатан — обманщик, выдающий себя за эксперта или целителя.
+word-047025|ШАРЛАТАН|word|general|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Шарлатан — обманщик, который выдаёт себя за специалиста; мошенничество не является профессией, поэтому категорию профессий убрали.
 word-047026|КОНЮХ|word|professions|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Конюх — работник, который ухаживает за лошадьми в конюшне.
 word-047027|ФРЕСКА|word|arts|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Фреска — картина, написанная по сырой штукатурке стены.
 word-047028|ПИКТОГРАММА|word|technology+arts|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Пиктограмма — простое графическое обозначение действия или предмета.

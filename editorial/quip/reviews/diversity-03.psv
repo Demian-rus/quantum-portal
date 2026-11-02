@@ -18,7 +18,7 @@ phrase-044001|ЗАПАХ ДОЖДЯ|phrase|nature|||easy:familiar|medium:indirec
 phrase-044002|ДЕТСКАЯ ПЛОЩАДКА|phrase|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Детская площадка — место с качелями, горкой и песочницей для детей.
 phrase-044003|ДОМАШНИЙ КИНОТЕАТР|phrase|cinema|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|-:multiword|-:type|Домашний кинотеатр — большой экран и колонки для просмотра фильмов дома.
 phrase-044004|ЦВЕТОЧНЫЙ ГОРШОК|phrase|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Цветочный горшок — сосуд с почвой и посаженным комнатным растением.
-word-044017|БРАКОНЬЕР|word|professions|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Браконьер — человек, незаконно ловящий животных или рыбу, скрывается от инспектора.
+word-044017|БРАКОНЬЕР|word|general|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Браконьер — человек, незаконно охотящийся или ловящий рыбу; нарушение закона не является отдельной профессией, поэтому прежнюю категорию профессий удалили.
 word-044018|ГОНЧАР|word|professions+arts|||medium:indirect|easy:concrete|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Гончар — мастер, который вращает глину на круге и делает посуду.
 word-044020|КОРРИДА|word|culture+history|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Коррида — испанское зрелище с тореадором и быком на арене.
 word-044021|КУПОЛ|word|arts|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Купол — округлая крыша здания или храма, заметен по полусферической форме.
