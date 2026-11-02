@@ -1,0 +1,98 @@
+# {"schemaVersion":1,"edition":"quip@1","rubric":"quip-rubric@1","sourcesDigest":"dc4ece10027ec79309d64a06c42027e4e27b0f9cc36eb28967cbe8de6bff45c1"}
+id|text|form|categories|themes|ambiguities|talk|mime|draw|sing|yesno|blitz|approx|rationale
+word-044002|КУВШИНКА|word|nature|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Кувшинка — водное растение с круглым листом и цветком на поверхности пруда.
+word-044003|ЛАСТОЧКА|word|animals+nature|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Ласточка — небольшая перелётная птица с раздвоенным хвостом, характерен стремительный полёт.
+word-044004|ПОЛИВАЛКА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Поливалка — приспособление для полива растений струёй или распылением воды.
+word-044005|ЛОПАТКА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Лопатка — небольшой инструмент для копания, например садовая лопатка в руке.
+word-044007|ЛЫЖНИК|word|sport+professions|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Лыжник — спортсмен, скользящий на двух лыжах с палками.
+word-044008|КАНИСТРА|word|transport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Канистра — переносная ёмкость с ручкой для топлива или воды.
+word-044009|ВЕТРЯК|word|technology+nature|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Ветряк — сооружение с крыльями, вращаемыми ветром, для помола или выработки энергии.
+word-044010|ЛЮСТРА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Люстра — потолочный светильник с несколькими лампами.
+word-044011|КРОВАТКА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Кроватка — небольшая детская кровать с бортиками.
+word-044012|ПИАЛА|word|food|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Пиала — небольшая чашка без ручки, из которой пьют чай.
+word-044013|ШТУРВАЛ|word|transport+marine|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Штурвал — круглое рулевое колесо для управления судном.
+word-044014|ЗНАЧОК|word|everyday|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Значок — небольшой знак, прикрепляемый к одежде, или пиктограмма на экране.
+word-044015|ЧЕРЕПИЦА|word|everyday|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Черепица — отдельные перекрывающие друг друга элементы покрытия крыши.
+word-044016|ЗАПОНКА|word|everyday|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Запонка — маленькая застёжка на манжете рубашки, заметна при аккуратном одевании.
+phrase-044001|ЗАПАХ ДОЖДЯ|phrase|nature|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Запах дождя — характерный аромат влажной земли после первых капель.
+phrase-044002|ДЕТСКАЯ ПЛОЩАДКА|phrase|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Детская площадка — место с качелями, горкой и песочницей для детей.
+phrase-044003|ДОМАШНИЙ КИНОТЕАТР|phrase|cinema|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|-:multiword|-:type|Домашний кинотеатр — большой экран и колонки для просмотра фильмов дома.
+phrase-044004|ЦВЕТОЧНЫЙ ГОРШОК|phrase|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Цветочный горшок — сосуд с почвой и посаженным комнатным растением.
+word-044017|БРАКОНЬЕР|word|professions|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Браконьер — человек, незаконно ловящий животных или рыбу, скрывается от инспектора.
+word-044018|ГОНЧАР|word|professions+arts|||medium:indirect|easy:concrete|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Гончар — мастер, который вращает глину на круге и делает посуду.
+word-044020|КОРРИДА|word|culture+history|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Коррида — испанское зрелище с тореадором и быком на арене.
+word-044021|КУПОЛ|word|arts|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Купол — округлая крыша здания или храма, заметен по полусферической форме.
+word-044022|ПРЕЦЕДЕНТ|word|general|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Прецедент — прошлый случай, служащий образцом для последующего решения, без пояснений не показывается.
+word-044023|МУЛЯЖ|word|arts|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Муляж — искусственная копия настоящего предмета, например учебная модель.
+word-044024|ОРНАМЕНТ|word|arts|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Орнамент — повторяющийся декоративный узор на ткани или здании.
+word-044025|ХИМЕРА|word|mythology||Химера как мифическое существо или несбыточная фантазия|medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Химера — фантастическое существо с частями разных животных, а также несбыточный образ.
+word-044026|ТАЛИСМАН|word|culture||Талисман как оберег и талисман команды|easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Талисман — предмет, который носит владелец ради удачи.
+word-044027|ЗАПОВЕДНИК|word|nature+geography|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Заповедник — охраняемая природная территория, где нельзя охотиться.
+word-044028|ТРАНШЕЯ|word|history|||medium:indirect|easy:concrete|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Траншея — длинный узкий ров в земле, используемый для защиты бойцов.
+word-044029|ПАГОДА|word|culture|||hard:specialist|medium:indirect|medium:indirect|-:type|-:type|hard:specialist|-:type|Пагода — многоярусная буддийская храмовая башня с загнутыми крышами.
+word-044030|АЭРОСТАТ|word|transport+science|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Аэростат — летательный аппарат с большим наполненным газом шаром.
+word-044031|КОРАБЛЕКРУШЕНИЕ|word|marine+transport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Кораблекрушение — гибель судна в бурю или после столкновения.
+word-044032|КАРТОТЕКА|word|general|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Картотека — упорядоченная коллекция карточек с записями, рисунок без текста не отличает её от ящиков.
+phrase-044005|ШТОРМОВОЕ ПРЕДУПРЕЖДЕНИЕ|phrase|marine|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Штормовое предупреждение — официальное сообщение о приближении сильного ветра и волн.
+phrase-044006|ТАЙНОЕ ГОЛОСОВАНИЕ|phrase|general|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Тайное голосование — выбор, при котором никто не видит отметку человека на бюллетене.
+phrase-044007|КОРОЛЕВСКИЙ ПРИЁМ|phrase|history|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Королевский приём — торжественная встреча гостей при дворе монарха.
+phrase-044008|УТРЕННЯЯ ПЛАНЁРКА|phrase|professions|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Утренняя планёрка — короткое рабочее совещание сотрудников в начале дня.
+word-044033|ИНКВИЗИЦИЯ|word|history+culture|||hard:specialist|medium:indirect|medium:indirect|-:type|-:type|hard:specialist|-:type|Инквизиция — исторические церковные суды, преследовавшие еретиков, нужны эпоха и признаки.
+word-044034|ИНСИНУАЦИЯ|word|general|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Инсинуация — умышленный порочащий намёк без прямого обвинения, не передаётся предметным рисунком.
+word-044035|ФИЛАНТРОП|word|culture+everyday|||hard:specialist|medium:indirect|-:not-visual|-:type|-:type|hard:specialist|-:type|Филантроп — человек, систематически помогающий другим деньгами и делами, не просто добряк.
+word-044036|РЕКВИЕМ|word|music|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Реквием — траурное музыкальное произведение, связанное с поминовением умерших.
+word-044037|СИМУЛЯКР|word|culture|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Симулякр — образ или копия без устойчивого реального оригинала, философский термин без игровой пантомимы.
+word-044038|ПАРАЛЛАКС|word|science+arts|||hard:specialist|-:not-physical|medium:indirect|-:type|-:type|hard:specialist|-:type|Параллакс — видимое смещение объекта при перемене точки наблюдения, рисунок из двух ракурсов возможен.
+word-044039|ТРИУМВИРАТ|word|history|||hard:specialist|medium:indirect|medium:indirect|-:type|-:type|hard:specialist|-:type|Триумвират — историческое объединение трёх правителей или влиятельных лиц.
+word-044040|КВИНТЭССЕНЦИЯ|word|general|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Квинтэссенция — самая главная сущность явления, абстрактная идея без наглядного предмета.
+phrase-044009|ЖЕЛЕЗНЫЙ ЗАНАВЕС|idiom|history|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Железный занавес — образ политической изоляции стран, а не бытовая металлическая штора.
+phrase-044010|СТОЛКНОВЕНИЕ ИНТЕРЕСОВ|phrase|general|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|-:multiword|-:type|Столкновение интересов — конфликт целей нескольких сторон, рисунок без подписей не отличает от ссоры.
+word-045001|ФОРТОЧКА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Форточка — маленькая открывающаяся часть окна для проветривания.
+word-045002|ПЧЕЛОВОД|word|professions+animals|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Пчеловод — человек в защитной сетке, ухаживающий за ульями и собирающий мёд.
+word-045003|БУМАЖНИК|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Бумажник — складное портмоне с деньгами и карточками.
+word-045005|РОМАШКА|word|nature|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Ромашка — цветок с белыми лепестками и жёлтой сердцевиной.
+word-045006|СОЛОВЕЙ|word|animals+nature|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Соловей — маленькая певчая птица, известная выразительным пением.
+word-045007|СОЛОМИНКА|word|everyday||Трубочка для питья и стебель злака|easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Соломинка — тонкая трубочка для питья или сухой стебель злака.
+word-045008|СКВОЗНЯК|word|nature+everyday|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Сквозняк — поток холодного воздуха между открытыми окнами, показывается колыханием занавески.
+word-045009|МЫШЕЛОВКА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Мышеловка — устройство с пружиной и приманкой для ловли мышей.
+word-045010|ЧУЛОК|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Чулок — длинное изделие из ткани, закрывающее ногу.
+word-045011|ШТАМП|word|everyday||Устройство для оттиска и сам оттиск|easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Штамп — инструмент или оттиск для проставления стандартного знака на бумаге.
+word-045012|ДОЖДЕВИК|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Дождевик — непромокаемая одежда с капюшоном для дождя.
+word-045013|ОБИДА|word|general|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Обида — огорчение из-за обидного поступка другого человека.
+word-045014|ПОХВАЛА|word|general|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Похвала — одобрительные слова за хорошую работу или поступок.
+word-045015|ШЁПОТ|word|general|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Шёпот — тихая речь, едва слышная другим людям.
+word-045016|НЕПОСЕДА|word|general|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Непоседа — человек, который не может долго сидеть спокойно.
+phrase-045001|РАСКИДАННЫЕ ИГРУШКИ|phrase|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Раскиданные игрушки — детские вещи, оставленные на полу в беспорядке.
+phrase-045002|ЗАЛИТЫЙ ПОЛ|phrase|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Залитый пол — вода покрыла пол после пролитой жидкости.
+phrase-045003|ЛУЖА ПОД НОГАМИ|phrase|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Лужа под ногами — скопление воды возле обуви стоящего человека.
+phrase-045004|ПРАЗДНИЧНЫЙ ТОРТ|phrase|food|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Праздничный торт — украшенный свечами или кремом десерт для торжества.
+word-045017|ГРИМАСА|word|general|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Гримаса — нарочно искажённое лицо, которое человек строит от боли или насмешки.
+word-045018|ПАТЕНТ|word|technology+professions|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Патент — документ об исключительном праве на изобретение, визуально похож на другие бумаги.
+word-045019|СТИПЕНДИЯ|word|general|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Стипендия — регулярная денежная выплата студенту за учёбу, рисунок не показывает её назначения.
+word-045020|ШАТЁР|word|culture|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Шатёр — временная большая палатка с натянутой тканевой крышей.
+word-045021|СЕНСАЦИЯ|word|general|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Сенсация — неожиданная крупная новость, вызывающая широкий интерес.
+word-045022|ФОЛЬКЛОР|word|culture|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Фольклор — устные народные предания, песни и обычаи, нельзя нарисовать как один предмет.
+word-045023|ВОЛЫНКА|word|music+culture|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Волынка — музыкальный инструмент с кожаным мешком и несколькими трубками.
+word-045024|АТТРАКЦИОН|word|culture|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Аттракцион — развлекательное сооружение в парке, например карусель.
+word-045025|АДРЕНАЛИН|word|biology|||medium:indirect|easy:concrete|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Адреналин — гормон реакции опасности, сцену испуга показать легче, чем само вещество.
+word-045026|СТАЖИРОВКА|word|professions|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Стажировка — временная практическая работа новичка под наблюдением наставника.
+word-045027|ГАЛЕРА|word|history+marine|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Галера — старинное гребное судно с множеством вёсел.
+word-045028|КАРАВАН|word|history+transport||Вереница верблюдов и колонна автомобилей|easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Караван — вереница путешествующих животных или машин, идущих друг за другом.
+word-045029|АРБИТР|word|sport+professions|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Арбитр — судья спортивного состязания со свистком.
+word-045030|ПАЛИСАДНИК|word|everyday|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Палисадник — небольшой цветник перед домом за забором.
+word-045031|ФАРВАТЕР|word|marine+transport|||hard:specialist|medium:indirect|medium:indirect|-:type|-:type|hard:specialist|-:type|Фарватер — безопасная судоходная часть водного пути, обозначаемая знаками.
+word-045032|МЕЦЕНАТ|word|culture+arts|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Меценат — человек, финансирующий искусство и культуру, без слов сложно отличить от спонсора.
+phrase-045005|СПАСЕНИЕ УТОПАЮЩЕГО|phrase|general|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Спасение утопающего — помощь человеку, который тонет в воде, с вытаскиванием на берег.
+phrase-045006|ЗАЛ ОЖИДАНИЯ|phrase|transport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Зал ожидания — помещение с рядами сидений для пассажиров перед отправлением.
+phrase-045007|ОТМЕНА РЕЙСА|phrase|transport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Отмена рейса — сообщение, что самолёт или поезд не отправится по расписанию.
+phrase-045008|ПОЛЕВАЯ КУХНЯ|phrase|history|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Полевая кухня — передвижное оборудование для приготовления еды бойцам на местности.
+word-045033|ДЕМАРШ|word|history|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Демарш — демонстративный дипломатический или политический протест, без контекста не угадывается.
+word-045034|ГЕНЕАЛОГИЯ|word|history+culture|||hard:specialist|medium:indirect|-:not-visual|-:type|-:type|hard:specialist|-:type|Генеалогия — исследование происхождения рода, можно показать родословное дерево, но нужна трактовка.
+word-045035|ПАНАЦЕЯ|word|general|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Панацея — воображаемое средство от всех болезней или универсальное решение проблем.
+word-045036|АЛХИМИЯ|word|history+science|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Алхимия — старинные поиски превращения металлов в золото, колбы и опыты дают образ.
+word-045037|РЕВИЗИЯ|word|general|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Ревизия — официальная проверка документов, имущества или финансов.
+word-045038|РИТОРИКА|word|language+arts|||hard:specialist|medium:indirect|-:not-visual|-:type|-:type|hard:specialist|-:type|Риторика — искусство убедительного публичного выступления, не просто беседа.
+word-045039|ПАНТЕОН|word|mythology+history||Собрание богов и посвящённый богам храм|hard:specialist|medium:indirect|medium:indirect|-:type|-:type|hard:specialist|-:type|Пантеон — совокупность богов мифологии или храм, посвящённый богам.
+word-045040|КОНТИНУУМ|word|science|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Континуум — непрерывная последовательность величин или пространственно-временное целое.
+phrase-045009|ЛЕДЯНОЕ СПОКОЙСТВИЕ|idiom|general|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Ледяное спокойствие — образ полного самообладания даже при опасности.
+phrase-045010|СЕКРЕТ ПОЛИШИНЕЛЯ|idiom|culture|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|-:multiword|-:type|Секрет Полишинеля — тайна, которая давно известна всем, смысл устойчивого выражения.
