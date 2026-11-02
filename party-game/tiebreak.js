@@ -29,7 +29,7 @@ function nextTiebreakQuestion(attempted=[]){
  for(const level of levels){
   const pool=getPackQuestionPool(game.contentPack,level).filter(q=>!attempted.includes(q.id));
   if(pool.length){
-   const q=pullApproxQuestion(level,attempted);
+   const q=editorialSelection(game.contentPack)?chooseRememberedTask(pool):pullApproxQuestion(level,attempted);
    return {id:q.id,question:q.question,answer:String(q.answer),unit:String(q.unit||''),
      note:String(q.note||''),difficulty:level};
   }

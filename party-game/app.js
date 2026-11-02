@@ -155,7 +155,7 @@ function newGame() {
   try{
     const requested=getContentPack(contentPack);
     if(requested.enabled)contentPack=latestContentPackSelection(requested.id);
-    contentPack=setupCategorySelection(contentPack);
+    contentPack=pinEditorialSelection(setupCategorySelection(contentPack));
     const settings={...options,...songPolicy,modeCompatibilityVersion:QUIP_MODE_COMPATIBILITY_VERSION};
     const availability=checkContentPack(contentPack,settings);
     if(!availability.available){

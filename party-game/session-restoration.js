@@ -53,6 +53,7 @@ function restoreSession() {
     if(candidate.modePlannerVersion!=null||candidate.modePlannerState!=null)
       validateModePlan(candidate.modePlannerVersion,candidate.modePlannerState);
     if(candidate.contentPack)getContentPack(candidate.contentPack);
+    validateEditorialGame(candidate);
     songLanguagePolicy(candidate);
     timerPolicy(candidate);
     validateFeedbackHold(candidate);
