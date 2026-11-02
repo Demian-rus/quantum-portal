@@ -52,7 +52,7 @@ test('TASK019 historical selection byte behavior against actual published v85 fu
  for(const awardTo of ['setter','guesser']){
   const a=start(21,{awardTo,modes:['talk','secret','blitz','approx'],difficulty:'mixed'}),b=start(21,{awardTo,modes:['talk','secret','blitz','approx'],difficulty:'mixed'});
   vm.runInContext(source,b.context);
-  for(const h of [a,b])h.eval('game.rulesVersion=5;game.modeConfigVersion=1;delete game.riskPolicyVersion;delete game.riskPlannerState;game.startingTeamIndex=1');
+  for(const h of [a,b])h.eval('delete game.taskDifficultyPolicy;game.contentPack=baseContentPackSelection(game.contentPack);game.rulesVersion=5;game.modeConfigVersion=1;delete game.riskPolicyVersion;delete game.riskPlannerState;game.startingTeamIndex=1');
   let ca=0,cb=0;const ra=seededRandom(211),rb=seededRandom(211);a.context.Math.random=()=>{ca++;return ra()};b.context.Math.random=()=>{cb++;return rb()};
   for(let n=0;n<100;n++){
    assert.deepEqual(plain(a.eval('rollOutcome()')),plain(b.eval('rollOutcome()')));assert.equal(ca,cb);

@@ -2277,11 +2277,11 @@ test('TASK008 geography v2 is authored, isolated and leaves every v1 declaration
 test('TASK008 geography is selectable from standard singing and idiom-only preferences without mutating them',()=>{
  const h=harness();h.eval('options.awardTo="guesser";options.modes=["sing","yesno"];options.promptTypes=["idiom"];options.difficulty="mixed"');
  const before=h.eval('JSON.stringify(options)');assert.equal(h.eval('listThematicPacks(options).find(e=>e.pack.id==="geography").available'),true);assert.equal(h.eval('JSON.stringify(options)'),before);
- assert.equal(h.eval('selectTheme("geography",2)'),true);assert.equal(h.eval('activeScene'),'setup');assert.equal(h.eval('options.modes.includes("sing")'),false);assert.deepEqual(Array.from(h.eval('options.promptTypes')),['word','phrase']);
+ assert.equal(h.eval('selectTheme("geography",QUIP_EDITORIAL_PACK_VERSIONS.geography)'),true);assert.equal(h.eval('activeScene'),'setup');assert.equal(h.eval('options.modes.includes("sing")'),false);assert.deepEqual(Array.from(h.eval('options.promptTypes')),['word','phrase']);
  h.eval('options.modes=["draw","approx"];options.promptTypes=["phrase"];persist();selectStandardGame()');
  assert.deepEqual(Array.from(h.eval('options.modes')),['sing','yesno']);assert.deepEqual(Array.from(h.eval('options.promptTypes')),['idiom']);
- h.eval('selectTheme("geography",2)');assert.deepEqual(Array.from(h.eval('options.modes')),['draw','approx']);assert.deepEqual(Array.from(h.eval('options.promptTypes')),['phrase']);
- const reloaded=harness(h.storage);reloaded.eval('selectStandardGame();selectTheme("geography",2)');assert.deepEqual(Array.from(reloaded.eval('options.modes')),['draw','approx']);
+ h.eval('selectTheme("geography",QUIP_EDITORIAL_PACK_VERSIONS.geography)');assert.deepEqual(Array.from(h.eval('options.modes')),['draw','approx']);assert.deepEqual(Array.from(h.eval('options.promptTypes')),['phrase']);
+ const reloaded=harness(h.storage);reloaded.eval('selectStandardGame();selectTheme("geography",QUIP_EDITORIAL_PACK_VERSIONS.geography)');assert.deepEqual(Array.from(reloaded.eval('options.modes')),['draw','approx']);
 });
 test('TASK008 geography has no dead ends for any nonempty permitted mode combination or prompt subset',()=>{
  const h=harness();h.eval('const geo={id:"geography",version:2},geoModes=QUIP_CONTENT_PACKS["geography@2"].allowedModes');
@@ -2309,10 +2309,10 @@ test('TASK008 geography pools exhaust only after unused alternatives and Blitz s
 });
 test('TASK008 geography awards, shared answers and save snapshots remain independent of future theme choices',()=>{
  for(const awardTo of ['setter','guesser']){
-  const stored=new Map(),h=harness(stored);h.eval('soundOn=false;options.awardTo="'+awardTo+'";selectTheme("geography",2);options.modes=["talk"];options.dice=false;options.modifierChance=100;newGame();roll();persist()');
+  const stored=new Map(),h=harness(stored);h.eval('soundOn=false;options.awardTo="'+awardTo+'";selectTheme("geography",QUIP_EDITORIAL_PACK_VERSIONS.geography);options.modes=["talk"];options.dice=false;options.modifierChance=100;newGame();roll();persist()');
   const selected=h.eval('JSON.stringify(game.current)');h.eval('selectStandardGame();options.modes=["sing"];persist()');const reload=harness(stored);assert.equal(reload.eval('baseContentPackSelection(game.contentPack).id'),'geography');assert.equal(reload.eval('JSON.stringify(game.current)'),selected);
   reload.eval('game.phase="judge";judge(true,false)');assert.equal(reload.eval('game.scores['+(awardTo==='setter'?0:1)+']'),1);
-  reload.eval('selectTheme("geography",2);options.modes=["approx"];options.dice=false;newGame();delete game.taskDifficultyPolicy;game.contentPack={id:"geography",version:2};roll()');assert.equal(reload.eval('game.current.question.pack'),'geography-v2');reload.eval('revealApprox();awardApprox("both")');assert.deepEqual(Array.from(reload.eval('game.scores')),[1,1]);
+  reload.eval('selectTheme("geography",QUIP_EDITORIAL_PACK_VERSIONS.geography);options.modes=["approx"];options.dice=false;newGame();delete game.taskDifficultyPolicy;game.contentPack={id:"geography",version:2};roll()');assert.equal(reload.eval('game.current.question.pack'),'geography-v2');reload.eval('revealApprox();awardApprox("both")');assert.deepEqual(Array.from(reload.eval('game.scores')),[1,1]);
  }
 });
 
@@ -2327,10 +2327,10 @@ test('TASK008 science v2 adds 150 distinct prompts and 30 sourced questions with
  for(const kind of ['words','people','blitz'])for(const level of ['easy','medium','hard'])assert.equal(h.eval('getPackCardPool({id:"science",version:2},"'+kind+'","'+level+'",["word","phrase"]).every(c=>c.pack==="science-v2")'),true);
 });
 test('TASK008 standard, geography and science keep independent preferences across reload and protect a running round',()=>{
- const h=harness();h.eval('options.awardTo="guesser";options.modes=["sing"];options.promptTypes=["idiom"];selectTheme("geography",2);options.modes=["draw","approx"];options.promptTypes=["phrase"];selectTheme("science",2);options.modes=["secret","yesno"];options.promptTypes=["word"];options.dice=false;newGame();roll();game.dice=true;persist();const scienceSnapshot=JSON.stringify(game);selectTheme("geography",2)');
+ const h=harness();h.eval('options.awardTo="guesser";options.modes=["sing"];options.promptTypes=["idiom"];selectTheme("geography",QUIP_EDITORIAL_PACK_VERSIONS.geography);options.modes=["draw","approx"];options.promptTypes=["phrase"];selectTheme("science",QUIP_EDITORIAL_PACK_VERSIONS.science);options.modes=["secret","yesno"];options.promptTypes=["word"];options.dice=false;newGame();roll();game.dice=true;persist();const scienceSnapshot=JSON.stringify(game);selectTheme("geography",QUIP_EDITORIAL_PACK_VERSIONS.geography)');
  assert.deepEqual(Array.from(h.eval('options.modes')),['draw','approx']);assert.deepEqual(Array.from(h.eval('options.promptTypes')),['phrase']);assert.equal(h.eval('JSON.stringify(game)'),h.eval('scienceSnapshot'));
  const reload=harness(h.storage);assert.equal(reload.eval('JSON.stringify(game)'),h.eval('scienceSnapshot'));reload.eval('selectStandardGame()');assert.deepEqual(Array.from(reload.eval('options.modes')),['sing']);assert.deepEqual(Array.from(reload.eval('options.promptTypes')),['idiom']);
- reload.eval('selectTheme("science",2)');assert.deepEqual(Array.from(reload.eval('options.modes')),['yesno','secret']);assert.deepEqual(Array.from(reload.eval('options.promptTypes')),['word']);
+ reload.eval('selectTheme("science",QUIP_EDITORIAL_PACK_VERSIONS.science)');assert.deepEqual(Array.from(reload.eval('options.modes')),['yesno','secret']);assert.deepEqual(Array.from(reload.eval('options.promptTypes')),['word']);
 });
 test('TASK008 both thematic registries have no dead-end mode, type or difficulty settings',()=>{
  const {checkSettings}=require('../scripts/balance-audit.cjs');assert.deepEqual(checkSettings(),{checked:3048,deadEnds:0});
