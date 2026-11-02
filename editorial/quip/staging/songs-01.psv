@@ -1,0 +1,226 @@
+# {"schemaVersion":1,"edition":"quip@1","rubric":"quip-rubric@1","sourcesDigest":"09362331db3b17fc36b4c63bef45dc3f5dc08c5575edbb60cf2bae23e2d045d6"}
+id|text|form|categories|themes|ambiguities|talk|mime|draw|sing|yesno|blitz|approx|rationale
+song-020001|АЛЬБОМ|song|music|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Тема требует вспомнить слово внутри куплета, а не только известное название песни.
+song-020002|БЕРЕГ|song|music+geography|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Берег встречается в знакомом дорожном и морском репертуаре; нужен подходящий фрагмент.
+song-020003|БОЛЬ|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Эмоциональное слово распространено в песнях, но требуется вспомнить конкретную мелодию.
+song-020004|БРАТ|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Братская тема имеет доступный репертуар; не любая песня о дружбе содержит нужное слово.
+song-020005|ВЕРА|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Нужно вспомнить песню с верой, а не заменить её надеждой или любовью.
+song-000018|ВЕСНА|song|music+nature|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Сезон широко представлен в узнаваемых русскоязычных песнях и припевных образах.
+song-000041|ВЕТЕР|song|music+nature|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Есть широко знакомый репертуар с ветром в названии и припеве.
+song-020006|ВЕЧЕР|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Вечерний образ знаком, но подбор точного песенного фрагмента требует памяти.
+song-020007|ВИНО|song|music+food|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Вино встречается в популярной лирике; напиток нельзя заменять любым застольем.
+song-020008|ВОДА|song|music+nature|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Песни о воде доступны, но общий образ требует точного словесного совпадения темы.
+song-020009|ВОЙНА|song|music+history|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Военная тематика имеет широкий общеизвестный песенный репертуар.
+song-020010|ВОЛК|song|music+animals|animals||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Животное встречается в известных композициях; нужна песня именно с волком.
+song-020011|ВОЛНА|song|music+marine|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Морские песни дают опору, но волну надо вспомнить в конкретном фрагменте.
+song-020012|ВРЕМЯ|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Распространённая лирическая тема с несколькими узнаваемыми музыкальными опорами.
+song-020013|ВСТРЕЧА|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Песня о скорой встрече и другие знакомые композиции дают лёгкий старт.
+song-020014|ВЫСОТА|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Тема узнаваема через полёт и высоту; точный фрагмент требует репертуарной памяти.
+song-020015|ВЬЮГА|song|music+nature|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Зимние песни дают подходящие мотивы, но вьюга уже широкой темы зимы.
+song-020016|ГИТАРА|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Музыкальный инструмент часто упоминается, однако не любая гитарная песня подходит по слову.
+song-000009|ГЛАЗА|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Глаза — частая тема узнаваемой русскоязычной любовной лирики.
+song-020017|ГОЛОС|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Голос присутствует в песенном тексте; пение само по себе не доказывает соответствие теме.
+song-020018|ГОРОД|song|music+geography|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Много известных песен о городе, не нужен узкий исполнительский репертуар.
+song-020019|ГРУСТЬ|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Грустное настроение широко, но нужно вспомнить песню с самим тематическим словом.
+song-020020|ДВЕРЬ|song|music+everyday|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Предмет встречается в знакомых текстах; подобрать его точнее, чем общую домашнюю тему.
+song-020021|ДВОР|song|music+everyday|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Узнаваемые песни о дворе дают прямую репертуарную опору.
+song-020022|ДЕВОЧКА|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Тема распространена, но конкретный мотив зависит от знакомых исполнителей.
+song-020023|ДЕНЬ|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Общее песенное слово имеет множество узнаваемых вариантов без специальной подготовки.
+song-020024|ДЕТИ|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Песни о детях знакомы; требуется точное совпадение темы, а не только детский жанр.
+song-000029|ДЕТСТВО|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Широко известные песни о детстве легко вспоминаются по теме.
+song-020025|ДОБРО|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Нравственная тема доступна, но нужное слово может находиться внутри куплета.
+song-000007|ДОЖДЬ|song|music+nature|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Дождь широко представлен в известных припевных и сезонных песнях.
+song-020026|ДОМ|song|music+everyday|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Дом — частый узнаваемый образ популярных и семейных песен.
+song-020027|ДОРОГА|song|music+transport|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Дорожный репертуар широк, для подбора не требуется редкий исполнитель.
+song-020028|ДРУГ|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Есть широко узнаваемые песни о друге и дружбе с нужной словоформой.
+song-020029|ДУША|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Душа — частое слово популярной лирики, есть несколько знакомых мотивов.
+song-020030|ЖИЗНЬ|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Тема имеет широкий жизненный репертуар, а не одно специальное произведение.
+song-020031|ЗАКАТ|song|music+nature|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Образ заката понятен, но обычно требует вспомнить строку, а не название.
+song-020032|ЗАРЯ|song|music+nature|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Есть знакомые народные и эстрадные опоры; заря не подменяется рассветом без нужной формы.
+song-000043|ЗВЕЗДА|song|music+space|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Известные песни со звездой дают несколько лёгких музыкальных опор.
+song-020033|ЗЕМЛЯ|song|music+nature|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Образ Земли широко узнаваем в популярных песнях разных поколений.
+song-000038|ЗИМА|song|music+nature|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Зимний песенный репертуар общеизвестен и доступен разной аудитории.
+song-020034|ЗЛО|song|music|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Отрицательное понятие требует точной строки; общий мрачный характер песни недостаточен.
+song-020035|ИГРА|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Нужно вспомнить прямое упоминание игры; игровое настроение песни само по себе не подходит.
+song-020036|КИНО|song|music+cinema|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Тема задаётся словом кино, а не любой песней из фильма.
+song-020037|КЛЮЧ|song|music+everyday|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Предмет обычно находится внутри куплета; выбор без конкретной строковой памяти труднее.
+song-020038|КОРАБЛЬ|song|music+transport|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Корабль поддержан узнаваемой морской лирикой, но не равен любой песне о море.
+song-020039|КОФЕ|song|music+food|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Бытовой напиток встречается в популярных текстах; требуется подходящий фрагмент.
+song-020040|КРОВЬ|song|music+biology|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Слово узнаваемо в рок-репертуаре; выбор уже широкой любовной темы.
+song-000020|КРЫЛЬЯ|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Песни с крыльями имеют узнаваемые названия и припевные образы.
+song-020041|КРЫША|song|music+everyday|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Есть знакомые песни о крыше, но слово может требовать знания куплета.
+song-020042|ЛЁД|song|music+nature|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Холодный образ встречается в знакомых песнях; лёд нужно отличать от снега.
+song-020043|ЛЕС|song|music+nature|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Детский и эстрадный репертуар дают простые знакомые песни о лесе.
+song-000039|ЛЕТО|song|music+nature|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Летняя тема широко представлена в общеизвестных сезонных песнях.
+song-020044|ЛУНА|song|music+space|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Луна часто звучит в знакомой лирике; доступно несколько музыкальных вариантов.
+song-000001|ЛЮБОВЬ|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Любовь имеет максимально широкий знакомый репертуар, а не единственный редкий мотив.
+song-020045|ЛЮДИ|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Общее слово часто встречается внутри текстов; нужен конкретный узнаваемый фрагмент.
+song-000013|МАМА|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Материнская тема широко знакома по семейным и эстрадным песням.
+song-020046|МЕЧТА|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Мечта — распространённая тема узнаваемой популярной лирики.
+song-020047|МИГ|song|music|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Краткое слово менее заметно в текстах; требуется точное воспоминание нужного куплета.
+song-020048|МИНУТА|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Есть знакомые песни с минутой; нельзя заменить тему любым указанием времени.
+song-020049|МИР|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Мир имеет несколько широко узнаваемых песенных трактовок, обе допустимы.
+song-000012|МОРЕ|song|music+marine|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Морская лирика широко известна и легко подбирается по теме.
+song-020050|МОСКВА|song|music+geography|geography||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Песни о Москве знакомы широкой русскоязычной аудитории разных поколений.
+song-020051|МОСТ|song|music+transport|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Мост встречается в знакомых композициях, но обычно нужен конкретный куплет.
+song-020052|МУЖЧИНА|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Тема имеет эстрадные опоры; слово нужно вспомнить в песне, а не просто выбрать певца-мужчину.
+song-000027|МУЗЫКА|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Есть узнаваемые песни, прямо посвящённые музыке или содержащие тематическое слово.
+song-000047|НАДЕЖДА|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Название и припев известных песен дают прямую опору теме надежды.
+song-000123|НЕБО|song|music+nature|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Небо широко представлено в знакомых припевных образах и названиях.
+song-020053|НОГА|song|music+biology|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Часть тела не равна танцевальной песне; требуется точное знание текста.
+song-020054|НОЧЬ|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Ночь — одна из самых узнаваемых тем популярных и традиционных песен.
+song-000008|ОБЛАКА|song|music+nature|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Песни об облаках имеют известные мелодии и несколько узнаваемых опор.
+song-020055|ОКНО|song|music+everyday|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Окно встречается в знакомых текстах; требуется вспомнить его прямое упоминание.
+song-000017|ОСЕНЬ|song|music+nature|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Осенние песни узнаваемы по названиям и припевам широкой аудитории.
+song-020056|ОТВЕТ|song|music|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Слово ответ обычно незаметно внутри текста; общий диалог в песне недостаточен.
+song-020057|ОТЕЦ|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Отец имеет знакомый репертуар, но нельзя заменять его любым семейным сюжетом.
+song-020058|ПАПА|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Папа отличается от темы отец точной словоформой; нужны соответствующие песни.
+song-020059|ПАРУС|song|music+marine|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Парус поддержан известными морскими песнями; точное слово сужает подбор.
+song-000073|ПЕРЕМЕН|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Узнаваемый припев о переменах даёт прямой мотив; форма слова сохранена.
+song-020060|ПЕСНЯ|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Тематическое слово часто встречается в известных песнях, доступны разные жанры.
+song-020061|ПЕЧАЛЬ|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Печаль имеет узнаваемую песенную опору и не требует узкого репертуара.
+song-020062|ПИВО|song|music+food|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Застольные и городские песни дают варианты, но не каждый напиток заменяет пиво.
+song-000098|ПОВОРОТ|song|music+transport|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Известная песня с поворотом даёт прямую и узнаваемую мелодическую опору.
+song-000032|ПОЕЗД|song|music+transport|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Железнодорожные песни и узнаваемые названия обеспечивают широкий выбор.
+song-020063|ПОЛЕ|song|music+nature|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Поле звучит в широко известном народном и популярном репертуаре.
+song-020064|ПТИЦА|song|music+animals|animals||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Песенный образ птицы знаком, но конкретную словоформу нужно вспомнить.
+song-020065|ПУТЬ|song|music+transport|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Дорожная тема имеет варианты; слово путь точнее общего путешествия.
+song-020066|РАДОСТЬ|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Радость как тема не равна весёлому темпу; нужна песня с подходящим словом.
+song-020067|РАССВЕТ|song|music+nature|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Есть известные утренние образы, но нужно вспомнить именно рассвет в тексте.
+song-020068|РЕКА|song|music+geography|geography||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Речной репертуар доступен, но задана река, а не любое море или вода.
+song-000094|РОДИНА|song|music+history|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Патриотический и авторский репертуар дают знакомые песни о родине.
+song-020069|РОССИЯ|song|music+geography|geography||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Тема страны поддержана широко известными песнями, без знания редких куплетов.
+song-020070|РУКИ|song|music+biology|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Руки встречаются в популярных песнях; жестовое действие не заменяет музыкальное воспроизведение.
+song-000045|САМОЛЁТ|song|music+transport|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Авиационная тема имеет узнаваемый репертуар, но уже общей темы дороги.
+song-020071|СВЕТ|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Свет широко встречается в знакомых песнях и припевных образах.
+song-020072|СВЕЧА|song|music+everyday|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Свеча имеет известные песенные образы; нужно отличить от общего огня.
+song-000042|СЕРДЦЕ|song|music+biology|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Сердце — частая тема общеизвестной лирики, доступно много мотивов.
+song-020073|СИЛА|song|music|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Сила требует точной строковой памяти; энергичная песня без слова не подходит.
+song-020074|СЛЁЗЫ|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Слёзы широко встречаются в лирике, но тема требует конкретного фрагмента.
+song-020075|СЛЕД|song|music|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|След обычно находится внутри куплета, подбор заметно уже общей дорожной темы.
+song-020076|СЛОВО|song|music+language|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Нужно вспомнить слово о слове в тексте; любое пение с речью не считается решением.
+song-000016|СНЕГ|song|music+nature|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Снег имеет широкий знакомый сезонный репертуар.
+song-000002|СОЛНЦЕ|song|music+space|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Солнце поддержано общеизвестными детскими и популярными песнями.
+song-020077|СОН|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Сон — распространённый узнаваемый песенный образ с несколькими опорами.
+song-020078|СТЕНА|song|music+everyday|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Стена требует конкретной песни или куплета, а не только образа преграды.
+song-020079|СУДЬБА|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Судьба часто встречается в песнях, но нужен точный воспроизводимый фрагмент.
+song-020080|СЧАСТЬЕ|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Песни о счастье широко узнаваемы по припевам и названиям.
+song-020081|ТАКСИ|song|music+transport|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Есть знакомые городские песни с такси; транспортная тема в целом шире задания.
+song-020082|ТЕНЬ|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Тень встречается в популярной лирике, но нужен определённый знакомый мотив.
+song-020083|ТИШИНА|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Тишина имеет известные композиции; беззвучное исполнение само по себе не решает задачу.
+song-000093|ТУМАН|song|music+nature|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Туман узнаваем в популярных, дорожных и традиционных песнях.
+song-020084|УЛИЦА|song|music+everyday|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Городская песня должна действительно содержать улицу, а не просто происходить в городе.
+song-000070|УЛЫБКА|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Широко знакомая детская песня даёт лёгкий узнаваемый мотив улыбки.
+song-020085|УТРО|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Утренние образы доступны, но требуется точное воспоминание подходящего текста.
+song-020086|ФОНАРЬ|song|music+everyday|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Фонарь узнаваем по городскому репертуару; понадобится знание определённого фрагмента.
+song-020087|ХЛЕБ|song|music+food|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Бытовое слово менее заметно в песнях; тематический подбор требует точной памяти куплета.
+song-020088|ЧАС|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Слово час часто внутри строки; не любая песня о времени удовлетворяет теме.
+song-020089|ЧУДО|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Тема чуда доступна в знакомой лирике, но не равна просто волшебному настроению.
+song-020090|ШАГ|song|music|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Шаг обычно не является названием или главным припевом; нужен точный текстовый ориентир.
+song-020091|ЮНОСТЬ|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Юность поддержана знакомыми песнями, но нельзя подменить её любым упоминанием детства.
+song-020092|TIME|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|У Time есть известные международные композиции, но требуется знакомство с англоязычным репертуаром.
+song-020093|NIGHT|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Night поддержано широко узнаваемыми танцевальными и рок-припевами.
+song-020094|DAY|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Day встречается в известных песнях U2 и Лу Рида; нужен выбранный узнаваемый мотив.
+song-020095|DREAMS|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Dreams даёт прямую опору через узнаваемый международный хит Eurythmics.
+song-020096|HEART|song|music+biology|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Heart легко связывается с широко знакомой песней из Титаника и другими хитами.
+song-020097|WORLD|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|World поддержано узнаваемой классикой Армстронга и Майкла Джексона.
+song-020098|LIFE|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Life имеет общеизвестный рок-припев Bon Jovi; точное название темы сохраняется.
+song-020099|HOME|song|music+everyday|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Home имеет знакомые баллады, но выбор уже самых массовых припевных тем.
+song-020100|RAIN|song|music+nature|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Rain поддержано международно известными композициями Prince и Guns N' Roses.
+song-020101|SUN|song|music+space|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Sun даёт доступную опору через узнаваемую классику The Beatles.
+song-020102|MOON|song|music+space|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Moon имеет широко известный стандарт Sinatra и узнаваемые альтернативы.
+song-020103|STAR|song|music+space|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Star встречается у Madonna и Deep Purple; нужно вспомнить конкретный фрагмент.
+song-020104|SUMMER|song|music+nature|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Summer узнаваем в зарубежных летних хитах, но требует памяти определённой композиции.
+song-020105|CHILD|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Child поддержано известным рок-репертуаром; выбор зависит от музыкальной знакомости.
+song-020106|WOMAN|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Woman имеет широко узнаваемую опору через песню Pretty Woman.
+song-020107|MAN|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Man встречается у Billy Joel и Elton John; нужен точный выбранный мотив.
+song-020108|GIRL|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Girl поддержано эстрадной классикой и Madonna; тема не равна любому женскому вокалу.
+song-020109|BOY|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Boy имеет известные поп-композиции, но подбор уже общих тем любви или ночи.
+song-020110|BABY|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Baby встречается в многочисленных узнаваемых международных поп-припевах.
+song-020111|MOTHER|song|music|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Mother в указанных примерах относится к более узкому рок-репертуару.
+song-020112|FATHER|song|music|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Father требует знакомых конкретных семейных баллад, а не общего перевода темы.
+song-020113|FRIEND|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Friend поддержано известными песнями Queen и Rolling Stones; требуется вспомнить мелодию.
+song-020114|ANGEL|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Angel имеет узнаваемые поп- и рок-варианты; не единственное специальное произведение.
+song-020115|HEAVEN|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Heaven встречается в знакомых балладах и поп-хитах, но требует репертуарной памяти.
+song-020116|HELL|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Hell имеет известные рок-опоры; тема не становится лёгкой для любой музыкальной аудитории.
+song-020117|FIRE|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Fire поддержано широко знакомыми припевами The Doors и Adele.
+song-020118|WATER|song|music+nature|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Water имеет общеизвестную рок-опору Smoke on the Water с узнаваемым мотивом.
+song-020119|WIND|song|music+nature|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Wind поддержано известными авторскими и эстрадными песнями; нужен конкретный вариант.
+song-020120|SNOW|song|music+nature|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Snow имеет праздничный стандарт и рок-песню, но точная мелодия зависит от репертуара.
+song-020121|BLUE|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Blue даёт прямой узнаваемый танцевальный хит Eiffel 65.
+song-020122|RED|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Red имеет знакомые эстрадные варианты; цвет нельзя заменять любым ярким образом.
+song-020123|BLACK|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Black узнаваем по Amy Winehouse и рок-репертуару; подбор требует конкретной песни.
+song-020124|WHITE|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|White встречается в известных рок-названиях; тема уже любого свадебного мотива.
+song-020125|GREEN|song|music+nature|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Green в данных примерах требует более специальной классической поп- или рок-памяти.
+song-020126|YELLOW|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Yellow поддержано узнаваемыми песнями Coldplay и The Beatles.
+song-020127|GOLD|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Gold имеет знакомые международные композиции, но требуется вспомнить нужный мотив.
+song-020128|SILVER|song|music|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Silver представлен менее массовыми композициями и праздничным стандартом.
+song-020129|PURPLE|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Purple имеет известные рок- и поп-опоры, но тематическое слово сравнительно узкое.
+song-020130|GOOD|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Good поддержано широко узнаваемым соул-припевом James Brown.
+song-020131|BAD|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Bad имеет известные композиции Майкла Джексона и Billie Eilish разных поколений.
+song-020132|HAPPY|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Happy поддержано двумя массовыми легко узнаваемыми поп-припевами.
+song-020133|CRAZY|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Crazy встречается в широко известных хитах с отчётливой мелодией.
+song-020134|WILD|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Wild имеет узнаваемые рок- и поп-названия, но требует конкретной репертуарной опоры.
+song-020135|SWEET|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Sweet знакомо через известную рок-классику; тематическое совпадение нужно в тексте.
+song-020136|YOUNG|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Young поддержано известными песнями разных поколений; нужно вспомнить один мотив.
+song-020137|ALONE|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Alone имеет узнаваемые баллады, а не только общий сюжет одиночества.
+song-020138|TOGETHER|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Together поддержано The Beatles и Rick Astley; требуется выбранная знакомая мелодия.
+song-020139|FOREVER|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Forever имеет широкую узнаваемую опору через Alphaville и Queen.
+song-020140|ALWAYS|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Always поддержано международно известной балладой Whitney Houston.
+song-020141|AGAIN|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Again встречается в массовых хитах Britney Spears и See You Again.
+song-020142|TONIGHT|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Tonight поддержано известными балладами; точное слово чаще требует знания названия.
+song-020143|YESTERDAY|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Yesterday имеет общеизвестную мелодическую опору The Beatles.
+song-020144|TOMORROW|song|music|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Tomorrow в данных примерах требует знакомства с мюзиклом или специальным рок-репертуаром.
+song-020145|HELLO|song|music+language|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Hello имеет несколько массовых международных хитов разных поколений.
+song-020146|GOODBYE|song|music+language|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Goodbye поддержано известными эстрадными песнями, но не любым прощальным мотивом.
+song-020147|SORRY|song|music+language|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Sorry имеет узнаваемые поп-примеры; тема задаёт конкретное слово извинения.
+song-020148|STAY|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Stay поддержано массовыми современными хитами и известной балладой Rihanna.
+song-020149|DANCE|song|music+arts|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Dance имеет несколько узнаваемых танцевальных поп-припевов.
+song-020150|ROCK|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Rock даёт общеизвестный ритм и припев Queen, доступный широкой аудитории.
+song-020151|WORK|song|music+professions|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Work имеет популярные современные композиции, но требует знакомости с этим репертуаром.
+song-020152|RUN|song|music+sport|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Run поддержано известными рок-балладами; общий быстрый темп не заменяет слово.
+song-020153|WALK|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Walk имеет узнаваемую опору Dire Straits и более узкую альтернативу Pantera.
+song-020154|FLY|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Fly даёт широко узнаваемый стандарт Sinatra и известный рок-хит.
+song-020155|CRY|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Cry встречается в знакомых поп-песнях; печальное настроение само по себе не подходит.
+song-020156|SMILE|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Smile имеет известную классику и поп-варианты, но требует узнаваемой конкретной мелодии.
+song-020157|KISS|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Kiss поддержано известными композициями Prince и Seal; выбор уже общей любви.
+song-020158|TOUCH|song|music|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Touch в указанных примерах требует более специального знания рок- и поп-классики.
+song-020159|HOLD|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Hold имеет узнаваемую рок-опору Toto и поп-балладу; требуется вспомнить фрагмент.
+song-020160|FEEL|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Feel поддержано знакомыми международными хитами Robbie Williams и Gorillaz.
+song-020161|BELIEVE|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Believe имеет прямую массовую поп-опору Cher с узнаваемым припевом.
+song-020162|WISH|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Wish знакомо по Pink Floyd и Stevie Wonder; требуется определённый музыкальный опыт.
+song-020163|MONEY|song|music+everyday|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Money имеет широко узнаваемые припевы ABBA и известную рок-классику.
+song-020164|FAME|song|music+arts|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Fame поддержано David Bowie и Irene Cara; тему нужно связать с конкретной мелодией.
+song-020165|POWER|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Power имеет узнаваемый танцевальный хит и эстрадно-роковую опору.
+song-020166|ROAD|song|music+transport|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Road легко связывается с международно известным мотивом Hit the Road Jack.
+song-020167|STREET|song|music+everyday|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Street имеет узнаваемую классику, но улица не равна любому городскому сюжету.
+song-020168|CITY|song|music+geography|geography||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|City поддержано Guns N' Roses и ABBA; требуется знакомость с конкретными песнями.
+song-020169|RIVER|song|music+geography|geography||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|River имеет известные композиции, но менее универсальный припевный ориентир.
+song-020170|OCEAN|song|music+marine|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Ocean поддержано роком и современной поп-музыкой; нужно подобрать точную тему.
+song-020171|ROSE|song|music+nature|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Rose имеет узнаваемые баллады; любой цветочный мотив не считается достаточным.
+song-020172|FLOWER|song|music+nature|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Flower в данных примерах требует узкого электронного или альтернативного репертуара.
+song-020173|TRAIN|song|music+transport|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Train поддержано узнаваемыми рок-композициями; точное слово сужает выбор.
+song-020174|RADIO|song|music+technology|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Radio имеет общеизвестную музыкальную опору Queen и узнаваемую поп-классику.
+song-020175|SILENCE|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Silence поддержано двумя широко известными международными композициями.
+song-020176|MUSIC|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Music встречается в известных танцевальных песнях; инструментальное исполнение без темы недостаточно.
+song-020177|SONG|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Song имеет узнаваемые рок- и поп-варианты, но не любая песня подходит автоматически.
+song-020178|PEACE|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Peace поддержано известной авторской классикой; требуется музыкальная знакомость, не просто мирный сюжет.
+song-020179|WAR|song|music+history|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|War имеет узнаваемую соул- и рок-опору, но не любые песни о войне на другом языке.
+song-020180|KING|song|music+history|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|King в указанных примерах требует сравнительно специального знания старой зарубежной эстрады.
+song-020181|QUEEN|song|music+history|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Queen имеет общеизвестный танцевальный хит ABBA с прямым тематическим словом.
+song-020182|HERO|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Hero поддержано известными балладами Mariah Carey и Enrique Iglesias.
+song-020183|MAGIC|song|music+mythology|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Magic имеет узнаваемые композиции Queen и The Police; нужен определённый мотив.
+song-020184|LUCKY|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Lucky имеет массовые международные хиты и хорошо различимые припевы.
+song-020185|EASY|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Easy поддержано известной классикой, но требует репертуара Commodores или Eagles.
+song-020186|HOT|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Hot имеет массовые танцевальные опоры Donna Summer и Katy Perry.
+song-020187|COLD|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Cold знакомо через Katy Perry и Foreigner; нужно сохранить именно нужное слово.
+song-020188|SLOW|song|music|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Slow в приведённых примерах требует менее универсального зарубежного поп-репертуара.
+song-020189|LITTLE|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Little встречается в известной классике The Beatles и Queen; нужен конкретный фрагмент.
+song-020190|BROKEN|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Broken имеет узнаваемый рок-хит Green Day; выбор уже любых грустных песен.
+song-020191|LOST|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Lost поддержано популярными современными песнями, но мелодия требует знакомости с ними.
+song-020192|EVERYTHING|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Everything имеет известную балладную опору Bryan Adams и более узкие варианты.
+song-020193|NOTHING|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Nothing поддержано широко узнаваемыми международными балладами разных жанров.
+song-020194|SOMEBODY|song|music|||-:type|-:type|-:type|easy:other-reviewed|-:type|-:type|-:type|Somebody имеет узнаваемые композиции Queen и массовый хит Gotye.
+song-020195|NOBODY|song|music|||-:type|-:type|-:type|hard:other-reviewed|-:type|-:type|-:type|Nobody в данных примерах требует более специального фанкового или современного альтернативного репертуара.
+song-020196|MISSING|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Missing имеет узнаваемый танцевальный хит и известную балладную альтернативу.
+song-020197|DANGEROUS|song|music|||-:type|-:type|-:type|medium:other-reviewed|-:type|-:type|-:type|Dangerous поддержано Michael Jackson и Roxette; нужен выбранный знакомый мотив.
