@@ -100,3 +100,31 @@ v2SecretMethods=function(selection,match,level){
  if(!editorialSelection(selection)&&!Object.hasOwn(match,'taskDifficultyPolicy'))return historicalV2SecretMethods(selection,match,level);
  const methods=editorialSecretMethods(selection,match,level);if(!methods.length)throw Error('Нет подходящих способов Секретки.');return methods;
 };
+const QUIP_TASK_DIFFICULTY_LABELS=Object.freeze({easy:'Лёгкая',medium:'Средняя',hard:'Сложная',general:'Как в общих правилах',method:'По способу выполнения',all:'Все уровни','medium-hard':'Средняя + сложная'});
+function taskDifficultySummary(modes){
+ const {policy,problem}=readTaskDifficultyPreferences();return problem||modes.map(id=>getModeConfig(id).title+' — '+QUIP_TASK_DIFFICULTY_LABELS[policy.choices[id]]).join('; ');
+}
+function renderTaskDifficultyControls(){
+ const {policy,problem}=readTaskDifficultyPreferences();
+ for(const target of document.querySelectorAll('[data-task-difficulty]')){
+  const mode=target.dataset.taskDifficulty,choices=['general',...(mode==='secret'?['method']:[]),'easy','medium','hard',...(mode==='blitz'?['medium-hard','all']:[])],missing=[];
+  const buttons=choices.map(choice=>{
+   let status={available:false,reason:problem};
+   if(policy){const candidate={version:1,choices:{...policy.choices,[mode]:choice}},settings={...options,...setupSongPolicy(options),taskDifficultyPolicy:candidate};
+    try{const result=checkEditorialPack(options.contentPack,{...settings,modes:mode==='secret'?[...new Set([...settings.modes,'secret'])]:[mode]});status={available:result.available,reason:result.problems[0]||''};}catch(error){status.reason=error.message;}}
+   if(!status.available)missing.push(QUIP_TASK_DIFFICULTY_LABELS[choice]);
+   return '<button type="button" data-task-mode="'+mode+'" data-task-choice="'+choice+'" aria-pressed="'+String(policy?.choices[mode]===choice)+'"'+(!status.available?' disabled':'')+' title="'+escapeHTML(status.reason)+'">'+QUIP_TASK_DIFFICULTY_LABELS[choice]+'</button>';
+  });
+  const note=problem||(missing.length?'Нет подходящих заданий: '+missing.join(', ')+'. Измените категории, тему или другие настройки режима.':mode==='secret'?'Учитываются сложность и допустимость выбранного способа.':'Сложность заданий этого режима. Общие правила управляют таймером и усложнениями.');
+  const markup='<h4>Сложность заданий</h4><div class="wizard-task-levels" role="group" aria-label="Сложность: '+escapeHTML(getModeConfig(mode).title)+'">'+buttons.join('')+'</div><p role="status">'+escapeHTML(note)+'</p>';
+  if(target.innerHTML!==markup)target.innerHTML=markup;
+ }
+}
+function editorialCategoryCounts(selection,policy){
+ const pack=baseContentPackSelection(selection);if(pack.id!=='general'||QUIP_EDITORIAL_PACK_VERSIONS.general!==pack.version)return generalCategoryCounts(selection,policy);
+ const edition=QUIP_EDITORIAL_EDITION,ids=edition.catalogs.general.ids,removed=new Set(),counts=edition.categories.map((id,i)=>{
+  let count=0;for(const cardId of ids)if(edition.records[cardId][1]&2**i){count++;if(policy.excluded.includes(id))removed.add(cardId);}
+  return {id,name:QUIP_GENERAL_CATEGORY_LABELS[id]||id,count,enabled:!policy.excluded.includes(id)};
+ });
+ return {total:ids.length,available:ids.length-removed.size,categories:counts};
+}

@@ -192,3 +192,15 @@
 .setup-wizard .wizard-categories summary:focus-visible,.setup-wizard .wizard-category input:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
 .setup-wizard #wizard-category-all{min-height:48px;width:100%;white-space:normal;overflow-wrap:anywhere}
 @media(min-width:700px){.setup-wizard #wizard-category-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* TASK041: independent task levels inside the existing mode settings. */
+.setup-wizard:not(.wizard-mode-center) .wizard-task-difficulty{display:none}
+.wizard-task-difficulty{margin:12px 0 16px;min-width:0}
+.wizard-task-difficulty h4{font-size:12px;margin:0 0 8px;color:var(--soft)}
+.wizard-task-levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.wizard-task-levels button{min-height:44px;min-width:0;padding:8px 4px;border:1px solid #af98ff60;border-radius:9px;background:#af98ff0c;color:var(--soft);font:inherit;font-size:12px;overflow-wrap:anywhere;cursor:pointer}
+.wizard-task-levels button[data-task-choice="general"],.wizard-task-levels button[data-task-choice="method"]{grid-column:1/-1}
+.wizard-task-levels button[aria-pressed="true"]{color:var(--ink,#121b2b);background:var(--cyan);border-color:var(--cyan);font-weight:800;box-shadow:0 0 0 2px #9aeee626}
+.wizard-task-levels button:disabled{opacity:.4;cursor:default}
+.wizard-task-levels button:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.wizard-task-difficulty p{font-size:11px;line-height:1.5;margin:8px 0 0;color:var(--soft);overflow-wrap:anywhere}
