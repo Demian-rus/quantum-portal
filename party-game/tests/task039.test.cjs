@@ -6,7 +6,7 @@ test('TASK039 exact reviewed source additions restore accepted main and expose u
  const {execFileSync}=require('node:child_process'),{normalizeTask039,hunks}=require('../../diagnostics/task039/source-contract.cjs');
  const base='d305bad897d1f912553cf600d82969c031dd76d7';
  for(const file of new Set(hunks.map(h=>h.file))){
-  const source=fs.readFileSync(path.join(root,file),'utf8'),before=execFileSync('git',['show',base+':party-game/'+file],{encoding:'utf8',maxBuffer:20e6});
+  const source=require('../../diagnostics/task041/source-contract.cjs').normalizeTask041(fs.readFileSync(path.join(root,file),'utf8')),before=execFileSync('git',['show',base+':party-game/'+file],{encoding:'utf8',maxBuffer:20e6});
   assert.equal(normalizeTask039(source),before,file);
   assert.notEqual(normalizeTask039(source+'\n/* unreviewed edit */'),before,file);
   for(const h of hunks.filter(h=>h.file===file))assert.equal(source.split(h.after).length,2,file+' exact unique hunk');
@@ -31,7 +31,7 @@ test('TASK039 v5 and v6 paused Blitz retain exact RAW, selected IDs and their ve
   const source=createSimulation(7039);source.eval('Object.assign(options,{modes:["blitz"],difficulty:"easy",finishType:"rounds",rounds:4,riskRounds:false,complications:false});newGame()');
   const fixture=JSON.parse(source.storage.get('iskra-party:v1'));
   // Explicit historical schema fixture; never change the rules of a live save.
-  fixture.game.rulesVersion=version;fixture.game.modeConfigVersion=version===5?1:2;fixture.game.contentPack={id:'general',version:version===5?67:68};fixture.options.contentPack={...fixture.game.contentPack};
+  fixture.game.contentPack={id:"general",version:68};delete fixture.game.taskDifficultyPolicy;fixture.game.rulesVersion=version;fixture.game.modeConfigVersion=version===5?1:2;fixture.game.contentPack={id:'general',version:version===5?67:68};fixture.options.contentPack={...fixture.game.contentPack};
   source.storage.set('iskra-party:v1',JSON.stringify(fixture));
   const h=createSimulation(7039,new Map(source.storage));assert.equal(h.eval('storageBlocked'),false);h.eval('game.dice=false;roll();game.dice=true;toggleWord();startTimer();pauseTimer();persist()');
   assert.equal(h.eval('game.current.paused'),true);const raw=h.storage.get('iskra-party:v1'),ids=JSON.parse(h.eval('JSON.stringify(game.current.blitzCardIds)'));assert.equal(ids.length,3);assert.equal(new Set(ids).size,3);
@@ -199,7 +199,7 @@ test('TASK039 legacy identities and v1–v6 rules retain RAW while repeated futu
  for(const version of [1,2,3,4,5,6]){
   const seed=createSimulation(7050);seed.eval('newGame()');
   const fixture=JSON.parse(seed.storage.get('iskra-party:v1'));
-  fixture.game.rulesVersion=version;fixture.game.modeConfigVersion=version<6?1:2;
+  fixture.game.contentPack={id:"general",version:68};delete fixture.game.taskDifficultyPolicy;fixture.game.rulesVersion=version;fixture.game.modeConfigVersion=version<6?1:2;
   delete fixture.game.matchId;delete fixture.game.profileMatch;
   const raw=JSON.stringify(fixture);seed.storage.set('iskra-party:v1',raw);
   const h=createSimulation(7051,new Map(seed.storage));assert.equal(h.eval('storageBlocked'),false);

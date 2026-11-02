@@ -154,7 +154,7 @@ async function settingsReload(page){
  await setupPlayers(page);await startFromSetup(page);await scene(page,'game');
  const started=await snapshot(page);
  for(const field of ['difficulty','duration','awardTo','modes','promptTypes','complications','modifierChance','riskRounds','targetScore','contentPack'])
-  assert.deepEqual(started.game[field],guesser.options[field],'Start uses restored '+field);
+  assert.deepEqual(field==='contentPack'?started.game.contentPack.pack:started.game[field],guesser.options[field],'Start uses restored '+field);
  assert.equal(started.game.rulesVersion,6);assert.equal(started.game.modeConfigVersion,2);assert.equal(started.game.modePlannerVersion,1);
  assert.equal(JSON.parse(started.raw).version,1);
 }

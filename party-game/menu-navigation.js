@@ -97,7 +97,7 @@ function gameTypeCountSnapshot(){
    if(!pools.has(poolKey))pools.set(poolKey,selectPool.apply(this,arguments));
    return pools.get(poolKey);
   };
-  try{themes=listThematicPacks(options);}finally{getPackCardPool=selectPool;}
+  try{themes=listThematicPacks({...options,...setupSongPolicy(options)});}finally{getPackCardPool=selectPool;}
   const active=themes.filter(entry=>entry.available&&entry.pack.enabled);
   const snapshot={general:contentPackCount(general),thematic:active.reduce((sum,entry)=>sum+contentPackCount(entry.pack),0),themes};
   if(cache.size>=8)cache.delete(cache.keys().next().value);
@@ -141,7 +141,7 @@ function selectTheme(id,version){
  try{
   const pack=getContentPack(selection);
   const setup=packSetupSettings(selection,options);
-  if(pack.id==='general'||!pack.enabled||(setup.modes.length&&!checkContentPack(selection,setup).available)){toast('Эта тема пока недоступна.');return false;}
+  if(pack.id==='general'||!pack.enabled||(setup.modes.length&&!checkContentPack(selection,{...setup,...setupSongPolicy(setup)}).available)){toast('Эта тема пока недоступна.');return false;}
  }catch{toast('Эта тема пока недоступна.');return false;}
  changeSetupPack(selection,'themes');return true;
 }

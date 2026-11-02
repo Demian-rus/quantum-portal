@@ -8,9 +8,9 @@ function simulate(id,chance,rounds=1200,seed=8008){
   const {id,chance,rounds}=auditConfig,selection={id,version:2},pack=getContentPack(selection);
   options.contentPack=selection;options.modes=pack.allowedModes?pack.allowedModes.slice():MODE_LIST.map(m=>m.id);
   options.promptTypes=id==='general'?['word','phrase','idiom']:['word','phrase'];options.difficulty='mixed';
-  options.complications=true;options.modifierChance=chance;options.dice=false;options.awardTo='guesser';newGame();
+  options.complications=true;options.modifierChance=chance;options.dice=false;options.awardTo='guesser';const configured={...options};options.contentPack=latestGeneralPackSelection();options.modes=['talk'];newGame();options=configured;game.modes=configured.modes.slice();game.promptTypes=configured.promptTypes.slice();
   // TASK008 is a historical diagnostic of the pre-TASK009 per-kind selector.
-  game.contentPack=selection;delete game.taskHistoryVersion;delete game.taskHistory;game.modifierSelectionVersion=1;delete game.modifierCatalogVersion;
+  game.contentPack=selection;delete game.taskDifficultyPolicy;delete game.taskHistoryVersion;delete game.taskHistory;game.modifierSelectionVersion=1;delete game.modifierCatalogVersion;
   delete game.modePlannerVersion;delete game.modePlannerState;
   const counts={},levels={easy:0,medium:0,hard:0},methods={},cycles={},seenAcrossKinds=new Map();
   let optional=0,modified=0,forced=0,forcedModified=0,approx=0,approxModified=0,unnecessaryRepeats=0,releasedOldest=0,crossKindRepeats=0;

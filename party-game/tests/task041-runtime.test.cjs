@@ -39,3 +39,24 @@ test('historical parties keep the old selector and exact RNG when new preference
  a.eval("writeTaskDifficultyPreference('blitz','easy')");b.eval("writeTaskDifficultyPreference('blitz','medium')");
  assert.equal(a.eval('JSON.stringify(rollOutcome())'),b.eval('JSON.stringify(rollOutcome())'));
 });
+test('TASK041 exact integration hunks restore previous runtime and reject unrelated edits',()=>{
+ const fs=require('node:fs'),{execFileSync}=require('node:child_process'),{normalizeTask041,hunks}=require('../../diagnostics/task041/source-contract.cjs');
+ for(const file of new Set(hunks.map(h=>h.file))){
+  const source=fs.readFileSync('party-game/'+file,'utf8'),old=execFileSync('git',['show','538268d7eccffbe3dc48cbfcf2f3b514bfa1cc85:party-game/'+file],{encoding:'utf8',maxBuffer:20e6});
+  assert.equal(normalizeTask041(source),old,file);
+  assert.notEqual(normalizeTask041(source+'\n/* unintended edit */'),old,file);
+  for(const h of hunks.filter(h=>h.file===file))assert.notEqual(normalizeTask041(source.replace(h.after,h.after+'/* mutation */')),old,file+' hunk mutation');
+ }
+});
+test('new edition feedback projection and reload preserve the selected task and exact RAW',()=>{
+ const a=start('talk','hard');a.eval('game.dice=false;roll();game.dice=true;persist()');
+ const item=plain(a.eval('currentReportItem(game)'));assert(item.cardId);assert.deepEqual(item.pack,{id:'general',version:68});
+ const raw=a.storage.get('iskra-party:v1'),snapshot=a.eval('JSON.stringify(game.current)'),b=createSimulation(795,new Map(a.storage));
+ assert.equal(b.eval('storageBlocked'),false);assert.equal(b.storage.get('iskra-party:v1'),raw);assert.equal(b.eval('JSON.stringify(game.current)'),snapshot);
+ b.eval("writeTaskDifficultyPreference('talk','easy');renderOptions();persist()");assert.equal(b.storage.get('iskra-party:v1'),raw);
+});
+test('Blitz keeps its word type and numerical tie-break honors the pinned Approx tier and categories',()=>{
+ const h=start('blitz','hard');h.eval("game.promptTypes=['phrase'];game.current=rollOutcome()");assert.equal(h.eval('game.current.blitzWords.length'),3);
+ h.eval("game.taskDifficultyPolicy={version:1,choices:{...game.taskDifficultyPolicy.choices,approx:'hard'}};game.difficulty='easy';var tie=nextTiebreakQuestion()");assert.equal(h.eval('tie.difficulty'),'hard');assert.equal(h.eval("QUIP_EDITORIAL_EDITION.records[tie.id][3][6]"),'3');
+ h.eval('game.contentPack.excluded=QUIP_EDITORIAL_EDITION.categories.slice()');assert.equal(h.eval('nextTiebreakQuestion()'),null);
+});

@@ -15,7 +15,7 @@ test('reports: exact source IDs in all modes, Secret and every Blitz position su
   const c=h.eval('game.current'),report=h.eval('currentReportItem(game)');
   assert.ok(report.cardId);assert.equal(report.text,c.word);assert.equal(report.cardId,c.question?.id??c.cardId);
   if(mode!=='approx'){
-   const actual=h.eval("getPackCardPool(game.contentPack,getMode(game.current.methodId).kind,game.current.difficulty,game.promptTypes).find(c=>c.id===game.current.cardId)");
+   const actual=h.eval("editorialPool(game,game.current.modeId,game.current.difficulty,game.current.modeId==='secret'?game.current.methodId:null).find(c=>c.id===game.current.cardId)");
    assert.equal(actual.text,c.word);
   }
   if(mode==='secret')assert.equal(report.methodId,c.methodId);
@@ -36,7 +36,7 @@ test('reports: selection metadata adds zero RNG calls and preserves every chosen
   const current=createSimulation(7),baseline=createSimulation(7);vm.runInContext(old,baseline.context);
   const configure=h=>{
    h.context.mode=mode;h.context.historical=historical;
-   h.eval("Object.assign(options,{modes:[mode],awardTo:'guesser',difficulty:'mixed',dice:false,complications:true});newGame();game.rulesVersion=5;game.modeConfigVersion=1;delete game.riskPolicyVersion;delete game.riskPlannerState;if(historical){delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierSelectionVersion;delete game.modifierCatalogVersion;delete game.modifierChance;delete game.modifierRecent;}");
+   h.eval("Object.assign(options,{modes:[mode],awardTo:'guesser',difficulty:'mixed',dice:false,complications:true});newGame();game.contentPack=baseContentPackSelection(game.contentPack);delete game.taskDifficultyPolicy;game.rulesVersion=5;game.modeConfigVersion=1;delete game.riskPolicyVersion;delete game.riskPlannerState;if(historical){delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierSelectionVersion;delete game.modifierCatalogVersion;delete game.modifierChance;delete game.modifierRecent;}");
    let calls=0;const random=seededRandom(781);h.context.Math.random=()=>{calls++;return random()};return()=>calls;
   };
   const ca=configure(current),cb=configure(baseline);

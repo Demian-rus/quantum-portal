@@ -167,6 +167,7 @@ const URL='http://127.0.0.1:8765/party-game/';
    const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
    const fixture={id:'fixture-topic',version:1,name:'Тестовая тема',enabled:true,categories:[],types:['word'],
     criteria:{cardIds:['word-000001','word-000002','word-000003'],sourcePacks:['core']},minCardsPerPool:1};
+   await page.route('**/editorial-edition.js*',async route=>{const response=await route.fetch();await route.fulfill({response,body:require('./editorial-fixtures.cjs').extendFixtureEdition(await response.text(),fixture)})});
    await page.route('**/content-packs.js*',async route=>{
     const response=await route.fetch();
     const body=(await response.text()).replace('const QUIP_CONTENT_PACKS=defineContentPacks([',
@@ -184,12 +185,12 @@ const URL='http://127.0.0.1:8765/party-game/';
    await page.locator('#thematic-game').click();await page.locator('[data-theme="fixture-topic"]').click();await startFromSetup(page);
    await page.locator('[data-action="roll"]').click();
    const card=await page.evaluate(()=>({pack:game.contentPack,current:game.current}));
-   assert.equal(card.pack.id,'fixture-topic');assert.ok(['КАРАНДАШ','СУНДУК','ПУЗЫРЬ'].includes(card.current.word));
+   assert.equal(card.pack.pack.id,'fixture-topic');assert.ok(['КАРАНДАШ','СУНДУК','ПУЗЫРЬ'].includes(card.current.word));
    await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();
    assert.deepEqual(await page.evaluate(()=>({pack:game.contentPack,current:game.current})),card);
    await page.locator('#exit-game').click();await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();
    assert.equal(await page.locator('#setup-pack-caption').textContent(),'Общий словарь');
-   assert.equal(await page.evaluate(()=>game.contentPack.id),'fixture-topic','Setup must preserve unfinished topic match');
+   assert.equal(await page.evaluate(()=>baseContentPackSelection(game.contentPack).id),'fixture-topic','Setup must preserve unfinished topic match');
    assert.deepEqual(errors,[]);await context.close();
   }
  }finally{await browser.close()}

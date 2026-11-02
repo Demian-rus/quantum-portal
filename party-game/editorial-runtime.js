@@ -6,6 +6,7 @@ validateGeneralCategorySelection=function(selection){
  if(Object.keys(selection).sort().join(',')!=='edition,excluded,pack,selectionPolicyVersion'||!selection.pack||Object.keys(selection.pack).sort().join(',')!=='id,version'||QUIP_EDITORIAL_PACK_VERSIONS[selection.pack.id]!==selection.pack.version)throw Error('Unsupported editorial content selection');
  validateEditorialReference(selection.edition);
  const policy=generalCategoryPolicy({version:1,excluded:selection.excluded});
+ if(policy.excluded.some(id=>!QUIP_EDITORIAL_EDITION.categories.includes(id)))throw Error('Неизвестная категория редакции. Сохранение защищено.');
  if(selection.pack.id!=='general'&&policy.excluded.length)throw Error('Categories apply to general only');
  return policy;
 };
@@ -34,17 +35,18 @@ function validateEditorialReference(ref){
 function editorialSelection(selection){return selection?.selectionPolicyVersion===2;}
 function pinEditorialSelection(selection){
  const pack=baseContentPackSelection(selection);
- if(QUIP_EDITORIAL_PACK_VERSIONS[pack.id]!==pack.version)throw Error('Для этой версии темы нет редакции словаря.');
+ if(QUIP_EDITORIAL_PACK_VERSIONS[pack.id]!==pack.version||getContentPack(selection)!==QUIP_CONTENT_PACKS[pack.id+'@'+pack.version])throw Error('Для этой версии темы нет редакции словаря.');
  return {selectionPolicyVersion:2,pack:{id:pack.id,version:pack.version},excluded:(validateGeneralCategorySelection(selection)?.excluded||[]).slice(),edition:{id:QUIP_EDITORIAL_EDITION.id,version:QUIP_EDITORIAL_EDITION.version,digest:QUIP_EDITORIAL_EDITION.digest}};
 }
 let editorialIndex=null;
-const editorialPools=new Map();
+const editorialPools=new Map(),editorialPoolCounts=new WeakMap();
 function getEditorialIndex(){return editorialIndex||(editorialIndex=QuipEditorialSelection.createIndex(QUIP_EDITORIAL_EDITION,[...PARTY_CARDS,...QUIP_APPROX_QUESTIONS]));}
 function editorialRequest(selection,settings,mode,level,method=null){
  const pack=baseContentPackSelection(selection);
  if(QUIP_EDITORIAL_PACK_VERSIONS[pack.id]!==pack.version)throw Error('Для этой версии темы нет редакции словаря.');
- const policy=QuipEditorialSelection.preferences(settings.taskDifficultyPolicy);
- return {theme:pack.id,mode,method,tiers:QuipEditorialSelection.tiersFor(policy,mode,level,method),promptTypes:(settings.promptTypes||['word','phrase','idiom']).slice(),excludedCategories:(validateGeneralCategorySelection(selection)?.excluded||[]).slice(),languages:(songLanguagePolicy(settings)||['ru','en']).slice()};
+ const policy=QuipEditorialSelection.preferences(settings.taskDifficultyPolicy),excluded=(validateGeneralCategorySelection(selection)?.excluded||[]).slice();
+ if(excluded.some(id=>!QUIP_EDITORIAL_EDITION.categories.includes(id)))throw Error('Неизвестная категория редакции. Настройки защищены.');
+ return {theme:pack.id,mode,method,tiers:QuipEditorialSelection.tiersFor(policy,mode,level,method),promptTypes:(mode==='blitz'?['word']:(settings.promptTypes||['word','phrase','idiom'])).slice(),excludedCategories:excluded,languages:(songLanguagePolicy(settings)||['ru','en']).slice()};
 }
 function editorialPoolFor(selection,settings,mode,level,method=null){
  const request=editorialRequest(selection,settings,mode,level,method),key=JSON.stringify(request);
@@ -54,7 +56,8 @@ function editorialPoolFor(selection,settings,mode,level,method=null){
 function editorialPool(match,mode,level,method=null){return editorialPoolFor(match.contentPack,match,mode,level,method);}
 function editorialAvailability(selection,settings,mode,level,method=null){
  const pool=editorialPoolFor(selection,settings,mode,level,method),minimum=Math.max(QUIP_EDITORIAL_EDITION.catalogs[baseContentPackSelection(selection).id].minimum,mode==='blitz'?3:1);
- const count=new Set(pool.map(row=>normalizeTaskText(row.text||row.question))).size;
+ if(!editorialPoolCounts.has(pool))editorialPoolCounts.set(pool,new Set(pool.map(row=>normalizeTaskText(row.text||row.question))).size);
+ const count=editorialPoolCounts.get(pool);
  return {available:count>=minimum,count,minimum,reason:count>=minimum?'':getModeConfig(mode).title+': доступно '+count+', нужно '+minimum+'. Измените сложность, категории или тему.'};
 }
 function editorialSecretMethods(selection,settings,level){
@@ -117,14 +120,19 @@ function renderTaskDifficultyControls(){
   });
   const note=problem||(missing.length?'Нет подходящих заданий: '+missing.join(', ')+'. Измените категории, тему или другие настройки режима.':mode==='secret'?'Учитываются сложность и допустимость выбранного способа.':'Сложность заданий этого режима. Общие правила управляют таймером и усложнениями.');
   const markup='<h4>Сложность заданий</h4><div class="wizard-task-levels" role="group" aria-label="Сложность: '+escapeHTML(getModeConfig(mode).title)+'">'+buttons.join('')+'</div><p role="status">'+escapeHTML(note)+'</p>';
-  if(target.innerHTML!==markup)target.innerHTML=markup;
+  if(target.innerHTML!==markup){const focus=target.contains(document.activeElement)?document.activeElement?.dataset.taskChoice:null;target.innerHTML=markup;if(focus)target.querySelector('[data-task-choice="'+focus+'"]')?.focus({preventScroll:true});}
  }
 }
-function editorialCategoryCounts(selection,policy){
+const editorialCategorySummaries=new Map();
+function editorialCategoryCounts(selection,policy=validateGeneralCategorySelection(selection)||QUIP_GENERAL_CATEGORIES_ALL){
  const pack=baseContentPackSelection(selection);if(pack.id!=='general'||QUIP_EDITORIAL_PACK_VERSIONS.general!==pack.version)return generalCategoryCounts(selection,policy);
- const edition=QUIP_EDITORIAL_EDITION,ids=edition.catalogs.general.ids,removed=new Set(),counts=edition.categories.map((id,i)=>{
-  let count=0;for(const cardId of ids)if(edition.records[cardId][1]&2**i){count++;if(policy.excluded.includes(id))removed.add(cardId);}
-  return {id,name:QUIP_GENERAL_CATEGORY_LABELS[id]||id,count,enabled:!policy.excluded.includes(id)};
- });
- return {total:ids.length,available:ids.length-removed.size,categories:counts};
+ generalCategoryPolicy(policy);const key=JSON.stringify(policy.excluded.slice().sort());
+ if(!editorialCategorySummaries.has(key)){
+  const edition=QUIP_EDITORIAL_EDITION,ids=edition.catalogs.general.ids,counts=Array(edition.categories.length).fill(0),mask=policy.excluded.reduce((value,id)=>value|2**edition.categories.indexOf(id),0);let available=0;
+  for(const id of ids){const tags=edition.records[id][1];if(!(tags&mask))available++;for(let i=0;i<counts.length;i++)if(tags&2**i)counts[i]++;}
+  const categories=edition.categories.map((id,i)=>({id,name:QUIP_GENERAL_CATEGORY_LABELS[id]||id,count:counts[i],enabled:!policy.excluded.includes(id)}));
+  if(editorialCategorySummaries.size>=32)editorialCategorySummaries.delete(editorialCategorySummaries.keys().next().value);
+  editorialCategorySummaries.set(key,{total:ids.length,available,categories});
+ }
+ return editorialCategorySummaries.get(key);
 }

@@ -6,7 +6,7 @@ const {normalizeTask039Resources}=require('./task039-resource-contract.cjs');
 // The touch hotfix is already in the accepted TASK038 main baseline. Protect
 // every unrelated production file against later feature-branch changes.
 const BASE='d305bad897d1f912553cf600d82969c031dd76d7';
-const read=f=>fs.readFileSync('party-game/'+f,'utf8');
+const read=f=>require('../../diagnostics/task041/source-contract.cjs').normalizeTask041(fs.readFileSync('party-game/'+f,'utf8'));
 const old=f=>execFileSync('git',['show',BASE+':party-game/'+f],{encoding:'utf8',maxBuffer:20e6});
 const reviewedChanges=new Set(['index.html','sw.js','mode-config.js','rules.js','round-selection.js','team-engine.js','storage-controller.js',
  'content/templates/content-packs.before.js','content/templates/content-packs.after.js']);

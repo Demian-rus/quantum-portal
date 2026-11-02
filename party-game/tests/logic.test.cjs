@@ -50,6 +50,18 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
   vm.runInContext(read('modifiers-v2.js'),context);
   const packSource=fixturePack?read('content-packs.js').replace('const QUIP_CONTENT_PACKS=defineContentPacks([','const QUIP_CONTENT_PACKS=defineContentPacks(['+JSON.stringify(fixturePack)+','):read('content-packs.js');
   vm.runInContext(packSource,context);
+  let editionSource=read('editorial-edition.js');
+  if(fixturePack){
+   const edition=JSON.parse(vm.runInNewContext(editionSource+'\nJSON.stringify(QUIP_EDITORIAL_EDITION)'));
+   const versions=JSON.parse(vm.runInNewContext(editionSource+'\nJSON.stringify(QUIP_EDITORIAL_PACK_VERSIONS)'));
+   const bit=2**edition.themes.length;edition.themes.push(fixturePack.id);versions[fixturePack.id]=fixturePack.version;
+   edition.catalogs[fixturePack.id]={ids:fixturePack.criteria.cardIds.slice(),minimum:fixturePack.minCardsPerPool,allowedModes:['talk','mime','draw','secret','blitz']};
+   for(const id of fixturePack.criteria.cardIds)edition.records[id][2]|=bit;
+   delete edition.digest;edition.digest=require('../../editorial/quip/editor.cjs').hash(edition);
+   editionSource=editionSource.replace(/const QUIP_EDITORIAL_EDITION=freezeEditorialData\([^\n]+\);/,'const QUIP_EDITORIAL_EDITION=freezeEditorialData('+JSON.stringify(edition)+');').replace(/const QUIP_EDITORIAL_PACK_VERSIONS=Object.freeze\([^\n]+\);/,'const QUIP_EDITORIAL_PACK_VERSIONS=Object.freeze('+JSON.stringify(versions)+');');
+  }
+  vm.runInContext(editionSource,context);
+  vm.runInContext(read('editorial-runtime.js'),context);
   vm.runInContext(read('presets.js'),context);
   vm.runInContext(read('rules-guide.js'),context);
    vm.runInContext(read('menu-navigation.js'),context);
@@ -83,16 +95,16 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
     if(profileStore&&!selectedPlayerProfiles())selectedProfileIds=profileStore.profiles.slice(0,2).map(p=>p.id);`,context);
   // Existing regression fixtures explicitly retain V3 rules and five-word Blitz.
   // New V4 scenarios below call the production newGame() directly.
-  vm.runInContext(`function startHistoricalFixture(){const awardTo=options.awardTo;options.awardTo='guesser';newGame();options.awardTo=awardTo;if(game){delete game.profileMatch;delete game.matchId;delete game.riskPolicyVersion;delete game.riskPlannerState;delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;game.awardTo=awardTo;delete game.modeCompatibilityVersion;delete game.modePlannerVersion;delete game.modePlannerState;delete game.songLanguagePolicyVersion;delete game.songLanguages;delete game.timerPolicyVersion;}}
+  vm.runInContext(`function startHistoricalFixture(){const awardTo=options.awardTo;options.awardTo='guesser';newGame();options.awardTo=awardTo;if(game){delete game.taskDifficultyPolicy;game.contentPack=baseContentPackSelection(game.contentPack);delete game.profileMatch;delete game.matchId;delete game.riskPolicyVersion;delete game.riskPlannerState;delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;game.awardTo=awardTo;delete game.modeCompatibilityVersion;delete game.modePlannerVersion;delete game.modePlannerState;delete game.songLanguagePolicyVersion;delete game.songLanguages;delete game.timerPolicyVersion;}}
   function legacyGame(version=3){
     options.modes=options.modes.filter(id=>id!=='approx');
     if(options.contentPack?.id==='general')options.contentPack={id:'general',version:1};
     startHistoricalFixture();if(game&&game.phase==='ready'&&game.roundIndex===0){
-      game.rulesVersion=version;game.contentPack={id:'general',version:1};delete game.taskHistoryVersion;delete game.taskHistory;delete game.modeConfigVersion;delete game.awardTo;delete game.awardPolicyVersion;delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;game.blitzCount=5;game.modes=game.modes.filter(id=>id!=='approx');persist();
+      game.rulesVersion=version;delete game.taskDifficultyPolicy;game.contentPack={id:'general',version:1};delete game.taskHistoryVersion;delete game.taskHistory;delete game.modeConfigVersion;delete game.awardTo;delete game.awardPolicyVersion;delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;game.blitzCount=5;game.modes=game.modes.filter(id=>id!=='approx');persist();
     }
   }`,context);
   vm.runInContext("function v4Game(){startHistoricalFixture();game.rulesVersion=4;game.modeConfigVersion=1;delete game.taskHistoryVersion;delete game.taskHistory;delete game.modifierCatalogVersion;delete game.modifierSelectionVersion;delete game.modifierChance;delete game.modifierRecent;persist()}",context);
-  vm.runInContext("function startPreReviewFixture(){newGame();delete game.riskPolicyVersion;delete game.riskPlannerState;delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;persist()}",context);
+  vm.runInContext("function startPreReviewFixture(){newGame();delete game.taskDifficultyPolicy;game.contentPack=baseContentPackSelection(game.contentPack);delete game.riskPolicyVersion;delete game.riskPlannerState;delete game.resultReviewVersion;delete game.reviewRevision;delete game.reviewConfirmed;persist()}",context);
   // Scoring fixtures choose a fixed starting player; dedicated tests exercise both draws.
   if(!randomizeStarter)vm.runInContext('chooseStartingTeam=()=>0',context);
   return {context,elements,pending,storage:existing,eval:expr=>vm.runInContext(expr,context)};
@@ -1031,7 +1043,7 @@ test('smart finish: shared tiebreak chooses a distinct question, resumes offline
 test('smart finish: no numerical questions in a saved theme keeps tied paired turns',()=>{
  const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation();
  h.eval("Object.assign(options,{finishType:'score',targetScore:15,modes:['talk']});newGame()");
- h.eval("game.contentPack={id:'general',version:1};game.roundIndex=2;game.scores=[15,15]");
+ h.eval("delete game.taskDifficultyPolicy;game.contentPack={id:'general',version:1};game.roundIndex=2;game.scores=[15,15]");
  assert.equal(h.eval('beginTiebreak()'),false);
  assert.equal(h.eval('game.tiebreak'),undefined);
  assert.equal(h.eval('game.phase'),'ready');
@@ -1653,9 +1665,9 @@ test('old general matches and new content selections restore without migration',
   assert.equal(b.eval('JSON.stringify(game.current)'),card);
   assert.equal(b.eval('storageBlocked'),false);
   if(legacy)assert.equal(b.eval('game.contentPack'),undefined);
-  else assert.equal(b.eval('game.contentPack.version'),1);
+  else assert.equal(b.eval('baseContentPackSelection(game.contentPack).version'),1);
  }
- const stored=new Map(),a=harness(stored);a.eval('soundOn=false;legacyGame();game.contentPack.version=999;persist()');
+ const stored=new Map(),a=harness(stored);a.eval('soundOn=false;legacyGame();baseContentPackSelection(game.contentPack).version=999;persist()');
  const original=stored.get('iskra-party:v1'),b=harness(stored);b.eval('persist();legacyGame()');
  assert.equal(b.eval('storageBlocked'),true);assert.equal(stored.get('iskra-party:v1'),original);
 });
@@ -1816,7 +1828,7 @@ test('Approx catalog has 60 stable unique questions, sources and 20 per tier',()
 test('Approx question snapshots have no timer, modifier or risk at every difficulty',()=>{
  for(const level of ['easy','medium','hard']){
   const h=harness();h.eval('soundOn=false;options.modes=["approx"];options.dice=false;options.difficulty="'+level+'";Math.random=()=>0;newGame();game.roundIndex=4;roll()');
-  assert.equal(h.eval('game.current.question.difficulty'),level);
+  assert.equal(h.eval("QuipEditorialSelection.TIERS[Number(QUIP_EDITORIAL_EDITION.records[game.current.question.id][3][6])-1]"),level);
   assert.equal(h.eval('game.current.word'),h.eval('game.current.question.question'));
   assert.equal(h.eval('game.current.risk'),false);assert.equal(h.eval('game.current.complication'),'');
   assert.equal(h.eval('game.current.points'),1);assert.equal(h.eval('game.current.seconds'),0);
@@ -1918,7 +1930,7 @@ test('populated fixture topic selects the same setup, filters cards and restores
  assert.equal(a.eval('selectTheme("fixture-topic",1)'),true);
  assert.equal(a.eval('activeScene'),'setup');assert.equal(a.eval('setupReturn'),'themes');
  assert.equal(a.elements.get('setup-pack-caption').textContent,'Тестовая тема');
- a.eval('newGame();roll()');assert.equal(a.eval('game.contentPack.id'),'fixture-topic');
+ a.eval('newGame();roll()');assert.equal(a.eval('baseContentPackSelection(game.contentPack).id'),'fixture-topic');
  assert.equal(a.eval('game.duration'),45);
  assert.ok(['КАРАНДАШ','СУНДУК','ПУЗЫРЬ'].includes(a.eval('game.current.word')));
  const selected=a.eval('JSON.stringify([game.contentPack,game.current,game.used])');
@@ -1929,7 +1941,7 @@ test('populated fixture topic selects the same setup, filters cards and restores
  b.eval('openGameType();selectStandardGame()');
  assert.equal(b.eval('options.contentPack.id'),'general');assert.equal(b.eval('options.duration'),45);
  assert.equal(b.eval('JSON.stringify(game)'),before);
- b.eval('options.modes=["talk"];newGame()');assert.equal(b.eval('game.contentPack.id'),'general');
+ b.eval('options.modes=["talk"];newGame()');assert.equal(b.eval('baseContentPackSelection(game.contentPack).id'),'general');
 });
 test('enabled but incomplete topic is disabled for the selected modes and levels',()=>{
  const h=harness(new Map(),false,fixtureTopic);
@@ -2166,7 +2178,7 @@ test('small modifier pools relax oldest restrictions safely and keep the latest 
  assert.equal(h.eval('choosePartyModifier(testMatch,testRequest,testRandom,testPool).modifier.id'),'two');
 });
 test('historical V1 real rounds maintain five selected modifiers without recent text repeats or catalog mutations',()=>{
- const h=harness();h.eval('soundOn=false;options.modes=["talk"];options.modifierChance=100;options.difficulty="hard";options.dice=false;options.riskRounds=false;Math.random=()=>0;newGame();delete game.modeCompatibilityVersion;game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
+ const h=harness();h.eval('soundOn=false;options.modes=["talk"];options.modifierChance=100;options.difficulty="hard";options.dice=false;options.riskRounds=false;Math.random=()=>0;newGame();delete game.taskDifficultyPolicy;game.contentPack={id:"geography",version:2};delete game.modeCompatibilityVersion;game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
  const catalog=h.eval('JSON.stringify(QUIP_MODIFIERS)'),keys=[];
  for(let i=0;i<9;i++){
   h.eval('roll()');const key=h.eval('normalizeModifierText(game.current.complication)');
@@ -2239,7 +2251,7 @@ test('TASK008 numeric additions carry units, categories, sources and checked der
  }
 });
 test('TASK008 additions enter standard pools without empty tiers or duplicate Blitz words',()=>{
- const h=harness();h.eval('soundOn=false;options.complications=false;options.dice=false;newGame();game.contentPack={id:"general",version:2};delete game.songLanguagePolicyVersion;delete game.songLanguages');
+ const h=harness();h.eval('soundOn=false;options.complications=false;options.dice=false;newGame();delete game.taskDifficultyPolicy;game.contentPack={id:"general",version:2};delete game.songLanguagePolicyVersion;delete game.songLanguages');
  for(const kind of ['words','songs','people','blitz'])for(const level of ['easy','medium','hard'])assert.ok(h.eval('getPromptPool("'+kind+'","'+level+'").length')>=50,kind+'/'+level);
  h.eval('options.modes=["blitz"];newGame();Math.random=()=>0');const used=[];
  for(let i=0;i<20;i++){h.eval('roll()');const words=Array.from(h.eval('game.current.blitzWords'));assert.equal(new Set(words).size,3);for(const word of words){assert.equal(used.includes(word),false);used.push(word)}h.eval('game.phase="judge";judge(false)');}
@@ -2281,7 +2293,7 @@ test('TASK008 geography has no dead ends for any nonempty permitted mode combina
 });
 test('TASK008 geography Secret-only never chooses singing or common-catalog content',()=>{
  const {createSimulation}=require('../scripts/game-simulation.cjs'),h=createSimulation(808);
- h.eval('options.difficulty="mixed";selectTheme("geography",2);options.modes=["secret"];options.dice=false;newGame();delete game.modeCompatibilityVersion;game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
+ h.eval('options.difficulty="mixed";selectTheme("geography",2);options.modes=["secret"];options.dice=false;newGame();delete game.taskDifficultyPolicy;game.contentPack={id:"geography",version:2};delete game.modeCompatibilityVersion;game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
  const result=h.eval(`(()=>{const methods=new Set(),levels=[];for(let i=0;i<60;i++){game.current=rollOutcome();methods.add(game.current.methodId);levels.push(game.current.difficulty);
  const pool=getPackCardPool(game.contentPack,getMode(game.current.methodId).kind,game.current.difficulty,game.promptTypes);if(!pool.some(c=>c.text===game.current.word)||game.current.methodId==='sing'||!game.current.complication)return false;game.roundIndex++;game.current=null}
  return {methods:[...methods].sort(),levels:levels.reduce((counts,l)=>(counts[l]=(counts[l]||0)+1,counts),{})}})()`);
@@ -2297,9 +2309,9 @@ test('TASK008 geography pools exhaust only after unused alternatives and Blitz s
 test('TASK008 geography awards, shared answers and save snapshots remain independent of future theme choices',()=>{
  for(const awardTo of ['setter','guesser']){
   const stored=new Map(),h=harness(stored);h.eval('soundOn=false;options.awardTo="'+awardTo+'";selectTheme("geography",2);options.modes=["talk"];options.dice=false;options.modifierChance=100;newGame();roll();persist()');
-  const selected=h.eval('JSON.stringify(game.current)');h.eval('selectStandardGame();options.modes=["sing"];persist()');const reload=harness(stored);assert.equal(reload.eval('game.contentPack.id'),'geography');assert.equal(reload.eval('JSON.stringify(game.current)'),selected);
+  const selected=h.eval('JSON.stringify(game.current)');h.eval('selectStandardGame();options.modes=["sing"];persist()');const reload=harness(stored);assert.equal(reload.eval('baseContentPackSelection(game.contentPack).id'),'geography');assert.equal(reload.eval('JSON.stringify(game.current)'),selected);
   reload.eval('game.phase="judge";judge(true,false)');assert.equal(reload.eval('game.scores['+(awardTo==='setter'?0:1)+']'),1);
-  reload.eval('selectTheme("geography",2);options.modes=["approx"];options.dice=false;newGame();game.contentPack={id:"geography",version:2};roll()');assert.equal(reload.eval('game.current.question.pack'),'geography-v2');reload.eval('revealApprox();awardApprox("both")');assert.deepEqual(Array.from(reload.eval('game.scores')),[1,1]);
+  reload.eval('selectTheme("geography",2);options.modes=["approx"];options.dice=false;newGame();delete game.taskDifficultyPolicy;game.contentPack={id:"geography",version:2};roll()');assert.equal(reload.eval('game.current.question.pack'),'geography-v2');reload.eval('revealApprox();awardApprox("both")');assert.deepEqual(Array.from(reload.eval('game.scores')),[1,1]);
  }
 });
 
@@ -2321,7 +2333,7 @@ test('TASK008 standard, geography and science keep independent preferences acros
 });
 test('TASK008 both thematic registries have no dead-end mode, type or difficulty settings',()=>{
  const {checkSettings}=require('../scripts/balance-audit.cjs');assert.deepEqual(checkSettings(),{checked:3048,deadEnds:0});
- const h=harness();h.eval('selectTheme("science",2);options.modes=["secret"];options.difficulty="mixed";options.dice=false;newGame();game.contentPack={id:"science",version:2};delete game.modeCompatibilityVersion;game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
+ const h=harness();h.eval('selectTheme("science",2);options.modes=["secret"];options.difficulty="mixed";options.dice=false;newGame();delete game.taskDifficultyPolicy;game.contentPack={id:"science",version:2};delete game.modeCompatibilityVersion;game.modifierSelectionVersion=1;delete game.modifierCatalogVersion');
  const results=h.eval(`(()=>{const methods=new Set(),seen=[];for(let i=0;i<120;i++){const c=rollOutcome();methods.add(c.methodId);if(!c.complication||c.methodId==='sing')return false;
  const pool=getPackCardPool(game.contentPack,getMode(c.methodId).kind,c.difficulty,game.promptTypes);if(!pool.some(row=>row.text===c.word)||!pool.every(row=>row.pack==='science-v2'))return false;seen.push(c.difficulty);game.roundIndex++}return {methods:[...methods].sort(),counts:['easy','medium','hard'].map(l=>seen.filter(x=>x===l).length)}})()`);
  assert.deepEqual(Array.from(results.methods),['draw','mime','talk','yesno']);assert.deepEqual(Array.from(results.counts),[40,40,40]);

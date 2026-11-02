@@ -11,6 +11,7 @@ const REVISIONS=Object.freeze([
  ['storage-controller.js?v=6','storage-controller.js?v=2']
 ]);
 function normalizeTask039Resources(source){
+ source=require('../../diagnostics/task041/source-contract.cjs').normalizeTask041(source);
  return REVISIONS.reduce((result,[current,previous])=>result.replaceAll(current,previous),source);
 }
 module.exports={normalizeTask039Resources,REVISIONS};

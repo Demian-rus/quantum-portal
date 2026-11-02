@@ -8,7 +8,8 @@ function pickMode(level) {
     validateModePlan(game.modePlannerVersion,game.modePlannerState);
     // Pools were validated at newGame; the saved selection is immutable.
     const pack=getContentPack(game.contentPack);
-    const modes=allowed.filter(m=>!pack.allowedModes||pack.allowedModes.includes(m.id)).map(m=>m.id);
+    const allowedModes=editorialSelection(game.contentPack)?QUIP_EDITORIAL_EDITION.catalogs[pack.id].allowedModes:pack.allowedModes;
+    const modes=allowed.filter(m=>!allowedModes||allowedModes.includes(m.id)).map(m=>m.id);
     const planned=planMode(game.modePlannerState,{modes,rewards:modeOpportunityRewards(game,modes,level),
       recipientIndex:awardTeamIndex(),pairStart:game.roundIndex%2===0});
     game.modePlannerState=planned.state;
@@ -33,7 +34,7 @@ function chooseDifficulty() {
 function blitzFullWordPool(selection){
  return PARTY_CARD_LEVELS.flatMap(tier=>getPackCardPool(selection,'words',tier,['word']));
 }
-function getPromptPool(kind,level,modeId=game?.current?.modeId??'sing',methodId=game?.current?.methodId??null){
+function getPromptPool(kind,level,modeId=game?.current?.modeId??({words:'talk',songs:'sing',people:'yesno',blitz:'blitz'}[kind]),methodId=game?.current?.methodId??null){
   if(editorialSelection(game?.contentPack))return [...new Set(editorialPool(game,modeId,level,modeId==='secret'?methodId:null).map(card=>card.text))];
   let cards=kind==='blitz'&&game&&ruleSetForGame(game).version>=6?blitzFullWordPool(game.contentPack):
     game?.contentPack?getPackCardPool(game.contentPack,kind,level,game.promptTypes):
@@ -54,7 +55,7 @@ function chooseRememberedTask(pool,excluded=[]){
  game.taskHistory=selected.history;return selected.record;
 }
 
-function rememberLegacyWordUse(kind,level,word,modeId=game?.current?.modeId??'sing',methodId=game?.current?.methodId??null){
+function rememberLegacyWordUse(kind,level,word,modeId=game?.current?.modeId??({words:'talk',songs:'sing',people:'yesno',blitz:'blitz'}[kind]),methodId=game?.current?.methodId??null){
  if(editorialSelection(game?.contentPack))return; // taskHistory owns repeats across modes and levels.
  const key=(kind==='blitz'&&game&&ruleSetForGame(game).version>=6?'all':kind==='blitz'?'easy':level)+':'+kind+':'+(game.promptTypes||[]).join(',');
  const pool=getPromptPool(kind,level,modeId),used=game.used[key]||[];
@@ -62,7 +63,7 @@ function rememberLegacyWordUse(kind,level,word,modeId=game?.current?.modeId??'si
  if(!next.includes(word))next.push(word);game.used[key]=next;
 }
 
-function pullWord(kind, level=chooseDifficulty(),excluded=[],modeId=game?.current?.modeId??'sing',identity=null,methodId=game?.current?.methodId??null) {
+function pullWord(kind, level=chooseDifficulty(),excluded=[],modeId=game?.current?.modeId??({words:'talk',songs:'sing',people:'yesno',blitz:'blitz'}[kind]),identity=null,methodId=game?.current?.methodId??null) {
   if(identity)identity.cardId=null;
   if(editorialSelection(game?.contentPack)){
     const selected=chooseRememberedTask(editorialPool(game,modeId,level,modeId==='secret'?methodId:null),excluded);

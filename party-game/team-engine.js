@@ -7,9 +7,9 @@ const QuipTeamsEngine=(function teamEngine(){
  const isGame=match=>match?.teamPolicyVersion===VERSION&&match.teamFormat?.format===FORMAT;
  const isSettings=value=>isGame(value)||value?.playFormat===FORMAT&&value.teamPolicyVersion===VERSION||value?.teamProjectionVersion===VERSION;
  const equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
- const catalogCache=new Map();
+ const catalogCache=new Map(),editorialCatalogCache=new WeakMap();
  function catalog(match,kind,level,mode=null,method=null){
-  if(editorialSelection(match.contentPack)&&mode){const rows=editorialPool(match,mode,level,mode==='secret'?method:null);return {rows,byId:new Map(rows.map(row=>[row.id,row]))};}
+  if(editorialSelection(match.contentPack)&&mode){const rows=editorialPool(match,mode,level,mode==='secret'?method:null);if(!editorialCatalogCache.has(rows))editorialCatalogCache.set(rows,{rows,byId:new Map(rows.map(row=>[row.id,row]))});return editorialCatalogCache.get(rows);}
   const key=JSON.stringify([match.contentPack,kind,level,match.promptTypes,match.rulesVersion]);let pool=catalogCache.get(key);
   if(!pool){const rows=kind==='number'?getPackQuestionPool(match.contentPack,level):
     kind==='blitz'&&match.rulesVersion>=6?PARTY_CARD_LEVELS.flatMap(tier=>getPackCardPool(match.contentPack,'words',tier,['word'])):
@@ -101,7 +101,7 @@ const QuipTeamsEngine=(function teamEngine(){
   assert(equal(balance,match.modePlannerState.balance)&&equal(match.modePlannerState.recent,match.modeHistory.slice(-2)),'повреждён план режимов');
   if(match.difficulty==='mixed')for(let i=0;i<rounds.length;i+=6){const levels=rounds.slice(i,i+6).map(c=>c.difficulty);assert(levels.every((level,j)=>j%2===0||level===levels[j-1])&&new Set(levels.filter((_,j)=>j%2===0)).size===Math.ceil(levels.length/2),'повреждён план сложности');}
   validateGameRiskPlan(match);review(match);
-  for(const tie of [match.tiebreak,match.reviewTiebreakArchive?.tiebreak].filter(Boolean)){const q=catalog(match,'number',tie.question.difficulty).byId.get(tie.question.id);assert(q&&q.question===tie.question.question&&String(q.answer)===tie.question.answer&&String(q.unit||'')===tie.question.unit&&String(q.note||'')===tie.question.note,'изменён вопрос тай-брейка');}
+  for(const tie of [match.tiebreak,match.reviewTiebreakArchive?.tiebreak].filter(Boolean)){const q=catalog(match,'number',tie.question.difficulty,'approx').byId.get(tie.question.id);assert(q&&q.question===tie.question.question&&String(q.answer)===tie.question.answer&&String(q.unit||'')===tie.question.unit&&String(q.note||'')===tie.question.note,'изменён вопрос тай-брейка');}
   if(selected){const phase=match.current?match.phase:match.reviewSuspendedRound.phase;assert(['rolling','task','countdown','play','judge'].includes(phase),'ход не соответствует фазе');if(phase==='play')assert(selected.paused?selected.deadline===null&&Number.isFinite(selected.remainingMs)&&selected.remainingMs>=0:Number.isFinite(selected.deadline),'повреждён таймер');if(phase==='countdown')assert(selected.feedbackHold||Number.isFinite(selected.autoStartAt),'повреждён автоматический старт');}
   else assert(['ready','review','results','tiebreak'].includes(match.phase),'нет снимка текущего задания');
   return true;
