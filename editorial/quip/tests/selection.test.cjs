@@ -26,8 +26,15 @@ function request(overrides={}){return {theme:'general',mode:'draw',method:null,t
 test('unreviewed full draft cannot be compiled into a playable edition',()=>assert.throws(()=>compile(E.readEdition()),/await semantic review/));
 test('draw defaults to easy independently of round severity; other modes remain independent',()=>{
  const p=S.preferences();assert.deepEqual(S.tiersFor(p,'draw','hard'),['easy']);assert.deepEqual(S.tiersFor(p,'mime','hard'),['easy']);
- assert.deepEqual(S.tiersFor(p,'talk','hard'),['hard']);assert.deepEqual(S.tiersFor(p,'blitz','medium'),['easy','medium','hard']);
+ assert.deepEqual(S.tiersFor(p,'talk','hard'),['hard']);assert.deepEqual(S.tiersFor(p,'blitz','medium'),['medium','hard']);
  const next={version:1,choices:{...p.choices,draw:'hard',mime:'medium'}};assert.deepEqual(S.tiersFor(next,'draw','easy'),['hard']);assert.deepEqual(S.tiersFor(p,'draw','easy'),['easy']);
+});
+test('Blitz default excludes easy while explicit easy and saved all policies remain compatible',()=>{
+ const p=S.preferences();
+ for(const round of S.TIERS)assert.deepEqual(S.tiersFor(p,'blitz',round),['medium','hard']);
+ assert.deepEqual(S.tiersFor({version:1,choices:{...p.choices,blitz:'easy'}},'blitz','hard'),['easy']);
+ assert.deepEqual(S.tiersFor({version:1,choices:{...p.choices,blitz:'all'}},'blitz','easy'),['easy','medium','hard']);
+ assert.throws(()=>S.preferences({version:1,choices:{...p.choices,draw:'medium-hard'}}));
 });
 test('Secret uses actual method and cannot introduce hard drawing through a different default',()=>{
  const p=S.preferences();assert.deepEqual(S.tiersFor(p,'secret','hard','draw'),['easy']);assert.deepEqual(S.tiersFor(p,'secret','hard','talk'),['hard']);

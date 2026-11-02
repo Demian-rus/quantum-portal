@@ -7,7 +7,7 @@ const QuipEditorialSelection=(()=>{
  const TIERS=Object.freeze(['easy','medium','hard']);
  const FORMS=Object.freeze(['word','phrase','idiom','song','person','number']);
  const STORED_MODES=Object.freeze(MODES.filter(m=>m!=='secret'));
- const DEFAULT_CHOICES=Object.freeze({talk:'general',mime:'easy',draw:'easy',sing:'general',yesno:'general',secret:'method',blitz:'all',approx:'general'});
+ const DEFAULT_CHOICES=Object.freeze({talk:'general',mime:'easy',draw:'easy',sing:'general',yesno:'general',secret:'method',blitz:'medium-hard',approx:'general'});
  function fail(message){throw Error('EDITORIAL SELECTION: '+message);}
  function plain(value,seen=new Set()){
   if(value===null||typeof value==='string'||typeof value==='boolean')return;
@@ -24,7 +24,7 @@ const QuipEditorialSelection=(()=>{
  function list(value,known,{empty=false}={}){if(!Array.isArray(value)||(!empty&&!value.length)||new Set(value).size!==value.length||value.some(v=>!known.includes(v)))fail('Invalid list');}
  function preferences(raw={version:1,choices:DEFAULT_CHOICES}){
   plain(raw);keys(raw,['version','choices']);if(raw.version!==1)fail('Unknown task-level policy');keys(raw.choices,MODES);
-  for(const mode of MODES){const allowed=[...TIERS,...(mode==='secret'?['method','general']:['general']),...(mode==='blitz'?['all']:[])];if(!allowed.includes(raw.choices[mode]))fail('Unknown '+mode+' choice');}
+  for(const mode of MODES){const allowed=[...TIERS,...(mode==='secret'?['method','general']:['general']),...(mode==='blitz'?['all','medium-hard']:[])];if(!allowed.includes(raw.choices[mode]))fail('Unknown '+mode+' choice');}
   return Object.freeze({version:1,choices:Object.freeze({...raw.choices})});
  }
  function tiersFor(raw,mode,roundTier,method=null){
@@ -35,7 +35,7 @@ const QuipEditorialSelection=(()=>{
    return choice==='method'?actual:actual.filter(t=>t===(choice==='general'?roundTier:choice));
   }
   if(method!==null)fail('Actual method is only valid for Secret');
-  const choice=policy.choices[mode];return choice==='all'?TIERS.slice():[choice==='general'?roundTier:choice];
+  const choice=policy.choices[mode];return choice==='all'?TIERS.slice():choice==='medium-hard'?TIERS.slice(1):[choice==='general'?roundTier:choice];
  }
  function normalize(text){return text.normalize('NFKC').toLocaleLowerCase('ru').replace(/ё/g,'е').replace(/[^\p{L}\p{N}]+/gu,' ').trim();}
  function typeAllows(form,mode,text){
