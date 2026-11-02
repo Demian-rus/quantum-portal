@@ -256867,12 +256867,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "animals",
+          "nature"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Дрозд — лесная певчая птица с пёстрым оперением, название узнают по птице, но не каждому знаком вид."
       }
     },
     {
@@ -256889,12 +256937,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Галоша — резиновая обувь, надеваемая поверх основной для защиты от грязи."
       }
     },
     {
@@ -256911,12 +257006,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "biology"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Ресница — маленький волос на краю века, понятна по морганию."
       }
     },
     {
@@ -256933,12 +257075,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Косичка — заплетённые в три пряди волосы."
       }
     },
     {
@@ -256955,12 +257144,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Перрон — платформа вокзала возле железнодорожного пути."
       }
     },
     {
@@ -256977,12 +257213,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "marine",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Плот — простое плавательное средство из связанных брёвен."
       }
     },
     {
@@ -256999,12 +257283,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Тюбик — небольшая гибкая ёмкость для пасты или крема, из которой выдавливают содержимое."
       }
     },
     {
@@ -257021,12 +257352,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Дрель — электроинструмент, вращающий сверло для отверстий."
       }
     },
     {
@@ -257043,12 +257421,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "nature"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Лужайка — открытый небольшой участок земли с травой."
       }
     },
     {
@@ -257065,12 +257490,60 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "everyday",
+          "biology"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Марля — тонкая рыхлая хлопчатобумажная ткань для медицинских повязок."
       }
     },
     {
@@ -257087,12 +257560,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Грузовик — крупная машина для перевозки грузов."
       }
     },
     {
@@ -257109,12 +257629,61 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "nature"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Небольшой ручей и детская игра-хоровод"
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Ручеёк — небольшой узкий поток воды, в игре также название хоровода."
       }
     },
     {
@@ -257131,12 +257700,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Заплатка — кусок материала, пришиваемый на дырку одежды."
       }
     },
     {
@@ -257153,12 +257769,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Бусина — маленький шарик с отверстием для украшений."
       }
     },
     {
@@ -257175,12 +257838,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Напёрсток — защитный колпачок для пальца при шитье."
       }
     },
     {
@@ -257197,12 +257907,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Люк — закрываемый проём в полу, крыше или дороге."
       }
     },
     {
@@ -257219,12 +257976,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "nature"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Падающий лист — лист дерева, отделившийся от ветки и летящий вниз."
       }
     },
     {
@@ -257241,12 +258045,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Грязная посуда — тарелки и чашки с остатками еды, нуждающиеся в мытье."
       }
     },
     {
@@ -257263,12 +258114,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "food"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Мешок картошки — большой мешок, наполненный клубнями картофеля."
       }
     },
     {
@@ -257285,12 +258183,59 @@
         "legacyDifficulty": "easy",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "everyday"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Скрипящая лестница — ступени, издающие неприятный звук при ходьбе."
       }
     },
     {
@@ -257329,12 +258274,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "professions",
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Паромщик — человек, управляющий паромом для переправы через воду."
       }
     },
     {
@@ -257351,12 +258344,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "music",
+          "arts"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Партитура — нотная запись всех инструментальных партий произведения."
       }
     },
     {
@@ -257373,12 +258414,62 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "geography",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Горная извилистая дорога и праздничные бумажные ленты"
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Серпантин — извилистая горная дорога или разноцветные праздничные ленточки."
       }
     },
     {
@@ -257395,12 +258486,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "technology",
+          "geography"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Штольня — горизонтальная или наклонная подземная выработка горной шахты."
       }
     },
     {
@@ -257417,12 +258556,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "nature",
+          "geography"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Грот — небольшая пещера, часто с входом со стороны воды."
       }
     },
     {
@@ -257439,12 +258626,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "history"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Мушкет — старинное длинное ружьё, используемое пехотой прошлых веков."
       }
     },
     {
@@ -257461,12 +258695,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "history"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Пергамент — древний материал для письма из обработанной кожи животных."
       }
     },
     {
@@ -257483,12 +258764,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "general",
+          "professions"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Шарлатан — обманщик, выдающий себя за эксперта или целителя."
       }
     },
     {
@@ -257505,12 +258834,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "professions"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Конюх — работник, который ухаживает за лошадьми в конюшне."
       }
     },
     {
@@ -257527,12 +258903,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "arts"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Фреска — картина, написанная по сырой штукатурке стены."
       }
     },
     {
@@ -257549,12 +258972,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "technology",
+          "arts"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Пиктограмма — простое графическое обозначение действия или предмета."
       }
     },
     {
@@ -257571,12 +259042,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "history"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Баррикада — искусственная преграда из предметов и мешков для защиты улицы."
       }
     },
     {
@@ -257593,12 +259111,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "arts"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Светотень — художественная передача объёма контрастом освещённых и тёмных участков."
       }
     },
     {
@@ -257615,12 +259180,61 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "science"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Механический импульс и краткое возбуждение сигнала"
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Импульс — кратковременный толчок или физическая величина движения, рисунок не определяет точный смысл."
       }
     },
     {
@@ -257637,12 +259251,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "professions"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Комендант — должностное лицо, отвечающее за порядок в военном объекте или здании."
       }
     },
     {
@@ -257659,12 +259320,60 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "geography",
+          "nature"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Подземная река — поток воды, который течёт ниже поверхности земли."
       }
     },
     {
@@ -257681,12 +259390,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "technology"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Скрытый механизм — устройство с незаметными движущимися деталями."
       }
     },
     {
@@ -257703,12 +259459,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "music"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Растерянный дирижёр — руководитель оркестра, забывший, как управлять музыкантами."
       }
     },
     {
@@ -257725,12 +259528,59 @@
         "legacyDifficulty": "medium",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "transport"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "familiar"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "easy",
+            "reason": "concrete"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Крушение поезда — железнодорожная авария с сошедшими с рельсов вагонами."
       }
     },
     {
@@ -257747,12 +259597,59 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "history"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Автократия — устройство власти с сосредоточением решений в руках одного правителя."
       }
     },
     {
@@ -257769,12 +259666,59 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "general"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Эфемерность — недолговечность явления, философская абстракция без конкретной формы."
       }
     },
     {
@@ -257791,12 +259735,59 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "general"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Агностицизм — позиция о невозможности или ограниченности достоверного знания о сверхъестественном."
       }
     },
     {
@@ -257813,12 +259804,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "history",
+          "language"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Коммюнике — официальное сообщение о результатах переговоров, визуально неотличимо от обычного заявления."
       }
     },
     {
@@ -257835,12 +259874,59 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "general"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Аскетизм — добровольное ограничение благ ради убеждений, жестами возможен отказ от удобств."
       }
     },
     {
@@ -257857,12 +259943,59 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "general"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Мизантроп — человек, испытывающий неприязнь к людям, можно сыграть избеганием общества."
       }
     },
     {
@@ -257879,12 +260012,59 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "general"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "mime": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-physical"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "hard",
+            "reason": "specialist"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Фатализм — вера в неизбежность предопределённых событий, без слов не различить от пассивности."
       }
     },
     {
@@ -257901,12 +260081,60 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "word",
+        "categories": [
+          "general",
+          "culture"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "not-visual"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "fast-clue"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Перфекционизм — стремление сделать всё безупречно, может проявляться бесконечным исправлением детали."
       }
     },
     {
@@ -257923,12 +260151,61 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "idiom",
+        "categories": [
+          "general"
+        ],
+        "themes": [],
+        "ambiguities": [
+          "Слабый противник под угрожающей внешностью и буквальная бумажная фигура тигра"
+        ],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Бумажный тигр — образ внешне опасного, но на деле слабого противника."
       }
     },
     {
@@ -257945,12 +260222,59 @@
         "legacyDifficulty": "hard",
         "themes": []
       },
-      "classification": null,
+      "classification": {
+        "form": "phrase",
+        "categories": [
+          "history"
+        ],
+        "themes": [],
+        "ambiguities": [],
+        "modes": {
+          "talk": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "mime": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "draw": {
+            "eligible": true,
+            "difficulty": "medium",
+            "reason": "indirect"
+          },
+          "sing": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "yesno": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          },
+          "secret": {
+            "policy": "actual-method"
+          },
+          "blitz": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "multiword"
+          },
+          "approx": {
+            "eligible": false,
+            "difficulty": null,
+            "reason": "type"
+          }
+        }
+      },
       "review": {
-        "status": "pending",
-        "reviewer": null,
-        "reviewedAt": null,
-        "rationale": null
+        "status": "reviewed",
+        "reviewer": "codex-semantic-review",
+        "reviewedAt": "2026-11-02T08:39:11.901Z",
+        "rationale": "Вынужденное перемирие — временное прекращение конфликта из-за обстоятельств, не добровольного мира."
       }
     },
     {
