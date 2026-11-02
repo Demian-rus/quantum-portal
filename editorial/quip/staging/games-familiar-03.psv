@@ -1,0 +1,52 @@
+# {"schemaVersion":1,"edition":"quip@1","rubric":"quip-rubric@1","sourcesDigest":"06655a515334ed8a54d66be817319a56f6bc289cf37194d8bb424269e4e1a891"}
+id|text|form|categories|themes|ambiguities|talk|mime|draw|sing|yesno|blitz|approx|rationale
+word-080001|ОПЫТ|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Опыт — очки роста персонажа за действия, которые увеличивают его уровень в игре.
+word-080002|ДОСТИЖЕНИЕ|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Достижение — игровая награда за особое условие, часто отдельная иконка.
+word-080003|ТРОФЕЙ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Трофей — кубок или знак полученной награды, легко изображается и демонстрируется.
+word-080004|ЧИТ|word|videogames|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Чит — запрещённый или встроенный способ обойти правила игры, без букв рисунок не объяснит точный термин.
+word-080005|КАРТА|word|videogames||Карта географическая и игровая схема уровня|easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Карта — изображение местности или игрового уровня с дорогами и отметками.
+word-080006|УКРЫТИЕ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Укрытие — объект, за которым герой прячется от угрозы.
+word-080007|ПРИЦЕЛ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Прицел — перекрестие для наведения оружия на цель.
+word-080008|ГРАНАТА|word|videogames|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Граната — метательный боеприпас, узнаваем по форме и броску.
+word-080009|ПИСТОЛЕТ|word|videogames+history|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Пистолет — короткоствольное оружие с рукоятью и спусковым крючком.
+word-080010|ДРОБОВИК|word|videogames+history|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Дробовик — длинное огнестрельное оружие, стреляющее дробью на малом расстоянии.
+word-080011|ЩИТ|word|videogames+history|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Щит — предмет для защиты от ударов, легко показать прикрывание.
+word-080012|СТРЕЛА|word|videogames+history|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Стрела — тонкий снаряд с наконечником и оперением, запускается из лука.
+word-080013|ЗОЛОТО|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Золото — драгоценный жёлтый металл, в игре часто слитки или монеты.
+word-080014|ЗДОРОВЬЕ|word|videogames||Самочувствие человека и ресурс жизни героя|easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Здоровье — состояние персонажа и шкала его жизни, жестами показывается самочувствие.
+word-080015|ВЫСТРЕЛ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Выстрел — однократное действие оружия с направлением на цель.
+word-080016|РАЗРАБОТЧИК|word|videogames+professions|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Разработчик — создатель игры или программы, изображается работой за кодом.
+word-080017|ВЕДЬМА|word|videogames+mythology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Ведьма — волшебница с метлой или котлом из фэнтезийных сюжетов.
+word-080018|ЗЕЛЬЕ|word|videogames+mythology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Зелье — волшебная жидкость во флаконе, герой выпивает её ради эффекта.
+word-080019|НАГРАДА|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Награда — предмет или привилегия за выполненное задание.
+word-080020|ПОБЕДИТЕЛЬ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Победитель — человек, занявший первое место в соревновании.
+word-080021|НИЧЬЯ|word|videogames+sport|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Ничья — исход матча с равным счётом, показать можно одинаковыми результатами.
+word-080022|МАТЧ|word|videogames+sport||Спортивное состязание и игровой матч|easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Матч — встреча двух команд или игроков в соревновании.
+word-080023|СЕКРЕТ|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Секрет — скрываемая от других информация, передаётся шёпотом и знаком молчания.
+word-080024|ИСПЫТАНИЕ|word|videogames|||easy:familiar|medium:indirect|hard:indirect|-:type|-:type|easy:fast-clue|-:type|Испытание — трудная проверка способностей героя, рисунок требует препятствия и итог.
+word-080025|КОМПЬЮТЕР|word|videogames+technology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Компьютер — устройство с монитором и клавиатурой для запуска игр.
+word-080026|НОУТБУК|word|videogames+technology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Ноутбук — складной переносной компьютер с экраном и клавиатурой.
+word-080027|ПОМОЩНИК|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Помощник — персонаж, оказывающий поддержку другому участнику.
+word-080028|СОЮЗНИК|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Союзник — участник той же стороны конфликта, с которым сражаются вместе.
+word-080029|ПРОТИВНИК|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Противник — тот, кто соревнуется или сражается против игрока.
+word-080030|ПОБЕГ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Побег — уход из опасного места или заключения, показывается бегством.
+word-080031|ЛОКАЦИЯ|word|videogames|||medium:indirect|-:not-physical|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Локация — отдельное место внутри игрового мира, нельзя изобразить его как термин без подписи.
+word-080032|ПРОГРЕСС|word|videogames||Общий прогресс и внутриигровая шкала прохождения|medium:indirect|-:not-physical|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Прогресс — степень продвижения игрока, например заполнение полосы выполненного пути.
+word-080033|ЭНЕРГИЯ|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Энергия — запас сил или ресурса персонажа, отображается шкалой и бодрыми движениями.
+word-080034|ДРАКА|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Драка — столкновение двух людей в ближнем бою, передаётся физическими движениями.
+word-080035|ЗЛОДЕЙ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Злодей — персонаж, совершающий дурные поступки и противостоящий герою.
+word-080036|АРТЕФАКТ|word|videogames|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Артефакт — редкий предмет необычного происхождения, в игре обычно дающий эффект.
+word-080037|ВОЗРОЖДЕНИЕ|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Возрождение — повторное появление игрового героя после смерти или исчезновения.
+word-080038|ДУЭЛЬ|word|videogames+history|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Дуэль — поединок двух соперников по установленным правилам.
+word-080039|ПЕРЕЗАПУСК|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Перезапуск — повторное включение игры или устройства после остановки.
+word-080040|АТАКА|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Атака — действие, направленное на нанесение урона противнику.
+phrase-080001|КОМПЬЮТЕРНАЯ ИГРА|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Компьютерная игра — интерактивное развлечение на экране с управлением игроком.
+phrase-080002|СЕТЕВАЯ ИГРА|phrase|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Сетевая игра — совместная игра людей через интернет, для показа нужны два участника.
+phrase-080003|КАРТА УРОВНЯ|phrase|videogames|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|-:multiword|-:type|Карта уровня — схема игрового пространства с маршрутами и препятствиями.
+phrase-080004|ТАЙНЫЙ ПРОХОД|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Тайный проход — скрытая дверь или коридор, которые можно обнаружить в стене.
+phrase-080005|КНОПКА СТАРТ|phrase|videogames|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|-:multiword|-:type|Кнопка Старт — элемент управления для начала игры или нового этапа, легко рисуется.
+phrase-080006|УРОВЕНЬ СЛОЖНОСТИ|phrase|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Уровень сложности — выбор степени трудности игры между несколькими вариантами.
+phrase-080007|РЕЖИМ ВЫЖИВАНИЯ|phrase|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Режим выживания — прохождение с поиском ресурсов и защитой жизни персонажа.
+phrase-080008|ПРОЙТИ УРОВЕНЬ|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Пройти уровень — преодолеть препятствия и достигнуть конца игровой части.
+phrase-080009|НАЧАТЬ ЗАНОВО|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Начать заново — вернуть игру в начальное состояние после ошибки или завершения.
+phrase-080010|КОНТРОЛЬНАЯ ТОЧКА|phrase|videogames|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|-:multiword|-:type|Контрольная точка — место, от которого персонаж продолжает после проигрыша, часто отмечена флагом.
