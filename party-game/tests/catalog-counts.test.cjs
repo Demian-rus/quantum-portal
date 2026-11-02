@@ -5,7 +5,7 @@ test('installed counts follow the latest editorial general pack and each availab
  const data=readDataset(),latest=new Map();for(const pack of data.packs)if(!latest.has(pack.id)||pack.version>latest.get(pack.id).version)latest.set(pack.id,pack);
  const h=createSimulation(1),counts=JSON.parse(h.eval('JSON.stringify(gameTypeCountSnapshot())'));
  assert.equal(counts.general,new Set(latest.get('general').criteria.cardIds).size);
- let sum=0;for(const entry of counts.themes){const expected=latest.get(entry.pack.id);assert.equal(entry.pack.version,expected.version);assert.equal(new Set(entry.pack.criteria.cardIds).size,new Set(expected.criteria.cardIds).size);if(entry.available&&entry.pack.enabled)sum+=new Set(expected.criteria.cardIds).size;}
+ let sum=0;for(const entry of counts.themes){const expected=latest.get(entry.pack.id);assert.equal(entry.pack.version,expected.version);assert.equal(new Set(entry.pack.criteria.cardIds).size,new Set(expected.criteria.cardIds).size);if((entry.available||h.eval('configurableEditorialTheme(getContentPack('+JSON.stringify({id:entry.pack.id,version:entry.pack.version})+'))'))&&entry.pack.enabled)sum+=new Set(expected.criteria.cardIds).size;}
  assert.equal(counts.thematic,sum);h.eval('renderGameTypeCounts();renderThemes()');
  assert.equal(h.elements.get('standard-content-count').textContent,counts.general.toLocaleString('ru-RU')+' заданий');
  for(const entry of counts.themes)assert.ok(h.elements.get('theme-list').innerHTML.includes('data-theme="'+entry.pack.id+'"'));

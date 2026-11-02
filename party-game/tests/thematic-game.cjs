@@ -31,7 +31,7 @@ module.exports=async function thematicUI(browser,url){
    if(device.name==='phone')await screenshot(page,topic,'phone-picker');
    await page.locator('[data-theme="'+topic.id+'"]').click();assert.equal(await page.locator('#setup-pack-caption').textContent(),topic.name);
    if(device.name==='phone')await screenshot(page,topic,'phone-setup');
-   await page.locator('[data-setting="awardTo"] button[data-value="guesser"]').click();await setupRules(page);await setupFold(page,'mode-settings');
+   await page.locator('[data-setting="awardTo"] button[data-value="guesser"]').click();await setupRules(page);await page.locator('.choices[data-setting="difficulty"] [data-value="medium"]').click();await setupFold(page,'mode-settings');
    assert.equal(await page.locator('#mode-toggles input[value="sing"]').isDisabled(),true);
    assert.match(await page.locator('#mode-toggles input[value="sing"]').evaluate(el=>el.closest('label').title),/нет песен|НАПОЙ: доступно [0-4], нужно 5/);
    assert.equal(await page.locator('#content-toggles input[value="idiom"]').isDisabled(),true);
@@ -51,7 +51,7 @@ module.exports=async function thematicUI(browser,url){
    assert.equal(await page.evaluate(()=>game.phase),'results');assert.equal(await page.evaluate(()=>profileStore.recent.length),1);assert.equal(await page.evaluate(()=>baseContentPackSelection(game.contentPack).id),topic.id);await page.locator('[data-action="again"]').click();assert.equal(await page.evaluate(()=>game.roundIndex),0);assert.equal(await page.evaluate(()=>baseContentPackSelection(game.contentPack).id),topic.id);
    if(device.name==='phone'){
     for(const mode of ['mime','draw','yesno','secret','blitz','approx']){
-     await page.evaluate(mode=>{options.modes=[mode];options.dice=false;options.complications=mode!=='secret';options.modifierChance=100;newGame();roll()},mode);await assertRoundSource(page,topic.source);
+     await page.evaluate(mode=>{options.modes=[mode];options.difficulty='medium';options.dice=false;options.complications=mode!=='secret';options.modifierChance=100;newGame();roll()},mode);await assertRoundSource(page,topic.source);
      if(mode==='secret')assert.notEqual(await page.evaluate(()=>game.current.methodId),'sing');
      if(mode==='blitz'){
       assert.equal(await page.evaluate(()=>new Set(game.current.blitzWords).size),3);await page.locator('[data-action="toggle-word"]').click();await page.locator('button[data-action="start-timer"]').click();

@@ -4,7 +4,7 @@ const width=Number(process.env.TASK041_WIDTH||390),engine=process.env.TASK041_EN
 async function run(){
  fs.mkdirSync(OUT,{recursive:true});const server=await T.serve(T.ROOT),type=engine==='webkit'?webkit:chromium,browser=await type.launch({headless:true,...(engine==='chromium'&&process.env.CHROME_BIN?{executablePath:process.env.CHROME_BIN,args:['--no-sandbox']}: {})}),ctx=await browser.newContext({viewport:{width,height:844},isMobile:true,hasTouch:true,reducedMotion:'reduce'}),p=await ctx.newPage(),errors=[],report={width,engine,checks:[]};p.on('pageerror',e=>errors.push(e.message));p.on('dialog',async d=>{assert.equal(d.type(),'confirm');assert(d.message().includes('сохранена в отдельном архиве'));await d.accept()});p.setDefaultTimeout(20000);await ctx.tracing.start({screenshots:true,snapshots:true,sources:true});
  try{
-  await p.goto(server.url);await p.evaluate(()=>QuipTeams.whenReady());await T.seed(p,4);await T.wizard(p,'duel');await T.tap(p,'[data-wizard-step="3"]');await p.evaluate(()=>{selectAwardTo('guesser');renderOptions()});await T.tap(p,'#wizard-mode-settings');
+  await p.goto(server.url);await p.evaluate(()=>QuipTeams.whenReady());await T.seed(p,4);await T.wizard(p,'duel');await T.tap(p,'[data-wizard-step="3"]');await p.evaluate(()=>{selectAwardTo('guesser');options.modes=MODE_LIST.map(m=>m.id);renderOptions()});await T.tap(p,'#wizard-mode-settings');
   assert.equal(await p.locator('[data-task-difficulty]').count(),8);
   for(const [i,mode]of ['talk','mime','draw','sing','yesno','secret','blitz','approx'].entries()){
    const choice=mode==='secret'?'method':['easy','medium','hard'][i%3],button=p.locator('[data-task-mode="'+mode+'"][data-task-choice="'+choice+'"]');

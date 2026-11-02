@@ -20,7 +20,7 @@ async function probeSelection(page){
  const files=historicalRuntimeFiles(git,base,['index.html','style.css','sw.js']);assert.equal(files.length,51);
  const current=new Map([...files,'responsive-layout.css'].map(n=>[n,fs.readFileSync(path.join(root,'party-game',n))])),previous=new Map(files.map(n=>[n,git(['show',base+':party-game/'+n])]));
  const write=m=>{for(const[n,bytes]of m)fs.writeFileSync(path.join(root,'party-game',n),bytes)};
- const cache=m=>m.get('sw.js').toString().match(/const CACHE='([^']+)'/)[1],oldCache=cache(previous),newCache=cache(current);assert.match(oldCache,/v88/);assert.equal(newCache,'kvip-pwa-v112-20261102-task041-compatibility-candidate');
+ const cache=m=>m.get('sw.js').toString().match(/const CACHE='([^']+)'/)[1],oldCache=cache(previous),newCache=cache(current);assert.match(oldCache,/v88/);assert.equal(newCache,'kvip-pwa-v113-20261102-task041-acceptance');
  const b=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
  try{for(const scenario of ['editor','pending']){
   const ctx=await b.newContext({viewport:{width:390,height:844},hasTouch:true}),p=await ctx.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));
@@ -39,7 +39,7 @@ async function probeSelection(page){
    },scenario);
    await p.evaluate(()=>document.fonts.ready);
    const fixedBefore=scenario==='pending'?await p.evaluate(()=>{const c=$('play-content').getBoundingClientRect(),t=document.querySelector('.review-tabs').getBoundingClientRect(),b=document.querySelector('[data-action="confirm-results"]').getBoundingClientRect();return {tabs:t.y-c.y,bottom:b.bottom-c.bottom}}):null;
-   assert.equal(await p.evaluate(()=>baseContentPackSelection(game.contentPack).version),15);
+   assert.equal(await p.evaluate(()=>game.contentPack.version),15);
    const expectedSelection=await probeSelection(p);
    const before=await snapshot(p),risk=await p.evaluate(()=>JSON.stringify(game.riskPlannerState));assert.equal(await p.evaluate(()=>profileStore.recent.length),0);
    if(scenario==='editor'){assert.equal(await p.evaluate(()=>game.current.risk),true);assert.equal(await p.evaluate(()=>!!game.current.feedbackHold),true);assert.equal(await p.locator('#result-history-rows [data-review-choice]').count(),3);}

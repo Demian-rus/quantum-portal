@@ -29,8 +29,11 @@ function fits(g){
  const files=historicalRuntimeFiles(git,BASE,['index.html','style.css','sw.js']),oldFiles=new Map(files.map(n=>[n,git(['show',BASE+':party-game/'+n])]));
  // Pin the exact-raster harness to Playwright's matching Chromium revision.
  // Android performance/functional suites retain the runner's native Chrome.
+ // Identical glyph geometry produced ten different antialias pixels at 390px
+ // after a different selector warmed Skia's fractional glyph cache (b52125f).
+ // Snap font positions in BOTH pages; retain the byte-exact screenshot gate.
  // https://playwright.dev/docs/api/class-browsertype#browser-type-launch-option-executable-path
- const browser=await chromium.launch({executablePath:chromium.executablePath(),headless:true,args:['--no-sandbox']});
+ const browser=await chromium.launch({executablePath:chromium.executablePath(),headless:true,args:['--no-sandbox','--disable-font-subpixel-positioning']});
  console.log('TASK024 exact raster environment',JSON.stringify({playwright:require('playwright-core/package.json').version,chromium:browser.version()}));
  try{for(const[w,h]of devices){
   const contexts=[];try{

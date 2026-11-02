@@ -18,7 +18,8 @@ function loadRoots(){
  const roots=T.roots(),temp=fs.mkdtempSync(path.join(os.tmpdir(),'task038-load-')),after=path.join(temp,'after');fs.mkdirSync(after);fs.cpSync(path.join(T.ROOT,'party-game'),path.join(after,'party-game'),{recursive:true});
  const data=api.readDataset(),pack=structuredClone(data.packs.find(p=>p.id==='general'&&p.version===68));pack.version=1000;
  const active=new Set(pack.criteria.cardIds),base=data.cards.filter(c=>active.has(c.id)),extra=[];
- for(let n=0;n<Math.max(0,SIZE-base.length);n++){const row=structuredClone(base[n%base.length]);row.id='word-task038-load-'+n;row.text='Нагрузочныйпример'+n;row.type='word';row.pack='task038-synthetic';extra.push(row);pack.criteria.cardIds.push(row.id);}
+ const extraCount=Math.max(0,SIZE-pack.criteria.cardIds.length);
+ for(let n=0;n<extraCount;n++){const row=structuredClone(base[n%base.length]);row.id='word-task038-load-'+n;row.text='Нагрузочныйпример'+n;row.type='word';row.pack='task038-synthetic';extra.push(row);pack.criteria.cardIds.push(row.id);}
  data.cards=data.cards.concat(extra);data.packs=data.packs.concat(pack);const generated=api.render(data);
  for(const [name,content]of Object.entries(generated))for(const [kind,root]of [['before',roots.base],['after',after]])fs.writeFileSync(path.join(root,'party-game',name),kind==='before'&&name==='content-packs.js'?normalizeTask038(content):content);
  require('../task041/load-fixture.cjs').extendEdition(after,data,pack,extra);

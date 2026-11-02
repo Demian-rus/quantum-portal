@@ -60,3 +60,10 @@ test('Blitz keeps its word type and numerical tie-break honors the pinned Approx
  h.eval("game.taskDifficultyPolicy={version:1,choices:{...game.taskDifficultyPolicy.choices,approx:'hard'}};game.difficulty='easy';var tie=nextTiebreakQuestion()");assert.equal(h.eval('tie.difficulty'),'hard');assert.equal(h.eval("QUIP_EDITORIAL_EDITION.records[tie.id][3][6]"),'3');
  h.eval('game.contentPack.excluded=QUIP_EDITORIAL_EDITION.categories.slice()');assert.equal(h.eval('nextTiebreakQuestion()'),null);
 });
+test('theme preview refreshes when only independent mode preferences change',()=>{
+ const h=createSimulation(794);h.eval("options.modes=['approx'];options.difficulty='easy';writeTaskDifficultyPreference('approx','easy')");
+ assert.equal(h.eval("gameTypeCountSnapshot().themes.find(e=>e.pack.id==='geography').available"),false);
+ h.eval("writeTaskDifficultyPreference('approx','medium')");
+ assert.equal(h.eval("gameTypeCountSnapshot().themes.find(e=>e.pack.id==='geography').available"),true);
+ assert.equal(h.eval('options.difficulty'),'easy','preview never changes general rules');
+});

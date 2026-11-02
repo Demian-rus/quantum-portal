@@ -1884,12 +1884,12 @@ test('live catalog counters use active pack IDs and not the historical archive',
  const general=h.elements.get('standard-content-count').textContent.replace(/\s/g,' ');
  const thematic=h.elements.get('thematic-content-count').textContent.replace(/\s/g,' ');
  assert.equal(general,'7 460 заданий');
- const expectedIds=h.eval('listThematicPacks(options).filter(entry=>entry.available&&entry.pack.enabled).reduce((sum,entry)=>sum+new Set(entry.pack.criteria.cardIds).size,0)');
+ const expectedIds=h.eval('listThematicPacks({...options,...setupSongPolicy(options)}).filter(entry=>(entry.available||configurableEditorialTheme(entry.pack))&&entry.pack.enabled).reduce((sum,entry)=>sum+new Set(entry.pack.criteria.cardIds).size,0)');
  assert.equal(thematic.replace(/[^\d]/g,''),String(expectedIds));
  h.eval('openThemes()');
  const markup=h.elements.get('theme-list').innerHTML;
- assert.ok(markup.includes('>406</span>'), 'Geography shows the catalog count');
- assert.ok(markup.includes('>582</span>'), 'Science shows the catalog count');
+ assert.ok(markup.includes('data-theme="geography"'), 'Geography remains configurable without changing requested levels');
+ assert.ok(markup.includes('Нужна настройка'), 'An installed theme with an empty current pool can be configured');
  assert.ok(!markup.includes('Выбрать тему'), 'No verbose labels for enabled themes');
  assert.ok(markup.includes('Скоро'), 'Future themes remain marked soon');
  assert.equal(h.eval('options.contentPack.id'),'general','Navigation must not switch packs or modify saved settings');
@@ -1943,11 +1943,12 @@ test('populated fixture topic selects the same setup, filters cards and restores
  assert.equal(b.eval('JSON.stringify(game)'),before);
  b.eval('options.modes=["talk"];newGame()');assert.equal(b.eval('baseContentPackSelection(game.contentPack).id'),'general');
 });
-test('enabled but incomplete topic is disabled for the selected modes and levels',()=>{
+test('installed editorial topic permits configuration but START refuses an empty selected tier',()=>{
  const h=harness(new Map(),false,fixtureTopic);
  assert.equal(h.eval('listThematicPacks(options).find(entry=>entry.pack.id==="fixture-topic").available'),false);
  h.eval('options.modes=["talk"];options.promptTypes=["word"];options.difficulty="mixed"');
- assert.equal(h.eval('selectTheme("fixture-topic",1)'),false);
+ assert.equal(h.eval('selectTheme("fixture-topic",1)'),true);
+ assert.equal(h.eval('options.difficulty'),'mixed');h.eval('newGame()');assert.equal(h.eval('game'),null);
  h.eval('options.difficulty="easy"');assert.equal(h.eval('selectTheme("fixture-topic",1)'),true);
  h.eval('options.difficulty="hard";newGame()');assert.equal(h.eval('game'),null);
 });

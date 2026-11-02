@@ -19,7 +19,10 @@
  let renderedStamp=viewStamp();
  const projectionCache=new Map();
  function refreshOptions(){
-  if(activeScene==='wizard'&&baseContentPackSelection(options.contentPack)?.id==='general'&&!setupCategoryProblem(options.contentPack))options.contentPack=setupCategorySelection(options.contentPack);
+  if(activeScene==='wizard'&&!setupCategoryProblem(options.contentPack)){
+   // A restored party keeps its catalog. Only the next-party draft follows the installed edition.
+   try{const requested=getContentPack(options.contentPack);if(requested.enabled)options.contentPack=setupCategorySelection(latestContentPackSelection(requested.id));}catch{/* The real renderer describes an unknown catalog without rewriting it. */}
+  }
   const next=viewStamp();
   if(!renderedStamp||Object.keys(next).some(key=>next[key]!==renderedStamp[key])){
    // Cache only read-only results of the real renderer APIs, per exact

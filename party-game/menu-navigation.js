@@ -79,11 +79,14 @@ function openPreferences() {
 let gameTypeCountCache=null;
 function contentCountLabel(n){return n.toLocaleString('ru-RU')+' заданий';}
 function contentPackCount(pack){return new Set(pack.criteria.cardIds).size;}
+function configurableEditorialTheme(pack){
+ return typeof QUIP_EDITORIAL_PACK_VERSIONS!=='undefined'&&pack.id!=='general'&&pack.enabled&&QUIP_EDITORIAL_PACK_VERSIONS[pack.id]===pack.version&&QUIP_CONTENT_PACKS[pack.id+'@'+pack.version]===pack;
+}
 function gameTypeCountSnapshot(){
  const {duration,targetScore,rounds,modifierChance,...catalogSettings}=options;
  // Category preferences affect only the general count, never theme eligibility.
  const selected=baseContentPackSelection(catalogSettings.contentPack);
- const key=JSON.stringify({...catalogSettings,contentPack:selected?{id:selected.id,version:selected.version}:null});
+ const key=JSON.stringify({...catalogSettings,...setupEditorialPolicy(),contentPack:selected?{id:selected.id,version:selected.version}:null});
  if(!gameTypeCountCache||gameTypeCountCache.cards!==PARTY_CARDS||gameTypeCountCache.questions!==QUIP_APPROX_QUESTIONS||gameTypeCountCache.packs!==QUIP_CONTENT_PACKS)
   gameTypeCountCache={cards:PARTY_CARDS,questions:QUIP_APPROX_QUESTIONS,packs:QUIP_CONTENT_PACKS,entries:new Map()};
  const cache=gameTypeCountCache.entries;
@@ -98,7 +101,7 @@ function gameTypeCountSnapshot(){
    return pools.get(poolKey);
   };
   try{themes=listThematicPacks({...options,...setupSongPolicy(options)});}finally{getPackCardPool=selectPool;}
-  const active=themes.filter(entry=>entry.available&&entry.pack.enabled);
+  const active=themes.filter(entry=>(entry.available||configurableEditorialTheme(entry.pack))&&entry.pack.enabled);
   const snapshot={general:contentPackCount(general),thematic:active.reduce((sum,entry)=>sum+contentPackCount(entry.pack),0),themes};
   if(cache.size>=8)cache.delete(cache.keys().next().value);
   cache.set(key,snapshot);
@@ -128,11 +131,11 @@ function changeSetupPack(selection,from){
 function selectStandardGame(){changeSetupPack(latestGeneralPackSelection(),'game-type');}
 function renderThemes(){
  const entries=gameTypeCountSnapshot().themes;
- $('theme-list').innerHTML=entries.map(({pack,available})=>
+ $('theme-list').innerHTML=entries.map(({pack,available,problems})=>
   '<button type="button" class="theme-choice" data-theme="'+pack.id+'" data-version="'+pack.version+'"'+
-  (available?'':' disabled aria-disabled="true"')+'><strong>'+escapeHTML(pack.name)+'</strong><span>'+
-  (available?contentPackCount(pack).toLocaleString('ru-RU'):'Скоро')+'</span></button>').join('');
- $('themes-caption').textContent=entries.some(entry=>entry.available)?
+  (available||configurableEditorialTheme(pack)?'':' disabled aria-disabled="true"')+' title="'+escapeHTML(!available&&configurableEditorialTheme(pack)?(problems||[]).join(' ')||'Измените сложность или активные режимы.':'')+'"><strong>'+escapeHTML(pack.name)+'</strong><span>'+
+  (available?contentPackCount(pack).toLocaleString('ru-RU'):configurableEditorialTheme(pack)?'Нужна настройка':'Скоро')+'</span></button>').join('');
+ $('themes-caption').textContent=entries.some(entry=>entry.available||configurableEditorialTheme(entry.pack))?
   'Выберите тему, затем настройте партию.':'Тематические наборы ещё готовятся. Пока можно сыграть в стандартную игру.';
 }
 function openThemes(){renderThemes();setScene('themes');$('themes-scroll').scrollTop=0;}
@@ -141,7 +144,7 @@ function selectTheme(id,version){
  try{
   const pack=getContentPack(selection);
   const setup=packSetupSettings(selection,options);
-  if(pack.id==='general'||!pack.enabled||(setup.modes.length&&!checkContentPack(selection,{...setup,...setupSongPolicy(setup)}).available)){toast('Эта тема пока недоступна.');return false;}
+  if(pack.id==='general'||!pack.enabled||(!configurableEditorialTheme(pack)&&setup.modes.length&&!checkContentPack(selection,{...setup,...setupSongPolicy(setup)}).available)){toast('Эта тема пока недоступна.');return false;}
  }catch{toast('Эта тема пока недоступна.');return false;}
  changeSetupPack(selection,'themes');return true;
 }
