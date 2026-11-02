@@ -2312,7 +2312,10 @@ test('TASK008 geography awards, shared answers and save snapshots remain indepen
   const stored=new Map(),h=harness(stored);h.eval('soundOn=false;options.awardTo="'+awardTo+'";selectTheme("geography",QUIP_EDITORIAL_PACK_VERSIONS.geography);options.modes=["talk"];options.dice=false;options.modifierChance=100;newGame();roll();persist()');
   const selected=h.eval('JSON.stringify(game.current)');h.eval('selectStandardGame();options.modes=["sing"];persist()');const reload=harness(stored);assert.equal(reload.eval('baseContentPackSelection(game.contentPack).id'),'geography');assert.equal(reload.eval('JSON.stringify(game.current)'),selected);
   reload.eval('game.phase="judge";judge(true,false)');assert.equal(reload.eval('game.scores['+(awardTo==='setter'?0:1)+']'),1);
-  reload.eval('selectTheme("geography",QUIP_EDITORIAL_PACK_VERSIONS.geography);options.modes=["approx"];options.dice=false;newGame();delete game.taskDifficultyPolicy;game.contentPack={id:"geography",version:2};roll()');assert.equal(reload.eval('game.current.question.pack'),'geography-v2');reload.eval('revealApprox();awardApprox("both")');assert.deepEqual(Array.from(reload.eval('game.scores')),[1,1]);
+  // The historical geography@2 question pool remains readable, but a NEW
+  // START must use the latest editorial geography revision instead.
+  const historical=harness();historical.eval('options.modes=["approx"];options.dice=false;newGame();delete game.taskDifficultyPolicy;game.contentPack={id:"geography",version:2};roll()');
+  assert.equal(historical.eval('game.current.question.pack'),'geography-v2');historical.eval('revealApprox();awardApprox("both")');assert.deepEqual(Array.from(historical.eval('game.scores')),[1,1]);
  }
 });
 
