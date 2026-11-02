@@ -1,5 +1,5 @@
 # {"schemaVersion":1,"edition":"quip@1","rubric":"quip-rubric@1","sourcesDigest":"cc8e710652acb24dcb7c16837167e55189334650973f1d491faa454f97e26e42"}
-id|text|form|categories|themes|ambiguities|talk|mime|draw|sing|yesno|blitz|approx
+id|text|form|categories|themes|ambiguities|talk|mime|draw|sing|yesno|blitz|approx|rationale
 phrase-067009|ЗАКОН БОЛЬШИХ ЧИСЕЛ|phrase|science|science||hard:other-reviewed|-:not-physical|-:not-visual|-:type|-:type|-:multiword|-:type|Закон связывает частоту с вероятностью при росте выборки; без математического объяснения рисунок неточен.
 phrase-067010|ЗАДАЧА ТРЁХ ТЕЛ|phrase|science+space|science||hard:other-reviewed|-:not-physical|hard:other-reviewed|-:type|-:type|-:multiword|-:type|Движение трёх притягивающихся тел требует специального знания, но допускает схему орбит.
 word-068001|НАВЕС|word|everyday+arts|||easy:other-reviewed|easy:other-reviewed|medium:other-reviewed|-:type|-:type|medium:other-reviewed|-:type|Укрывающая крыша без замкнутой комнаты узнаваема; рисунку нужен профиль постройки.

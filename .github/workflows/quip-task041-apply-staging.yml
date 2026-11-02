@@ -29,6 +29,8 @@ jobs:
           node editorial/quip/editor.cjs check
           node --test editorial/quip/tests/*.test.cjs
           node party-game/scripts/content.cjs check
+          node editorial/quip/editor.cjs check --release
+          node editorial/quip/compile.cjs > /dev/null
           git config user.name "quip-editorial-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add editorial/quip/editions/quip-v1.json editorial/quip/reviews/ editorial/quip/staging/
