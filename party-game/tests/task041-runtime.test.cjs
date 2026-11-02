@@ -67,3 +67,8 @@ test('theme preview refreshes when only independent mode preferences change',()=
  assert.equal(h.eval("gameTypeCountSnapshot().themes.find(e=>e.pack.id==='geography').available"),true);
  assert.equal(h.eval('options.difficulty'),'easy','preview never changes general rules');
 });
+test('category changes retain exact distinct counts without normalizing the same source rows again',()=>{
+ const h=start('talk','easy');h.eval("editorialAvailability(game.contentPack,game,'talk','medium');var normalize041=normalizeTaskText,calls041=0;normalizeTaskText=text=>{calls041++;return normalize041(text)};var filtered041={...game.contentPack,excluded:['music']};var count041=editorialAvailability(filtered041,game,'talk','medium')");
+ assert.equal(h.eval('calls041'),0,'filtering existing immutable rows reuses their normalized keys');
+ assert.equal(h.eval('count041.count'),h.eval("new Set(editorialPoolFor(filtered041,game,'talk','medium').map(row=>normalize041(row.text||row.question))).size"));
+});

@@ -39,7 +39,12 @@ function pinEditorialSelection(selection){
  return {selectionPolicyVersion:2,pack:{id:pack.id,version:pack.version},excluded:(validateGeneralCategorySelection(selection)?.excluded||[]).slice(),edition:{id:QUIP_EDITORIAL_EDITION.id,version:QUIP_EDITORIAL_EDITION.version,digest:QUIP_EDITORIAL_EDITION.digest}};
 }
 let editorialIndex=null;
-const editorialPools=new Map(),editorialPoolCounts=new WeakMap();
+const editorialPools=new Map(),editorialPoolCounts=new WeakMap(),editorialTaskKeys=new WeakMap();
+function editorialTaskKey(row){
+ const text=row.text||row.question,cached=editorialTaskKeys.get(row);
+ if(cached?.text===text)return cached.key;
+ const key=normalizeTaskText(text);editorialTaskKeys.set(row,{text,key});return key;
+}
 function getEditorialIndex(){return editorialIndex||(editorialIndex=QuipEditorialSelection.createIndex(QUIP_EDITORIAL_EDITION,[...PARTY_CARDS,...QUIP_APPROX_QUESTIONS]));}
 function editorialRequest(selection,settings,mode,level,method=null){
  const pack=baseContentPackSelection(selection);
@@ -56,7 +61,7 @@ function editorialPoolFor(selection,settings,mode,level,method=null){
 function editorialPool(match,mode,level,method=null){return editorialPoolFor(match.contentPack,match,mode,level,method);}
 function editorialAvailability(selection,settings,mode,level,method=null){
  const pool=editorialPoolFor(selection,settings,mode,level,method),minimum=Math.max(QUIP_EDITORIAL_EDITION.catalogs[baseContentPackSelection(selection).id].minimum,mode==='blitz'?3:1);
- if(!editorialPoolCounts.has(pool))editorialPoolCounts.set(pool,new Set(pool.map(row=>normalizeTaskText(row.text||row.question))).size);
+ if(!editorialPoolCounts.has(pool))editorialPoolCounts.set(pool,new Set(pool.map(editorialTaskKey)).size);
  const count=editorialPoolCounts.get(pool);
  return {available:count>=minimum,count,minimum,reason:count>=minimum?'':getModeConfig(mode).title+': доступно '+count+', нужно '+minimum+'. Измените сложность, категории или тему.'};
 }

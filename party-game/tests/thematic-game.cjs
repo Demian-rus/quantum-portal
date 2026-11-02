@@ -41,7 +41,7 @@ module.exports=async function thematicUI(browser,url){
    assert.ok(width.scroll<=width.w+1);assert.ok(Math.abs(width.tiles[0].y-width.tiles[1].y)<1);assert.ok(width.tiles[4].y>width.tiles[0].y);assert.ok(width.tiles.every(r=>r.x>=0&&r.right<=width.w+1));
    await setupPlayers(page);const awardTo=device.name==='phone'?'guesser':'setter';
    await page.locator('[data-setting="awardTo"] button[data-value="'+awardTo+'"]').click();
-   await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.promptTypes=['word'];options.finishType='rounds';options.rounds=2;options.dice=false;options.modifierChance=100;options.complications=true;Math.random=()=>0;chooseStartingTeam=()=>0;renderOptions()});
+   await page.evaluate(()=>{soundOn=false;options.modes=['talk'];options.difficulty='easy';options.promptTypes=['word'];options.finishType='rounds';options.rounds=2;options.dice=false;options.modifierChance=100;options.complications=true;Math.random=()=>0;chooseStartingTeam=()=>0;renderOptions()});
    await startFromSetup(page);await page.locator('[data-action="roll"]').click();await assertRoundSource(page,topic.source);
    await page.locator('[data-action="toggle-word"]').click();if(device.name==='phone')await screenshot(page,topic,'phone-round');
    await page.locator('button[data-action="start-timer"]').click();await page.locator('[data-action="base-now"]').click();
@@ -54,7 +54,7 @@ module.exports=async function thematicUI(browser,url){
      await page.evaluate(mode=>{options.modes=[mode];options.difficulty='medium';options.dice=false;options.complications=mode!=='secret';options.modifierChance=100;newGame();roll()},mode);await assertRoundSource(page,topic.source);
      if(mode==='secret')assert.notEqual(await page.evaluate(()=>game.current.methodId),'sing');
      if(mode==='blitz'){
-      assert.equal(await page.evaluate(()=>new Set(game.current.blitzWords).size),3);await page.locator('[data-action="toggle-word"]').click();await page.locator('button[data-action="start-timer"]').click();
+      assert.equal(await page.evaluate(()=>new Set(game.current.blitzWords).size),3);await page.locator('[data-action="toggle-word"]').click();await page.waitForFunction(()=>game.phase==='play');
       for(let i=0;i<3;i++)await page.locator('[data-action="blitz-correct"]').click();
       await page.locator('[data-action="base"]').click();assert.equal(await page.evaluate(()=>game.history[0].reward),2);
      }else if(mode==='approx'){
@@ -67,7 +67,7 @@ module.exports=async function thematicUI(browser,url){
    await page.evaluate(()=>{options.modes=['talk'];options.dice=false;newGame();roll();options.dice=true;game.dice=true;persist()});const snapshot=await page.evaluate(()=>JSON.stringify(game));
    await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.waitForFunction(()=>navigator.serviceWorker.controller);await context.setOffline(true);await page.reload({waitUntil:'load'});await page.locator('#continue-game').click();assert.equal(await page.evaluate(()=>JSON.stringify(game)),snapshot);
    await page.locator('#exit-game').click();await page.locator('#new-game-menu').click();await page.locator('#standard-game').click();assert.equal(await page.evaluate(()=>JSON.stringify({modes:options.modes,promptTypes:options.promptTypes})),standard);await setupRules(page);assert.equal(await page.locator('#mode-toggles input[value="sing"]').isDisabled(),false);assert.equal(await page.locator('#content-toggles input[value="idiom"]').isDisabled(),false);
-   await setupPlayers(page);await page.evaluate(()=>{options.modes=['talk'];options.dice=false;Math.random=()=>0;chooseStartingTeam=()=>0});await startFromSetup(page);await page.locator('[data-action="roll"]').click();assert.equal(await page.evaluate(()=>baseContentPackSelection(game.contentPack).id),'general');assert.equal(await page.evaluate(()=>game.current.word),'КАРАНДАШ');
+   await setupPlayers(page);await page.evaluate(()=>{options.modes=['talk'];options.difficulty='easy';options.dice=false;Math.random=()=>0;chooseStartingTeam=()=>0});await startFromSetup(page);await page.locator('[data-action="roll"]').click();assert.equal(await page.evaluate(()=>baseContentPackSelection(game.contentPack).id),'general');assert.equal(await page.evaluate(()=>game.current.word),'КАРАНДАШ');
    if(device.name==='phone'){
     const other=topics.find(t=>t.id!==topic.id);await page.evaluate(()=>{game.dice=true;persist()});const activeSnapshot=await page.evaluate(()=>JSON.stringify(game));
     await page.locator('#exit-game').click();await chooseTopic(page,other);

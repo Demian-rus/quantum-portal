@@ -21,7 +21,7 @@ test('TASK032 exact delta preserves every inherited script, all game CSS, dictio
  assert.equal(g46.criteria.cardIds.filter(id=>id.startsWith('song-')).length,224,'Preserve all 224 song prompts');
  assert.match(read('sw.js'),/G46 2026-10-28: refresh the installed PWA catalog/);
  for(const h of hunks){assert(h.after);assert(normalizeTask033(read(h.file)).includes(h.after),'exact addition must still exist: '+h.file);}
- const current=[...read('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);same(current.slice().sort(),[...scripts,'team-statistics.js'].sort());
+ const current=[...read('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);same(current.slice().sort(),[...scripts,'team-statistics.js','editorial-edition.js','editorial-runtime.js'].sort());
  assert.equal(read('sw.js').slice(read('sw.js').indexOf("self.addEventListener('install'")),before('sw.js').slice(before('sw.js').indexOf("self.addEventListener('install'")));
  assert.doesNotMatch(read('team-statistics.js'),/localStorage|indexedDB|Math\.random/);
  assert(!normalizeTask032(read('team-engine.js').replace("const VERSION=1,FORMAT='teams-2x2'","const VERSION=999,FORMAT='teams-2x2'")).includes("const VERSION=1,FORMAT='teams-2x2'"),'normalization cannot erase unrelated engine changes');
@@ -41,12 +41,14 @@ function turn(h,success=true,shared='both'){
  h.eval(`roll();if(game.current.modeId==='approx'){revealApprox();awardApprox(shared)}else{game.phase='judge';recordAnswer(success)};QuipTeamsEngine.validateGame(game,taskMemory)`);
 }
 function finish(h,results=[true,false,true,false]){results.forEach(value=>turn(h,value));h.eval('confirmReviewedResults()');assert.equal(h.eval('game.phase'),'results');return plain(h.eval('QuipTeamsEngine.finalizeRecord({...teamRecord,game,taskMemory})'));}
-function validate(h,r){h.context.candidate=plain(r);return h.eval('QuipTeamsEngine.validateRecord(candidate)');}
+// Persistence crosses realms as JSON in the browser; do the same in VM fixtures.
+function put(h,name,value){h.context.fixtureJSON=JSON.stringify(value);h.eval('globalThis.'+name+'=JSON.parse(fixtureJSON)');}
+function validate(h,r){put(h,'candidate',r);return h.eval('QuipTeamsEngine.validateRecord(candidate)');}
 function storage(h){
  const map=new Map(),adapter={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,String(v)),removeItem:k=>map.delete(k)};
  let tail=Promise.resolve(),receiptRaw=null;const exclusive=fn=>{const next=tail.then(fn);tail=next.catch(()=>{});return next;};
  const receipt={read:async()=>receiptRaw,write:async(expected,next)=>{assert.equal(receiptRaw,expected);receiptRaw=next;return next;}};
- const store=S.create({storage:adapter,exclusive,receipt,digest:async raw=>crypto.createHash('sha256').update(raw).digest('hex'),validateMatch:r=>validate(h,r),validateReplacement:(a,b)=>{h.context.before=plain(a);h.context.after=plain(b);return h.eval('QuipTeamsEngine.validateReplacement(before,after)');},validateTransition:(a,b)=>{h.context.before=plain(a);h.context.after=plain(b);return h.eval('QuipTeamsEngine.validateTransition(before,after)');}});
+ const store=S.create({storage:adapter,exclusive,receipt,digest:async raw=>crypto.createHash('sha256').update(raw).digest('hex'),validateMatch:r=>validate(h,r),validateReplacement:(a,b)=>{put(h,'before',a);put(h,'after',b);return h.eval('QuipTeamsEngine.validateReplacement(before,after)');},validateTransition:(a,b)=>{put(h,'before',a);put(h,'after',b);return h.eval('QuipTeamsEngine.validateTransition(before,after)');}});
  return {map,adapter,receipt,store,get receiptRaw(){return receiptRaw;}};
 }
 test('TASK032 Russian forms cover unit, teen, compound and genitive contexts',()=>{
@@ -99,11 +101,11 @@ test('TASK032 corrected history is projected only after final confirmation; all-
  for(const p of approximate.profiles.profiles){const t=T.forProfile(r.profileResults,approximate.profiles.storeId,p.id);assert.equal(t.draws,1);assert.equal(t.setter,0);assert.equal(t.guesser,0);assert.equal(t.shared,4);assert.equal(t.modes.approx.shared,4);assert.equal(t.modes.approx.setterSuccess,0);}
 });
 test('TASK032 finalized ledger is append-only across archive cleanup, new parties and stale identity changes',()=>{
- const h=game(),first=finish(h);h.context.first=first;
- const next=plain(h.eval("QuipTeamsEngine.createRecord(options,null,{id:'task032-profile-match-0002',profileBinding:binding,previous:first,random:()=>0})"));assert.equal(next.archives.length,1);same(next.profileResults,first.profileResults);h.context.after=next;assert.equal(h.eval('QuipTeamsEngine.validateReplacement(first,after)'),true);
- const cleaned={...next,archives:[]};h.context.before=next;h.context.after=cleaned;assert.equal(h.eval('QuipTeamsEngine.validateTransition(before,after)'),true);
+ const h=game(),first=finish(h);put(h,'first',first);
+ const next=plain(h.eval("QuipTeamsEngine.createRecord(options,null,{id:'task032-profile-match-0002',profileBinding:binding,previous:first,random:()=>0})"));assert.equal(next.archives.length,1);same(next.profileResults,first.profileResults);put(h,'after',next);assert.equal(h.eval('QuipTeamsEngine.validateReplacement(first,after)'),true);
+ const cleaned={...next,archives:[]};put(h,'before',next);put(h,'after',cleaned);assert.equal(h.eval('QuipTeamsEngine.validateTransition(before,after)'),true);
  for(const mutate of [r=>r.profileResults=[],r=>r.profileResults[0].scores[0]++,r=>r.teamFormat.profileBinding.participants[0][0].id='a'.repeat(32),r=>r.game.phase='review']){
-  const bad=plain(first);mutate(bad);h.context.before=first;h.context.after=bad;assert.throws(()=>{if(!h.eval('QuipTeamsEngine.validateTransition(before,after)'))throw Error('Rejected');});
+  const bad=plain(first);mutate(bad);put(h,'before',first);put(h,'after',bad);assert.throws(()=>{if(!h.eval('QuipTeamsEngine.validateTransition(before,after)'))throw Error('Rejected');});
  }
 });
 test('TASK032 score-goal tiebreak is jointly participated and counted once only after the final confirmation',()=>{
@@ -147,7 +149,7 @@ test('TASK033 profile-picker touch closes without a container rectangle and pres
  assert.match(globalCss,/button:focus-visible,input:focus-visible/);
  assert.match(profiles,/profilePanelFocus\?\.focus\(\{preventScroll:true\}\)/);
  const html=read('index.html'),sw=read('sw.js');
- assert.match(html,/setup-wizard\.css\?v=10/);
- assert.match(sw,/setup-wizard\.css\?v=10/);
- assert.match(sw,/kvip-pwa-v110-20261101-task039-historical-future-settings/);
+ assert.match(html,/setup-wizard\.css\?v=11/);
+ assert.match(sw,/setup-wizard\.css\?v=11/);
+ assert.match(sw,/kvip-pwa-v114-20261102-task041-pool-performance/);
 });
