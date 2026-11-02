@@ -247953,7 +247953,7 @@
       "classification": {
         "form": "word",
         "categories": [
-          "professions"
+          "general"
         ],
         "themes": [],
         "ambiguities": [],
@@ -248001,8 +248001,8 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-02T08:37:13.678Z",
-        "rationale": "Браконьер — человек, незаконно ловящий животных или рыбу, скрывается от инспектора."
+        "reviewedAt": "2026-11-02T08:47:27.005Z",
+        "rationale": "Браконьер — человек, незаконно охотящийся или ловящий рыбу; нарушение закона не является отдельной профессией, поэтому прежнюю категорию профессий удалили."
       }
     },
     {
@@ -254226,7 +254226,8 @@
         "form": "word",
         "categories": [
           "everyday",
-          "music"
+          "music",
+          "nature"
         ],
         "themes": [],
         "ambiguities": [
@@ -254276,8 +254277,8 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-02T08:38:15.861Z",
-        "rationale": "Колокольчик — маленький звонящий предмет с язычком или соответствующий цветок."
+        "reviewedAt": "2026-11-02T08:47:27.005Z",
+        "rationale": "Колокольчик — небольшой звенящий предмет или цветок; отдельную категорию природы добавили для действительно указанного альтернативного смысла."
       }
     },
     {
@@ -258767,8 +258768,7 @@
       "classification": {
         "form": "word",
         "categories": [
-          "general",
-          "professions"
+          "general"
         ],
         "themes": [],
         "ambiguities": [],
@@ -258816,8 +258816,8 @@
       "review": {
         "status": "reviewed",
         "reviewer": "codex-semantic-review",
-        "reviewedAt": "2026-11-02T08:39:11.901Z",
-        "rationale": "Шарлатан — обманщик, выдающий себя за эксперта или целителя."
+        "reviewedAt": "2026-11-02T08:47:27.005Z",
+        "rationale": "Шарлатан — обманщик, который выдаёт себя за специалиста; мошенничество не является профессией, поэтому категорию профессий убрали."
       }
     },
     {
