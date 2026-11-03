@@ -23,5 +23,10 @@
     "file": "round-presentation.js",
     "before": "}\n// Exact presentation aliases only: the saved choice and both catalogs stay authoritative.\nconst CONDITION_PRESENTATION=Object.freeze({\n  \"v2-fists\": {\n    \"sources\": [\n      \"Ладони держи свободно сомкнутыми в кулаки, без усилия.\",\n",
     "after": "}\n// Exact presentation aliases only: the saved choice and both catalogs stay authoritative.\nconst CONDITION_PRESENTATION=Object.freeze({\n  \"v2-unique-nouns\": {\n    \"sources\": [\"Не повторяй одни и те же существительные при объяснении трёх карточек. Другая форма того же существительного тоже считается повтором.\"],\n    \"short\": \"При объяснении трёх карточек не повторяй существительные. Другая форма тоже считается повтором.\"\n  },\n  \"v2-fists\": {\n    \"sources\": [\n      \"Ладони держи свободно сомкнутыми в кулаки, без усилия.\",\n"
+  },
+  {
+    "file": "CONDITION-AUDIT.json",
+    "before": "      \"version\": 2,\n      \"id\": \"v2-unique-nouns\",\n      \"source\": \"Не повторяй одни и те же существительные при объяснении трёх карточек. Другая форма того же существительного тоже считается повтором.\",\n      \"display\": \"Не повторяй одни и те же существительные при объяснении трёх карточек. Другая форма того же существительного тоже считается повтором.\"\n    },\n    {\n      \"version\": 2,\n",
+    "after": "      \"version\": 2,\n      \"id\": \"v2-unique-nouns\",\n      \"source\": \"Не повторяй одни и те же существительные при объяснении трёх карточек. Другая форма того же существительного тоже считается повтором.\",\n      \"display\": \"При объяснении трёх карточек не повторяй существительные. Другая форма тоже считается повтором.\"\n    },\n    {\n      \"version\": 2,\n"
   }
 ]
