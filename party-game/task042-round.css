@@ -87,7 +87,7 @@
  row-gap:12px;
 }
 .scene--game .stable-round.large-blitz-text .round-top:has(.blitz-status){overflow:visible}
-.scene--game .stable-round.large-blitz-text .round-top:has(.blitz-status) .timer-ring{padding-inline:max(18px,.5em)}
+.scene--game .stable-round.large-blitz-text .round-top:has(.blitz-status) .timer-ring{padding-inline:max(24px,.5em)}
 .scene--game .stable-round.large-blitz-text .round-timer-stack{width:100%}
 .scene--game .stable-round.large-blitz-text .round-top .blitz-status b{white-space:normal;overflow-wrap:anywhere}
 @media(min-height:481px){
@@ -112,7 +112,9 @@
 @media(max-height:480px){
  /* Full native font metrics need this gutter for a two-line Blitz condition
     plus its risk note; card, clock and decision tracks remain unchanged. */
- .scene--game .stable-round:has(.blitz-status) .round-condition{padding-block:0}
+ .scene--game .stable-round .round-blitz-layout .round-condition{padding-block:0}
+ .scene--game .stable-round .round-blitz-layout{gap:1px}
+ .scene--game .stable-round .round-blitz-layout .risk-notice{padding-block:0}
 }
 @media(min-height:481px){
  .scene--game .play-inner.stable-round.long-round-text{grid-template-rows:var(--round-slot-size) var(--round-card-size) minmax(min-content,1fr) calc(var(--decision-size) + var(--decision-label) + var(--decision-bottom) + 5px)}
