@@ -1,0 +1,51 @@
+# {"schemaVersion":1,"edition":"quip@1","rubric":"quip-rubric@1","sourcesDigest":"4632a2c90f463a6e22ba0f6cdca2ea8bf4fdde4cc7e17fef3075b4fe4108c7e7"}
+id|text|form|categories|themes|ambiguities|talk|mime|draw|sing|yesno|blitz|approx|rationale
+word-047001|ДРОЗД|word|animals+nature|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Дрозд — лесная певчая птица с пёстрым оперением, название узнают по птице, но не каждому знаком вид.
+word-047002|ГАЛОША|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Галоша — резиновая обувь, надеваемая поверх основной для защиты от грязи.
+word-047003|РЕСНИЦА|word|biology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Ресница — маленький волос на краю века, понятна по морганию.
+word-047004|КОСИЧКА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Косичка — заплетённые в три пряди волосы.
+word-047005|ПЕРРОН|word|transport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Перрон — платформа вокзала возле железнодорожного пути.
+word-047006|ПЛОТ|word|marine+transport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Плот — простое плавательное средство из связанных брёвен.
+word-047007|ТЮБИК|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Тюбик — небольшая гибкая ёмкость для пасты или крема, из которой выдавливают содержимое.
+word-047008|ДРЕЛЬ|word|technology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Дрель — электроинструмент, вращающий сверло для отверстий.
+word-047009|ЛУЖАЙКА|word|nature|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Лужайка — открытый небольшой участок земли с травой.
+word-047010|МАРЛЯ|word|everyday+biology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Марля — тонкая рыхлая хлопчатобумажная ткань для медицинских повязок.
+word-047011|ГРУЗОВИК|word|transport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Грузовик — крупная машина для перевозки грузов.
+word-047012|РУЧЕЁК|word|nature||Небольшой ручей и детская игра-хоровод|easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Ручеёк — небольшой узкий поток воды, в игре также название хоровода.
+word-047013|ЗАПЛАТКА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Заплатка — кусок материала, пришиваемый на дырку одежды.
+word-047014|БУСИНА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Бусина — маленький шарик с отверстием для украшений.
+word-047015|НАПЁРСТОК|word|everyday|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Напёрсток — защитный колпачок для пальца при шитье.
+word-047016|ЛЮК|word|transport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Люк — закрываемый проём в полу, крыше или дороге.
+phrase-047001|ПАДАЮЩИЙ ЛИСТ|phrase|nature|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Падающий лист — лист дерева, отделившийся от ветки и летящий вниз.
+phrase-047002|ГРЯЗНАЯ ПОСУДА|phrase|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Грязная посуда — тарелки и чашки с остатками еды, нуждающиеся в мытье.
+phrase-047003|МЕШОК КАРТОШКИ|phrase|food|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Мешок картошки — большой мешок, наполненный клубнями картофеля.
+phrase-047004|СКРИПЯЩАЯ ЛЕСТНИЦА|phrase|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Скрипящая лестница — ступени, издающие неприятный звук при ходьбе.
+word-047018|ПАРОМЩИК|word|professions+transport|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Паромщик — человек, управляющий паромом для переправы через воду.
+word-047019|ПАРТИТУРА|word|music+arts|||hard:specialist|medium:indirect|medium:indirect|-:type|-:type|hard:specialist|-:type|Партитура — нотная запись всех инструментальных партий произведения.
+word-047020|СЕРПАНТИН|word|geography+culture||Горная извилистая дорога и праздничные бумажные ленты|easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Серпантин — извилистая горная дорога или разноцветные праздничные ленточки.
+word-047021|ШТОЛЬНЯ|word|technology+geography|||hard:specialist|medium:indirect|medium:indirect|-:type|-:type|hard:specialist|-:type|Штольня — горизонтальная или наклонная подземная выработка горной шахты.
+word-047022|ГРОТ|word|nature+geography|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Грот — небольшая пещера, часто с входом со стороны воды.
+word-047023|МУШКЕТ|word|history|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Мушкет — старинное длинное ружьё, используемое пехотой прошлых веков.
+word-047024|ПЕРГАМЕНТ|word|history|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Пергамент — древний материал для письма из обработанной кожи животных.
+word-047025|ШАРЛАТАН|word|general|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Шарлатан — обманщик, который выдаёт себя за специалиста; мошенничество не является профессией, поэтому категорию профессий убрали.
+word-047026|КОНЮХ|word|professions|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Конюх — работник, который ухаживает за лошадьми в конюшне.
+word-047027|ФРЕСКА|word|arts|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Фреска — картина, написанная по сырой штукатурке стены.
+word-047028|ПИКТОГРАММА|word|technology+arts|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Пиктограмма — простое графическое обозначение действия или предмета.
+word-047029|БАРРИКАДА|word|history|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Баррикада — искусственная преграда из предметов и мешков для защиты улицы.
+word-047030|СВЕТОТЕНЬ|word|arts|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Светотень — художественная передача объёма контрастом освещённых и тёмных участков.
+word-047031|ИМПУЛЬС|word|science||Механический импульс и краткое возбуждение сигнала|medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Импульс — кратковременный толчок или физическая величина движения, рисунок не определяет точный смысл.
+word-047032|КОМЕНДАНТ|word|professions|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Комендант — должностное лицо, отвечающее за порядок в военном объекте или здании.
+phrase-047005|ПОДЗЕМНАЯ РЕКА|phrase|geography+nature|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Подземная река — поток воды, который течёт ниже поверхности земли.
+phrase-047006|СКРЫТЫЙ МЕХАНИЗМ|phrase|technology|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|-:multiword|-:type|Скрытый механизм — устройство с незаметными движущимися деталями.
+phrase-047007|РАСТЕРЯННЫЙ ДИРИЖЁР|phrase|music|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Растерянный дирижёр — руководитель оркестра, забывший, как управлять музыкантами.
+phrase-047008|КРУШЕНИЕ ПОЕЗДА|phrase|transport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Крушение поезда — железнодорожная авария с сошедшими с рельсов вагонами.
+word-047033|АВТОКРАТИЯ|word|history|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Автократия — устройство власти с сосредоточением решений в руках одного правителя.
+word-047034|ЭФЕМЕРНОСТЬ|word|general|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Эфемерность — недолговечность явления, философская абстракция без конкретной формы.
+word-047035|АГНОСТИЦИЗМ|word|general|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Агностицизм — позиция о невозможности или ограниченности достоверного знания о сверхъестественном.
+word-047036|КОММЮНИКЕ|word|history+language|||hard:specialist|medium:indirect|-:not-visual|-:type|-:type|hard:specialist|-:type|Коммюнике — официальное сообщение о результатах переговоров, визуально неотличимо от обычного заявления.
+word-047037|АСКЕТИЗМ|word|general|||hard:specialist|medium:indirect|-:not-visual|-:type|-:type|hard:specialist|-:type|Аскетизм — добровольное ограничение благ ради убеждений, жестами возможен отказ от удобств.
+word-047038|МИЗАНТРОП|word|general|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Мизантроп — человек, испытывающий неприязнь к людям, можно сыграть избеганием общества.
+word-047039|ФАТАЛИЗМ|word|general|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Фатализм — вера в неизбежность предопределённых событий, без слов не различить от пассивности.
+word-047040|ПЕРФЕКЦИОНИЗМ|word|general+culture|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Перфекционизм — стремление сделать всё безупречно, может проявляться бесконечным исправлением детали.
+phrase-047009|БУМАЖНЫЙ ТИГР|idiom|general||Слабый противник под угрожающей внешностью и буквальная бумажная фигура тигра|medium:indirect|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Бумажный тигр — образ внешне опасного, но на деле слабого противника.
+phrase-047010|ВЫНУЖДЕННОЕ ПЕРЕМИРИЕ|phrase|history|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Вынужденное перемирие — временное прекращение конфликта из-за обстоятельств, не добровольного мира.

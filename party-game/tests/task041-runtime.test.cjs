@@ -1,0 +1,74 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),{createSimulation}=require('../scripts/game-simulation.cjs');
+const plain=x=>JSON.parse(JSON.stringify(x));
+function start(mode,tier,teams=false){
+ const h=createSimulation(794);h.context.mode=mode;h.context.tier=tier;
+ h.eval(`writeTaskDifficultyPreference(mode,tier);options={...options,awardTo:'guesser',modes:[mode],difficulty:'medium',complications:false,riskRounds:false};`);
+ if(teams)h.eval(`QuipTeamsEngine.install();var record=QuipTeamsEngine.createRecord({...options,awardTo:'setter'},[['А','Б'],['В','Г']],{id:'task041-runtime-match-0001'});game=record.game;taskMemory=record.taskMemory;options=record.options;`);
+ else h.eval('newGame()');
+ assert(h.eval('!!game'),'START failed '+mode+'/'+tier);return h;
+}
+for(const teams of [false,true])for(const mode of ['talk','mime','draw','sing','yesno','blitz','approx'])for(const tier of ['easy','medium','hard'])test(`${teams?'2x2':'1x1'} ${mode}/${tier}: real selection, eligible exact tier, snapshot and replay`,()=>{
+ const h=start(mode,tier,teams);
+ for(let i=0;i<4;i++){
+  h.eval('game.current=rollOutcome();game.phase="task"');
+  const info=plain(h.eval(`(()=>{const c=game.current,ids=c.blitzCardIds||[c.cardId],position=QuipEditorialSelection.STORED_MODES.indexOf(c.modeId);return {ids,levels:ids.map(id=>QUIP_EDITORIAL_EDITION.records[id][3][position]),policy:game.taskDifficultyPolicy.choices[mode],count:c.blitzWords?.length};})()`));
+  assert(info.levels.every(x=>x===String(['easy','medium','hard'].indexOf(tier)+1)),JSON.stringify(info));assert.equal(info.policy,tier);
+  if(mode==='blitz'){assert.equal(info.count,3);assert.equal(new Set(info.ids).size,3);}
+  // The normal complete team validator verifies the actual selected IDs.
+  if(teams)assert.equal(h.eval('QuipTeamsEngine.validateGame(game,taskMemory)'),true);
+  // Exercise selection independently of settlement without inventing another turn.
+  h.eval('game.current=null;game.phase="ready";game.modeHistory=[];game.modePlannerState=freshModePlan()');
+ }
+ const snapshot=h.eval('JSON.stringify([game.contentPack,game.taskDifficultyPolicy])');h.eval(`writeTaskDifficultyPreference(mode,tier==='hard'?'easy':'hard')`);assert.equal(h.eval('JSON.stringify([game.contentPack,game.taskDifficultyPolicy])'),snapshot);
+});
+test('Secret follows actual method and never expands an incompatible explicit source',()=>{
+ const h=start('secret','method');h.eval("game.modes=['draw','secret'];game.taskDifficultyPolicy={version:1,choices:{...game.taskDifficultyPolicy.choices,draw:'hard'}};game.modes=['secret','draw'];");
+ const methods=plain(h.eval("editorialSecretMethods(game.contentPack,game,'medium')"));assert.deepEqual(methods,['draw']);
+ h.eval("pickMode=()=>getMode('secret');game.current=rollOutcome()");assert.equal(h.eval('game.current.methodId'),'draw');assert.equal(h.eval("QUIP_EDITORIAL_EDITION.records[game.current.cardId][3][2]"),'3');
+ h.eval("game.taskDifficultyPolicy={version:1,choices:{...game.taskDifficultyPolicy.choices,secret:'easy'}}");assert.equal(h.eval("checkEditorialPack(game.contentPack,game).available"),false);
+});
+test('empty pools and unknown editions/policies fail closed without fallback',()=>{
+ const h=start('talk','easy');h.eval("game.contentPack.excluded=QUIP_EDITORIAL_EDITION.categories.slice()");assert.equal(h.eval('checkContentPack(game.contentPack,game).available'),false);assert.throws(()=>h.eval('rollOutcome()'));
+ h.eval("game.contentPack.edition.digest='0'.repeat(64)");assert.throws(()=>h.eval('validateEditorialGame(game)'));
+ h.eval("localStorage.setItem(QUIP_TASK_DIFFICULTY_KEY,JSON.stringify({version:999,choices:{}}))");assert.equal(h.eval('readTaskDifficultyPreferences().policy'),null);assert.throws(()=>h.eval("writeTaskDifficultyPreference('draw','easy')"));
+});
+test('historical parties keep the old selector and exact RNG when new preferences change',()=>{
+ const a=start('blitz','hard'),b=start('blitz','hard');
+ for(const h of [a,b])h.eval('game.contentPack={id:"general",version:68};delete game.taskDifficultyPolicy');
+ a.eval("writeTaskDifficultyPreference('blitz','easy')");b.eval("writeTaskDifficultyPreference('blitz','medium')");
+ assert.equal(a.eval('JSON.stringify(rollOutcome())'),b.eval('JSON.stringify(rollOutcome())'));
+});
+test('TASK041 exact integration hunks restore previous runtime and reject unrelated edits',()=>{
+ const fs=require('node:fs'),{execFileSync}=require('node:child_process'),{normalizeTask041,hunks}=require('../../diagnostics/task041/source-contract.cjs');
+ for(const file of new Set(hunks.map(h=>h.file))){
+  const source=fs.readFileSync('party-game/'+file,'utf8'),old=execFileSync('git',['show','538268d7eccffbe3dc48cbfcf2f3b514bfa1cc85:party-game/'+file],{encoding:'utf8',maxBuffer:20e6});
+  assert.equal(normalizeTask041(source),old,file);
+  assert.notEqual(normalizeTask041(source+'\n/* unintended edit */'),old,file);
+  for(const h of hunks.filter(h=>h.file===file))assert.notEqual(normalizeTask041(source.replace(h.after,h.after+'/* mutation */')),old,file+' hunk mutation');
+ }
+});
+test('new edition feedback projection and reload preserve the selected task and exact RAW',()=>{
+ const a=start('talk','hard');a.eval('game.dice=false;roll();game.dice=true;persist()');
+ const item=plain(a.eval('currentReportItem(game)'));assert(item.cardId);assert.deepEqual(item.pack,{id:'general',version:68});
+ const raw=a.storage.get('iskra-party:v1'),snapshot=a.eval('JSON.stringify(game.current)'),b=createSimulation(795,new Map(a.storage));
+ assert.equal(b.eval('storageBlocked'),false);assert.equal(b.storage.get('iskra-party:v1'),raw);assert.equal(b.eval('JSON.stringify(game.current)'),snapshot);
+ b.eval("writeTaskDifficultyPreference('talk','easy');renderOptions();persist()");assert.equal(b.storage.get('iskra-party:v1'),raw);
+});
+test('Blitz keeps its word type and numerical tie-break honors the pinned Approx tier and categories',()=>{
+ const h=start('blitz','hard');h.eval("game.promptTypes=['phrase'];game.current=rollOutcome()");assert.equal(h.eval('game.current.blitzWords.length'),3);
+ h.eval("game.taskDifficultyPolicy={version:1,choices:{...game.taskDifficultyPolicy.choices,approx:'hard'}};game.difficulty='easy';var tie=nextTiebreakQuestion()");assert.equal(h.eval('tie.difficulty'),'hard');assert.equal(h.eval("QUIP_EDITORIAL_EDITION.records[tie.id][3][6]"),'3');
+ h.eval('game.contentPack.excluded=QUIP_EDITORIAL_EDITION.categories.slice()');assert.equal(h.eval('nextTiebreakQuestion()'),null);
+});
+test('theme preview refreshes when only independent mode preferences change',()=>{
+ const h=createSimulation(794);h.eval("options.modes=['approx'];options.difficulty='easy';writeTaskDifficultyPreference('approx','easy')");
+ assert.equal(h.eval("gameTypeCountSnapshot().themes.find(e=>e.pack.id==='geography').available"),false);
+ h.eval("writeTaskDifficultyPreference('approx','medium')");
+ assert.equal(h.eval("gameTypeCountSnapshot().themes.find(e=>e.pack.id==='geography').available"),true);
+ assert.equal(h.eval('options.difficulty'),'easy','preview never changes general rules');
+});
+test('category changes retain exact distinct counts without normalizing the same source rows again',()=>{
+ const h=start('talk','easy');h.eval("editorialAvailability(game.contentPack,game,'talk','medium');var normalize041=normalizeTaskText,calls041=0;normalizeTaskText=text=>{calls041++;return normalize041(text)};var filtered041={...game.contentPack,excluded:['music']};var count041=editorialAvailability(filtered041,game,'talk','medium')");
+ assert.equal(h.eval('calls041'),0,'filtering existing immutable rows reuses their normalized keys');
+ assert.equal(h.eval('count041.count'),h.eval("new Set(editorialPoolFor(filtered041,game,'talk','medium').map(row=>normalize041(row.text||row.question))).size"));
+});

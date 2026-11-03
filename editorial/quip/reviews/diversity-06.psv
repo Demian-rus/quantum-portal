@@ -1,0 +1,50 @@
+# {"schemaVersion":1,"edition":"quip@1","rubric":"quip-rubric@1","sourcesDigest":"cd8b15f821c74097299a77b2de8a6fb0169f1b70154cfbba7e3999a5f58b26a4"}
+id|text|form|categories|themes|ambiguities|talk|mime|draw|sing|yesno|blitz|approx|rationale
+word-048001|ХРУСТ|word|general|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Хруст — сухой треск ломаемого печенья, снега или другого твёрдого предмета.
+word-048002|КОНФЕТНИЦА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Конфетница — небольшая ваза или тарелка для конфет на столе.
+word-048003|МАСЛЁНОК|word|nature+food|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Маслёнок — съедобный гриб с коричневой скользкой шляпкой.
+word-048004|ТРОСТЬ|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Трость — длинная палка для опоры при ходьбе, нередко с изогнутой ручкой.
+word-048005|ПОДОРОЖНИК|word|nature+biology|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Подорожник — растение с широкими листьями, растущее вдоль дорог.
+word-048006|ЛЕСОПИЛКА|word|technology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Лесопилка — предприятие, где пилят брёвна на доски.
+word-048007|ГЛУХАРЬ|word|animals+general||Лесная птица и нераскрытое уголовное дело|medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Глухарь — крупная лесная птица с веерообразным хвостом, также разговорное название нераскрытого дела.
+word-048009|ЗАТЫЧКА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Затычка — предмет, плотно закрывающий отверстие и препятствующий вытеканию.
+word-048010|ОТВЁРТКА|word|technology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Отвёртка — инструмент, которым вращают винты.
+word-048012|ПЫЛИНКА|word|general|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Пылинка — очень маленькая частица пыли, видимая в луче света.
+word-048013|КОРОЕД|word|animals+nature|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Короед — небольшой жук, проделывающий ходы под корой деревьев.
+word-048014|ЛОДЫЖКА|word|biology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Лодыжка — выступ сустава над ступнёй у нижнего конца голени.
+word-048015|СОРОКОНОЖКА|word|animals+biology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Сороконожка — маленькое многоногое членистоногое, быстро бегающее по земле.
+word-048016|ПИОН|word|nature|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Пион — крупный декоративный цветок с пышными лепестками.
+phrase-048001|ЗВОН БУДИЛЬНИКА|phrase|everyday|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Звон будильника — резкий звуковой сигнал часов, который будит спящего.
+phrase-048002|ПРОЛИТЫЙ СОК|phrase|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Пролитый сок — напиток, разлившийся из стакана на стол или пол.
+phrase-048003|ЛИПКАЯ ЛЕНТА|phrase|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Липкая лента — полоска материала с клеевой поверхностью для приклеивания предметов.
+phrase-048004|УБЕЖАВШИЙ СУП|phrase|food|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Убежавший суп — кипящая жидкость, перелившаяся через край кастрюли.
+word-048017|СЛЕДОПЫТ|word|professions+nature|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Следопыт — человек, умеющий находить и читать следы животных или людей.
+word-048018|ПИЛОН|word|arts+sport||Архитектурный столб и спортивный шест|medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Пилон — высокая колонна или опора сооружения, в другом контексте вертикальный шест для танца.
+word-048019|КУПЕЛЬ|word|culture+history|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Купель — ёмкость или небольшой водоём для ритуального погружения.
+word-048020|КОВЧЕГ|word|culture+mythology||Ноев ковчег и церковный ларец для святынь|medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Ковчег — легендарное судно Ноя или церковный ларец для реликвий.
+word-048021|ЛАУРЕАТ|word|general|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Лауреат — человек, награждённый премией или победивший в конкурсе.
+word-048022|БЛОКАДА|word|history+geography|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Блокада — перекрытие путей снабжения города или территории противником.
+word-048023|ПОДСТРЕКАТЕЛЬ|word|general|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Подстрекатель — тот, кто убеждает других совершить опасный или незаконный поступок.
+word-048024|ДОЗОРНЫЙ|word|professions|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Дозорный — наблюдатель, охраняющий участок и замечающий угрозы.
+word-048025|ГАРМОНИКА|word|music||Меховой инструмент и губная гармоника|medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Гармоника — музыкальный инструмент с мехами или небольшой губной инструмент.
+word-048026|БАЛЛИСТА|word|history|||hard:specialist|medium:indirect|medium:indirect|-:type|-:type|hard:specialist|-:type|Баллиста — старинная осадная машина для метания крупных стрел и камней.
+word-048027|ТРЕЩОТКА|word|music||Народный музыкальный инструмент и шумящая механическая деталь|medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Трещотка — шумовой ударный музыкальный инструмент с частым стуком.
+word-048028|ОРАНЖЕРЕЯ|word|nature+technology|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Оранжерея — застеклённое помещение для выращивания растений в тепле.
+word-048029|АЛЬМАНАХ|word|literature|||hard:specialist|medium:indirect|-:not-visual|-:type|-:type|hard:specialist|-:type|Альманах — сборник произведений или календарных сведений, рисунок не отличить от обычной книги.
+word-048030|ОРУЖЕНОСЕЦ|word|history|||hard:specialist|medium:indirect|medium:indirect|-:type|-:type|hard:specialist|-:type|Оруженосец — помощник средневекового рыцаря, носивший его вооружение.
+word-048031|ПАЛАНКИН|word|transport+history|||hard:specialist|medium:indirect|medium:indirect|-:type|-:type|hard:specialist|-:type|Паланкин — закрытые носилки на шестах для перевозки человека.
+word-048032|АКВАЛАНГ|word|marine+technology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Акваланг — баллоны и устройство для дыхания под водой.
+phrase-048005|БЕСПОРЯДОК В МУЗЕЕ|phrase|culture|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Беспорядок в музее — разбросанные экспонаты и нарушенный порядок в зале.
+phrase-048006|ПРИЁМ У ВРАЧА|phrase|everyday|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Приём у врача — консультация пациента в медицинском кабинете.
+phrase-048007|КОРОТКОЕ ЗАМЫКАНИЕ|phrase|technology|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Короткое замыкание — аварийное соединение проводников с искрами и сбоем.
+phrase-048008|СОБАЧЬЯ УПРЯЖКА|phrase|animals+transport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Собачья упряжка — несколько собак, тянущих сани в снегу.
+word-048033|САНГВИНИК|word|general+biology|||hard:specialist|medium:indirect|-:not-visual|-:type|-:type|hard:specialist|-:type|Сангвиник — темперамент, для которого характерны общительность и энергичная реакция.
+word-048034|ЭМАНСИПАЦИЯ|word|history+culture|||hard:specialist|medium:indirect|-:not-visual|-:type|-:type|hard:specialist|-:type|Эмансипация — освобождение от ограничений в правах и зависимости.
+word-048035|КОЛЛОКВИУМ|word|general+professions|||hard:specialist|medium:indirect|-:not-visual|-:type|-:type|hard:specialist|-:type|Коллоквиум — учебное обсуждение, на котором преподаватель проверяет знания.
+word-048036|ПАТРИЦИЙ|word|history|||hard:specialist|medium:indirect|medium:indirect|-:type|-:type|hard:specialist|-:type|Патриций — представитель привилегированного рода в Древнем Риме.
+word-048037|ОППОРТУНИЗМ|word|general|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Оппортунизм — приспособление убеждений ради ближайшей выгоды, трудно передать без слов.
+word-048038|АККЛИМАТИЗАЦИЯ|word|biology|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Акклиматизация — постепенное привыкание организма к непривычному климату.
+word-048039|ПРЕАМБУЛА|word|language|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Преамбула — вводная часть документа или договора перед основным текстом.
+word-048040|СХОЛАСТИКА|word|history+culture|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Схоластика — средневековая философско-богословская традиция рассуждений.
+phrase-048009|ЗАКРЫТЬ ГЕШТАЛЬТ|idiom|general|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|-:multiword|-:type|Закрыть гештальт — завершить эмоционально или практически незавершённое дело.
+phrase-048010|ВТОРОЕ ДНО|idiom|general||Тайная вторая сторона событий и скрытый отсек предмета|medium:indirect|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Второе дно — скрытая сторона событий или тайное отделение предмета.

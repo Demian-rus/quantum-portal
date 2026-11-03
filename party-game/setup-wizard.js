@@ -9,7 +9,8 @@
  const legacy={setScene,backWithinKvip,renderOptions};
  function viewStamp(){
   // Pack preference history is not read by the settings renderer or validator.
-  const {packPreferences,duration,targetScore,rounds,modifierChance,...settings}=options;
+  const {packPreferences,duration,targetScore,rounds,modifierChance,...baseSettings}=options;
+  const settings={...baseSettings,...setupEditorialPolicy()};
   return {key:JSON.stringify([settings,selectedProfileIds,profileStoreProblem]),profiles:profileStore,catalogKey:JSON.stringify(settings),
    cards:PARTY_CARDS,questions:QUIP_APPROX_QUESTIONS,packs:QUIP_CONTENT_PACKS,config:getModeConfig,validate:checkContentPack,pool:getPackCardPool};
  }
@@ -18,7 +19,10 @@
  let renderedStamp=viewStamp();
  const projectionCache=new Map();
  function refreshOptions(){
-  if(activeScene==='wizard'&&baseContentPackSelection(options.contentPack)?.id==='general'&&!setupCategoryProblem(options.contentPack))options.contentPack=setupCategorySelection(options.contentPack);
+  if(activeScene==='wizard'&&!setupCategoryProblem(options.contentPack)){
+   // A restored party keeps its catalog. Only the next-party draft follows the installed edition.
+   try{const requested=getContentPack(options.contentPack);if(requested.enabled)options.contentPack=setupCategorySelection(latestContentPackSelection(requested.id));}catch{/* The real renderer describes an unknown catalog without rewriting it. */}
+  }
   const next=viewStamp();
   if(!renderedStamp||Object.keys(next).some(key=>next[key]!==renderedStamp[key])){
    // Cache only read-only results of the real renderer APIs, per exact
@@ -57,13 +61,18 @@
  scene.innerHTML='<header class="wizard-header"><button type="button" id="wizard-back">‹ НАЗАД</button><span>КВИП</span></header>'+
   '<nav class="wizard-steps" aria-label="Этапы создания партии">'+titles.map((t,i)=>'<button type="button" data-wizard-step="'+(i+1)+'" aria-label="Этап '+(i+1)+' из 4: '+t+'"><b aria-hidden="true">'+(i+1)+'</b><span>'+t+'</span></button>').join('')+'</nav>'+
   '<div id="wizard-scroll" class="wizard-scroll"><div class="wizard-page"><p id="wizard-kicker" class="section-kicker" hidden></p><h1 id="wizard-title" tabindex="-1"></h1>'+
-  '<section data-wizard-page="1"><div id="wizard-catalog"></div><div id="wizard-themes" hidden><div id="wizard-theme-copy"></div><div id="wizard-theme-list"></div></div><p id="wizard-pack-current"></p><details id="wizard-categories" class="wizard-categories"><summary id="wizard-category-summary">КАТЕГОРИИ СЛОВАРЯ<span id="wizard-category-count" aria-live="polite"></span></summary><div class="wizard-category-body"><p id="wizard-category-definition">Уникальные задания всего набора, по всем режимам, типам и сложностям. Задание исключается, если выключен хотя бы один его тег. Задания без тематической разметки остаются доступны.</p><button id="wizard-category-all" type="button" class="button button-secondary">ВКЛЮЧИТЬ ВСЕ</button><div id="wizard-category-list"></div><p id="wizard-category-status" role="status"></p></div></details></section>'+
+  '<section data-wizard-page="1"><div id="wizard-catalog"></div><div id="wizard-themes" hidden><div id="wizard-theme-copy"></div><div id="wizard-theme-list"></div></div><p id="wizard-pack-current"></p><details id="wizard-categories" class="wizard-categories"><summary id="wizard-category-summary">КАТЕГОРИИ СЛОВАРЯ<span id="wizard-category-count" aria-live="polite"></span></summary><div class="wizard-category-body"><p id="wizard-category-definition">Уникальные задания всего набора, по всем режимам, типам и сложностям. Задание исключается, если выключен хотя бы один его тег. Категории берутся из актуальной редакции словаря.</p><button id="wizard-category-all" type="button" class="button button-secondary">ВКЛЮЧИТЬ ВСЕ</button><div id="wizard-category-list"></div><p id="wizard-category-status" role="status"></p></div></details></section>'+
   '<section data-wizard-page="2"><div class="wizard-formats" role="group" aria-label="Формат партии"><button id="wizard-format-duel" type="button" aria-pressed="true">1 НА 1</button><button id="wizard-format-teams" type="button" aria-pressed="false" disabled>2 НА 2</button></div><div id="wizard-players"></div><div id="wizard-award"></div></section>'+
   '<section data-wizard-page="3"><div id="wizard-difficulty"></div><div id="wizard-finish"></div><div id="wizard-time"></div><div class="wizard-mode-heading"><button type="button" id="wizard-mode-settings">НАСТРОЙКИ РЕЖИМОВ ↗</button></div><h2>АКТИВНЫЕ РЕЖИМЫ</h2><div id="wizard-modes"></div><details id="wizard-extra"><summary>ДОПОЛНИТЕЛЬНЫЕ ПРАВИЛА</summary><div id="wizard-extra-rules"></div><h3>ЧТО ЗАГАДЫВАТЬ</h3><div id="wizard-content"></div></details></section>'+
   '<section data-wizard-page="4"><p>Проверьте настройки. Кнопка ниже начнёт настоящую партию.</p><dl id="wizard-summary"></dl><div id="wizard-start-notice"></div></section>'+
   '<section id="wizard-rules" hidden><p>Откройте правила нужного режима. Настройки под ними действуют для этой партии.</p><div id="wizard-rule-list"></div><button type="button" id="wizard-rules-done" class="button button-primary">ГОТОВО · ВЕРНУТЬСЯ</button></section>'+
   '</div></div><footer class="wizard-footer"><span id="wizard-footer-caption"></span><button type="button" id="wizard-next" class="button button-primary">ДАЛЕЕ →</button><div id="wizard-start"></div></footer>';
  $('app').append(scene);
+ scene.addEventListener('click',event=>{
+  const button=event.target.closest('[data-task-mode][data-task-choice]');if(!button||button.disabled)return;
+  try{writeTaskDifficultyPreference(button.dataset.taskMode,button.dataset.taskChoice);sfx('button');renderOptions();}catch(error){toast(error.message);renderTaskDifficultyControls();}
+ });
+ window.addEventListener('storage',event=>{if(event.key===QUIP_TASK_DIFFICULTY_KEY&&activeScene==='wizard')renderOptions();});
  function remember(){if(activeScene==='wizard')positions.set(ruleCenter?'rules':step+':'+themes,{scroll:$('wizard-scroll').scrollTop,focus:document.activeElement?.id});}
  function move(node,target){
   $(target).append(node);
@@ -85,7 +94,7 @@
     art:label.querySelector('img').getAttribute('src'),copy:label.querySelector('b').textContent}];
   }));
   // The same delegated checkbox handler works for every entry in the registry.
-  $('mode-toggles').innerHTML=MODE_LIST.map(mode=>'<div class="mode-choice"><section class="wizard-rule" data-wizard-rule="'+mode.id+'"><header><img src="'+MODE_ASSETS[mode.id]+'" alt=""><div><h2>'+escapeHTML(mode.title)+'</h2><p class="wizard-mode-state"></p></div><strong class="wizard-reward"></strong></header><details class="wizard-rule-details"><summary>Правила</summary><p class="wizard-mode-time"></p><div class="wizard-rule-copy"></div></details><div class="wizard-mode-settings"><h3>Настройки режима</h3><label><input type="checkbox" value="'+mode.id+'" aria-label="'+escapeHTML(mode.title)+'"><span class="mode-tile"><img class="mode-tile-art" alt="" draggable="false"><span class="mode-tile-copy"><strong>'+escapeHTML(mode.title)+'</strong><b></b></span></span><span class="wizard-mode-enabled">Включить режим</span></label>'+(mode.id==='sing'?'<div id="wizard-song"></div>':'')+'</div></section></div>').join('');
+  $('mode-toggles').innerHTML=MODE_LIST.map(mode=>'<div class="mode-choice"><section class="wizard-rule" data-wizard-rule="'+mode.id+'"><header><img src="'+MODE_ASSETS[mode.id]+'" alt=""><div><h2>'+escapeHTML(mode.title)+'</h2><p class="wizard-mode-state"></p></div><strong class="wizard-reward"></strong></header><details class="wizard-rule-details"><summary>Правила</summary><p class="wizard-mode-time"></p><div class="wizard-rule-copy"></div></details><div class="wizard-mode-settings"><h3>Настройки режима</h3><label><input type="checkbox" value="'+mode.id+'" aria-label="'+escapeHTML(mode.title)+'"><span class="mode-tile"><img class="mode-tile-art" alt="" draggable="false"><span class="mode-tile-copy"><strong>'+escapeHTML(mode.title)+'</strong><b></b></span></span><span class="wizard-mode-enabled">Включить режим</span></label>'+'<div class="wizard-task-difficulty" data-task-difficulty="'+mode.id+'"></div>'+(mode.id==='sing'?'<div id="wizard-song"></div>':'')+'</div></section></div>').join('');
   for(const input of $('mode-toggles').querySelectorAll('input')){
    const saved=tileStates.get(input.value);if(!saved){renderedStamp=null;continue;}
    input.checked=saved.checked;input.disabled=saved.disabled;const label=input.closest('label');label.title=saved.title;
@@ -112,13 +121,14 @@
    row.querySelector('.wizard-mode-time').textContent=config.usesTimer?'Время: '+durations.join(' или ')+' с'+(mode.id==='secret'?', по выбранному способу':''):'Без таймера';
    row.querySelector('.wizard-rule-copy').innerHTML=guide.blocks.map(([title,copy])=>'<h3>'+escapeHTML(title)+'</h3><p>'+escapeHTML(copy)+'</p>').join('');
   }
+  renderTaskDifficultyControls();
   // Source controls and their real eligibility were rendered above.
  }
  let categoryMarkupStamp='';
  function renderGeneralCategories(){
   const box=$('wizard-categories'),hidden=themes||baseContentPackSelection(options.contentPack)?.id!=='general';box.hidden=hidden;if(hidden)return;
   const preferences=readGeneralCategoryPreferences();let counts,problem=preferences.problem;
-  try{counts=generalCategoryCounts(options.contentPack,preferences.policy||QUIP_GENERAL_CATEGORIES_ALL);}catch{problem=problem||'Набор категорий недоступен.';}
+  try{counts=editorialCategoryCounts(options.contentPack,preferences.policy||QUIP_GENERAL_CATEGORIES_ALL);}catch{problem=problem||'Набор категорий недоступен.';}
   const rows=counts?.categories||[],stamp=JSON.stringify(rows.map(({id,name,count})=>[id,name,count]));
   if(stamp!==categoryMarkupStamp){
    $('wizard-category-list').innerHTML=rows.map(row=>'<label class="wizard-category"><input type="checkbox" data-category-id="'+row.id+'"><span><b>'+escapeHTML(row.name)+'</b><small>'+row.count.toLocaleString('ru-RU')+' в наборе</small></span></label>').join('');categoryMarkupStamp=stamp;
@@ -147,7 +157,7 @@
   let pack;try{pack=getContentPack(options.contentPack);}catch{}
   $('wizard-pack-current').textContent='Выбрано: '+(pack?.name||'Набор недоступен');
   const profiles=selectedPlayerProfiles();
-  const rows=[['Игра',pack?.name||'Набор недоступен'],['Игроки',profiles?profiles.map(p=>p.name).join(' · '):'Выберите два разных профиля'],['Очки получает',options.awardTo==='setter'?'Загадывающий':'Отгадывающий'],['Сложность',{easy:'Легко',medium:'Средний',hard:'Сложный',mixed:'Микс'}[options.difficulty]],['Цель',options.finishType==='score'?ruPoints(options.targetScore):ruTurns(options.rounds)],['Базовое время',options.duration+' с'],['Режимы',options.modes.map(id=>getMode(id).title).join(', ')||'Выберите режим'],['Дополнительные правила','Риск '+(options.riskRounds?'вкл.':'выкл.')+' · усложнения '+(options.complications?options.modifierChance+'%':'выкл.')],['Источники «Напой»',sanitizeModeSettings(options.modeSettings).sing.songLanguages.map(id=>id==='ru'?'Русские':'Иностранные').join(' + ')]];
+  const rows=[['Игра',pack?.name||'Набор недоступен'],['Игроки',profiles?profiles.map(p=>p.name).join(' · '):'Выберите два разных профиля'],['Очки получает',options.awardTo==='setter'?'Загадывающий':'Отгадывающий'],['Общие правила',{easy:'Легко',medium:'Средний',hard:'Сложный',mixed:'Микс'}[options.difficulty]],['Цель',options.finishType==='score'?ruPoints(options.targetScore):ruTurns(options.rounds)],['Базовое время',options.duration+' с'],['Режимы',options.modes.map(id=>getMode(id).title).join(', ')||'Выберите режим'],['Дополнительные правила','Риск '+(options.riskRounds?'вкл.':'выкл.')+' · усложнения '+(options.complications?options.modifierChance+'%':'выкл.')],['Сложности заданий',taskDifficultySummary(options.modes)],['Источники «Напой»',sanitizeModeSettings(options.modeSettings).sing.songLanguages.map(id=>id==='ru'?'Русские':'Иностранные').join(' + ')]];
   $('wizard-summary').innerHTML=rows.map(([title,value])=>'<div><dt>'+escapeHTML(title)+'</dt><dd>'+escapeHTML(value)+'</dd></div>').join('');
   $('wizard-footer-caption').textContent=(options.finishType==='score'?ruPoints(options.targetScore):ruTurns(options.rounds))+' · '+ruCountText(options.modes.length,['режим','режима','режимов']);
   if(ruleCenter)modeRules();

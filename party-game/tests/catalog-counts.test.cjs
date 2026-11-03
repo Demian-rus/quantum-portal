@@ -5,7 +5,7 @@ test('installed counts follow the latest editorial general pack and each availab
  const data=readDataset(),latest=new Map();for(const pack of data.packs)if(!latest.has(pack.id)||pack.version>latest.get(pack.id).version)latest.set(pack.id,pack);
  const h=createSimulation(1),counts=JSON.parse(h.eval('JSON.stringify(gameTypeCountSnapshot())'));
  assert.equal(counts.general,new Set(latest.get('general').criteria.cardIds).size);
- let sum=0;for(const entry of counts.themes){const expected=latest.get(entry.pack.id);assert.equal(entry.pack.version,expected.version);assert.equal(new Set(entry.pack.criteria.cardIds).size,new Set(expected.criteria.cardIds).size);if(entry.available&&entry.pack.enabled)sum+=new Set(expected.criteria.cardIds).size;}
+ let sum=0;for(const entry of counts.themes){const expected=latest.get(entry.pack.id);assert.equal(entry.pack.version,expected.version);assert.equal(new Set(entry.pack.criteria.cardIds).size,new Set(expected.criteria.cardIds).size);if((entry.available||h.eval('configurableEditorialTheme(getContentPack('+JSON.stringify({id:entry.pack.id,version:entry.pack.version})+'))'))&&entry.pack.enabled)sum+=new Set(expected.criteria.cardIds).size;}
  assert.equal(counts.thematic,sum);h.eval('renderGameTypeCounts();renderThemes()');
  assert.equal(h.elements.get('standard-content-count').textContent,counts.general.toLocaleString('ru-RU')+' заданий');
  for(const entry of counts.themes)assert.ok(h.elements.get('theme-list').innerHTML.includes('data-theme="'+entry.pack.id+'"'));
@@ -14,7 +14,7 @@ function fixture(){
  const elements=new Map(),pack=(id,ids,enabled=true)=>({id,version:1,name:id,enabled,criteria:{cardIds:ids}});
  const general=pack('general',['g1','g2']),a=pack('a',['shared','a']),b=pack('b',['shared','b','b']),soon=pack('soon',['x'],false),unavailable=pack('unavailable',['z']);
  const ctx=vm.createContext({options:{difficulty:'easy'},PARTY_CARDS:[],QUIP_APPROX_QUESTIONS:[],QUIP_CONTENT_PACKS:{'general@1':general},localStorage:{getItem:()=>null},themes:[{pack:a,available:true},{pack:b,available:true},{pack:soon,available:false},{pack:unavailable,available:false}],calls:0,$:id=>{if(!elements.has(id))elements.set(id,{});return elements.get(id);},escapeHTML:String,getPackCardPool(){throw Error('Fixture has no card pools');}});
- vm.runInContext("function latestGeneralPackSelection(){return {id:'general',version:Math.max(...Object.values(QUIP_CONTENT_PACKS).map(p=>p.version))}};function getContentPack(s){const p=QUIP_CONTENT_PACKS[s.id+'@'+s.version];if(!p)throw Error('Missing catalog');return p};function listThematicPacks(){calls++;return themes}",ctx);
+ vm.runInContext("function setupEditorialPolicy(){return {}};function setupSongPolicy(){return {}};function latestGeneralPackSelection(){return {id:'general',version:Math.max(...Object.values(QUIP_CONTENT_PACKS).map(p=>p.version))}};function getContentPack(s){const p=QUIP_CONTENT_PACKS[s.id+'@'+s.version];if(!p)throw Error('Missing catalog');return p};function listThematicPacks(){calls++;return themes}",ctx);
  const source=fs.readFileSync(require.resolve('../content-packs.js'),'utf8');
  vm.runInContext(source.slice(source.indexOf('const QUIP_GENERAL_CATEGORY_LABELS='),source.indexOf('let generalCategoryIndexes=')),ctx);
  vm.runInContext(fs.readFileSync(require.resolve('../menu-navigation.js'),'utf8'),ctx);return {ctx,elements,run:s=>vm.runInContext(s,ctx)};

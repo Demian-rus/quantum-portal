@@ -1,0 +1,52 @@
+# {"schemaVersion":1,"edition":"quip@1","rubric":"quip-rubric@1","sourcesDigest":"a60ee930be43cd11d80aae3ba6c1105bba9ea06d458df231d2e620bf72bc8517"}
+id|text|form|categories|themes|ambiguities|talk|mime|draw|sing|yesno|blitz|approx|rationale
+word-046001|ЩЕКОЛДА|word|everyday+technology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Щеколда — простой металлический дверной засов, передаётся запиранием двери.
+word-046002|РУКАВИЦА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Рукавица — тёплая перчатка с общим отделением для пальцев, легко нарисовать.
+word-046003|БАРАШЕК|word|animals+everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Барашек — маленький баран с кудрявой шерстью, показывается рожками и блеянием.
+word-046004|КРЫШКА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Крышка — деталь, закрывающая сосуд или коробку, узнаваема по поднятию.
+word-046005|СВЁРЛО|word|technology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Свёрло — металлический вращающийся инструмент для отверстий, узнаваем по спиральной форме.
+word-046006|ДУДОЧКА|word|music+arts|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Дудочка — небольшой духовой инструмент, который держат у рта и дуют.
+word-046007|ШИПОВНИК|word|nature+biology|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Шиповник — кустарник с колючками и красными плодами, рисунок требует ягоды и шипы.
+word-046008|КОЧАН|word|food|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Кочан — плотная округлая головка капусты из множества листьев.
+word-046009|МОРОЗИЛКА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Морозилка — отделение холодильника, где замораживаются продукты.
+word-046010|ЛЕСОРУБ|word|professions+nature|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Лесоруб — человек, рубящий деревья топором или бензопилой.
+word-046011|ПАЛЬМА|word|nature|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Пальма — дерево с прямым стволом и крупными веерными листьями.
+word-046012|СКУЛЬПТОР|word|professions+arts|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Скульптор — мастер, создающий фигуры из глины или камня.
+word-046013|КОЛОКОЛЬЧИК|word|everyday+music+nature||Маленький звонящий предмет и цветок с таким названием|easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Колокольчик — небольшой звенящий предмет или цветок; отдельную категорию природы добавили для действительно указанного альтернативного смысла.
+word-046014|КАЗАН|word|food|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Казан — большой металлический котёл для приготовления еды на огне.
+word-046015|ПОМПОН|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Помпон — пушистый шарик из нитей на шапке или одежде.
+word-046016|БЕСЕДКА|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Беседка — небольшая крытая постройка для отдыха в саду.
+phrase-046001|ПЕРЕВЁРНУТЫЙ СТУЛ|phrase|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Перевёрнутый стул — мебель, стоящая ножками вверх после падения.
+phrase-046002|КЛЮЧ ОТ ЧЕРДАКА|phrase|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Ключ от чердака — небольшой металлический ключ к двери под крышей.
+phrase-046003|РАЗБИТОЕ ЗЕРКАЛО|phrase|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Разбитое зеркало — отражающая поверхность с осколками и трещинами.
+phrase-046004|НАДУВНОЙ БАССЕЙН|phrase|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Надувной бассейн — круглая ёмкость для купания из мягких накачанных стенок.
+word-046017|ВИРТУОЗ|word|arts+music|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Виртуоз — исполнитель, выдающийся особой технической ловкостью, чаще музыкант.
+word-046018|САМОЗВАНЕЦ|word|general||Человек с присвоенной личностью и герой игры Among Us|medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Самозванец — человек, выдающий себя за другого или за обладателя чужого титула.
+word-046019|ПАПИРУС|word|history+literature|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Папирус — древний материал для записей, сделанный из стеблей растения.
+word-046020|КОММУНАЛКА|word|everyday|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Коммуналка — квартира, где разные семьи живут в отдельных комнатах с общей кухней.
+word-046021|БАНДЕРОЛЬ|word|everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Бандероль — небольшое почтовое отправление в упаковке.
+word-046022|ПЕТАРДА|word|culture|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Петарда — маленькое пиротехническое изделие, издающее хлопок при взрыве.
+word-046023|ГОРНОСТАЙ|word|animals+nature|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Горностай — небольшой белый зимний хищник с чёрным кончиком хвоста.
+word-046024|БОРТНИК|word|professions|||hard:specialist|medium:indirect|medium:indirect|-:type|-:type|hard:specialist|-:type|Бортник — специалист, добывающий мёд диких пчёл в лесных дуплах.
+word-046025|ЛЕТОПИСЕЦ|word|history+literature|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Летописец — человек, записывающий исторические события в старинной книге.
+word-046026|БУКИНИСТ|word|professions|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Букинист — продавец или знаток старинных и подержанных книг.
+word-046027|ВИОЛОНЧЕЛЬ|word|music+arts|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Виолончель — крупный струнный инструмент, на котором играют сидя смычком.
+word-046028|ЦИТАДЕЛЬ|word|history|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Цитадель — сильное укрепление внутри города или крепости.
+word-046029|БЕРЕСТА|word|nature+history||Кора берёзы и старинный материал для письма|medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Береста — верхний светлый слой коры берёзы, известный древними грамотами.
+word-046030|КАТАПУЛЬТА|word|history|||medium:indirect|easy:concrete|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Катапульта — древняя машина, бросающая камни по крепостям.
+word-046031|ШЕЛКОПРЯД|word|animals+biology|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Шелкопряд — гусеница, создающая кокон для получения шёлковой нити.
+word-046032|ВЫКРОЙКА|word|arts+professions|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Выкройка — бумажный шаблон деталей одежды для раскроя ткани.
+phrase-046005|ЛОЖНЫЙ СЛЕД|phrase|general||След, направляющий по неверному пути, и ложный признак при расследовании|medium:indirect|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Ложный след — вводящий в заблуждение признак или тропа, уводящая от правильного поиска.
+phrase-046006|ОБМЕН РОЛЯМИ|phrase|general|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Обмен ролями — два человека меняются обязанностями или персонажами.
+phrase-046007|ДВОРЦОВЫЙ ПЕРЕВОРОТ|phrase|history+culture|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Дворцовый переворот — насильственная смена власти внутри царского двора.
+phrase-046008|ВЫСТАВКА РОБОТОВ|phrase|technology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Выставка роботов — публичный показ нескольких механических машин.
+word-046033|СНОБИЗМ|word|general|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Снобизм — презрительное превосходство человека к тем, кого он считает менее культурными.
+word-046034|ПУРИТАНИН|word|history+culture|||hard:specialist|medium:indirect|medium:indirect|-:type|-:type|hard:specialist|-:type|Пуританин — сторонник строгих религиозно-нравственных норм в историческом контексте.
+word-046035|АБСУРДИЗМ|word|arts+culture|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Абсурдизм — философско-художественное направление о бессмысленности привычного порядка.
+word-046036|КОНСПИРОЛОГИЯ|word|general|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Конспирология — объяснение событий через предполагаемые тайные заговоры без надёжных доказательств.
+word-046037|ИПОХОНДРИЯ|word|biology|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Ипохондрия — чрезмерная тревога из-за предполагаемых болезней, рисунок без слов неопределёнен.
+word-046038|РЕПАТРИАЦИЯ|word|history|||hard:specialist|medium:indirect|-:not-visual|-:type|-:type|hard:specialist|-:type|Репатриация — возвращение человека на историческую родину, без названий стран тяжело изобразить.
+word-046039|АНТРОПОМОРФИЗМ|word|science+culture|||hard:specialist|-:not-physical|-:not-visual|-:type|-:type|hard:specialist|-:type|Антропоморфизм — приписывание человеческого облика или поведения животным и вещам.
+word-046040|АВАНТЮРИЗМ|word|general|||hard:specialist|medium:indirect|-:not-visual|-:type|-:type|hard:specialist|-:type|Авантюризм — склонность к неоправданному риску и сомнительным предприятиям.
+phrase-046009|ЗОЛОТАЯ КЛЕТКА|idiom|general||Буквальная драгоценная клетка и метафора благополучной несвободы|medium:indirect|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Золотая клетка — образ комфортного, но ограничивающего свободу положения.
+phrase-046010|СУДЬБОНОСНОЕ РЕШЕНИЕ|phrase|general|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|-:multiword|-:type|Судьбоносное решение — выбор с крупными последствиями для всей дальнейшей жизни.

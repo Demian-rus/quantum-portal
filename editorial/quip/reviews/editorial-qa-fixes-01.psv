@@ -1,0 +1,6 @@
+# {"schemaVersion":1,"edition":"quip@1","rubric":"quip-rubric@1","sourcesDigest":"908ecbf80fc784254032d02c1d1734ef18bb564ea5fafea7c57b62f64cca498d"}
+id|text|form|categories|themes|ambiguities|talk|mime|draw|sing|yesno|blitz|approx|rationale
+word-044017|БРАКОНЬЕР|word|general|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Браконьер — человек, незаконно охотящийся или ловящий рыбу; нарушение закона не является отдельной профессией, поэтому прежнюю категорию профессий удалили.
+word-046013|КОЛОКОЛЬЧИК|word|everyday+music+nature||Маленький звонящий предмет и цветок с таким названием|easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Колокольчик — небольшой звенящий предмет или цветок; отдельную категорию природы добавили для действительно указанного альтернативного смысла.
+word-047025|ШАРЛАТАН|word|general|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Шарлатан — обманщик, который выдаёт себя за специалиста; мошенничество не является профессией, поэтому категорию профессий убрали.
+

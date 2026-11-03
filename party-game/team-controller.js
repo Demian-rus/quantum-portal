@@ -292,7 +292,9 @@
   run(()=>{
    const binding=profileBindingNow(),names=binding.participants.map(team=>team.map(p=>p.name));
    const proposal=E.createRecord(options,names,{id:crypto.randomUUID(),previous:s.record,profileBinding:binding});s.tx.proposal=proposal;
-   game=proposal.game;taskMemory=proposal.taskMemory;options=proposal.options;s.inSetup=false;document.body.classList.add('teams-active');persist();sfx('go');render();
+   // The success path paints after durability is confirmed. Do not render
+   // the uncommitted game and then render the same state a second time.
+   game=proposal.game;taskMemory=proposal.taskMemory;options=proposal.options;s.inSetup=false;document.body.classList.add('teams-active');persist();sfx('go');
   },{replace:!!s.record});
  }
  function closeData(){dialog.hidden=true;pendingJournal=null;const shell=$q('.site-shell');if(shell)shell.inert=dataInert;dataFocus?.focus?.({preventScroll:true});}

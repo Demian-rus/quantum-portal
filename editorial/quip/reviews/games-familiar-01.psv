@@ -1,0 +1,52 @@
+# {"schemaVersion":1,"edition":"quip@1","rubric":"quip-rubric@1","sourcesDigest":"fb6240bffd8443ad63f0088732e4abbea8253e6b13fd69dd31e474013b71f3e3"}
+id|text|form|categories|themes|ambiguities|talk|mime|draw|sing|yesno|blitz|approx|rationale
+word-078001|ПРИСТАВКА|word|videogames+technology||Игровая консоль и приставка как часть слова|easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Приставка — домашняя игровая консоль с контроллером и подключением к экрану.
+word-078002|КАРТРИДЖ|word|videogames+technology|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Картридж — съёмный игровой носитель старых консолей, хорошо изображается прямоугольным модулем.
+word-078003|ЗОМБИ|word|videogames+mythology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Зомби — оживший мертвец, узнаваем по шаркающей походке и вытянутым рукам.
+word-078004|МОНСТР|word|videogames+mythology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Монстр — пугающее вымышленное существо с заметной необычной внешностью.
+word-078005|ПРИНЦЕССА|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Принцесса — сказочная героиня в короне, платье и замке, фигура легко узнаётся.
+word-078006|БОНУС|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Бонус — добавочная награда за действие, показать можно получением сверх обычного приза.
+word-078007|УРОВЕНЬ|word|videogames||Этап игры и мера высоты или подготовки|easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Уровень — отдельный этап видеоигры, отличается от общего уровня высоты или мастерства.
+word-078008|ПОБЕДА|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Победа — успешный исход состязания с жестом триумфа и пьедесталом.
+word-078009|ПОРАЖЕНИЕ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Поражение — проигрыш в состязании, наглядны разочарование и отсутствие победной награды.
+word-078010|РАУНД|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Раунд — отдельный цикл матча с началом и окончанием, показывается сигналом нового боя.
+word-078011|ПАУЗА|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Пауза — временная остановка игры, узнаваема по двум вертикальным полоскам.
+word-078012|СОХРАНЕНИЕ|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Сохранение — фиксация игрового прогресса, а не физическое хранение вещи.
+word-078013|СЛОЖНОСТЬ|word|videogames|||easy:familiar|medium:indirect|-:not-visual|-:type|-:type|easy:fast-clue|-:type|Сложность — выбранная требовательность прохождения игры, без текста трудно нарисовать точно.
+word-078014|МИССИЯ|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Миссия — игровая задача с целью и выполнением, показывает получение приказа и действие.
+word-078015|ЗАДАНИЕ|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Задание — поручение игровому герою, его можно изобразить как просьбу и выполнение.
+word-078016|СЮЖЕТ|word|videogames|||easy:familiar|hard:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Сюжет — связная история событий произведения, без подписей рисунок не выделяет понятие.
+word-078017|БОСС|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Босс — сильный противник в конце этапа, наглядно отличается размером и силой.
+word-078018|ПЕРСОНАЖ|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Персонаж — управляемый или встречный герой игры, изображается фигурой в игровой сцене.
+word-078019|ИНВЕНТАРЬ|word|videogames|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Инвентарь — список вещей героя, его показывает открытие рюкзака или сетка предметов.
+word-078020|АПТЕЧКА|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Аптечка — набор для первой помощи, часто восстанавливает здоровье персонажа.
+word-078021|БРОНЯ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Броня — защитное снаряжение с пластинами и шлемом.
+word-078022|ПОРТАЛ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Портал — магический проход между местами, узнаваем по сияющей рамке перехода.
+word-078023|ТЕЛЕПОРТ|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Телепорт — мгновенное перемещение героя из одной точки в другую.
+word-078024|ПРОХОЖДЕНИЕ|word|videogames|||medium:indirect|medium:indirect|hard:indirect|-:type|-:type|medium:fast-clue|-:type|Прохождение — последовательное выполнение этапов игры до финала, рисунок требует серии сцен.
+word-078025|ИГРОК|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Игрок — человек с контроллером или мышкой, участвующий в компьютерной игре.
+word-078026|ГОНКА|word|videogames+sport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Гонка — состязание в скорости с финишной линией и обгоном.
+word-078027|ФИНАЛ|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Финал — завершение игры или соревнования, показывается концом пути и наградой.
+word-078028|ГЕРОЙ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Герой — основной смелый действующий персонаж с характерным подвигом.
+word-078029|ПРЫЖОК|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Прыжок — отрыв ног от земли одним движением, легко сыграть.
+word-078030|МЕЧ|word|videogames+history|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Меч — клинковое оружие с рукоятью, хорошо рисуется и показывается.
+word-078031|ЗМЕЙКА|word|videogames||Змейка как классическая игра или маленькая змея|easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Змейка — игра, где цепочка растёт, собирая предметы и избегая стен; также означает животное.
+word-078032|ДЕНДИ|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Денди — известная в России восьмибитная игровая приставка с характерными картриджами.
+word-078033|СЕГА|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Сега — игровая консоль, узнаваемая по контроллеру и ретро-играм.
+word-078034|НИНТЕНДО|word|videogames|||easy:familiar|medium:indirect|hard:indirect|-:type|-:type|medium:fast-clue|-:type|Нинтендо — производитель консолей и игр с Марио; рисунок бренда без логотипа сложен.
+word-078035|ИКСБОКС|word|videogames+technology|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Иксбокс — игровая консоль Microsoft, узнаваемая по контроллеру и символу X.
+word-078036|ПЛЕЙСТЕЙШЕН|word|videogames+technology|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Плейстейшен — семейство консолей Sony с характерными кнопками контроллера.
+word-078037|ГЕЙМЕР|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Геймер — человек, увлечённый видеоиграми, изображается за компьютером с контроллером.
+word-078038|ПРОКАЧКА|word|videogames|||medium:indirect|easy:concrete|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Прокачка — улучшение способностей героя в игре, показать можно усилением персонажа.
+word-078039|СТРАТЕГИЯ|word|videogames||Игровой жанр и общий план действий|easy:familiar|hard:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Стратегия — планирование действий ради победы, в игре часто означает управление армией.
+word-078040|ЧИТ-КОД|word|videogames|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Чит-код — секретная команда для получения игрового преимущества, рисунок без букв недостаточен.
+phrase-078001|СУПЕР МАРИО|person|videogames||Персонаж Марио.~Игровая серия Super Mario.|-:other-reviewed|-:other-reviewed|-:other-reviewed|-:other-reviewed|-:other-reviewed|-:other-reviewed|-:other-reviewed|В прежней аргументации указан сам Марио, уже представленный person-000047; персонажная форма исправлена, краткий повтор исключён.
+phrase-078002|ЗЛЫЕ ПТИЦЫ|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Злые птицы — игра про запуск круглых птиц из рогатки по сооружениям свиней.
+phrase-078003|РАСТЕНИЯ ПРОТИВ ЗОМБИ|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Растения против зомби — игра с растениями, защищающими дом от наступающих зомби.
+phrase-078004|ПОКЕМОН ГО|phrase|videogames|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Покемон ГО — мобильная игра поиска покемонов в реальном мире с телефоном.
+phrase-078005|ГОВОРЯЩИЙ ТОМ|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Говорящий Том — мобильный мультяшный кот, повторяющий слова за игроком.
+phrase-078006|ИГРА НА ДВОИХ|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Игра на двоих — совместное или соревновательное участие двух игроков за экранами.
+phrase-078007|ГЛАВНЫЙ ГЕРОЙ|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Главный герой — центральное действующее лицо истории, выделенное среди остальных.
+phrase-078008|ФИНАЛЬНЫЙ БОСС|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Финальный босс — особо сильный враг в конце игры, обычно крупнее других противников.
+phrase-078009|ЗАПАСНАЯ ЖИЗНЬ|phrase|videogames|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|-:multiword|-:type|Запасная жизнь — дополнительная попытка продолжить игру после поражения.
+phrase-078010|ЗОЛОТАЯ МОНЕТА|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Золотая монета — собираемый игровой предмет круглой формы золотого цвета.

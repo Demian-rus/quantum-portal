@@ -7,7 +7,7 @@ const QuipEditorialSelection=(()=>{
  const TIERS=Object.freeze(['easy','medium','hard']);
  const FORMS=Object.freeze(['word','phrase','idiom','song','person','number']);
  const STORED_MODES=Object.freeze(MODES.filter(m=>m!=='secret'));
- const DEFAULT_CHOICES=Object.freeze({talk:'general',mime:'easy',draw:'easy',sing:'general',yesno:'general',secret:'method',blitz:'all',approx:'general'});
+ const DEFAULT_CHOICES=Object.freeze({talk:'general',mime:'easy',draw:'easy',sing:'general',yesno:'general',secret:'method',blitz:'medium-hard',approx:'general'});
  function fail(message){throw Error('EDITORIAL SELECTION: '+message);}
  function plain(value,seen=new Set()){
   if(value===null||typeof value==='string'||typeof value==='boolean')return;
@@ -24,7 +24,7 @@ const QuipEditorialSelection=(()=>{
  function list(value,known,{empty=false}={}){if(!Array.isArray(value)||(!empty&&!value.length)||new Set(value).size!==value.length||value.some(v=>!known.includes(v)))fail('Invalid list');}
  function preferences(raw={version:1,choices:DEFAULT_CHOICES}){
   plain(raw);keys(raw,['version','choices']);if(raw.version!==1)fail('Unknown task-level policy');keys(raw.choices,MODES);
-  for(const mode of MODES){const allowed=[...TIERS,...(mode==='secret'?['method','general']:['general']),...(mode==='blitz'?['all']:[])];if(!allowed.includes(raw.choices[mode]))fail('Unknown '+mode+' choice');}
+  for(const mode of MODES){const allowed=[...TIERS,...(mode==='secret'?['method','general']:['general']),...(mode==='blitz'?['all','medium-hard']:[])];if(!allowed.includes(raw.choices[mode]))fail('Unknown '+mode+' choice');}
   return Object.freeze({version:1,choices:Object.freeze({...raw.choices})});
  }
  function tiersFor(raw,mode,roundTier,method=null){
@@ -35,7 +35,7 @@ const QuipEditorialSelection=(()=>{
    return choice==='method'?actual:actual.filter(t=>t===(choice==='general'?roundTier:choice));
   }
   if(method!==null)fail('Actual method is only valid for Secret');
-  const choice=policy.choices[mode];return choice==='all'?TIERS.slice():[choice==='general'?roundTier:choice];
+  const choice=policy.choices[mode];return choice==='all'?TIERS.slice():choice==='medium-hard'?TIERS.slice(1):[choice==='general'?roundTier:choice];
  }
  function normalize(text){return text.normalize('NFKC').toLocaleLowerCase('ru').replace(/ё/g,'е').replace(/[^\p{L}\p{N}]+/gu,' ').trim();}
  function typeAllows(form,mode,text){
@@ -58,7 +58,7 @@ const QuipEditorialSelection=(()=>{
    const row=source.get(id);if(!row||!Array.isArray(tuple)||tuple.length!==5)fail('Missing source/metadata '+id);
    const [form,categoryMask,themeMask,levels,language]=tuple;
    if(!Number.isInteger(form)||!FORMS[form]||!Number.isSafeInteger(categoryMask)||categoryMask<1||categoryMask>categoryLimit||!Number.isSafeInteger(themeMask)||themeMask<0||themeMask>themeLimit||typeof levels!=='string'||! /^[0-3]{7}$/.test(levels)||!['','ru','en'].includes(language))fail('Invalid metadata '+id);
-   const rawForm=row.type||'number',newForm=FORMS[form];if(!(['word','phrase','idiom'].includes(rawForm)&&['word','phrase','idiom'].includes(newForm))&&rawForm!==newForm)fail('Changed game kind '+id);
+   const rawForm=row.type||'number',newForm=FORMS[form];if(!(['word','phrase','idiom'].includes(rawForm)&&['word','phrase','idiom','person'].includes(newForm))&&rawForm!==newForm)fail('Changed game kind '+id);
    if(newForm==='song'?!['ru','en'].includes(language):language!=='')fail('Invalid song language '+id);
    for(const [i,mode]of STORED_MODES.entries())if(levels[i]!=='0'&&!typeAllows(newForm,mode,row.text||row.question))fail('Incompatible method '+id);
    data.set(id,Object.freeze({row,form:newForm,categoryMask,themeMask,levels,language}));

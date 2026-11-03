@@ -1,0 +1,152 @@
+# {"schemaVersion":1,"edition":"quip@1","rubric":"quip-rubric@1","sourcesDigest":"42b2307f148cfe2b3558e75fa09a0776b4a72e3ad69431c291a6bcebeb4ecc9a"}
+id|text|form|categories|themes|ambiguities|talk|mime|draw|sing|yesno|blitz|approx|rationale
+word-081001|КУРСОР|word|videogames+technology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Курсор — указатель мыши на экране, легко изобразить стрелкой и движением по монитору.
+word-081002|НАУШНИК|word|videogames+technology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Наушник — устройство для прослушивания звука у уха, жест надевания сразу узнаваем.
+word-081003|ГАРНИТУРА|word|videogames+technology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Гарнитура — наушники с микрофоном для голосовой связи во время игры.
+word-081004|ПРОБЕЛ|word|videogames+technology||Пробел как клавиша и как свободное место между объектами|easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Пробел — длинная клавиша на клавиатуре, а не свободное место между предметами.
+word-081005|МЕТКА|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Метка — условный знак точки на игровой карте, показывается постановкой маркера.
+word-081006|ФЛАГ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Флаг — полотнище на древке, в игре обозначает точку захвата или команду.
+word-081007|КОРОНА|word|videogames+history|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Корона — золотой головной убор правителя, часто символ победы.
+word-081008|ПРИШЕЛЕЦ|word|videogames+space|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Пришелец — инопланетное существо с отличительной фантастической внешностью.
+word-081009|ЧУДОВИЩЕ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Чудовище — страшное вымышленное существо с когтями или клыками.
+word-081010|ВАМПИР|word|videogames+mythology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Вампир — персонаж, который пьёт кровь и боится солнечного света.
+word-081011|КОРОЛЬ|word|videogames+history|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Король — правитель в короне с троном и скипетром.
+word-081012|КОРОЛЕВА|word|videogames+history|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Королева — правительница с короной и троном, легко показать осанкой.
+word-081013|ПРИНЦ|word|videogames+history|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Принц — наследник монарха, изображается с короной у замка.
+word-081014|УСКОРЕНИЕ|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Ускорение — постепенное увеличение скорости движения игрока или транспорта.
+word-081015|УПРАВЛЕНИЕ|word|videogames||Управление персонажем и руководство людьми|easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Управление — воздействие на персонажа через кнопки и джойстик, не обычное руководство коллективом.
+word-081016|ПЕРЕСТРЕЛКА|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Перестрелка — взаимный обмен выстрелами между противниками.
+word-081017|ПОЕДИНОК|word|videogames+sport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Поединок — бой двух противников по правилам или один на один.
+word-081018|ПОЛЁТ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Полёт — перемещение по воздуху без опоры на землю.
+word-081019|ПАДЕНИЕ|word|videogames+nature|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Падение — движение вниз с высоты после утраты опоры.
+word-081020|ТАЙМЕР|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Таймер — устройство или индикатор обратного отсчёта времени.
+word-081021|ЛИДЕР|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Лидер — тот, кто ведёт за собой команду или занимает первое место.
+word-081022|ТОПОР|word|videogames+everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Топор — инструмент с лезвием на рукояти, применяется для рубки.
+word-081023|ПУЛЯ|word|videogames|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Пуля — небольшой снаряд, вылетающий из стрелкового оружия.
+word-081024|МИНА|word|videogames+history||Мина как взрывной заряд и выражение лица|easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Мина — скрытый взрывной заряд, отличающийся от выражения лица.
+word-081025|БОМБА|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Бомба — взрывное устройство с узнаваемым таймером или фитилём в рисунке.
+word-081026|ПУШКА|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Пушка — орудие с длинным стволом и крупным боеприпасом.
+word-081027|ТАНК|word|videogames+transport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Танк — бронированная гусеничная машина с башней.
+word-081028|ЭТАП|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Этап — отдельная часть длинного испытания или пути.
+word-081029|КОД|word|videogames+technology||Код доступа и программный код|easy:familiar|medium:indirect|-:not-visual|-:type|-:type|easy:fast-clue|-:type|Код — цифровая или буквенная комбинация, рисунок без букв даёт слишком неопределённую подсказку.
+word-081030|ШИФР|word|videogames+language|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Шифр — скрытое сообщение, требующее специального ключа для прочтения, рисунок без символов ненадёжен.
+word-081031|КОСТЮМ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Костюм — комплект одежды для персонажа, часто сменный образ.
+word-081032|КОЛЛЕКЦИЯ|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Коллекция — собрание предметов одной темы, показывается несколькими экземплярами.
+word-081033|ЗАПУСК|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Запуск — начало работы игры или двигателя с нажатием кнопки.
+word-081034|СОРЕВНОВАНИЕ|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Соревнование — состязание нескольких участников ради победы.
+word-081035|ОБЗОР|word|videogames||Обзор видеоигры и обзор пространства|medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Обзор — оценочный рассказ о новой игре или просмотр местности сверху, без текста трудно различить.
+word-081036|ОБНОВЛЕНИЕ|word|videogames|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Обновление — установка новой версии игры, можно показать смену старого на новое, но рисунок неоднозначен.
+word-081037|УСТАНОВКА|word|videogames||Установка игры и физический монтаж|easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Установка — процесс размещения игры на компьютере, а не строительная установка.
+word-081038|НАСТРОЙКА|word|videogames|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Настройка — изменение параметров игры в меню, чисто графическая подсказка мало конкретна.
+word-081039|ОЗВУЧКА|word|videogames+arts|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Озвучка — произнесённые актёром реплики персонажей, показать можно микрофоном и экраном.
+word-081040|ЧАТ|word|videogames+technology|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Чат — обмен текстовыми сообщениями между игроками в интернете.
+phrase-081001|ИГРОВАЯ ПРИСТАВКА|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Игровая приставка — отдельная консоль для видеоигр, узнаваема по контроллеру и телевизору.
+phrase-081002|ЗАГРУЗОЧНЫЙ ЭКРАН|phrase|videogames|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|-:multiword|-:type|Загрузочный экран — изображение во время запуска игры с индикатором ожидания.
+phrase-081003|ОТКРЫТЫЙ МИР|phrase|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Открытый мир — игра с обширной свободно исследуемой картой без одного обязательного маршрута.
+phrase-081004|ПОСЛЕДНЯЯ ЖИЗНЬ|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Последняя жизнь — единственная оставшаяся попытка персонажа пройти уровень.
+phrase-081005|ГЛАВНЫЙ ЗЛОДЕЙ|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Главный злодей — основной антагонист игры, которого герой должен победить.
+phrase-081006|СОБРАТЬ МОНЕТЫ|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Собрать монеты — действие персонажа, подбирающего разбросанные игровые монетки.
+phrase-081007|СОХРАНИТЬ ИГРУ|phrase|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Сохранить игру — записать текущий прогресс, чтобы продолжить позже.
+phrase-081008|СЛЕДУЮЩИЙ РАУНД|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Следующий раунд — новый этап соревнования после завершения предыдущего.
+phrase-081009|ПОСТРОИТЬ ДОМ|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Построить дом — возведение стен и крыши из строительных блоков.
+phrase-081010|МЕНЮ НАСТРОЕК|phrase|videogames|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|-:multiword|-:type|Меню настроек — экран с регуляторами звука, графики и управления.
+word-082001|АККАУНТ|word|videogames+technology|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Аккаунт — зарегистрированный профиль игрока с именем и доступом к данным.
+word-082002|РАНГ|word|videogames|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Ранг — ступень квалификации игрока, показывается знаком отличия или лестницей уровней.
+word-082003|СЕЗОН|word|videogames+culture||Сезон обновлений игры и время года|easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Сезон — ограниченный по времени игровой цикл с обновлёнными испытаниями, а также пора года.
+word-082004|БОЕПРИПАС|word|videogames|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Боеприпас — патроны или снаряды, которыми заряжается оружие.
+word-082005|БЛАСТЕР|word|videogames+space|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Бластер — фантастическое оружие, стреляющее световыми лучами.
+word-082006|СНАЙПЕР|word|videogames+professions|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Снайпер — стрелок по далёким целям с оптическим прицелом.
+word-082007|КОМАНДИР|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Командир — человек, отдающий приказы отряду в бою.
+word-082008|БАШНЯ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Башня — высокое сооружение с несколькими этажами или бойницами.
+word-082009|БАРЬЕР|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Барьер — преграда на пути, через которую нельзя пройти свободно.
+word-082010|ПРОПАСТЬ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Пропасть — глубокий разрыв земли между высокими краями.
+word-082011|ЭКИПИРОВКА|word|videogames|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Экипировка — комплект носимого игровым героем оружия, брони и аксессуаров.
+word-082012|НЕВИДИМОСТЬ|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Невидимость — способность стать незаметным для взгляда, показывается исчезновением.
+word-082013|БЕССМЕРТИЕ|word|videogames|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Бессмертие — невозможность умереть, рисунок без надписей плохо отличает его от восстановления здоровья.
+word-082014|ГОЛЕМ|word|videogames+mythology|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Голем — искусственно оживлённый каменный или железный великан.
+word-082015|ТРОЛЛЬ|word|videogames+mythology||Сказочный тролль и интернет-провокатор|easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Тролль — мифическое крупное существо, а также провокатор в интернете.
+word-082016|ГИГАНТ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Гигант — существо очень большого роста по сравнению с людьми.
+word-082017|ЛОПАТА|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Лопата — инструмент с плоским ковшом для копания земли.
+word-082018|ТОРГОВЕЦ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Торговец — продавец вещей, принимающий оплату и отдающий товар.
+word-082019|КУЗНИЦА|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Кузница — мастерская с горном и наковальней для обработки металла.
+word-082020|ГНОМ|word|videogames+mythology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Гном — низкорослый сказочный персонаж с бородой и колпаком.
+word-082021|ЭЛЬФ|word|videogames+mythology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Эльф — сказочное существо с длинными заострёнными ушами.
+word-082022|МУТАНТ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Мутант — организм, изменившийся и получивший необычные признаки.
+word-082023|ДЕМОН|word|videogames+mythology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Демон — сверхъестественный злой персонаж с рогами и крыльями.
+word-082024|ПОСОХ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Посох — длинная палка волшебника или церемониального лица.
+word-082025|ЗНАМЯ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Знамя — большой флаг армии или отряда на древке.
+word-082026|СНАРЯЖЕНИЕ|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Снаряжение — необходимые предметы для похода или игрового задания.
+word-082027|СЕЙФ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Сейф — защищённый металлический шкаф с кодовым замком.
+word-082028|ШТУРМ|word|videogames+history|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Штурм — интенсивная попытка захвата укреплённого места.
+word-082029|ОСАДА|word|videogames+history|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Осада — длительное окружение крепости с целью её захвата.
+word-082030|ПУЛЕМЁТ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Пулемёт — скорострельное оружие с длинной лентой патронов.
+word-082031|БЕНЗОПИЛА|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Бензопила — моторная пила с цепью для распиливания дерева.
+word-082032|МАСТЕРСКАЯ|word|videogames+professions|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Мастерская — помещение с инструментами для починки и изготовления.
+word-082033|ПРОКЛЯТИЕ|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Проклятие — магическое воздействие с дурными последствиями.
+word-082034|УЛУЧШЕНИЕ|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Улучшение — повышение характеристик предмета или способности героя.
+word-082035|ВЫНОСЛИВОСТЬ|word|videogames|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Выносливость — способность долго выдерживать физическую нагрузку.
+word-082036|ОТРЯД|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Отряд — небольшая организованная группа бойцов.
+word-082037|ПРОРЫВ|word|videogames|||medium:indirect|easy:concrete|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Прорыв — внезапное преодоление обороны или препятствия.
+word-082038|ЭЛИКСИР|word|videogames+mythology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Эликсир — волшебное питьё во флаконе с особым эффектом.
+word-082039|ФЕЯ|word|videogames+mythology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Фея — маленькое волшебное существо с крыльями и палочкой.
+word-082040|ТИТАН|word|videogames+mythology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Титан — гигант из мифов или очень крупное могучее существо.
+phrase-082001|ОДИНОЧНАЯ ИГРА|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Одиночная игра — прохождение без партнёров, одним участником.
+phrase-082002|КОМАНДНАЯ ИГРА|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Командная игра — соревнование или совместное действие нескольких участников.
+phrase-082003|СОБРАТЬ НАГРАДУ|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Собрать награду — получить приз после выполненного задания.
+phrase-082004|ПОЛУЧИТЬ ДОСТИЖЕНИЕ|phrase|videogames|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Получить достижение — выполнить специальное условие для игрового значка.
+phrase-082005|ПОБЕДИТЬ БОССА|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Победить босса — одолеть особенно сильного финального врага.
+phrase-082006|ВЫБРАТЬ УРОВЕНЬ|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Выбрать уровень — остановиться на одном из этапов или сложности игры.
+phrase-082007|НАЙТИ ВЫХОД|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Найти выход — отыскать дверь или путь наружу из запутанного места.
+phrase-082008|ВОЛШЕБНЫЙ МЕЧ|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Волшебный меч — клинок, способный творить необычную магию.
+phrase-082009|ПРОЙТИ МИССИЮ|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Пройти миссию — успешно завершить цель, заданную персонажу.
+phrase-082010|СПАСТИ ПРИНЦЕССУ|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Спасти принцессу — освободить наследницу престола из опасности.
+word-083001|КРЕПОСТЬ|word|videogames+history|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Крепость — большое защитное сооружение со стенами и башнями.
+word-083002|ТЮРЬМА|word|videogames+everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Тюрьма — место заключения людей под охраной.
+word-083003|БОЛОТО|word|videogames+nature|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Болото — мокрая местность с вязкой почвой и зарослями.
+word-083004|ТРЮК|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Трюк — необычное ловкое действие, требующее сноровки.
+word-083005|СТОЛКНОВЕНИЕ|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Столкновение — удар двух объектов друг о друга.
+word-083006|ПРЯТКИ|word|videogames+everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Прятки — игра, где один ищет остальных, которые скрываются.
+word-083007|СРАЖЕНИЕ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Сражение — столкновение вооружённых сторон на поле боя.
+word-083008|ВЫЗОВ|word|videogames|||easy:familiar|medium:indirect|-:not-visual|-:type|-:type|easy:fast-clue|-:type|Вызов — приглашение к поединку или трудному заданию, рисунок без букв мало отличим от приглашения.
+word-083009|ПАРТНЁР|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Партнёр — человек, действующий вместе с другим в одной паре.
+word-083010|КОЛДУН|word|videogames+mythology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Колдун — маг, произносящий заклинания и творящий чудеса.
+word-083011|ИНОПЛАНЕТЯНИН|word|videogames+space|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Инопланетянин — разумное существо с другой планеты.
+word-083012|СТРОИТЕЛЬ|word|videogames+professions|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Строитель — работник, сооружающий здания из кирпича и бетона.
+word-083013|ВОДИТЕЛЬ|word|videogames+professions|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Водитель — человек за рулём машины.
+word-083014|КЛАД|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Клад — спрятанные ценности, найденные по карте.
+word-083015|ДРАГОЦЕННОСТЬ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Драгоценность — ценное украшение или камень, хранящийся в сундуке.
+word-083016|ВИНТОВКА|word|videogames+history|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Винтовка — длинное стрелковое оружие с прикладом и прицелом.
+word-083017|МАСКА|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Маска — предмет на лице для сокрытия личности или защиты.
+word-083018|УДОЧКА|word|videogames+everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Удочка — длинная снасть с леской и крючком для рыбной ловли.
+word-083019|ШАРИК|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Шарик — маленький круглый предмет, воздушный или твёрдый.
+word-083020|ДЖИП|word|videogames+transport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Джип — автомобиль повышенной проходимости с крупными колёсами.
+word-083021|КОСМОЛЁТ|word|videogames+space|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Космолёт — вымышленный аппарат для полёта между планетами.
+word-083022|ТРЕК|word|videogames||Музыкальный трек и гоночная трасса|medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Трек — музыкальная дорожка или гоночный маршрут, в игре смысл без контекста не закреплён.
+word-083023|КАМПАНИЯ|word|videogames||Игровая кампания и рекламная или военная кампания|medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Кампания — набор связанных игровых миссий, отличающийся от рекламной и военной кампании.
+word-083024|ДИСКЕТА|word|videogames+technology|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Дискета — прямоугольный старый носитель данных, в играх символ сохранения.
+word-083025|ГРАФИКА|word|videogames|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Графика — визуальное оформление игры, объясняется качеством изображения.
+word-083026|ОШИБКА|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Ошибка — неправильное действие или сбой с неожиданным результатом.
+word-083027|РЕЖИМ|word|videogames|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Режим — способ работы или правила игрового процесса, без названий трудно изобразить.
+word-083028|СООБЩЕНИЕ|word|videogames|||easy:familiar|medium:indirect|-:not-visual|-:type|-:type|easy:fast-clue|-:type|Сообщение — текст, передаваемый от одного игрока другому, без написания букв рисунок неотличим от письма.
+word-083029|ЭМОЦИЯ|word|videogames+everyday|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Эмоция — переживание радости, страха или грусти, которое видно на лице.
+word-083030|ЖЕСТ|word|videogames+everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Жест — движение рукой или телом вместо слов.
+word-083031|АВТОСОХРАНЕНИЕ|word|videogames|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Автосохранение — автоматическая запись прогресса игрой без команды игрока.
+word-083032|УРОН|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Урон — снижение здоровья героя от ударов или других опасностей.
+word-083033|НАВЫК|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Навык — освоенное действие персонажа, которое можно улучшать.
+word-083034|СТАТУЯ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Статуя — неподвижная фигура человека или существа из камня.
+word-083035|РЕАКЦИЯ|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Реакция — быстрый ответ на событие, например уклонение от атаки.
+word-083036|ПРЕПЯТСТВИЕ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Препятствие — то, что мешает пройти по маршруту.
+word-083037|СЕРДЕЧКО|word|videogames+everyday|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Сердечко — знак жизни или симпатии, маленькое изображение сердца.
+word-083038|ПРОМОКОД|word|videogames|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Промокод — буквенная комбинация для получения бонуса, рисовать её без букв невозможно.
+word-083039|ПЕРЕЗАРЯДКА|word|videogames+technology|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Перезарядка — замена магазина или патронов в оружии.
+word-083040|ПОЛИГОН|word|videogames|||medium:indirect|medium:indirect|easy:concrete|-:type|-:type|medium:fast-clue|-:type|Полигон — специально отведённая площадка для тренировок и испытаний.
+phrase-083001|НАЧАТЬ СНАЧАЛА|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Начать сначала — вернуться к исходной точке прохождения после неудачи.
+phrase-083002|ПРОПУСТИТЬ ЗАСТАВКУ|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Пропустить заставку — перейти мимо вступительного видеоролика к игре.
+phrase-083003|ВЫБРАТЬ ПЕРСОНАЖА|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Выбрать персонажа — указать одного героя из нескольких доступных.
+phrase-083004|ОТКРЫТЬ СУНДУК|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Открыть сундук — поднять крышку ящика и достать содержимое.
+phrase-083005|УЙТИ ОТ ПОГОНИ|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Уйти от погони — убежать от преследователей и скрыться.
+phrase-083006|ПОЙМАТЬ РЫБУ|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Поймать рыбу — вытащить добычу из воды при помощи удочки.
+phrase-083007|ВЫИГРАТЬ ГОНКУ|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Выиграть гонку — обогнать соперников и первым пересечь финиш.
+phrase-083008|ПОТЕРЯТЬ ЖИЗНЬ|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Потерять жизнь — лишиться очередной попытки в компьютерной игре.
+phrase-083009|ВЫЗВАТЬ ПОМОЩЬ|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Вызвать помощь — позвать других на выручку в трудной ситуации.
+phrase-083010|ПРОЙТИ ОБУЧЕНИЕ|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Пройти обучение — выполнить начальные подсказанные действия перед игрой.

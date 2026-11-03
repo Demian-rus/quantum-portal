@@ -23,7 +23,7 @@ function validateReportItem(item){
 }
 function makeReportItem(match,{current=match?.current,tiebreak=false,row=null,blitzIndex=null}={}){
  // Project only the stable pack identity; the game owns selection validation.
- const source=match?.contentPack,selection=source?.selectionPolicyVersion===1?source.pack:source;
+ const source=match?.contentPack,selection=[1,2].includes(source?.selectionPolicyVersion)?source.pack:source;
  const pack=selection?{id:selection.id,version:selection.version}:null;
  let item;
  if(tiebreak){const q=match?.tiebreak?.question;if(!q)return null;

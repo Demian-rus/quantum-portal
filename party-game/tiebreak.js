@@ -24,14 +24,14 @@ function validateTiebreakState(match){
 }
 function nextTiebreakQuestion(attempted=[]){
  if(attempted.length>=120)return null;
- const levels=game.difficulty==='mixed'?['medium','easy','hard']:
+ const levels=game.difficulty==='mixed'?['medium','easy','hard']:editorialSelection(game.contentPack)?[game.difficulty]:
   [game.difficulty,...['medium','easy','hard'].filter(level=>level!==game.difficulty)];
  for(const level of levels){
-  const pool=getPackQuestionPool(game.contentPack,level).filter(q=>!attempted.includes(q.id));
+  const pool=(editorialSelection(game.contentPack)?editorialPool(game,'approx',level):getPackQuestionPool(game.contentPack,level)).filter(q=>!attempted.includes(q.id));
   if(pool.length){
-   const q=pullApproxQuestion(level,attempted);
+   const q=editorialSelection(game.contentPack)?chooseRememberedTask(pool):pullApproxQuestion(level,attempted);
    return {id:q.id,question:q.question,answer:String(q.answer),unit:String(q.unit||''),
-     note:String(q.note||''),difficulty:level};
+     note:String(q.note||''),difficulty:editorialSelection(game.contentPack)?QuipEditorialSelection.TIERS[Number(QUIP_EDITORIAL_EDITION.records[q.id][3][6])-1]:level};
   }
  }
  return null;

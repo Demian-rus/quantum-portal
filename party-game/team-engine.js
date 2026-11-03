@@ -7,8 +7,9 @@ const QuipTeamsEngine=(function teamEngine(){
  const isGame=match=>match?.teamPolicyVersion===VERSION&&match.teamFormat?.format===FORMAT;
  const isSettings=value=>isGame(value)||value?.playFormat===FORMAT&&value.teamPolicyVersion===VERSION||value?.teamProjectionVersion===VERSION;
  const equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
- const catalogCache=new Map();
- function catalog(match,kind,level){
+ const catalogCache=new Map(),editorialCatalogCache=new WeakMap();
+ function catalog(match,kind,level,mode=null,method=null){
+  if(editorialSelection(match.contentPack)&&mode){const rows=editorialPool(match,mode,level,mode==='secret'?method:null);if(!editorialCatalogCache.has(rows))editorialCatalogCache.set(rows,{rows,byId:new Map(rows.map(row=>[row.id,row]))});return editorialCatalogCache.get(rows);}
   const key=JSON.stringify([match.contentPack,kind,level,match.promptTypes,match.rulesVersion]);let pool=catalogCache.get(key);
   if(!pool){const rows=kind==='number'?getPackQuestionPool(match.contentPack,level):
     kind==='blitz'&&match.rulesVersion>=6?PARTY_CARD_LEVELS.flatMap(tier=>getPackCardPool(match.contentPack,'words',tier,['word'])):
@@ -63,24 +64,24 @@ const QuipTeamsEngine=(function teamEngine(){
   assert(c.basePoints===rewardForRound(match,c.modeId,c.difficulty)&&c.modifierPoints===(c.complication?config.modifierBonus:0)&&c.points===c.basePoints+c.modifierPoints,'изменена награда хода');
   assert(c.seconds===(config.usesTimer?match.duration+method.durationBonus:0),'изменено время хода');
   assert(typeof c.risk==='boolean'&&typeof c.visible==='boolean'&&typeof c.paused==='boolean','повреждён снимок хода');
-  if(c.complication){const modifier=QUIP_MODIFIERS_V2.find(m=>m.id===c.complicationId),card=c.modeId==='approx'?null:catalog(match,c.modeId==='blitz'&&match.rulesVersion>=6?'blitz':method.kind,c.difficulty).byId.get(c.modeId==='blitz'?c.blitzCardIds?.[0]:c.cardId);assert(config.usesModifiers&&c.modifierVersion===2&&modifier?.text===c.complication&&getV2ModifierPool(c.methodId,c.difficulty,match,{card}).some(m=>m.id===c.complicationId),'изменено усложнение');}
+  if(c.complication){const modifier=QUIP_MODIFIERS_V2.find(m=>m.id===c.complicationId),card=c.modeId==='approx'?null:catalog(match,c.modeId==='blitz'&&match.rulesVersion>=6?'blitz':method.kind,c.difficulty,c.modeId,c.methodId).byId.get(c.modeId==='blitz'?c.blitzCardIds?.[0]:c.cardId);assert(config.usesModifiers&&c.modifierVersion===2&&modifier?.text===c.complication&&getV2ModifierPool(c.methodId,c.difficulty,match,{card}).some(m=>m.id===c.complicationId),'изменено усложнение');}
   else assert(c.complication===''&&c.complicationId===null&&c.modeId!=='secret','нет обязательного усложнения');
   if(c.modeId==='approx'){
-   const question=catalog(match,'number',c.difficulty).byId.get(c.question?.id);
+   const question=catalog(match,'number',c.difficulty,c.modeId,c.methodId).byId.get(c.question?.id);
    assert(question&&['question','answer'].every(k=>question[k]===c.question[k])&&String(question.unit||'')===String(c.question.unit||'')&&String(question.note||'')===String(c.question.note||'')&&c.cardId===question.id&&c.word===question.question&&!c.risk,'изменён числовой вопрос');
   }else if(c.modeId==='blitz'){
-   const pool=catalog(match,'blitz',c.difficulty);
+   const pool=catalog(match,'blitz',c.difficulty,c.modeId,c.methodId);
    assert(c.blitzRequired===3&&Array.isArray(c.blitzWords)&&c.blitzWords.length===3&&new Set(c.blitzWords).size===3&&Array.isArray(c.blitzCardIds)&&c.blitzCardIds.length===3,'Блиц должен содержать ровно три слова');
    assert(c.blitzWords.every((word,i)=>pool.byId.get(c.blitzCardIds[i])?.text===word),'изменены карточки Блица');
    assert(Number.isInteger(c.blitzCorrect)&&c.blitzCorrect>=0&&c.blitzCorrect<=3&&Number.isSafeInteger(c.blitzIndex)&&c.blitzIndex>=c.blitzCorrect&&Array.isArray(c.blitzQueue)&&c.blitzQueue.length===3-c.blitzCorrect&&new Set(c.blitzQueue).size===c.blitzQueue.length&&c.blitzQueue.every(i=>[0,1,2].includes(i)),'повреждена очередь Блица');
    assert(c.blitzWords.includes(c.word)&&c.blitzCardIds[c.blitzWords.indexOf(c.word)]===c.cardId&&(!c.blitzQueue.length||c.word===c.blitzWords[c.blitzQueue[0]]),'неверное текущее слово Блица');
   }else{
-   const pool=catalog(match,method.kind,c.difficulty),card=pool.byId.get(c.cardId);
+   const pool=catalog(match,method.kind,c.difficulty,c.modeId,c.methodId),card=pool.byId.get(c.cardId);
    assert(card?.text===c.word,'карточка не принадлежит закреплённому каталогу');
    if(method.kind==='songs')assert(filterSongLanguagePool([card],match,c.modeId).length===1,'неверный язык песни');
   }
  }
- const GAME_FIELDS=['matchId','teamFormat','teamPolicyVersion','teams','scores','roundIndex','startingTeamIndex','resultReviewVersion','reviewRevision','reviewConfirmed','songLanguagePolicyVersion','songLanguages','timerPolicyVersion','finishPolicyVersion','taskHistoryVersion','taskHistory','rounds','targetScore','finishType','riskPolicyVersion','riskPlannerState','riskRounds','scoringVersion','rulesVersion','modeConfigVersion','awardPolicyVersion','awardTo','modeCompatibilityVersion','modifierCatalogVersion','modifierSelectionVersion','modifierChance','modifierRecent','plannerVersion','plannerState','modePlannerVersion','modePlannerState','duration','difficulty','contentPack','preset','modes','promptTypes','dice','complications','blitzCount','current','modeHistory','used','history','phase','pendingReview','resultEditor','reviewSuspendedRound','reviewTiebreakArchive','tiebreak'];
+ const GAME_FIELDS=['taskDifficultyPolicy','matchId','teamFormat','teamPolicyVersion','teams','scores','roundIndex','startingTeamIndex','resultReviewVersion','reviewRevision','reviewConfirmed','songLanguagePolicyVersion','songLanguages','timerPolicyVersion','finishPolicyVersion','taskHistoryVersion','taskHistory','rounds','targetScore','finishType','riskPolicyVersion','riskPlannerState','riskRounds','scoringVersion','rulesVersion','modeConfigVersion','awardPolicyVersion','awardTo','modeCompatibilityVersion','modifierCatalogVersion','modifierSelectionVersion','modifierChance','modifierRecent','plannerVersion','plannerState','modePlannerVersion','modePlannerState','duration','difficulty','contentPack','preset','modes','promptTypes','dice','complications','blitzCount','current','modeHistory','used','history','phase','pendingReview','resultEditor','reviewSuspendedRound','reviewTiebreakArchive','tiebreak'];
  function validateGame(match,memory){
   assert(installed&&isGame(match),'неизвестная версия командной механики');QuipTeamFormat.validate(match.teamFormat);
   assert(Object.keys(match).every(k=>GAME_FIELDS.includes(k))&&!Object.hasOwn(match,'profileMatch')&&match.matchId===match.teamFormat.id,'неверная идентичность партии');
@@ -91,7 +92,7 @@ const QuipTeamsEngine=(function teamEngine(){
   assert(['easy','medium','hard','mixed'].includes(match.difficulty)&&Number.isInteger(match.duration)&&match.duration>=30&&match.duration<=90&&match.duration%5===0&&['score','rounds'].includes(match.finishType)&&Number.isInteger(match.rounds)&&match.rounds>=2&&match.rounds<=100&&match.rounds%2===0&&Number.isInteger(match.targetScore)&&match.targetScore>=15&&match.targetScore<=100&&match.targetScore%5===0,'неверные настройки партии');
   assert(Array.isArray(match.modes)&&match.modes.length>0&&new Set(match.modes).size===match.modes.length&&match.modes.every(id=>DEFAULT_MODES.includes(id))&&Array.isArray(match.promptTypes)&&match.promptTypes.every(t=>PROMPT_TYPES.includes(t)),'неверные режимы или типы');
   assert(typeof match.dice==='boolean'&&typeof match.complications==='boolean'&&typeof match.riskRounds==='boolean'&&sanitizeModifierChance(match.modifierChance)===match.modifierChance,'неверные опции');
-  getContentPack(match.contentPack);songLanguagePolicy(match);timerPolicy(match);modifierSelectionPolicy(match);validateTaskMemory(memory);validateGameTaskHistory(match,memory);
+  getContentPack(match.contentPack);validateEditorialGame(match);songLanguagePolicy(match);timerPolicy(match);modifierSelectionPolicy(match);validateTaskMemory(memory);validateGameTaskHistory(match,memory);
   validateRoundPlan(match.plannerVersion,match.plannerState);validatePlannedGame(reviewPlannerProjection(match));validateModePlan(match.modePlannerVersion,match.modePlannerState);validateFeedbackHold(match);validateTiebreakState(match);
   const rounds=match.history.map(r=>r.review?.round),selected=match.current||match.reviewSuspendedRound?.current;if(selected)rounds.push(selected);
   rounds.forEach((c,i)=>validateRound(match,c,i));
@@ -100,7 +101,7 @@ const QuipTeamsEngine=(function teamEngine(){
   assert(equal(balance,match.modePlannerState.balance)&&equal(match.modePlannerState.recent,match.modeHistory.slice(-2)),'повреждён план режимов');
   if(match.difficulty==='mixed')for(let i=0;i<rounds.length;i+=6){const levels=rounds.slice(i,i+6).map(c=>c.difficulty);assert(levels.every((level,j)=>j%2===0||level===levels[j-1])&&new Set(levels.filter((_,j)=>j%2===0)).size===Math.ceil(levels.length/2),'повреждён план сложности');}
   validateGameRiskPlan(match);review(match);
-  for(const tie of [match.tiebreak,match.reviewTiebreakArchive?.tiebreak].filter(Boolean)){const q=catalog(match,'number',tie.question.difficulty).byId.get(tie.question.id);assert(q&&q.question===tie.question.question&&String(q.answer)===tie.question.answer&&String(q.unit||'')===tie.question.unit&&String(q.note||'')===tie.question.note,'изменён вопрос тай-брейка');}
+  for(const tie of [match.tiebreak,match.reviewTiebreakArchive?.tiebreak].filter(Boolean)){const q=catalog(match,'number',tie.question.difficulty,'approx').byId.get(tie.question.id);assert(q&&q.question===tie.question.question&&String(q.answer)===tie.question.answer&&String(q.unit||'')===tie.question.unit&&String(q.note||'')===tie.question.note,'изменён вопрос тай-брейка');}
   if(selected){const phase=match.current?match.phase:match.reviewSuspendedRound.phase;assert(['rolling','task','countdown','play','judge'].includes(phase),'ход не соответствует фазе');if(phase==='play')assert(selected.paused?selected.deadline===null&&Number.isFinite(selected.remainingMs)&&selected.remainingMs>=0:Number.isFinite(selected.deadline),'повреждён таймер');if(phase==='countdown')assert(selected.feedbackHold||Number.isFinite(selected.autoStartAt),'повреждён автоматический старт');}
   else assert(['ready','review','results','tiebreak'].includes(match.phase),'нет снимка текущего задания');
   return true;
@@ -285,7 +286,7 @@ const QuipTeamsEngine=(function teamEngine(){
  }
  function createRecord(settings,names,{id,random=Math.random,previous=null,profileBinding=null}={}){
   assert(installed,'командный движок не подключён');if(previous)validateRecord(previous);
-  const o=optionsFor(settings),songPolicy=setupSongPolicy(o),pack=setupCategorySelection(latestContentPackSelection(getContentPack(o.contentPack).id)),available=checkContentPack(pack,{...o,...songPolicy});
+  const o=optionsFor(settings),songPolicy=setupSongPolicy(o),pack=pinEditorialSelection(setupCategorySelection(latestContentPackSelection(getContentPack(o.contentPack).id))),available=checkContentPack(pack,{...o,...songPolicy});
   assert(available.available,available.problems[0]||'набор недоступен');
   const header=profileBinding?QuipTeamFormat.createBound(profileBinding,{id,random}):QuipTeamFormat.create(names,{id,random});let memory=previous?archiveTaskHistory(copy(previous.taskMemory),previous.game.taskHistory):freshTaskMemory();
   const started=startTaskHistory(memory);memory=started.memory;
@@ -341,7 +342,7 @@ const QuipTeamsEngine=(function teamEngine(){
   replaceWord=function(){
    if(!isGame(game))return old.replaceWord();
    if(game.phase!=='task'||!allowPause()||game.current.modeId==='blitz'||!roundUsesTimer())return;
-   const c=game.current,method=getMode(c.methodId);let pool=getPackCardPool(game.contentPack,method.kind,c.difficulty,game.promptTypes);
+   const c=game.current,method=getMode(c.methodId);let pool=editorialSelection(game.contentPack)?editorialPool(game,c.modeId,c.difficulty,c.modeId==='secret'?c.methodId:null):getPackCardPool(game.contentPack,method.kind,c.difficulty,game.promptTypes);
    if(method.kind==='songs')pool=filterSongLanguagePool(pool,game,c.modeId);
    if(c.complication)pool=pool.filter(card=>getV2ModifierPool(c.methodId,c.difficulty,game,{card}).some(m=>m.id===c.complicationId));
    const card=chooseRememberedTask(pool);rememberLegacyWordUse(method.kind,c.difficulty,card.text,c.modeId);

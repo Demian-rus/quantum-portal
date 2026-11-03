@@ -50,7 +50,7 @@ test('TASK009 C Secret always receives an applicable modifier across packs, leve
  }
 });
 test('TASK009 C historical setter Danetki and pre-G Secret fallback retain their saved policy',()=>{
- const h=match('yesno','hard','guesser');h.eval('delete game.modeCompatibilityVersion;game.awardTo="setter";roll()');assert.equal(h.eval('game.current.complication'),'');assert.equal(h.eval('game.current.points'),2);
+ const h=match('yesno','hard','guesser');h.eval('delete game.taskDifficultyPolicy;game.contentPack=baseContentPackSelection(game.contentPack);delete game.modeCompatibilityVersion;game.awardTo="setter";roll()');assert.equal(h.eval('game.current.complication'),'');assert.equal(h.eval('game.current.points'),2);
  h.eval('game.modes=["secret","yesno"]');assert.ok(h.eval('v2SecretMethods(game.contentPack,game,"hard").every(id=>id!=="yesno")'));
  const guesser=match('yesno','hard','guesser');guesser.eval('roll()');assert.equal(guesser.eval('game.current.complicationId'),'v2-no-biography');
  assert.equal(guesser.eval('modeConfigForGame(game,"yesno").rule.includes("не знаю")'),true);

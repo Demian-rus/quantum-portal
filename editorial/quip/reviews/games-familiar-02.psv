@@ -1,0 +1,52 @@
+# {"schemaVersion":1,"edition":"quip@1","rubric":"quip-rubric@1","sourcesDigest":"b4549bf424bbf100402ed0e364df40dbefe72c9441493382a2e7e2c311f811bb"}
+id|text|form|categories|themes|ambiguities|talk|mime|draw|sing|yesno|blitz|approx|rationale
+word-079001|ДУМ|word|videogames|||medium:indirect|medium:indirect|hard:indirect|-:type|-:type|medium:fast-clue|-:type|Дум — серия Doom о борьбе с демонами на марсианских базах, рисунок требует узнаваемого шлема и чудовищ.
+word-079002|ФИФА|word|videogames||Серия футбольных игр и международная футбольная федерация|easy:familiar|medium:indirect|hard:indirect|-:type|-:type|medium:fast-clue|-:type|ФИФА — футбольная игровая серия и название международной футбольной федерации, нужна футбольная привязка.
+word-079003|МАФИЯ|word|videogames||Игра Mafia и преступная организация|easy:familiar|medium:indirect|hard:indirect|-:type|-:type|medium:fast-clue|-:type|Мафия — название серии криминальных игр и преступная организация, для рисунка нужна эпоха и сцена.
+word-079004|СТРИМЕР|word|videogames+technology|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Стример — человек, ведущий прямую трансляцию игры, показ через камеру и комментарии очевиден.
+word-079005|ПАСХАЛКА|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Пасхалка — скрытая шутка или находка разработчиков, а не обычное крашеное яйцо.
+word-079006|БАГ|word|videogames+technology|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Баг — ошибка программы, которую показывают зависшим или странно работающим объектом.
+word-079007|ГЛЮК|word|videogames+technology|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Глюк — неожиданное неправильное поведение игры или изображения, наглядно как сбой экрана.
+word-079008|НАПАРНИК|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Напарник — партнёр игрока, помогающий проходить испытание вдвоём.
+word-079009|КОМАНДА|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Команда — группа игроков, действующих ради общего результата, а не голосовой приказ.
+word-079010|ЧЕМПИОН|word|videogames+sport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Чемпион — победитель соревнования с кубком и медалью.
+word-079011|КОНТРОЛЛЕР|word|videogames+technology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Контроллер — устройство управления игрой с кнопками и стиками.
+word-079012|АВТОГОНКА|word|videogames+sport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Автогонка — состязание машин на скорость с обгоном и финишем.
+word-079013|ФИНИШ|word|videogames+sport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Финиш — конец трассы, отмеченный лентой или клетчатым флагом.
+word-079014|СТАРТ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Старт — начало гонки или этапа, узнаваемо по сигналу начала движения.
+word-079015|ТРАССА|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Трасса — путь автомобильной гонки с поворотами и разметкой.
+word-079016|ДРАКОН|word|videogames+mythology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Дракон — большое крылатое сказочное существо, обычно дышащее огнём.
+word-079017|ВОЛШЕБНИК|word|videogames+mythology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Волшебник — персонаж, творящий чудеса посохом или заклинанием.
+word-079018|СОКРОВИЩЕ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Сокровище — ценная находка, часто сундук с драгоценностями.
+word-079019|ЛОВУШКА|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Ловушка — устройство или место для незаметного захвата, показывается заманиванием.
+word-079020|БЛОК|word|videogames||Строительный блок и блокировка действия|easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Блок — кубический строительный элемент Майнкрафта, а не блокировка игрока.
+word-079021|КИРКА|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Кирка — инструмент с длинной ручкой и поперечным остриём для добычи камня.
+word-079022|АЛМАЗ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Алмаз — прозрачный драгоценный камень с гранями, встречается как игровой ресурс.
+word-079023|ФАКЕЛ|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Факел — горящая палка для освещения пещеры или подземелья.
+word-079024|ЛАВА|word|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Лава — раскалённая расплавленная порода, опасная преграда в игре.
+word-079025|МОНИТОР|word|videogames+technology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Монитор — экран компьютера, на котором отображается игра.
+word-079026|КЛАВИАТУРА|word|videogames+technology|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Клавиатура — устройство с рядами кнопок для ввода и управления.
+word-079027|МЫШКА|word|videogames+technology||Компьютерная мышь и маленькое животное|easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Мышка — компьютерный манипулятор для указателя, не животное в игровом контексте.
+word-079028|ЗАГРУЗКА|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Загрузка — ожидание появления игры после запуска, часто с индикатором прогресса.
+word-079029|БИТВА|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Битва — крупное столкновение противников, наглядно по боевой сцене.
+word-079030|ВРАГ|word|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Враг — тот, кто противостоит игроку или герою.
+word-079031|ВЫЖИВАНИЕ|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Выживание — сохранение жизни в опасных условиях, часто при нехватке ресурсов.
+word-079032|ГОНЩИК|word|videogames+sport|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|easy:fast-clue|-:type|Гонщик — участник гонки в шлеме и гоночном автомобиле.
+word-079033|РЕЙТИНГ|word|videogames||Таблица рангов и оценка популярности|easy:familiar|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Рейтинг — численный порядок игроков по результатам, без цифр рисунок слишком неопределёнен.
+word-079034|ПРИКЛЮЧЕНИЕ|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Приключение — необычное путешествие с опасностями и находками, требует сюжета.
+word-079035|МАГИЯ|word|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Магия — сверхъестественные действия, изображаются волшебными эффектами.
+word-079036|КИБЕРСПОРТ|word|videogames+sport|||easy:familiar|medium:indirect|hard:indirect|-:type|-:type|medium:fast-clue|-:type|Киберспорт — профессиональные соревнования в компьютерных играх, нужны сцена и экраны.
+word-079037|ГЕЙМПЛЕЙ|word|videogames|||medium:indirect|medium:indirect|-:not-visual|-:type|-:type|medium:fast-clue|-:type|Геймплей — процесс действий игрока во время игры, не жанр и не название конкретной игры.
+word-079038|ПЛАТФОРМЕР|word|videogames|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Платформер — игра с прыжками между уступами и препятствиями на уровнях.
+word-079039|СИМУЛЯЦИЯ|word|videogames|||medium:indirect|medium:indirect|medium:indirect|-:type|-:type|medium:fast-clue|-:type|Симуляция — воспроизведение реальной системы или занятия в игре, рисунку нужен контекст.
+word-079040|ЗАКЛИНАНИЕ|word|videogames+mythology|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|easy:fast-clue|-:type|Заклинание — произнесённые волшебные слова или действие, вызывающее магический эффект.
+phrase-079001|БРАВЛ СТАРС|phrase|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Бравл Старс — командная мобильная игра с мультяшными бойцами и короткими матчами.
+phrase-079002|АМОНГ АС|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Амонг Ас — игра о членах экипажа и скрытом предателе в космическом корабле.
+phrase-079003|МАРИО КАРТ|phrase|videogames|||easy:familiar|easy:concrete|easy:concrete|-:type|-:type|-:multiword|-:type|Марио Карт — гоночная серия с Марио, картингом и предметами на трассе.
+phrase-079004|ПЯТЬ НОЧЕЙ С ФРЕДДИ|phrase|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Пять ночей с Фредди — хоррор с аниматрониками и ночным наблюдением камер.
+phrase-079005|РЕЗИДЕНТ ИВИЛ|phrase|videogames|||medium:indirect|medium:indirect|hard:indirect|-:type|-:type|-:multiword|-:type|Резидент Ивил — серия игр ужасов о зомби и биологической угрозе, рисунок легко спутать с другим хоррором.
+phrase-079006|САБВЕЙ СЁРФЕРС|phrase|videogames|||medium:indirect|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Сабвей Сёрферс — мобильная игра о беге между поездами и уклонении от препятствий.
+phrase-079007|НОВАЯ ИГРА|phrase|videogames|||easy:familiar|medium:indirect|medium:indirect|-:type|-:type|-:multiword|-:type|Новая игра — команда начать прохождение сначала, изображается стартовым экраном.
+phrase-079008|ИГРА ОКОНЧЕНА|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Игра окончена — экран проигрыша или завершения партии, на жестах понятен конец попытки.
+phrase-079009|ГЛАВНОЕ МЕНЮ|phrase|videogames|||easy:familiar|medium:indirect|easy:concrete|-:type|-:type|-:multiword|-:type|Главное меню — стартовый экран с основными пунктами выбора игры.
+phrase-079010|ВЫБОР ПЕРСОНАЖА|phrase|videogames|||easy:familiar|easy:concrete|medium:indirect|-:type|-:type|-:multiword|-:type|Выбор персонажа — экран, где игрок выбирает героя из нескольких фигур.

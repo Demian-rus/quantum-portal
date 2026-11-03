@@ -67,7 +67,7 @@ async function ui(browser,url,device){
   assert.deepEqual(await page.evaluate(()=>options.modeSettings.sing.songLanguages),['en']);
   await closeModeCenter(page);await setupPlayers(page);
   await setupStep(page,3);await page.locator('.choices[data-setting="difficulty"] [data-value="easy"]').click();
-  assert.equal(await page.locator('#start-game').isDisabled(),true);assert.match(await page.locator('#setup-mode-notice').textContent(),/источники или сложность/);
+  assert.equal(await page.locator('#start-game').isEnabled(),true,'quip@1 contains foreign Easy songs');await page.evaluate(()=>{writeGeneralCategoryPreferences(['music']);renderOptions()});assert.equal(await page.locator('#start-game').isDisabled(),true);assert.match(await page.locator('#setup-mode-notice').textContent(),/доступно 0|источники или сложность/);await page.evaluate(()=>{writeGeneralCategoryPreferences([]);renderOptions()});
   await setupStep(page,3);await page.locator('.choices[data-setting="difficulty"] [data-value="hard"]').click();assert.equal(await page.locator('#start-game').isEnabled(),true);
   // Preferences belong to the mode, and survive visiting a theme without songs.
   await setupPlayers(page);await setupBack(page,'setup-back');await page.locator('#thematic-game').click();await page.locator('[data-theme="geography"]:enabled').click();await openMode(page);

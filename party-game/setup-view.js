@@ -83,8 +83,9 @@ function renderOptions() {
     if(art.getAttribute('src')!==MODE_ASSETS[input.value])art.src=MODE_ASSETS[input.value];
     const status=setupPack?packModeAvailability(options.contentPack,{...options,...setupSongPolicy(options)},input.value):{available:false,reason:'Набор недоступен'};
     const filtered=!!validateGeneralCategorySelection(options.contentPack)?.excluded.length;
-    input.disabled=!status.available&&!(filtered&&input.checked);tile.title=status.reason;
-    input.dataset.categoryUnavailable=String(filtered&&!status.available);
+    const removable=filtered||Object.hasOwn(setupSongPolicy(options),'taskDifficultyPolicy');
+    input.disabled=!status.available&&!(removable&&input.checked);tile.title=status.reason;
+    input.dataset.categoryUnavailable=String(removable&&!status.available);
     const config=getModeConfig(input.value),label=tile.querySelector('b');
     label.textContent='+'+(config.basePoints+(config.id==='secret'?config.modifierBonus:0))+
       (config.blitzWordsCount?' · '+config.blitzWordsCount+'/'+config.blitzWordsCount:'');

@@ -33,7 +33,7 @@ async function ready(p,row,label,out,root){
  assert.equal(state.document,'complete');await p.evaluate(()=>QuipTeams.whenReady());
 }
 async function verifyCatalog(p,root){
- const refs=await p.locator('script[src]').evaluateAll(ns=>ns.filter(n=>/\/(?:cards|content-packs|approx-questions)\.js\?/.test(n.src)).map(n=>n.src));assert.equal(refs.length,3);
+ const refs=await p.locator('script[src]').evaluateAll(ns=>ns.filter(n=>/\/(?:cards|content-packs|approx-questions|editorial-edition)\.js\?/.test(n.src)).map(n=>n.src));const expectedScripts=fs.readFileSync(path.join(root,'party-game/index.html'),'utf8').includes('editorial-edition.js')?4:3;assert.equal(refs.length,expectedScripts);
  const rows=[];for(const url of refs){const actual=await p.evaluate(async url=>{const response=await fetch(url);if(!response.ok)throw Error('Catalog HTTP '+response.status);const bytes=await response.arrayBuffer();return {bytes:bytes.byteLength,sha256:[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(n=>n.toString(16).padStart(2,'0')).join('')};},url),expected=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'.'+new URL(url).pathname))).digest('hex');assert.equal(actual.sha256,expected,'real served synthetic catalog is byte-exact '+url);rows.push({file:path.basename(new URL(url).pathname),...actual});}return rows;
 }
 module.exports={install,ready,verifyCatalog};

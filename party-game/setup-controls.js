@@ -6,8 +6,8 @@ function sanitizeModeSettings(raw){
   return {sing:{songLanguages:languages.length?languages:['ru']}};
 }
 function setupSongPolicy(settings){
-  return settings.modes.some(id=>id==='sing'||id==='secret')?{songLanguagePolicyVersion:QUIP_SONG_LANGUAGE_POLICY_VERSION,
-    songLanguages:sanitizeModeSettings(settings.modeSettings).sing.songLanguages}:{};
+  return {...setupEditorialPolicy(),...(settings.modes.some(id=>id==='sing'||id==='secret')?{songLanguagePolicyVersion:QUIP_SONG_LANGUAGE_POLICY_VERSION,
+    songLanguages:sanitizeModeSettings(settings.modeSettings).sing.songLanguages}:{})};
 }
 function selectSongLanguage(language){
   if(!['ru','en'].includes(language))return false;
