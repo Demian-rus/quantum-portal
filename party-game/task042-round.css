@@ -104,13 +104,15 @@
 .scene--game .stable-round.large-blitz-text .round-bottom{min-height:min-content}
 .scene--game .stable-round.large-blitz-text .blitz-control>span{white-space:normal;overflow-wrap:anywhere}
 /* Unknown historical wording may exceed today's edited conditions. Preserve
-   all saved text and scroll the existing game surface, never the condition. */
+   all saved text and scroll the existing game surface, never the condition.
+   Keep the fixed decisions track: a content-sized footer changes the space
+   used by the overflow measurement and makes its result phase-dependent. */
 .scene--game .play-inner.stable-round.long-round-text{overflow-y:auto;overflow-x:hidden}
 @media(min-height:481px){
- .scene--game .play-inner.stable-round.long-round-text{grid-template-rows:var(--round-slot-size) var(--round-card-size) minmax(min-content,1fr) max-content}
+ .scene--game .play-inner.stable-round.long-round-text{grid-template-rows:var(--round-slot-size) var(--round-card-size) minmax(min-content,1fr) calc(var(--decision-size) + var(--decision-label) + var(--decision-bottom) + 5px)}
 }
 @media(max-height:480px){
- .scene--game .play-inner.stable-round.long-round-text{grid-template-rows:58px minmax(min-content,1fr) max-content}
+ .scene--game .play-inner.stable-round.long-round-text{grid-template-rows:58px minmax(min-content,1fr) calc(var(--decision-size) + var(--decision-label) + var(--decision-bottom) + 5px)}
 }
 @media(max-height:380px){
  /* Keep the two/three-outcome anchors fixed with native mobile fonts. */

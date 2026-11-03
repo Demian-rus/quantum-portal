@@ -19,6 +19,20 @@ try{for(const scale of [1,2]){const coords=[];for(const phase of ['hidden','open
    assert.deepEqual(g.overlaps,[]);assert.deepEqual(g.clipped,[]);assert.deepEqual(g.reachable,[]);report.cases.push({width,height,scale:1,phase,ordinary:id,reference:'main talk-three',cards:g.cards});
   }
  }
+ if(width===844){
+  const p=pages[1],scenario=F.scenarios.find(s=>s.id==='blitz');
+  const taller=await p.addStyleTag({content:'.round-condition{min-height:51px!important}'});
+  try{for(const phase of ['hidden','opened','play']){
+   await F.fixture(p,scenario);if(phase!=='hidden')await F.phase(p,phase);
+   for(let i=0;i<3;i++){await p.evaluate(()=>document.querySelector('.round-condition').append(document.createTextNode('')));await F.settled(p);assert(await p.locator('.play-inner').evaluate(n=>n.classList.contains('long-round-text')),'A condition taller than the fixed row must retain overflow access after every fit');}
+  }}finally{await taller.evaluate(n=>n.remove());}
+  for(const phase of ['hidden','opened','play']){
+   for(const p of pages){await F.fixture(p,scenario);if(phase!=='hidden')await F.phase(p,phase);}
+   const reference=await F.geometry(pages[0]),actual=await F.geometry(p);assert.equal(await p.locator('.play-inner').evaluate(n=>n.classList.contains('long-round-text')),false,'A fitting published condition must leave the fallback');
+   for(const part of ['card','bottom','top'])for(const axis of ['x','y','w','h'])assert(Math.abs(actual[part][axis]-reference[part][axis])<=.05,'Fitting Blitz condition retains main '+part+' '+axis);
+   report.cases.push({width,height,scale:1,phase,overflowRecovery:true,card:actual.card,bottom:actual.bottom});
+  }
+ }
 }finally{await Promise.all(contexts.map(c=>c.close()));}}report.success=true;
 }finally{fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));await b.close();await Promise.all([before,after].map(s=>new Promise(r=>s.server.close(r))));fs.rmSync(tmp,{recursive:true,force:true});console.log(JSON.stringify({engine,success:report.success,cases:report.cases.length}));}}
 run().catch(e=>{console.error(e.stack);process.exitCode=1});
