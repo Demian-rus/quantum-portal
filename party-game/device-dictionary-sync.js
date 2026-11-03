@@ -1,6 +1,7 @@
 'use strict';
 // No token is stored by this client. Authentication is an HttpOnly server session.
 const QuipDictionarySync=(()=>{
+ const D=typeof QuipDeviceDictionary!=='undefined'?QuipDeviceDictionary:require('./device-dictionary.js');
  const STATES=Object.freeze({queued:'Ожидает отправки',submitted:'Отправлено',review:'На проверке',accepted:'Принято',error:'Ошибка'});
  function create(store,{endpoint=null,fetcher=(...args)=>fetch(...args),online=()=>navigator.onLine,now=()=>Date.now(),changed=()=>{}}={}){
   let running=null,csrf=null;
@@ -24,7 +25,7 @@ const QuipDictionarySync=(()=>{
     for(const q of store.read().queue){
      if(q.state==='accepted'||q.state==='error'&&!force&&q.nextAttemptAt>now())continue;
      try{
-      const data=q.remote?await request('/submissions/'+encodeURIComponent(q.remote.submissionId)):await request('/submissions',{method:'POST',body:{version:1,key:q.key,card:q.card,classification:QuipDeviceDictionary.classification(q.card)}});
+      const data=q.remote?await request('/submissions/'+encodeURIComponent(q.remote.submissionId)):await request('/submissions',{method:'POST',body:{version:1,key:q.key,card:q.card,classification:D.classification(q.card)}});
       update(q.key,{...receipt(data,q.key),attempts:q.attempts+1});sent++;
      }catch(e){update(q.key,{state:'error',attempts:q.attempts+1,error:String(e.message).slice(0,500),nextAttemptAt:now()+Math.min(3600000,1000*2**Math.min(q.attempts+1,12))});if(e.auth)throw e;}
     }return {sent,reason:'Ответы сервера проверены. Непринятые задания остаются на редакторской проверке.'};

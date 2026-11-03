@@ -296,7 +296,7 @@ test('last Blitz answer checks the exact deadline before changing its queue or c
   h.eval('soundOn=false;options.modes=["blitz"];options.difficulty="easy";options.dice=false;'+
    (version>=5?'newGame();game.rulesVersion='+version+';game.modeConfigVersion='+(version===5?1:2):version===4?'v4Game()':'legacyGame('+version+')')+';'+
    (version===1?'delete game.scoringVersion;':'')+'roll();toggleWord();startTimer();'+
-   'while(game.current.blitzQueue.length>1)advanceBlitz(true)');
+   'for(let n=0;n<10&&game.current.blitzQueue.length>1;n++)advanceBlitz(true);if(game.current.blitzQueue.length>1)throw Error("Blitz fixture never entered play: "+game.phase+" v"+game.rulesVersion)' );
   const before=JSON.parse(h.eval('JSON.stringify(game.current)'));
   h.eval(`globalThis.boundaryEffects=[];
    for(const name of ['finishTimer','stopTicking','persist','sfx','render','showTimer']){

@@ -24,10 +24,12 @@ const same=(a,b)=>{for(const k of ['x','y','w','h'])assert.ok(Math.abs(a[k]-b[k]
    await p.locator('#report-cancel').click();same((await F.geometry(p)).card,initial);assert.equal(await p.evaluate(()=>localStorage.getItem(QUIP_PROFILES_KEY)),profiles);await ctx.setOffline(false);
    await F.fixture(p,{mode:'talk',modifier:null,difficulty:'easy'});const easy=(await F.geometry(p)).card;await p.locator('.challenge-card').click();assert.equal(await p.evaluate(()=>game.phase),'task');same((await F.geometry(p)).card,easy);
    await p.locator('button[data-action="start-timer"]').click();await p.locator('.timer-ring[role="button"]').click();assert.equal(await p.evaluate(()=>game.current.paused),true);same((await F.geometry(p)).card,easy);await p.locator('.timer-ring[role="button"]').click();assert.equal(await p.evaluate(()=>game.current.paused),false);same((await F.geometry(p)).card,easy);
-   // Exceptional historical text has one reachable local scroll region below the card.
-   await p.evaluate(()=>{game.current.complicationId=null;game.current.complication='Очень длинное историческое условие. '.repeat(35);render();stopTicking()});
-   const region=p.locator('.round-condition-slot');await region.focus();await region.press('End');await p.waitForFunction(()=>{const el=document.querySelector('.round-condition-slot');return el.scrollTop+el.clientHeight>=el.scrollHeight-2});same((await F.geometry(p)).card,easy);
-   assert.deepEqual(errors,[]);console.log('TASK024 interactions PASS',w,h,'keyboard / auto-start / Easy pause / ratings / report hold / Escape+Back / cold offline restore / local long-condition scroll');
+   // TASK042: the longest authored condition remains fully visible without an inner scroll.
+   await p.evaluate(()=>{const m=QUIP_MODIFIERS_V2.filter(m=>m.modes.includes('talk')).sort((a,b)=>b.text.length-a.text.length)[0];game.current.complicationId=m.id;game.current.complication=m.text;render();stopTicking()});
+   const region=p.locator('.round-condition-slot'),condition=p.locator('.round-condition');
+   assert(await region.evaluate(el=>el.scrollHeight<=el.clientHeight+1),'long condition has no clipped lines');
+   assert(await condition.evaluate(el=>{const a=el.getBoundingClientRect(),b=el.closest('.round-condition-slot').getBoundingClientRect();return a.top>=b.top-1&&a.bottom<=b.bottom+1}),'full condition stays inside its row');
+   assert.deepEqual(errors,[]);console.log('TASK024 interactions PASS',w,h,'keyboard / auto-start / Easy pause / ratings / report hold / Escape+Back / cold offline restore / long condition without inner scrolling');
   }finally{await ctx.close();}
  }}finally{await b.close();}
 })().catch(e=>{console.error(e);process.exitCode=1});
