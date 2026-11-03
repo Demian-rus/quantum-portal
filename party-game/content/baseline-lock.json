@@ -52,6 +52,14 @@
     "packs/historical.json": {
       "count": 10,
       "sha256": "94e4a270642f4bd8a027f4fcd17db9270632b4a4dcddb4d19ceff9ef9f6b3093"
+    },
+    "cards/task043-quality-v1.json": {
+      "count": 248,
+      "sha256": "3dadb2374ae552e49855dc6c39756ba07d46aaee40c52daffd650612e90c9f13"
+    },
+    "packs/task043-catalogs-v1.json": {
+      "count": 4,
+      "sha256": "991665cb40175b34b43eb8868173ca4a8b36abeebb6c8a4d5d623895e5acf3c3"
     }
   }
 }

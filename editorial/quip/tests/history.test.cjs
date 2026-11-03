@@ -1,7 +1,7 @@
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict'),E=require('../editor.cjs'),H=require('../history.cjs');
 const clone=v=>JSON.parse(JSON.stringify(v));
-function fixture(){const c=E.context(),e=E.createDraft(c),m=clone(c.m);m.editions[0].status='published';m.published['quip@1']=E.hash(e);const data=new Map([[m.editions[0].path,e],[m.editions[0].songLanguages.path,require('../baselines/song-languages-v1.json')]]);return {m,data,read:p=>data.get(p)};}
+function fixture(){const c=E.context(undefined,undefined,{id:'quip',version:1}),e=E.createDraft(c),m={...clone(c.m),editions:[clone(c.spec)],published:{}};m.editions[0].status='published';m.published['quip@1']=E.hash(e);const data=new Map([[m.editions[0].path,e],[m.editions[0].songLanguages.path,require('../baselines/song-languages-v1.json')]]);return {m,data,read:p=>data.get(p)};}
 test('history allows an appended draft while retaining published registration and all protected files',()=>{
  const {m,read}=fixture(),next=clone(m);next.editions.push({...clone(next.editions[0]),version:2,status:'draft',path:'editions/quip-v2.json'});
  assert.equal(H.verify(m,next,read,read).preserved,1);

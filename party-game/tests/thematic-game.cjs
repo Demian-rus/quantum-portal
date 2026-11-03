@@ -13,7 +13,7 @@ async function assertRoundSource(page,source){assert.equal(await page.evaluate(s
  const c=game.current,theme=source.replace(/-v2$/,'');
  if(editorialSelection(game.contentPack)){
   const pool=editorialPool(game,c.modeId,c.difficulty,c.modeId==='secret'?c.methodId:null),ids=c.blitzCardIds||[c.cardId],bit=2**QUIP_EDITORIAL_EDITION.themes.indexOf(theme);
-  return baseContentPackSelection(game.contentPack).id===theme&&ids.every(id=>pool.some(row=>row.id===id)&&(QUIP_EDITORIAL_EDITION.records[id][2]&bit));
+  return baseContentPackSelection(game.contentPack).id===theme&&ids.every(id=>pool.some(row=>row.id===id)&&(editorialRecordForId(game,id)[2]&bit));
  }
  if(c.question)return baseContentPackSelection(game.contentPack).id===theme&&c.question.categories.includes(theme)&&getPackQuestionPool(game.contentPack,c.difficulty).some(q=>q.id===c.question.id&&JSON.stringify(q)===JSON.stringify(c.question));
  const kind=c.modeId==='blitz'?'blitz':getMode(c.methodId).kind,pool=getPackCardPool(game.contentPack,kind,c.difficulty,game.promptTypes),pinned=getContentPack(game.contentPack);

@@ -1,0 +1,59 @@
+{
+  "main": "0584e0df435782eec8a31d5f5040ac517d300315",
+  "edition": {
+    "id": "quip",
+    "version": 1,
+    "digest": "f5beb1b6daecef42b99c648bd77e2360981ae1b41804c33d1d4c6b9fb1d979e4"
+  },
+  "general": 7460,
+  "activeUnion": 7697,
+  "catalogs": [
+    {
+      "id": "general",
+      "version": 68,
+      "count": 7460
+    },
+    {
+      "id": "animals",
+      "version": 2,
+      "count": 457
+    },
+    {
+      "id": "geography",
+      "version": 6,
+      "count": 406
+    },
+    {
+      "id": "science",
+      "version": 8,
+      "count": 582
+    }
+  ],
+  "categories": [
+    "transport",
+    "arts",
+    "language",
+    "marine",
+    "general",
+    "geography",
+    "science",
+    "biology",
+    "animals",
+    "history",
+    "culture",
+    "nature",
+    "cinema",
+    "music",
+    "literature",
+    "sport",
+    "technology",
+    "space",
+    "mythology",
+    "food",
+    "videogames",
+    "professions",
+    "everyday",
+    "memes"
+  ],
+  "rubric": "quip-rubric@1"
+}

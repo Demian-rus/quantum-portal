@@ -34,7 +34,7 @@ const geometry=p=>p.evaluate(()=>{
  return {viewport:{w:innerWidth,h:innerHeight},phase:game.phase,card:q('.challenge-card'),fixed:q('.round-fixed-card'),top:q('.round-top'),condition:q('.round-condition'),conditionRegion:box(region),copy,word:wordBox,
   icon:q('.mode-symbol'),timer:q('.timer-ring'),timeText,caption:q('.round-top .game-eyebrow'),bottom:q('.round-bottom'),ratings:[...document.querySelectorAll('[data-feedback]')].map(box),
   decisions:[...document.querySelectorAll('.round-bottom--play button')].map(box),document:{w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight},
-  regionScroll:region?{client:region.clientHeight,scroll:region.scrollHeight}:null,cardScroll:word?{client:word.parentElement.clientHeight,scroll:word.parentElement.scrollHeight,width:word.parentElement.clientWidth,scrollWidth:word.parentElement.scrollWidth}:null};
+  regionScroll:region?{client:region.clientHeight,scroll:region.scrollHeight,scrollable:(()=>{const at=region.scrollTop;region.scrollTop=region.scrollHeight;const moved=region.scrollTop!==0;region.scrollTop=at;return moved;})()}:null,cardScroll:word?{client:word.parentElement.clientHeight,scroll:word.parentElement.scrollHeight,width:word.parentElement.clientWidth,scrollWidth:word.parentElement.scrollWidth}:null};
 });
 async function setup(p,url){await p.goto(url);await provisionProfiles(p);}
 module.exports={scenarios,fixture,phase,settled,geometry,setup};

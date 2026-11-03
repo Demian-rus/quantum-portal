@@ -12,7 +12,7 @@ for(const teams of [false,true])for(const mode of ['talk','mime','draw','sing','
  const h=start(mode,tier,teams);
  for(let i=0;i<4;i++){
   h.eval('game.current=rollOutcome();game.phase="task"');
-  const info=plain(h.eval(`(()=>{const c=game.current,ids=c.blitzCardIds||[c.cardId],position=QuipEditorialSelection.STORED_MODES.indexOf(c.modeId);return {ids,levels:ids.map(id=>QUIP_EDITORIAL_EDITION.records[id][3][position]),policy:game.taskDifficultyPolicy.choices[mode],count:c.blitzWords?.length};})()`));
+  const info=plain(h.eval(`(()=>{const c=game.current,ids=c.blitzCardIds||[c.cardId],position=QuipEditorialSelection.STORED_MODES.indexOf(c.modeId);return {ids,levels:ids.map(id=>editorialRecordForId(game,id)[3][position]),policy:game.taskDifficultyPolicy.choices[mode],count:c.blitzWords?.length};})()`));
   assert(info.levels.every(x=>x===String(['easy','medium','hard'].indexOf(tier)+1)),JSON.stringify(info));assert.equal(info.policy,tier);
   if(mode==='blitz'){assert.equal(info.count,3);assert.equal(new Set(info.ids).size,3);}
   // The normal complete team validator verifies the actual selected IDs.
@@ -25,7 +25,7 @@ for(const teams of [false,true])for(const mode of ['talk','mime','draw','sing','
 test('Secret follows actual method and never expands an incompatible explicit source',()=>{
  const h=start('secret','method');h.eval("game.modes=['draw','secret'];game.taskDifficultyPolicy={version:1,choices:{...game.taskDifficultyPolicy.choices,draw:'hard'}};game.modes=['secret','draw'];");
  const methods=plain(h.eval("editorialSecretMethods(game.contentPack,game,'medium')"));assert.deepEqual(methods,['draw']);
- h.eval("pickMode=()=>getMode('secret');game.current=rollOutcome()");assert.equal(h.eval('game.current.methodId'),'draw');assert.equal(h.eval("QUIP_EDITORIAL_EDITION.records[game.current.cardId][3][2]"),'3');
+ h.eval("pickMode=()=>getMode('secret');game.current=rollOutcome()");assert.equal(h.eval('game.current.methodId'),'draw');assert.equal(h.eval("editorialRecordForId(game,game.current.cardId)[3][2]"),'3');
  h.eval("game.taskDifficultyPolicy={version:1,choices:{...game.taskDifficultyPolicy.choices,secret:'easy'}}");assert.equal(h.eval("checkEditorialPack(game.contentPack,game).available"),false);
 });
 test('empty pools and unknown editions/policies fail closed without fallback',()=>{
@@ -50,14 +50,14 @@ test('TASK041 exact integration hunks restore previous runtime and reject unrela
 });
 test('new edition feedback projection and reload preserve the selected task and exact RAW',()=>{
  const a=start('talk','hard');a.eval('game.dice=false;roll();game.dice=true;persist()');
- const item=plain(a.eval('currentReportItem(game)'));assert(item.cardId);assert.deepEqual(item.pack,{id:'general',version:68});
+ const item=plain(a.eval('currentReportItem(game)'));assert(item.cardId);assert.deepEqual(item.pack,{id:'general',version:69});
  const raw=a.storage.get('iskra-party:v1'),snapshot=a.eval('JSON.stringify(game.current)'),b=createSimulation(795,new Map(a.storage));
  assert.equal(b.eval('storageBlocked'),false);assert.equal(b.storage.get('iskra-party:v1'),raw);assert.equal(b.eval('JSON.stringify(game.current)'),snapshot);
  b.eval("writeTaskDifficultyPreference('talk','easy');renderOptions();persist()");assert.equal(b.storage.get('iskra-party:v1'),raw);
 });
 test('Blitz keeps its word type and numerical tie-break honors the pinned Approx tier and categories',()=>{
  const h=start('blitz','hard');h.eval("game.promptTypes=['phrase'];game.current=rollOutcome()");assert.equal(h.eval('game.current.blitzWords.length'),3);
- h.eval("game.taskDifficultyPolicy={version:1,choices:{...game.taskDifficultyPolicy.choices,approx:'hard'}};game.difficulty='easy';var tie=nextTiebreakQuestion()");assert.equal(h.eval('tie.difficulty'),'hard');assert.equal(h.eval("QUIP_EDITORIAL_EDITION.records[tie.id][3][6]"),'3');
+ h.eval("game.taskDifficultyPolicy={version:1,choices:{...game.taskDifficultyPolicy.choices,approx:'hard'}};game.difficulty='easy';var tie=nextTiebreakQuestion()");assert.equal(h.eval('tie.difficulty'),'hard');assert.equal(h.eval("editorialRecordForId(game,tie.id)[3][6]"),'3');
  h.eval('game.contentPack.excluded=QUIP_EDITORIAL_EDITION.categories.slice()');assert.equal(h.eval('nextTiebreakQuestion()'),null);
 });
 test('theme preview refreshes when only independent mode preferences change',()=>{

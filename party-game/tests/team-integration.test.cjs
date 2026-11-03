@@ -32,7 +32,7 @@ test('published historical source JSON remains byte-exact; explicit G37–VG6 ad
  }
  const diff=execFileSync('git',['diff','--name-only',published,'--','party-game/cards.js','party-game/content-packs.js','party-game/content'],{cwd:root,encoding:'utf8',maxBuffer:15e6}).trim().split('\n').filter(Boolean);
  assert.equal(read('content/templates/content-packs.after.js'),old(published,'content/templates/content-packs.after.js'),'Only exact reviewed selector/template hunks are permitted');
- const allowed=new Set(['party-game/content/packs/general-category-review-v1.json','party-game/content/templates/content-packs.before.js','party-game/content/templates/content-packs.after.js','party-game/cards.js','party-game/content-packs.js','party-game/approx-questions.js','party-game/content/manifest.json',
+ const allowed=new Set(['party-game/content/baseline-lock.json','party-game/content/cards/task043-quality-v1.json','party-game/content/packs/task043-catalogs-v1.json','party-game/content/packs/general-category-review-v1.json','party-game/content/templates/content-packs.before.js','party-game/content/templates/content-packs.after.js','party-game/cards.js','party-game/content-packs.js','party-game/approx-questions.js','party-game/content/manifest.json',
  'party-game/content/cards/general-diversity-v23.json','party-game/content/packs/general-diversity-v23.json',
  'party-game/content/editorial/general-diversity-v23-review.md','party-game/content/cards/general-diversity-v24.json','party-game/content/packs/general-diversity-v24.json','party-game/content/editorial/general-diversity-v24-review.md',
  'party-game/content/cards/general-diversity-v25.json','party-game/content/packs/general-diversity-v25.json',
@@ -117,6 +117,7 @@ test('published historical source JSON remains byte-exact; explicit G37–VG6 ad
    'party-game/content/editorial/approx-games-v6-sources.json',
    'party-game/content/editorial/approx-games-v6-review.md']);
  for(const f of diff)assert.ok(allowed.has(f),'Unexpected published content change '+f);
+ require('./content-integration-guard.cjs').verifyApprovedCatalogEvolution(root);
  assert.equal(data.packs.find(p=>p.id==='general'&&p.version===38).criteria.cardIds.length,6550);
  assert.equal(data.packs.find(p=>p.id==='general'&&p.version===39).criteria.cardIds.length,6600);
 });

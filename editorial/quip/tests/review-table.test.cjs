@@ -1,6 +1,6 @@
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
-const E=require('../editor.cjs'),T=require('../review-table.cjs'),c=E.context();
+const E=require('../editor.cjs'),T=require('../review-table.cjs'),c=E.context(undefined,undefined,{id:'quip',version:1});
 const table=()=>fs.readFileSync(path.join(__dirname,'../reviews/persons-01.psv'),'utf8');
 test('explicit per-ID review table is source-bound and has independent mode decisions',()=>{
  const rows=T.parse(table(),c);assert.equal(rows.length,110);const potter=rows.find(r=>r.id==='person-000006');
@@ -18,8 +18,9 @@ test('table parser blocks stale source digests, mismatched labels, omitted mode 
 test('all committed review tables parse and exactly match their reviewed edition records',()=>{
  const records=new Map(E.readEdition(c).records.map(r=>[r.id,r]));
  for(const file of fs.readdirSync(path.join(__dirname,'../reviews')).filter(f=>f.endsWith('.psv'))){
-  const decisions=T.parse(fs.readFileSync(path.join(__dirname,'../reviews',file),'utf8'),c);
-  for(const d of decisions){const r=records.get(d.id);assert.equal(r.review.status,'reviewed');assert.deepEqual(r.classification,d.classification);assert.equal(r.review.rationale,d.rationale);}
+  const text=fs.readFileSync(path.join(__dirname,'../reviews',file),'utf8'),version=Number(JSON.parse(text.split('\n')[0].slice(2)).edition.split('@')[1]),context=E.context(undefined,undefined,{id:'quip',version}),editionRecords=new Map(E.readEdition(context).records.map(r=>[r.id,r]));
+  const decisions=T.parse(text,context);
+  for(const d of decisions){const r=editionRecords.get(d.id);assert.equal(r.review.status,'reviewed');assert.deepEqual(r.classification,d.classification);assert.equal(r.review.rationale,d.rationale);}
  }
 });
 test('semantic examples keep concrete drawing separate from abstract words and phrase-free Blitz',()=>{

@@ -1,6 +1,7 @@
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
-const E=require('../editor.cjs'),C=E.context(),initial=E.createDraft(C),clone=v=>JSON.parse(JSON.stringify(v));
+const E=require('../editor.cjs'),clone=v=>JSON.parse(JSON.stringify(v)),registered=E.context(undefined,undefined,{id:'quip',version:1});
+const fixtureManifest={...clone(registered.m),editions:[{...clone(registered.spec),status:'draft'}],published:{}},C=E.context(registered.data,fixtureManifest),initial=E.createDraft(C);
 const at='2026-11-01T12:00:00.000Z';
 test('the checked-in working edition has complete, source-bound coverage',()=>assert.equal(E.validate(E.readEdition(C),C).ok,true));
 function classification(form,categories,eligible,themes=[]){

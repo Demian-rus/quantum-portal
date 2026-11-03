@@ -4,21 +4,179 @@
   "acceptedGameCommit": "73147f83f1ed23988205468924bac837f1dc4650",
   "editions": [
     {
-      "id": "quip", "version": 1, "status": "draft", "path": "editions/quip-v1.json",
-      "songLanguages": {"path": "baselines/song-languages-v1.json", "sha256": "a0e91dd203b34e459e4b2fa44b7115fc94a2914e2b28177cee793ce7cc0bb4c6"},
+      "id": "quip",
+      "version": 1,
+      "status": "published",
+      "path": "editions/quip-v1.json",
+      "songLanguages": {
+        "path": "baselines/song-languages-v1.json",
+        "sha256": "a0e91dd203b34e459e4b2fa44b7115fc94a2914e2b28177cee793ce7cc0bb4c6"
+      },
       "poolPolicies": {
-        "general": {"minimum": 1, "allowedModes": ["talk","mime","draw","sing","yesno","secret","blitz","approx"]},
-        "animals": {"minimum": 5, "allowedModes": ["talk","mime","draw","sing","yesno","secret","blitz","approx"]},
-        "geography": {"minimum": 5, "allowedModes": ["talk","mime","draw","sing","yesno","secret","blitz","approx"]},
-        "science": {"minimum": 5, "allowedModes": ["talk","mime","draw","sing","yesno","secret","blitz","approx"]}
+        "general": {
+          "minimum": 1,
+          "allowedModes": [
+            "talk",
+            "mime",
+            "draw",
+            "sing",
+            "yesno",
+            "secret",
+            "blitz",
+            "approx"
+          ]
+        },
+        "animals": {
+          "minimum": 5,
+          "allowedModes": [
+            "talk",
+            "mime",
+            "draw",
+            "sing",
+            "yesno",
+            "secret",
+            "blitz",
+            "approx"
+          ]
+        },
+        "geography": {
+          "minimum": 5,
+          "allowedModes": [
+            "talk",
+            "mime",
+            "draw",
+            "sing",
+            "yesno",
+            "secret",
+            "blitz",
+            "approx"
+          ]
+        },
+        "science": {
+          "minimum": 5,
+          "allowedModes": [
+            "talk",
+            "mime",
+            "draw",
+            "sing",
+            "yesno",
+            "secret",
+            "blitz",
+            "approx"
+          ]
+        }
       },
       "catalogs": [
-        {"id": "general", "version": 68, "sha256": "977d7610f9f02298dff2a5d186f4308527bf9389159be5a2f3e8085c8a14016e"},
-        {"id": "animals", "version": 2, "sha256": "16f2da248106808c4f4485da207d7bdc704e1fe50b3786645b839c6373108cb5"},
-        {"id": "geography", "version": 6, "sha256": "754e317cc708cea0fc306450f42f0cb6432f78ef814c929edc0b75f2daa63543"},
-        {"id": "science", "version": 8, "sha256": "bde1d6e98d14a09354f6b12d4f90baa039e8a72692a82879e29a1a9acfad3b34"}
+        {
+          "id": "general",
+          "version": 68,
+          "sha256": "977d7610f9f02298dff2a5d186f4308527bf9389159be5a2f3e8085c8a14016e"
+        },
+        {
+          "id": "animals",
+          "version": 2,
+          "sha256": "16f2da248106808c4f4485da207d7bdc704e1fe50b3786645b839c6373108cb5"
+        },
+        {
+          "id": "geography",
+          "version": 6,
+          "sha256": "754e317cc708cea0fc306450f42f0cb6432f78ef814c929edc0b75f2daa63543"
+        },
+        {
+          "id": "science",
+          "version": 8,
+          "sha256": "bde1d6e98d14a09354f6b12d4f90baa039e8a72692a82879e29a1a9acfad3b34"
+        }
+      ]
+    },
+    {
+      "id": "quip",
+      "version": 2,
+      "status": "draft",
+      "path": "editions/quip-v2.json",
+      "songLanguages": {
+        "path": "baselines/song-languages-v1.json",
+        "sha256": "a0e91dd203b34e459e4b2fa44b7115fc94a2914e2b28177cee793ce7cc0bb4c6"
+      },
+      "poolPolicies": {
+        "general": {
+          "minimum": 1,
+          "allowedModes": [
+            "talk",
+            "mime",
+            "draw",
+            "sing",
+            "yesno",
+            "secret",
+            "blitz",
+            "approx"
+          ]
+        },
+        "animals": {
+          "minimum": 5,
+          "allowedModes": [
+            "talk",
+            "mime",
+            "draw",
+            "sing",
+            "yesno",
+            "secret",
+            "blitz",
+            "approx"
+          ]
+        },
+        "geography": {
+          "minimum": 5,
+          "allowedModes": [
+            "talk",
+            "mime",
+            "draw",
+            "sing",
+            "yesno",
+            "secret",
+            "blitz",
+            "approx"
+          ]
+        },
+        "science": {
+          "minimum": 5,
+          "allowedModes": [
+            "talk",
+            "mime",
+            "draw",
+            "sing",
+            "yesno",
+            "secret",
+            "blitz",
+            "approx"
+          ]
+        }
+      },
+      "catalogs": [
+        {
+          "id": "general",
+          "version": 69,
+          "sha256": "62aeaf45930b93b7c907e91ecd5b8ab29ab490b7f0e0a43b183bb09d2748ac0e"
+        },
+        {
+          "id": "animals",
+          "version": 3,
+          "sha256": "7cbb3947fa4b02dff8f2a4797e6b1f63343cc5aa40d5b5fad3d3c5017aa7eae4"
+        },
+        {
+          "id": "geography",
+          "version": 7,
+          "sha256": "7af4d3d2c91a47ba0d6fe11d492dbacb316252f6aa989692338e99bbec00eeb4"
+        },
+        {
+          "id": "science",
+          "version": 9,
+          "sha256": "518d59139d718cb6acc9ef6d8234c373437e7cdb102ca8d83a031fe669681462"
+        }
       ]
     }
   ],
-  "published": {}
+  "published": {
+    "quip@1": "f5beb1b6daecef42b99c648bd77e2360981ae1b41804c33d1d4c6b9fb1d979e4"
+  }
 }

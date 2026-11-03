@@ -48,7 +48,10 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
   vm.runInContext(read('round-planner.js'),context);
   vm.runInContext(read('task-history.js'),context);
   vm.runInContext(read('modifiers-v2.js'),context);
-  const packSource=fixturePack?read('content-packs.js').replace('const QUIP_CONTENT_PACKS=defineContentPacks([','const QUIP_CONTENT_PACKS=defineContentPacks(['+JSON.stringify(fixturePack)+','):read('content-packs.js');
+  // This manually loaded v1 harness freezes its four catalog declarations;
+  // the HTML simulator and TASK043 exercise the installed v2 release separately.
+  const legacyPacks=read('content-packs.js').split('\n').filter(line=>!['general@69','animals@3','geography@7','science@9'].some(key=>{const [id,v]=key.split('@');return line.trimStart().startsWith('{\"id\":\"'+id+'\",\"version\":'+v+',');})).join('\n');
+  const packSource=fixturePack?legacyPacks.replace('const QUIP_CONTENT_PACKS=defineContentPacks([','const QUIP_CONTENT_PACKS=defineContentPacks(['+JSON.stringify(fixturePack)+','):legacyPacks;
   vm.runInContext(packSource,context);
   let editionSource=read('editorial-edition.js');
   if(fixturePack){
@@ -1600,7 +1603,7 @@ test('leaving the carousel for the menu preserves its selected card on Continue'
 });
 
 test('general pack preserves all existing pools, IDs, types and difficulties',()=>{
- const originalIds=new Set(require('../scripts/content.cjs').readDataset().sources.filter(s=>s.kind==='cards'&&s.immutable).flatMap(s=>s.rows.map(c=>c.id)));
+ const originalIds=new Set(require('../scripts/content.cjs').readDataset().sources.filter(s=>s.kind==='cards'&&s.immutable&&s.path!=='cards/task043-quality-v1.json').flatMap(s=>s.rows.map(c=>c.id)));
  const h=harness();h.eval('soundOn=false;legacyGame()');
  assert.equal(h.eval('PARTY_CARDS.filter(c=>Number(c.id.split("-")[1])<8000).length'),3016);
  for(const kind of ['words','songs','people','blitz'])for(const level of ['easy','medium','hard']){

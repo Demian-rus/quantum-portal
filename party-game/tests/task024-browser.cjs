@@ -18,7 +18,7 @@ function fits(g){
  if(g.condition){
   assert.ok(g.condition.y-g.card.bottom>=11.9,'Condition must be below card '+JSON.stringify(g));
   assert.ok(g.copy.y>=g.conditionRegion.y-1&&g.copy.bottom<=g.conditionRegion.bottom+1,'Ordinary condition clipped '+JSON.stringify(g));
-  assert.ok(g.regionScroll.scroll<=g.regionScroll.client+1,'Ordinary condition scrolls '+JSON.stringify(g));
+  assert.ok(!g.regionScroll.scrollable,'Ordinary condition scrolls '+JSON.stringify(g));
   for(const b of g.decisions)assert.ok(b.y-g.condition.bottom>=11.9,'Condition touches decisions '+JSON.stringify(g));
  }
  assert.ok(g.cardScroll.scroll<=g.cardScroll.client+1&&g.cardScroll.scrollWidth<=g.cardScroll.width+1,'Prompt overflow '+JSON.stringify(g));
