@@ -150,13 +150,24 @@ const QuipTeamsEngine=(function teamEngine(){
   // The owned parser snapshot is private until frozen. Its successful check
   // still belongs only to this scope; the WeakMap stores serialization only.
   if(getContentPack===recordJSONResolver&&saved&&scope.keys.has(saved.key)){
-   if(!immutableRecordKeys.has(saved.record)){rememberImmutableRecord(saved.record,saved.key);}return saved.record;
+   if(!immutableRecordKeys.has(saved.record)){rememberImmutableRecord(saved.record,saved.key);}scope.ownedRecords.set(saved.key,saved.record);return saved.record;
   }
   const record=parseFiniteRecordJSON(raw,wrapped);assert(record&&typeof record==='object'&&!Array.isArray(record),'ожидается командная запись');
   const json=JSON.stringify(record);
   // Serializer provenance, never a successful validation. A new transaction
   // still has an empty keys set and must run the complete record validator.
-  if(json.length<=131072)rememberImmutableRecord(record,'record:'+json);else freezeRecordJSON(record);
+  if(json.length<=131072){
+   const key='record:'+json;rememberImmutableRecord(record,key);
+   // createRecord may already have fully checked these exact bytes through
+   // the object path in THIS scope. Keep its owned frozen parser projection
+   // for the storage/transition callbacks instead of parsing/freezing it again.
+   // Never add an authorization key here; another scope still checks in full.
+   const sources=scope?.sources[wrapped?1:0];
+   if(scope&&scope===recordValidationScope&&getContentPack===recordJSONResolver&&scope.keys.has(key)&&raw.length<=131072&&!sources.has(raw)){
+    if(scope.sourceChars+raw.length>262144){scope.sources.forEach(map=>map.clear());scope.sourceChars=0;}
+    sources.set(raw,{key,record});scope.ownedRecords.set(key,record);scope.sourceChars+=raw.length;
+   }
+  }else freezeRecordJSON(record);
   return record;
  }
  function validateRecordJSON(raw,wrapped=false){
@@ -177,20 +188,20 @@ const QuipTeamsEngine=(function teamEngine(){
    const key=recordValidationKey(record,true,true);
    if(key!==null&&scope.keys.has(key)&&!sources.has(raw)){
     if(scope.sourceChars+raw.length>262144){scope.sources.forEach(map=>map.clear());scope.sourceChars=0;}
-    sources.set(raw,{key,record});scope.sourceChars+=raw.length;
+    sources.set(raw,{key,record:scope.ownedRecords.get(key)||record});scope.sourceChars+=raw.length;
    }
   }
   return valid;
  }
  async function withRecordValidation(work){
   if(recordValidationScope)return work();
-  const scope={keys:new Set(),shapes:[],stamp:[],chars:0,sources:[new Map(),new Map()],sourceChars:0};recordValidationScope=scope;
+  const scope={keys:new Set(),shapes:[],stamp:[],chars:0,sources:[new Map(),new Map()],sourceChars:0,ownedRecords:new Map()};recordValidationScope=scope;
   try{return await work();}finally{if(recordValidationScope===scope)recordValidationScope=null;}
  }
  function validationScope(){
   if(!recordValidationScope||!Object.isFrozen(PARTY_CARDS)||!Object.isFrozen(QUIP_APPROX_QUESTIONS)||!Object.isFrozen(QUIP_CONTENT_PACKS))return null;
   const stamp=[PARTY_CARDS,QUIP_APPROX_QUESTIONS,QUIP_CONTENT_PACKS,QUIP_MODES_V4,QUIP_MODIFIERS_V2,getContentPack,getPackCardPool,getPackQuestionPool,getModeConfig,getV2ModifierPool];
-  if(stamp.some((v,i)=>v!==recordValidationScope.stamp[i])){recordValidationScope.keys.clear();recordValidationScope.shapes.length=0;recordValidationScope.chars=0;recordValidationScope.sources.forEach(map=>map.clear());recordValidationScope.sourceChars=0;recordValidationScope.stamp=stamp;}
+  if(stamp.some((v,i)=>v!==recordValidationScope.stamp[i])){recordValidationScope.keys.clear();recordValidationScope.shapes.length=0;recordValidationScope.chars=0;recordValidationScope.sources.forEach(map=>map.clear());recordValidationScope.sourceChars=0;recordValidationScope.ownedRecords.clear();recordValidationScope.stamp=stamp;}
   return recordValidationScope;
  }
  function recordValidationKey(record,withArchives=true,parsed=false){
@@ -256,7 +267,7 @@ const QuipTeamsEngine=(function teamEngine(){
  function rememberRecordValidation(key){
   if(key===null||!recordValidationScope)return;
   if(recordValidationScope.keys.has(key))return;
-  if(recordValidationScope.chars+key.length>524288){recordValidationScope.keys.clear();recordValidationScope.shapes.length=0;recordValidationScope.chars=0;recordValidationScope.sources.forEach(map=>map.clear());recordValidationScope.sourceChars=0;}
+  if(recordValidationScope.chars+key.length>524288){recordValidationScope.keys.clear();recordValidationScope.shapes.length=0;recordValidationScope.chars=0;recordValidationScope.sources.forEach(map=>map.clear());recordValidationScope.sourceChars=0;recordValidationScope.ownedRecords.clear();}
   recordValidationScope.keys.add(key);recordValidationScope.chars+=key.length;
   recordValidationScope.shapes.push({key,shape:null});
  }
