@@ -54,6 +54,11 @@ function fits(g){
      await F.setup(page,URL);
      await page.evaluate(()=>{Object.assign(options,{modes:['approx'],dice:false,difficulty:'easy'});newGame();game.dice=false;roll();const q=QUIP_APPROX_QUESTIONS.find(q=>q.id==='approx-0007');if(!q)throw Error('Missing published question fixture');game.current.question={...q};game.current.word=q.question;game.current.cardId=q.id;render();stopTicking()});
      await page.locator('#approx-first-paint').evaluate(n=>n.remove());await F.settled(page);
+     // Animation.finished resolves before its final composited frame. The
+     // 412px failure captured an incomplete scene (same-page repeat differed).
+     // Present the settled scene before the FIRST screenshot; never retry a
+     // failed pixel comparison or relax its all-pixel assertion.
+     await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>setTimeout(resolve,0)))));
      approxImages.push(await page.screenshot({path:folder+'/'+w+'-approx-'+version+'.png',animations:'disabled'}));
     }
     if(!approxImages[0].equals(approxImages[1])){
