@@ -1,0 +1,25 @@
+{
+  "C0550": {
+    "text": "КРЭШ БАНДИКУТ",
+    "reason": "Общепринятое русское имя, подтверждено русскоязычной страницей PlayStation.",
+    "source": "https://www.playstation.com/ru-ua/editorial/everything-you-need-to-know-about-crash-team-racing-nitro-fueled/"
+  },
+  "C0555": {
+    "text": "МЕГАМОЗГ",
+    "reason": "Исправлена калька с английского Megamind на русское имя персонажа.",
+    "source": "https://www.primevideo.com/-/ru/detail/0PYZ2Y027O9OGMTCB40IZE2TTA"
+  },
+  "C0615": {
+    "text": "ДОРОГА ЛОЖКА К ОБЕДУ",
+    "reason": "Выбрана общеупотребительная пословичная форма без перестановки слов.",
+    "source": "https://kirmuseum.org/ru/exhibitions/doroga-lozhka-k-obedu"
+  },
+  "C0069": {
+    "text": "СВОРАЧИВАТЬ РОЛЛЫ",
+    "reason": "Исправлены неверное сварачивать и неточное обобщение суши; речь о скручивании риса и нори."
+  },
+  "C0449": {
+    "text": "ВЫПУСКАТЬ ШАССИ",
+    "reason": "Выбрано обычное русское название операции в авиации вместо менее естественного выдвигать."
+  }
+}
