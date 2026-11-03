@@ -1,7 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),http=require('node:http'),os=require('node:os'),{execFileSync}=require('node:child_process'),{chromium,webkit}=require('playwright-core');
 const {collect}=require('./geometry.cjs'),{provisionProfiles}=require('../../party-game/tests/profile-fixtures.cjs'),{provisionTeamProfiles,chooseTeamProfiles}=require('../../party-game/tests/team-profile-fixtures.cjs'),{fixture,phase,settled,scenarios}=require('../../party-game/tests/task024-fixtures.cjs'),{config,answer,idle}=require('../../party-game/tests/team-game-browser.cjs'),{installProbe,summary}=require('../task029/mobile-perf.cjs');
-const ROOT=path.resolve(__dirname,'../..'),BASE='4b84dc88bc39e0b0b4145dce240a0a66d964248a',HEAD=execFileSync('git',['rev-parse','HEAD'],{cwd:ROOT}).toString().trim(),GROUP=process.env.QUIP034_GROUP||'android-compact',BASELINE_ONLY=process.env.QUIP034_BASELINE_ONLY==='1';
+const ROOT=path.resolve(__dirname,'../..'),BASE='9812c655cbb8333be91306836d8170827ecc4ddb',HEAD=execFileSync('git',['rev-parse','HEAD'],{cwd:ROOT}).toString().trim(),GROUP=process.env.QUIP034_GROUP||'android-compact',BASELINE_ONLY=process.env.QUIP034_BASELINE_ONLY==='1';
 const groups={
  'android-compact':{engine:'chromium',sizes:[[320,568,2],[344,720,2.625],[360,640,2]]},
  'android-tall':{engine:'chromium',sizes:[[360,780,3],[390,844,2.625],[412,732,2.625],[412,915,3]]},

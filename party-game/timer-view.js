@@ -95,3 +95,18 @@ function updateTimerVisual(remaining) {
   progress.style.strokeDashoffset=String(2*Math.PI*88*(1-fraction));
   progress.closest?.('.timer-ring')?.classList.toggle('warning',warning);
 }
+
+// Presentation only: OS text sizing must not touch clocks, RNG or saves.
+if(typeof ResizeObserver==='function'&&typeof MutationObserver==='function'){
+ const surface044=document.getElementById('play-content');
+ if(surface044){
+  let anchor044=null;
+  const fit044=()=>{
+   const enlarged=surface044.classList.contains('stable-round')&&typeof game!=='undefined'&&game?.current?.modeId==='blitz'&&parseFloat(getComputedStyle(surface044).fontSize)>16.01;
+   surface044.classList.toggle('large-blitz-text',enlarged);
+  };
+  const sizes044=new ResizeObserver(fit044);
+  const watch044=()=>{const next=surface044.querySelector('.play-timer,.mode-name');if(next!==anchor044){sizes044.disconnect();anchor044=next;if(next)sizes044.observe(next);}fit044();};
+  new MutationObserver(watch044).observe(surface044,{childList:true,subtree:true});watch044();
+ }
+}

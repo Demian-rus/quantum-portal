@@ -74,3 +74,32 @@
 @container round-panel (max-height:560px){
  .scene--game .stable-round .round-top:has(.blitz-status) .play-timer{font-size:14px}
 }
+
+/* TASK044: keep the normal dial; intrinsic numerals may grow under text zoom. */
+.scene--game .stable-round .round-top:has(.blitz-status) .timer-ring{
+ min-width:max-content;min-height:max-content;height:auto;aspect-ratio:1;
+}
+/* Only enlarged text uses the existing game surface as a scroll region.
+   Reserve the same header track before/after reveal; no text is hidden. */
+.scene--game .play-inner.stable-round.large-blitz-text{
+ --round-gap:12px;--large-round-slot:calc(10em + 76px);
+ overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;
+ row-gap:12px;
+}
+.scene--game .stable-round.large-blitz-text .round-top:has(.blitz-status){overflow:visible}
+.scene--game .stable-round.large-blitz-text .round-timer-stack{width:100%}
+.scene--game .stable-round.large-blitz-text .round-top .blitz-status b{white-space:normal;overflow-wrap:anywhere}
+@media(min-height:481px){
+ .scene--game .play-inner.stable-round.large-blitz-text{
+  grid-template-rows:var(--large-round-slot) var(--round-card-size) minmax(min-content,1fr) max-content;
+ }
+}
+@media(max-height:480px){
+ .scene--game .play-inner.stable-round.large-blitz-text{
+  grid-template-rows:58px minmax(calc(var(--large-round-slot) - 70px),max-content) max-content;
+ }
+ .scene--game .stable-round.large-blitz-text .round-top:has(.blitz-status)>.game-eyebrow{order:1}
+}
+
+.scene--game .stable-round.large-blitz-text .round-bottom{min-height:min-content}
+.scene--game .stable-round.large-blitz-text .blitz-control>span{white-space:normal;overflow-wrap:anywhere}

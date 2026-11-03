@@ -18,7 +18,7 @@ async function run(){
    }
    await p.evaluate(async()=>{await navigator.serviceWorker.ready});await p.waitForFunction(()=>!!navigator.serviceWorker.controller);
    const raw=await T.raw(p);server.setUnavailable(true);const missed=server.failedRequests();await p.reload();await p.evaluate(()=>QuipTeams.whenReady());assert(server.failedRequests()>missed,'real server outage occurred');assert.deepEqual(await T.raw(p),raw);
-   const cached=await p.evaluate(async()=>{const c=await caches.open('kvip-pwa-v118-20261103-task043-quality-expansion');return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>!!await c.match(s.src)));});assert.equal(cached.length,63);assert(cached.every(Boolean));
+   const cached=await p.evaluate(async()=>{const c=await caches.open('kvip-pwa-v119-20261103-task044-stability');return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>!!await c.match(s.src)));});assert.equal(cached.length,63);assert(cached.every(Boolean));
    await T.tap(p,'#continue-game');assert.equal(await p.evaluate(()=>game.contentPack.edition.version),2);assert.deepEqual(errors,[]);report.sizes.push({width,height,success:true});
   }finally{server.setUnavailable(false);await ctx.close();}
  }report.success=true;report.checks=['actual new edition and new source selection in 1x1/2x2','longest new medium phrase geometry at 320/360/390/412','exact current task and edition after reload','real server outage, 63 scripts cached, offline party restoration'];
