@@ -6,7 +6,12 @@ async function pending(p,id,value){return p.locator('#'+id).evaluate((n,value)=>
 const saved=(p,teams,key)=>p.evaluate(({teams,key})=>teams?JSON.parse(localStorage.getItem('kvip:teams-2x2:setup-ranges:v1')).values[key]:JSON.parse(localStorage.getItem(STORAGE_KEY)).options[key],{teams,key});
 const root=path.resolve(__dirname,'../..'),server=http.createServer((req,res)=>{let file=path.join(root,new URL(req.url,'http://local').pathname);if(file.endsWith('/'))file+='index.html';fs.readFile(file,(e,b)=>{res.writeHead(e?404:200,{'Content-Type':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html'});res.end(e?'missing':b);});});
 (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));url='http://127.0.0.1:'+server.address().port+'/party-game/';fs.mkdirSync(folder,{recursive:true});const b=await chromium.launch({executablePath:process.env.CHROME_BIN||undefined,args:['--no-sandbox']}),rows=[];try{for(const teams of [false,true])for(const [id,key]of definitions){const ctx=await b.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'reduce'}),p=await ctx.newPage(),row={format:teams?'teams':'duel',id,key,checks:[]};rows.push(row);try{
- await p.goto(url);await prepare(p,teams);if(id==='custom-rounds')await p.locator('#finish-rounds').check();if(id==='target-score')await p.locator('#finish-score').check();
+ await p.goto(url);
+ // Finish the first install/claim before the lifecycle deliberately reloads.
+ // An uncontrolled reload racing activation can miss that one-time claim;
+ // serviceWorker.ready then resolves although that document has no controller.
+ await p.evaluate(()=>navigator.serviceWorker.ready);await p.waitForFunction(()=>navigator.serviceWorker.controller?.state==='activated');
+ await prepare(p,teams);if(id==='custom-rounds')await p.locator('#finish-rounds').check();if(id==='target-score')await p.locator('#finish-score').check();
  const protectedBefore=await p.evaluate(()=>({game:JSON.stringify(game),memory:JSON.stringify(taskMemory),profiles:localStorage.getItem(QUIP_PROFILES_KEY),team:localStorage.getItem(QuipTeamStorage.KEY)}));
  const el=p.locator('#'+id),max=Number(await el.getAttribute('max')),step=Number(await el.getAttribute('step'));await el.scrollIntoViewIfNeeded();await el.focus();await p.keyboard.press('End');assert.equal(await saved(p,teams,key),max);row.checks.push('native key change flushes actual max');
  let result=await pending(p,id,max-step);assert(result.pending&&result.options[key]===max-step);await p.locator('#wizard-back').tap();assert.equal(await saved(p,teams,key),max-step);row.checks.push('pending last input / Back flush');
