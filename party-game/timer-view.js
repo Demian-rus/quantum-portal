@@ -83,19 +83,6 @@ function showCountdown() {
     '<div class="round-bottom"><p class="play-subtitle">Таймер запускается автоматически</p></div>';
 }
 
-function updateTimerVisual(remaining) {
-  const c=game?.current;
-  if(!c)return;
-  const timer=$('active-timer'),progress=$('timer-progress');
-  if(!timer||!progress)return;
-  timer.innerHTML=timerMarkup(remaining);
-  const warning=remaining<=10000;
-  timer.classList.toggle('warning',warning);
-  const fraction=Math.max(0,Math.min(1,remaining/(c.seconds*1000)));
-  progress.style.strokeDashoffset=String(2*Math.PI*88*(1-fraction));
-  progress.closest?.('.timer-ring')?.classList.toggle('warning',warning);
-}
-
 // Presentation only: OS text sizing must not touch clocks, RNG or saves.
 if(typeof ResizeObserver==='function'&&typeof MutationObserver==='function'){
  const surface044=document.getElementById('play-content');
@@ -119,4 +106,17 @@ if(typeof ResizeObserver==='function'&&typeof MutationObserver==='function'){
   const watch044=()=>{const next=surface044.querySelector('.play-timer,.mode-name');if(next!==anchor044){sizes044.disconnect();anchor044=next;sizes044.observe(surface044);if(next)sizes044.observe(next);const condition=surface044.querySelector('.round-condition');if(condition)sizes044.observe(condition);}fit044();};
   new MutationObserver(watch044).observe(surface044,{childList:true,subtree:true});watch044();
  }
+}
+
+function updateTimerVisual(remaining) {
+  const c=game?.current;
+  if(!c)return;
+  const timer=$('active-timer'),progress=$('timer-progress');
+  if(!timer||!progress)return;
+  timer.innerHTML=timerMarkup(remaining);
+  const warning=remaining<=10000;
+  timer.classList.toggle('warning',warning);
+  const fraction=Math.max(0,Math.min(1,remaining/(c.seconds*1000)));
+  progress.style.strokeDashoffset=String(2*Math.PI*88*(1-fraction));
+  progress.closest?.('.timer-ring')?.classList.toggle('warning',warning);
 }

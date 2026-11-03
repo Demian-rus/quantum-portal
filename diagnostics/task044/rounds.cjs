@@ -11,6 +11,14 @@ try{for(const scale of [1,2]){const coords=[];for(const phase of ['hidden','open
  else{assert.equal(g.large,true,'All Blitz phases must use the same enlarged track');if(g.counter){for(const c of g.cards)assert(!overlap(g.counter,c),'Counter/card collision');assert(!g.labels.some((a,i)=>g.labels.slice(i+1).some(b=>overlap(a.text,b.text))),'Counter labels collide');}}
  coords.push(g.cards.filter(c=>c.class==='round-fixed-card'));await p.screenshot({path:path.join(out,width+'x'+height+'-'+scale+'-'+phase+'.png'),animations:'disabled'});report.cases.push({width,height,scale,phase,large:g.large,timers:g.timerText,cards:g.cards,scrollers:g.scrollers});}
  assert.deepEqual(coords[1],coords[0],'Reveal must not move card');assert.deepEqual(coords[2],coords[0],'Timer must not move card');}
+ await T.scaleFonts(pages[1],1);
+ for(const phase of ['hidden','opened','play']){
+  await F.fixture(pages[0],F.scenarios.find(s=>s.id==='talk-three'));if(phase!=='hidden')await F.phase(pages[0],phase);const accepted=(await measure(pages[0])).cards;
+  for(const id of ['sing','talk-two']){await F.fixture(pages[1],F.scenarios.find(s=>s.id===id));if(phase!=='hidden')await F.phase(pages[1],phase);const g=await measure(pages[1]);assert.equal(g.cards.length,accepted.length);
+   for(let i=0;i<accepted.length;i++)for(const axis of ['x','y','width','height'])assert(Math.abs(g.cards[i][axis]-accepted[i][axis])<=.05,'Ordinary card must use the exact accepted three-outcome track: '+id+' '+phase+' '+axis);
+   assert.deepEqual(g.overlaps,[]);assert.deepEqual(g.clipped,[]);assert.deepEqual(g.reachable,[]);report.cases.push({width,height,scale:1,phase,ordinary:id,reference:'main talk-three',cards:g.cards});
+  }
+ }
 }finally{await Promise.all(contexts.map(c=>c.close()));}}report.success=true;
 }finally{fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));await b.close();await Promise.all([before,after].map(s=>new Promise(r=>s.server.close(r))));fs.rmSync(tmp,{recursive:true,force:true});console.log(JSON.stringify({engine,success:report.success,cases:report.cases.length}));}}
 run().catch(e=>{console.error(e.stack);process.exitCode=1});

@@ -112,3 +112,7 @@
 @media(max-height:480px){
  .scene--game .play-inner.stable-round.long-round-text{grid-template-rows:58px minmax(min-content,1fr) max-content}
 }
+@media(max-height:380px){
+ /* Keep the two/three-outcome anchors fixed with native mobile fonts. */
+ .scene--game .stable-round .round-standard-layout .round-condition{padding-block:0}
+}

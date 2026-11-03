@@ -7,21 +7,21 @@ The published Game Checks run [41645578429](https://github.com/Demian-rus/quantu
 ## Changes
 
 - Preserve 100% Blitz geometry; intrinsic timer bounds and one enlarged-text track contain the numerals at 200%. The existing game surface remains keyboard-scrollable when physical space is insufficient.
-- Use one ordinary-round card track with/without the third outcome. Preserve complete unknown historical condition text in the game surface without a nested condition scroller.
-- Render the independent Approx pixel comparison first in fresh contexts, before differing task layouts warm Skia's glyph cache. Retain the exact screenshot gate and first-failure evidence.
-- Reuse exact-input pure SHA-256 results with bounded private caches, prepare SHA constants once, and reuse the immutable built-in dictionary environment. All validators, RAW checks, RNG, native CAS, strict writes and readbacks remain active. Native receipt readback is queued behind the strict writer on the same IndexedDB store; success awaits both completion events. Custom receipt providers keep their sequential contract.
-- Use supported WebKit 1.64, matching TASK034/038. Keep complete localStorage equality, add independent explicit-key reads, exact origin/context checks, a device card/draft/queue, and offline exact party/RNG/memory restoration for both formats.
+- Use main’s existing three-outcome track for ordinary rounds with/without the third outcome. The baseline proof keeps its 0.05px tolerance and all 24 comparisons; the two ordinary plain scenarios explicitly reference main’s measured three-outcome track. Blitz retains its own exact reference. Preserve complete unknown historical condition text in the game surface without a nested condition scroller.
+- Render Approx as the first visible scene in independent fresh browser processes. Retain the full exact screenshot gate at every width, without the historical 412px header exception, and retain first-failure evidence.
+- Reuse exact-input pure SHA-256 results with bounded private caches, prepare SHA constants once, and reuse the immutable built-in dictionary environment. All validators, RAW checks, RNG, native CAS, strict writes and readbacks remain active. A minimum-only availability predicate avoids recounting an entire immutable built-in pool once the exact minimum is proved; public exact counters, custom pipelines and device-card paths retain full counting. Ready-screen markup is built once after the durable commit. Native receipt readback is queued behind the strict writer on the same IndexedDB store; success awaits both completion events. Custom receipt providers keep their sequential contract.
+- Use supported WebKit 1.64 in TASK042B/043, matching TASK034/038. TASK036’s container explicitly trusts only its checked-out workspace for Git. Keep complete localStorage equality, add independent explicit-key reads, exact origin/context checks, a device card/draft/queue, and offline exact party/RNG/memory restoration for both formats.
 
 ## Targeted checks at this checkpoint
 
-- Blitz: 42 cases per engine, Chromium and WebKit; 100% exact accepted main card/ring/counter coordinates, 200% text/controls, 320/360/390/412 plus portrait/landscape boundaries. Repeat on final tree in Actions.
+- Blitz: 42 cases per engine plus 42 exact ordinary-track cases per engine, Chromium and WebKit; 100% exact accepted main card/ring/counter coordinates, 200% text/controls, 320/360/390/412 plus portrait/landscape boundaries. Repeat on final tree in Actions.
 - `round-layout`: 5 devices × 7 modes; `round-outcomes`: all 5 devices PASS.
 - TASK024: all 5 devices, exact Approx pixels and all condition/phase assertions PASS.
 - TASK013B: real historical worker update/offline restore, exact old RAW/options/memory, unknown long text with keyboard access at 320/390 PASS.
 - Extended TASK043 WebKit: all 4 widths, real server outage, cards/drafts/queue, both quip@2 parties and exact storage PASS.
 - Targeted storage/engine/device contracts: 49 PASS. Additional checksum tamper/block-boundary and exact source/immutable-data tests are included in TASK044.
-- Local Chromium 140, 15,000-card real START, CPU×4, N=20: main team median/p95 **245.7/391.3 ms**, candidate **213.3/272.3 ms**. Median still exceeds 200 ms here. Final acceptance must use supported Chromium 156 as in CI; no threshold changes.
+- Local Chromium 140, 15,000-card real START, CPU×4, N=20: main team median/p95 **230.1/295.9 ms**, candidate **196.3/249.9 ms**, PASS. The prior Chromium 156 CI checkpoint measured 229/303.3 → 214.1/232.9 ms before the final minimum-predicate and duplicate-render fixes. The final supported Chromium 156 run remains required; no threshold changes.
 
 `diagnostics/task044/start.cjs` restores the same real 27-profile/one-archive RAW and native receipt before every sample. Measurement includes trusted pointerdown, full validation, strict durability, first screen, two frames and the after-frame task. Diagnostic profiling is prohibited in GitHub Actions. Mandatory 200/350 ms median/p95 ceilings remain enforced.
 
-Catalogs, all 248 TASK043 source rows, edition records and immutable locks are checked byte-for-byte against main. No content or game-rule changes are included. Final Actions and performance results are pending at this checkpoint.
+Catalogs, all 248 TASK043 source rows, edition records and immutable locks are checked byte-for-byte against main. No content or game-rule changes are included. Final Actions and supported-browser performance results are recorded in [PR #227 checks](https://github.com/Demian-rus/quantum-portal/pull/227/checks).

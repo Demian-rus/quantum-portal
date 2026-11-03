@@ -67,3 +67,20 @@ editorialCategoryCounts=function(selection,policy=validateGeneralCategorySelecti
   editorialV2CategoryCounts.set(key,{total:ids.length,available,categories:e.categories.map((id,i)=>({id,name:QUIP_GENERAL_CATEGORY_LABELS[id]||id,count:counts[i],enabled:!policy.excluded.includes(id)}))});
  }return editorialV2CategoryCounts.get(key);
 };
+// Availability is a minimum predicate. Exact counts remain with the public
+// counter; START need not recount a newly pinned 15k pool once the minimum is
+// proved. Only the shipped immutable built-in pipeline takes this path.
+const checkPoolSources=()=>[editorialPoolFor,editorialAvailability,editorialTaskKey,normalizeTaskText,getEditorialIndex,editorialRequest,getContentPack,promptRevisionIndex,selectedDeviceSnapshot,deviceIndex];
+const checkedPoolSources=checkPoolSources();
+function editorialAvailabilityForCheck(selection,settings,mode,level){
+ if(selection?.deviceDictionary?.cards.length||!Object.isFrozen(PARTY_CARDS)||!Object.isFrozen(QUIP_APPROX_QUESTIONS)||!Object.isFrozen(QUIP_CONTENT_PACKS)||checkPoolSources().some((fn,i)=>fn!==checkedPoolSources[i]))return editorialAvailability(selection,settings,mode,level);
+ if(!editorialSelection(selection)&&selectedDeviceSnapshot(selection)?.cards.length)return editorialAvailability(selection,settings,mode,level);
+ const pool=editorialPoolFor(selection,settings,mode,level);
+ if(!Object.isFrozen(pool))return editorialAvailability(selection,settings,mode,level);
+ const minimum=Math.max(QUIP_EDITORIAL_EDITION.catalogs[baseContentPackSelection(selection).id].minimum,mode==='blitz'?3:1);
+ if(editorialPoolCounts.has(pool))return editorialAvailability(selection,settings,mode,level);
+ const keys=new Set();for(const row of pool){keys.add(editorialTaskKey(row));if(keys.size>=minimum)return {available:true,reason:''};}
+ // An insufficient pool was scanned completely; preserve its exact count and
+ // the existing error wording. Never publish a partial count as a full count.
+ editorialPoolCounts.set(pool,keys.size);return editorialAvailability(selection,settings,mode,level);
+}

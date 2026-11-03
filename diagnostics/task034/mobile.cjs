@@ -97,8 +97,11 @@ async function journey(browser,url,kind,size,scale,strict,networkControl,baselin
   // approved 100% layout against the immutable main captured in the same job.
   let baselineCardProof=null;
   if(baselineReport&&scale===1){
-   baselineCardProof={base:BASE,tolerance:.05,comparisons:0,maxDelta:0,differences:[]};const reference=new Map(baselineReport.rows.map(r=>[r.label,r]));
-   for(const row of rows.filter(r=>/^card-.+-(hidden|open|play)$/.test(r.label))){const old=reference.get(row.label);if(!old||!row.cards.length||row.cards.length!==old.cards.length){baselineCardProof.differences.push({label:row.label,message:'Missing baseline or card count differs'});continue;}
+   baselineCardProof={base:BASE,tolerance:.05,comparisons:0,maxDelta:0,differences:[],mappedReferences:[]};const reference=new Map(baselineReport.rows.map(r=>[r.label,r]));
+   // TASK044 aligns ordinary two/three-outcome rounds to main's existing
+   // three-outcome track. Keep exact rectangles, all phases and the same
+   // tolerance. Blitz always retains its own unchanged main reference.
+   for(const row of rows.filter(r=>/^card-.+-(hidden|open|play)$/.test(r.label))){const label=row.label.replace(/^card-(?:sing-sing|talk-talk-two)-/,'card-talk-talk-three-');if(label!==row.label)baselineCardProof.mappedReferences.push({label:row.label,reference:label});const old=reference.get(label);if(!old||!row.cards.length||row.cards.length!==old.cards.length){baselineCardProof.differences.push({label:row.label,message:'Missing baseline or card count differs'});continue;}
     baselineCardProof.comparisons++;for(let i=0;i<row.cards.length;i++)for(const field of ['x','y','width','height']){const delta=Math.abs(row.cards[i][field]-old.cards[i][field]);baselineCardProof.maxDelta=Math.max(baselineCardProof.maxDelta,delta);if(delta>.05)baselineCardProof.differences.push({label:row.label,card:i,field,before:old.cards[i][field],after:row.cards[i][field],delta});}
    }
    if(!baselineCardProof.comparisons||baselineCardProof.differences.length)failures.push({name:'approved-baseline-card-geometry',message:JSON.stringify(baselineCardProof)});

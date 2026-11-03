@@ -226,9 +226,11 @@
   $('results-content').querySelector('.inline-actions').after(block);
  }
  function paintGame(){
-  if(!E.isGame(game))return;paintHeader();for(const tabs of document.querySelectorAll('.review-tabs'))tabs.setAttribute('aria-label','История команд');
-  if(game.phase==='ready')teamReady();
-  else if(game.phase==='results')paintResults();
+  if(!E.isGame(game))return;for(const tabs of document.querySelectorAll('.review-tabs'))tabs.setAttribute('aria-label','История команд');
+  // Every caller follows old.render(): renderMatch/showReady already painted
+  // this exact header and handoff. Keep the durable success boundary intact.
+  if(game.phase==='ready')return;
+  paintHeader();if(game.phase==='results')paintResults();
   else if(game.phase==='tiebreak'){$('play-step').textContent='2 НА 2 · РЕШАЮЩИЙ ОБЩИЙ ВОПРОС';const p=$q('.is-tiebreak .play-subtitle');if(p)p.textContent=game.tiebreak.stage==='question'?'Каждая команда совместно называет одно число.':'Сравните совместные ответы команд.';}
   else if(game.current?.modeId==='approx'){const p=$q('.is-approx .play-subtitle');if(p)p.textContent='Каждая команда совместно называет одно число.';}
   else if(!['review'].includes(game.phase)){const r=E.roles(game),text=r.teamName+' · '+r.setterName+' → '+r.guesserName;$('play-step').textContent=text;$('play-step').title=text;}
