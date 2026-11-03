@@ -1,0 +1,76 @@
+/* Reserve the full counter height before and after revealing a task. */
+.scene--game .play-inner.stable-round{--round-slot-size:clamp(92px,20cqh,154px)}
+/* TASK042A — gameplay-only geometry. Kept separate from legacy styles. */
+.scene--game .play-inner.stable-round:has(.round-condition){
+  --round-gap:clamp(12px,1.35cqh,13px);
+  --round-card-size:clamp(96px,25cqh,174px);
+}
+/* The counter is a real opaque plaque inside the RESERVED timer slot.
+   Do not stack it over the card or condition row. */
+.scene--game .stable-round .round-top:has(.blitz-status){
+  padding:0 3px;gap:2px;justify-content:flex-start;overflow:visible;
+}
+.scene--game .stable-round .round-top:has(.blitz-status)>.game-eyebrow{
+  font-size:10px;line-height:1.1;margin:0;letter-spacing:0;
+}
+.scene--game .stable-round .round-top:has(.blitz-status) .round-timer-stack{
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  gap:3px;min-width:0;max-width:100%;
+}
+.scene--game .stable-round .round-top:has(.blitz-status) .timer-ring{
+  width:clamp(44px,10cqh,76px);
+  height:clamp(44px,10cqh,76px);
+  min-width:44px;min-height:44px;
+}
+.scene--game .stable-round .round-top:has(.blitz-status) .timer-dial{gap:clamp(12px,3vw,18px)}
+.scene--game .stable-round .round-top .blitz-status{
+  position:relative;z-index:1;isolation:isolate;
+  box-sizing:border-box;width:min(100%,300px);max-width:300px;
+  min-height:24px;padding:4px 10px;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  align-items:center;justify-items:center;gap:8px;
+  border:1px solid #8bd6be;border-radius:10px;
+  background:#172c2c;color:#f1fff9;box-shadow:0 3px 12px #0009;
+  line-height:1.1;
+}
+.scene--game .stable-round .round-top .blitz-status b{
+  color:#beffb7;font-size:clamp(10px,2.7vw,12px);
+  font-weight:850;white-space:nowrap;
+}
+/* Readable conditions, no nested scrolling or clipped last line. */
+.scene--game .stable-round .round-condition-slot{
+  overflow:visible;overscroll-behavior:auto;scrollbar-width:none;
+  padding:0 2px;gap:4px;justify-content:safe center;
+}
+.scene--game .stable-round .round-condition{
+  font-size:clamp(12px,1.55cqh,13px);
+  line-height:1.3;padding:4px 8px;text-align:center;
+  overflow:visible;hyphens:auto;
+}
+.scene--game .stable-round .round-notes{gap:3px 6px;}
+@container round-panel (max-height:560px){
+ .scene--game .play-inner.stable-round:has(.round-condition){
+  --round-gap:12px;
+  --round-card-size:clamp(91px,20cqh,126px);
+ }
+ .scene--game .stable-round .round-condition{font-size:12px;line-height:1.25;padding:3px 6px;}
+ .scene--game .stable-round .round-top:has(.blitz-status) .timer-ring{width:44px;height:44px}
+ .scene--game .stable-round .round-top:has(.blitz-status) .round-timer-stack{gap:2px}
+ .scene--game .stable-round .round-top .blitz-status{min-height:23px;padding:3px 7px;}
+ .scene--game .stable-round .round-top .blitz-status b{font-size:10px;}
+}
+@container round-panel (max-height:430px){
+ .scene--game .play-inner.stable-round:has(.round-condition){--round-gap:12px;--round-card-size:91px;}
+ .scene--game .stable-round .round-condition{font-size:12px;line-height:1.2;padding:2px 5px;}
+}
+@media (max-height:480px){
+ /* Landscape: the existing two-column layout remains authoritative. */
+ .scene--game .stable-round .round-condition-slot{justify-content:safe flex-start}
+ .scene--game .stable-round .round-top .blitz-status{width:100%;padding:2px 4px;gap:3px;min-height:22px}
+ .scene--game .stable-round .round-top .blitz-status b{font-size:9px}
+}
+/* Clock numerals must fit the smaller Blitz dial at every container height. */
+.scene--game .stable-round .round-top:has(.blitz-status) .play-timer{font-size:clamp(14px,3cqh,24px)}
+@container round-panel (max-height:560px){
+ .scene--game .stable-round .round-top:has(.blitz-status) .play-timer{font-size:14px}
+}

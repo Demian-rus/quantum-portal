@@ -40,9 +40,9 @@ test('historical parties keep the old selector and exact RNG when new preference
  assert.equal(a.eval('JSON.stringify(rollOutcome())'),b.eval('JSON.stringify(rollOutcome())'));
 });
 test('TASK041 exact integration hunks restore previous runtime and reject unrelated edits',()=>{
- const fs=require('node:fs'),{execFileSync}=require('node:child_process'),{normalizeTask041,hunks}=require('../../diagnostics/task041/source-contract.cjs');
+ const fs=require('node:fs'),{execFileSync}=require('node:child_process'),{normalizeTask041,normalizeTask041Release,hunks}=require('../../diagnostics/task041/source-contract.cjs');
  for(const file of new Set(hunks.map(h=>h.file))){
-  const source=fs.readFileSync('party-game/'+file,'utf8'),old=execFileSync('git',['show','538268d7eccffbe3dc48cbfcf2f3b514bfa1cc85:party-game/'+file],{encoding:'utf8',maxBuffer:20e6});
+  const source=normalizeTask041Release(require('../../diagnostics/task042/source-contract.cjs').normalizeTask042(fs.readFileSync('party-game/'+file,'utf8'))),old=execFileSync('git',['show','538268d7eccffbe3dc48cbfcf2f3b514bfa1cc85:party-game/'+file],{encoding:'utf8',maxBuffer:20e6});
   assert.equal(normalizeTask041(source),old,file);
   assert.notEqual(normalizeTask041(source+'\n/* unintended edit */'),old,file);
   for(const h of hunks.filter(h=>h.file===file))assert.notEqual(normalizeTask041(source.replace(h.after,h.after+'/* mutation */')),old,file+' hunk mutation');
