@@ -21,8 +21,8 @@ test('TASK032 exact delta preserves every inherited script, all game CSS, dictio
  assert.equal(g46.criteria.cardIds.filter(id=>id.startsWith('song-')).length,224,'Preserve all 224 song prompts');
  assert.match(read('sw.js'),/G46 2026-10-28: refresh the installed PWA catalog/);
  for(const h of hunks){assert(h.after);assert(normalizeTask033(read(h.file)).includes(h.after),'exact addition must still exist: '+h.file);}
- const current=[...read('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);same(current.slice().sort(),[...scripts,'team-statistics.js','editorial-edition.js','editorial-runtime.js','prompt-revisions.js'].sort());
- assert.equal(read('sw.js').slice(read('sw.js').indexOf("self.addEventListener('install'")),before('sw.js').slice(before('sw.js').indexOf("self.addEventListener('install'")));
+ const current=[...read('index.html').matchAll(/<script src="\.\/([^?]+\.js)\?/g)].map(m=>m[1]);same(current.slice().sort(),[...scripts,'team-statistics.js','editorial-edition.js','editorial-runtime.js','prompt-revisions.js','device-dictionary.js','device-dictionary-runtime.js','device-dictionary-sync.js','device-dictionary-view.js'].sort());
+ assert.equal(require('../../diagnostics/task042/source-contract-b.cjs').normalizeTask042B(read('sw.js')).slice(require('../../diagnostics/task042/source-contract-b.cjs').normalizeTask042B(read('sw.js')).indexOf("self.addEventListener('install'")),before('sw.js').slice(before('sw.js').indexOf("self.addEventListener('install'")));
  assert.doesNotMatch(read('team-statistics.js'),/localStorage|indexedDB|Math\.random/);
  assert(!normalizeTask032(read('team-engine.js').replace("const VERSION=1,FORMAT='teams-2x2'","const VERSION=999,FORMAT='teams-2x2'")).includes("const VERSION=1,FORMAT='teams-2x2'"),'normalization cannot erase unrelated engine changes');
 });
@@ -151,5 +151,5 @@ test('TASK033 profile-picker touch closes without a container rectangle and pres
  const html=read('index.html'),sw=read('sw.js');
  assert.match(html,/setup-wizard\.css\?v=11/);
  assert.match(sw,/setup-wizard\.css\?v=11/);
- assert.match(sw,/kvip-pwa-v116-20261103-task042a-mobile-rounds/);
+ assert.match(sw,/kvip-pwa-v117-20261103-task042b-device-dictionary/);
 });

@@ -22,7 +22,7 @@ test('original v85 runtime untouched; content-only additions are explicitly vers
 test('54 scripts match service-worker precache and inherited content URLs',()=>{
  const html=fs.readFileSync(path.join(root,'party-game/index.html'),'utf8'),sw=fs.readFileSync(path.join(root,'party-game/sw.js'),'utf8');
  const scripts=[...html.matchAll(/<script src="\.\/([^?"/]+\.js)\?v=(\d+)"/g)].map(x=>'./'+x[1]+'?v='+x[2]);
- assert.equal(scripts.length,57);for(const s of scripts)assert.ok(sw.includes("'"+s+"'"),s);
- assert.match(sw,/const CACHE=\x27kvip-pwa-v\d+-\d{8}-task0(?:39|41|42a)-[a-z0-9-]+\x27;/);
+ assert.equal(scripts.length,61);for(const s of scripts)assert.ok(sw.includes("'"+s+"'"),s);
+ assert.match(sw,/const CACHE=\x27kvip-pwa-v\d+-\d{8}-task0(?:39|41|42a|42b)-[a-z0-9-]+\x27;/);
  for(const x of ['cards.js?v=11','content-packs.js?v=22']){assert.ok(html.includes(x));assert.ok(sw.includes(x));}
 });
