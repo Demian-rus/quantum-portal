@@ -1,6 +1,13 @@
 'use strict';
 // The device store participates only in previews and explicitly pinned new parties.
-function deviceDictionaryEnvironment(){return {categories:QUIP_EDITORIAL_EDITION.categories,themes:QUIP_EDITORIAL_EDITION.themes,builtins:[...PARTY_CARDS,...QUIP_APPROX_QUESTIONS,{text:'НАШЛА КОСА НА КАМЕНЬ'}]};}
+let deviceEnvironmentCache=null;
+function deviceDictionaryEnvironment(){
+ const categories=QUIP_EDITORIAL_EDITION.categories,themes=QUIP_EDITORIAL_EDITION.themes;
+ if(deviceEnvironmentCache?.cards===PARTY_CARDS&&deviceEnvironmentCache.questions===QUIP_APPROX_QUESTIONS&&deviceEnvironmentCache.value.categories===categories&&deviceEnvironmentCache.value.themes===themes)return deviceEnvironmentCache.value;
+ const value={categories,themes,builtins:[...PARTY_CARDS,...QUIP_APPROX_QUESTIONS,{text:'НАШЛА КОСА НА КАМЕНЬ'}]};
+ if(Object.isFrozen(PARTY_CARDS)&&Object.isFrozen(QUIP_APPROX_QUESTIONS)){deviceEnvironmentCache={cards:PARTY_CARDS,questions:QUIP_APPROX_QUESTIONS,value:Object.freeze({...value,builtins:Object.freeze(value.builtins)})};return deviceEnvironmentCache.value;}
+ return value;
+}
 let deviceDictionaryStore=null;
 function deviceDictionary(){return deviceDictionaryStore||(deviceDictionaryStore=QuipDeviceDictionary.createStore(localStorage,deviceDictionaryEnvironment()));}
 const pinBeforeDeviceDictionary=pinEditorialSelection;

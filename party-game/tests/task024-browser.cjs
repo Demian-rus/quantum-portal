@@ -41,22 +41,9 @@ function fits(g){
    await before.route('**/party-game/**',async route=>{const name=new globalThis.URL(route.request().url()).pathname.split('/party-game/')[1]||'index.html';if(!oldFiles.has(name))return route.continue();return route.fulfill({body:oldFiles.get(name),contentType:name.endsWith('.js')?'application/javascript':name.endsWith('.css')?'text/css':'text/html'});});
    await F.setup(before,URL);
    const ctx=await browser.newContext({viewport:{width:w,height:h},hasTouch:true,reducedMotion:'reduce'});contexts.push(ctx);const after=await ctx.newPage(),errors=[];after.on('pageerror',e=>errors.push(e.message));await F.setup(after,URL);
-   const longest=await after.evaluate(()=>PARTY_CARDS.filter(r=>['word','phrase','idiom'].includes(r.type)).sort((a,b)=>b.text.length-a.text.length)[0].text);
-   for(const s of [...F.scenarios,{id:'longest',mode:'talk',modifier:null,word:longest}]){
-    const baseline={},candidate={};await F.fixture(before,s);await F.fixture(after,s);
-    for(const name of ['task','opened','countdown','play','hidden','revealed']){
-     await F.phase(before,name);await F.phase(after,name);baseline[name]=await F.geometry(before);candidate[name]=await F.geometry(after);fits(candidate[name]);
-     if((name==='task'||name==='play')&&((w===320||w===390)&&['sing','secret'].includes(s.id)||w===390||w===844&&s.id==='secret'))for(const [version,page]of [['before',before],['after',after]])await page.screenshot({path:folder+'/'+w+'-'+s.id+'-'+name+'-'+version+'.png',animations:'disabled'});
-     same(candidate[name].card,candidate.task.card,s.id+' fixed card '+w+' '+name,0.05);
-     same(candidate[name].bottom,candidate.task.bottom,s.id+' fixed decisions track '+w+' '+name,0.05);
-     same(candidate[name].top,candidate.task.top,s.id+' shared header '+w+' '+name,0.05);
-     if(candidate[name].decisions.length)candidate[name].decisions.forEach((b,i)=>same(b,baseline[name].decisions[i],'v87 bottom anchor '+s.id+' '+w,0.05));
-     if(name!=='task')assert.equal(await after.locator('.round-top .mode-symbol').count(),0,'Large icon must be replaced after reveal');
-    }
-    if(w<h)assert.ok(candidate.task.card.y<baseline.task.card.y-20,'Card must move upwards from v87');
-    measurements.push({width:w,height:h,scenario:s.id,before:baseline,after:candidate});
-   }
-   // Approx is a separate interaction: same HTML and pixel-identical screenshots.
+   // Render Approx FIRST in both fresh contexts. Earlier task geometries warm
+   // Skia glyph caches differently (24 AA pixels in main run 41645578429).
+   // Keep the original exact pixel/content gate; no tolerance or recapture PASS.
    const approx=async p=>{await p.evaluate(()=>{Object.assign(options,{modes:['approx'],dice:false,difficulty:'easy'});newGame();game.dice=false;roll();const q=QUIP_APPROX_QUESTIONS.find(q=>q.id==='approx-0007');if(!q)throw Error('Missing published question fixture');game.current.question={...q};game.current.word=q.question;game.current.cardId=q.id;render();stopTicking()});await F.settled(p);};
    await approx(before);const oldApprox=await before.screenshot({path:folder+'/'+w+'-approx-before.png',animations:'disabled'});
    await approx(after);const newApprox=await after.screenshot({path:folder+'/'+w+'-approx-after.png',animations:'disabled'});
@@ -84,6 +71,21 @@ function fits(g){
     const newBody=await after.screenshot({clip,animations:'disabled'});
     assert.ok(oldBody.equals(newBody),'Approx pixels changed below header 412');
    }else assert.ok(oldApprox.equals(newApprox),'Approx pixels changed '+w);
+   const longest=await after.evaluate(()=>PARTY_CARDS.filter(r=>['word','phrase','idiom'].includes(r.type)).sort((a,b)=>b.text.length-a.text.length)[0].text);
+   for(const s of [...F.scenarios,{id:'longest',mode:'talk',modifier:null,word:longest}]){
+    const baseline={},candidate={};await F.fixture(before,s);await F.fixture(after,s);
+    for(const name of ['task','opened','countdown','play','hidden','revealed']){
+     await F.phase(before,name);await F.phase(after,name);baseline[name]=await F.geometry(before);candidate[name]=await F.geometry(after);fits(candidate[name]);
+     if((name==='task'||name==='play')&&((w===320||w===390)&&['sing','secret'].includes(s.id)||w===390||w===844&&s.id==='secret'))for(const [version,page]of [['before',before],['after',after]])await page.screenshot({path:folder+'/'+w+'-'+s.id+'-'+name+'-'+version+'.png',animations:'disabled'});
+     same(candidate[name].card,candidate.task.card,s.id+' fixed card '+w+' '+name,0.05);
+     same(candidate[name].bottom,candidate.task.bottom,s.id+' fixed decisions track '+w+' '+name,0.05);
+     same(candidate[name].top,candidate.task.top,s.id+' shared header '+w+' '+name,0.05);
+     if(candidate[name].decisions.length)candidate[name].decisions.forEach((b,i)=>same(b,baseline[name].decisions[i],'v87 bottom anchor '+s.id+' '+w,0.05));
+     if(name!=='task')assert.equal(await after.locator('.round-top .mode-symbol').count(),0,'Large icon must be replaced after reveal');
+    }
+    if(w<h)assert.ok(candidate.task.card.y<baseline.task.card.y-20,'Card must move upwards from v87');
+    measurements.push({width:w,height:h,scenario:s.id,before:baseline,after:candidate});
+   }
    // Every displayed V2 condition fits at the smallest portrait, without scroll.
    if(w===320){const ids=await after.evaluate(()=>QUIP_MODIFIERS_V2.map(r=>r.id));for(const modifier of ids){await F.fixture(after,{mode:'mime',modifier});await F.phase(after,'play');fits(await F.geometry(after));}}
    if(w===320){

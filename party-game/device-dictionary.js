@@ -10,16 +10,19 @@ const QuipDeviceDictionary=(()=>{
  function normalize(s){return String(s).normalize('NFKC').toLocaleLowerCase('ru').replace(/ё/g,'е').replace(/[^\p{L}\p{N}]+/gu,' ').trim();}
  function canonical(v){plain(v);return JSON.stringify(v,(_,x)=>x&&!Array.isArray(x)&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,x[k]])):x);}
  // Synchronous SHA-256 lets START pin/verify without crossing an asynchronous turn.
+ const SHA256_CONSTANTS=(()=>{const K=[],H=[];let prime=2;while(K.length<64){let is=true;for(let d=2;d*d<=prime;d++)if(prime%d===0){is=false;break;}if(is){if(H.length<8)H.push((Math.sqrt(prime)%1*4294967296)|0);K.push((Math.cbrt(prime)%1*4294967296)|0);}prime++;}return {K,H};})();
+ const hashes=new Map();let hashChars=0;
  function hash(value){
-  const bytes=unescape(encodeURIComponent(typeof value==='string'?value:canonical(value))),words=[],K=[],H=[];let prime=2;
-  while(K.length<64){let is=true;for(let d=2;d*d<=prime;d++)if(prime%d===0){is=false;break;}if(is){if(H.length<8)H.push((Math.sqrt(prime)%1*4294967296)|0);K.push((Math.cbrt(prime)%1*4294967296)|0);}prime++;}
+  const source=typeof value==='string'?value:canonical(value);if(hashes.has(source))return hashes.get(source);
+  const bytes=unescape(encodeURIComponent(source)),words=[],K=SHA256_CONSTANTS.K,H=SHA256_CONSTANTS.H.slice();
   for(let i=0;i<bytes.length;i++)words[i>>2]=(words[i>>2]||0)|bytes.charCodeAt(i)<<(24-i%4*8);
   words[bytes.length>>2]=(words[bytes.length>>2]||0)|0x80<<(24-bytes.length%4*8);words[(((bytes.length+8)>>6)+1)*16-1]=bytes.length*8;
   const R=(x,n)=>(x>>>n)|(x<<(32-n));
   for(let offset=0;offset<words.length;offset+=16){const W=words.slice(offset,offset+16).map(x=>x|0);for(let t=0;t<16;t++)W[t]|=0;let [a,b,c,d,e,f,g,h]=H;
    for(let t=0;t<64;t++){if(t>=16){const x=W[t-15],y=W[t-2];W[t]=((R(x,7)^R(x,18)^(x>>>3))+W[t-16]+(R(y,17)^R(y,19)^(y>>>10))+W[t-7])|0;}const T1=(h+(R(e,6)^R(e,11)^R(e,25))+((e&f)^(~e&g))+K[t]+W[t])|0,T2=((R(a,2)^R(a,13)^R(a,22))+((a&b)^(a&c)^(b&c)))|0;[a,b,c,d,e,f,g,h]=[(T1+T2)|0,a,b,c,(d+T1)|0,e,f,g];}
    [a,b,c,d,e,f,g,h].forEach((v,i)=>H[i]=(H[i]+v)|0);
-  }return H.map(x=>(x>>>0).toString(16).padStart(8,'0')).join('');
+  }const result=H.map(x=>(x>>>0).toString(16).padStart(8,'0')).join('');
+  if(source.length<=4096){if(hashes.size>=32||hashChars+source.length>65536){hashes.clear();hashChars=0;}hashes.set(source,result);hashChars+=source.length;}return result;
  }
  function allowed(form,mode,label){if(mode==='sing')return form==='song';if(mode==='yesno')return form==='person';if(mode==='approx')return form==='number';if(mode==='blitz')return form==='word'&&!/\s/u.test(label);return ['word','phrase','idiom'].includes(form);}
  function classification(card){return {form:card.type,categories:card.categories.slice(),themes:card.themes.slice(),ambiguities:[],modes:Object.fromEntries([...MODES.map(m=>[m,{eligible:card.modes[m]!==null,difficulty:card.modes[m],reason:card.modes[m]!==null?(m==='approx'?'estimation':m==='sing'?'repertoire':m==='yesno'?'recognisable-person':'familiar'):'type'}]),['secret',{policy:'actual-method'}]])};}

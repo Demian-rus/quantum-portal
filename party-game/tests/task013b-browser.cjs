@@ -8,31 +8,34 @@ const LONG='Не рисуй горизонтальные и вертикальн
 const ledger=new Map(require('../content/editorial/music-theme-review.json').map(row=>[row.id,row.language]));
 async function settle(page){await page.locator('#scene-game').evaluate(el=>Promise.all(el.getAnimations({subtree:true}).map(a=>a.finished.catch(()=>{}))));await page.evaluate(()=>document.fonts.ready)}
 async function setup(page){await page.locator('#new-game-menu').click();await page.locator('#standard-game').click()}
-const cardBox=page=>page.locator('.round-fixed-card').boundingBox();
+// Compare the card in its game surface even when an exceptional historical
+// condition requires scrolling that whole surface.
+const cardBox=page=>page.locator('.round-fixed-card').evaluate(el=>{const b=el.getBoundingClientRect();return{x:b.x,y:b.y+document.getElementById('play-content').scrollTop,width:b.width,height:b.height};});
 function sameBox(a,b,label){for(const k of ['x','y','width','height'])assert.ok(Math.abs(a[k]-b[k])<=2,label+': '+JSON.stringify({a,b}))}
 async function fullCondition(page,expected){
- const area=page.locator('.round-condition'),outer=area.locator('..');
+ const area=page.locator('.round-condition'),outer=page.locator('#play-content');
  assert.equal(await area.textContent(),'УСЛОЖНЕНИЕ: '+expected);
- // #95 moves only the exceptional-long-text fallback to the complete upper
- // region. Keep the original requirement: both ends must be keyboard reachable.
+ // Preserve unknown saved wording in full. Keyboard-scroll the game surface;
+ // the condition and its own row must never gain a nested scroll region.
  await outer.focus();await outer.press('Home');
- const first=await area.evaluate(el=>{const node=el.querySelector('strong').firstChild,r=document.createRange();r.setStart(node,0);r.setEnd(node,1);const b=r.getBoundingClientRect(),p=el.closest('.round-condition-slot,.round-top').getBoundingClientRect();return{top:b.top,bottom:b.bottom,parentTop:p.top,parentBottom:p.bottom}});
+ const first=await area.evaluate(el=>{const node=el.querySelector('strong').firstChild,r=document.createRange();r.setStart(node,0);r.setEnd(node,1);const b=r.getBoundingClientRect(),p=document.getElementById('play-content').getBoundingClientRect();return{top:b.top,bottom:b.bottom,parentTop:p.top,parentBottom:p.bottom}});
  assert.ok(first.top>=first.parentTop-1&&first.bottom<=first.parentBottom+1,'Condition beginning is inaccessible: '+JSON.stringify(first));
  await outer.press('End');
- await page.waitForFunction(()=>{const e=document.querySelector('.round-condition').closest('.round-condition-slot,.round-top');return e.scrollTop+e.clientHeight>=e.scrollHeight-2});
+ await page.waitForFunction(()=>{const e=document.getElementById('play-content');return e.scrollTop+e.clientHeight>=e.scrollHeight-2});
  const g=await page.evaluate(()=>{
-  const condition=document.querySelector('.round-condition'),parent=condition.closest('.round-condition-slot,.round-top'),node=condition.querySelector('strong').firstChild;
+  const condition=document.querySelector('.round-condition'),parent=document.getElementById('play-content'),node=condition.querySelector('strong').firstChild;
   const range=document.createRange();range.setStart(node,node.length-1);range.setEnd(node,node.length);
   const tail=range.getBoundingClientRect(),p=parent.getBoundingClientRect();
   return {overflow:getComputedStyle(parent).overflowY,bar:getComputedStyle(parent).scrollbarWidth,
-   innerOverflow:getComputedStyle(condition).overflowY,innerClient:condition.clientHeight,innerScroll:condition.scrollHeight,
+   nestedScroll:(()=>{const slot=condition.parentElement;slot.scrollTop=100;return slot.scrollTop;})(),innerOverflow:getComputedStyle(condition).overflowY,innerClient:condition.clientHeight,innerScroll:condition.scrollHeight,
    tail:{top:tail.top,bottom:tail.bottom},parent:{top:p.top,bottom:p.bottom},scroll:parent.scrollTop,total:parent.scrollHeight,client:parent.clientHeight,
    document:{w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight},w:innerWidth,h:innerHeight};
  });
- assert.equal(g.overflow,'auto');assert.equal(g.bar,'thin');assert.equal(g.innerOverflow,'visible');assert.ok(g.innerScroll<=g.innerClient+1);
+ if(g.total>g.client+1)assert.equal(g.overflow,'auto','Exceptional saved text must remain reachable');else assert.equal(g.scroll,0,'Fitting text must be visible together');assert.equal(g.nestedScroll,0,'Condition row must not scroll');assert.equal(g.innerOverflow,'visible');assert.ok(g.innerScroll<=g.innerClient+1);
  assert.ok(g.tail.top>=g.parent.top-1&&g.tail.bottom<=g.parent.bottom+1,'Condition ending is inaccessible: '+JSON.stringify(g));
- assert.ok(g.document.w<=g.w+1&&g.document.h<=g.h+1,'Page scroll instead of local region');
- return g;
+ assert.ok(g.document.w<=g.w+1&&g.document.h<=g.h+1,'Document overflow instead of the existing game surface');
+ for(const button of await page.locator('.round-bottom button').all()){await button.scrollIntoViewIfNeeded();const box=await button.boundingBox();assert(box&&box.y>=0&&box.y+box.height<=g.h+1,'Every original action remains reachable');}
+ await outer.press('Home');return g;
 }
 async function upgrade(browser,url){
  const {execFileSync}=require('node:child_process'),root=path.resolve(__dirname,'../..');

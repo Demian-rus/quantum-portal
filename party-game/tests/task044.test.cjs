@@ -10,3 +10,15 @@ test('TASK044 retains all catalogs, immutable locks, edition classifications and
 test('TASK044 timer adaptation cannot call game writers, clocks or RNG',()=>{
  const source=fs.readFileSync('party-game/timer-view.js','utf8').split('// Presentation only: OS text sizing')[1];assert(source);assert.doesNotMatch(source,/\b(?:persist|Math\.random|Date\.now|startTimer|pauseTimer|rollOutcome|localStorage|setInterval)\s*[.(]/);assert.match(source,/classList\.toggle\('large-blitz-text'/);
 });
+test('TASK044 device digests remain native SHA-256 at block boundaries, after reuse and eviction',()=>{
+ const D=require('../device-dictionary.js'),crypto=require('node:crypto'),values=[...Array.from({length:70},(_,n)=>'ё🙂a'.repeat(n)),...Array.from({length:12},(_,n)=>'x'.repeat(55+n)), 'a'.repeat(5000)];
+ for(const source of [...values,...values.slice().reverse()])assert.equal(D.hash(source),crypto.createHash('sha256').update(source).digest('hex'));
+ const value={version:1,cards:[],revision:9};assert.equal(D.hash(value),crypto.createHash('sha256').update(D.canonical(value)).digest('hex'));assert.throws(()=>D.hash({version:Infinity}));
+});
+test('TASK044 cached checksums never authorize altered bytes or skip match validation',async()=>{
+ const S=require('../team-storage.js'),F=require('../team-format.js'),crypto=require('node:crypto'),map=new Map();let checks=0;
+ const storage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v),removeItem:k=>map.delete(k)},store=S.create({storage,receipt:null,exclusive:fn=>fn(),validateMatch:m=>{checks++;return Object.keys(m).sort().join(',')==='teamFormat,turn'&&Number.isSafeInteger(m.turn)&&m.turn>=0;}}),match={teamFormat:F.create([['А','Б'],['В','Г']],{id:'task044-native-hash-fixture',random:()=>.1}),turn:0};
+ const saved=await store.commit({expectedRaw:null,match}),record=JSON.parse(saved.raw),{checksum,...payload}=record;assert.equal(checksum,crypto.createHash('sha256').update(JSON.stringify(payload)).digest('hex'));const before=checks;assert.equal((await store.load()).status,'ok');assert.equal((await store.load()).status,'ok');assert(checks>=before+2,'full validator still runs on repeated unchanged RAW');
+ record.match.turn=1;map.set(S.KEY,JSON.stringify(record));assert.equal((await store.load()).reason,'CORRUPT');assert.equal(map.get(S.KEY),JSON.stringify(record));
+ record.match.turn=-1;const {checksum:ignored,...invalid}=record;record.checksum=crypto.createHash('sha256').update(JSON.stringify(invalid)).digest('hex');map.set(S.KEY,JSON.stringify(record));assert.equal((await store.load()).reason,'CORRUPT','a correctly hashed invalid game still fails');assert.equal(map.get(S.KEY),JSON.stringify(record));
+});

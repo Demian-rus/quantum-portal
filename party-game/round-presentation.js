@@ -205,7 +205,7 @@ function roundConditionSlotMarkup(){
  const c=game.current,condition=roundConditionMarkup();
  const notes=(c.modeId==='secret'?'<span class="secret-flag">СЕКРЕТКА · +'+c.points+' '+pointNoun(c.points)+'</span>':'')+
   (c.risk?'<p class="risk-notice">⚡ РИСК: ПРОВАЛ — ДО −'+ruleSetForGame(game).risk.loss+' ОЧКОВ</p>':'');
- return '<div class="round-condition-slot"'+(condition||notes?' tabindex="0" role="region" aria-label="Усложнение и награда"':' aria-hidden="true"')+'>'+condition+'<div class="round-notes">'+notes+'</div></div>';
+ return '<div class="round-condition-slot'+(c.modeId==='blitz'?'':' round-standard-layout')+'"'+(condition||notes?' tabindex="0" role="region" aria-label="Усложнение и награда"':' aria-hidden="true"')+'>'+condition+'<div class="round-notes">'+notes+'</div></div>';
 }
 // Keyboard focus follows the same card when a phase rebuilds its DOM.
 function taskCardHasKeyboardFocus(){

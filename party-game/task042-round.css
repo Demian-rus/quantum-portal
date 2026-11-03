@@ -1,7 +1,7 @@
 /* Reserve the full counter height before and after revealing a task. */
 .scene--game .play-inner.stable-round{--round-slot-size:clamp(92px,20cqh,154px)}
 /* TASK042A — gameplay-only geometry. Kept separate from legacy styles. */
-.scene--game .play-inner.stable-round:has(.round-condition){
+.scene--game .play-inner.stable-round:has(.round-condition,.round-standard-layout){
   --round-gap:clamp(12px,1.35cqh,13px);
   --round-card-size:clamp(96px,25cqh,174px);
 }
@@ -49,7 +49,7 @@
 }
 .scene--game .stable-round .round-notes{gap:3px 6px;}
 @container round-panel (max-height:560px){
- .scene--game .play-inner.stable-round:has(.round-condition){
+ .scene--game .play-inner.stable-round:has(.round-condition,.round-standard-layout){
   --round-gap:12px;
   --round-card-size:clamp(91px,20cqh,126px);
  }
@@ -60,7 +60,7 @@
  .scene--game .stable-round .round-top .blitz-status b{font-size:10px;}
 }
 @container round-panel (max-height:430px){
- .scene--game .play-inner.stable-round:has(.round-condition){--round-gap:12px;--round-card-size:91px;}
+ .scene--game .play-inner.stable-round:has(.round-condition,.round-standard-layout){--round-gap:12px;--round-card-size:91px;}
  .scene--game .stable-round .round-condition{font-size:12px;line-height:1.2;padding:2px 5px;}
 }
 @media (max-height:480px){
@@ -103,3 +103,12 @@
 
 .scene--game .stable-round.large-blitz-text .round-bottom{min-height:min-content}
 .scene--game .stable-round.large-blitz-text .blitz-control>span{white-space:normal;overflow-wrap:anywhere}
+/* Unknown historical wording may exceed today's edited conditions. Preserve
+   all saved text and scroll the existing game surface, never the condition. */
+.scene--game .play-inner.stable-round.long-round-text{overflow-y:auto;overflow-x:hidden}
+@media(min-height:481px){
+ .scene--game .play-inner.stable-round.long-round-text{grid-template-rows:var(--round-slot-size) var(--round-card-size) minmax(min-content,1fr) max-content}
+}
+@media(max-height:480px){
+ .scene--game .play-inner.stable-round.long-round-text{grid-template-rows:58px minmax(min-content,1fr) max-content}
+}
