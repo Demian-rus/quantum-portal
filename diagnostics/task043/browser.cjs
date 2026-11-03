@@ -7,13 +7,13 @@ async function run(){
   const ctx=await browser.newContext({viewport:{width,height},isMobile:true,hasTouch:true,reducedMotion:'reduce'}),p=await ctx.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));
   try{
    await p.goto(server.url);await p.evaluate(()=>QuipTeams.whenReady());
-   await p.evaluate(()=>{for(const [n,name]of ['Первый','Второй','Третий','Четвёртый'].entries())createPlayerProfile(name,['coral','cyan','violet','green'][n]);selectedProfileIds=profileStore.profiles.slice(0,2).map(p=>p.id);soundOn=false;});
+   await p.evaluate(()=>{for(const [n,name]of ['Первый','Второй','Третий','Четвёртый'].entries())createPlayerProfile(name,['coral','cyan','violet','green'][n]);selectedProfileIds=profileStore.profiles.slice(0,2).map(p=>p.id);soundOn=false;writeTaskDifficultyPreference('talk','medium');});
    for(const kind of ['duel','teams']){
-    await T.wizard(p,kind);await T.configure(p,{modes:['talk'],difficulty:'medium'});await T.tap(p,'#start-game');
+    await T.wizard(p,kind);await T.configure(p,{modes:['talk'],difficulty:'easy'});await T.tap(p,'#start-game');
     const pinned=await p.evaluate(()=>({version:game.contentPack.edition.version,pack:game.contentPack.pack,rows:editorialPool(game,'talk','medium').map(r=>r.id)}));assert.equal(pinned.version,2);assert.equal(pinned.pack.version,69);assert(pinned.rows.some(id=>added.has(id)));
     // Draw the longest actual new phrase without altering source or mechanics.
-    await p.evaluate(ids=>{const pool=editorialPool(game,'talk','medium').filter(r=>ids.includes(r.id)).sort((a,b)=>b.text.length-a.text.length),original=editorialPool;editorialPool=(match,mode,level,method)=>mode==='talk'?[pool[0]]:original(match,mode,level,method);game.dice=false;roll();editorialPool=original;game.dice=true;},[...added]);
-    await T.tap(p,'[data-action="toggle-word"]');await T.inspect(p,out,width+'-'+kind,1,{baseline:true});
+    const selected=await p.evaluate(async ids=>{const pool=editorialPool(game,'talk','medium').filter(r=>ids.includes(r.id)).sort((a,b)=>b.text.length-a.text.length),original=editorialPool;try{editorialPool=(match,mode,level,method)=>mode==='talk'?[pool[0]]:original(match,mode,level,method);game.dice=false;roll();await QuipTeams.whenIdle();return {expected:pool[0].id,actual:game.current.cardId};}finally{editorialPool=original;game.dice=true;}},[...added]);assert.equal(selected.actual,selected.expected);
+    await T.tap(p,'[data-action="toggle-word"]');await T.tap(p,'.timer-ring[role="button"]');await p.waitForFunction(()=>game.phase==='play');await T.tap(p,'.timer-ring[role="button"]');assert.equal(await p.evaluate(()=>game.current.paused),true);await T.inspect(p,out,width+'-'+kind,1,{baseline:true});
     const snapshot=await p.evaluate(()=>JSON.stringify(game.current)),selection=await p.evaluate(()=>JSON.stringify(game.contentPack));await p.reload();await p.evaluate(()=>QuipTeams.whenReady());await T.tap(p,kind==='teams'?'#continue-teams':'#continue-game');assert.equal(await p.evaluate(()=>JSON.stringify(game.current)),snapshot);assert.equal(await p.evaluate(()=>JSON.stringify(game.contentPack)),selection);await T.tap(p,'#exit-game');
    }
    await p.evaluate(async()=>{await navigator.serviceWorker.ready});await p.waitForFunction(()=>!!navigator.serviceWorker.controller);

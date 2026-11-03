@@ -1,0 +1,127 @@
+{
+  "candidates": 627,
+  "accepted": 248,
+  "rejected": 379,
+  "forms": {
+    "phrase": 117,
+    "word": 65,
+    "person": 50,
+    "idiom": 16
+  },
+  "categories": {
+    "transport": 26,
+    "arts": 6,
+    "language": 17,
+    "marine": 3,
+    "general": 0,
+    "geography": 3,
+    "science": 3,
+    "biology": 12,
+    "animals": 29,
+    "history": 9,
+    "culture": 0,
+    "nature": 20,
+    "cinema": 39,
+    "music": 6,
+    "literature": 26,
+    "sport": 24,
+    "technology": 28,
+    "space": 0,
+    "mythology": 9,
+    "food": 32,
+    "videogames": 3,
+    "professions": 12,
+    "everyday": 88,
+    "memes": 0
+  },
+  "themes": {
+    "general": 248,
+    "animals": 19,
+    "geography": 3,
+    "science": 6
+  },
+  "modes": {
+    "talk": {
+      "ineligible": 50,
+      "easy": 82,
+      "medium": 116,
+      "hard": 0
+    },
+    "mime": {
+      "ineligible": 101,
+      "easy": 41,
+      "medium": 106,
+      "hard": 0
+    },
+    "draw": {
+      "ineligible": 92,
+      "easy": 15,
+      "medium": 141,
+      "hard": 0
+    },
+    "yesno": {
+      "ineligible": 198,
+      "easy": 24,
+      "medium": 26,
+      "hard": 0
+    },
+    "blitz": {
+      "ineligible": 183,
+      "easy": 0,
+      "medium": 57,
+      "hard": 8
+    }
+  },
+  "rejections": {
+    "exact-duplicate": 175,
+    "semantic-duplicate": 46,
+    "editorial-defer": 66,
+    "rule-conflict": 1,
+    "language-error": 9,
+    "audience-or-ambiguity": 71,
+    "morphology-false-positive": 1,
+    "inflection-duplicate": 2,
+    "ambiguity": 1,
+    "unverified-meme": 7
+  },
+  "catalogs": [
+    {
+      "id": "general",
+      "beforeVersion": 68,
+      "afterVersion": 69,
+      "before": 7460,
+      "after": 7708
+    },
+    {
+      "id": "animals",
+      "beforeVersion": 2,
+      "afterVersion": 3,
+      "before": 457,
+      "after": 476
+    },
+    {
+      "id": "geography",
+      "beforeVersion": 6,
+      "afterVersion": 7,
+      "before": 406,
+      "after": 409
+    },
+    {
+      "id": "science",
+      "beforeVersion": 8,
+      "afterVersion": 9,
+      "before": 582,
+      "after": 588
+    }
+  ],
+  "union": {
+    "before": 7697,
+    "after": 7945
+  },
+  "source": {
+    "beforeCards": 7661,
+    "afterCards": 7909,
+    "questions": 739
+  },
+  "rubric": "quip-rubric@1"
+}

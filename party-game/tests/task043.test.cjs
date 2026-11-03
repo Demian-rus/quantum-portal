@@ -56,3 +56,9 @@ test('TASK043 exact additive source guard rejects unrelated changes and altered 
  const {hunks,normalizeTask043}=require('../../diagnostics/task043/source-contract.cjs');
  for(const h of hunks){const now=fs.readFileSync('party-game/'+h.file,'utf8'),before=git('party-game/'+h.file).toString();assert.equal(normalizeTask043(now),before);assert.notEqual(normalizeTask043(now+'/* forbidden */'),before);assert.notEqual(normalizeTask043(now.replace(h.after,h.after+'/* changed */')),before);}
 });
+test('TASK043 rollback protects a v2 save in the old reader and restores it exactly when upgraded again',()=>{
+ const current=createSimulation(430);current.eval("options.modes=['blitz'];options.dice=false;options.complications=false;newGame();roll();persist()");
+ const raw=current.storage.get('iskra-party:v1'),snapshot=current.eval('JSON.stringify(game.current)'),before=[...current.storage];assert.equal(current.eval('game.contentPack.edition.version'),2);
+ const old=createSimulation(431,new Map(current.storage),baselineRoot());assert.equal(old.eval('storageBlocked'),true);assert.deepEqual([...old.storage],before);old.eval('newGame();persist()');assert.deepEqual([...old.storage],before);
+ const again=createSimulation(432,new Map(old.storage));assert.equal(again.eval('storageBlocked'),false);assert.equal(again.storage.get('iskra-party:v1'),raw);assert.equal(again.eval('JSON.stringify(game.current)'),snapshot);
+});

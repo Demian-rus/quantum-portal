@@ -30,9 +30,14 @@ jobs:
       - run: npx playwright-core install --with-deps ${{ matrix.engine }}
       - run: node diagnostics/task043/browser.cjs
         env: {ENGINE: '${{ matrix.engine }}'}
+      - if: matrix.engine == 'chromium'
+        run: node diagnostics/task042/dictionary-upgrade.cjs
+        env: {QUIP_UPGRADE_BASE: '0584e0df435782eec8a31d5f5040ac517d300315', QUIP_UPGRADE_ROLLBACK: '1'}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: quip-task043-${{ matrix.engine }}
-          path: artifacts/quip-task043
+          path: |
+            artifacts/quip-task043
+            artifacts/quip-task042b
           if-no-files-found: error
