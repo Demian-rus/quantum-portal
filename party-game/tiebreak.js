@@ -31,7 +31,7 @@ function nextTiebreakQuestion(attempted=[]){
   if(pool.length){
    const q=editorialSelection(game.contentPack)?chooseRememberedTask(pool):pullApproxQuestion(level,attempted);
    return {id:q.id,question:q.question,answer:String(q.answer),unit:String(q.unit||''),
-     note:String(q.note||''),difficulty:editorialSelection(game.contentPack)?QuipEditorialSelection.TIERS[Number(QUIP_EDITORIAL_EDITION.records[q.id][3][6])-1]:level};
+     note:String(q.note||''),difficulty:editorialSelection(game.contentPack)?QuipEditorialSelection.TIERS[Number((typeof editorialRecordForId==='function'?editorialRecordForId(game,q.id):QUIP_EDITORIAL_EDITION.records[q.id])[3][6])-1]:level};
   }
  }
  return null;
