@@ -423,6 +423,11 @@
       "path": "cards/general-games-v11.json",
       "immutable": false,
       "review": "VG11: 40 widely recognizable solo game concepts and 10 everyday game phrases; editorial/general-games-v11-review.md"
+    },
+    {
+      "path": "cards/task043-quality-v1.json",
+      "immutable": true,
+      "review": "TASK043: individually reviewed additions; editorial/quip/task043/decisions.tsv and reviews/task043-v2.psv."
     }
   ],
   "questions": [
@@ -842,6 +847,11 @@
       "path": "packs/general-category-review-v1.json",
       "immutable": false,
       "review": "TASK039: general@68 preserves all 7460 IDs and historical source rows; first-pass broad thematic tags for all 2840 previously unclassified active cards, explicit overlay requires subsequent semantic editorial review."
+    },
+    {
+      "path": "packs/task043-catalogs-v1.json",
+      "immutable": true,
+      "review": "TASK043: individually reviewed additions; editorial/quip/task043/decisions.tsv and reviews/task043-v2.psv."
     }
   ],
   "legacyCollisions": [

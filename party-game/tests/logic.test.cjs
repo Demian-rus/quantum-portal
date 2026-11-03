@@ -62,6 +62,7 @@ function harness(existing=new Map(),randomizeStarter=false,fixturePack=null) {
   }
   vm.runInContext(editionSource,context);
   vm.runInContext(read('editorial-runtime.js'),context);
+  vm.runInContext(`const installedLatestForLegacyFixture=latestContentPackSelection;latestContentPackSelection=function(id,registry=QUIP_CONTENT_PACKS){const v=QUIP_EDITORIAL_PACK_VERSIONS[id];return registry===QUIP_CONTENT_PACKS&&v?{id,version:v}:installedLatestForLegacyFixture(id,registry);};`,context);
   vm.runInContext(read('presets.js'),context);
   vm.runInContext(read('rules-guide.js'),context);
    vm.runInContext(read('menu-navigation.js'),context);

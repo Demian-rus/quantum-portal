@@ -18,7 +18,7 @@ async function run(){
   report.checks.push('eight native independent selections, no active RAW write, exact preference reload and summary');
   for(const kind of ['duel','teams']){
    await T.wizard(p,kind);await T.configure(p,{modes:['draw'],difficulty:'hard'});await T.tap(p,'#start-game');await T.tap(p,'[data-action="roll"]');await p.waitForFunction(()=>game.phase==='task');await T.idle(p);
-   assert.equal(await p.evaluate(()=>QUIP_EDITORIAL_EDITION.records[game.current.cardId][3][2]),'3','draw setting is independent of general rules');
+   assert.equal(await p.evaluate(()=>editorialRecordForId(game,game.current.cardId)[3][2]),'3','draw setting is independent of general rules');
    const snapshot=await p.evaluate(()=>JSON.stringify(game.current));await p.reload();await p.evaluate(()=>QuipTeams.whenReady());await T.tap(p,kind==='teams'?'#continue-teams':'#continue-game');assert.equal(await p.evaluate(()=>JSON.stringify(game.current)),snapshot);
    await T.tap(p,'[data-action="toggle-word"]');await T.inspect(p,OUT,kind+'-task',1,{baseline:true});await T.tap(p,'#exit-game');
   }

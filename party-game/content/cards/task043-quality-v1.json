@@ -1,0 +1,3373 @@
+[
+  {
+    "id": "phrase-910003",
+    "text": "КОЛЬЦО ДЛЯ САЛФЕТОК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday",
+      "arts"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0003"
+    }
+  },
+  {
+    "id": "phrase-910004",
+    "text": "РАЗЪЁМНАЯ ФОРМА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0004"
+    }
+  },
+  {
+    "id": "phrase-910006",
+    "text": "КОНДИТЕРСКИЙ МЕШОК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0006"
+    }
+  },
+  {
+    "id": "phrase-910007",
+    "text": "КУХОННЫЕ ВЕСЫ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "food",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0007"
+    }
+  },
+  {
+    "id": "word-910010",
+    "text": "ЯЙЦЕРЕЗКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "food",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0010"
+    }
+  },
+  {
+    "id": "word-910018",
+    "text": "КОКОТНИЦА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0018"
+    }
+  },
+  {
+    "id": "word-910019",
+    "text": "ТАРТАЛЕТКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "food"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0019"
+    }
+  },
+  {
+    "id": "word-910021",
+    "text": "КЛЯР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "food"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0021"
+    }
+  },
+  {
+    "id": "word-910030",
+    "text": "МАЦОНИ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "food"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0030"
+    }
+  },
+  {
+    "id": "word-910031",
+    "text": "АЙРАН",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "food"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0031"
+    }
+  },
+  {
+    "id": "word-910032",
+    "text": "РИКОТТА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "food"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0032"
+    }
+  },
+  {
+    "id": "word-910035",
+    "text": "СУЛУГУНИ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "food"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0035"
+    }
+  },
+  {
+    "id": "word-910043",
+    "text": "КУРАБЬЕ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "food"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0043"
+    }
+  },
+  {
+    "id": "word-910051",
+    "text": "МАРИНАД",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "food"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0051"
+    }
+  },
+  {
+    "id": "word-910053",
+    "text": "ОПАРА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "food"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0053"
+    }
+  },
+  {
+    "id": "phrase-910057",
+    "text": "ФОРМА ДЛЯ ЛЬДА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0057"
+    }
+  },
+  {
+    "id": "phrase-910059",
+    "text": "ПОДСТАВКА ПОД ГОРЯЧЕЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0059"
+    }
+  },
+  {
+    "id": "phrase-910060",
+    "text": "ОТКРЫВАТЬ БАНКУ С ВАРЕНЬЕМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0060"
+    }
+  },
+  {
+    "id": "phrase-910062",
+    "text": "СМАЗЫВАТЬ ФОРМУ МАСЛОМ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0062"
+    }
+  },
+  {
+    "id": "phrase-910063",
+    "text": "ОБВАЛИВАТЬ КОТЛЕТУ В СУХАРЯХ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0063"
+    }
+  },
+  {
+    "id": "phrase-910064",
+    "text": "ВЫДАВЛИВАТЬ КРЕМ ИЗ МЕШКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "food",
+      "arts"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0064"
+    }
+  },
+  {
+    "id": "phrase-910065",
+    "text": "ВЫНИМАТЬ КОСТОЧКУ ИЗ ВИШНИ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0065"
+    }
+  },
+  {
+    "id": "phrase-910067",
+    "text": "ПОСЫПАТЬ БЛИН САХАРОМ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0067"
+    }
+  },
+  {
+    "id": "phrase-910068",
+    "text": "РАСКАЛЫВАТЬ КОКОС",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0068"
+    }
+  },
+  {
+    "id": "phrase-910069",
+    "text": "СВОРАЧИВАТЬ РОЛЛЫ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "food"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0069"
+    }
+  },
+  {
+    "id": "phrase-910070",
+    "text": "ВЫРЕЗАТЬ ПЕЧЕНЬЕ ФОРМОЧКОЙ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0070"
+    }
+  },
+  {
+    "id": "phrase-910071",
+    "text": "ОБЖИГАТЬСЯ ГОРЯЧИМ ЧАЕМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0071"
+    }
+  },
+  {
+    "id": "phrase-910073",
+    "text": "СЛИВАТЬ ВОДУ С МАКАРОН",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0073"
+    }
+  },
+  {
+    "id": "phrase-910075",
+    "text": "РАЗДЕЛЯТЬ ЖЕЛТОК И БЕЛОК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0075"
+    }
+  },
+  {
+    "id": "phrase-910076",
+    "text": "ЧИСТИТЬ РЫБУ ОТ ЧЕШУИ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0076"
+    }
+  },
+  {
+    "id": "phrase-910077",
+    "text": "СНИМАТЬ КОЖУРУ С МАНДАРИНА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "food",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0077"
+    }
+  },
+  {
+    "id": "phrase-910080",
+    "text": "ПОДШИВАТЬ БРЮКИ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0080"
+    }
+  },
+  {
+    "id": "phrase-910082",
+    "text": "ПРОДЕВАТЬ НИТКУ В ИГОЛКУ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0082"
+    }
+  },
+  {
+    "id": "phrase-910083",
+    "text": "ВЫВОРАЧИВАТЬ КАРМАНЫ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0083"
+    }
+  },
+  {
+    "id": "phrase-910085",
+    "text": "СКАТЫВАТЬ КОВЁР",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0085"
+    }
+  },
+  {
+    "id": "phrase-910086",
+    "text": "НАТЯГИВАТЬ ПРОСТЫНЮ НА МАТРАС",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0086"
+    }
+  },
+  {
+    "id": "phrase-910087",
+    "text": "ВСТАВЛЯТЬ ШНУРОК В КАПЮШОН",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0087"
+    }
+  },
+  {
+    "id": "phrase-910089",
+    "text": "СОБИРАТЬ РАССЫПАННЫЕ БУСИНЫ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0089"
+    }
+  },
+  {
+    "id": "phrase-910090",
+    "text": "ПРИКЛЕИВАТЬ ЗАЩИТНОЕ СТЕКЛО",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0090"
+    }
+  },
+  {
+    "id": "phrase-910092",
+    "text": "СДУВАТЬ ПЫЛЬ С ПОЛКИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0092"
+    }
+  },
+  {
+    "id": "phrase-910093",
+    "text": "ВЫКРУЧИВАТЬ ПЕРЕГОРЕВШУЮ ЛАМПОЧКУ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0093"
+    }
+  },
+  {
+    "id": "phrase-910094",
+    "text": "ПОДКЛАДЫВАТЬ КАРТОНКУ ПОД НОЖКУ СТОЛА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0094"
+    }
+  },
+  {
+    "id": "phrase-910095",
+    "text": "ЗАКЛЕИВАТЬ КОНВЕРТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0095"
+    }
+  },
+  {
+    "id": "phrase-910098",
+    "text": "РАЗВЯЗЫВАТЬ ТУГОЙ УЗЕЛ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0098"
+    }
+  },
+  {
+    "id": "phrase-910099",
+    "text": "РАСПУТЫВАТЬ ГИРЛЯНДУ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0099"
+    }
+  },
+  {
+    "id": "phrase-910100",
+    "text": "СВЯЗЫВАТЬ ПАКЕТ УЗЛОМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0100"
+    }
+  },
+  {
+    "id": "phrase-910101",
+    "text": "ЛОВИТЬ МУХУ ГАЗЕТОЙ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday",
+      "animals"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0101"
+    }
+  },
+  {
+    "id": "phrase-910102",
+    "text": "ВЫНОСИТЬ ПАУКА ИЗ ДОМА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday",
+      "animals"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0102"
+    }
+  },
+  {
+    "id": "phrase-910103",
+    "text": "ПОДВЯЗЫВАТЬ КОМНАТНОЕ РАСТЕНИЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday",
+      "nature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0103"
+    }
+  },
+  {
+    "id": "phrase-910104",
+    "text": "РАЗВОРАЧИВАТЬ ПОДАРОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0104"
+    }
+  },
+  {
+    "id": "phrase-910105",
+    "text": "РАЗБИВАТЬ КОПИЛКУ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0105"
+    }
+  },
+  {
+    "id": "phrase-910107",
+    "text": "ПОДНИМАТЬ ВОРОТНИК ОТ ВЕТРА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday",
+      "nature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0107"
+    }
+  },
+  {
+    "id": "phrase-910109",
+    "text": "СТРЯХИВАТЬ СНЕГ С ШАПКИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday",
+      "nature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0109"
+    }
+  },
+  {
+    "id": "phrase-910110",
+    "text": "ВЫЖИМАТЬ МОКРЫЕ ВАРЕЖКИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday",
+      "nature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0110"
+    }
+  },
+  {
+    "id": "phrase-910111",
+    "text": "ВЫТРЯХИВАТЬ ПЕСОК ИЗ ОБУВИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday",
+      "nature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0111"
+    }
+  },
+  {
+    "id": "phrase-910112",
+    "text": "ПРИКЛАДЫВАТЬ ЛАДОНЬ КО ЛБУ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0112"
+    }
+  },
+  {
+    "id": "phrase-910115",
+    "text": "ЗАКРЫВАТЬ ГЛАЗА ЛАДОНЯМИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0115"
+    }
+  },
+  {
+    "id": "phrase-910116",
+    "text": "СОГРЕВАТЬ ЛАДОНИ ДЫХАНИЕМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday",
+      "nature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0116"
+    }
+  },
+  {
+    "id": "phrase-910117",
+    "text": "ПРИКРЫВАТЬ РОТ ПРИ ЗЕВОТЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0117"
+    }
+  },
+  {
+    "id": "phrase-910119",
+    "text": "ВСТАВАТЬ НА ЦЫПОЧКИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday",
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0119"
+    }
+  },
+  {
+    "id": "phrase-910120",
+    "text": "ПОДВОРАЧИВАТЬ РУКАВА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0120"
+    }
+  },
+  {
+    "id": "phrase-910121",
+    "text": "ПРИМЕРЯТЬ ОЧКИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0121"
+    }
+  },
+  {
+    "id": "phrase-910123",
+    "text": "УПАКОВЫВАТЬ ЧЕМОДАН",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday",
+      "transport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0123"
+    }
+  },
+  {
+    "id": "phrase-910124",
+    "text": "ВЫТИРАТЬ НОГИ О КОВРИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0124"
+    }
+  },
+  {
+    "id": "phrase-910125",
+    "text": "ВЫТИРАТЬ СЛЕД ПОМАДЫ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0125"
+    }
+  },
+  {
+    "id": "phrase-910126",
+    "text": "РАСКАТЫВАТЬ СПАЛЬНЫЙ МЕШОК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday",
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0126"
+    }
+  },
+  {
+    "id": "phrase-910127",
+    "text": "ДОСТАВАТЬ ЗАНОЗУ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0127"
+    }
+  },
+  {
+    "id": "phrase-910128",
+    "text": "УКРЫВАТЬ СПЯЩЕГО ОДЕЯЛОМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0128"
+    }
+  },
+  {
+    "id": "phrase-910130",
+    "text": "ПОДНЯТАЯ БРОВЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0130"
+    }
+  },
+  {
+    "id": "phrase-910136",
+    "text": "ПРИЩЕМИТЬ ПАЛЕЦ ДВЕРЬЮ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0136"
+    }
+  },
+  {
+    "id": "phrase-910137",
+    "text": "ПЕРЕПУТАТЬ ПРАВЫЙ И ЛЕВЫЙ БОТИНОК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0137"
+    }
+  },
+  {
+    "id": "phrase-910139",
+    "text": "ПОДПРЫГНУТЬ ОТ ИСПУГА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0139"
+    }
+  },
+  {
+    "id": "phrase-910140",
+    "text": "ВЫГЛЯДЫВАТЬ ИЗ-ЗА УГЛА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0140"
+    }
+  },
+  {
+    "id": "phrase-910142",
+    "text": "ПРЯТАТЬ ПОДАРОК ЗА СПИНОЙ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0142"
+    }
+  },
+  {
+    "id": "phrase-910143",
+    "text": "ТЯНУТЬСЯ ЗА КНИГОЙ НА ВЕРХНЕЙ ПОЛКЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday",
+      "literature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0143"
+    }
+  },
+  {
+    "id": "phrase-910145",
+    "text": "ПОДПЕВАТЬ РАДИО",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "everyday",
+      "music"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0145"
+    }
+  },
+  {
+    "id": "phrase-910147",
+    "text": "НАСТРАИВАТЬ ГИТАРУ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "music",
+      "arts"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0147"
+    }
+  },
+  {
+    "id": "phrase-910148",
+    "text": "ПЕРЕВОРАЧИВАТЬ НОТНУЮ СТРАНИЦУ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "music",
+      "arts"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0148"
+    }
+  },
+  {
+    "id": "phrase-910150",
+    "text": "ЗАЖИМАТЬ НОС ПЕРЕД НЫРКОМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "sport",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0150"
+    }
+  },
+  {
+    "id": "phrase-910151",
+    "text": "ПРЫГАТЬ С ТРАМПЛИНА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0151"
+    }
+  },
+  {
+    "id": "phrase-910153",
+    "text": "СТОЯТЬ НА ОДНОЙ НОГЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "sport",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0153"
+    }
+  },
+  {
+    "id": "phrase-910154",
+    "text": "КРУТИТЬ ОБРУЧ НА ТАЛИИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0154"
+    }
+  },
+  {
+    "id": "phrase-910156",
+    "text": "РАЗБЕГАТЬСЯ ДЛЯ ПРЫЖКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0156"
+    }
+  },
+  {
+    "id": "phrase-910157",
+    "text": "ОТБИВАТЬ МЯЧ ГОЛОВОЙ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0157"
+    }
+  },
+  {
+    "id": "phrase-910158",
+    "text": "ПОДБРАСЫВАТЬ МЯЧ НА РАКЕТКЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0158"
+    }
+  },
+  {
+    "id": "phrase-910162",
+    "text": "РАСТЯГИВАТЬ ЭСПАНДЕР",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0162"
+    }
+  },
+  {
+    "id": "word-910167",
+    "text": "ПОДКРЫЛОК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0167"
+    }
+  },
+  {
+    "id": "word-910168",
+    "text": "КАТАФОТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0168"
+    }
+  },
+  {
+    "id": "word-910170",
+    "text": "ТАХОМЕТР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0170"
+    }
+  },
+  {
+    "id": "word-910173",
+    "text": "ФАРКОП",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0173"
+    }
+  },
+  {
+    "id": "word-910176",
+    "text": "АВТОКРЕСЛО",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "transport",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0176"
+    }
+  },
+  {
+    "id": "word-910178",
+    "text": "ПАРКТРОНИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0178"
+    }
+  },
+  {
+    "id": "word-910179",
+    "text": "ВИДЕОРЕГИСТРАТОР",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0179"
+    }
+  },
+  {
+    "id": "word-910181",
+    "text": "СТЕКЛОПОДЪЁМНИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0181"
+    }
+  },
+  {
+    "id": "word-910183",
+    "text": "ОМЫВАТЕЛЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0183"
+    }
+  },
+  {
+    "id": "word-910184",
+    "text": "МАНОМЕТР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0184"
+    }
+  },
+  {
+    "id": "word-910187",
+    "text": "КЛЕММА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0187"
+    }
+  },
+  {
+    "id": "word-910196",
+    "text": "БРЕТЕЛЬКА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0196"
+    }
+  },
+  {
+    "id": "word-910197",
+    "text": "ШЛЁВКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0197"
+    }
+  },
+  {
+    "id": "word-910204",
+    "text": "БАЛАКЛАВА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday",
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0204"
+    }
+  },
+  {
+    "id": "word-910206",
+    "text": "СНУД",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0206"
+    }
+  },
+  {
+    "id": "word-910209",
+    "text": "ЛОФЕР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0209"
+    }
+  },
+  {
+    "id": "word-910213",
+    "text": "ПЕНСНЕ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday",
+      "history"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0213"
+    }
+  },
+  {
+    "id": "word-910217",
+    "text": "КОКАРДА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0217"
+    }
+  },
+  {
+    "id": "word-910221",
+    "text": "КОРСЕТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday",
+      "history"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0221"
+    }
+  },
+  {
+    "id": "word-910225",
+    "text": "КАМЗОЛ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0225"
+    }
+  },
+  {
+    "id": "word-910230",
+    "text": "ДУБЛЁНКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0230"
+    }
+  },
+  {
+    "id": "word-910231",
+    "text": "ТЕЛОГРЕЙКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "everyday",
+      "history"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0231"
+    }
+  },
+  {
+    "id": "word-910237",
+    "text": "ДРОТИК",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0237"
+    }
+  },
+  {
+    "id": "word-910240",
+    "text": "КОРТИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "history"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0240"
+    }
+  },
+  {
+    "id": "phrase-910246",
+    "text": "ОСАДНАЯ БАШНЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "history",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0246"
+    }
+  },
+  {
+    "id": "phrase-910250",
+    "text": "ПОЧТОВЫЙ РОЖОК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "history",
+      "music"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0250"
+    }
+  },
+  {
+    "id": "word-910261",
+    "text": "ДИАФИЛЬМ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "arts",
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0261"
+    }
+  },
+  {
+    "id": "word-910262",
+    "text": "ФИЛЬМОСКОП",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology",
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0262"
+    }
+  },
+  {
+    "id": "word-910267",
+    "text": "ПЕТАНК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0267"
+    }
+  },
+  {
+    "id": "word-910269",
+    "text": "СКВОШ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0269"
+    }
+  },
+  {
+    "id": "word-910270",
+    "text": "ЛАКРОСС",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0270"
+    }
+  },
+  {
+    "id": "word-910279",
+    "text": "АЭРОХОККЕЙ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "sport",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0279"
+    }
+  },
+  {
+    "id": "phrase-910282",
+    "text": "СТАРТОВАЯ КОЛОДКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0282"
+    }
+  },
+  {
+    "id": "phrase-910283",
+    "text": "ФИНИШНАЯ ЛЕНТА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0283"
+    }
+  },
+  {
+    "id": "phrase-910284",
+    "text": "ПЛАВАТЕЛЬНАЯ ДОРОЖКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0284"
+    }
+  },
+  {
+    "id": "word-910297",
+    "text": "БАРОКАМЕРА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "science",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0297"
+    }
+  },
+  {
+    "id": "word-910310",
+    "text": "ФОТОЛОВУШКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "technology",
+      "animals"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0310"
+    }
+  },
+  {
+    "id": "phrase-910317",
+    "text": "МУРАВЬИНАЯ ТРОПА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "animals",
+      "nature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0317"
+    }
+  },
+  {
+    "id": "phrase-910318",
+    "text": "КРОТОВЫЙ ХОД",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "animals",
+      "nature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0318"
+    }
+  },
+  {
+    "id": "phrase-910321",
+    "text": "ПОЛЗТИ ПО-ПЛАСТУНСКИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "sport",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0321"
+    }
+  },
+  {
+    "id": "phrase-910322",
+    "text": "ШИПЕТЬ КАК КОШКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "animals"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0322"
+    }
+  },
+  {
+    "id": "phrase-910323",
+    "text": "ТОЧИТЬ КОГТИ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "animals"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0323"
+    }
+  },
+  {
+    "id": "phrase-910324",
+    "text": "ЧИСТИТЬ ПЕРЬЯ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "animals",
+      "biology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0324"
+    }
+  },
+  {
+    "id": "phrase-910325",
+    "text": "ПРЯТАТЬ ГОЛОВУ В ПАНЦИРЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "animals",
+      "biology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0325"
+    }
+  },
+  {
+    "id": "phrase-910327",
+    "text": "ОБНЮХИВАТЬ СЛЕД",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "animals"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0327"
+    }
+  },
+  {
+    "id": "phrase-910329",
+    "text": "СТОЯТЬ НА ЗАДНИХ ЛАПАХ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "animals"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0329"
+    }
+  },
+  {
+    "id": "phrase-910331",
+    "text": "КОРМИТЬ ПТЕНЦА ИЗ КЛЮВА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "animals",
+      "biology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0331"
+    }
+  },
+  {
+    "id": "phrase-910332",
+    "text": "КУПАТЬСЯ В ПЫЛИ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "animals",
+      "biology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0332"
+    }
+  },
+  {
+    "id": "phrase-910333",
+    "text": "СБРАСЫВАТЬ СТАРУЮ КОЖУ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "animals",
+      "biology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0333"
+    }
+  },
+  {
+    "id": "phrase-910334",
+    "text": "ОТРАЩИВАТЬ НОВЫЙ ХВОСТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "animals",
+      "biology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0334"
+    }
+  },
+  {
+    "id": "phrase-910335",
+    "text": "СВЕРНУТЬСЯ КЛУБКОМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "animals"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0335"
+    }
+  },
+  {
+    "id": "word-910342",
+    "text": "СЕМЯДОЛЯ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "biology",
+      "nature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0342"
+    }
+  },
+  {
+    "id": "word-910343",
+    "text": "ЧЕРЕШОК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "biology",
+      "nature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0343"
+    }
+  },
+  {
+    "id": "word-910347",
+    "text": "ЛИСТОВЁРТКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "animals",
+      "biology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0347"
+    }
+  },
+  {
+    "id": "word-910348",
+    "text": "ПЛАВУНЕЦ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "animals",
+      "biology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0348"
+    }
+  },
+  {
+    "id": "word-910353",
+    "text": "УХОВЁРТКА",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "animals",
+      "biology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0353"
+    }
+  },
+  {
+    "id": "word-910368",
+    "text": "ВЫПЬ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "animals",
+      "nature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0368"
+    }
+  },
+  {
+    "id": "word-910375",
+    "text": "РЯБЧИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "animals",
+      "nature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0375"
+    }
+  },
+  {
+    "id": "word-910383",
+    "text": "ВИНОДЕЛ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "professions",
+      "food"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0383"
+    }
+  },
+  {
+    "id": "word-910384",
+    "text": "СЫРОДЕЛ",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "professions",
+      "food"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0384"
+    }
+  },
+  {
+    "id": "word-910387",
+    "text": "АРМАТУРЩИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0387"
+    }
+  },
+  {
+    "id": "word-910401",
+    "text": "БУТАФОР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions",
+      "arts"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0401"
+    }
+  },
+  {
+    "id": "word-910403",
+    "text": "МОНТАЖНИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0403"
+    }
+  },
+  {
+    "id": "word-910404",
+    "text": "СТРОПАЛЬЩИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0404"
+    }
+  },
+  {
+    "id": "word-910409",
+    "text": "КИНОМЕХАНИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions",
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0409"
+    }
+  },
+  {
+    "id": "word-910411",
+    "text": "АККОМПАНИАТОР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions",
+      "music"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0411"
+    }
+  },
+  {
+    "id": "word-910413",
+    "text": "ХОРМЕЙСТЕР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions",
+      "music"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0413"
+    }
+  },
+  {
+    "id": "word-910416",
+    "text": "МОТОРИСТ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions",
+      "transport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0416"
+    }
+  },
+  {
+    "id": "word-910419",
+    "text": "ОРУЖЕЙНИК",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions",
+      "history"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0419"
+    }
+  },
+  {
+    "id": "word-910428",
+    "text": "КОПИРАЙТЕР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "professions",
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0428"
+    }
+  },
+  {
+    "id": "word-910429",
+    "text": "ПРИЦЕП-ДАЧА",
+    "type": "word",
+    "difficulty": "easy",
+    "categories": [
+      "transport",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0429"
+    }
+  },
+  {
+    "id": "phrase-910430",
+    "text": "ПОЕЗД НА МАГНИТНОЙ ПОДУШКЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "transport",
+      "science"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0430"
+    }
+  },
+  {
+    "id": "phrase-910431",
+    "text": "ВЕРХНЯЯ ПОЛКА В ПОЕЗДЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "transport",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0431"
+    }
+  },
+  {
+    "id": "phrase-910432",
+    "text": "ОТКИДНОЙ СТОЛИК",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "everyday",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0432"
+    }
+  },
+  {
+    "id": "word-910434",
+    "text": "ТРАВОЛАТОР",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0434"
+    }
+  },
+  {
+    "id": "phrase-910442",
+    "text": "ПРОСИТЬ ОСТАНОВКУ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "transport",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0442"
+    }
+  },
+  {
+    "id": "phrase-910445",
+    "text": "ПРОПУСКАТЬ ПЕШЕХОДА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "transport",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0445"
+    }
+  },
+  {
+    "id": "phrase-910447",
+    "text": "ПРОТЯГИВАТЬ ПРОЕЗДНОЙ ВОДИТЕЛЮ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "transport",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0447"
+    }
+  },
+  {
+    "id": "phrase-910449",
+    "text": "ВЫПУСКАТЬ ШАССИ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0449"
+    }
+  },
+  {
+    "id": "phrase-910450",
+    "text": "СНИМАТЬ КОЛЕСО",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0450"
+    }
+  },
+  {
+    "id": "phrase-910451",
+    "text": "НАЖИМАТЬ НА ВЕЛОСИПЕДНЫЙ ТОРМОЗ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "transport",
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0451"
+    }
+  },
+  {
+    "id": "phrase-910453",
+    "text": "СДАВАТЬ НАЗАД ПО ЗЕРКАЛАМ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "transport",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0453"
+    }
+  },
+  {
+    "id": "phrase-910455",
+    "text": "ПОДНИМАТЬ ЯКОРЬ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "transport",
+      "marine"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0455"
+    }
+  },
+  {
+    "id": "phrase-910456",
+    "text": "ШВАРТОВАТЬ ЛОДКУ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "transport",
+      "marine"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0456"
+    }
+  },
+  {
+    "id": "phrase-910457",
+    "text": "ОТКЛОНЯТЬСЯ ОТ ВЕТКИ НА ТРОПИНКЕ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "nature",
+      "sport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0457"
+    }
+  },
+  {
+    "id": "phrase-910459",
+    "text": "СТРОИТЬ ПИРАМИДУ ИЗ КАМНЕЙ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "nature",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0459"
+    }
+  },
+  {
+    "id": "phrase-910461",
+    "text": "СЛЕДИТЬ ЗА ПОПЛАВКОМ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "sport",
+      "animals"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0461"
+    }
+  },
+  {
+    "id": "phrase-910462",
+    "text": "НАСАЖИВАТЬ ЧЕРВЯКА НА КРЮЧОК",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "sport",
+      "animals"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0462"
+    }
+  },
+  {
+    "id": "phrase-910463",
+    "text": "СНИМАТЬ РЕПЕЙ С ОДЕЖДЫ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "nature",
+      "everyday"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0463"
+    }
+  },
+  {
+    "id": "phrase-910465",
+    "text": "КЛЕНОВЫЙ ЛИСТ",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "nature",
+      "biology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0465"
+    }
+  },
+  {
+    "id": "phrase-910467",
+    "text": "РОСА НА ПАУТИНЕ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "nature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0467"
+    }
+  },
+  {
+    "id": "phrase-910469",
+    "text": "ВУЛКАНИЧЕСКАЯ БОМБА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "nature",
+      "geography"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0469"
+    }
+  },
+  {
+    "id": "phrase-910470",
+    "text": "КАРСТОВАЯ ВОРОНКА",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "geography",
+      "nature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0470"
+    }
+  },
+  {
+    "id": "phrase-910473",
+    "text": "ПОНТОННЫЙ МОСТ",
+    "type": "phrase",
+    "difficulty": "medium",
+    "categories": [
+      "transport",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0473"
+    }
+  },
+  {
+    "id": "phrase-910475",
+    "text": "БОЛОТНАЯ КОЧКА",
+    "type": "phrase",
+    "difficulty": "easy",
+    "categories": [
+      "nature",
+      "geography"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0475"
+    }
+  },
+  {
+    "id": "word-910476",
+    "text": "ВОЛНОЛОМ",
+    "type": "word",
+    "difficulty": "medium",
+    "categories": [
+      "marine",
+      "technology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0476"
+    }
+  },
+  {
+    "id": "person-910478",
+    "text": "БОНИФАЦИЙ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "cinema",
+      "animals"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0478"
+    }
+  },
+  {
+    "id": "person-910479",
+    "text": "КОТЁНОК ГАВ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "cinema",
+      "literature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0479"
+    }
+  },
+  {
+    "id": "person-910483",
+    "text": "НАФ-НАФ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "literature",
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0483"
+    }
+  },
+  {
+    "id": "person-910484",
+    "text": "КАПИТОШКА",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0484"
+    }
+  },
+  {
+    "id": "person-910485",
+    "text": "ПАРОВОЗИК ИЗ РОМАШКОВА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "cinema",
+      "transport"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0485"
+    }
+  },
+  {
+    "id": "person-910486",
+    "text": "УМКА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "cinema",
+      "animals"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0486"
+    }
+  },
+  {
+    "id": "person-910489",
+    "text": "КРЫСА ЛАРИСКА",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "cinema",
+      "literature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0489"
+    }
+  },
+  {
+    "id": "person-910490",
+    "text": "СТАРУХА ШАПОКЛЯК",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "cinema",
+      "literature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0490"
+    }
+  },
+  {
+    "id": "person-910491",
+    "text": "ПЕТСОН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "literature",
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0491"
+    }
+  },
+  {
+    "id": "person-910492",
+    "text": "КОТ ФИНДУС",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "literature",
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0492"
+    }
+  },
+  {
+    "id": "person-910493",
+    "text": "МУМИ-ТРОЛЛЬ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "literature",
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0493"
+    }
+  },
+  {
+    "id": "person-910494",
+    "text": "СНУСМУМРИК",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "literature",
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0494"
+    }
+  },
+  {
+    "id": "person-910499",
+    "text": "КРИСТОФЕР РОБИН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "literature",
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0499"
+    }
+  },
+  {
+    "id": "person-910500",
+    "text": "КРОЛИК ИЗ ВИННИ-ПУХА",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "literature",
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0500"
+    }
+  },
+  {
+    "id": "person-910501",
+    "text": "СОВА ИЗ ВИННИ-ПУХА",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "literature",
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0501"
+    }
+  },
+  {
+    "id": "person-910506",
+    "text": "КАСПЕР",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0506"
+    }
+  },
+  {
+    "id": "person-910507",
+    "text": "ВУДИ ВУДПЕКЕР",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "cinema",
+      "animals"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0507"
+    }
+  },
+  {
+    "id": "person-910508",
+    "text": "ПАПАЙ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0508"
+    }
+  },
+  {
+    "id": "person-910512",
+    "text": "ДРАКОН БЕЗЗУБИК",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0512"
+    }
+  },
+  {
+    "id": "person-910513",
+    "text": "ИККИНГ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0513"
+    }
+  },
+  {
+    "id": "person-910516",
+    "text": "ПАДДИНГТОН",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "literature",
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0516"
+    }
+  },
+  {
+    "id": "person-910518",
+    "text": "ДАША-СЛЕДОПЫТ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0518"
+    }
+  },
+  {
+    "id": "person-910523",
+    "text": "ДЖУДИ ХОППС",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "cinema",
+      "animals"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0523"
+    }
+  },
+  {
+    "id": "person-910529",
+    "text": "БЕЛКА СКРЭТ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "cinema",
+      "animals"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0529"
+    }
+  },
+  {
+    "id": "person-910530",
+    "text": "МОАНА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0530"
+    }
+  },
+  {
+    "id": "person-910531",
+    "text": "МАУИ ИЗ «МОАНЫ»",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "cinema",
+      "mythology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0531"
+    }
+  },
+  {
+    "id": "person-910533",
+    "text": "РАДОСТЬ ИЗ «ГОЛОВОЛОМКИ»",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0533"
+    }
+  },
+  {
+    "id": "person-910534",
+    "text": "ПЕЧАЛЬ ИЗ «ГОЛОВОЛОМКИ»",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0534"
+    }
+  },
+  {
+    "id": "person-910537",
+    "text": "ЧЕРЕПАХА УГВЭЙ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0537"
+    }
+  },
+  {
+    "id": "person-910541",
+    "text": "МАЙК ВАЗОВСКИ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0541"
+    }
+  },
+  {
+    "id": "person-910544",
+    "text": "ЭДНА МОД",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0544"
+    }
+  },
+  {
+    "id": "person-910545",
+    "text": "БАЗЗ ЛАЙТЕР",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0545"
+    }
+  },
+  {
+    "id": "person-910546",
+    "text": "ШЕРИФ ВУДИ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0546"
+    }
+  },
+  {
+    "id": "person-910549",
+    "text": "КИРБИ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0549"
+    }
+  },
+  {
+    "id": "person-910550",
+    "text": "КРЭШ БАНДИКУТ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0550"
+    }
+  },
+  {
+    "id": "person-910554",
+    "text": "ДОНКИ КОНГ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "videogames"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0554"
+    }
+  },
+  {
+    "id": "person-910555",
+    "text": "МЕГАМОЗГ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0555"
+    }
+  },
+  {
+    "id": "person-910558",
+    "text": "МУХА-ЦОКОТУХА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "literature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0558"
+    }
+  },
+  {
+    "id": "person-910559",
+    "text": "БАРМАЛЕЙ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "literature",
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0559"
+    }
+  },
+  {
+    "id": "person-910560",
+    "text": "МОЙДОДЫР",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "literature",
+      "cinema"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0560"
+    }
+  },
+  {
+    "id": "person-910565",
+    "text": "ЧЕРНОМОР",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "literature",
+      "mythology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0565"
+    }
+  },
+  {
+    "id": "person-910566",
+    "text": "ЦАРЕВНА-ЛЯГУШКА",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "literature",
+      "mythology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0566"
+    }
+  },
+  {
+    "id": "person-910570",
+    "text": "ИВАН-ЦАРЕВИЧ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "literature",
+      "mythology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0570"
+    }
+  },
+  {
+    "id": "person-910571",
+    "text": "КОНЁК-ГОРБУНОК",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "literature",
+      "mythology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0571"
+    }
+  },
+  {
+    "id": "person-910572",
+    "text": "САДКО",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "literature",
+      "mythology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0572"
+    }
+  },
+  {
+    "id": "person-910573",
+    "text": "СОЛОВЕЙ-РАЗБОЙНИК",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "literature",
+      "mythology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0573"
+    }
+  },
+  {
+    "id": "person-910574",
+    "text": "ДОБРЫНЯ НИКИТИЧ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "literature",
+      "mythology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0574"
+    }
+  },
+  {
+    "id": "person-910575",
+    "text": "АЛЁША ПОПОВИЧ",
+    "type": "person",
+    "difficulty": "easy",
+    "categories": [
+      "literature",
+      "mythology"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0575"
+    }
+  },
+  {
+    "id": "person-910576",
+    "text": "НИЛЬС ХОЛЬГЕРССОН",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "literature",
+      "animals"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0576"
+    }
+  },
+  {
+    "id": "person-910579",
+    "text": "ЭМИЛЬ ИЗ ЛЁННЕБЕРГИ",
+    "type": "person",
+    "difficulty": "medium",
+    "categories": [
+      "literature"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0579"
+    }
+  },
+  {
+    "id": "idiom-910593",
+    "text": "ЗАДАТЬ ЖАРУ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0593"
+    }
+  },
+  {
+    "id": "idiom-910595",
+    "text": "ВОДОЙ НЕ РАЗОЛЬЁШЬ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0595"
+    }
+  },
+  {
+    "id": "idiom-910597",
+    "text": "С ПЫЛУ С ЖАРУ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0597"
+    }
+  },
+  {
+    "id": "idiom-910598",
+    "text": "БИТЬСЯ КАК РЫБА ОБ ЛЁД",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0598"
+    }
+  },
+  {
+    "id": "idiom-910600",
+    "text": "КОТУ ПОД ХВОСТ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0600"
+    }
+  },
+  {
+    "id": "idiom-910603",
+    "text": "ЕЗДИТЬ ПО УШАМ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0603"
+    }
+  },
+  {
+    "id": "idiom-910606",
+    "text": "ЯЗЫК ДО КИЕВА ДОВЕДЁТ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0606"
+    }
+  },
+  {
+    "id": "idiom-910608",
+    "text": "ВОЛКА НОГИ КОРМЯТ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0608"
+    }
+  },
+  {
+    "id": "idiom-910609",
+    "text": "УТРО ВЕЧЕРА МУДРЕНЕЕ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0609"
+    }
+  },
+  {
+    "id": "idiom-910610",
+    "text": "СЫТЫЙ ГОЛОДНОГО НЕ РАЗУМЕЕТ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0610"
+    }
+  },
+  {
+    "id": "idiom-910611",
+    "text": "НА ЛОВЦА И ЗВЕРЬ БЕЖИТ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0611"
+    }
+  },
+  {
+    "id": "idiom-910612",
+    "text": "МАЛ ЗОЛОТНИК, ДА ДОРОГ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0612"
+    }
+  },
+  {
+    "id": "idiom-910615",
+    "text": "ДОРОГА ЛОЖКА К ОБЕДУ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0615"
+    }
+  },
+  {
+    "id": "idiom-910619",
+    "text": "КОНЬ ЕЩЁ НЕ ВАЛЯЛСЯ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0619"
+    }
+  },
+  {
+    "id": "idiom-910620",
+    "text": "ЗА ТРИДЕВЯТЬ ЗЕМЕЛЬ",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0620"
+    }
+  },
+  {
+    "id": "idiom-910625",
+    "text": "НЕ ВСЁ КОТУ МАСЛЕНИЦА",
+    "type": "idiom",
+    "difficulty": "medium",
+    "categories": [
+      "language"
+    ],
+    "pack": "quality-expansion-task043-v1",
+    "meta": {
+      "editorialCandidate": "C0625"
+    }
+  }
+]
