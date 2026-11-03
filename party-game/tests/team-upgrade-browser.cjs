@@ -3,7 +3,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const {historicalRuntimeFiles}=require('./profile-fixtures.cjs'),{URL,idle,click,start,select,begin,answer,raw,seedDuel,config,names}=require('./team-game-browser.cjs');
 const root=path.resolve(__dirname,'../..'),git=args=>execFileSync('git',args,{cwd:root,maxBuffer:15e6});
 async function run(base,label){
-const oldNames=historicalRuntimeFiles(git,base,['index.html','style.css','sw.js']),newNames=[...new Set([...oldNames,'setup-wizard.js','setup-wizard.css','team-format.js','team-storage.js','team-engine.js','team-controller.js','team-game.css'])];
+const oldNames=historicalRuntimeFiles(git,base,['index.html','style.css','sw.js']),newNames=[...new Set([...historicalRuntimeFiles(args=>args[0]==='show'&&args[1]==='WORKTREE:party-game/index.html'?fs.readFileSync(path.join(root,'party-game/index.html')):git(args),'WORKTREE',['index.html','style.css','sw.js']),'setup-wizard.js','setup-wizard.css','team-format.js','team-storage.js','team-engine.js','team-controller.js','team-game.css'])];
 const before=new Map(oldNames.map(f=>[f,git(['show',base+':party-game/'+f])])),current=new Map([...newNames,'responsive-layout.css'].map(f=>[f,fs.readFileSync(path.join(root,'party-game',f))]));
 let stamp=Date.UTC(2026,1,1);function write(files){stamp+=2000;for(const [f,bytes]of files){const file=path.join(root,'party-game',f);fs.writeFileSync(file,bytes);fs.utimesSync(file,new Date(stamp),new Date(stamp));}}
 async function update(p,cache){await p.evaluate(async()=>{const reg=await navigator.serviceWorker.getRegistration(),change=new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));await reg.update();await Promise.race([change,new Promise((_,reject)=>setTimeout(()=>reject(Error('SW update timeout')),20000))]);});await p.waitForFunction(async name=>await caches.has(name),cache);}
@@ -32,7 +32,7 @@ const browser=await chromium.launch({headless:true,executablePath:process.env.CH
    else{await start(p,{mode:'secret',rounds:8,complications:true},[1,1,0]);await answer(p);await select(p);await begin(p);await click(p,'.timer-ring[role="button"]');}
    const protectedDuel=await p.evaluate(()=>({raw:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY)})),teamRaw=await raw(p),teamGame=await p.evaluate(()=>JSON.stringify(game)),receiptRaw=await receipt(p);assert.equal(typeof receiptRaw,'string');
    await p.evaluate(async()=>{await navigator.serviceWorker.ready});await p.waitForFunction(()=>!!navigator.serviceWorker.controller);
-   const cached=await p.evaluate(async()=>{const cache=await caches.open('kvip-pwa-v116-20261103-task042a-mobile-rounds');return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>!!await cache.match(s.src)));});assert.equal(cached.length,56);assert.ok(cached.every(Boolean));
+   const cached=await p.evaluate(async()=>{const cache=await caches.open('kvip-pwa-v116-20261103-task042a-mobile-rounds');return Promise.all([...document.scripts].filter(s=>s.src).map(async s=>!!await cache.match(s.src)));});assert.equal(cached.length,57);assert.ok(cached.every(Boolean));
    await ctx.setOffline(true);await p.reload();await click(p,'#continue-teams');assert.equal(await raw(p),teamRaw);assert.equal(await p.evaluate(()=>JSON.stringify(game)),teamGame);await click(p,'#exit-game');
    // Serve the exact published v89 bytes; its worker and old code know nothing
    // about team sessions. Both slots must survive a real cold offline rollback.
