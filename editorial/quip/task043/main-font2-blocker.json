@@ -1,0 +1,42 @@
+{
+  "base": "0584e0df435782eec8a31d5f5040ac517d300315",
+  "test": "320x568 font2 Blitz",
+  "timer": [
+    {
+      "id": "#preview-timer",
+      "text": {
+        "x": 138,
+        "y": 243,
+        "right": 208.21875,
+        "bottom": 276,
+        "width": 70.21875,
+        "height": 33
+      },
+      "ring": {
+        "x": 138,
+        "y": 238,
+        "right": 182,
+        "bottom": 282,
+        "width": 44,
+        "height": 44
+      },
+      "style": {
+        "fontSize": "32px",
+        "minWidth": "44px",
+        "minHeight": "44px",
+        "height": "44px",
+        "aspectRatio": "1 / 1"
+      },
+      "fits": false,
+      "overlaps": [
+        {
+          "button": "button:Нравится задание",
+          "width": 14.21875,
+          "height": 33,
+          "area": 469.21875
+        }
+      ]
+    }
+  ],
+  "overlaps": []
+}

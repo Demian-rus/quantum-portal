@@ -27,7 +27,7 @@ async function measure(page){return page.evaluate(()=>{
  return{width:innerWidth,height:innerHeight,phase:game.phase,card:q('.challenge-card'),top:q('.round-top'),conditionRegion:box(top),ring:q('.timer-ring'),svg:q('.ring-svg'),dial:q('.timer-dial'),time:q('#active-timer'),
   ratings:[...document.querySelectorAll('[data-feedback]')].map(box),controls:[...document.querySelectorAll('.round-bottom button')].map(box),
   condition:box(condition),copy:range(condition?.querySelector('strong')),word:range(word),wordScroll:card?{h:card.scrollHeight,ch:card.clientHeight,w:card.scrollWidth,cw:card.clientWidth}:null,
-  topScroll:top?{h:top.scrollHeight,ch:top.clientHeight}:null,page:{h:document.documentElement.scrollHeight,w:document.documentElement.scrollWidth},
+  topScroll:top?{h:top.scrollHeight,ch:top.clientHeight,scrollable:(()=>{const at=top.scrollTop;top.scrollTop=top.scrollHeight;const moved=top.scrollTop!==0;top.scrollTop=at;return moved;})()}:null,page:{h:document.documentElement.scrollHeight,w:document.documentElement.scrollWidth},
   flag:{rects:document.getElementById('report-card').getClientRects().length,hidden:document.getElementById('report-card').hidden,disabled:document.getElementById('report-card').disabled,tab:document.getElementById('report-card').tabIndex,aria:document.getElementById('report-card').getAttribute('aria-hidden')}
  };
 });}
@@ -49,7 +49,7 @@ function fits(g,{ordinary=true}={}){
  }
  assert.ok(g.wordScroll.h<=g.wordScroll.ch+1&&g.wordScroll.w<=g.wordScroll.cw+1,'Word scroller/clipping '+JSON.stringify(g));
  assert.ok(g.word.y>=g.card.y-1&&g.word.bottom<=g.card.bottom+1,'Word text outside card '+JSON.stringify(g));
- if(ordinary&&g.condition){assert.ok(g.topScroll.h<=g.topScroll.ch+1,'Ordinary condition region scrolls '+JSON.stringify(g));assert.ok(g.copy.y>=g.conditionRegion.y-.5&&g.copy.bottom<=g.conditionRegion.bottom+.5,'Condition clipped '+JSON.stringify(g));}
+ if(ordinary&&g.condition){assert.ok(!g.topScroll.scrollable,'Ordinary condition region scrolls '+JSON.stringify(g));assert.ok(g.copy.y>=g.conditionRegion.y-.5&&g.copy.bottom<=g.conditionRegion.bottom+.5,'Condition clipped '+JSON.stringify(g));}
 }
 function stable(a,b){for(const k of ['x','y','w','h'])assert.ok(Math.abs(a.card[k]-b.card[k])<=2,'Phase moves card '+JSON.stringify({a,b,k}));}
 (async()=>{

@@ -1,7 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),{execFileSync}=require('node:child_process');
 const {chromium}=require('playwright-core'),{provisionProfiles}=require('./profile-fixtures.cjs');
-const URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/',base='959017bf33c5bb8a8fd08ba047ad99c82682e32d';
+const URL=process.env.QUIP_TEST_URL||'http://127.0.0.1:8765/party-game/',base='0584e0df435782eec8a31d5f5040ac517d300315';
 const folder='artifacts/quip-feedback',tmp=fs.mkdtempSync(path.join(os.tmpdir(),'quip-feedback-'));
 const devices=[[320,568],[390,844],[844,390]];
 const state=p=>p.evaluate(()=>({game:JSON.stringify(game),raw:localStorage.getItem(STORAGE_KEY),profiles:localStorage.getItem(QUIP_PROFILES_KEY),approvals:localStorage.getItem(QUIP_CARD_APPROVALS_KEY),reports:localStorage.getItem(QUIP_CARD_REPORTS_KEY)}));
@@ -52,11 +52,11 @@ async function start(page,difficulty='hard',mode='talk'){
  fs.mkdirSync(folder,{recursive:true});const browser=await chromium.launch({executablePath:process.env.CHROME_BIN||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
  try{
   for(const [width,height]of devices){
-   // Same real v79 bundle and same geometry fixture; no modification of source PR.
+   // Compare with the accepted pre-TASK043 main, including TASK042's condition layout.
    const old=await browser.newContext({viewport:{width,height},serviceWorkers:'block'}),op=await old.newPage();
    await op.route('**/party-game/**',async route=>{
     const name=new globalThis.URL(route.request().url()).pathname.split('/party-game/')[1]||'index.html';
-    if(!/^(?:index\.html|style\.css|[a-z-]+\.js)$/.test(name)){await route.continue();return;}
+    if(!/^(?:index\.html|style\.css|[a-z\d-]+\.js)$/.test(name)){await route.continue();return;}
     const bytes=execFileSync('git',['show',base+':party-game/'+name],{maxBuffer:8e6});
     await route.fulfill({body:bytes,contentType:name.endsWith('.js')?'application/javascript':name.endsWith('.css')?'text/css':'text/html'});
    });
@@ -65,18 +65,20 @@ async function start(page,difficulty='hard',mode='talk'){
    page.on('pageerror',e=>errors.push(e.message));
    try{
     await page.goto(URL);await provisionProfiles(page);await layoutFixture(page);const after=await geometry(page);fits(after);
-    if(height>width){if(height>740)assert.ok(after.card.h>before.card.h+10,'Card did not grow');else assert.ok(after.card.h>=100,'Compact card must retain its readable fixed track');}
+    same(after.card,before.card);if(height>width&&height<=740)assert.ok(after.card.h>=100,'Compact card must retain its readable fixed track');
     assert.ok(after.actions.every(b=>b.w<=68.01),'Result circles not compact');
     await page.screenshot({path:folder+'/after-'+width+'.png',animations:'disabled'});
     const card=after.card;
     for(const phase of ['task','countdown','play']){await layoutFixture(page,{phase});const g=await geometry(page);fits(g);same(g.card,card);}
     await layoutFixture(page,{mode:'talk',modified:false});fits(await geometry(page));assert.equal(await page.locator('.judgement-option').count(),2);
     await layoutFixture(page,{mode:'blitz',modified:false});fits(await geometry(page));
-    // Three-line ordinary text fits; only exceptional historical text uses the outer fallback.
+    // Complete real historical conditions remain visible without an inner scroll.
     await page.evaluate(()=>{game.current.complicationId=null;game.current.complication='После каждой музыкальной фразы сделай паузу на два ровных счёта, затем продолжай.';render()});fits(await geometry(page));
-    await page.evaluate(()=>{game.current.complication='Очень длинное сохранённое условие. '.repeat(24);render()});
+    const historicalCondition=await page.evaluate(()=>{const row=QUIP_MODIFIERS_V2.find(r=>r.id==='v2-unique-nouns');game.current.complicationId=row.id;game.current.complication=row.text;render();return {raw:row.text,display:displayedRoundCondition(game.current)};});
+    assert.equal(await page.locator('.round-condition strong').innerText(),'УСЛОЖНЕНИЕ: '+historicalCondition.display);fits(await geometry(page));
+    assert.equal(await page.evaluate(()=>game.current.complication),historicalCondition.raw,'Presentation never rewrites historical condition');
     assert.equal(await page.locator('.round-condition').evaluate(el=>getComputedStyle(el).overflowY),'visible');
-    const fallback=await page.locator('.round-condition-slot').evaluate(el=>{el.scrollTop=el.scrollHeight;return{scroll:el.scrollHeight,client:el.clientHeight,at:el.scrollTop}});assert.ok(fallback.scroll>fallback.client&&fallback.at>0,'Historical fallback must be reachable');
+    const conditionScroll=await page.locator('.round-condition-slot').evaluate(el=>{el.scrollTop=el.scrollHeight;return el.scrollTop});assert.equal(conditionScroll,0,'Historical condition has no inner scroll');
     await start(page,'hard');assert.equal(await page.locator('#report-card').isVisible(),false);assert.equal(await page.locator('[data-action="pause"]').isVisible(),false);
     await page.evaluate(()=>{window.__randomCalls=0;const random=Math.random;Math.random=()=>{window.__randomCalls++;return random()}});
     const unvoted=await state(page),item=await page.evaluate(()=>currentReportItem(game));

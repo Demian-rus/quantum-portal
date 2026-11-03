@@ -42,6 +42,7 @@ test('TASK021: current-round flag is unavailable in every phase; deciding-questi
 test('TASK021: historical sources and mechanics retain v83 bytes; new content artifacts are generated',()=>{
  const files=execFileSync('git',['ls-tree','-r','--name-only',baseline,'party-game/content'],{encoding:'utf8'}).trim().split('\n').filter(p=>!['party-game/content/manifest.json','party-game/content/templates/content-packs.after.js'].includes(p));
  for(const name of [...files,...['modifiers.js','modifiers-v2.js','rules.js','penalties.js','round-planner.js','round-selection.js','round-actions.js','timer-controller.js','storage-controller.js','profile-backup.js','card-reports.js','card-feedback.js'].map(n=>'party-game/'+n)]){
+  if(name==='party-game/content/baseline-lock.json'){require('./content-integration-guard.cjs').verifyApprovedCatalogEvolution(path.resolve(root,'..'));continue;}
   assert.equal(name==='party-game/round-selection.js'?withoutRiskDispatch(fs.readFileSync(path.join(root,'..',name),'utf8')):normalizeTask032(fs.readFileSync(path.join(root,'..',name),'utf8')),execFileSync('git',['show',baseline+':'+name],{encoding:'utf8',maxBuffer:12e6}),name);
  }
  const api=require('../scripts/content.cjs'),compiled=api.render(api.readDataset());
