@@ -105,6 +105,10 @@ function modeInformation() {
 }
 // Exact presentation aliases only: the saved choice and both catalogs stay authoritative.
 const CONDITION_PRESENTATION=Object.freeze({
+  "v2-unique-nouns": {
+    "sources": ["Не повторяй одни и те же существительные при объяснении трёх карточек. Другая форма того же существительного тоже считается повтором."],
+    "short": "При объяснении трёх карточек не повторяй существительные. Другая форма тоже считается повтором."
+  },
   "v2-fists": {
     "sources": [
       "Ладони держи свободно сомкнутыми в кулаки, без усилия.",

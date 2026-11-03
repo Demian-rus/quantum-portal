@@ -8,5 +8,5 @@ test('TASK042A versioned idiom correction applies only to new selection; old RAW
 });
 test('TASK042A exact resource hunks reject changes to the new resource and preserve historical source guards',()=>{
  const {normalizeTask042,hunks}=require('../../diagnostics/task042/source-contract.cjs');
- for(const file of new Set(hunks.map(h=>h.file))){const source=fs.readFileSync('party-game/'+file,'utf8'),before=cp.execFileSync('git',['show','86d5c216ba8a0650ed28cffa79112d3726c76f26:party-game/'+file],{encoding:'utf8'});assert.equal(normalizeTask042(source),before,file);assert.notEqual(normalizeTask042(source.replace('prompt-revisions.js?v=1','prompt-revisions.js?v=999')),before);}
+ for(const file of new Set(hunks.map(h=>h.file))){const source=fs.readFileSync('party-game/'+file,'utf8'),before=cp.execFileSync('git',['show','86d5c216ba8a0650ed28cffa79112d3726c76f26:party-game/'+file],{encoding:'utf8'});assert.equal(normalizeTask042(source),before,file);for(const h of hunks.filter(h=>h.file===file)){assert(source.includes(h.after));const mutation=source.replace(h.after,h.after+'/* forbidden */');assert.notEqual(mutation,source);assert.notEqual(normalizeTask042(mutation),before);}}
 });

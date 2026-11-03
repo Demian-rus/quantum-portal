@@ -22,7 +22,7 @@
   height:clamp(44px,10cqh,76px);
   min-width:44px;min-height:44px;
 }
-.scene--game .stable-round .round-top:has(.blitz-status) .timer-dial{gap:clamp(8px,3vw,18px)}
+.scene--game .stable-round .round-top:has(.blitz-status) .timer-dial{gap:clamp(12px,3vw,18px)}
 .scene--game .stable-round .round-top .blitz-status{
   position:relative;z-index:1;isolation:isolate;
   box-sizing:border-box;width:min(100%,300px);max-width:300px;
@@ -68,4 +68,9 @@
  .scene--game .stable-round .round-condition-slot{justify-content:safe flex-start}
  .scene--game .stable-round .round-top .blitz-status{width:100%;padding:2px 4px;gap:3px;min-height:22px}
  .scene--game .stable-round .round-top .blitz-status b{font-size:9px}
+}
+/* Clock numerals must fit the smaller Blitz dial at every container height. */
+.scene--game .stable-round .round-top:has(.blitz-status) .play-timer{font-size:clamp(14px,3cqh,24px)}
+@container round-panel (max-height:560px){
+ .scene--game .stable-round .round-top:has(.blitz-status) .play-timer{font-size:14px}
 }
