@@ -34,3 +34,11 @@ Catalogs, all 248 TASK043 source rows, edition records and immutable locks are c
 - The previous native Chromium 156 START-only 15k/CPU×4/N=20 run passed at 194.7/225.8ms for teams and 73.6/82.2ms for duel (run 41704934541). The separate TASK038 gate with active Playwright screencast/CDP timeline measured teams at 202.3/322.2ms, then 216.0/293.2ms on its single retry (run 41704934624). These failures remain in the historical evidence; no sample is replaced or corrected arithmetically.
 - TASK038 now completes its diagnostic Playwright/CDP recordings before the ordinary START acceptance series. Navigation traces remain available; separate instrumentation controls remain diagnostic. N=20, CPU×4, 15,000 cards, exact RAW/strict receipt restoration, real trusted touch, full validation, CAS, strict durability/readback, two frames and the after-frame task all remain. Both before and after use this same environment; the 200/350ms limits are unchanged. The production START code is unchanged.
 - The final required GitHub Actions run is pending on the closure commit. Its supported Chromium 156 results, TASK021 and PWA slider status will be recorded in PR #227. No merge or deployment is authorized.
+
+### Final CI corrections
+
+The first closure CI on `dffe57a30574d4f9155f9bd1109f39b16c31f84f` confirmed both TASK044 engines (87 states each), all six contracts, and ordinary Chromium 156 START: duel 64.2/71.0ms, teams **139.9/162.3ms** (15k, CPU×4, N=20). The separate TASK038 15k gate, with trace writers completed before START, also passed: teams **192.0/264.5ms**, duel 67.3/92.4ms. The runtime needs no additional optimization.
+
+The cache bump exposed literal v119 expectations in 15 existing test/diagnostic files. They now name exact v120; assertions, regex anchors, RAW comparisons and offline checks are unchanged. The updated TASK038 exact resource/source guard passes locally. A different hosted performance runner had native Chrome 155 with a driver requiring 156. TASK038 performance now selects that pinned driver's bundled Chromium for every step; the browser/driver major assertion remains mandatory. Navigation and instrumentation diagnostics use that same selected browser.
+
+The corrected final CI is attached to PR #227; its status and exact final SHA are maintained in the PR description. Draft only; no merge/deployment.
