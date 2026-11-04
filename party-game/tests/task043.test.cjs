@@ -16,7 +16,11 @@ test('TASK043 historical sources, catalog declarations, locks and song/numeric d
  for(const source of [...manifest.cards,...manifest.questions,...manifest.packs])assert.deepEqual(fs.readFileSync('party-game/content/'+source.path),git('party-game/content/'+source.path),source.path);
  for(const [key,value]of Object.entries(lock.sources))assert.deepEqual(c2.data.lock.sources[key],value,key);
  assert.deepEqual(fs.readFileSync('party-game/approx-questions.js'),git('party-game/approx-questions.js'));
- for(const file of ['round-selection.js','round-settlement.js','round-actions.js','round-planner.js','tiebreak.js','team-engine.js','rules.js','prompt-revisions.js'])assert.deepEqual(fs.readFileSync('party-game/'+file),git('party-game/'+file),file);
+ const {normalizeTask044}=require('../../diagnostics/task044/source-contract.cjs');
+ for(const file of ['round-selection.js','round-settlement.js','round-actions.js','round-planner.js','tiebreak.js','team-engine.js','rules.js','prompt-revisions.js']){
+  const source=fs.readFileSync('party-game/'+file,'utf8'),before=git('party-game/'+file);assert.deepEqual(Buffer.from(normalizeTask044(source)),before,file);
+  assert.notDeepEqual(Buffer.from(normalizeTask044(source+'/* forbidden */')),before,file+' unrelated edit');
+ }
 });
 test('TASK043 normalized accepted labels do not collide with any historical source or the corrected proverb',()=>{
  const normalize=s=>s.normalize('NFKC').toLocaleLowerCase('ru').replace(/ё/g,'е').replace(/[^\p{L}\p{N}]+/gu,''),prior=new Set(c1.data.sources.filter(s=>s.kind!=='packs'&&s.path!=='cards/task043-quality-v1.json').flatMap(s=>s.rows.map(r=>normalize(r.text||r.question))));prior.add(normalize('НАШЛА КОСА НА КАМЕНЬ'));
@@ -54,7 +58,7 @@ for(const teams of [false,true])test('TASK043 '+(teams?'2x2':'1x1')+' main→can
 });
 test('TASK043 exact additive source guard rejects unrelated changes and altered approved hunks',()=>{
  const {hunks,normalizeTask043}=require('../../diagnostics/task043/source-contract.cjs');
- for(const h of hunks){const now=fs.readFileSync('party-game/'+h.file,'utf8'),before=git('party-game/'+h.file).toString();assert.equal(normalizeTask043(now),before);assert.notEqual(normalizeTask043(now+'/* forbidden */'),before);assert.notEqual(normalizeTask043(now.replace(h.after,h.after+'/* changed */')),before);}
+ for(const h of hunks){const now=require('../../diagnostics/task044/source-contract.cjs').normalizeTask044(fs.readFileSync('party-game/'+h.file,'utf8')),before=git('party-game/'+h.file).toString();assert.equal(normalizeTask043(now),before);assert.notEqual(normalizeTask043(now+'/* forbidden */'),before);assert.notEqual(normalizeTask043(now.replace(h.after,h.after+'/* changed */')),before);}
 });
 test('TASK043 rollback protects a v2 save in the old reader and restores it exactly when upgraded again',()=>{
  const current=createSimulation(430);current.eval("options.modes=['blitz'];options.dice=false;options.complications=false;newGame();roll();persist()");

@@ -35,8 +35,14 @@ const geometry=page=>page.evaluate(()=>{
   page:{w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight},w:innerWidth,h:innerHeight};
 });
 const sameBox=(a,b,message)=>{for(const key of ['x','y','w','h'])assert.ok(Math.abs(a[key]-b[key])<=2,message+': '+JSON.stringify({a,b}))};
+async function publishedBlitz(browser,url,device){
+ const cp=require('node:child_process'),path=require('node:path'),base='9812c655cbb8333be91306836d8170827ecc4ddb',git=a=>cp.execFileSync('git',a,{cwd:path.resolve(__dirname,'../..'),maxBuffer:40e6}),files=historicalRuntimeFiles(git,base,['index.html','style.css','sw.js']),bytes=new Map(files.map(n=>[n,git(['show',base+':party-game/'+n])]));
+ const ctx=await browser.newContext({viewport:{width:device.width,height:device.height},hasTouch:device.width<500,serviceWorkers:'block'}),p=await ctx.newPage();
+ try{await p.route('**/party-game/**',route=>{const name=new URL(route.request().url()).pathname.split('/party-game/')[1]||'index.html';return bytes.has(name)?route.fulfill({body:bytes.get(name),contentType:name.endsWith('.js')?'application/javascript':name.endsWith('.css')?'text/css':'text/html'}):route.continue();});await p.goto(url);await provisionProfiles(p);await fixture(p,'blitz');await p.locator('.challenge-card[data-action="toggle-word"]').click();await p.locator('button[data-action="start-timer"]').click();return await geometry(p);}finally{await ctx.close();}
+}
 module.exports=async function roundLayout(browser,url){
  for(const device of devices){
+  const acceptedBlitz=await publishedBlitz(browser,url,device);
   const context=await browser.newContext({viewport:{width:device.width,height:device.height},hasTouch:device.width<500});
   const page=await context.newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));
   try{
@@ -70,7 +76,12 @@ module.exports=async function roundLayout(browser,url){
     const playing=await geometry(page);
     assert.equal(await page.locator('#match-team-b').evaluate(el=>el.classList.contains('is-turn')),true,'Guesser must be active during timer');
     assert.equal(await page.locator('#match-team-a').evaluate(el=>el.classList.contains('is-turn')),false);
-    assert.ok(playing.caption.bottom<=playing.timer.y-(device.height>device.width?7:2),'Timer caption needs breathing room');
+    if(mode==='blitz'){
+     // TASK042's accepted plaque uses a compact caption track. Lock its
+     // actual published geometry, instead of imposing the older 7px layout.
+     for(const key of ['caption','timer'])for(const axis of ['x','y','w','h'])assert.ok(Math.abs(playing[key][axis]-acceptedBlitz[key][axis])<=.05,'Normal Blitz changed accepted '+key+' '+axis);
+     assert(playing.caption.bottom<=playing.timer.y,'Blitz caption overlaps its timer');
+    }else assert.ok(playing.caption.bottom<=playing.timer.y-(device.height>device.width?7:2),'Timer caption needs breathing room');
     if(mode==='mime')plain=playing;
     if(mode==='secret'){
      for(const key of ['wrong','correct','card'])sameBox(playing[key],plain[key],'Extra outcome moved '+key);

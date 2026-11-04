@@ -1,0 +1,38 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),cp=require('node:child_process'),assert=require('node:assert/strict'),{chromium,webkit}=require('playwright-core'),T=require('../task038/browser-tools.cjs'),F=require('../../party-game/tests/task024-fixtures.cjs'),{provisionProfiles}=require('../../party-game/tests/profile-fixtures.cjs');
+const BASE='9812c655cbb8333be91306836d8170827ecc4ddb',engine=process.env.ENGINE||'chromium',sizes=[[320,568],[360,640],[360,780],[390,844],[412,915],[667,375],[844,390]],out=path.join('artifacts/quip-task044/rounds',engine),overlap=(a,b)=>a&&b&&Math.min(a.right,b.right)>Math.max(a.x,b.x)+1&&Math.min(a.bottom,b.bottom)>Math.max(a.y,b.y)+1;
+const raw=p=>p.evaluate(()=>JSON.stringify([game,taskMemory,Object.fromEntries(Object.keys(localStorage).sort().map(k=>[k,localStorage.getItem(k)]))]));
+async function measure(p){await p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));return p.evaluate(collect=>{const g=(0,eval)('('+collect+')')({sweep:true}),r=n=>{const b=n.getBoundingClientRect();return {x:b.x,y:b.y,right:b.right,bottom:b.bottom,width:b.width,height:b.height}},counter=document.querySelector('.blitz-status'),labels=[...counter?.querySelectorAll('b')||[]].map(n=>{const t=document.createRange();t.selectNodeContents(n);return {box:r(n),text:r(t)}});return {...g,counter:counter?r(counter):null,labels,large:document.querySelector('.play-inner').classList.contains('large-blitz-text')};},String(T.collect));}
+async function run(){fs.mkdirSync(out,{recursive:true});const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'quip044-main-')),tar=path.join(tmp,'main.tar');cp.execFileSync('git',['archive','--format=tar','--output='+tar,BASE,'party-game'],{cwd:T.ROOT});cp.execFileSync('tar',['-xf',tar,'-C',tmp]);const before=await T.serve(tmp),after=await T.serve(T.ROOT),b=await(engine==='webkit'?webkit:chromium).launch({headless:true,args:engine==='chromium'?['--no-sandbox']:[]}),report={engine,base:BASE,cases:[]};
+try{for(const [width,height]of sizes){const contexts=[],pages=[];for(const server of [before,after]){const c=await b.newContext({viewport:{width,height},isMobile:true,hasTouch:true,reducedMotion:'reduce',serviceWorkers:'block'});contexts.push(c);const p=await c.newPage();pages.push(p);await p.goto(server.url);await p.evaluate(()=>QuipTeams.whenReady());await provisionProfiles(p);}
+try{for(const scale of [1,2]){const coords=[];for(const phase of ['hidden','opened','play']){let reference;if(scale===1){await F.fixture(pages[0],{mode:'blitz',modifier:null});if(phase!=='hidden')await F.phase(pages[0],phase);reference=await measure(pages[0]);}
+ const p=pages[1];await T.scaleFonts(p,1);await F.fixture(p,{mode:'blitz',modifier:null});if(phase!=='hidden')await F.phase(p,phase);const state=await raw(p);await T.scaleFonts(p,scale);const g=await measure(p);assert.equal(await raw(p),state,'Text adaptation cannot write RAW or game state');assert.equal(g.document.width<=width+1,true,'Horizontal overflow');assert.deepEqual(g.overlaps,[]);assert.deepEqual(g.reachable,[]);assert.deepEqual(g.clipped,[]);assert(g.promptText.every(t=>t.readable));assert(g.timerText.every(t=>t.fits&&!t.overlaps.length));
+ if(scale===1){assert.equal(g.large,false);assert.deepEqual(g.cards,reference.cards,'100% card must retain exact main coordinates');assert.deepEqual(g.timerText.map(t=>t.ring),reference.timerText.map(t=>t.ring),'100% timer must retain exact main size');assert.deepEqual(g.counter,reference.counter,'100% counter must retain exact main geometry');}
+ else{assert.equal(g.large,true,'All Blitz phases must use the same enlarged track');for(const timer of g.timerText){const {text,ring}=timer,cx=(ring.x+ring.right)/2,cy=(ring.y+ring.bottom)/2,radius=Math.min(ring.width,ring.height)*.42;timer.circleFits=[text.x,text.right].every(x=>[text.y,text.bottom].every(y=>Math.hypot(x-cx,y-cy)<=radius+.5));assert(timer.circleFits,'The entire enlarged numeral box must fit inside the SVG circle inner edge, not just its bounding square: '+JSON.stringify(timer));}if(g.counter){for(const c of g.cards)assert(!overlap(g.counter,c),'Counter/card collision');assert(!g.labels.some((a,i)=>g.labels.slice(i+1).some(b=>overlap(a.text,b.text))),'Counter labels collide');}}
+ coords.push(g.cards.filter(c=>c.class==='round-fixed-card'));await p.screenshot({path:path.join(out,width+'x'+height+'-'+scale+'-'+phase+'.png'),animations:'disabled'});report.cases.push({width,height,scale,phase,large:g.large,timers:g.timerText,cards:g.cards,scrollers:g.scrollers});}
+ assert.deepEqual(coords[1],coords[0],'Reveal must not move card');assert.deepEqual(coords[2],coords[0],'Timer must not move card');}
+ await T.scaleFonts(pages[1],1);
+ for(const phase of ['hidden','opened','play']){
+  await F.fixture(pages[0],F.scenarios.find(s=>s.id==='talk-three'));if(phase!=='hidden')await F.phase(pages[0],phase);const accepted=(await measure(pages[0])).cards;
+  for(const id of ['sing','talk-two']){await F.fixture(pages[1],F.scenarios.find(s=>s.id===id));if(phase!=='hidden')await F.phase(pages[1],phase);const g=await measure(pages[1]);assert.equal(g.cards.length,accepted.length);
+   for(let i=0;i<accepted.length;i++)for(const axis of ['x','y','width','height'])assert(Math.abs(g.cards[i][axis]-accepted[i][axis])<=.05,'Ordinary card must use the exact accepted three-outcome track: '+id+' '+phase+' '+axis);
+   assert.deepEqual(g.overlaps,[]);assert.deepEqual(g.clipped,[]);assert.deepEqual(g.reachable,[]);report.cases.push({width,height,scale:1,phase,ordinary:id,reference:'main talk-three',cards:g.cards});
+  }
+ }
+ if(width===844){
+  const p=pages[1],scenario=F.scenarios.find(s=>s.id==='blitz');
+  const taller=await p.addStyleTag({content:'.round-condition{min-height:51px!important}'});
+  try{for(const phase of ['hidden','opened','play']){
+   await F.fixture(p,scenario);if(phase!=='hidden')await F.phase(p,phase);
+   for(let i=0;i<3;i++){await p.evaluate(()=>document.querySelector('.round-condition').append(document.createTextNode('')));await F.settled(p);assert(await p.locator('.play-inner').evaluate(n=>n.classList.contains('long-round-text')),'A condition taller than the fixed row must retain overflow access after every fit');}
+  }}finally{await taller.evaluate(n=>n.remove());}
+  for(const phase of ['hidden','opened','play']){
+   for(const p of pages){await F.fixture(p,scenario);if(phase!=='hidden')await F.phase(p,phase);}
+   const reference=await F.geometry(pages[0]),actual=await F.geometry(p);assert.equal(await p.locator('.play-inner').evaluate(n=>n.classList.contains('long-round-text')),false,'A fitting published condition must leave the fallback: '+JSON.stringify(actual));
+   for(const part of ['card','bottom','top'])for(const axis of ['x','y','w','h'])assert(Math.abs(actual[part][axis]-reference[part][axis])<=.05,'Fitting Blitz condition retains main '+part+' '+axis);
+   report.cases.push({width,height,scale:1,phase,overflowRecovery:true,card:actual.card,bottom:actual.bottom});
+  }
+ }
+}finally{await Promise.all(contexts.map(c=>c.close()));}}report.success=true;
+}finally{fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));await b.close();await Promise.all([before,after].map(s=>new Promise(r=>s.server.close(r))));fs.rmSync(tmp,{recursive:true,force:true});console.log(JSON.stringify({engine,success:report.success,cases:report.cases.length}));}}
+run().catch(e=>{console.error(e.stack);process.exitCode=1});

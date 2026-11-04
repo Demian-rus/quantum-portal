@@ -43,5 +43,5 @@ test('TASK024 CSS prefix guard rejects unrelated changes after exact tap-highlig
 test('TASK024 views remain intact with v89 content resource versions and no sync',()=>{
  const html=fs.readFileSync(path.join(root,'party-game/index.html'),'utf8'),sw=fs.readFileSync(path.join(root,'party-game/sw.js'),'utf8');
  const scripts=[...html.matchAll(/<script src="\.\/([^"?]+\.js\?v=\d+)"/g)].map(m=>m[1]);assert.equal(scripts.length,63);for(const name of scripts)assert.ok(sw.includes("'./"+name+"'"),name);
- assert.match(sw,/kvip-pwa-v118-20261103-task043-quality-expansion/);assert.ok(!html.includes('feedback-sync'));assert.ok(html.includes('cards.js?v=12')&&html.includes('content-packs.js?v=23'));
+ assert.match(sw,/kvip-pwa-v120-20261104-task044-condition/);assert.ok(!html.includes('feedback-sync'));assert.ok(html.includes('cards.js?v=12')&&html.includes('content-packs.js?v=23'));
 });

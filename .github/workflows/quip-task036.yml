@@ -41,6 +41,9 @@ jobs:
       # Official Playwright image already includes the matching WebKit browser
       # and native Ubuntu dependencies. No apt/Playwright install --with-deps.
       - run: npm install --no-save playwright-core@1.64.0
+      # Checkout's JavaScript action and the container shell use different
+      # HOME directories. Trust only this checked-out workspace for the shell.
+      - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - run: node diagnostics/task036/stepper.cjs
         env:
           QUIP036_ENGINE: webkit

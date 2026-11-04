@@ -81,7 +81,7 @@ function checkEditorialPack(selection,settings){
    const award=modeAwardAvailability(mode,settings);if(!award.available){problems.push(award.reason);continue;}
    for(const level of settings.difficulty==='mixed'?PARTY_CARD_LEVELS:[settings.difficulty]){
     if(mode==='secret'){if(!editorialSecretMethods(selection,settings,level).length)problems.push('СЕКРЕТКА: нет подходящего способа. Измените сложности режимов, категории или тему.');}
-    else{const status=editorialAvailability(selection,settings,mode,level);if(!status.available)problems.push(status.reason);}
+    else{const status=typeof editorialAvailabilityForCheck==='function'?editorialAvailabilityForCheck(selection,settings,mode,level):editorialAvailability(selection,settings,mode,level);if(!status.available)problems.push(status.reason);}
    }
   }
  }catch(error){problems.push(readTaskDifficultyPreferences().problem||error.message);}

@@ -41,6 +41,36 @@ function fits(g){
    await before.route('**/party-game/**',async route=>{const name=new globalThis.URL(route.request().url()).pathname.split('/party-game/')[1]||'index.html';if(!oldFiles.has(name))return route.continue();return route.fulfill({body:oldFiles.get(name),contentType:name.endsWith('.js')?'application/javascript':name.endsWith('.css')?'text/css':'text/html'});});
    await F.setup(before,URL);
    const ctx=await browser.newContext({viewport:{width:w,height:h},hasTouch:true,reducedMotion:'reduce'});contexts.push(ctx);const after=await ctx.newPage(),errors=[];after.on('pageerror',e=>errors.push(e.message));await F.setup(after,URL);
+   // Isolate Approx from every unrelated scene and glyph cache. Before/after
+   // each get a fresh native renderer; their FIRST visible scene is Approx.
+   // Keep a full, byte-exact first screenshot gate on every viewport.
+   const approxBrowsers=[],approxPages=[],approxImages=[];
+   try{
+    for(const version of ['before','after']){
+     const isolated=await chromium.launch({executablePath:chromium.executablePath(),headless:true,args:['--no-sandbox','--disable-font-subpixel-positioning']});approxBrowsers.push(isolated);
+     const context=await isolated.newContext({viewport:{width:w,height:h},hasTouch:true,reducedMotion:'reduce',serviceWorkers:'block'}),page=await context.newPage();approxPages.push(page);
+     await page.route('**/party-game/**',route=>{const name=new globalThis.URL(route.request().url()).pathname.split('/party-game/')[1]||'index.html',source=version==='before'?oldFiles.get(name):name==='index.html'?fs.readFileSync(path.join(__dirname,'../index.html')):null;
+      if(!source)return route.continue();const body=name==='index.html'?source.toString().replace('<head>','<head><style id="approx-first-paint">html{visibility:hidden!important}</style>'):source;return route.fulfill({body,contentType:name.endsWith('.js')?'application/javascript':name.endsWith('.css')?'text/css':'text/html'});});
+     await F.setup(page,URL);
+     await page.evaluate(()=>{Object.assign(options,{modes:['approx'],dice:false,difficulty:'easy'});newGame();game.dice=false;roll();const q=QUIP_APPROX_QUESTIONS.find(q=>q.id==='approx-0007');if(!q)throw Error('Missing published question fixture');game.current.question={...q};game.current.word=q.question;game.current.cardId=q.id;render();stopTicking()});
+     await page.locator('#approx-first-paint').evaluate(n=>n.remove());await F.settled(page);
+     // Animation.finished resolves before its final composited frame. The
+     // 412px failure captured an incomplete scene (same-page repeat differed).
+     // Present the settled scene before the FIRST screenshot; never retry a
+     // failed pixel comparison or relax its all-pixel assertion.
+     await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>setTimeout(resolve,0)))));
+     approxImages.push(await page.screenshot({path:folder+'/'+w+'-approx-'+version+'.png',animations:'disabled'}));
+    }
+    if(!approxImages[0].equals(approxImages[1])){
+     const evidence=[];
+     for(const [i,page]of approxPages.entries()){
+      const state=await page.evaluate(()=>({fonts:[...document.fonts].map(f=>({family:f.family,weight:f.weight,status:f.status})),fontStatus:document.fonts.status,nodes:[...document.querySelectorAll('.match-team-meta,.match-team-meta small,.match-team-label,.mode-name,.play-title,.approx-question')].map(n=>{const s=getComputedStyle(n);return{text:n.textContent,rect:JSON.parse(JSON.stringify(n.getBoundingClientRect())),font:s.font,spacing:s.letterSpacing,transform:s.transform,opacity:s.opacity};})}));
+      const repeated=await page.screenshot({path:folder+'/'+w+'-approx-'+(i?'after':'before')+'-repeat.png',animations:'disabled'});evidence.push({version:i?'after':'before',...state,samePageRepeatExact:approxImages[i].equals(repeated)});
+     }
+     fs.writeFileSync(folder+'/'+w+'-approx-paint.json',JSON.stringify({width:w,height:h,playwright:require('playwright-core/package.json').version,evidence},null,2));
+    }
+    assert.ok(approxImages[0].equals(approxImages[1]),'Approx pixels changed '+w);
+   }finally{for(const isolated of approxBrowsers)await isolated.close();}
    const longest=await after.evaluate(()=>PARTY_CARDS.filter(r=>['word','phrase','idiom'].includes(r.type)).sort((a,b)=>b.text.length-a.text.length)[0].text);
    for(const s of [...F.scenarios,{id:'longest',mode:'talk',modifier:null,word:longest}]){
     const baseline={},candidate={};await F.fixture(before,s);await F.fixture(after,s);
@@ -56,34 +86,6 @@ function fits(g){
     if(w<h)assert.ok(candidate.task.card.y<baseline.task.card.y-20,'Card must move upwards from v87');
     measurements.push({width:w,height:h,scenario:s.id,before:baseline,after:candidate});
    }
-   // Approx is a separate interaction: same HTML and pixel-identical screenshots.
-   const approx=async p=>{await p.evaluate(()=>{Object.assign(options,{modes:['approx'],dice:false,difficulty:'easy'});newGame();game.dice=false;roll();const q=QUIP_APPROX_QUESTIONS.find(q=>q.id==='approx-0007');if(!q)throw Error('Missing published question fixture');game.current.question={...q};game.current.word=q.question;game.current.cardId=q.id;render();stopTicking()});await F.settled(p);};
-   await approx(before);const oldApprox=await before.screenshot({path:folder+'/'+w+'-approx-before.png',animations:'disabled'});
-   await approx(after);const newApprox=await after.screenshot({path:folder+'/'+w+'-approx-after.png',animations:'disabled'});
-   if(!oldApprox.equals(newApprox)){
-    // Preserve the FIRST mismatch and its exact assertion. Repeated captures
-    // diagnose paint/font instability; they can never turn a failure into PASS.
-    const evidence=[];
-    for(const [version,page,first]of [['before',before,oldApprox],['after',after,newApprox]]){
-     const state=await page.evaluate(()=>({fonts:[...document.fonts].map(f=>({family:f.family,weight:f.weight,status:f.status})),fontStatus:document.fonts.status,animations:document.getAnimations().map(a=>({state:a.playState,time:a.currentTime,timing:a.effect.getComputedTiming()})),nodes:[...document.querySelectorAll('.match-team-meta,.match-team-meta small,.match-team-label,.mode-name,.play-title,.approx-question')].map(n=>{const s=getComputedStyle(n);return {text:n.textContent,rect:JSON.parse(JSON.stringify(n.getBoundingClientRect())),font:s.font,spacing:s.letterSpacing,transform:s.transform,opacity:s.opacity};})}));
-     const repeated=await page.screenshot({path:folder+'/'+w+'-approx-'+version+'-repeat.png',animations:'disabled'});
-     evidence.push({version,...state,samePageRepeatExact:first.equals(repeated)});
-    }
-    fs.writeFileSync(folder+'/'+w+'-approx-paint.json',JSON.stringify({width:w,height:h,playwright:require('playwright-core/package.json').version,chromium:browser.version(),evidence},null,2));
-   }
-   if(!oldApprox.equals(newApprox)&&w===412){
-    // 2026-11-02 Chromium artifact: three antialias pixels at y=31..32,
-    // max channel delta 5, repeat captures identical. Keep exact pixels
-    // below the scoreboard and compare header contents and geometry.
-    const header=async page=>page.evaluate(()=>[...document.querySelectorAll('.match-team-meta,.match-team-label,.mode-name,.play-title')].map(el=>{
-     const r=el.getBoundingClientRect(),s=getComputedStyle(el);return {text:el.textContent,x:r.x,y:r.y,w:r.width,h:r.height,font:s.font,transform:s.transform};
-    }));
-    assert.deepEqual(await header(before),await header(after),'Approx header content/geometry 412');
-    const clip={x:0,y:40,width:w,height:h-40};
-    const oldBody=await before.screenshot({clip,animations:'disabled'});
-    const newBody=await after.screenshot({clip,animations:'disabled'});
-    assert.ok(oldBody.equals(newBody),'Approx pixels changed below header 412');
-   }else assert.ok(oldApprox.equals(newApprox),'Approx pixels changed '+w);
    // Every displayed V2 condition fits at the smallest portrait, without scroll.
    if(w===320){const ids=await after.evaluate(()=>QUIP_MODIFIERS_V2.map(r=>r.id));for(const modifier of ids){await F.fixture(after,{mode:'mime',modifier});await F.phase(after,'play');fits(await F.geometry(after));}}
    if(w===320){

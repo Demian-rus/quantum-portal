@@ -13,6 +13,7 @@
  }
  const bytes=value=>new TextEncoder().encode(value).byteLength;
  const RECEIPT_DB='kvip-teams-durability:v1';
+ const nativeVerifiedWrites=new WeakMap();
  function nativeReceipt(){
   if(!globalThis.indexedDB)fail('RECEIPT_REQUIRED','Для надёжного сохранения 2 на 2 требуется IndexedDB. Игра 1 на 1 остаётся доступной.');
   let connection=null,opening=null;
@@ -28,18 +29,36 @@
    }).finally(()=>{if(opening===pending)opening=null;});
    opening=pending;return pending;
   }
-  async function access(expected,next,write){
-   const db=await open();return new Promise((resolve,reject)=>{
+  function transaction(db,expected,next,write){
+   return new Promise((resolve,reject)=>{
     const tx=db.transaction('receipts',write?'readwrite':'readonly',write?{durability:'strict'}:{}),store=tx.objectStore('receipts'),get=store.get(KEY);let value=null,problem=null;
     get.onsuccess=()=>{try{value=get.result??null;if(write){if(value!==expected){problem=error('CONFLICT','Подтверждённая версия уже изменена в другой вкладке.');tx.abort();}else store.put(next,KEY);}}catch(e){problem=e;tx.abort();}};
     tx.oncomplete=()=>resolve(write?next:value);tx.onabort=()=>reject(problem||tx.error||error('RECEIPT_FAILED','Подтверждение командной записи не сохранено.'));tx.onerror=()=>{};
    });
   }
-  return {read:()=>access(null,null,false),write:(expected,next)=>access(expected,next,true)};
+  const access=async(expected,next,write)=>transaction(await open(),expected,next,write);
+  const receipt={read:()=>access(null,null,false),write:(expected,next)=>access(expected,next,true)};
+  nativeVerifiedWrites.set(receipt,async(expected,next)=>{
+   const db=await open();
+   // Both transactions touch the same store. IndexedDB queues the readonly
+   // transaction behind the strict writer. Await BOTH completion events:
+   // queueing the read early removes a renderer round trip, not the readback.
+   const written=transaction(db,expected,next,true),readback=transaction(db,null,null,false);
+   const [,value]=await Promise.all([written,readback]);return value;
+  });return receipt;
  }
+ // Only the pure native hash is memoized. Every receipt/CAS/readback, JSON
+ // parse and full match validation still runs. Keys contain the complete
+ // payload bytes, never a match ID, revision or an asserted checksum.
+ const nativeHashes=new Map();let nativeHashChars=0,nativeHashProvider=null;
  async function sha256(value){
-  const hash=await globalThis.crypto.subtle.digest('SHA-256',new TextEncoder().encode(value));
-  return Array.from(new Uint8Array(hash),n=>n.toString(16).padStart(2,'0')).join('');
+  const provider=globalThis.crypto.subtle.digest;
+  if(provider!==nativeHashProvider){nativeHashes.clear();nativeHashChars=0;nativeHashProvider=provider;}
+  if(nativeHashes.has(value))return nativeHashes.get(value);
+  const hash=await provider.call(globalThis.crypto.subtle,'SHA-256',new TextEncoder().encode(value));
+  const result=Array.from(new Uint8Array(hash),n=>n.toString(16).padStart(2,'0')).join('');
+  if(provider===nativeHashProvider&&value.length<=131072&&!nativeHashes.has(value)){if(nativeHashChars+value.length>524288||nativeHashes.size>=16){nativeHashes.clear();nativeHashChars=0;}nativeHashes.set(value,result);nativeHashChars+=value.length;}
+  return result;
  }
  function create({storage,validateMatch,validateReplacement=null,validateTransition=null,exclusive,digest=sha256,maxBytes=MAX_BYTES,receipt}={}){
   if(!format||typeof validateMatch!=='function')fail('VALIDATOR_REQUIRED','Требуется полный валидатор командного матча.');
@@ -91,7 +110,9 @@
    return {raw,value};
   }
   async function writeReceipt(expected,committedRaw,pendingJournal=null){
-   const next=bounded(JSON.stringify({version:1,committedRaw,pendingJournal}),maxBytes*5);await receipt.write(expected,next);if(await receipt.read()!==next)fail('WRITE_PENDING','Транзакционное подтверждение не прошло проверку чтением.');return next;
+   const next=bounded(JSON.stringify({version:1,committedRaw,pendingJournal}),maxBytes*5),verified=nativeVerifiedWrites.get(receipt);
+   let readback;if(verified)readback=await verified(expected,next);else{await receipt.write(expected,next);readback=await receipt.read();}
+   if(readback!==next)fail('WRITE_PENDING','Транзакционное подтверждение не прошло проверку чтением.');return next;
   }
   function load(){return exclusive(async()=>{
    let raw;try{

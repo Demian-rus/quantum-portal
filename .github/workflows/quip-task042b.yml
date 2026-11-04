@@ -22,7 +22,10 @@ jobs:
         with: {fetch-depth: 0}
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
-      - run: npm install --no-save playwright-core@1.55.0
+      - if: matrix.engine == 'chromium'
+        run: npm install --no-save playwright-core@1.55.0
+      - if: matrix.engine == 'webkit'
+        run: npm install --no-save playwright-core@1.64.0
       - run: npx playwright-core install --with-deps ${{ matrix.engine }}
       - run: node diagnostics/task042/dictionary.cjs
         env: {ENGINE: '${{ matrix.engine }}'}

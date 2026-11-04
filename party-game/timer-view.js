@@ -83,6 +83,31 @@ function showCountdown() {
     '<div class="round-bottom"><p class="play-subtitle">Таймер запускается автоматически</p></div>';
 }
 
+// Presentation only: OS text sizing must not touch clocks, RNG or saves.
+if(typeof ResizeObserver==='function'&&typeof MutationObserver==='function'){
+ const surface044=document.getElementById('play-content');
+ if(surface044){
+  let anchor044=null;
+  const fit044=()=>{
+   const enlarged=surface044.classList.contains('stable-round')&&typeof game!=='undefined'&&game?.current?.modeId==='blitz'&&parseFloat(getComputedStyle(surface044).fontSize)>16.01;
+   surface044.classList.toggle('large-blitz-text',enlarged);
+   const condition=surface044.querySelector('.round-condition'),slot=condition?.parentElement;
+   let long=false;
+   if(condition&&!enlarged){
+    const style=getComputedStyle(surface044),tracks=style.gridTemplateRows.split(' ').map(parseFloat),gap=parseFloat(style.rowGap)||0;
+    const available=surface044.clientHeight-tracks[0]-tracks.at(-1)-(tracks.length===4?tracks[1]+3*gap:2*gap);
+    const notes=slot.querySelector('.round-notes'),box=getComputedStyle(slot),needed=condition.offsetHeight+(notes?.offsetHeight||0)+(notes?.offsetHeight?parseFloat(box.rowGap)||0:0)+parseFloat(box.paddingTop)+parseFloat(box.paddingBottom);
+    long=needed>available+1;
+   }
+   surface044.classList.toggle('long-round-text',long);
+   if(long||enlarged)surface044.tabIndex=0;else surface044.removeAttribute('tabindex');
+  };
+  const sizes044=new ResizeObserver(fit044);
+  const watch044=()=>{const next=surface044.querySelector('.play-timer,.mode-name');if(next!==anchor044){sizes044.disconnect();anchor044=next;sizes044.observe(surface044);if(next)sizes044.observe(next);const condition=surface044.querySelector('.round-condition');if(condition)sizes044.observe(condition);}fit044();};
+  new MutationObserver(watch044).observe(surface044,{childList:true,subtree:true});watch044();
+ }
+}
+
 function updateTimerVisual(remaining) {
   const c=game?.current;
   if(!c)return;
