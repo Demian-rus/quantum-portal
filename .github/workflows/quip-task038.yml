@@ -46,23 +46,24 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - run: npm install --no-save playwright-core@1.64.0
+      # Hosted native Chrome can lag behind the pinned driver's major.
+      # Use that driver's exact bundled browser; keep the major-version guard.
+      - run: npx playwright-core install chromium
+      - name: Select matching Chromium for all performance steps
+        run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_ENV, 'CHROME_BIN=' + require('playwright-core').chromium.executablePath() + '\\n')"
       - if: matrix.size == 7000
         run: node diagnostics/task038/boot-controls.cjs
-        env: {CHROME_BIN: /usr/bin/google-chrome}
       - if: matrix.size == 7000
         run: node diagnostics/task038/instrumentation.cjs
         env:
           TASK038_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
-          CHROME_BIN: /usr/bin/google-chrome
       - run: node diagnostics/task038/perf.cjs
         env:
           TASK038_SIZE: ${{ matrix.size }}
           TASK038_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
-          CHROME_BIN: /usr/bin/google-chrome
       - if: always() && matrix.size == 7000
         run: node diagnostics/task038/attribution.cjs
         env:
-          CHROME_BIN: /usr/bin/google-chrome
           TASK038_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/upload-artifact@v4
         if: always()
