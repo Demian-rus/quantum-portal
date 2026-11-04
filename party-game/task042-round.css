@@ -110,9 +110,9 @@
    used by the overflow measurement and makes its result phase-dependent. */
 .scene--game .play-inner.stable-round.long-round-text{overflow-y:auto;overflow-x:hidden}
 @media(max-height:480px){
- /* Full native font metrics need this gutter for a two-line Blitz condition
-    plus its risk note; card, clock and decision tracks remain unchanged. */
- .scene--game .stable-round .round-blitz-layout .round-condition{padding-block:0}
+ /* Keep the native strong-text line box inside the condition row. The 1px
+    inset also fits beside its risk note without moving the fixed tracks. */
+ .scene--game .stable-round .round-blitz-layout .round-condition{padding-block:1px}
  .scene--game .stable-round .round-blitz-layout{gap:1px}
  .scene--game .stable-round .round-blitz-layout .risk-notice{padding-block:0}
 }
